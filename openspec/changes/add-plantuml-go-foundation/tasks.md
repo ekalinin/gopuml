@@ -143,16 +143,16 @@
 
 ## 14. HTTP server
 
-- [ ] 14.1 Implement the `net/http` handler with the GET routes (`/png`, `/img`, `/svg`, `/txt`, `/utxt`, with and without `/plantuml`, and the `d`-prefixed dark-mode routes), MIME types and `X-PlantUML-*` and CORS headers. Verify with `httptest` cases for the GET scenarios
-- [ ] 14.2 Implement `POST /render` (JSON) and raw-body `POST /png`, `/svg` and `/txt`, with 400 on unparsable input. Verify with the POST scenarios
+- [x] 14.1 Implement the `net/http` handler with the GET routes (`/png`, `/img`, `/svg`, `/txt`, `/utxt`, with and without `/plantuml`, and the `d`-prefixed dark-mode routes), MIME types and `X-PlantUML-*` and CORS headers. Verify with `httptest` cases for the GET scenarios
+- [x] 14.2 Implement `POST /render` (JSON) and raw-body `POST /png`, `/svg` and `/txt`, with 400 on unparsable input. Verify with the POST scenarios
 - [ ] 14.3 Implement the error responses: status 400 with the error image and error headers for syntax errors, status 200 with upstream's error image for undecodable text, and 503 on rendering failure. Verify with the HTTP conformance cases
-- [ ] 14.4 Implement `/check`, `/coder` (GET and POST), `/language` and `/serverinfo`. Verify with the utility-endpoint scenarios and HTTP conformance cases
+- [x] 14.4 Implement `/check`, `/coder` (GET and POST), `/language` and `/serverinfo`. Verify with the utility-endpoint scenarios and HTTP conformance cases
 - [x] 14.5 Implement the server security defaults: the `INTERNET` profile, 1 MiB body limit with status 413, and 60 s request timeout with status 503. Wire up `--http-server[:port]`. Verify with the security scenarios and a test that starts the server on a free port
 
 ## 15. WASM build
 
 - [x] 15.1 Implement `cmd/plantuml-wasm` (`GOOS=js GOARCH=wasm`), exporting `plantuml.render(source, options)` that returns a Promise with bytes, width, height and error details. Add `make wasm`. Verify that `make wasm` produces the `.wasm` file and loader
-- [ ] 15.2 Add the ES module loader for browsers and Node.js, plus a Node.js test that renders a sequence diagram and compares it byte-for-byte with native output. Verify that the Node test passes
+- [x] 15.2 Add the ES module loader for browsers and Node.js, plus a Node.js test that renders a sequence diagram and compares it byte-for-byte with native output. Verify that the Node test passes
 - [ ] 15.3 Enforce the `SANDBOX` default and host-supplied includes, and return the graph-layout-unavailable error with an error image for class diagrams. Verify with the WASM spec scenarios in the Node test
 - [x] 15.4 Report the WASM binary size in CI. Verify that the CI log shows the size
 
