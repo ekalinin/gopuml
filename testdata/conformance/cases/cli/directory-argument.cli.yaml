@@ -1,0 +1,21 @@
+id: cli/directory-argument
+scenarios:
+  - "cli: Directory argument"
+args: ["docs/"]
+files:
+  docs/a.puml: |
+    @startuml
+    Alice -> Bob : a
+    @enduml
+  docs/b.txt: |
+    @startuml
+    Alice -> Bob : b
+    @enduml
+  docs/c.plantuml: |
+    @startuml
+    Alice -> Bob : c
+    @enduml
+  docs/sub/d.puml: |
+    @startuml
+    Alice -> Bob : d
+    @enduml

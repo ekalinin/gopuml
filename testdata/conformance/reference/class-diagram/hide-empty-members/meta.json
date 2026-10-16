@@ -1,0 +1,6 @@
+{
+  "id": "class-diagram/hide-empty-members",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CLASS", "description": "(1 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 60, "height": 51, "status": 0}]}
+  ]
+}

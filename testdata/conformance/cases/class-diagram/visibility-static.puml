@@ -1,0 +1,14 @@
+---
+id: class-diagram/visibility-static
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Visibility and static members"
+---
+@startuml
+class Order {
+  -id : int
+  {static} +create() : Order
+}
+@enduml

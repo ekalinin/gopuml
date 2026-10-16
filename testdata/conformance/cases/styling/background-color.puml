@@ -1,0 +1,12 @@
+---
+id: styling/background-color
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Background color"
+---
+@startuml
+skinparam backgroundColor #EEEEEE
+Alice -> Bob : hello
+@enduml

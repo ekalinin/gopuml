@@ -1,0 +1,10 @@
+id: http-server/svg-by-url
+scenarios:
+  - "http-server: SVG by URL"
+server: builtin
+method: GET
+path: /svg/{encoded}
+source: |
+  @startuml
+  Alice -> Bob : hello
+  @enduml

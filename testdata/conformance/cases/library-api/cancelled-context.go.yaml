@@ -1,0 +1,6 @@
+id: library-api/cancelled-context
+scenarios:
+  - "library-api: Cancelled context"
+package: .
+test: TestRenderCancelledContext
+why: Go library API behavior, not observable through Java PlantUML.

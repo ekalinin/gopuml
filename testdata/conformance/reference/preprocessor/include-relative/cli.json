@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--preproc",
+    "diagrams/main.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "diagrams/main.preproc",
+      "size": 83,
+      "sha256": "710a328af2cf570f87ee8edc3997656edaf599ab005d1c22ab7e1cb3b8ec5b50",
+      "stored": true
+    }
+  ]
+}

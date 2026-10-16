@@ -1,0 +1,11 @@
+---
+id: output-formats/svg-link
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "output-formats: Link in SVG"
+---
+@startuml
+class Api [[https://example.com]]
+@enduml

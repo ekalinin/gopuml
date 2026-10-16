@@ -1,0 +1,6 @@
+id: wasm-build/host-include
+scenarios:
+  - "wasm-build: Include supplied by the host"
+package: cmd/plantuml-wasm
+test: TestWasmHostSuppliedInclude
+why: WebAssembly build behavior, checked with Node.js against the native build.

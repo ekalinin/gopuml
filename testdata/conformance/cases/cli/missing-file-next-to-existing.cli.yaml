@@ -1,0 +1,7 @@
+id: cli/missing-file-next-to-existing
+scenarios:
+  - "cli: Missing file next to an existing one"
+args: ["--svg", "nodiag.puml", "missing.puml"]
+files:
+  nodiag.puml: |
+    just text, no diagram

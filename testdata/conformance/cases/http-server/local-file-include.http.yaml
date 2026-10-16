@@ -1,0 +1,11 @@
+id: http-server/local-file-include
+scenarios:
+  - "http-server: Local file include over HTTP"
+server: builtin
+method: GET
+path: /svg/{encoded}
+source: |
+  @startuml
+  !include /etc/passwd
+  Alice -> Bob
+  @enduml

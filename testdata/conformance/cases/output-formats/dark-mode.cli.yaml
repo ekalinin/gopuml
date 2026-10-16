@@ -1,0 +1,10 @@
+id: output-formats/dark-mode
+scenarios:
+  - "output-formats: Dark background"
+args: ["--svg", "--dark-mode", "a.puml"]
+files:
+  a.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml
+compare: [exit, files]

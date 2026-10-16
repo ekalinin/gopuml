@@ -1,0 +1,10 @@
+id: cli/syntax-error
+scenarios:
+  - "cli: Syntax error"
+args: ["--svg", "bad.puml"]
+files:
+  bad.puml: |
+    @startuml
+    Alice -> Bob
+    foo bar baz
+    @enduml

@@ -1,0 +1,12 @@
+---
+id: output-formats/dpi-scaling
+family: uml
+type: sequence
+formats: [png, svg]
+scenarios:
+  - "output-formats: DPI scaling"
+---
+@startuml
+skinparam dpi 192
+Alice -> Bob : hello
+@enduml

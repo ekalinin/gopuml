@@ -1,0 +1,10 @@
+---
+id: diagram-source/no-block
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "diagram-source: No block in input"
+---
+This text has no diagram.
+Alice -> Bob : hello

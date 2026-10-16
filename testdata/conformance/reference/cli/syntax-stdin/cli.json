@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-syntax"
+  ],
+  "exit": 0,
+  "stdout": "SEQUENCE\n(2 participants)\n",
+  "stderr": "",
+  "files": null
+}

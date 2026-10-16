@@ -1,0 +1,12 @@
+---
+id: preprocessor/variable-in-message
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Variable used in a message"
+---
+@startuml
+!$user = "Alice"
+$user -> Bob : hi
+@enduml

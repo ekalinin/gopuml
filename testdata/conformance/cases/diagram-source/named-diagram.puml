@@ -1,0 +1,11 @@
+---
+id: diagram-source/named-diagram
+family: uml
+type: sequence
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Named diagram"
+---
+@startuml login-flow
+Alice -> Bob : hello
+@enduml

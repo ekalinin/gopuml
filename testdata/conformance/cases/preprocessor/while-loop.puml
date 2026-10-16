@@ -1,0 +1,15 @@
+---
+id: preprocessor/while-loop
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: While loop"
+---
+@startuml
+!$i = 0
+!while $i < 3
+A -> B : $i
+!$i = $i + 1
+!endwhile
+@enduml

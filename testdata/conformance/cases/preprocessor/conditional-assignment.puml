@@ -1,0 +1,13 @@
+---
+id: preprocessor/conditional-assignment
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Conditional assignment keeps the existing value"
+---
+@startuml
+!$color = "red"
+!$color ?= "blue"
+A -> B : $color
+@enduml

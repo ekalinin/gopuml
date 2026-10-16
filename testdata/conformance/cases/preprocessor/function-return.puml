@@ -1,0 +1,14 @@
+---
+id: preprocessor/function-return
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Function return value"
+---
+@startuml
+!function $double($x)
+!return $x * 2
+!endfunction
+A -> B : $double(21)
+@enduml

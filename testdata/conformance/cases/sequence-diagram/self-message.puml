@@ -1,0 +1,11 @@
+---
+id: sequence-diagram/self-message
+family: uml
+type: sequence
+formats: [svg, txt, utxt]
+scenarios:
+  - "sequence-diagram: Self message"
+---
+@startuml
+Alice -> Alice : think
+@enduml

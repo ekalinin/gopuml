@@ -1,0 +1,6 @@
+id: library-api/encode-decode
+scenarios:
+  - "library-api: Encode and decode"
+package: .
+test: TestEncodeDecodeRoundTrip
+why: Go library API behavior, not observable through Java PlantUML.

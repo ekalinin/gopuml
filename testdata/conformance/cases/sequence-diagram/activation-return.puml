@@ -1,0 +1,12 @@
+---
+id: sequence-diagram/activation-return
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Activation with return"
+---
+@startuml
+Alice -> Bob ++ : call
+return done
+@enduml

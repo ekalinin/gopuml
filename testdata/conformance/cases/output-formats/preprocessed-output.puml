@@ -1,0 +1,12 @@
+---
+id: output-formats/preprocessed-output
+family: uml
+type: sequence
+formats: [preproc]
+scenarios:
+  - "output-formats: Preprocessed output"
+---
+@startuml
+!$x = "B"
+A -> $x
+@enduml

@@ -1,0 +1,13 @@
+# The SVG on standard output is not compared byte for byte; see
+# pipe-delimiter-txt for a text comparison of the delimiter placement.
+id: cli/pipe-delimiter
+scenarios:
+  - "cli: Delimiter between images"
+args: ["--svg", "-p", "-pipedelimitor", "==="]
+stdin: |
+  @startuml
+  Alice -> Bob
+  @enduml
+  @startuml
+  Bob -> Carol
+  @enduml

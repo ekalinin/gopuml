@@ -1,0 +1,6 @@
+id: upstream-compatibility/ascii-art-matches
+scenarios:
+  - "upstream-compatibility: ASCII art matches"
+package: internal/conformance
+test: TestCompareText
+why: Behavior of the conformance harness itself.

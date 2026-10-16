@@ -1,0 +1,6 @@
+{
+  "id": "activity-diagram/simple-flow",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "activity3", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 120, "height": 203, "status": 0}]}
+  ]
+}

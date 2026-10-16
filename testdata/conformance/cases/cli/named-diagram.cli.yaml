@@ -1,0 +1,9 @@
+id: cli/named-diagram
+scenarios:
+  - "cli: Named diagram"
+args: ["--svg", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml login
+    Alice -> Bob : login
+    @enduml

@@ -1,0 +1,9 @@
+id: cli/relative-output-dir
+scenarios:
+  - "cli: Relative output directory"
+args: ["-o", "out", "docs/a.puml"]
+files:
+  docs/a.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

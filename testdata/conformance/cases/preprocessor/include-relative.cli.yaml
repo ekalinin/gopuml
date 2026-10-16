@@ -1,0 +1,14 @@
+id: preprocessor/include-relative
+scenarios:
+  - "preprocessor: Include relative to the including file"
+args: ["--preproc", "diagrams/main.puml"]
+files:
+  diagrams/main.puml: |
+    @startuml
+    !include common/style.iuml
+    Alice -> Bob : hi
+    @enduml
+  diagrams/common/style.iuml: |
+    Bob -> Carol : from diagrams/common/style.iuml
+  common/style.iuml: |
+    Bob -> Carol : wrong file, resolved against the working directory

@@ -1,0 +1,16 @@
+---
+id: preprocessor/if-else
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: If-else branch"
+---
+@startuml
+!$n = 2
+!if $n > 1
+A -> B : many
+!else
+A -> B : one
+!endif
+@enduml

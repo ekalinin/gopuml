@@ -1,0 +1,16 @@
+---
+id: diagram-source/tag-forms
+family: uml
+type: sequence
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Two blocks in one input"
+  - "diagram-source: Mixed-case family"
+---
+\startuml
+Alice -> Bob : backslash tags
+\enduml
+
+@startUML
+Carol -> Dave : upper-case family
+@endUML

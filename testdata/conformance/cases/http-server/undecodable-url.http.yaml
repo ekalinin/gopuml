@@ -1,0 +1,7 @@
+id: http-server/undecodable-url
+scenarios:
+  - "http-server: Undecodable URL"
+server: builtin
+method: GET
+path: /svg/@@not-valid@@
+compare: [status, body]

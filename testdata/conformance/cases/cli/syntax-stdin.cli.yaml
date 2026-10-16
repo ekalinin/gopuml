@@ -1,0 +1,7 @@
+id: cli/syntax-stdin
+scenarios:
+  - "cli: Syntax from standard input"
+args: ["-syntax"]
+stdin: |
+  Alice -> Bob
+compare: [exit, files, stdout]

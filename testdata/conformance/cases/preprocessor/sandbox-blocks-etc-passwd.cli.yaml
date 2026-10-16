@@ -1,0 +1,13 @@
+id: preprocessor/sandbox-blocks-etc-passwd
+scenarios:
+  - "preprocessor: Sandbox blocks local files"
+args: ["--svg", "main.puml"]
+files:
+  main.puml: |
+    @startuml
+    Alice -> Bob : hi
+    !include /etc/passwd
+    @enduml
+env:
+  PLANTUML_SECURITY_PROFILE: SANDBOX
+compare: [exit, files, stderr]

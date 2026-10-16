@@ -1,0 +1,6 @@
+id: url-encoding/url-safe-output
+scenarios:
+  - "url-encoding: URL-safe output"
+package: internal/code
+test: TestEncodeRoundTrip
+why: The property must hold for any source, which a Go test checks over many generated inputs rather than by comparing fixed outputs with upstream.

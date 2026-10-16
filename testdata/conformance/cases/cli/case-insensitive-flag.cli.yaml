@@ -1,0 +1,9 @@
+id: cli/case-insensitive-flag
+scenarios:
+  - "cli: Case-insensitive flag"
+args: ["-TSVG", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

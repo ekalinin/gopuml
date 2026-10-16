@@ -1,0 +1,12 @@
+# The builtin server does not define /dsvg (it redirects to a default
+# diagram), so the reference is plantuml-server.
+id: http-server/dark-mode-url
+scenarios:
+  - "http-server: Dark mode URL"
+server: plantuml-server
+method: GET
+path: /dsvg/{encoded}
+source: |
+  @startuml
+  Alice -> Bob : hello
+  @enduml

@@ -1,0 +1,6 @@
+id: graph-layout/graphviz-dot-points-to-missing-file
+scenarios:
+  - "graph-layout: Environment variable points to a missing file"
+package: internal/dot
+test: TestFindDotUsesGraphvizDotEvenWhenMissing
+why: The result depends on the host's environment variables and installed programs.

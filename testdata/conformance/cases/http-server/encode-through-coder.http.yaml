@@ -1,0 +1,10 @@
+id: http-server/encode-through-coder
+scenarios:
+  - "http-server: Encode through the coder endpoint"
+server: plantuml-server
+method: POST
+path: /coder
+body: "Alice -> Bob"
+headers:
+  Content-Type: text/plain
+compare: [status]

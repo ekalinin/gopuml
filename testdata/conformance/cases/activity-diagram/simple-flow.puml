@@ -1,0 +1,14 @@
+---
+id: activity-diagram/simple-flow
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Simple flow"
+---
+@startuml
+start
+:Read input;
+:Process;
+stop
+@enduml

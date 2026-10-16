@@ -1,0 +1,12 @@
+---
+id: class-diagram/hide-empty-members
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Hide empty members"
+---
+@startuml
+class A
+hide empty members
+@enduml

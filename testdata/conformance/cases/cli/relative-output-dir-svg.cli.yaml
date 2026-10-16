@@ -1,0 +1,9 @@
+id: cli/relative-output-dir-svg
+scenarios:
+  - "cli: Relative output directory"
+args: ["--svg", "--output-dir", "../out", "docs/a.puml"]
+files:
+  docs/a.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

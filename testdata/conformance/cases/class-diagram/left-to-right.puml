@@ -1,0 +1,12 @@
+---
+id: class-diagram/left-to-right
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Left to right"
+---
+@startuml
+left to right direction
+A --> B
+@enduml

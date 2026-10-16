@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--svg",
+    "--no-error-image",
+    "bad.puml"
+  ],
+  "exit": 200,
+  "stdout": "",
+  "stderr": "Error line 3 in file: bad.puml\nSome diagram description contains errors\n",
+  "files": null
+}

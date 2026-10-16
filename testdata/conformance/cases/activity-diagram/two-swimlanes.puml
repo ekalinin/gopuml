@@ -1,0 +1,14 @@
+---
+id: activity-diagram/two-swimlanes
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Two swimlanes"
+---
+@startuml
+|Customer|
+:Order;
+|Shop|
+:Ship;
+@enduml

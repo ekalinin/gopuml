@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/declared-participant-kinds
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Declared participant kinds"
+---
+@startuml
+actor User
+database DB
+User -> DB : query
+@enduml

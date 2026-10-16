@@ -1,0 +1,5 @@
+@startuml
+!pragma layout elk
+class Order
+Order --> Customer
+@enduml

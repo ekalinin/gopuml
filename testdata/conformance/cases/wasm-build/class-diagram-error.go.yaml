@@ -1,0 +1,6 @@
+id: wasm-build/class-diagram-error
+scenarios:
+  - "wasm-build: Class diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmClassDiagramError
+why: Upstream has no Graphviz-free WASM build; the error is specific to this implementation.

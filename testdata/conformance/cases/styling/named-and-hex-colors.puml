@@ -1,0 +1,12 @@
+---
+id: styling/named-and-hex-colors
+family: uml
+type: class
+formats: [svg, png]
+scenarios:
+  - "styling: Named and hex colors"
+---
+@startuml
+class A #LightBlue
+class B #f00
+@enduml

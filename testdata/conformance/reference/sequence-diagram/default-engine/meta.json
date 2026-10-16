@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/default-engine",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(3 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 307, "height": 252, "status": 0}]}
+  ]
+}

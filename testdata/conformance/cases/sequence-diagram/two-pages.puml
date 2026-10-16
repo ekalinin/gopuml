@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/two-pages
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Two pages"
+---
+@startuml
+Alice -> Bob : one
+newpage Part 2
+Alice -> Bob : two
+@enduml

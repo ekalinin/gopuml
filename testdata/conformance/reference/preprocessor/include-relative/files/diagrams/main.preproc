@@ -1,0 +1,4 @@
+@startuml
+Bob -> Carol : from diagrams/common/style.iuml
+Alice -> Bob : hi
+@enduml

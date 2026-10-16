@@ -1,0 +1,11 @@
+---
+id: preprocessor/dec2hex
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Numeric conversion builtin"
+---
+@startuml
+A -> B : %dec2hex(255)
+@enduml

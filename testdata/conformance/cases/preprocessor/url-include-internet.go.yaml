@@ -1,0 +1,6 @@
+id: preprocessor/url-include-internet
+scenarios:
+  - "preprocessor: URL include under the internet profile"
+package: internal/security
+test: TestURLOK
+why: Fetching a URL depends on network access, so the test serves the included file from a local HTTP test server instead of comparing with Java PlantUML.

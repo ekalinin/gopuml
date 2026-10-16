@@ -1,0 +1,9 @@
+id: cli/define-from-command-line
+scenarios:
+  - "cli: Define from the command line"
+args: ["-DUSER=Alice", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    USER -> Bob
+    @enduml

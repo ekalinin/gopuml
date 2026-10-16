@@ -1,0 +1,15 @@
+{
+  "server": "builtin",
+  "method": "POST",
+  "path": "/render",
+  "status": 400,
+  "headers": {
+    "Content-Type": "text/plain"
+  },
+  "body": {
+    "path": "body.txt",
+    "size": 1170,
+    "sha256": "a4eae1f5762a0238d17b24240ac99afb71d2c9b11c6104baebdc64486fc456c8",
+    "stored": true
+  }
+}

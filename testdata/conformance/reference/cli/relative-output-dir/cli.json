@@ -1,0 +1,18 @@
+{
+  "args": [
+    "-o",
+    "out",
+    "docs/a.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "docs/out/a.png",
+      "size": 1600,
+      "sha256": "eb2729a7469f9b4c2819fbf2bb496682c181a31367db951dd4d97f48463cc32d",
+      "stored": false
+    }
+  ]
+}

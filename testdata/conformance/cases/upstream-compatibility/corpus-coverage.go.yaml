@@ -1,0 +1,6 @@
+id: upstream-compatibility/corpus-coverage
+scenarios:
+  - "upstream-compatibility: Corpus coverage"
+package: internal/conformance
+test: TestConformance
+why: Behavior of the conformance harness itself. The suite reports every corpus case by diagram type.

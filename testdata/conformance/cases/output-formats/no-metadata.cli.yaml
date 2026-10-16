@@ -1,0 +1,10 @@
+id: output-formats/no-metadata
+scenarios:
+  - "output-formats: No metadata"
+args: ["--svg", "--disable-metadata", "a.puml"]
+files:
+  a.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml
+compare: [exit, files]

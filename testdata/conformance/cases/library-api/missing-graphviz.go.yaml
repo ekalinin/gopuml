@@ -1,0 +1,6 @@
+id: library-api/missing-graphviz
+scenarios:
+  - "library-api: Missing Graphviz"
+package: .
+test: TestRenderMissingGraphviz
+why: Go library API behavior, not observable through Java PlantUML.

@@ -1,0 +1,6 @@
+id: cli/parallel-rendering
+scenarios:
+  - "cli: Parallel rendering"
+package: cmd/plantuml
+test: TestThreadsProduceByteIdenticalOutput
+why: Byte identity between two runs of this CLI with --threads 1 and --threads auto is a property of the implementation, not of recorded upstream output.

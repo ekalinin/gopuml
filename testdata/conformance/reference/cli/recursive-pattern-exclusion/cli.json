@@ -1,0 +1,36 @@
+{
+  "args": [
+    "**/*.puml",
+    "-x",
+    "**/draft/**"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "top.png",
+      "size": 1585,
+      "sha256": "3520df3fc6c55ec997ab5aef634b0d0a904bf61c5ff1439b45de0ce5cdeadd98",
+      "stored": false
+    },
+    {
+      "path": "x/a.png",
+      "size": 1468,
+      "sha256": "89ae7ce05b7c0e9c86ea05d5a7f5187e7ea553a40bacf6bf256cc7be39a8e43d",
+      "stored": false
+    },
+    {
+      "path": "x/drafty/e.png",
+      "size": 1472,
+      "sha256": "50122cbdefcc2a0e88933786224c8ace03a5fec44430f6d7f8c52de114a712c3",
+      "stored": false
+    },
+    {
+      "path": "x/y/z/c.png",
+      "size": 1458,
+      "sha256": "74b6585432e3a901956ffadaa7f90f479fcfcb2fe1538dece3df126f39841e9e",
+      "stored": false
+    }
+  ]
+}

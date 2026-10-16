@@ -1,0 +1,6 @@
+id: wasm-build/render-matches-native
+scenarios:
+  - "wasm-build: Render in a browser"
+package: cmd/plantuml-wasm
+test: TestWasmRenderMatchesNative
+why: WebAssembly build behavior, checked with Node.js against the native build.

@@ -1,0 +1,9 @@
+id: http-server/json-render-request
+scenarios:
+  - "http-server: JSON render request"
+server: builtin
+method: POST
+path: /render
+headers:
+  Content-Type: application/json
+body: '{"source": "Alice -> Bob", "options": ["--svg"]}'

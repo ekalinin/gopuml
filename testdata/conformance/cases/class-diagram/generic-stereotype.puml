@@ -1,0 +1,11 @@
+---
+id: class-diagram/generic-stereotype
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Generic class with stereotype"
+---
+@startuml
+class Repo<T> <<service>>
+@enduml

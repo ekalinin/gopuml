@@ -1,0 +1,13 @@
+---
+id: graph-layout/class-layout
+family: uml
+type: class
+formats: [svg, png]
+scenarios:
+  - "graph-layout: Class diagram layout"
+---
+@startuml
+class A
+class B
+A --> B
+@enduml

@@ -1,0 +1,12 @@
+---
+id: sequence-diagram/note-over-two
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Note over two participants"
+---
+@startuml
+Alice -> Bob : hello
+note over Alice, Bob : shared
+@enduml

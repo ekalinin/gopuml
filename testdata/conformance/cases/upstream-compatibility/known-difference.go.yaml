@@ -1,0 +1,6 @@
+id: upstream-compatibility/known-difference
+scenarios:
+  - "upstream-compatibility: Known difference"
+package: internal/conformance
+test: TestCompareDiagramPreprocAndKnown
+why: Behavior of the conformance harness itself.

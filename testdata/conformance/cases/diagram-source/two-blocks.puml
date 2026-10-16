@@ -1,0 +1,15 @@
+---
+id: diagram-source/two-blocks
+family: uml
+type: sequence
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Two blocks in one input"
+---
+@startuml
+Alice -> Bob : first
+@enduml
+
+@startuml
+Carol -> Dave : second
+@enduml

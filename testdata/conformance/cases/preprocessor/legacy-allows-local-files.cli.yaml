@@ -1,0 +1,13 @@
+id: preprocessor/legacy-allows-local-files
+scenarios:
+  - "preprocessor: Legacy allows local files"
+args: ["--svg", "main.puml"]
+files:
+  main.puml: |
+    @startuml
+    Alice -> Bob : hi
+    !include common.iuml
+    @enduml
+  common.iuml: |
+    Bob -> Carol : included
+compare: [exit, files, stderr]

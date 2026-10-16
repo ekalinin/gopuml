@@ -1,0 +1,6 @@
+id: library-api/includes-from-fs
+scenarios:
+  - "library-api: Includes from a supplied file system"
+package: .
+test: TestRenderIncludesFromFS
+why: Go library API behavior, not observable through Java PlantUML.

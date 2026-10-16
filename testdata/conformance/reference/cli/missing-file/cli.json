@@ -1,0 +1,9 @@
+{
+  "args": [
+    "does-not-exist.puml"
+  ],
+  "exit": 50,
+  "stdout": "",
+  "stderr": "No file found\n",
+  "files": null
+}

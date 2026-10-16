@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/invalid-sequence-line",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 3, "messages": ["Syntax Error? (Assumed diagram type: sequence)"]}, "renders": [{"file": "block0-page0.svg", "width": 591, "height": 340, "status": 400}]}
+  ]
+}

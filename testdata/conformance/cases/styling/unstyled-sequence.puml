@@ -1,0 +1,13 @@
+---
+id: styling/unstyled-sequence
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Unstyled diagram"
+---
+@startuml
+Alice -> Bob : hello
+Bob --> Alice : ok
+note right of Bob : a note
+@enduml

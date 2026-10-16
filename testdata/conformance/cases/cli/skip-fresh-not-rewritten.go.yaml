@@ -1,0 +1,6 @@
+id: cli/skip-fresh-not-rewritten
+scenarios:
+  - "cli: Skip fresh output"
+package: cmd/plantuml
+test: TestSkipFreshDoesNotRewriteOutput
+why: The recorder skips input files, so whether the existing diagram.svg is rewritten (content and modification time) can only be checked in Go.

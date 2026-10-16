@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--decode-url",
+    "@@not-valid@@"
+  ],
+  "exit": 1,
+  "stdout": "@startuml\n",
+  "stderr": "Exception in thread \"main\" net.sourceforge.plantuml.code.NoPlantumlCompressionException: net.sourceforge.plantuml.code.NoPlantumlCompressionException: java.util.zip.ZipException: incorrect header check\n\tat net.sourceforge.plantuml.code.TranscoderImpl.decode(TranscoderImpl.java:171)\n\tat net.sourceforge.plantuml.code.TranscoderSmart.decode(TranscoderSmart.java:154)\n\tat net.sourceforge.plantuml.Run.main(Run.java:266)\n\tat RunCli.main(RunCli.java:17)\nCaused by: net.sourceforge.plantuml.code.NoPlantumlCompressionException: java.util.zip.ZipException: incorrect header check\n\tat net.sourceforge.plantuml.code.CompressionHuffman.decompress(CompressionHuffman.java:153)\n\tat net.sourceforge.plantuml.code.TranscoderImpl.decode(TranscoderImpl.java:161)\n\t... 3 more\nCaused by: java.util.zip.ZipException: incorrect header check\n\tat java.base/java.util.zip.InflaterInputStream.read(Unknown Source)\n\tat java.base/java.util.zip.InflaterInputStream.read(Unknown Source)\n\tat net.sourceforge.plantuml.code.CompressionHuffman.decompress(CompressionHuffman.java:144)\n\t... 4 more\n",
+  "files": null
+}

@@ -1,0 +1,7 @@
+{
+  "id": "diagram-source/error-line-numbering",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 118, "height": 129, "status": 0}]},
+    {"index": 1, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 14, "messages": ["Syntax Error? (Assumed diagram type: sequence)"]}, "renders": [{"file": "block1-page0.svg", "width": 591, "height": 340, "status": 400}]}
+  ]
+}

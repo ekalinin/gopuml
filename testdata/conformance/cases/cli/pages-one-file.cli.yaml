@@ -1,0 +1,12 @@
+# Each page of a diagram gets the next _NNN suffix.
+id: cli/pages-one-file
+scenarios:
+  - "cli: Two diagrams in one file"
+args: ["--svg", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml
+    Alice -> Bob : first
+    newpage
+    Bob -> Carol : second
+    @enduml

@@ -1,0 +1,9 @@
+id: diagram-source/no-block-file
+scenarios:
+  - "diagram-source: No block in input"
+args: ["notes.txt"]
+files:
+  notes.txt: |
+    This text has no diagram.
+    Alice -> Bob : hello
+compare: [exit, files, stderr]

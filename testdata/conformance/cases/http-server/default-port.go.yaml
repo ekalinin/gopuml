@@ -1,0 +1,6 @@
+id: http-server/default-port
+scenarios:
+  - "http-server: Default port"
+package: internal/server
+test: TestHTTPServerDefaultPort
+why: The recorded upstream server is always started with an explicit port, so the default of 8080 is checked in Go.

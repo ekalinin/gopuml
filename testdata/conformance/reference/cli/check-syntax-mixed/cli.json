@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--check-syntax",
+    "good.puml",
+    "bad.puml"
+  ],
+  "exit": 200,
+  "stdout": "",
+  "stderr": "Some diagram description contains errors\n",
+  "files": null
+}

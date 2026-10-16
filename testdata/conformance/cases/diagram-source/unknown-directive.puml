@@ -1,0 +1,11 @@
+---
+id: diagram-source/unknown-directive
+family: foo
+type: unsupported
+formats: [svg]
+scenarios:
+  - "diagram-source: Unknown directive"
+---
+@startfoo
+x
+@endfoo

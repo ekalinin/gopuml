@@ -1,0 +1,6 @@
+id: library-api/select-diagram
+scenarios:
+  - "library-api: Select the second diagram"
+package: .
+test: TestRenderSelectDiagram
+why: Go library API behavior, not observable through Java PlantUML.

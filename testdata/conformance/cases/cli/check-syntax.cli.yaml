@@ -1,0 +1,12 @@
+# Standard error is not compared: upstream prints only "Some diagram
+# description contains errors", without the file and line the spec requires.
+id: cli/check-syntax
+scenarios:
+  - "cli: Syntax-only check"
+args: ["--check-syntax", "bad.puml"]
+files:
+  bad.puml: |
+    @startuml
+    Alice -> Bob
+    foo bar baz
+    @enduml

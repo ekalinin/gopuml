@@ -1,0 +1,12 @@
+---
+id: preprocessor/failing-assertion
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Failing assertion"
+---
+@startuml
+Alice -> Bob : hi
+!assert 1 == 2 : "numbers differ"
+@enduml

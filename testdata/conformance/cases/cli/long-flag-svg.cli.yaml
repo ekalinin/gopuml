@@ -1,0 +1,10 @@
+# The long form that the deprecated aliases must behave exactly like.
+id: cli/long-flag-svg
+scenarios:
+  - "cli: Deprecated alias"
+args: ["--svg", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

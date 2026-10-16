@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/two-pages",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 2, "renders": [{"file": "block0-page0.svg", "width": 118, "height": 140, "status": 0}, {"file": "block0-page1.svg", "width": 118, "height": 180, "status": 0}]}
+  ]
+}

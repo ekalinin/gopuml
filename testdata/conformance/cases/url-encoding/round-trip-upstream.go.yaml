@@ -1,0 +1,6 @@
+id: url-encoding/round-trip-upstream
+scenarios:
+  - "url-encoding: Round trip through upstream"
+package: internal/code
+test: TestEncodeDecodedByUpstream
+why: Encoded strings need not be byte-identical to upstream's, so the test encodes with this system and checks that the upstream jar decodes the result back to the same source.

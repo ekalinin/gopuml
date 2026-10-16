@@ -1,0 +1,15 @@
+---
+id: class-diagram/interface-and-enum
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Interface and enum"
+---
+@startuml
+interface Shape
+enum Color {
+  RED
+  GREEN
+}
+@enduml

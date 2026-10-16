@@ -1,0 +1,33 @@
+id: cli/recursive-pattern-exclusion
+scenarios:
+  - "cli: Recursive pattern with exclusion"
+args: ["**/*.puml", "-x", "**/draft/**"]
+files:
+  top.puml: |
+    @startuml
+    Alice -> Bob : top
+    @enduml
+  x/a.puml: |
+    @startuml
+    Alice -> Bob : a
+    @enduml
+  x/draft/b.puml: |
+    @startuml
+    Alice -> Bob : b
+    @enduml
+  x/y/z/c.puml: |
+    @startuml
+    Alice -> Bob : c
+    @enduml
+  draft/d.puml: |
+    @startuml
+    Alice -> Bob : d
+    @enduml
+  x/drafty/e.puml: |
+    @startuml
+    Alice -> Bob : e
+    @enduml
+  x/note.txt: |
+    @startuml
+    Alice -> Bob : note
+    @enduml

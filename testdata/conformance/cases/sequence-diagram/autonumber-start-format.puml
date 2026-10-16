@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/autonumber-start-format
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Custom start and format"
+---
+@startuml
+autonumber 10 5 "<b>[000]"
+Alice -> Bob : request
+Bob -> Alice : response
+@enduml

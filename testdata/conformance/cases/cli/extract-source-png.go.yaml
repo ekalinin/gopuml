@@ -1,0 +1,6 @@
+id: cli/extract-source-png
+scenarios:
+  - "cli: Extract source from PNG"
+package: cmd/plantuml
+test: TestExtractSourceFromOwnPNG
+why: The input PNG must be produced by this CLI and binary files cannot be stored in a text case, so the round trip is checked in Go.

@@ -1,0 +1,11 @@
+id: http-server/syntax-error-by-url
+scenarios:
+  - "http-server: Syntax error by URL"
+server: builtin
+method: GET
+path: /svg/{encoded}
+source: |
+  @startuml
+  Alice -> Bob
+  foo bar baz
+  @enduml

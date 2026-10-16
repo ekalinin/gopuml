@@ -1,0 +1,31 @@
+# Extensions are matched case-insensitively; .iuml, .wsd and .md are not
+# selected from a directory.
+id: cli/directory-extensions
+scenarios:
+  - "cli: Directory argument"
+args: ["--svg", "docs"]
+files:
+  docs/e.PU: |
+    @startuml
+    Alice -> Bob : e
+    @enduml
+  docs/f.iuml: |
+    @startuml
+    Alice -> Bob : f
+    @enduml
+  docs/g.wsd: |
+    @startuml
+    Alice -> Bob : g
+    @enduml
+  docs/h.md: |
+    @startuml
+    Alice -> Bob : h
+    @enduml
+  docs/i.TXT: |
+    @startuml
+    Alice -> Bob : i
+    @enduml
+  docs/j.hh: |
+    @startuml
+    Alice -> Bob : j
+    @enduml

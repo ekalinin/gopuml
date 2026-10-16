@@ -1,0 +1,15 @@
+---
+id: styling/stereotype-selector
+family: uml
+type: class
+formats: [svg, png]
+scenarios:
+  - "styling: Stereotype selector"
+---
+@startuml
+<style>
+.important { BackgroundColor pink }
+</style>
+class Order <<important>>
+class Customer
+@enduml

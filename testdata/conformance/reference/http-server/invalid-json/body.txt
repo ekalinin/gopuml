@@ -1,0 +1,16 @@
+net.sourceforge.plantuml.picoweb.BadRequest400: Error parsing request json: Expected name at 1:2
+	at net.sourceforge.plantuml.picoweb.PicoWebServer.handleRenderRequest(PicoWebServer.java:341)
+	at net.sourceforge.plantuml.picoweb.PicoWebServer.run(PicoWebServer.java:232)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: net.sourceforge.plantuml.json.ParseException: Expected name at 1:2
+	at net.sourceforge.plantuml.json.JsonParser.error(JsonParser.java:572)
+	at net.sourceforge.plantuml.json.JsonParser.expected(JsonParser.java:568)
+	at net.sourceforge.plantuml.json.JsonParser.readName(JsonParser.java:341)
+	at net.sourceforge.plantuml.json.JsonParser.readObject(JsonParser.java:308)
+	at net.sourceforge.plantuml.json.JsonParser.readValue(JsonParser.java:244)
+	at net.sourceforge.plantuml.json.JsonParser.parse(JsonParser.java:219)
+	at net.sourceforge.plantuml.json.JsonParser.parse(JsonParser.java:163)
+	at net.sourceforge.plantuml.json.Json.parse(Json.java:367)
+	at net.sourceforge.plantuml.picoweb.RenderRequest.fromJson(RenderRequest.java:104)
+	at net.sourceforge.plantuml.picoweb.PicoWebServer.handleRenderRequest(PicoWebServer.java:339)
+	... 2 more

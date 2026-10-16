@@ -1,0 +1,12 @@
+---
+id: styling/creole-bold-color
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Bold and colored text"
+---
+@startuml
+Alice -> Bob : hello
+note right : **important** <color:red>now</color>
+@enduml

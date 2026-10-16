@@ -1,0 +1,27 @@
+# Same inputs as threads-1; both must match the same reference.
+id: cli/threads-auto
+scenarios:
+  - "cli: Parallel rendering"
+args: ["--svg", "--threads", "auto", "docs"]
+files:
+  docs/a.puml: |
+    @startuml
+    Alice -> Bob : a
+    @enduml
+    @startuml
+    Bob -> Carol : a2
+    @enduml
+  docs/b.puml: |
+    @startuml
+    Alice -> Bob : b
+    @enduml
+  docs/c.puml: |
+    @startuml
+    class C
+    @enduml
+  docs/d.puml: |
+    @startuml
+    Alice -> Bob : d
+    newpage
+    Bob -> Carol : d2
+    @enduml

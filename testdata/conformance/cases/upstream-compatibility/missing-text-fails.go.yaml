@@ -1,0 +1,6 @@
+id: upstream-compatibility/missing-text-fails
+scenarios:
+  - "upstream-compatibility: Missing text fails"
+package: internal/conformance
+test: TestCompareDiagramFailures
+why: Behavior of the conformance harness itself.

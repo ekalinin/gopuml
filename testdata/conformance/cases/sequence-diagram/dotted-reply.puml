@@ -1,0 +1,12 @@
+---
+id: sequence-diagram/dotted-reply
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Dotted reply"
+---
+@startuml
+Alice -> Bob : request
+Bob --> Alice : response
+@enduml

@@ -1,0 +1,6 @@
+id: cli/no-arguments
+scenarios:
+  - "cli: No arguments"
+package: cmd/plantuml
+test: TestNoArgumentsPrintsUsage
+why: Upstream opens the GUI without arguments (HeadlessException and status 1 in a headless container), while the spec requires printing the usage help with status 0.

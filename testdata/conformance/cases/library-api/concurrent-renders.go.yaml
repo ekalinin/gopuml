@@ -1,0 +1,6 @@
+id: library-api/concurrent-renders
+scenarios:
+  - "library-api: Concurrent renders"
+package: .
+test: TestRenderConcurrent
+why: Go library API behavior, not observable through Java PlantUML.

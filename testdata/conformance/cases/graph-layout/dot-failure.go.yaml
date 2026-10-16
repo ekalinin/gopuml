@@ -1,0 +1,6 @@
+id: graph-layout/dot-failure
+scenarios:
+  - "graph-layout: dot crashes on one diagram"
+package: "."
+test: TestDotFailureOnFirstClassDiagramKeepsSecond
+why: Needs a fake dot that fails only on the first diagram, and upstream reports the failure as a non-reproducible crash report without dot's error message.

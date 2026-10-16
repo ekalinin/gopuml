@@ -1,0 +1,18 @@
+# Unnamed blocks around a named one: flows.svg, login.svg, flows_001.svg.
+id: cli/named-and-unnamed-diagrams
+scenarios:
+  - "cli: Named diagram"
+  - "cli: Two diagrams in one file"
+  - "cli: Named and unnamed blocks"
+args: ["--svg", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml
+    Alice -> Bob : first
+    @enduml
+    @startuml login
+    Alice -> Bob : login
+    @enduml
+    @startuml
+    Bob -> Carol : third
+    @enduml

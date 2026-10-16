@@ -1,0 +1,14 @@
+id: cli/check-syntax-mixed
+scenarios:
+  - "cli: Syntax-only check"
+args: ["--check-syntax", "good.puml", "bad.puml"]
+files:
+  good.puml: |
+    @startuml
+    Alice -> Bob
+    @enduml
+  bad.puml: |
+    @startuml
+    Alice -> Bob
+    foo bar baz
+    @enduml

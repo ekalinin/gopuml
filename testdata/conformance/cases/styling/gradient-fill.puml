@@ -1,0 +1,11 @@
+---
+id: styling/gradient-fill
+family: uml
+type: class
+formats: [svg, png]
+scenarios:
+  - "styling: Gradient fill"
+---
+@startuml
+class A #white/blue
+@enduml

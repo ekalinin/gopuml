@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--svg",
+    "nodiag.puml",
+    "missing.puml"
+  ],
+  "exit": 100,
+  "stdout": "",
+  "stderr": "Warning: no image in nodiag.puml\nNo diagram found\n",
+  "files": null
+}

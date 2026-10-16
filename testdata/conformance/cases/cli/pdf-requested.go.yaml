@@ -1,0 +1,6 @@
+id: cli/pdf-requested
+scenarios:
+  - "cli: PDF requested"
+package: cmd/plantuml
+test: TestUnsupportedFlagPDFIsRejected
+why: Upstream accepts --pdf (writes diagram.pdf and exits 0), while the spec requires rejecting it as unsupported with status 1 and no file.

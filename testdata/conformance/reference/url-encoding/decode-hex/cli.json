@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--decode-url",
+    "~h416c696365202d3e20426f62"
+  ],
+  "exit": 0,
+  "stdout": "@startuml\n@startuml\nAlice -\u003e Bob\n@enduml\n@enduml\n",
+  "stderr": "",
+  "files": null
+}

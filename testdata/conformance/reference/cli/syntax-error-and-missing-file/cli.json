@@ -1,0 +1,18 @@
+{
+  "args": [
+    "--svg",
+    "missing.puml",
+    "bad.puml"
+  ],
+  "exit": 200,
+  "stdout": "",
+  "stderr": "Error line 3 in file: bad.puml\nSome diagram description contains errors\n",
+  "files": [
+    {
+      "path": "bad.svg",
+      "size": 6337,
+      "sha256": "7e58dc3c8959a9a25ed9acd8cfe32af01f8ee0f56aba43c92791ef564eac99b1",
+      "stored": true
+    }
+  ]
+}

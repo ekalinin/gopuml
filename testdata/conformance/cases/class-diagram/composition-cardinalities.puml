@@ -1,0 +1,11 @@
+---
+id: class-diagram/composition-cardinalities
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Composition with cardinalities"
+---
+@startuml
+Order "1" *-- "many" Line : contains
+@enduml

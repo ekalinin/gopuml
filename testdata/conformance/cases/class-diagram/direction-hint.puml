@@ -1,0 +1,11 @@
+---
+id: class-diagram/direction-hint
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Direction hint"
+---
+@startuml
+A -left-> B
+@enduml

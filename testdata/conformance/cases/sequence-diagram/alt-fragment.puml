@@ -1,0 +1,15 @@
+---
+id: sequence-diagram/alt-fragment
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Alternative fragment"
+---
+@startuml
+alt success
+  Alice -> Bob : ok
+else failure
+  Alice -> Bob : retry
+end
+@enduml

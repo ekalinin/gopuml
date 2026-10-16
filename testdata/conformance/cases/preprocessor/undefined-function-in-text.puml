@@ -1,0 +1,12 @@
+---
+id: preprocessor/undefined-function-in-text
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Undefined function in diagram text"
+---
+@startuml
+Alice -> Bob : hi
+A -> B : $missing(1)
+@enduml

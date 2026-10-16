@@ -1,0 +1,12 @@
+id: cli/separator-minus
+scenarios:
+  - "cli: Two diagrams in one file"
+args: ["--svg", "-useseparatorminus", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml
+    Alice -> Bob : first
+    @enduml
+    @startuml
+    Bob -> Carol : second
+    @enduml

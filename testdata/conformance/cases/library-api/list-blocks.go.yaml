@@ -1,0 +1,6 @@
+id: library-api/list-blocks
+scenarios:
+  - "library-api: List blocks"
+package: .
+test: TestInspectBlocks
+why: Go library API behavior, not observable through Java PlantUML.

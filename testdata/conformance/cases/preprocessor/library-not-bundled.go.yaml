@@ -1,0 +1,6 @@
+id: preprocessor/library-not-bundled
+scenarios:
+  - "preprocessor: Library not bundled"
+package: internal/tim
+test: TestStdlibIncludeNotBundledError
+why: Upstream bundles the C4 library and renders the diagram, while the spec requires a "not bundled" error for libraries this build does not embed.

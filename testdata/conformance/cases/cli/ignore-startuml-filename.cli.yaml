@@ -1,0 +1,9 @@
+id: cli/ignore-startuml-filename
+scenarios:
+  - "cli: Named diagram"
+args: ["--svg", "--ignore-startuml-filename", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml login
+    Alice -> Bob : login
+    @enduml

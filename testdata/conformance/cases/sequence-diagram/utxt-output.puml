@@ -1,0 +1,11 @@
+---
+id: sequence-diagram/utxt-output
+family: uml
+type: sequence
+formats: [txt, utxt]
+scenarios:
+  - "sequence-diagram: UTXT output"
+---
+@startuml
+Alice -> Bob : hello
+@enduml

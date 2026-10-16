@@ -1,0 +1,19 @@
+{
+  "server": "plantuml-server",
+  "method": "GET",
+  "path": "/dsvg/Syp9J4vLqBLJSCfFKh1Io4ZDoSa70000",
+  "encoded": "Syp9J4vLqBLJSCfFKh1Io4ZDoSa70000",
+  "status": 200,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "public, max-age=432000",
+    "Content-Type": "image/svg+xml",
+    "X-Plantuml-Diagram-Description": "(2 participants)"
+  },
+  "body": {
+    "path": "body.svg",
+    "size": 2163,
+    "sha256": "972c07597e49b47abe7a50f146a0461dffd55e8d69c5e3f4f06747d53adba35d",
+    "stored": true
+  }
+}

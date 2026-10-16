@@ -1,0 +1,12 @@
+---
+id: class-diagram/note-attached
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Note attached to a class"
+---
+@startuml
+class A
+note right of A : important
+@enduml

@@ -1,0 +1,15 @@
+---
+id: activity-diagram/if-else
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: If with else"
+---
+@startuml
+if (valid?) then (yes)
+  :Save;
+else (no)
+  :Reject;
+endif
+@enduml

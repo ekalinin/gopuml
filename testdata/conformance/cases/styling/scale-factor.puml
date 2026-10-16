@@ -1,0 +1,12 @@
+---
+id: styling/scale-factor
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Scale factor"
+---
+@startuml
+scale 2
+Alice -> Bob : hello
+@enduml

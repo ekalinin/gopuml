@@ -1,0 +1,12 @@
+---
+id: preprocessor/json-member-access
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: JSON member access"
+---
+@startuml
+!$data = { "name": "api", "ports": [80, 443] }
+A -> B : $data.ports[1]
+@enduml

@@ -1,0 +1,6 @@
+{
+  "id": "preprocessor/include-relative-nested",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(3 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 371, "height": 158, "status": 0}]}
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "args": [
+    "--svg",
+    "--disable-metadata",
+    "a.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "a.svg",
+      "size": 2046,
+      "sha256": "8c02fa78ec97745ec26b8cd153079b87b8cb7d05e896b446e6e2de4e17e4d24a",
+      "stored": true
+    }
+  ]
+}

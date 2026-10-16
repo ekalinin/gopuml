@@ -1,0 +1,6 @@
+id: graph-layout/sequence-without-dot
+scenarios:
+  - "graph-layout: Sequence diagram without Graphviz"
+package: "."
+test: TestSequenceDiagramRendersWithoutDot
+why: Needs an environment where no dot can be found, which depends on the host and cannot be set up for both implementations.

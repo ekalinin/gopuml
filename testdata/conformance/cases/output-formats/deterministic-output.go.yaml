@@ -1,0 +1,6 @@
+id: output-formats/deterministic-output
+scenarios:
+  - "output-formats: Same output on two machines"
+package: "."
+test: TestSequenceSVGIsByteIdenticalAcrossPlatforms
+why: Byte-identical output across operating systems is a property of the Go implementation that a single Java reference cannot verify.

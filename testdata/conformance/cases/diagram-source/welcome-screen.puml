@@ -1,0 +1,10 @@
+---
+id: diagram-source/welcome-screen
+family: uml
+type: welcome
+formats: [svg]
+scenarios:
+  - "diagram-source: Welcome screen"
+---
+@startuml
+@enduml

@@ -1,0 +1,6 @@
+id: upstream-compatibility/exit-code-parity
+scenarios:
+  - "upstream-compatibility: Exit code parity"
+package: internal/conformance
+test: TestCompareCLI
+why: Behavior of the conformance harness itself. The cli/missing-file case exercises it against both implementations.

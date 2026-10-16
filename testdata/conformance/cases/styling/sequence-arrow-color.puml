@@ -1,0 +1,13 @@
+---
+id: styling/sequence-arrow-color
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Element-specific parameter"
+---
+@startuml
+skinparam sequenceArrowColor red
+Alice -> Bob : hello
+Bob --> Alice : ok
+@enduml

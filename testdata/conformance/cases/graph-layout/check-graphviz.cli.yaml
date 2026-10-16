@@ -1,0 +1,5 @@
+id: graph-layout/check-graphviz
+scenarios:
+  - "graph-layout: Working installation"
+args: ["--check-graphviz"]
+compare: [exit]

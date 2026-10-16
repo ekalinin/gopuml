@@ -1,0 +1,13 @@
+---
+id: preprocessor/layout-pragma-elk
+family: uml
+type: class
+formats: [preproc]
+scenarios:
+  - "preprocessor: Layout pragma for an unsupported engine"
+---
+@startuml
+!pragma layout elk
+class Order
+Order --> Customer
+@enduml

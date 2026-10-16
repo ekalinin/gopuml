@@ -1,0 +1,21 @@
+id: diagram-source/embedded-in-java-file
+scenarios:
+  - "diagram-source: Diagram embedded in other text"
+args: ["--svg", "Login.java"]
+files:
+  Login.java: |
+    package demo;
+
+    /**
+     * Login flow.
+     *
+     * @startuml
+     * Alice -> Bob : login
+     * Bob --> Alice : ok
+     * @enduml
+     */
+    public class Login {
+        public static void main(String[] args) {
+            System.out.println("hello");
+        }
+    }

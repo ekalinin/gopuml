@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/puma-requested",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(3 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 179, "height": 129, "status": 0}]}
+  ]
+}

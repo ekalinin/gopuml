@@ -1,0 +1,6 @@
+id: activity-diagram/rendering-without-graphviz
+scenarios:
+  - "activity-diagram: Rendering without Graphviz"
+package: internal/activitydiagram3
+test: TestActivityRendersWithoutDot
+why: The scenario depends on no dot executable being available to the Go process, an environment condition that a Java reference rendering cannot express.

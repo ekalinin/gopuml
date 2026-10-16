@@ -1,0 +1,21 @@
+{
+  "server": "plantuml-server",
+  "method": "GET",
+  "path": "/svg/Syp9J4vLqBLJSCfFuahBprT8IYm2uYe0",
+  "encoded": "Syp9J4vLqBLJSCfFuahBprT8IYm2uYe0",
+  "status": 400,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "public, max-age=432000",
+    "Content-Type": "image/svg+xml",
+    "X-Plantuml-Diagram-Description": "(Error)",
+    "X-Plantuml-Diagram-Error": "Syntax Error? (Assumed diagram type: sequence)",
+    "X-Plantuml-Diagram-Error-Line": "2"
+  },
+  "body": {
+    "path": "body.svg",
+    "size": 6335,
+    "sha256": "bb86fad1dff7d79ff5c1491509e79af617a99ffc744a6ef08301667fe26471a6",
+    "stored": true
+  }
+}

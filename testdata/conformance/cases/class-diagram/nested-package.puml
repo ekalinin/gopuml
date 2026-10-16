@@ -1,0 +1,15 @@
+---
+id: class-diagram/nested-package
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Nested package"
+---
+@startuml
+package shop {
+  package model {
+    class Order
+  }
+}
+@enduml

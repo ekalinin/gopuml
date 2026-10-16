@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-syntax"
+  ],
+  "exit": 200,
+  "stdout": "ERROR\n2\nSyntax Error? (Assumed diagram type: sequence)\n",
+  "stderr": "",
+  "files": null
+}

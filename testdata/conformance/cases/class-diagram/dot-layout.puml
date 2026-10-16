@@ -1,0 +1,18 @@
+---
+id: class-diagram/dot-layout
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Rendering requires dot"
+---
+@startuml
+class A
+class B
+class C
+class D
+A <|-- B
+A <|-- C
+B *-- D
+C o-- D
+@enduml

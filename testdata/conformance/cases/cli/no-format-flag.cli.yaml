@@ -1,0 +1,9 @@
+id: cli/no-format-flag
+scenarios:
+  - "cli: No format flag"
+args: ["diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

@@ -1,0 +1,12 @@
+---
+id: styling/unknown-theme
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "styling: Unknown theme"
+---
+@startuml
+!theme does-not-exist
+Alice -> Bob : hello
+@enduml

@@ -1,0 +1,11 @@
+id: preprocessor/system-paths-denied-by-default
+scenarios:
+  - "preprocessor: System paths are denied by default"
+args: ["--svg", "main.puml"]
+files:
+  main.puml: |
+    @startuml
+    Alice -> Bob : hi
+    !include /etc/passwd
+    @enduml
+compare: [exit, files, stderr]

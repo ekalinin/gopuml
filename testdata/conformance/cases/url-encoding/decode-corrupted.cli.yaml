@@ -1,0 +1,5 @@
+id: url-encoding/decode-corrupted
+scenarios:
+  - "url-encoding: Corrupted text"
+args: ["--decode-url", "@@not-valid@@"]
+compare: [exit]

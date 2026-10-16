@@ -1,0 +1,49 @@
+{
+  "args": [
+    "--svg",
+    "--threads",
+    "1",
+    "docs"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "docs/a.svg",
+      "size": 2067,
+      "sha256": "b61988815c1d355d64cfb0497c0ac159968f58bd34fb5ab18034dcc92d376f81",
+      "stored": true
+    },
+    {
+      "path": "docs/a_001.svg",
+      "size": 2092,
+      "sha256": "d7555da6016ccd8ccd09fe9af5722339b3ad88b4f60d8b7780db532eb719e466",
+      "stored": true
+    },
+    {
+      "path": "docs/b.svg",
+      "size": 2067,
+      "sha256": "20c2112c58994eedc930a6ac65d4be39b98d53822833d38a995d6f4ba9166517",
+      "stored": true
+    },
+    {
+      "path": "docs/c.svg",
+      "size": 1475,
+      "sha256": "d2a88435644aec70388ba8a604b1e9dc716989b21a78f6b9bce0f5fa081f408d",
+      "stored": true
+    },
+    {
+      "path": "docs/d.svg",
+      "size": 2882,
+      "sha256": "2e799ed04af7d437a72a6f8cfc21c232d39dc7d4ae775b33601a946ded1919e4",
+      "stored": true
+    },
+    {
+      "path": "docs/d_001.svg",
+      "size": 2913,
+      "sha256": "c293a70833f9dc4b72ed0c1417754bd02823d429d0a3f6b6beb953e95730f0d8",
+      "stored": true
+    }
+  ]
+}

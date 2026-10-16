@@ -1,0 +1,6 @@
+id: upstream-compatibility/reproducible-references
+scenarios:
+  - "upstream-compatibility: Reproducible references"
+package: internal/conformance
+test: TestReferencesReproducible
+why: Behavior of the conformance harness itself.

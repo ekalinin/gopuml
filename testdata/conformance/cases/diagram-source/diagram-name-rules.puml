@@ -1,0 +1,37 @@
+---
+id: diagram-source/diagram-name-rules
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "diagram-source: Named diagram"
+  - "diagram-source: Unnamed diagram"
+  - "diagram-source: Name normalization"
+---
+@startuml login-flow.png
+A -> B
+@enduml
+
+@startuml "quoted name"
+A -> B
+@enduml
+
+@startuml first, second
+A -> B
+@enduml
+
+@startuml a<b
+A -> B
+@enduml
+
+@startuml   spaced name  
+A -> B
+@enduml
+
+@startuml(id=foo)
+A -> B
+@enduml
+
+@startuml file://x/y.svg
+A -> B
+@enduml

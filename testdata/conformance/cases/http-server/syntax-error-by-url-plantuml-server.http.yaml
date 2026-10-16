@@ -1,0 +1,14 @@
+# Status only: plantuml-server's X-PlantUML-Diagram-Error-Line (2) differs
+# from the builtin server's (3) for the same source.
+id: http-server/syntax-error-by-url-plantuml-server
+scenarios:
+  - "http-server: Syntax error by URL"
+server: plantuml-server
+method: GET
+path: /svg/{encoded}
+source: |
+  @startuml
+  Alice -> Bob
+  foo bar baz
+  @enduml
+compare: [status]

@@ -1,0 +1,9 @@
+{
+  "args": [
+    "notes.txt"
+  ],
+  "exit": 100,
+  "stdout": "",
+  "stderr": "Warning: no image in notes.txt\nNo diagram found\n",
+  "files": null
+}

@@ -1,0 +1,11 @@
+---
+id: output-formats/ascii-sequence
+family: uml
+type: sequence
+formats: [txt, utxt]
+scenarios:
+  - "output-formats: ASCII sequence diagram"
+---
+@startuml
+Alice -> Bob : hello
+@enduml

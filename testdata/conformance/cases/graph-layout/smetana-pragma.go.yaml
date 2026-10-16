@@ -1,0 +1,6 @@
+id: graph-layout/smetana-pragma
+scenarios:
+  - "graph-layout: Smetana pragma before the port"
+package: internal/svek
+test: TestSmetanaPragmaFallsBackToDot
+why: Upstream lays the diagram out with its Smetana port, whose node placement differs from dot (64x160 instead of 63x178 for A --> B), while this change uses dot.

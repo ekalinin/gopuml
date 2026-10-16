@@ -1,0 +1,6 @@
+id: library-api/syntax-error-details
+scenarios:
+  - "library-api: Syntax error details"
+package: .
+test: TestRenderSyntaxErrorDetails
+why: Go library API behavior, not observable through Java PlantUML.

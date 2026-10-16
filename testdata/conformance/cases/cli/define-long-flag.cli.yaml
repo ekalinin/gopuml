@@ -1,0 +1,9 @@
+id: cli/define-long-flag
+scenarios:
+  - "cli: Define from the command line"
+args: ["--svg", "--define", "USER=Alice", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    USER -> Bob
+    @enduml

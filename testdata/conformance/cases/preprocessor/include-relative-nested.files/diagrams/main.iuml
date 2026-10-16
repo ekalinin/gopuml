@@ -1,0 +1,2 @@
+!include common/style.iuml
+Alice -> Bob : from diagrams/main.iuml

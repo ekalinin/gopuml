@@ -1,0 +1,12 @@
+id: cli/two-diagrams-one-file
+scenarios:
+  - "cli: Two diagrams in one file"
+args: ["--svg", "flows.puml"]
+files:
+  flows.puml: |
+    @startuml
+    Alice -> Bob : first
+    @enduml
+    @startuml
+    Bob -> Carol : second
+    @enduml

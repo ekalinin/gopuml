@@ -1,0 +1,6 @@
+id: graph-layout/dot-env-over-path
+scenarios:
+  - "graph-layout: Environment variable wins over PATH"
+package: internal/dot
+test: TestFindDotPrefersGraphvizDotOverPath
+why: The result depends on the GRAPHVIZ_DOT variable, PATH and files of the host, which the reference image cannot reproduce for the implementation under test.

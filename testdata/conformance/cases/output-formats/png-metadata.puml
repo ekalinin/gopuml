@@ -1,0 +1,13 @@
+---
+id: output-formats/png-metadata
+family: uml
+type: class
+formats: [png]
+scenarios:
+  - "output-formats: PNG with metadata"
+---
+@startuml
+class A
+class B
+A --> B
+@enduml

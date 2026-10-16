@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--svg",
+    "main.puml"
+  ],
+  "exit": 200,
+  "stdout": "",
+  "stderr": "Error line 3 in file: main.puml\nSome diagram description contains errors\n",
+  "files": [
+    {
+      "path": "main.svg",
+      "size": 6370,
+      "sha256": "9c179cf5b7fb911ebf12c0a31fb38084958faa03f6f3ec92729f74d8a17eccba",
+      "stored": true
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+id: url-encoding/decode-hex
+scenarios:
+  - "url-encoding: Hex form"
+# 416c696365202d3e20426f62 is the hex form of "Alice -> Bob".
+args: ["--decode-url", "~h416c696365202d3e20426f62"]
+compare: [exit, stdout]

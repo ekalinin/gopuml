@@ -1,0 +1,12 @@
+---
+id: preprocessor/legacy-define
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Legacy macro with arguments"
+---
+@startuml
+!define SEND(a,b) a -> b
+SEND(Alice,Bob)
+@enduml

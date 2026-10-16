@@ -1,0 +1,15 @@
+---
+id: activity-diagram/fork
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Fork"
+---
+@startuml
+fork
+  :A;
+fork again
+  :B;
+end fork
+@enduml

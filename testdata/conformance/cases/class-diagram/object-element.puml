@@ -1,0 +1,12 @@
+---
+id: class-diagram/object-element
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Object in a class diagram"
+---
+@startuml
+object Alice
+Alice : age = 30
+@enduml

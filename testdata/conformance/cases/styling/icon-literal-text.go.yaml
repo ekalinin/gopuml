@@ -1,0 +1,6 @@
+id: styling/icon-literal-text
+scenarios:
+  - "styling: Icon reference before icons are supported"
+package: internal/klimt
+test: TestCreoleOpenIconicRendersLiteralText
+why: Upstream draws the OpenIconic check icon as a path, while this change intentionally renders `<&check> done` as literal text until icons are added.

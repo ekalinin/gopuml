@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--svg",
+    "main.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "main.svg",
+      "size": 3166,
+      "sha256": "a02f6dd9de16723a7790e825490d918a183e7590d3e23cafe1be6ad31a029d37",
+      "stored": true
+    }
+  ]
+}

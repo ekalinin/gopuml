@@ -1,0 +1,9 @@
+id: cli/unknown-flag
+scenarios:
+  - "cli: Unknown flag"
+args: ["--foo", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    Alice -> Bob : hi
+    @enduml

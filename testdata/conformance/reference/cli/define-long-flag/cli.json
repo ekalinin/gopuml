@@ -1,0 +1,19 @@
+{
+  "args": [
+    "--svg",
+    "--define",
+    "USER=Alice",
+    "diagram.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "diagram.svg",
+      "size": 2000,
+      "sha256": "5a71dbebfd5cadf0e3c3b8e113f6f66757c83ecd4b13ba726232f567638a4e5e",
+      "stored": true
+    }
+  ]
+}

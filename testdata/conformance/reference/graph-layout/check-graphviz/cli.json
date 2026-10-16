@@ -1,0 +1,9 @@
+{
+  "args": [
+    "--check-graphviz"
+  ],
+  "exit": 0,
+  "stdout": "GraphViz: dot - graphviz version 14.0.1 (20251006.0113)\nInstallation seems OK. File generation OK\n",
+  "stderr": "",
+  "files": null
+}

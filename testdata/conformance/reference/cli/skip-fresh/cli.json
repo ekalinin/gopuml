@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--svg",
+    "--skip-fresh",
+    "diagram.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": null
+}

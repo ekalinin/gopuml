@@ -1,0 +1,13 @@
+---
+id: styling/title-and-footer
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Title and footer"
+---
+@startuml
+title Checkout
+footer page 1
+Alice -> Bob : hello
+@enduml

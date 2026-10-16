@@ -1,0 +1,13 @@
+---
+id: diagram-source/sequence-detected
+family: uml
+type: sequence
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Supported family"
+  - "diagram-source: Sequence diagram detected"
+  - "diagram-source: Unnamed diagram"
+---
+@startuml
+Alice -> Bob : hello
+@enduml

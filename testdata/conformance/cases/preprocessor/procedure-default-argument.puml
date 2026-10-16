@@ -1,0 +1,14 @@
+---
+id: preprocessor/procedure-default-argument
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Procedure call with default argument"
+---
+@startuml
+!procedure $msg($to, $text="ping")
+A -> $to : $text
+!endprocedure
+$msg("B")
+@enduml

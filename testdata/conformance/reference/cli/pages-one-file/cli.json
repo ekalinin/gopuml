@@ -1,0 +1,23 @@
+{
+  "args": [
+    "--svg",
+    "flows.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "flows.svg",
+      "size": 2918,
+      "sha256": "61dce781d86cd69b4686f7a7a1361fddda02c38ea4db1607fdbcd8294d67f689",
+      "stored": true
+    },
+    {
+      "path": "flows_001.svg",
+      "size": 2929,
+      "sha256": "4de2fa1de08a98349a3852c6250103319f0044bb105a092e8d28ecc940abb96f",
+      "stored": true
+    }
+  ]
+}

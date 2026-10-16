@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--svg",
+    "Login.java"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "Login.svg",
+      "size": 2511,
+      "sha256": "def7ead4a48a41da2d46991a0e0973f1f51f63ce68a55c0d2dc3a357aaeffd09",
+      "stored": true
+    }
+  ]
+}

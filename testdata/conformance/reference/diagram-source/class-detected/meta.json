@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/class-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CLASS", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 121, "height": 177, "status": 0}, {"file": "block0-page0.atxt", "width": 0, "height": 0, "status": 0}]}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--svg",
+    "flows.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "login.svg",
+      "size": 2099,
+      "sha256": "87a2ae81b69fcfd70e5ccbed4387c45754d7eba20c4835f31821007ff70b9e23",
+      "stored": true
+    }
+  ]
+}

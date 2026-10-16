@@ -1,0 +1,7 @@
+id: cli/pipe-unmarked-input-txt
+scenarios:
+  - "cli: Pipe with unmarked input"
+args: ["--txt", "-p"]
+stdin: |
+  Alice -> Bob
+compare: [exit, files, stdout]

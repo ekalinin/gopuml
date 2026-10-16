@@ -1,0 +1,12 @@
+{
+  "id": "diagram-source/diagram-name-rules",
+  "blocks": [
+    {"index": 0, "name": "login-flow", "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 1, "name": "quoted name", "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block1-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 2, "name": "first", "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block2-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 3, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block3-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 4, "name": "spaced name", "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block4-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 5, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block5-page0.svg", "width": 77, "height": 114, "status": 0}]},
+    {"index": 6, "name": "x/y", "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block6-page0.svg", "width": 77, "height": 114, "status": 0}]}
+  ]
+}

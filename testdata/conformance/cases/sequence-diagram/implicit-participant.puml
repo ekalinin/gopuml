@@ -1,0 +1,11 @@
+---
+id: sequence-diagram/implicit-participant
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Implicit participant"
+---
+@startuml
+Alice -> Bob : hi
+@enduml

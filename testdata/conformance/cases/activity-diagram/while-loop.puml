@@ -1,0 +1,13 @@
+---
+id: activity-diagram/while-loop
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: While loop"
+---
+@startuml
+while (more?) is (yes)
+  :Read;
+endwhile (no)
+@enduml

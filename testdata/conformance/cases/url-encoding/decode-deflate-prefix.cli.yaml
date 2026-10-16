@@ -1,0 +1,7 @@
+id: url-encoding/decode-deflate-prefix
+scenarios:
+  - "url-encoding: Decode an upstream-encoded string"
+# The upstream encoding of @startuml / Alice -> Bob : hi / @enduml with the
+# explicit ~0 (deflate) prefix.
+args: ["--decode-url", "~0Syp9J4vLqBLJSCfFKh1IoCW40000"]
+compare: [exit, stdout]

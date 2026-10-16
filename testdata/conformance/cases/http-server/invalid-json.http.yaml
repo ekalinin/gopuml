@@ -1,0 +1,11 @@
+# Only the status is compared: upstream's body is a Java stack trace.
+id: http-server/invalid-json
+scenarios:
+  - "http-server: Invalid JSON"
+server: builtin
+method: POST
+path: /render
+headers:
+  Content-Type: application/json
+body: '{not json'
+compare: [status]

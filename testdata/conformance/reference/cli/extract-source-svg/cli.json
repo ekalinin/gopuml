@@ -1,0 +1,10 @@
+{
+  "args": [
+    "--extract-source",
+    "diagram.svg"
+  ],
+  "exit": 0,
+  "stdout": "------------------------\ndiagram.svg\n\n@startuml\nAlice -\u003e Bob : hello\n@enduml\n------------------------\n",
+  "stderr": "",
+  "files": null
+}

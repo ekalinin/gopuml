@@ -1,0 +1,18 @@
+---
+id: sequence-diagram/default-engine
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Default engine"
+---
+@startuml
+participant Alice
+participant Bob
+participant Carol
+Alice -> Bob ++ : request
+Bob -> Carol : forward
+note right of Carol : processing
+Carol --> Bob : result
+return response
+@enduml

@@ -1,0 +1,13 @@
+---
+id: activity-diagram/labeled-arrow
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Labeled arrow"
+---
+@startuml
+:A;
+-> next;
+:B;
+@enduml

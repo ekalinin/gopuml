@@ -1,0 +1,14 @@
+id: cli/check-before-run
+scenarios:
+  - "cli: Check before run"
+args: ["--check-before-run", "good.puml", "bad.puml"]
+files:
+  good.puml: |
+    @startuml
+    Alice -> Bob
+    @enduml
+  bad.puml: |
+    @startuml
+    Alice -> Bob
+    foo bar baz
+    @enduml

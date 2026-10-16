@@ -1,0 +1,4 @@
+id: cli/missing-file
+scenarios:
+  - "cli: Missing file"
+args: ["does-not-exist.puml"]

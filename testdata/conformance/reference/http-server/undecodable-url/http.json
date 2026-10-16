@@ -1,0 +1,20 @@
+{
+  "server": "builtin",
+  "method": "GET",
+  "path": "/svg/@@not-valid@@",
+  "status": 200,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "no-cache",
+    "Content-Type": "image/svg+xml",
+    "X-Plantuml-Diagram-Description": "(0 entities)",
+    "X-Plantuml-Diagram-Height": "310",
+    "X-Plantuml-Diagram-Width": "789"
+  },
+  "body": {
+    "path": "body.svg",
+    "size": 2784,
+    "sha256": "1be4de3e92d58d220a96fbd1cc6dc85c9f30bd73399c817e29a4aa964d0d9cdf",
+    "stored": true
+  }
+}

@@ -1,0 +1,11 @@
+---
+id: output-formats/svg-metadata
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "output-formats: SVG with metadata"
+---
+@startuml
+Alice -> Bob : hello
+@enduml

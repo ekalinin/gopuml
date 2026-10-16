@@ -1,0 +1,8 @@
+# The SVG on standard output is not compared byte for byte; see
+# pipe-unmarked-input-txt for a text comparison of the same input.
+id: cli/pipe-unmarked-input
+scenarios:
+  - "cli: Pipe with unmarked input"
+args: ["--svg", "-p"]
+stdin: |
+  Alice -> Bob

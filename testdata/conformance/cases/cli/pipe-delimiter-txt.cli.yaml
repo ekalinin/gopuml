@@ -1,0 +1,12 @@
+id: cli/pipe-delimiter-txt
+scenarios:
+  - "cli: Delimiter between images"
+args: ["--txt", "-p", "-pipedelimitor", "==="]
+stdin: |
+  @startuml
+  Alice -> Bob
+  @enduml
+  @startuml
+  Bob -> Carol
+  @enduml
+compare: [exit, files, stdout]

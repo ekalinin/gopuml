@@ -1,0 +1,16 @@
+---
+id: diagram-source/tag-keyword-case
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "diagram-source: No block in input"
+  - "diagram-source: Upper-case keyword"
+---
+@Startuml
+Alice -> Bob : capitalized start keyword
+@enduml
+
+@STARTUML
+Alice -> Bob : upper-case start keyword
+@ENDUML

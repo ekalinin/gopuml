@@ -1,0 +1,9 @@
+id: diagram-source/named-diagram-file
+scenarios:
+  - "diagram-source: Named diagram"
+args: ["--svg", "source.puml"]
+files:
+  source.puml: |
+    @startuml login-flow
+    Alice -> Bob : hello
+    @enduml

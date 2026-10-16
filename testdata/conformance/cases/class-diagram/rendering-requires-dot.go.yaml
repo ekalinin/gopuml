@@ -1,0 +1,6 @@
+id: class-diagram/rendering-requires-dot
+scenarios:
+  - "class-diagram: Rendering requires dot"
+package: internal/classdiagram
+test: TestClassLayoutUsesDot
+why: The scenario is about the Go implementation invoking the local Graphviz dot executable, which depends on the test environment rather than on upstream output.

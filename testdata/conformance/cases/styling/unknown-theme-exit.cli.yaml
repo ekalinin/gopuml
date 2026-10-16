@@ -1,0 +1,11 @@
+id: styling/unknown-theme-exit
+scenarios:
+  - "styling: Unknown theme"
+args: ["--svg", "t.puml"]
+files:
+  t.puml: |
+    @startuml
+    !theme does-not-exist
+    Alice -> Bob : hello
+    @enduml
+compare: [exit, files, stderr]

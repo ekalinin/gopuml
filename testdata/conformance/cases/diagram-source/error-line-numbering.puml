@@ -1,0 +1,24 @@
+---
+id: diagram-source/error-line-numbering
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "diagram-source: Invalid sequence line"
+  - "diagram-source: Error image in SVG"
+---
+Text before the first block
+counts in the error line number.
+
+@startuml
+Alice -> Bob : ok
+@enduml
+
+@startuml
+!$a = 1
+!if $a == 1
+!$b = 2
+!endif
+Alice -> Bob : hi
+Alice -> -> Bob
+@enduml

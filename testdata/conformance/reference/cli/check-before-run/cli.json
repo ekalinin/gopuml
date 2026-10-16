@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--check-before-run",
+    "good.puml",
+    "bad.puml"
+  ],
+  "exit": 200,
+  "stdout": "",
+  "stderr": "Some diagram description contains errors\nNo diagram found\n",
+  "files": null
+}

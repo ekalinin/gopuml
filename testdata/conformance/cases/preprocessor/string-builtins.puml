@@ -1,0 +1,12 @@
+---
+id: preprocessor/string-builtins
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: String builtins"
+---
+@startuml
+A -> B : %strlen("abc")
+A -> B : %upper("abc")
+@enduml

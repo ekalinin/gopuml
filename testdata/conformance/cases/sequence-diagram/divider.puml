@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/divider
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Divider"
+---
+@startuml
+Alice -> Bob : first
+== Initialization ==
+Alice -> Bob : second
+@enduml

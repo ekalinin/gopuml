@@ -1,0 +1,11 @@
+id: diagram-source/error-images-disabled
+scenarios:
+  - "diagram-source: Error images disabled"
+args: ["--svg", "--no-error-image", "bad.puml"]
+files:
+  bad.puml: |
+    @startuml
+    Alice -> Bob : hi
+    Alice -> -> Bob
+    @enduml
+compare: [exit, files, stderr]

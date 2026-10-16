@@ -1,0 +1,17 @@
+{
+  "args": [
+    "--foo",
+    "diagram.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "diagram.png",
+      "size": 1461,
+      "sha256": "714cd48927fbb46d800fe12579de894805131c7995f0a5c3b7455e7ff75f96b9",
+      "stored": false
+    }
+  ]
+}

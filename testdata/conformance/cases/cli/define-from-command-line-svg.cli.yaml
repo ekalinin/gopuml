@@ -1,0 +1,10 @@
+# SVG output, so that the rendered texts (Alice, not USER) are compared.
+id: cli/define-from-command-line-svg
+scenarios:
+  - "cli: Define from the command line"
+args: ["--svg", "-DUSER=Alice", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    USER -> Bob
+    @enduml

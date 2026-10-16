@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/activity-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "activity3", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 120, "height": 149, "status": 0}, {"file": "block0-page0.atxt", "width": 65, "height": 146, "status": 0}]}
+  ]
+}

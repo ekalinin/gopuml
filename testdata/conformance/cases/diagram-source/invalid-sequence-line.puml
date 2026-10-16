@@ -1,0 +1,13 @@
+---
+id: diagram-source/invalid-sequence-line
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "diagram-source: Invalid sequence line"
+  - "diagram-source: Error image in SVG"
+---
+@startuml
+Alice -> Bob : hi
+Alice -> -> Bob
+@enduml

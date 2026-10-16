@@ -1,0 +1,6 @@
+id: upstream-compatibility/passing-case
+scenarios:
+  - "upstream-compatibility: Passing case"
+package: internal/conformance
+test: TestCompareDiagramPass
+why: Behavior of the conformance harness itself.

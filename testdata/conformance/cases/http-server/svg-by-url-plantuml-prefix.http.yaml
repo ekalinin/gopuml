@@ -1,0 +1,10 @@
+id: http-server/svg-by-url-plantuml-prefix
+scenarios:
+  - "http-server: SVG by URL"
+server: builtin
+method: GET
+path: /plantuml/svg/{encoded}
+source: |
+  @startuml
+  Alice -> Bob : hello
+  @enduml

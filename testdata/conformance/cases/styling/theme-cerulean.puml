@@ -1,0 +1,12 @@
+---
+id: styling/theme-cerulean
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Bundled theme"
+---
+@startuml
+!theme cerulean
+Alice -> Bob : hello
+@enduml

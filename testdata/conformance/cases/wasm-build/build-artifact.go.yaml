@@ -1,0 +1,6 @@
+id: wasm-build/build-artifact
+scenarios:
+  - "wasm-build: Build produces the module"
+package: cmd/plantuml-wasm
+test: TestWasmBuildProducesModule
+why: WebAssembly build behavior, checked with Node.js against the native build.

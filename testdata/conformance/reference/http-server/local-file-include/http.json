@@ -1,0 +1,23 @@
+{
+  "server": "builtin",
+  "method": "GET",
+  "path": "/svg/KypCIyufJKbLq4yjITOlI2mkBay10000",
+  "encoded": "KypCIyufJKbLq4yjITOlI2mkBay10000",
+  "status": 400,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "no-cache",
+    "Content-Type": "image/svg+xml",
+    "X-Plantuml-Diagram-Description": "(Error)",
+    "X-Plantuml-Diagram-Error": "cannot include /etc/passwd",
+    "X-Plantuml-Diagram-Error-Line": "2",
+    "X-Plantuml-Diagram-Height": "324",
+    "X-Plantuml-Diagram-Width": "591"
+  },
+  "body": {
+    "path": "body.svg",
+    "size": 6227,
+    "sha256": "d097144c1bf287af241197408cf45003ef952e176e3444d5ea35070b1ac0bb87",
+    "stored": true
+  }
+}

@@ -1,0 +1,13 @@
+---
+id: preprocessor/undefined-function
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Undefined function"
+---
+@startuml
+Alice -> Bob : hi
+!$x = $missing(1)
+A -> B : $x
+@enduml

@@ -1,0 +1,12 @@
+---
+id: preprocessor/missing-include
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Missing include file"
+---
+@startuml
+Alice -> Bob : hi
+!include missing.iuml
+@enduml

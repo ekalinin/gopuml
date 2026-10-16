@@ -1,0 +1,20 @@
+{
+  "server": "builtin",
+  "method": "POST",
+  "path": "/render",
+  "status": 200,
+  "headers": {
+    "Access-Control-Allow-Origin": "*",
+    "Cache-Control": "no-cache",
+    "Content-Type": "image/svg+xml",
+    "X-Plantuml-Diagram-Description": "(2 participants)",
+    "X-Plantuml-Diagram-Height": "114",
+    "X-Plantuml-Diagram-Width": "118"
+  },
+  "body": {
+    "path": "body.svg",
+    "size": 2000,
+    "sha256": "918f39fb2fd9384593a8dcb42b788c779d18fe401855b305c3e7e1d645350dea",
+    "stored": true
+  }
+}

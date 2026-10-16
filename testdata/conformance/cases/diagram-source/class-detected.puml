@@ -1,0 +1,13 @@
+---
+id: diagram-source/class-detected
+family: uml
+type: class
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Supported family"
+  - "diagram-source: Class diagram detected"
+---
+@startuml
+class Order
+Order --> Customer
+@enduml

@@ -1,0 +1,12 @@
+---
+id: preprocessor/include-once
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Include once"
+---
+@startuml
+!include_once a.iuml
+!include_once a.iuml
+@enduml

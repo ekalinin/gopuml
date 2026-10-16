@@ -1,0 +1,11 @@
+id: cli/syntax-stdin-error
+scenarios:
+  - "cli: Syntax from standard input"
+  - "cli: Syntax error from standard input"
+args: ["-syntax"]
+stdin: |
+  @startuml
+  Alice -> Bob
+  foo bar baz
+  @enduml
+compare: [exit, files, stdout]

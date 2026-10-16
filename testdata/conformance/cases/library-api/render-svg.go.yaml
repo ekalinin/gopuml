@@ -1,0 +1,6 @@
+id: library-api/render-svg
+scenarios:
+  - "library-api: Render to SVG"
+package: .
+test: TestRenderSVG
+why: Go library API behavior, not observable through Java PlantUML.

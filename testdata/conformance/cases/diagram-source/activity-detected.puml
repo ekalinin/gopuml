@@ -1,0 +1,14 @@
+---
+id: diagram-source/activity-detected
+family: uml
+type: activity
+formats: [svg, txt]
+scenarios:
+  - "diagram-source: Supported family"
+  - "diagram-source: Activity diagram detected"
+---
+@startuml
+start
+:Read input;
+stop
+@enduml

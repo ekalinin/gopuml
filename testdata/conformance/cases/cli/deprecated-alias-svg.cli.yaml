@@ -1,0 +1,9 @@
+id: cli/deprecated-alias-svg
+scenarios:
+  - "cli: Deprecated alias"
+args: ["-svg", "diagram.puml"]
+files:
+  diagram.puml: |
+    @startuml
+    Alice -> Bob : hello
+    @enduml

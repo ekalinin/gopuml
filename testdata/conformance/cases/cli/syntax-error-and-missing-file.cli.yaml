@@ -1,0 +1,11 @@
+# 200 takes precedence over 50.
+id: cli/syntax-error-and-missing-file
+scenarios:
+  - "cli: Syntax error"
+args: ["--svg", "missing.puml", "bad.puml"]
+files:
+  bad.puml: |
+    @startuml
+    Alice -> Bob
+    foo bar baz
+    @enduml

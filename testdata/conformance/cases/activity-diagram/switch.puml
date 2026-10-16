@@ -1,0 +1,18 @@
+---
+id: activity-diagram/switch
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Switch"
+---
+@startuml
+switch (kind)
+case (A)
+  :Handle A;
+case (B)
+  :Handle B;
+case (C)
+  :Handle C;
+endswitch
+@enduml

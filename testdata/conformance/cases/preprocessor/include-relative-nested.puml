@@ -1,0 +1,11 @@
+---
+id: preprocessor/include-relative-nested
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Include relative to the including file"
+---
+@startuml
+!include diagrams/main.iuml
+@enduml

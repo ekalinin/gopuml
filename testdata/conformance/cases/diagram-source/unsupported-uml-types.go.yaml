@@ -1,0 +1,7 @@
+id: diagram-source/unsupported-uml-types
+scenarios:
+  - "diagram-source: State diagram syntax"
+  - "diagram-source: Legacy activity syntax"
+package: internal/core
+test: TestDetectUnsupportedUmlTypes
+why: Upstream renders state and legacy activity diagrams, while this change must report that these diagram types are not supported yet.

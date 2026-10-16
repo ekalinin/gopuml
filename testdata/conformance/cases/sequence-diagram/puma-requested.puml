@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/puma-requested
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Teoz pragma has no effect"
+---
+@startuml
+!pragma teoz false
+Alice -> Bob : a
+& Bob -> Carol : b
+@enduml

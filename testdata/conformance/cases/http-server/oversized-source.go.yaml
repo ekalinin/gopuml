@@ -1,0 +1,6 @@
+id: http-server/oversized-source
+scenarios:
+  - "http-server: Oversized source"
+package: internal/server
+test: TestOversizedSourceReturns413
+why: The 1 MiB body limit with status 413 is specific to this implementation; plantuml-server renders a 2 MiB POST /svg with status 200.
