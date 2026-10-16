@@ -82,10 +82,10 @@
 
 - [x] 8.1 Port the sequence command set (participants, boxes, messages, autonumber, activation, fragments, notes, dividers, delays, spacing, references, `newpage`, `hide footbox`) using the RE2 command framework (design D4). Verify with parser unit tests built from upstream's command patterns
 - [x] 8.2 Port the sequence domain model (participants, events, lifelines, pages). Verify with model-level tests asserting participant order, events and pages for the spec scenarios
-- [ ] 8.3 Port the Teoz layout engine: tiles, the constraint solver, lifelines and activations. Verify with layout tests on participant x-positions and event y-positions against coordinates from reference SVGs
-- [ ] 8.4 Port the sequence participant and arrow drawing (all participant shapes, all arrow heads, self, incoming and outgoing, and short messages). Verify with sequence conformance cases for participants and messages
-- [ ] 8.5 Port fragment, note, divider, delay, reference and autonumber drawing. Verify with the sequence conformance cases for those scenarios
-- [ ] 8.6 Accept `!pragma teoz` with any value and keep the Teoz layout, as upstream v1.2026.8 does. Verify with the "Teoz pragma has no effect" scenario
+- [x] 8.3 Port the Teoz layout engine: tiles, the constraint solver, lifelines and activations. Verify with layout tests on participant x-positions and event y-positions against coordinates from reference SVGs
+- [x] 8.4 Port the sequence participant and arrow drawing (all participant shapes, all arrow heads, self, incoming and outgoing, and short messages). Verify with sequence conformance cases for participants and messages
+- [x] 8.5 Port fragment, note, divider, delay, reference and autonumber drawing. Verify with the sequence conformance cases for those scenarios
+- [x] 8.6 Accept `!pragma teoz` with any value and keep the Teoz layout, as upstream v1.2026.8 does. Verify with the "Teoz pragma has no effect" scenario
 - [ ] 8.7 Port `asciiart` for sequence diagrams (TXT `.atxt` and UTXT `.utxt`). Verify that the sequence TXT and UTXT conformance cases match exactly
 - [ ] 8.8 Run the sequence conformance slice. Verify that all sequence cases pass or are listed with justification in `known-differences.yaml`
 
@@ -113,7 +113,7 @@
 
 ## 11. Activity diagrams
 
-- [ ] 11.1 Port the activity v3 command set (actions, SDL shapes, terminals, `if`/`elseif`/`else`, `switch`, `repeat`, `while`, `break`, `fork`, `split`, swimlanes, `partition`/`group`, arrows, connectors, notes). Verify with parser unit tests built from upstream patterns
+- [x] 11.1 Port the activity v3 command set (actions, SDL shapes, terminals, `if`/`elseif`/`else`, `switch`, `repeat`, `while`, `break`, `fork`, `split`, swimlanes, `partition`/`group`, arrows, connectors, notes). Verify with parser unit tests built from upstream patterns
 - [ ] 11.2 Port the activity instruction model and `ftile` layout (including swimlanes and the `ftile` factories with decorations). Verify with layout tests on node positions against reference SVG coordinates
 - [ ] 11.3 Port the activity drawing (shapes, diamonds, bars, arrows, labels, lanes). Verify with the activity conformance cases
 - [ ] 11.4 Run the activity conformance slice. Verify that all activity cases pass or are listed in `known-differences.yaml`
@@ -128,8 +128,8 @@
   Verify with the graph-layout scenarios, using fake `dot` scripts for timeout and failure
 - [ ] 12.2 Port `svek` DOT generation (`DotStringFactory`, clusters, node shapes, edge attributes). Verify with golden tests of generated DOT strings against strings captured from the Java jar with `-debugsvek`
 - [ ] 12.3 Port parsing of `dot -Tsvg` output into node positions and edge paths, and test it against Graphviz 14.0.1 (image) and the latest local release. Verify with parser tests on saved SVG outputs from both versions
-- [ ] 12.4 Port the shared entity model (`abel`, `cucadiagram`): entities, links, groups, `hide`/`show`/`remove`. Verify with model-level tests for the hide/show scenarios
-- [ ] 12.5 Port the class diagram commands (element kinds, generics, stereotypes and spots, members and modifiers, separators, relations with all heads and options, association classes, packages and namespaces with styles, `together`, `set separator`, notes, directions). Verify with parser unit tests built from upstream patterns
+- [x] 12.4 Port the shared entity model (`abel`, `cucadiagram`): entities, links, groups, `hide`/`show`/`remove`. Verify with model-level tests for the hide/show scenarios
+- [x] 12.5 Port the class diagram commands (element kinds, generics, stereotypes and spots, members and modifiers, separators, relations with all heads and options, association classes, packages and namespaces with styles, `together`, `set separator`, notes, directions). Verify with parser unit tests built from upstream patterns
 - [ ] 12.6 Port the class element drawing (headers, spots, member compartments, visibility icons, package shapes, notes, edge decorations and labels). Verify with the class conformance cases
 - [ ] 12.7 Implement `--check-graphviz`, `--dot-path`, `--graphviz-timeout` and the layout pragmas (`smetana`, `elk`, `vizjs` all fall back to `dot`). Verify with the Graphviz check and pragma scenarios
 - [ ] 12.8 Run the class conformance slice. Verify that all class cases pass or are listed in `known-differences.yaml`
