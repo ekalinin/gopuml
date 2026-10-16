@@ -83,6 +83,13 @@ func CreateDiagram(ctx *RenderContext, lines, raw []text.StringLocated, factorie
 		if !slices.Contains(src.DiagramTypes(), f.DiagramType()) {
 			continue
 		}
+		// Upstream's description factory precedes activity v3 and claims a
+		// block made only of description elements and containers.
+		if f.DiagramType() == Activity {
+			if d := detectDescriptionOnly(src); d != nil {
+				return d
+			}
+		}
 		d := createSafely(ctx, f, src)
 		switch d := d.(type) {
 		case *ErrorDiagram:

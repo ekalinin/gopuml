@@ -49,7 +49,7 @@ var unsupportedTypes = []unsupportedType{
 		`^archimate[%s]`,
 		`^\([%pLN_][^()]*\)`,                    // (Use case) --> ...
 		`-+>[%s]*\([%pLN_][^()]*\)[%s]*(:.*)?$`, // ... --> (Use case)
-		`^:[^:]+:`,                              // :Actor: --> ...
+		`^:[^:]+:[^;]*$`,                        // :Actor: --> ... (not an activity ":Step 1: text;")
 		`^\[[^\]*]+\]`,                          // [Component] --> ...
 	)},
 	{"state", patterns(
@@ -89,4 +89,48 @@ func detectUnsupportedUmlType(src *UmlSource) Diagram {
 		}
 	}
 	return nil
+}
+
+// descriptionElement matches a description diagram element or container
+// line that activity v3 also reads as a partition, for example
+// "rectangle Lane {" or `card "A" as a`.
+var descriptionElement = regexp.MustCompile(`^(rectangle|card|package|folder|frame|cloud|node|database|storage|component|artifact|agent|file|hexagon|label|person|process|stack|usecase|actor|queue|collections)[\t\n\x0B\f\r ]+[^;]*$`)
+
+// commonLine matches the lines every diagram type accepts.
+var commonLine = regexp.MustCompile(`^(skinparam|title|caption|header|footer|scale|hide|show|left to right direction|top to bottom direction)\b`)
+
+// detectDescriptionOnly returns the "not supported yet" error of a block
+// whose content lines are only description elements, containers and their
+// closing braces (with common commands): upstream's description factory,
+// which comes before activity v3, accepts such a block. It returns nil
+// otherwise.
+func detectDescriptionOnly(src *UmlSource) Diagram {
+	lines := src.Lines()
+	if len(lines) < 3 {
+		return nil
+	}
+	first := -1
+	for i := 1; i < len(lines)-1; i++ {
+		s := text.Trin(lines[i].S)
+		switch {
+		case s == "" || s == "}" || commonLine.MatchString(s):
+		case descriptionElement.MatchString(s):
+			if first == -1 {
+				first = i
+			}
+		default:
+			return nil
+		}
+	}
+	if first == -1 {
+		return nil
+	}
+	line := lines[first]
+	return &ErrorDiagram{
+		Source: lines,
+		Trace:  lines[:first+1],
+		Error: ErrorUml{Type: ExecutionError, Error: "description (use case, component, deployment, archimate) diagrams are not supported yet",
+			Line: &line},
+		NotSupportedYet: true,
+	}
 }

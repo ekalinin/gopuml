@@ -36,6 +36,10 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		{"@startuml\nrectangle Lane {\n:step;\n}\n@enduml\n", "", 0},
 		{"@startuml\nA --> B\n@enduml\n", "", 0},
 		{"@startuml\n:Read input;\n@enduml\n", "", 0},
+		// Activity actions whose text has two colons are not actors.
+		{"@startuml\n:Step 1: read input;\n@enduml\n", "", 0},
+		{"@startuml\n:Step 1: read input; <<input>>\n@enduml\n", "", 0},
+		{"@startuml\n:Admin:\n@enduml\n", "description", 1},
 	}
 	for _, tt := range tests {
 		lines := BuildBlocks(tt.src, "string", nil)[0].Lines
@@ -69,5 +73,29 @@ func TestCreateDiagramReportsUnsupportedUmlType(t *testing.T) {
 	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "-->"}}
 	if _, ok := CreateDiagram(NewRenderContext(), srcLines("@startuml\n[*] --> Idle\n@enduml\n"), nil, factories).(okDiagram); !ok {
 		t.Fatal("an accepting factory must win")
+	}
+}
+
+func TestDescriptionBeforeActivity(t *testing.T) {
+	for _, tt := range []struct {
+		src  string
+		want bool
+		line int
+	}{
+		{"@startuml\nrectangle \"PlantUML at its best\" as leaf42\n@enduml\n", true, 1},
+		{"@startuml\ntitle T\ncard A {\n  rectangle B\n}\n@enduml\n", true, 2},
+		{"@startuml\nrectangle Lane {\n:step;\n}\n@enduml\n", false, 0},
+		{"@startuml\n:step;\n@enduml\n", false, 0},
+		{"@startuml\n@enduml\n", false, 0},
+	} {
+		lines := BuildBlocks(tt.src, "string", nil)[0].Lines
+		d := detectDescriptionOnly(NewUmlSource(lines, lines, true))
+		if (d != nil) != tt.want {
+			t.Errorf("%q: detected %v, want %v", tt.src, d != nil, tt.want)
+			continue
+		}
+		if ed, ok := d.(*ErrorDiagram); ok && (ed.Position() != tt.line || !ed.NotSupportedYet) {
+			t.Errorf("%q: line %d, want %d", tt.src, ed.Position(), tt.line)
+		}
 	}
 }
