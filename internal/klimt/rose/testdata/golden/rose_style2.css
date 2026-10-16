@@ -1,0 +1,36 @@
+<style>
+sequenceDiagram {
+  participant {
+    DiagonalCorner 8
+    Margin 0
+    Padding 3
+  }
+  reference {
+    HorizontalAlignment left
+    BackGroundColor #F5F5F5
+  }
+  group {
+    BackGroundColor #FAFAD2
+    RoundCorner 0
+    LineStyle 3-2
+  }
+  arrow {
+    HorizontalAlignment center
+    FontColor #303030
+    FontStyle bold
+  }
+  note {
+    HorizontalAlignment right
+    RoundCorner 0
+    LineThickness 0.5
+  }
+  separator {
+    Shadowing 0
+    RoundCorner 0
+  }
+  box {
+    FontStyle italic
+    HorizontalAlignment left
+  }
+}
+</style>

@@ -1,0 +1,116 @@
+<style>
+sequenceDiagram {
+  participant {
+    BackGroundColor #FFE0E0
+    LineColor #800000
+    FontSize 16
+    RoundCorner 8
+    Shadowing 3
+    Padding 4 9 5 6
+    Margin 2 3 4 5
+    MinimumWidth 90
+  }
+  collections {
+    DiagonalCorner 6
+    LineThickness 2
+  }
+  .foo {
+    BackGroundColor yellow
+    FontColor blue
+    FontStyle bold
+  }
+  stereotype {
+    FontSize 9
+    FontColor #406080
+  }
+  actor {
+    LineThickness 2
+    Shadowing 2
+    FontStyle italic
+  }
+  boundary, control, entity {
+    BackGroundColor #E0E0FF
+    Shadowing 4
+  }
+  database {
+    BackGroundColor #FFEEDD
+    LineThickness 1.5
+    Shadowing 2
+  }
+  queue {
+    BackGroundColor #DDFFEE
+    FontSize 12
+  }
+  arrow {
+    LineColor blue
+    LineThickness 2
+    LineStyle 5-3
+    FontSize 11
+    MaximumWidth 90
+    BackGroundColor #FFFFCC
+  }
+  note {
+    BackGroundColor #E0FFE0
+    RoundCorner 10
+    Shadowing 4
+    MaximumWidth 120
+    FontName Monospaced
+  }
+  hnote {
+    LineThickness 2
+  }
+  rnote {
+    RoundCorner 6
+  }
+  group {
+    LineThickness 2
+    RoundCorner 12
+    BackGroundColor #F0F0FF
+    Shadowing 2
+  }
+  groupHeader {
+    BackGroundColor #FFD0D0
+    FontStyle italic
+    LineColor #008000
+  }
+  reference {
+    HorizontalAlignment right
+    RoundCorner 6
+    Shadowing 2
+  }
+  referenceHeader {
+    FontColor #A00000
+  }
+  separator {
+    BackGroundColor #DDDDFF
+    RoundCorner 4
+    LineThickness 3
+    Shadowing 2
+  }
+  box {
+    RoundCorner 15
+    BackGroundColor #EEFFEE
+    Shadowing 3
+  }
+  lifeLine {
+    LineStyle 4-4
+    LineThickness 2
+    LineColor #808000
+  }
+  activationBox {
+    BackGroundColor #CCCCFF
+    Shadowing 2
+  }
+  delay {
+    FontColor #606060
+    LineColor #404040
+  }
+  newpage {
+    LineColor red
+    LineThickness 3
+  }
+  destroy {
+    LineColor #0000A0
+  }
+}
+</style>
