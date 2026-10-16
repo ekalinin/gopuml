@@ -58,8 +58,9 @@ func (g *generator) renderCaseGo(meta *conformance.Meta, j diagramJob, out strin
 	if err != nil {
 		return err
 	}
+	// The jar's ReferenceRender reads the case through a SourceStringReader,
+	// whose line locations are named "string", the context's default.
 	rc := core.NewRenderContext()
-	rc.Desc = filepath.Base(file)
 	rc.CurrentDir = filepath.Dir(file)
 	blocks, err := engine.Parse(context.Background(), rc, engine.Source{Text: string(data), File: file})
 	if err != nil {

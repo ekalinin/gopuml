@@ -20,6 +20,9 @@ import (
 
 	"github.com/ekalinin/plantuml-in-go/internal/code"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
+	"github.com/ekalinin/plantuml-in-go/internal/errdiagram"
+	"github.com/ekalinin/plantuml-in-go/internal/export"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
 	"github.com/ekalinin/plantuml-in-go/internal/security"
 	"github.com/ekalinin/plantuml-in-go/internal/sequencediagram"
@@ -29,7 +32,7 @@ import (
 
 // Factories are the parsers of the supported diagram types, in upstream's
 // order (PSystemBuilder). They are added with each diagram type.
-var Factories = []core.Factory{sequencediagram.Factory}
+var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
@@ -188,6 +191,18 @@ type Options struct {
 func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) (ImageData, error) {
 	if err := ctx.Err(); err != nil {
 		return ImageData{}, err
+	}
+	// Error, unsupported and welcome images.
+	if errdiagram.Handles(b.Diagram) {
+		fo := export.NewFileFormatOptionMetadata(opt.Format, !opt.NoMetadata)
+		if opt.DarkMode {
+			fo = fo.WithColorMapper(color.DarkModeMapper)
+		}
+		data, err := errdiagram.Export(w, b.Diagram, errdiagram.Source{Data: b.Data, Raw: b.Raw}, fo)
+		if err != nil {
+			return ImageData{}, err
+		}
+		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
 	}
 	// Diagrams whose drawing is not ported yet report it from Export.
 	if d, ok := b.Diagram.(interface{ Export(page int) error }); ok {

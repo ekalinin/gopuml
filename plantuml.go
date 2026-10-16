@@ -207,9 +207,9 @@ func (b *Block) Encoded() string { return b.b.Encoded() }
 // Pages returns the number of pages of the diagram.
 func (b *Block) Pages() int { return b.b.Pages() }
 
-// Render draws one page of the block to w. A block with a syntax error
-// returns its *SyntaxError; the error image is written first unless
-// NoErrorImage is set.
+// Render draws one page of the block to w. A block with an error returns
+// its error (a *SyntaxError or an *UnsupportedError) together with the
+// error image, unless NoErrorImage is set.
 func (b *Block) Render(ctx context.Context, w io.Writer, page int, opts *Options) (*Result, error) {
 	if err := ctx.Err(); err != nil {
 		return nil, err
@@ -217,12 +217,12 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opts *Options
 	if page < 0 || page >= b.Pages() {
 		return nil, fmt.Errorf("%w: page %d out of range (%d pages)", ErrNoDiagram, page, b.Pages())
 	}
-	if b.Err != nil {
-		return nil, b.Err
-	}
 	var o Options
 	if opts != nil {
 		o = *opts
+	}
+	if b.Err != nil && o.NoErrorImage {
+		return nil, b.Err
 	}
 	if o.Format < 0 || int(o.Format) >= len(fileFormats) {
 		return nil, fmt.Errorf("%w: %v", ErrUnsupportedFormat, o.Format)
@@ -234,12 +234,13 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opts *Options
 	if err != nil {
 		return nil, err
 	}
+	// A block with an error returns its error image with the error.
 	return &Result{
 		Width:       int(math.Round(img.Width)),
 		Height:      int(math.Round(img.Height)),
 		Description: b.Description,
 		Pages:       b.Pages(),
-	}, nil
+	}, b.Err
 }
 
 // Render draws the diagram and page selected by opts.Diagram and opts.Page.
