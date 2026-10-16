@@ -91,14 +91,14 @@
 
 ## 9. Library API (first usable slice)
 
-- [ ] 9.1 Implement the root `plantuml` package:
+- [x] 9.1 Implement the root `plantuml` package:
   - `Render` with options and a context
   - diagram and page selection
   - result metadata (width, height, description, counts)
   - typed errors usable with `errors.Is` and `errors.As`
 
   Verify with the library-api scenarios for SVG rendering, selection and syntax errors
-- [ ] 9.2 Implement `Inspect` (blocks with name, family, type and syntax status) and the `Encode`/`Decode` helpers. Verify with the inspection and encoding scenarios
+- [x] 9.2 Implement `Inspect` (blocks with name, family, type and syntax status) and the `Encode`/`Decode` helpers. Verify with the inspection and encoding scenarios
 - [ ] 9.3 Add the concurrency and cancellation tests: parallel renders with different themes give identical output under `-race`, and cancellation stops the render. Verify that `go test -race ./...` passes
 
 ## 10. CLI core
