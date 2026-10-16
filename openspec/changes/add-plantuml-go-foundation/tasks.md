@@ -73,7 +73,7 @@
 ## 7. Styling and creole
 
 - [x] 7.1 Port the `style` system: `SName`/`PName`, selectors, stereotype classes, nesting and precedence, and the default `plantuml.skin`. Verify with unit tests on resolved style values for representative selectors
-- [ ] 7.2 Port the `skinparam` to style conversion for the in-scope diagram types, ignoring unknown names. Verify with the `skinparam` scenarios
+- [x] 7.2 Port the `skinparam` to style conversion for the in-scope diagram types, ignoring unknown names. Verify with the `skinparam` scenarios
 - [x] 7.3 Embed the themes per design D14: exclude `sunlust`, and resolve the license of the 9 themes without one before bundling them. Implement `!theme`, `!theme ... from` and `--theme`. Update `NOTICE`. Verify with the theme scenarios and a test that lists the bundled themes
 - [x] 7.4 Port `klimt/creole`: inline styles, HTML-like tags, lists, tables, horizontal rules, links, escapes and Unicode escapes. Icons, emoji and sprites render as literal text. Verify with the creole scenarios and creole conformance cases
 - [x] 7.5 Port the common annotations (`title`, `header`, `footer`, `caption`, `legend`, `scale`, `mainframe`). Verify with the annotation scenarios after task 8.8
@@ -99,7 +99,7 @@
 
   Verify with the library-api scenarios for SVG rendering, selection and syntax errors
 - [x] 9.2 Implement `Inspect` (blocks with name, family, type and syntax status) and the `Encode`/`Decode` helpers. Verify with the inspection and encoding scenarios
-- [ ] 9.3 Add the concurrency and cancellation tests: parallel renders with different themes give identical output under `-race`, and cancellation stops the render. Verify that `go test -race ./...` passes
+- [x] 9.3 Add the concurrency and cancellation tests: parallel renders with different themes give identical output under `-race`, and cancellation stops the render. Verify that `go test -race ./...` passes
 
 ## 10. CLI core
 
@@ -126,26 +126,26 @@
   - stderr capture and the "dot not found" diagram
 
   Verify with the graph-layout scenarios, using fake `dot` scripts for timeout and failure
-- [ ] 12.2 Port `svek` DOT generation (`DotStringFactory`, clusters, node shapes, edge attributes). Verify with golden tests of generated DOT strings against strings captured from the Java jar with `-debugsvek`
-- [ ] 12.3 Port parsing of `dot -Tsvg` output into node positions and edge paths, and test it against Graphviz 14.0.1 (image) and the latest local release. Verify with parser tests on saved SVG outputs from both versions
+- [x] 12.2 Port `svek` DOT generation (`DotStringFactory`, clusters, node shapes, edge attributes). Verify with golden tests of generated DOT strings against strings captured from the Java jar with `-debugsvek`
+- [x] 12.3 Port parsing of `dot -Tsvg` output into node positions and edge paths, and test it against Graphviz 14.0.1 (image) and the latest local release. Verify with parser tests on saved SVG outputs from both versions
 - [x] 12.4 Port the shared entity model (`abel`, `cucadiagram`): entities, links, groups, `hide`/`show`/`remove`. Verify with model-level tests for the hide/show scenarios
 - [x] 12.5 Port the class diagram commands (element kinds, generics, stereotypes and spots, members and modifiers, separators, relations with all heads and options, association classes, packages and namespaces with styles, `together`, `set separator`, notes, directions). Verify with parser unit tests built from upstream patterns
-- [ ] 12.6 Port the class element drawing (headers, spots, member compartments, visibility icons, package shapes, notes, edge decorations and labels). Verify with the class conformance cases
-- [ ] 12.7 Implement `--check-graphviz`, `--dot-path`, `--graphviz-timeout` and the layout pragmas (`smetana`, `elk`, `vizjs` all fall back to `dot`). Verify with the Graphviz check and pragma scenarios
-- [ ] 12.8 Run the class conformance slice. Verify that all class cases pass or are listed in `known-differences.yaml`
+- [x] 12.6 Port the class element drawing (headers, spots, member compartments, visibility icons, package shapes, notes, edge decorations and labels). Verify with the class conformance cases
+- [x] 12.7 Implement `--check-graphviz`, `--dot-path`, `--graphviz-timeout` and the layout pragmas (`smetana`, `elk`, `vizjs` all fall back to `dot`). Verify with the Graphviz check and pragma scenarios
+- [x] 12.8 Run the class conformance slice. Verify that all class cases pass or are listed in `known-differences.yaml`
 
 ## 13. Raster driver and PNG output
 
 - [x] 13.1 Port the `g2d` driver onto an in-house rasterizer (design D6) with the embedded DejaVu fonts: shapes, strokes, dashes, gradients, text, shadows and antialiasing settings. Verify with driver-level image tests at SSIM ≥ 0.98 against the PNG references for primitive shapes
 - [x] 13.2 Implement PNG encoding with the `plantuml` text chunk, `skinparam dpi` scaling and `--disable-metadata`. Verify with the PNG metadata and DPI scenarios
 - [x] 13.3 Enable PNG as the default CLI format, and extend `--extract-source` and `--skip-fresh` to PNG. Verify with the "No format flag" and "Extract source from PNG" scenarios
-- [ ] 13.4 Run PNG conformance for the sequence, activity and class slices. Verify that the PNG cases pass or are listed in `known-differences.yaml`
+- [x] 13.4 Run PNG conformance for the sequence, activity and class slices. Verify that the PNG cases pass or are listed in `known-differences.yaml`
 
 ## 14. HTTP server
 
 - [x] 14.1 Implement the `net/http` handler with the GET routes (`/png`, `/img`, `/svg`, `/txt`, `/utxt`, with and without `/plantuml`, and the `d`-prefixed dark-mode routes), MIME types and `X-PlantUML-*` and CORS headers. Verify with `httptest` cases for the GET scenarios
 - [x] 14.2 Implement `POST /render` (JSON) and raw-body `POST /png`, `/svg` and `/txt`, with 400 on unparsable input. Verify with the POST scenarios
-- [ ] 14.3 Implement the error responses: status 400 with the error image and error headers for syntax errors, status 200 with upstream's error image for undecodable text, and 503 on rendering failure. Verify with the HTTP conformance cases
+- [x] 14.3 Implement the error responses: status 400 with the error image and error headers for syntax errors, status 200 with upstream's error image for undecodable text, and 503 on rendering failure. Verify with the HTTP conformance cases
 - [x] 14.4 Implement `/check`, `/coder` (GET and POST), `/language` and `/serverinfo`. Verify with the utility-endpoint scenarios and HTTP conformance cases
 - [x] 14.5 Implement the server security defaults: the `INTERNET` profile, 1 MiB body limit with status 413, and 60 s request timeout with status 503. Wire up `--http-server[:port]`. Verify with the security scenarios and a test that starts the server on a free port
 
@@ -153,12 +153,12 @@
 
 - [x] 15.1 Implement `cmd/plantuml-wasm` (`GOOS=js GOARCH=wasm`), exporting `plantuml.render(source, options)` that returns a Promise with bytes, width, height and error details. Add `make wasm`. Verify that `make wasm` produces the `.wasm` file and loader
 - [x] 15.2 Add the ES module loader for browsers and Node.js, plus a Node.js test that renders a sequence diagram and compares it byte-for-byte with native output. Verify that the Node test passes
-- [ ] 15.3 Enforce the `SANDBOX` default and host-supplied includes, and return the graph-layout-unavailable error with an error image for class diagrams. Verify with the WASM spec scenarios in the Node test
+- [x] 15.3 Enforce the `SANDBOX` default and host-supplied includes, and return the graph-layout-unavailable error with an error image for class diagrams. Verify with the WASM spec scenarios in the Node test
 - [x] 15.4 Report the WASM binary size in CI. Verify that the CI log shows the size
 
 ## 16. Final conformance and support declaration
 
-- [ ] 16.1 Run the full conformance suite (diagrams, formats, CLI, HTTP) in the reference image. Verify that `conformance-report.md` shows 100% pass or justified known differences for sequence, class, activity, SVG, PNG, TXT, UTXT and PREPROC
-- [ ] 16.2 Check that the error paths for out-of-scope features are explicit: every Vega case of an unsupported family or type produces a "not supported yet" error, never wrong output. Verify with the runner's unsupported-case report
+- [x] 16.1 Run the full conformance suite (diagrams, formats, CLI, HTTP) in the reference image. Verify that `conformance-report.md` shows 100% pass or justified known differences for sequence, class, activity, SVG, PNG, TXT, UTXT and PREPROC
+- [x] 16.2 Check that the error paths for out-of-scope features are explicit: every Vega case of an unsupported family or type produces a "not supported yet" error, never wrong output. Verify with the runner's unsupported-case report
 - [ ] 16.3 Write `README.md` covering installation, CLI usage as a `plantuml.jar` replacement, library usage, the HTTP server, the WASM build, supported diagram types and formats (from the conformance report), the Graphviz requirement, and licensing. Verify that every command in the README runs successfully in a clean checkout
 - [ ] 16.4 Run `openspec validate add-plantuml-go-foundation --strict` and confirm that every task's verification passed. Verify that validation reports the change as valid
