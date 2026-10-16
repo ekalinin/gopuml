@@ -131,7 +131,7 @@ func commandReturn() cmd {
 				message1 = last
 				doDeactivation = false
 			}
-			arrow := message1.Base().ArrowConfiguration().WithBody(ArrowBodyDotted)
+			arrow := message1.Base().ArrowConfiguration().WithBody(klimt.ArrowBodyDotted)
 			if s, ok := arg.Get("COLOR", 0); ok {
 				c, err := getColor(s)
 				if err != nil {

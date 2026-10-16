@@ -5,7 +5,6 @@
 package sequencediagram
 
 import (
-	"errors"
 	"strconv"
 
 	"github.com/ekalinin/plantuml-in-go/internal/command"
@@ -16,10 +15,6 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/text"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
-
-// ErrNotDrawable is returned by Export: the Teoz layout and drawing of
-// sequence diagrams are not ported yet.
-var ErrNotDrawable = errors.New("drawing of sequence diagrams is not implemented yet")
 
 // SequenceDiagram is a parsed sequence diagram.
 type SequenceDiagram struct {
@@ -532,7 +527,3 @@ func (d *SequenceDiagram) LinkAnchors() []*LinkAnchor { return d.linkAnchors }
 func (d *SequenceDiagram) DefaultMargins() klimt.ClockwiseTopRightBottomLeft {
 	return klimt.ClockwiseSame(5)
 }
-
-// Export draws page index of the diagram. Drawing is not ported yet: it
-// returns ErrNotDrawable.
-func (d *SequenceDiagram) Export(index int) error { return ErrNotDrawable }

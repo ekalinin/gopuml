@@ -11,37 +11,27 @@ package sequencediagram
 import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
 
-// NotePosition is the position of a note.
-type NotePosition int
+// NotePosition is the position of a note: upstream's
+// sequencediagram.NotePosition, defined in internal/klimt/rose because the
+// Rose components read it.
+type NotePosition = rose.NotePosition
 
 // Note positions, in upstream's order.
 const (
-	NoteLeft NotePosition = iota
-	NoteRight
-	NoteOver
-	NoteOverSeveral
-	NoteBottom
-	NoteTop
+	NoteLeft        = rose.NotePositionLeft
+	NoteRight       = rose.NotePositionRight
+	NoteOver        = rose.NotePositionOver
+	NoteOverSeveral = rose.NotePositionOverSeveral
+	NoteBottom      = rose.NotePositionBottom
+	NoteTop         = rose.NotePositionTop
 )
 
-var notePositionNames = [...]string{"LEFT", "RIGHT", "OVER", "OVER_SEVERAL", "BOTTOM", "TOP"}
-
-// String returns upstream's name, for example "LEFT".
-func (p NotePosition) String() string { return notePositionNames[p] }
-
 // notePositionOf is NotePosition.valueOf of an upper-cased keyword.
-func notePositionOf(s string) NotePosition {
-	for i, n := range notePositionNames {
-		if n == s {
-			return NotePosition(i)
-		}
-	}
-	uml.Throw(uml.IllegalArgumentException, "No enum constant net.sourceforge.plantuml.sequencediagram.NotePosition."+s)
-	return 0
-}
+func notePositionOf(s string) NotePosition { return rose.NotePositionValueOf(s) }
 
 // NoteStyle is the shape of a note.
 type NoteStyle int
@@ -71,14 +61,14 @@ func noteStyleOf(s string) NoteStyle {
 }
 
 // ComponentType returns the drawing component of the shape.
-func (s NoteStyle) ComponentType() ComponentType {
+func (s NoteStyle) ComponentType() klimt.ComponentType {
 	switch s {
 	case NoteStyleHexagonal:
-		return ComponentNoteHexagonal
+		return klimt.ComponentTypeNoteHexagonal
 	case NoteStyleBox:
-		return ComponentNoteBox
+		return klimt.ComponentTypeNoteBox
 	}
-	return ComponentNote
+	return klimt.ComponentTypeNote
 }
 
 // DefaultStyleDefinition returns the style signature of the shape.
@@ -231,3 +221,9 @@ func (n *Notes) DealWith(someone *Participant) bool {
 
 // List returns the notes of the group.
 func (n *Notes) List() []*Note { return n.notes }
+
+// SkinParamBackcolored returns the skin parameters with the colors of the
+// note.
+func (n *Note) SkinParamBackcolored(skinParam klimt.ISkinParam) klimt.ISkinParam {
+	return klimt.ColorsMute(n.colors, skinParam)
+}

@@ -4,13 +4,16 @@
 package sequencediagram
 
 import (
+	"bytes"
 	"errors"
 	"strings"
 	"sync"
 	"testing"
 
 	"github.com/ekalinin/plantuml-in-go/internal/core"
+	"github.com/ekalinin/plantuml-in-go/internal/export"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
 )
 
 // parseModel parses a sequence diagram body and fails on errors.
@@ -225,10 +228,12 @@ func TestSyntaxErrorLine(t *testing.T) {
 	}
 }
 
-func TestExportNotDrawable(t *testing.T) {
+func TestExportTextNotImplemented(t *testing.T) {
 	d := parseModel(t, "A -> B")
-	if err := d.Export(0); !errors.Is(err, ErrNotDrawable) {
-		t.Errorf("Export = %v", err)
+	var buf bytes.Buffer
+	if _, err := d.ExportDiagram(&buf, 0, export.NewFileFormatOption(font.FormatATXT)); !errors.Is(err,
+		export.ErrNotImplemented) || buf.Len() != 0 {
+		t.Errorf("ExportDiagram(ATXT) = %v", err)
 	}
 }
 

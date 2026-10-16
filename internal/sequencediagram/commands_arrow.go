@@ -132,7 +132,7 @@ func arrowParticipant(d *SequenceDiagram, location *text.LineLocation, arg *rege
 
 // applyStyle is CommandArrow.applyStyle: "dashed", "dotted", "hidden" and
 // colors, comma separated.
-func applyStyle(arrowStyle string, ok bool, config ArrowConfiguration) (ArrowConfiguration, error) {
+func applyStyle(arrowStyle string, ok bool, config *klimt.ArrowConfiguration) (*klimt.ArrowConfiguration, error) {
 	if !ok {
 		return config, nil
 	}
@@ -142,10 +142,10 @@ func applyStyle(arrowStyle string, ok bool, config ArrowConfiguration) (ArrowCon
 		}
 		switch {
 		case uml.EqualsIgnoreCase(s, "dashed"), uml.EqualsIgnoreCase(s, "dotted"):
-			config = config.WithBody(ArrowBodyDotted)
+			config = config.WithBody(klimt.ArrowBodyDotted)
 		case uml.EqualsIgnoreCase(s, "bold"):
 		case uml.EqualsIgnoreCase(s, "hidden"):
-			config = config.WithBody(ArrowBodyHidden)
+			config = config.WithBody(klimt.ArrowBodyHidden)
 		default:
 			c, err := getColor(s)
 			if err != nil {
@@ -216,44 +216,44 @@ func executeArrow(d *SequenceDiagram, location *text.LineLocation, arg *regex.Re
 		labels = klimt.DisplayCreate("")
 	}
 
-	config := ArrowConfigurationNormal()
+	config := klimt.ArrowConfigurationWithDirectionNormal()
 	if hasDressing1butx && hasDressing2butx {
-		config = ArrowConfigurationBoth()
+		config = klimt.ArrowConfigurationWithDirectionBoth()
 	}
 	if dotted {
-		config = config.WithBody(ArrowBodyDotted)
+		config = config.WithBody(klimt.ArrowBodyDotted)
 	}
 	if sync1 {
-		config = config.WithHead1(ArrowHeadAsync)
+		config = config.WithHead1(klimt.ArrowHeadAsync)
 	}
 	if sync2 {
-		config = config.WithHead2(ArrowHeadAsync)
+		config = config.WithHead2(klimt.ArrowHeadAsync)
 	}
 	if strings.Contains(dressing2, "\\") || strings.Contains(dressing1, "/") {
-		config = config.WithPart(ArrowPartTopPart)
+		config = config.WithPart(klimt.ArrowPartTopPart)
 	}
 	if strings.Contains(dressing2, "/") || strings.Contains(dressing1, "\\") {
-		config = config.WithPart(ArrowPartBottomPart)
+		config = config.WithPart(klimt.ArrowPartBottomPart)
 	}
 	if circleAtEnd {
-		config = config.WithDecoration2(ArrowDecorationCircle)
+		config = config.WithDecoration2(klimt.ArrowDecorationCircle)
 	}
 	if circleAtStart {
-		config = config.WithDecoration1(ArrowDecorationCircle)
+		config = config.WithDecoration1(klimt.ArrowDecorationCircle)
 	}
 	if reverseDefine {
 		if xInDressing1 {
-			config = config.WithHead2(ArrowHeadCrossX)
+			config = config.WithHead2(klimt.ArrowHeadCrossx)
 		}
 		if xInDressing2 {
-			config = config.WithHead1(ArrowHeadCrossX)
+			config = config.WithHead1(klimt.ArrowHeadCrossx)
 		}
 	} else {
 		if xInDressing1 {
-			config = config.WithHead1(ArrowHeadCrossX)
+			config = config.WithHead1(klimt.ArrowHeadCrossx)
 		}
 		if xInDressing2 {
-			config = config.WithHead2(ArrowHeadCrossX)
+			config = config.WithHead2(klimt.ArrowHeadCrossx)
 		}
 	}
 	if reverseDefine {
@@ -297,7 +297,7 @@ func executeArrow(d *SequenceDiagram, location *text.LineLocation, arg *regex.Re
 	if hasActivation {
 		return manageActivations(activationSpec, d, p1, p2, activationColor)
 	}
-	if d.IsAutoactivate() && (config.Head() == ArrowHeadNormal || config.Head() == ArrowHeadAsync) {
+	if d.IsAutoactivate() && (config.Head() == klimt.ArrowHeadNormal || config.Head() == klimt.ArrowHeadAsync) {
 		if config.IsDotted() {
 			d.Activate(p1, LifeEventDeactivate, nil, nil)
 		} else {
@@ -465,20 +465,20 @@ func exoTypeRight(arg *regex.Result) MessageExoType {
 }
 
 // exoArrowPart is CommandExoArrowAny.getArrowPart.
-func exoArrowPart(dressing string, typ MessageExoType) ArrowPart {
+func exoArrowPart(dressing string, typ MessageExoType) klimt.ArrowPart {
 	if strings.Contains(dressing, "/") {
 		if typ.Direction() == 1 {
-			return ArrowPartBottomPart
+			return klimt.ArrowPartBottomPart
 		}
-		return ArrowPartTopPart
+		return klimt.ArrowPartTopPart
 	}
 	if strings.Contains(dressing, "\\") {
 		if typ.Direction() == 1 {
-			return ArrowPartTopPart
+			return klimt.ArrowPartTopPart
 		}
-		return ArrowPartBottomPart
+		return klimt.ArrowPartBottomPart
 	}
-	return ArrowPartFull
+	return klimt.ArrowPartFull
 }
 
 func containsSymbol(arg *regex.Result, suppCircle, symbol string) bool {
@@ -513,15 +513,15 @@ func executeExoArrow(d *SequenceDiagram, location *text.LineLocation, arg *regex
 	} else {
 		labels = klimt.DisplayCreate("")
 	}
-	config := ArrowConfigurationNormal()
+	config := klimt.ArrowConfigurationWithDirectionNormal()
 	if _, both := arg.Get("ARROW_BOTHDRESSING", 0); both {
-		config = ArrowConfigurationBoth()
+		config = klimt.ArrowConfigurationWithDirectionBoth()
 	}
 	if dotted {
-		config = config.WithBody(ArrowBodyDotted)
+		config = config.WithBody(klimt.ArrowBodyDotted)
 	}
 	if sync {
-		config = config.WithHead(ArrowHeadAsync)
+		config = config.WithHead(klimt.ArrowHeadAsync)
 	}
 	config = config.WithPart(exoArrowPart(dressingValue, messageExoType))
 	style, hasStyle := arg.Lazy("ARROW_STYLE", 0)
@@ -537,29 +537,29 @@ func executeExoArrow(d *SequenceDiagram, location *text.LineLocation, arg *regex
 
 	if messageExoType == ExoToRight || messageExoType == ExoToLeft {
 		if containsSymbol(arg, arrowSuppCircle1, "o") {
-			config = config.WithDecoration1(ArrowDecorationCircle)
+			config = config.WithDecoration1(klimt.ArrowDecorationCircle)
 		}
 		if containsSymbol(arg, arrowSuppCircle1, "x") {
-			config = config.WithHead1(ArrowHeadCrossX)
+			config = config.WithHead1(klimt.ArrowHeadCrossx)
 		}
 		if containsSymbol(arg, arrowSuppCircle2, "o") {
-			config = config.WithDecoration2(ArrowDecorationCircle)
+			config = config.WithDecoration2(klimt.ArrowDecorationCircle)
 		}
 		if containsSymbol(arg, arrowSuppCircle2, "x") {
-			config = config.WithHead2(ArrowHeadCrossX)
+			config = config.WithHead2(klimt.ArrowHeadCrossx)
 		}
 	} else {
 		if containsSymbol(arg, arrowSuppCircle2, "o") {
-			config = config.WithDecoration1(ArrowDecorationCircle)
+			config = config.WithDecoration1(klimt.ArrowDecorationCircle)
 		}
 		if containsSymbol(arg, arrowSuppCircle2, "x") {
-			config = config.WithHead1(ArrowHeadCrossX)
+			config = config.WithHead1(klimt.ArrowHeadCrossx)
 		}
 		if containsSymbol(arg, arrowSuppCircle1, "o") {
-			config = config.WithDecoration2(ArrowDecorationCircle)
+			config = config.WithDecoration2(klimt.ArrowDecorationCircle)
 		}
 		if containsSymbol(arg, arrowSuppCircle1, "x") {
-			config = config.WithHead2(ArrowHeadCrossX)
+			config = config.WithHead2(klimt.ArrowHeadCrossx)
 		}
 	}
 
@@ -592,7 +592,7 @@ func executeExoArrow(d *SequenceDiagram, location *text.LineLocation, arg *regex
 		case '!':
 			d.Activate(p, LifeEventDestroy, nil, nil)
 		}
-	} else if d.IsAutoactivate() && (config.Head() == ArrowHeadNormal || config.Head() == ArrowHeadAsync) {
+	} else if d.IsAutoactivate() && (config.Head() == klimt.ArrowHeadNormal || config.Head() == klimt.ArrowHeadAsync) {
 		if config.IsDotted() {
 			d.Activate(p, LifeEventDeactivate, nil, nil)
 		} else {

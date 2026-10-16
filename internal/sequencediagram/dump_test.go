@@ -474,8 +474,8 @@ func dumpParticipant(sd *SequenceDiagram, p *Participant) string {
 	return sb.String()
 }
 
-func dumpArrow(a ArrowConfiguration) string {
-	return a.Name() + " parts=" + a.Dressing1().Part.String() + "/" + a.Dressing2().Part.String() +
+func dumpArrow(a *klimt.ArrowConfiguration) string {
+	return a.Name() + " parts=" + a.Dressing1().Part().String() + "/" + a.Dressing2().Part().String() +
 		" thickness=" + jfmt.DoubleToString(a.Thickness()) + " reverse=" + jbool(a.IsReverseDefine()) +
 		" inclination=" + strconv.Itoa(a.Inclination())
 }

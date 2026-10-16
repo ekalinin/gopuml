@@ -120,7 +120,7 @@ func (g *groupingBase) Comment() (string, bool) { return g.comment, g.hasComment
 // BackColorElement returns the header color, nil for none.
 func (g *groupingBase) BackColorElement() color.HColor { return g.backColorElement }
 
-func (g *groupingBase) usedStyles(backColorGeneral color.HColor) [2]*klimt.Style {
+func (g *groupingBase) usedStyles(backColorGeneral color.HColor) []*klimt.Style {
 	var s, h *klimt.Style
 	if g.style != nil {
 		s = g.style.EventuallyOverrideColor(klimt.PNameBackGroundColor, backColorGeneral)
@@ -128,7 +128,7 @@ func (g *groupingBase) usedStyles(backColorGeneral color.HColor) [2]*klimt.Style
 	if g.styleHeader != nil {
 		h = g.styleHeader.EventuallyOverrideColor(klimt.PNameBackGroundColor, g.backColorElement)
 	}
-	return [2]*klimt.Style{s, h}
+	return []*klimt.Style{s, h}
 }
 
 // String is upstream's toString without the identity hash.
@@ -150,7 +150,7 @@ func newGroupingStart(typ GroupingType, title, comment string, hasComment bool, 
 }
 
 // UsedStyles returns the styles of the fragment and of its header.
-func (g *GroupingStart) UsedStyles() [2]*klimt.Style {
+func (g *GroupingStart) UsedStyles() []*klimt.Style {
 	result := g.usedStyles(g.BackColorGeneral())
 	if result[0] != nil {
 		result[0] = result[0].EventuallyOverrideColor(klimt.PNameBackGroundColor, g.backColorGeneral)
@@ -210,7 +210,7 @@ func newGroupingLeaf(title, comment string, hasComment bool, typ GroupingType, b
 }
 
 // UsedStyles returns the styles of the line and of its header.
-func (g *GroupingLeaf) UsedStyles() [2]*klimt.Style { return g.usedStyles(g.BackColorGeneral()) }
+func (g *GroupingLeaf) UsedStyles() []*klimt.Style { return g.usedStyles(g.BackColorGeneral()) }
 
 // JustAfter returns the next line of the fragment, nil after the last.
 func (g *GroupingLeaf) JustAfter() Grouping {

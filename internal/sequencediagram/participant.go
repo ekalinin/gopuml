@@ -9,6 +9,7 @@ package sequencediagram
 import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
 	"github.com/ekalinin/plantuml-in-go/internal/text"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
@@ -181,21 +182,28 @@ func (p *Participant) UID() string { return p.uid }
 func (p *Participant) StyleBuilder() *klimt.StyleBuilder { return p.styleBuilder }
 
 // StyleSignature returns the style signature of the participant.
-func (p *Participant) StyleSignature() klimt.StyleSignatureBasic {
+func (p *Participant) StyleSignature() klimt.StyleSignature { return p.styleSignatureBasic() }
+
+func (p *Participant) styleSignatureBasic() klimt.StyleSignatureBasic {
 	return p.typ.StyleSignature().AddClickable(p.url)
 }
 
 // UsedStyles returns the style of the participant and the style of its
 // stereotype.
-func (p *Participant) UsedStyles() [2]*klimt.Style {
+func (p *Participant) UsedStyles() []*klimt.Style {
 	tmp := p.StyleSignature().WithTOBECHANGED(p.stereotype).MergedStyle(p.styleBuilder)
 	tmp = tmp.EventuallyOverrideColors(p.colors)
-	stereo := p.StyleSignature().ForStereotypeItself(p.stereotype).MergedStyle(p.styleBuilder)
+	stereo := p.styleSignatureBasic().ForStereotypeItself(p.stereotype).MergedStyle(p.styleBuilder)
 	if tmp != nil {
 		stereo = tmp.MergeWith(stereo, klimt.MergeOverwriteExistingValue)
 	}
-	return [2]*klimt.Style{tmp, stereo}
+	return []*klimt.Style{tmp, stereo}
 }
+
+var (
+	_ rose.Participant = (*Participant)(nil)
+	_ klimt.WithStyle  = (*Participant)(nil)
+)
 
 // ParticipantEnglober is a "box" around participants.
 type ParticipantEnglober struct {

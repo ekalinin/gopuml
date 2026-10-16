@@ -171,7 +171,7 @@ type Divider struct {
 }
 
 func newDivider(text *klimt.Display, styleBuilder *klimt.StyleBuilder) *Divider {
-	return &Divider{text: text, style: ComponentDivider.StyleSignature().MergedStyle(styleBuilder)}
+	return &Divider{text: text, style: klimt.ComponentTypeDivider.StyleSignature().MergedStyle(styleBuilder)}
 }
 
 // Text returns the label of the divider.
@@ -195,7 +195,7 @@ type Delay struct {
 }
 
 func newDelay(text *klimt.Display, styleBuilder *klimt.StyleBuilder) *Delay {
-	return &Delay{text: text, style: ComponentDelayText.StyleSignature().MergedStyle(styleBuilder)}
+	return &Delay{text: text, style: klimt.ComponentTypeDelayText.StyleSignature().MergedStyle(styleBuilder)}
 }
 
 // Text returns the label of the delay.
@@ -226,7 +226,7 @@ type Newpage struct {
 }
 
 func newNewpage(styleBuilder *klimt.StyleBuilder) *Newpage {
-	return &Newpage{style: ComponentNewpage.StyleSignature().MergedStyle(styleBuilder)}
+	return &Newpage{style: klimt.ComponentTypeNewpage.StyleSignature().MergedStyle(styleBuilder)}
 }
 
 // UsedStyles returns the style of the page break.
@@ -306,12 +306,12 @@ func (r *Reference) BackColorGeneral() color.HColor { return r.backColorGeneral 
 func (r *Reference) BackColorElement() color.HColor { return r.backColorElement }
 
 // UsedStyles returns the styles of the frame and of its header.
-func (r *Reference) UsedStyles() [2]*klimt.Style {
+func (r *Reference) UsedStyles() []*klimt.Style {
 	header := r.styleHeader
 	if header != nil {
 		header = header.EventuallyOverrideColor(klimt.PNameBackGroundColor, r.backColorElement)
 	}
-	return [2]*klimt.Style{r.style, header}
+	return []*klimt.Style{r.style, header}
 }
 
 // AddNote implements EventWithNote.

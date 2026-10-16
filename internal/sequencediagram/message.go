@@ -41,7 +41,7 @@ type MessageBase struct {
 	stereotype         *klimt.Stereotype
 	location           *text.LineLocation
 	label              *klimt.Display
-	arrowConfiguration ArrowConfiguration
+	arrowConfiguration *klimt.ArrowConfiguration
 	lifeEventsType     [4]bool
 	url                *klimt.URL
 	messageNumber      string
@@ -60,7 +60,7 @@ type MessageBase struct {
 }
 
 func newMessageBase(self AbstractMessage, styleBuilder *klimt.StyleBuilder, label *klimt.Display,
-	arrowConfiguration ArrowConfiguration, messageNumber string, hasNumber bool,
+	arrowConfiguration *klimt.ArrowConfiguration, messageNumber string, hasNumber bool,
 	location *text.LineLocation) MessageBase {
 	return MessageBase{self: self, styleBuilder: styleBuilder, location: location, label: label,
 		arrowConfiguration: arrowConfiguration, messageNumber: messageNumber, hasMessageNumber: hasNumber}
@@ -225,8 +225,8 @@ func (m *MessageBase) LabelNumbered() *klimt.Display {
 	return klimt.DisplayEmpty().Add(MessageNumber(m.messageNumber)).AddAll(m.label)
 }
 
-// ArrowConfiguration returns the arrow of the message.
-func (m *MessageBase) ArrowConfiguration() ArrowConfiguration { return m.arrowConfiguration }
+// *klimt.ArrowConfiguration returns the arrow of the message.
+func (m *MessageBase) ArrowConfiguration() *klimt.ArrowConfiguration { return m.arrowConfiguration }
 
 // NoteOnMessages returns the notes attached to the message.
 func (m *MessageBase) NoteOnMessages() []*Note { return m.noteOnMessages }
@@ -293,7 +293,7 @@ type Message struct {
 // NewMessage returns a message from p1 to p2; hasNumber is false when the
 // message is not numbered.
 func NewMessage(styleBuilder *klimt.StyleBuilder, p1, p2 *Participant, label *klimt.Display,
-	arrowConfiguration ArrowConfiguration, messageNumber string, hasNumber bool,
+	arrowConfiguration *klimt.ArrowConfiguration, messageNumber string, hasNumber bool,
 	location *text.LineLocation) *Message {
 	m := &Message{p1: p1, p2: p2}
 	m.MessageBase = newMessageBase(m, styleBuilder, label, arrowConfiguration, messageNumber, hasNumber, location)
@@ -379,7 +379,7 @@ type MessageExo struct {
 
 // NewMessageExo returns a border message.
 func NewMessageExo(styleBuilder *klimt.StyleBuilder, p *Participant, typ MessageExoType, label *klimt.Display,
-	arrowConfiguration ArrowConfiguration, messageNumber string, hasNumber bool, shortArrow bool,
+	arrowConfiguration *klimt.ArrowConfiguration, messageNumber string, hasNumber bool, shortArrow bool,
 	location *text.LineLocation) *MessageExo {
 	m := &MessageExo{typ: typ, participant: p, shortArrow: shortArrow}
 	m.MessageBase = newMessageBase(m, styleBuilder, label, arrowConfiguration, messageNumber, hasNumber, location)
