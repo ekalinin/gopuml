@@ -80,8 +80,8 @@
 
 ## 8. Sequence diagrams (Teoz) and text output
 
-- [ ] 8.1 Port the sequence command set (participants, boxes, messages, autonumber, activation, fragments, notes, dividers, delays, spacing, references, `newpage`, `hide footbox`) using the RE2 command framework (design D4). Verify with parser unit tests built from upstream's command patterns
-- [ ] 8.2 Port the sequence domain model (participants, events, lifelines, pages). Verify with model-level tests asserting participant order, events and pages for the spec scenarios
+- [x] 8.1 Port the sequence command set (participants, boxes, messages, autonumber, activation, fragments, notes, dividers, delays, spacing, references, `newpage`, `hide footbox`) using the RE2 command framework (design D4). Verify with parser unit tests built from upstream's command patterns
+- [x] 8.2 Port the sequence domain model (participants, events, lifelines, pages). Verify with model-level tests asserting participant order, events and pages for the spec scenarios
 - [ ] 8.3 Port the Teoz layout engine: tiles, the constraint solver, lifelines and activations. Verify with layout tests on participant x-positions and event y-positions against coordinates from reference SVGs
 - [ ] 8.4 Port the sequence participant and arrow drawing (all participant shapes, all arrow heads, self, incoming and outgoing, and short messages). Verify with sequence conformance cases for participants and messages
 - [ ] 8.5 Port fragment, note, divider, delay, reference and autonumber drawing. Verify with the sequence conformance cases for those scenarios
