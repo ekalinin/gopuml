@@ -175,7 +175,7 @@ func javaLen(s string) int {
 func javaCharAt(s string, i int) rune {
 	u := utf16.Encode([]rune(s))
 	if i < 0 || i >= len(u) {
-		throw("java.lang.StringIndexOutOfBoundsException", "index "+strconv.Itoa(i)+", length "+strconv.Itoa(len(u)))
+		throw("java.lang.StringIndexOutOfBoundsException", "Index "+strconv.Itoa(i)+" out of bounds for length "+strconv.Itoa(len(u)))
 	}
 	return rune(u[i])
 }

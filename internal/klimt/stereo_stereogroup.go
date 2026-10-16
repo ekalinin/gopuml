@@ -107,7 +107,7 @@ func (g *Stereogroup) InnerColors(colorSet *color.HColorSet) (*color.Colors, err
 		case strings.HasPrefix(label, "##"):
 			label = label[2:]
 			if label == "" {
-				throw("java.lang.StringIndexOutOfBoundsException", "index 0, length 0")
+				throw("java.lang.StringIndexOutOfBoundsException", "Index 0 out of bounds for length 0")
 			}
 			if label[0] == '[' {
 				if x := strings.IndexByte(label, ']'); x != -1 {
