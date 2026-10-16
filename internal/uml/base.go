@@ -10,6 +10,8 @@ package uml
 
 import (
 	"errors"
+	"maps"
+	"slices"
 	"strings"
 
 	"github.com/ekalinin/plantuml-in-go/internal/command"
@@ -70,9 +72,14 @@ func NewBase(ctx *core.RenderContext, src *core.UmlSource, diagramType core.Diag
 	if md5map == nil {
 		md5map = map[string]string{}
 	}
-	// Upstream passes the !option values of the preprocessing artifact;
-	// core.Factory does not carry them yet, so the store is empty.
+	// The !option values of the preprocessing artifact, which the engine
+	// puts in the render context of the block.
 	options := klimt.NewConfigurationStore[klimt.OptionKey]()
+	for _, name := range slices.Sorted(maps.Keys(ctx.PreprocOptions)) {
+		if key, ok := klimt.OptionKeyLazyFrom(name); ok {
+			options.Define(key, ctx.PreprocOptions[name], true)
+		}
+	}
 	return Base{
 		source:               src,
 		ctx:                  ctx,
@@ -146,8 +153,15 @@ func (b *Base) AddWarning(warning *klimt.Warning) {
 	}
 }
 
-// Warnings returns the warnings of the diagram.
-func (b *Base) Warnings() []*klimt.Warning { return b.Pragma().Warnings() }
+// Warnings returns the warnings of the diagram: those of the preprocessor,
+// then those of the pragmas, as TitledDiagram.getWarnings.
+func (b *Base) Warnings() []*klimt.Warning {
+	var out []*klimt.Warning
+	for _, w := range b.ctx.PreprocWarnings {
+		out = append(out, klimt.NewWarning(strings.Split(w, "\n")...))
+	}
+	return append(out, b.Pragma().Warnings()...)
+}
 
 // SetParam sets a skin parameter; the key is lower-cased.
 func (b *Base) SetParam(key, value string) { b.skinParam.SetParam(LowerCase(key), value) }

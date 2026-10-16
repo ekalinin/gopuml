@@ -41,6 +41,11 @@ type RenderContext struct {
 	DotPath string
 	// DotTimeout stops a dot process that runs longer.
 	DotTimeout time.Duration
+	// PreprocOptions and PreprocWarnings are the "!option" values (by
+	// upstream key name, for example "SVG_TITLE") and the warnings of the
+	// block being built, upstream's PreprocessingArtifact.
+	PreprocOptions  map[string]string
+	PreprocWarnings []string
 }
 
 // NewRenderContext returns a context with upstream's defaults.

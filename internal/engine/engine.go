@@ -115,7 +115,12 @@ func Parse(ctx context.Context, rc *core.RenderContext, src Source) ([]*Block, e
 		if err != nil {
 			b.Diagram = preprocessorError(res, err)
 		} else {
-			b.Diagram = core.CreateDiagram(rc, res.Lines, blk.Lines, Factories)
+			brc := rc
+			if res.Artifact != nil {
+				brc = rc.Clone()
+				brc.PreprocOptions, brc.PreprocWarnings = res.Artifact.Options(), res.Artifact.Warnings()
+			}
+			b.Diagram = core.CreateDiagram(brc, res.Lines, blk.Lines, Factories)
 		}
 		out = append(out, b)
 	}
