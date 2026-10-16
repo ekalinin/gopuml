@@ -41,7 +41,7 @@
 - [x] 3.3 Port the `PSystemBuilder` factory loop and error merging, and the command framework (regex combinators, `Command`, and the `PSystemCommandFactory` loop that produces "Syntax Error?" with the assumed diagram type). Verify with unit tests on test factories and a small command-based factory that pin the error line, message and score
 - [x] 3.4 Add detectors for out-of-scope `@startuml` types (use case, component, deployment, archimate, state, object, timing, legacy activity), built from the first commands of each upstream factory. Verify that the state and legacy activity scenarios report "not supported yet"
 - [x] 3.5 Introduce `RenderContext` (design D3), replacing upstream globals: config, current dir, security profile, pragmas, `dot` path and timeout. Verify with the race detector (`go test -race`) on a test that renders with two contexts in parallel
-- [ ] 3.6 Port the error-diagram builder (source lines up to the error, marked line, message) against the drawing model from section 6. Verify after task 6.6 with conformance error cases (SVG error-image text parity)
+- [x] 3.6 Port the error-diagram builder (source lines up to the error, marked line, message) against the drawing model from section 6. Verify after task 6.6 with conformance error cases (SVG error-image text parity)
 
 ## 4. Preprocessor
 
