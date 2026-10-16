@@ -1,0 +1,15 @@
+@startuml
+class Util {
+  {static} +MAX : int
+  {static} +helper() : void
+  {abstract} #hook() : void
+  {classifier} ~x
+}
+class "Creole //italic// and <b>html</b>" as Cr
+class Spot << (S,#FF7700) Singleton >>
+class Spot2 <<(D,lightblue) Data>> {
+  +id : long
+}
+Util ..> Cr
+Spot -- Spot2
+@enduml

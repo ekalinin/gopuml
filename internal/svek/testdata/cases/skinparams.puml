@@ -1,0 +1,16 @@
+@startuml
+skinparam classFontSize 18
+skinparam classFontColor DarkBlue
+skinparam classAttributeFontStyle italic
+skinparam classStereotypeFontColor red
+skinparam arrowFontSize 9
+skinparam packageTitleAlignment left
+skinparam classBackgroundColor<<Hot>> Orange
+package "My Package" #lightblue {
+  class A <<Hot>> {
+    +x : int
+  }
+}
+class B
+A --> B : a long label here
+@enduml

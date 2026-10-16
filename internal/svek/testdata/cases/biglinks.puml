@@ -1,0 +1,17 @@
+@startuml
+class A
+class B
+class C
+class D
+class E
+A --> B : ab
+A --> C : ac
+A --> D : ad
+A --> E : ae
+B --> C : bc
+C --> D : cd
+D --> E : de
+E --> A : ea
+B <-- E
+C <|-- D
+@enduml

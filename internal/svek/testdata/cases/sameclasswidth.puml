@@ -1,0 +1,10 @@
+@startuml
+skinparam sameClassWidth true
+class Short
+class AVeryVeryLongClassNameIndeed
+class Mid {
+  +field
+}
+Short --> AVeryVeryLongClassNameIndeed
+Short --> Mid
+@enduml

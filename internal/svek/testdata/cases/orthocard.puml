@@ -1,0 +1,9 @@
+@startuml
+skinparam linetype ortho
+class Order
+class Line
+class Product
+Order "1" *-- "1..*" Line : contains
+Line "*" --> "1" Product
+Order --> Product : featured >
+@enduml

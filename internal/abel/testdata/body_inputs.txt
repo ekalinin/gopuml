@@ -1,0 +1,349 @@
+=== members
+class A {
+  +field1 : int
+  -field2 : String
+  #field3
+  ~field4
+  *field5
+  method1()
+  +method2(a : int) : void
+  -{static} sm()
+  #pm()
+  ~pkg()
+  {abstract} am()
+}
+=== iconsize0
+skinparam classAttributeIconSize 0
+class A {
+  +field1 : int
+  -field2 : String
+  #field3
+  ~field4
+  method1()
+  +method2(a : int) : void
+  #protectedMethod()
+}
+=== iconsize20
+skinparam classAttributeIconSize 20
+class A {
+  +field1 : int
+  -method1()
+}
+=== separators
+class B {
+  a
+  --
+  b
+  ==
+  c
+  ..
+  d
+  __
+  e
+  -- title one --
+  f
+  == title2 ==
+  g
+  .. dotted title ..
+  h
+  __ under __
+  i
+}
+=== separators-icons
+class B {
+  +a : int
+  -- section --
+  -b()
+  #c
+}
+=== modifiers
+class M {
+  {static} x : int
+  {classifier} y : String
+  {abstract} z : long
+  {static} {abstract} both()
+  +{static} pub()
+}
+=== creole
+class C {
+  **bold** field
+  //italic// m()
+  <color:red>red</color> text
+  ""mono"" value
+  <s>strike</s> x
+  <u>under</u>()
+  __bold__ y
+  ~~wave~~ z
+}
+=== long
+class L {
+  aVeryLongFieldNameThatGoesOnAndOn : java.util.Map<String, List<Integer>>
+  short
+  anotherQuiteLongMethodName(parameterOne : int, parameterTwo : String) : Result
+}
+=== tags
+class T {
+  {field} foo()
+  {method} bar
+  baz
+}
+=== urls
+class U {
+  +field [[http://example.com]]
+  method() [[http://x.org{tooltip} label]]
+  -other [[http://y.org]]
+  plain
+}
+=== empty
+class E
+class F {
+}
+=== hide-empty
+hide empty members
+class E
+class F {
+  x
+}
+class G {
+  m()
+}
+=== hide-fields
+hide fields
+class A {
+  x
+  m()
+}
+=== hide-methods
+hide methods
+class A {
+  x
+  m()
+}
+=== hide-members
+hide members
+class A {
+  x
+  m()
+}
+=== hide-private
+hide private members
+class A {
+  -x
+  +y
+  -m()
+  +n()
+}
+=== hide-private-enhanced
+hide private members
+class A {
+  -x
+  +y
+  --
+  -m()
+  +n()
+}
+=== objects
+object o1 {
+  name = "x"
+  id = 3
+}
+object o2
+object o3 {
+  a
+  --
+  b
+}
+object o4 {
+  +field = 1
+  m()
+}
+=== maps
+object B
+map M {
+  key1 => value1
+  key2 => value2 with **bold**
+  +vis => v
+}
+map Cap {
+  UK => London
+  USA *-> B
+}
+=== json
+json J {
+  "fruit":"Apple",
+  "size":"Large",
+  "color": ["Red", "Green"],
+  "nested": {"a": 1, "b": true, "c": null},
+  "arr": [{"x": 1}, [1, 2], 3.5]
+}
+json K {
+  "a": [],
+  "b": {}
+}
+=== json-array
+json J2 [1, "two", {"three": 3}]
+=== style-class
+<style>
+classDiagram {
+  class {
+    FontColor blue
+    FontSize 15
+    LineThickness 2
+  }
+}
+</style>
+class S <<Entity>> {
+  a
+  b()
+  --
+  c
+}
+=== style-stereo
+<style>
+.special {
+  FontColor red
+  FontStyle bold
+}
+</style>
+class T <<special>> {
+  x
+  y()
+}
+class V {
+  x
+}
+=== skinparam-fonts
+skinparam classAttributeFontColor red
+skinparam classAttributeFontStyle italic
+skinparam classAttributeFontSize 9
+class A {
+  x
+  y()
+}
+=== align-center
+skinparam defaultTextAlignment center
+class A {
+  short
+  a much longer field
+  m()
+}
+class B {
+  a
+  --
+  bb
+}
+=== align-right
+skinparam defaultTextAlignment right
+class A {
+  short
+  a much longer field
+  +vis
+  m()
+}
+=== min-width
+skinparam minClassWidth 200
+class A {
+  x
+  m()
+}
+class B {
+  x
+  --
+  y
+}
+=== ports
+class P {
+  +foo()
+  bar
+  foobar
+  baz : int
+}
+class Q
+P::foo --> Q
+P::bar --> Q
+P::baz --> Q
+=== table-tree
+class Tb {
+  field
+  |= a |= b |
+  | 1 | 2 |
+  other
+  |_ tree
+    |_ sub
+  last
+}
+=== colors
+class C #pink;line:red;text:blue {
+  x
+  m()
+}
+=== constraint
+class A
+class B
+class C
+class D
+A --> B
+C --> D
+constraint on links : my label
+=== note-leaf
+class A
+note "a note\nsecond line" as N1
+N1 .. A
+=== mixing
+allowmixing
+class A {
+  x
+}
+usecase U1
+component C1
+=== kinds
+enum Color {
+  RED
+  GREEN
+}
+interface I {
+  m()
+}
+annotation An {
+  value()
+}
+abstract class Ab {
+  {abstract} f()
+}
+entity En {
+  * id : int
+  --
+  name
+}
+=== blank-lines
+class X {
+  a
+
+  b()
+
+  c()
+
+  d
+}
+=== guillemets
+class G {
+  field <<ro>>
+  <<create>> make()
+}
+=== object-url
+object O {
+  x [[http://o.org]]
+}
+=== icons-spaces
+class S {
+  + spaced : int
+  - other()
+  # prot
+  ~ pack()
+}
+=== hide-stereo-visibility
+hide stereotype
+class A <<st>> {
+  +x
+  -y()
+}

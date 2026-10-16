@@ -1,0 +1,9 @@
+@startuml
+class A
+class B
+class C
+<> diamond
+A -- diamond
+B -- diamond
+C -- diamond
+@enduml

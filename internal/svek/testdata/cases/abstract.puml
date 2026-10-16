@@ -1,0 +1,14 @@
+@startuml
+abstract class Shape {
+  {abstract} +area() : double
+  -name : String
+}
+class Circle {
+  -radius : double
+  +area() : double
+}
+class Square
+Shape <|-- Circle
+Shape <|-- Square
+Shape <|-- Triangle
+@enduml

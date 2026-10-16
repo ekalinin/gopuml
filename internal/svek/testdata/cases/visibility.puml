@@ -1,0 +1,12 @@
+@startuml
+skinparam classAttributeIconSize 0
+class A {
+  -private
+  #protected
+  ~package
+  +public
+}
+-class B
++class C
+A --> B
+@enduml

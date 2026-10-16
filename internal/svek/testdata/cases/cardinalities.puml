@@ -1,0 +1,8 @@
+@startuml
+class Company
+class Employee
+class Project
+Company "1" *-- "many" Employee : employs >
+Employee "1..*" -- "0..*" Project : works on
+Project "1" --> "1" Company : < owned by
+@enduml

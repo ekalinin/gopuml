@@ -1,0 +1,10 @@
+@startuml
+!pragma edgecornerradius 8
+skinparam linetype ortho
+class A
+class B
+class C
+A --> B
+A --> C
+B --> C
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+class C1
+class C2
+class C3
+class C4
+class C5
+class C6
+class C7
+class C8
+class C9
+class C10
+class C11
+class C12
+C1 --> C2
+C1 --> C3
+C2 --> C4
+C2 --> C5
+C3 --> C6
+C3 --> C7
+C4 --> C8
+C5 --> C8
+C6 --> C9
+C7 --> C9
+C8 --> C10
+C9 --> C10
+C10 --> C11
+C10 --> C12
+C11 -> C12
+C12 ..> C1
+@enduml

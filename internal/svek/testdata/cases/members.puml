@@ -1,0 +1,16 @@
+@startuml
+class Car {
+  -String model
+  #int year
+  ~double price
+  +String getModel()
+  {static} int count
+  {abstract} void drive()
+  --
+  +void start()
+  ==
+  .. section ..
+  __ underlined __
+  {method} weird(int)
+}
+@enduml

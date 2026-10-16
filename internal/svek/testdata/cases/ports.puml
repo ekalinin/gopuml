@@ -1,0 +1,11 @@
+@startuml
+class A {
+  +field1
+  +field2
+}
+class B {
+  +x
+}
+A::field1 --> B
+A::field2 --> B::x
+@enduml

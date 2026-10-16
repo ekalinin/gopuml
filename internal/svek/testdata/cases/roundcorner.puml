@@ -1,0 +1,12 @@
+@startuml
+skinparam roundcorner 15
+class A {
+  +x
+}
+class B #back:lightgreen;header:yellow
+A --> B
+package P {
+  class C
+}
+B --> C
+@enduml

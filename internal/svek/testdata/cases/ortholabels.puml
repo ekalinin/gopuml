@@ -1,0 +1,12 @@
+@startuml
+skinparam linetype ortho
+class A
+class B
+class C
+class D
+A "1" --> "*" B : ab
+B --> C : bc
+C --> D
+note on link : on cd
+A --> D : ad >
+@enduml

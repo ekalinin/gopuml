@@ -1,0 +1,7 @@
+@startuml
+class Foo<T>
+class Bar<K, V> {
+  +get(K) : V
+}
+Foo <|-- Bar
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class Map
+class Entry
+Map [key: String] --> "1" Entry
+class Bank
+class Account
+Bank [accountNumber] *-- Account
+@enduml

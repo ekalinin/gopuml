@@ -1,0 +1,12 @@
+@startuml
+hide empty members
+hide circle
+class A
+class B {
+  +x
+}
+class C <<secret>>
+hide <<secret>> stereotype
+A --> B
+B --> C
+@enduml

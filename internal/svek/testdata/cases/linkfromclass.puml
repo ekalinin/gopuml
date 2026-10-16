@@ -1,0 +1,9 @@
+@startuml
+package Lib {
+  class Inner
+}
+class Outer
+Outer --> Lib
+Lib --> Outer
+Inner -> Outer
+@enduml

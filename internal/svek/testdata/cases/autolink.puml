@@ -1,0 +1,5 @@
+@startuml
+class Node
+Node --> Node : next
+Node --> Node : prev
+@enduml

@@ -5,17 +5,15 @@
 package abel
 
 import (
-	"errors"
+	"context"
+	"io"
 	"strings"
 
 	"github.com/ekalinin/plantuml-in-go/internal/command"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
+	"github.com/ekalinin/plantuml-in-go/internal/export"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
-
-// ErrNotDrawable is returned by Export: the graph layout and drawing of the
-// diagrams built on CucaDiagram are not ported yet.
-var ErrNotDrawable = errors.New("drawing of class diagrams is not implemented yet")
 
 // NewpagedDiagram is a diagram split by "newpage" into several diagrams of
 // the same type, each starting empty. The commands run on the last page.
@@ -98,5 +96,24 @@ func (n *NewpagedDiagram) Diagrams() []command.Diagram { return n.diagrams }
 // Source returns the source of the diagram.
 func (n *NewpagedDiagram) Source() *core.UmlSource { return n.source }
 
-// Export draws a page; the drawing is not ported yet.
-func (n *NewpagedDiagram) Export(int) error { return ErrNotDrawable }
+// ExportDiagram draws the diagram, as ExportDiagramContext without
+// cancellation.
+func (n *NewpagedDiagram) ExportDiagram(w io.Writer, index int,
+	fileFormatOption export.FileFormatOption) (export.ImageData, error) {
+	return n.ExportDiagramContext(context.Background(), w, index, fileFormatOption)
+}
+
+// ExportDiagramContext draws the first page with its annotations: upstream's
+// NewpagedDiagram has a single image (getNbImages is not overridden), the
+// first diagram.
+func (n *NewpagedDiagram) ExportDiagramContext(ctx context.Context, w io.Writer, _ int,
+	fileFormatOption export.FileFormatOption) (export.ImageData, error) {
+	type contextDrawable interface {
+		ExportDiagramContext(ctx context.Context, w io.Writer, index int,
+			fileFormatOption export.FileFormatOption) (export.ImageData, error)
+	}
+	if d, ok := n.diagrams[0].(contextDrawable); ok {
+		return d.ExportDiagramContext(ctx, w, 0, fileFormatOption)
+	}
+	return nil, &export.NotImplementedError{Format: fileFormatOption.FileFormat(), What: "NewpagedDiagram"}
+}

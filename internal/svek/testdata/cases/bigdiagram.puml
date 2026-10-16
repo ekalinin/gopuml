@@ -1,0 +1,38 @@
+@startuml
+class Animal {
+  +name : String
+  +age : int
+  +eat()
+  +sleep()
+}
+class Dog {
+  +bark()
+}
+class Cat {
+  +meow()
+}
+class Bird {
+  +fly()
+}
+interface Pet {
+  +play()
+}
+enum Color {
+  BLACK
+  WHITE
+  BROWN
+}
+class Owner {
+  -pets : List<Pet>
+}
+Animal <|-- Dog
+Animal <|-- Cat
+Animal <|-- Bird
+Pet <|.. Dog
+Pet <|.. Cat
+Owner "1" o-- "*" Pet : owns >
+Dog --> Color
+Cat --> Color
+note "Birds are not pets" as N1
+N1 .. Bird
+@enduml

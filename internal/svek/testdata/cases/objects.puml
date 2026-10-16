@@ -1,0 +1,14 @@
+@startuml
+object user {
+  name = "Dummy"
+  id = 123
+}
+object group
+user --> group
+map CapitalCity {
+  UK => London
+  USA => Washington
+  Germany => Berlin
+}
+user --> CapitalCity
+@enduml

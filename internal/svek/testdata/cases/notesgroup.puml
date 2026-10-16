@@ -1,0 +1,13 @@
+@startuml
+package P {
+  class A
+}
+note right of P : group note
+class B
+A --> B
+note "N" as N2
+B .. N2
+note left of B
+  left
+end note
+@enduml

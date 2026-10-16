@@ -1,0 +1,8 @@
+@startuml
+class A
+note right of A
+  |= Col1 |= Col2 |
+  | a | b |
+  | c | d |
+end note
+@enduml

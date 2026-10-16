@@ -1,0 +1,21 @@
+@startuml
+abstract class A
+interface I
+enum E {
+  RED
+  GREEN
+}
+annotation An
+entity En
+protocol P
+struct S
+exception X
+metaclass M
+stereotype St
+dataclass D
+record R
+class C << (Z,#FF7700) Special >>
+class G<T extends Number>
+A <|-- C
+I <|.. C
+@enduml

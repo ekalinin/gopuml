@@ -1,0 +1,21 @@
+@startuml
+package app {
+  package ui {
+    class View
+    class Controller
+  }
+  package core {
+    class Service
+    class Repo
+  }
+}
+package infra {
+  class Db
+}
+View --> Controller
+Controller --> Service : calls
+Service --> Repo
+Repo --> Db : "jdbc"
+app --> infra
+note right of Service : business logic
+@enduml

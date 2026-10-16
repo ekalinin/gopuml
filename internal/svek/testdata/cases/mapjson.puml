@@ -1,0 +1,14 @@
+@startuml
+object X
+map M {
+  a => b
+  c *-> X
+}
+json J {
+  "fruit": "Apple",
+  "size": "Large",
+  "colors": ["red", "green"],
+  "nested": {"a": 1, "b": true}
+}
+J --> M
+@enduml

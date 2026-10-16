@@ -1,0 +1,9 @@
+@startuml
+class A
+class B
+class C
+A --> B : uses >
+B --> C : < called by
+A --> C : "quoted label"
+C --> A : multi\nline\nlabel
+@enduml

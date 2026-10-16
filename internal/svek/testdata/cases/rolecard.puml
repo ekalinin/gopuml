@@ -1,0 +1,5 @@
+@startuml
+class Person
+class Company
+Person "employee 1..*" -- "employer 1" Company
+@enduml

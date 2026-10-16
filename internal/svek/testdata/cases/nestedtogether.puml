@@ -1,0 +1,13 @@
+@startuml
+package P {
+  together {
+    class A
+    class B
+  }
+  class C
+}
+class D
+A --> D
+B --> D
+C --> D
+@enduml

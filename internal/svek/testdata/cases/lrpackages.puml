@@ -1,0 +1,13 @@
+@startuml
+left to right direction
+package a {
+  class A1
+  class A2
+}
+package b {
+  class B1
+}
+A1 --> A2
+A2 --> B1
+a ..> b
+@enduml

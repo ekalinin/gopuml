@@ -1,0 +1,12 @@
+@startuml
+package P <<Frame>> {
+  class A
+  class B
+  A --> B
+}
+package Q <<Cloud>> {
+  class C
+}
+B --> C
+P ..> Q : depends
+@enduml

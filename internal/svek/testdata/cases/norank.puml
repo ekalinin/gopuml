@@ -1,0 +1,12 @@
+@startuml
+!pragma horizontalLineBetweenDifferentPackageAllowed
+package P1 {
+  class A
+}
+package P2 {
+  class B
+}
+A -> B
+A -[norank]-> B : norank
+B --> A
+@enduml

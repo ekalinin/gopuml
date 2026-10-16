@@ -1,0 +1,13 @@
+@startuml
+class A {
+  +x
+  +m()
+}
+class B {
+  +y
+  +n()
+}
+hide A members
+hide B methods
+A --> B
+@enduml

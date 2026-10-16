@@ -1,0 +1,7 @@
+@startuml
+left to right direction
+class Dictionary
+class Word
+Dictionary [term] --> Word
+Word "1" --> "*" Dictionary : in
+@enduml

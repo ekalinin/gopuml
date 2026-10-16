@@ -1,0 +1,7 @@
+@startuml
+class A
+circle C1
+() I1
+A --> C1
+A --> I1
+@enduml

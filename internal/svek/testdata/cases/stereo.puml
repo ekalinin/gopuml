@@ -1,0 +1,9 @@
+@startuml
+class A <<Entity>>
+class B <<Service>> <<Remote>>
+skinparam class {
+  BackgroundColor<<Entity>> Wheat
+  BorderColor<<Entity>> Tomato
+}
+A -> B : <<uses>>
+@enduml

@@ -45,11 +45,11 @@ Ported and checked against the reference jar (see "Tests and golden files"). Wha
 
 ### Other gaps
 
-- `TextBlockInEllipse` needs `svek.image.Footprint` and `ContainingEllipse`: construction panics.
+- `TextBlockInEllipse` needs `svek.image.Footprint` and `ContainingEllipse`: construction panics. The class diagram step added a working `TextBlockInContainingEllipse` (`svek_footprint.go`); the stub could delegate to it.
 - `UbrexUrlBuilder` and `StereotypePattern.umandatory/uoptional` are not ported: `NewUbrexURLBuilder` panics, the UBrex leaves are absent. The UBrex engine itself is now ported (`ubrex*.go`, unexported: `ubrexBuild(expression).match(utf16, pos)`); the command leaves built on it (com.plantuml.ubrex.builder, UBrexPart in the command framework) are not.
 - `PortableImageARGB.Scale` (image scaling with Java2D interpolation) panics: raster driver step. `PixelImage` is otherwise ported, so `UImage` recoloring works.
 - `klimt.compress` (UGraphicCompressOnXorY, slots, expansions) is not ported, only CompressionMode and UShapeIgnorableForCompression.
-- `klimt.geom` placement strategies, `ULayoutGroup` and `HorizontalAlignment.draw/asPlacementStrategy` are not ported (they need UGraphic/TextBlock, so they belong here when needed).
+- `klimt.geom` placement strategies and `ULayoutGroup` are ported (`geom_ulayoutgroup.go`, class diagram step); `HorizontalAlignment.draw/asPlacementStrategy` are not (svek inlines asPlacementStrategy).
 - Methods returning diagram-level types are not on the klimt types; the packages that define those types should provide functions:
   - `Stereogroup.getBoxStyle` (activitydiagram3.ftile.BoxStyle) and `getLeafType` (abel.LeafType): compute from `Stereogroup.Labels()`.
   - `PackageStyle.toUSymbol`, `ComponentStyle.toUSymbol`, `ActorStyle.toUSymbol` (decoration.symbol).
@@ -79,7 +79,7 @@ The Rose components are `internal/klimt/rose` (upstream's `skin.rose`); the symb
 
 Notes for the next steps:
 
-- `decoration/symbol` is partial: only DATABASE and QUEUE (with USymbol, its Margin and the separator graphics). The other symbols also need svek classes that are not ported: `svek.CircleInterface2` (USymbolInterface), `svek.image.RotatedEllipse` and the `TextBlockInEllipse` footprint (`svek.image.Footprint`, `ContainingEllipse`, `SmallestEnclosingCircle`; USymbolUsecase), and USymbolCloud needs an emulation of `java.util.Random`. `USymbols.fromString` and `PackageStyle/ComponentStyle/ActorStyle.toUSymbol` (functions of that package) come with them.
+- `decoration/symbol` is complete since the class diagram step (every USymbols symbol, `FromKey`, `PackageStyleToUSymbol`, `ComponentStyleToUSymbol`, `ActorStyleToUSymbol`); the svek helpers it needs moved here as `svek_circleinterface2.go` and `svek_footprint.go`.
 - Rose takes `klimt.ComponentType` and `*klimt.ArrowConfiguration`; its `Participant` interface is `UsedStyles() []*klimt.Style` (the participant style with stereotype and colors, then the stereotype style), and `rose.NotePosition` is upstream's sequencediagram.NotePosition (`CreateComponentNoteAt` takes it; `CreateComponentNote` is the null position).
 - The arrow components override `TextBlock`, `PureTextWidth`, `TextWidth` and `TextHeight` (upstream overrides getTextBlock, which the final text sizes of AbstractTextualComponent call); ComponentRoseParticipant overrides `PureTextWidth` and `TextWidth` the same way. A component that overrides `TextBlock` or `PureTextWidth` must redefine the methods that use them, since the base methods do not reach the override.
 
@@ -132,3 +132,8 @@ Notes for the next steps:
 - `golden_test.go` and `golden2_test.go` compare against `testdata/golden/*.golden`, written by the upstream jar with `testdata/javagen/KlimtGolden.java` and `KlimtGolden2.java` (instructions in the Java header). They cover style resolution for the five skins, a user style sheet and skinparams, FromSkinparamToStyle, SkinParam getters, Display splitting and operations, stereotypes, links, skinparam key cleaning, text block dimensions and LimitFinder bounds with a fixed StringBounder, recorded drawing operations, Java hash orders, font configurations, strokes and values, DotPath and geometry, and style parser edge cases.
 - `klimt_test.go` covers the rest: graphics composition, drivers, stubs, commands, caches and concurrency.
 - `svek_test.go` compares against `svek.golden`, written by `internal/klimt/rose/testdata/javagen/RoseGolden.java` with the Rose goldens (instructions in its header).
+
+### Class diagram step
+
+New files only, for internal/svek and internal/abel: `java_export.go` (exported JavaD2I, JavaStringHashCode, JavaHashMapOrder, JavaHashOrder), `geom_ulayoutgroup.go` (ULayoutGroup and the placement strategies), `creole_embeddedexport.go` (EmbeddedDiagramCreateAndSkip), `svek_circleinterface2.go`, `svek_footprint.go`. No existing file of this package was changed by that step.
+

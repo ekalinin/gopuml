@@ -1,0 +1,7 @@
+@startuml
+class "A **bold** name" as A
+class B as "Another\nname"
+class C<<(X,orange)>>
+A --> B
+B --> C
+@enduml

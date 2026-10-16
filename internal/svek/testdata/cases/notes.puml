@@ -1,0 +1,14 @@
+@startuml
+class A
+class B
+note left of A : left note
+note right of B
+  a multi-line
+  **note**
+end note
+note top of A : top
+note "floating note" as N1
+A --> B
+N1 .. B
+note on link : on the link
+@enduml

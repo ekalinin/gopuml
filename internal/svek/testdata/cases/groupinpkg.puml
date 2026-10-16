@@ -1,0 +1,12 @@
+@startuml
+package outer {
+  package inner1 {
+    class A
+  }
+  package inner2 {
+    class B
+  }
+}
+A --> B
+inner1 ..> inner2
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class A
+class B
+class C
+class D
+class E
+A -left-> B
+A -right-> C
+A -up-> D
+A -down-> E
+B -> C
+@enduml

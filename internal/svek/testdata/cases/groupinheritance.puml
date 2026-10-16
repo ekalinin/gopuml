@@ -1,0 +1,13 @@
+@startuml
+skinparam groupInheritance 2
+class Base
+class A
+class B
+class C
+class Other
+Base <|-- A
+Base <|-- B
+Base <|-- C
+Other <|-- C
+Base --> Other : uses
+@enduml

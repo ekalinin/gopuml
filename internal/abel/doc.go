@@ -15,6 +15,9 @@
 // The commands that upstream defines in its command, command.note and
 // descdiagram.command packages for any CucaDiagram are here too
 // (command_*.go, descdiagram_*.go), generic over Diagram: the command
-// framework (internal/command) cannot import the entity model. The graph
-// layout and drawing of entities (svek) are not ported yet.
+// framework (internal/command) cannot import the entity model. The drawing
+// of bodies (cucadiagram_body*.go, MethodsOrFieldsArea, TextBlockMap,
+// TextBlockCucaJSon) is here; the graph layout and the images of entities
+// are internal/svek, which keeps its qualifier boxes on the entities
+// (entity_kal.go).
 package abel

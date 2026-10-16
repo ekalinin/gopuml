@@ -1,0 +1,9 @@
+@startuml
+class A #red
+class B #lightblue ##[bold]blue
+class C #back:yellow;line:red
+A -[#blue]-> B
+B -[dashed]-> C
+A -[bold,#green]-> C
+A -[dotted]-> C
+@enduml

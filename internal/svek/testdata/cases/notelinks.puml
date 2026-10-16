@@ -1,0 +1,14 @@
+@startuml
+class A
+class B
+class C
+A --> B
+note on link
+  a note
+  on the link
+end note
+B --> C : label
+note left on link : left note
+A ..> C
+note right on link #lightgreen : green
+@enduml

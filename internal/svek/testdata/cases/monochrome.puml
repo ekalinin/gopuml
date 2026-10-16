@@ -1,0 +1,9 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing true
+class A #red {
+  +x
+}
+interface I
+A ..|> I
+@enduml

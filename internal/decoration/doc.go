@@ -9,7 +9,8 @@
 // Upstream's LinkType imports abel.LinkStrategy, and abel.Link extends
 // WithLinkType: per design D2, the small LinkStrategy type moves here so
 // that the packages do not form a cycle. The drawing parts of LinkDecor and
-// LinkMiddleDecor (the svek extremity and middle factories) belong to the
-// graph drawing step. Rainbow and HtmlColorAndStyle, used by activity
-// diagrams only, are in internal/activitydiagram3.
+// LinkMiddleDecor (the extremity and middle factories) are functions of
+// internal/svek/extremity. Rainbow is here with the part the graph links
+// use (RainbowBuild from the arrow style); the activity diagrams have the
+// full Rainbow and HtmlColorAndStyle in internal/activitydiagram3.
 package decoration

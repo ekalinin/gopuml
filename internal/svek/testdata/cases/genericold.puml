@@ -1,0 +1,6 @@
+@startuml
+skinparam genericDisplay old
+class List<E>
+class Map<K,V>
+List --> Map
+@enduml

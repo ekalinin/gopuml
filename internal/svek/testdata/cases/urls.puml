@@ -1,0 +1,7 @@
+@startuml
+class A [[http://example.com/a]]
+class B {
+  +field [[http://example.com/f]]
+}
+A --> B [[http://example.com/link]]
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class A {
+  +field1 : int
+  +method1()
+}
+note left of A::field1
+  a note on a field
+end note
+note right of A::method1
+  a note on a method
+end note
+@enduml

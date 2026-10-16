@@ -1,0 +1,10 @@
+@startuml
+class A $core
+class B $core
+class C $extra
+class D
+A --> B
+B --> C
+remove $extra
+hide @unlinked
+@enduml

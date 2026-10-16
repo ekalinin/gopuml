@@ -1,0 +1,13 @@
+@startuml
+object Customer {
+  name = "Ann"
+  id = 1
+}
+object Order1 {
+  total = 10.5
+}
+object Order2
+Customer "1" *-- "2" Order1
+Customer *-- Order2
+Order1 .. Order2 : sibling
+@enduml

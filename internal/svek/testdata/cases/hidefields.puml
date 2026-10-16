@@ -1,0 +1,14 @@
+@startuml
+hide empty fields
+hide empty methods
+hide stereotype
+class A <<s>> {
+  +m()
+}
+class B {
+  +f
+}
+class C
+A --> B
+B --> C
+@enduml

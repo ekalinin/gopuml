@@ -1,0 +1,10 @@
+@startuml
+package P {
+  class A
+  legend
+    inner legend
+  endlegend
+}
+class B
+A --> B
+@enduml

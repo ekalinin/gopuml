@@ -1,0 +1,11 @@
+@startuml
+namespace net.dummy {
+  class Person
+  class Meeting
+  Person o-- Meeting
+}
+namespace net.foo {
+  class Bar
+}
+net.dummy.Person --> net.foo.Bar
+@enduml

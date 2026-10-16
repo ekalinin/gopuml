@@ -1,0 +1,21 @@
+@startuml
+class A
+class B
+class C
+class D
+class E
+class F
+class G
+class H
+A <|-- B
+A *-- C : composition
+A o-- D : aggregation
+B ..> E
+B ..|> F
+C -- G
+D #-- H
+E x-- F
+G }-- H
+A +-- H
+B ^-- C
+@enduml

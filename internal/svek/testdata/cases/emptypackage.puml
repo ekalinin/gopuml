@@ -1,0 +1,10 @@
+@startuml
+package empty1 {
+}
+package full {
+  class A
+}
+package empty2 <<Rectangle>> {
+}
+A --> empty1
+@enduml

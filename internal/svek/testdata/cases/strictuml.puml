@@ -1,0 +1,10 @@
+@startuml
+skinparam style strictuml
+class A {
+  +x : int
+}
+class B
+note "a note" as N
+A --> B
+N .. A
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+set separator ::
+class a::b::C
+class a::d::E
+a::b::C --> a::d::E
+@enduml

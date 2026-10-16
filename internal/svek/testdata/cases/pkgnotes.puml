@@ -1,0 +1,12 @@
+@startuml
+package P {
+  class A
+  note left of A : inside
+}
+package Q {
+  class B
+}
+note "between" as N
+A .. N
+N .. B
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+allowmixing
+class A
+component C
+actor U
+usecase UC
+node N
+database DB
+interface I
+A --> C
+U --> UC
+C --> DB
+N --> I
+@enduml

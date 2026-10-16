@@ -60,6 +60,7 @@ type Entity struct {
 	colors        *color.Colors
 	tipKeys       []string
 	tips          map[string]*Tip
+	kals          [4][]Kal
 }
 
 func (*Entity) isBag() {}

@@ -19,7 +19,7 @@
 //     -cp /opt/plantuml.jar:/classes RoseGolden /repo/internal/klimt/rose/testdata/golden \
 //     /repo/internal/decoration/symbol/testdata/golden /repo/internal/klimt/testdata/golden
 //
-// It writes rose.golden.gz, symbol.golden and svek.golden (the svek shapes
+// It writes rose.golden.gz, symbol.golden.gz and svek.golden (the svek shapes
 // moved to internal/klimt: Opale, Control, Boundary, EntityDomain). The
 // style sheets of the "style" and "style2" setups are rose_style.css and
 // rose_style2.css, next to rose.golden.gz.
@@ -868,6 +868,16 @@ public class RoseGolden {
 	// ------------------------------------------------------------------
 	// Symbols
 
+	static final String[] SYMBOL_NAMES = { "ACTION", "ACTOR_AWESOME", "ACTOR_HOLLOW", "ACTOR_STICKMAN",
+			"ACTOR_STICKMAN_BUSINESS", "AGENT", "ARCHIMATE", "ARTIFACT", "BOUNDARY", "CARD", "CLOUD", "COLLECTIONS",
+			"COMPONENT_RECTANGLE", "COMPONENT1", "COMPONENT2", "CONTROL", "DATABASE", "ENTITY_DOMAIN", "FILE",
+			"FOLDER", "FRAME", "GROUP", "HEXAGON", "INTERFACE", "LABEL", "NODE", "PACKAGE", "PARTITION", "PERSON",
+			"PROCESS", "QUEUE", "RECTANGLE", "STACK", "STORAGE", "USECASE", "USECASE_BUSINESS" };
+
+	static net.sourceforge.plantuml.decoration.symbol.USymbol symbolOf(String n) throws Exception {
+		return (net.sourceforge.plantuml.decoration.symbol.USymbol) USymbols.class.getField(n).get(null);
+	}
+
 	static void symbols(Path out) throws Exception {
 		final List<String> lines = new ArrayList<>();
 		final SkinParam sp = newSkinParam();
@@ -876,15 +886,16 @@ public class RoseGolden {
 		final FontConfiguration fcs = FontConfiguration.create(UFontFactory.sansSerif(10), HColors.RED, HColors.BLUE,
 				UStroke.simple());
 		final List<Fashion> fashions = Arrays.asList(new Fashion(HColors.MY_YELLOW, HColors.MY_RED),
-				new Fashion(HColors.WHITE, HColors.BLUE).withShadow(3).withStroke(UStroke.withThickness(2)));
+				new Fashion(HColors.WHITE, HColors.BLUE).withShadow(3).withStroke(UStroke.withThickness(2)),
+				new Fashion(HColors.MY_YELLOW, HColors.MY_RED).withCorner(10, 0),
+				new Fashion(HColors.WHITE, HColors.BLUE).withShadow(3).withCorner(0, 8));
 		final String[][] texts = { { "label" }, { "first", "--", "second", "==", "third" },
 				{ "a", "--title--", "b", "..", "c" }, { "first", "----", "second" } };
 		final Style noteStyle = seq(sp, SName.note);
 		final String[] stereos = { "", "<<stereo>>" };
-		final String[] names = { "DATABASE", "QUEUE" };
-		for (String n : names) {
-			final net.sourceforge.plantuml.decoration.symbol.USymbol symbol = n.equals("DATABASE") ? USymbols.DATABASE
-					: USymbols.QUEUE;
+		final double[][] magnetic = { { 5, 5 }, { 60, 3 }, { 60, -2 }, { 30, -1 }, { 120, 10 }, { 20, 0 } };
+		for (String n : SYMBOL_NAMES) {
+			final net.sourceforge.plantuml.decoration.symbol.USymbol symbol = symbolOf(n);
 			lines.add(n + "\tsnames " + Arrays.toString(symbol.getSNames()) + " supp="
 					+ symbol.suppHeightBecauseOfShape() + "," + symbol.suppWidthBecauseOfShape());
 			for (int ti = 0; ti < texts.length; ti++)
@@ -898,24 +909,50 @@ public class RoseGolden {
 									: Display.create(texts[ti]).create(fc, HorizontalAlignment.LEFT, sp);
 							final TextBlock stereo = stereos[si].isEmpty() ? TextBlockUtils.empty(0, 0)
 									: Display.create(stereos[si]).create(fcs, HorizontalAlignment.CENTER, sp);
+							final TextBlock name = Display.create("pkg").create(fcs, HorizontalAlignment.LEFT, sp);
 							final Fashion fashion = fashions.get(fi);
-							for (String kind : new String[] { "small", "big" }) {
+							final boolean more = fi == 0 && ti < 2;
+							final boolean withMagnetic = fi == 0 && ti == 0 && si == 1;
+							for (String kind : new String[] { "small", "big", "smallr", "bigr", "bigl", "smalln" }) {
+								if (kind.length() > 5 && !more)
+									continue;
+								if (kind.equals("bigl") && (ti != 0 || fi != 0))
+									continue;
 								final List<String> log = new ArrayList<>();
 								step(log, () -> {
-									final TextBlock tb = kind.equals("small")
-											? symbol.asSmall(null, label, stereo, fashion, HorizontalAlignment.CENTER)
-											: symbol.asBig(label, HorizontalAlignment.LEFT, stereo, 150, 90, fashion,
-													HorizontalAlignment.CENTER);
+									final TextBlock tb;
+									if (kind.equals("small"))
+										tb = symbol.asSmall(name, label, stereo, fashion, HorizontalAlignment.CENTER);
+									else if (kind.equals("smallr"))
+										tb = symbol.asSmall(name, label, stereo, fashion, HorizontalAlignment.RIGHT);
+									else if (kind.equals("smalln"))
+										tb = symbol.asSmall(null, label, stereo, fashion, HorizontalAlignment.LEFT);
+									else if (kind.equals("big"))
+										tb = symbol.asBig(label, HorizontalAlignment.LEFT, stereo, 150, 90, fashion,
+												HorizontalAlignment.CENTER);
+									else if (kind.equals("bigr"))
+										tb = symbol.asBig(label, HorizontalAlignment.RIGHT, stereo, 150, 90, fashion,
+												HorizontalAlignment.RIGHT);
+									else
+										tb = symbol.asBig(label, HorizontalAlignment.CENTER, stereo, 220, 140,
+												fashion, HorizontalAlignment.CENTER);
 									final XDimension2D dim = tb.calculateDimension(b);
 									log.add("dim " + d(dim.getWidth()) + "x" + d(dim.getHeight()));
 									tb.drawU(new Rec(log, b).apply(new UTranslate(3, 4)));
+									if (withMagnetic)
+										for (double[] pt : magnetic) {
+											final UTranslate force = tb.getMagneticBorder().getForceAt(b,
+													new XPoint2D(pt[0], pt[1]));
+											log.add("mb " + d(pt[0]) + "," + d(pt[1]) + " -> " + d(force.getDx()) + ","
+													+ d(force.getDy()));
+										}
 								});
 								for (String l : log)
 									lines.add(n + "/" + kind + "/" + ti + "/" + si + "/" + fi + "\t" + bn + "\t" + l);
 							}
 						}
 		}
-		write(out, "symbol.golden", lines);
+		writeGzip(out, "symbol.golden.gz", lines);
 	}
 
 	// ------------------------------------------------------------------

@@ -1,0 +1,7 @@
+@startuml
+skinparam dpi 150
+scale 0.8
+class A
+class B
+A --> B
+@enduml

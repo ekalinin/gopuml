@@ -1,0 +1,7 @@
+@startuml
+class Foo
+note bottom of Foo : attached note
+class Bar
+note "linked" as N
+N .. Bar
+@enduml

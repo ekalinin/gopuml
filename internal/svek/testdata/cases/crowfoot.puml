@@ -1,0 +1,10 @@
+@startuml
+entity User
+entity Order
+entity Item
+entity Payment
+User ||--o{ Order
+Order }|--|{ Item
+Order |o--o| Payment
+User }o..o{ Item
+@enduml

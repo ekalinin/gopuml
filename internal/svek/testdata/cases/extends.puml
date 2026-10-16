@@ -1,0 +1,4 @@
+@startuml
+class A extends B implements C, D
+class E implements C
+@enduml

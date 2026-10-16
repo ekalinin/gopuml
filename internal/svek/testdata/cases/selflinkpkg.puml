@@ -1,0 +1,8 @@
+@startuml
+package P {
+  class A
+  class B
+}
+P --> P : self
+A --> B
+@enduml

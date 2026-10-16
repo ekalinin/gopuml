@@ -25,9 +25,14 @@ import (
 
 // Bodier holds the body of an entity: the members of a class or an object,
 // the entries of a map, the data of a JSON element or the description lines
-// of other elements. The drawing of bodies (upstream's getBody) belongs to
-// the class drawing step.
+// of other elements. Body (upstream's getBody) draws it; it is in
+// cucadiagram_body.go.
 type Bodier interface {
+	// Body is upstream's getBody: the drawing of the body (nil where
+	// upstream returns null). fontConfiguration may be nil; maps and JSON
+	// elements use it for their entries.
+	Body(skinParam klimt.ISkinParam, showMethods, showFields bool, stereotype *klimt.Stereotype,
+		style *klimt.Style, fontConfiguration *klimt.FontConfiguration) klimt.TextBlock
 	// SetLeaf sets the entity of the body.
 	SetLeaf(leaf *Entity)
 	// FieldsToDisplay returns the fields, as members.

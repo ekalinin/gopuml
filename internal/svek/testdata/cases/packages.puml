@@ -1,0 +1,30 @@
+@startuml
+package p1 {
+  class A
+  package p2 {
+    class B
+  }
+}
+package "Folder p" <<Folder>> {
+  class C
+}
+package n <<Node>> {
+  class D
+}
+package f <<Frame>> {
+  class E
+}
+package c <<Cloud>> {
+  class F
+}
+package d <<Database>> {
+  class G
+}
+package r <<Rectangle>> {
+  class H
+}
+A --> B
+C --> D
+E --> F
+G --> H
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+() a
+() b
+a -> b : a2b_1
+a -> b : a2b_2
+@enduml

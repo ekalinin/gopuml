@@ -1,0 +1,10 @@
+@startuml
+package Layer1 <<Layer>> {
+  class A
+}
+package Layer2 <<Layer>> #back:pink {
+  class B
+}
+A --> B
+Layer1 --> Layer2 : uses
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+skinparam noteBackgroundColor #FFEECC
+skinparam noteBorderColor red
+class A
+note top of A #lightblue
+  colored
+end note
+note bottom of A
+  default
+  ----
+  separator
+end note
+@enduml

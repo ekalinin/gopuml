@@ -1,0 +1,11 @@
+@startuml
+skinparam ArrowColor Purple
+skinparam ArrowThickness 2
+skinparam classBorderColor Green
+class A
+class B
+class C
+A --> B
+B -[#red,dashed,thickness=3]-> C
+A -[#blue,#green]-> C
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+<style>
+classDiagram {
+  class {
+    BackgroundColor LightYellow
+    LineColor Navy
+    RoundCorner 10
+  }
+  arrow {
+    LineColor Red
+  }
+}
+</style>
+class A {
+  +x
+}
+class B
+A --> B
+@enduml
