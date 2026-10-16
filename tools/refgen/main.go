@@ -50,7 +50,9 @@ const (
 	vegaDir      = ".cache/vega"
 	vegaRefRoot  = ".cache/reference"
 	pngRefDir    = ".cache/reference-png"
-	workDir      = ".cache/reference-work"
+	// workRoot holds one scratch directory per run, so that concurrent
+	// runs do not share files.
+	workRoot = ".cache/reference-work"
 	platform     = "linux/amd64"
 	jar          = "/opt/plantuml.jar"
 	// cliClasspath runs the CLI through RunCli, which disables the
@@ -68,6 +70,8 @@ type generator struct {
 	impl  string
 	// binary is the Go command line, built on first use.
 	binary string
+	// workDir is the scratch directory of this run, relative to root.
+	workDir string
 
 	// Output roots, relative to the repository root.
 	outCurated, outVega, outPNG string
@@ -114,6 +118,16 @@ func main() {
 		g.outCurated, g.outVega, g.outPNG = rel, rel, rel+"-png"
 	}
 
+	if err := os.MkdirAll(filepath.Join(root, workRoot), 0o755); err != nil {
+		log.Fatal(err)
+	}
+	work, err := os.MkdirTemp(filepath.Join(root, workRoot), "run-")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer os.RemoveAll(work)
+	g.workDir, _ = filepath.Rel(root, work)
+
 	switch *suite {
 	case "curated":
 		err = g.curated()
@@ -158,7 +172,7 @@ func (g *generator) curated() error {
 		return err
 	}
 
-	scratch := filepath.Join(workDir, "curated")
+	scratch := filepath.Join(g.workDir, "curated")
 	if err := os.RemoveAll(filepath.Join(g.root, scratch)); err != nil {
 		return err
 	}
@@ -199,7 +213,7 @@ func (g *generator) vega() error {
 	if err := os.RemoveAll(filepath.Join(g.root, g.outVega, "vega")); err != nil {
 		return err
 	}
-	scratch := filepath.Join(workDir, "vega")
+	scratch := filepath.Join(g.workDir, "vega")
 	if err := os.RemoveAll(filepath.Join(g.root, scratch)); err != nil {
 		return err
 	}
@@ -232,7 +246,7 @@ func (g *generator) renderDiagrams(suite string, jobs []diagramJob) error {
 	if g.impl == "go" {
 		return g.renderDiagramsGo(jobs)
 	}
-	scratch := filepath.Join(workDir, suite)
+	scratch := filepath.Join(g.workDir, suite)
 	var manifest bytes.Buffer
 	var preproc []diagramJob
 	outRoot := jobs[0].outRoot
@@ -304,7 +318,7 @@ var textOutputs = []string{".svg", ".atxt", ".utxt", ".preproc", ".txt"}
 
 func (g *generator) recordCLI(cases []*conformance.CLICase) error {
 	for _, c := range cases {
-		dir := filepath.Join(g.root, workDir, "cli", filepath.FromSlash(c.ID))
+		dir := filepath.Join(g.root, g.workDir, "cli", filepath.FromSlash(c.ID))
 		if err := os.RemoveAll(dir); err != nil {
 			return err
 		}

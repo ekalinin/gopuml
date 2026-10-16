@@ -27,7 +27,7 @@ REFERENCE_IMAGE ?= plantuml-go-reference
 reference:
 	docker build --platform linux/amd64 -t $(REFERENCE_IMAGE) tools/reference
 	tools/corpus/fetch-vega.sh
-	$(GO) run ./tools/refgen -image $(REFERENCE_IMAGE)
+	$(GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -png
 
 reference-check:
 	$(GO) test -tags conformance -count=1 -timeout 30m -run TestReferencesReproducible -v ./internal/conformance -args -root $(CURDIR)
@@ -38,7 +38,7 @@ CONFORMANCE_DIR := .cache/conformance
 
 conformance:
 	tools/reference/fetch-tools.sh
-	$(GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -impl $(IMPL) -out $(CONFORMANCE_DIR)/actual
+	$(GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -png -impl $(IMPL) -out $(CONFORMANCE_DIR)/actual
 	$(GO) test -tags conformance -count=1 -timeout 30m -run TestConformance -v ./internal/conformance -args \
 		-root $(CURDIR) -actual $(CURDIR)/$(CONFORMANCE_DIR)/actual -impl $(IMPL) \
 		-resvg $(CURDIR)/.cache/tools/resvg -fonts $(CURDIR)/.cache/fonts/dejavu \

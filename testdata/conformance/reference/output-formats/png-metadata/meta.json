@@ -1,6 +1,6 @@
 {
   "id": "output-formats/png-metadata",
   "blocks": [
-    {"index": 0, "name": null, "type": "CLASS", "description": "(2 entities)", "pages": 1, "renders": []}
+    {"index": 0, "name": null, "type": "CLASS", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.png", "width": 62, "height": 177, "status": 0}]}
   ]
 }
