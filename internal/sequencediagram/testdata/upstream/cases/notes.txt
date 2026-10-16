@@ -1,0 +1,111 @@
+=== note positions
+participant A
+participant B
+note left of A : left
+note right of B : right
+note over A : over
+note over A, B : over both
+note over B , A #yellow : reversed
+=== note shapes
+participant A
+hnote over A : hex
+rnote over A : box
+note left of A #pink : colored
+note right of A <<st>> : stereo
+note <<st2>> left of A : stereo first
+=== note url
+participant A
+note left of A [[http://x.com]] : link
+=== multiline notes
+participant A
+note left of A
+  line 1
+    line 2
+end note
+note over A, B
+  shared
+endnote
+hnote right of A #red
+  hex
+end hnote
+rnote over A
+r
+end rnote
+note across
+across
+end note
+=== note on message
+A -> B : msg
+note left : left
+note right : right
+note top : top
+note bottom : bottom
+note left #red : colored
+note right <<st>> : stereo
+note left [[http://x.com]] : url
+=== note on message multiline
+A -> B : msg
+note left
+  multi
+end note
+note right #pink
+  pink
+end note
+=== note on exo
+[-> A : in
+note left : changed to right
+A ->] : out
+note right : changed to left
+=== note on reference
+ref over A : r
+note left : on ref
+note top : ignored
+=== note on nothing
+note left : nothing
+=== note over before message
+note over A : first
+=== note on divider
+A -> B
+== d ==
+note left : on divider
+=== note across
+note across : all
+hnote across #yellow : hex across
+note accross : typo
+=== note across multiline typo
+note accross
+x
+end note
+=== vmerge
+A -> B
+note left of A : one
+/ note right of B : two
+/ note over A : three
+=== parallel notes
+A -> B
+& note left of A : par
+& note over A, B : par2
+=== empty note
+participant A
+note left of A
+end note
+=== bad note color
+note left of A #nosuch : x
+=== bad note on message color
+A -> B
+note left #nosuch : x
+=== note of without space
+participant A
+note left ofA : x
+=== note autonumber variable
+autonumber
+A -> B
+note left : %autonumber%
+=== note stereo on message colors
+skinparam noteBackgroundColor<<st>> #red
+A -> B
+note left <<st>> : x
+note over A <<st>> : y
+=== quoted note participant
+note left of "Long A" : x
+note over "Long A", "B b" : y

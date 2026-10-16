@@ -1,0 +1,107 @@
+=== alt else
+alt success
+Alice -> Bob
+else failure
+Bob -> Alice
+end
+=== all keywords
+opt o
+A -> B
+end
+loop 10 times
+A -> B
+end
+par
+A -> B
+else
+B -> A
+also
+A -> A
+end
+par2
+A -> B
+end
+break b
+A -> B
+end
+critical c
+A -> B
+end
+group My group
+A -> B
+end
+group
+A -> B
+end
+partition P
+A -> B
+end
+=== group bracket
+group Name [Secondary]
+A -> B
+end
+group [only]
+A -> B
+end
+group a [[link]] b [c]
+A -> B
+end
+=== colors
+alt#gold #lightblue Successful case
+A -> B
+else #pink failure
+B -> A
+end
+alt #red
+A -> B
+end
+=== else color lookbehind
+alt x
+A -> B
+else#red y
+end
+=== end color lookbehind
+alt x
+A -> B
+end#red
+=== nested
+alt a
+loop l
+A -> B
+group g
+B -> A
+end
+end
+else b
+end
+=== parallel group
+A -> B
+& alt x
+B -> A
+end
+=== else outside
+else x
+=== end outside
+end
+=== unclosed
+alt x
+A -> B
+=== bad color
+alt #nosuch x
+A -> B
+end
+=== case
+ALT X
+A -> B
+ELSE Y
+END
+=== end variants
+alt x
+A -> B
+end alt
+=== notes on leaf
+alt x
+A -> B
+end
+note left : on end
+note top : top on end

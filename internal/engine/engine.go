@@ -22,13 +22,14 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
 	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/plantuml-in-go/internal/sequencediagram"
 	"github.com/ekalinin/plantuml-in-go/internal/text"
 	"github.com/ekalinin/plantuml-in-go/internal/tim"
 )
 
 // Factories are the parsers of the supported diagram types, in upstream's
-// order. They are added with each diagram type.
-var Factories []core.Factory
+// order (PSystemBuilder). They are added with each diagram type.
+var Factories = []core.Factory{sequencediagram.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
@@ -162,7 +163,12 @@ func (b *Block) Source() []string {
 func (b *Block) Encoded() string { return code.Encode(strings.Join(b.Source(), "\n")) }
 
 // Pages returns the number of images of the diagram.
-func (b *Block) Pages() int { return 1 }
+func (b *Block) Pages() int {
+	if p, ok := b.Diagram.(interface{ Pages() int }); ok {
+		return p.Pages()
+	}
+	return 1
+}
 
 // ImageData is upstream's ImageData: the size of the drawn image and its
 // status, 0 or 200 on success.
@@ -183,6 +189,18 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 	if err := ctx.Err(); err != nil {
 		return ImageData{}, err
 	}
-	// Drawing is added with the first diagram type.
+	// Diagrams whose drawing is not ported yet report it from Export.
+	if d, ok := b.Diagram.(interface{ Export(page int) error }); ok {
+		if err := d.Export(page); err != nil {
+			return ImageData{}, notDrawable{err}
+		}
+	}
 	return ImageData{}, ErrNotDrawable
 }
+
+// notDrawable is the error of a diagram that cannot be drawn yet: it reads
+// as the diagram's own message and is ErrNotDrawable.
+type notDrawable struct{ err error }
+
+func (e notDrawable) Error() string   { return e.err.Error() }
+func (e notDrawable) Unwrap() []error { return []error{ErrNotDrawable, e.err} }

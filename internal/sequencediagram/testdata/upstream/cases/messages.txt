@@ -1,0 +1,116 @@
+=== arrows
+Alice -> Bob : solid
+Bob --> Alice : dotted
+Alice ->> Bob : async
+Alice -\ Bob : top half
+Alice -/ Bob : bottom half
+Alice ->x Bob : lost
+Alice x-> Bob
+Alice <-> Bob : both
+Alice o-> Bob
+Alice ->o Bob
+Alice o->o Bob
+Alice <<-- Bob
+Alice \\- Bob
+Alice //- Bob
+Alice <- Bob
+Alice <-- Bob : reverse
+Alice x<- Bob
+Alice -\\ Bob
+Alice -// Bob
+Alice <-x Bob
+Alice ox-> Bob
+Alice ---> Bob
+Alice -->> Bob
+=== illegal arrow
+Alice - Bob
+=== illegal arrow dashes
+Alice -- Bob
+=== colored
+Alice -[#red]> Bob : red
+Alice -[#blue]-> Bob
+Alice -[dashed]> Bob
+Alice -[dotted,#green]> Bob
+Alice -[hidden]> Bob
+Alice -[bold]> Bob
+Alice -[#red,#blue]> Bob
+Alice <-[#0000FF]- Bob
+=== colored bad
+Alice -[plain]> Bob
+=== colored unknown
+Alice -[#nosuch]> Bob
+=== self
+Alice -> Alice : think
+Alice <- Alice
+Alice --> Alice : dotted self
+=== quoted participants
+"Long A" -> "Long B" : x
+"Long A" as A -> B as "Long B"
+A -> "Long B"
+C as "Cc" -> D
+=== multiline label
+Alice -> Bob : line1\nline2\nline3
+Alice -> Bob : <b>bold</b> and **creole**
+Alice -> Bob : tab\there
+Alice -> Bob : left\lright\r
+=== no label
+Alice -> Bob
+Alice -> Bob :
+Alice -> Bob :   
+=== stereotype message
+Alice -> Bob <<create>> : x
+Alice -> Bob <<x>>
+=== url message
+Alice -> Bob [[http://x.com]] : link
+Alice -> Bob [[http://x.com{tip}]]
+=== parallel
+Alice -> Bob : one
+& Alice -> Carol : two
+&Bob -> Carol
+=== parallel first
+& Alice -> Bob
+=== anchors
+{start} Alice -> Bob : start
+Bob -> Alice : middle
+{end} Bob -> Alice : finish
+{start} <-> {end} : some time
+{a}<->{b}
+=== part anchors
+Alice {p1} -> Bob {p2} : x
+=== multicast
+Alice -> Bob & Carol & Dave : multi
+=== inclination
+Alice ->(10) Bob : slanted
+Alice (10)<- Bob
+Alice ->(5) Bob
+=== slanted
+Alice ->(30) Bob : x
+Alice (30)-> Bob
+=== short with dots
+A.b -> C@d : x
+=== autoactivate
+autoactivate on
+Alice -> Bob : call
+Bob --> Alice : ret
+Alice ->> Bob : async
+Alice ->x Bob
+autoactivate off
+Alice -> Bob
+=== activation shortcuts
+Alice -> Bob ++ : act
+Bob -> Carol ++ #red : act2
+Carol --> Bob -- : ret
+Bob --> Alice -- : ret
+Alice -> Dave ** : create
+Alice -> Dave !! : destroy
+Alice -> Eve --++ : both
+Alice -> Eve ++-- : both2
+=== activation color
+Alice -> Bob ++ #gold
+Alice -> Bob ++ #nosuch
+=== long line
+Alice -> Bob : 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+=== variable autonumber
+autonumber
+Alice -> Bob : msg %autonumber%
+Bob -> Alice : again %autonumber%

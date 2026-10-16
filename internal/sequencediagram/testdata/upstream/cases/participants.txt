@@ -1,0 +1,150 @@
+=== kinds
+participant P
+actor A
+boundary B
+control C
+entity E
+database D
+collections Co
+queue Q
+P -> A : x
+=== kinds upper case
+PARTICIPANT P
+Actor A
+DATABASE "Long name" as DB
+P -> DB
+=== aliases
+participant "Long Name" as L
+participant S as "Short display"
+actor Bob as B2
+participant "Quoted"
+L -> S
+S -> B2
+=== stereotypes and colors
+participant Alice <<Human>> #lightblue
+actor Bob <<(C,#ADD1B2) Testable>> #red
+participant "Charlie" as C <<Other>> order 10 #FF0000
+participant D [[http://plantuml.com]]
+participant E [[http://plantuml.com{tooltip} label]] #green
+Alice -> Bob
+=== order
+participant Last order 30
+participant First order 10
+participant Middle order 20
+participant Neg order -5
+participant Default
+Last -> First
+=== order too big
+participant Last order 12345678
+=== declared again
+participant A
+participant B
+participant A
+box "Box"
+participant B
+end box
+=== create
+create participant X
+Alice -> X : new
+create actor Y
+X -> Y
+create Z
+Y -> Z
+=== create wrong target
+create X
+Alice -> Bob
+=== implicit
+Alice -> Bob : hi
+Bob -> Carol
+=== multiline participant
+participant P [
+  =Title
+  ----
+  ""text""
+]
+participant P2 <<stereo>> order 3 [[http://x.com]] #red [
+line
+]
+P -> P2
+=== multiline participant existing
+participant P
+participant P [
+  text
+]
+=== boxes
+box "Internal" #LightBlue
+participant A
+participant B
+end box
+box Other #pink
+participant C
+end box
+box
+participant D
+end box
+box "Nested"
+box "Inner" <<st>>
+participant E
+end box
+end box
+A -> E
+=== box without end
+box "B"
+participant A
+A -> A
+=== end box without box
+participant A
+end box
+=== box bad color
+box "B" #nosuchcolor
+participant A
+end box
+=== bad color participant
+participant A #nosuchcolor
+=== bad spot color
+participant A <<(C,#nosuchcolor) x>>
+=== url command
+participant A
+url of A is [[http://a.com]]
+url for B is [[http://b.com]]
+url "C" [[http://c.com]]
+A -> B
+=== hide stereotype
+participant A <<s1>>
+hide stereotype
+participant B <<s2>>
+A -> B
+=== show stereotype
+participant A <<s1>>
+hide stereotypes
+show stereotype
+A -> A
+=== hide circle
+participant A
+hide circle
+hide members
+show methods
+A -> A
+=== hide unlinked
+hide unlinked
+participant A
+participant B
+participant C
+A -> B
+=== show unlinked
+hide unlinked
+show @unlinked
+participant A
+participant B
+=== skinparam stereotype position
+skinparam stereotypePosition bottom
+participant A <<x>>
+A -> A
+=== only declarations
+participant A
+participant B
+=== no participant
+title Hello
+=== guillemets in name (escaped)
+participant «A»
+“B” -> C

@@ -1,0 +1,262 @@
+=== title
+title Simple title
+A -> B
+=== title quoted
+title "Quoted title"
+title: colon title
+A -> B
+=== title white
+title   \t
+A -> B
+=== title multiline
+title
+  <b>Line 1</b>
+  Line 2
+end title
+A -> B
+=== title multiline empty
+title
+end title
+=== caption
+caption Figure 1
+A -> B
+=== caption multiline
+caption
+ cap line
+endcaption
+A -> B
+=== legend
+legend Some legend
+A -> B
+=== legend multiline
+legend top left
+  Legend
+    indented
+end legend
+A -> B
+=== legend multiline variants
+legend right
+x
+endlegend
+legend bottom
+y
+end legend
+legend center
+z
+end legend
+A -> B
+=== legend empty
+legend
+end legend
+=== header footer
+header Page header
+footer Page footer
+A -> B
+=== header footer positions
+left header Left header
+right footer: Right footer
+center header "quoted"
+A -> B
+=== header footer multiline
+header
+  <font color=red>Warning:</font>
+  Do not use
+endheader
+left footer
+foot
+end footer
+A -> B
+=== header empty
+header
+end header
+=== mainframe
+mainframe This is a **mainframe**
+A -> B
+=== mainframe colon
+mainframe : framed
+A -> B
+=== scale
+scale 1.5
+A -> B
+=== scale fraction
+scale 2/3
+A -> B
+=== scale zero
+scale 0
+=== scale zero div
+scale 1/0
+=== scale width height
+scale 200 width
+scale 100 height
+A -> B
+=== scale both
+scale 300x200
+A -> B
+=== scale max
+scale max 400 width
+scale max 300 height
+scale max 800*600
+A -> B
+=== scale bad number
+scale 1.2.3
+=== scale dot
+scale .
+=== skinparam
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+skinparam sequence {
+  ArrowColor DeepSkyBlue
+  ActorBorderColor DeepSkyBlue
+  LifeLineBorderColor blue
+  ParticipantBackgroundColor<<Foo>> #FFFFFF
+}
+skinparam participant {
+  FontSize 17
+  FontName Courier
+}
+skinparam ParticipantPadding 20
+skinparam padding 2
+A -> B
+=== skinparam nested
+skinparam {
+  Arrow {
+    Color red
+  }
+  ' comment
+}
+A -> B
+=== skinparam locked
+skinparamlocked ArrowColor red
+A -> B
+=== skinparam stereotype
+skinparam participantBackgroundColor<<Foo>> #red
+A -> B
+=== pragma
+!pragma teoz true
+!pragma teoz false
+!pragma somethingunknown value
+!pragma svgsize 100 200
+!pragma svgsize 100
+A -> B
+=== pragma layout
+!pragma layout smetana
+A -> B
+=== pragma layout elk
+!pragma layout elk
+A -> B
+=== pragma layout null
+!pragma layout
+=== pragma graphviz_dot
+!pragma graphviz_dot jdot
+=== pragma graphviz_dot other
+!pragma graphviz_dot dot
+=== pragma svgsize null
+!pragma svgsize
+=== assume
+!assume transparent dark
+A -> B
+=== minwidth page rotate
+minwidth 100
+page 2x3
+rotate
+A -> B
+=== page zero
+page 0x1
+=== minwidth too big
+minwidth 99999999999
+=== namespace separator
+set separator ::
+A -> B
+=== namespace separator none
+set namespaceseparator none
+A -> B
+=== namespace separator single
+set separator .
+A -> B
+=== hide empty description
+hide empty description
+A -> B
+=== hide visibility
+hide private members
+show protected methods
+A -> B
+=== style
+<style>
+sequenceDiagram {
+  participant {
+    BackGroundColor red
+  }
+}
+</style>
+A -> B
+=== style single line
+<style>participant { BackGroundColor red }</style>
+A -> B
+=== style bad
+<style>
+participant {
+</style>
+A -> B
+=== style import missing
+<style file=nosuch.css>
+A -> B
+=== empty lines and comments
+' comment
+
+A -> B
+/' block
+comment '/
+B -> A
+=== sprites
+sprite $foo1 {
+  FFFFFFFFFFFFFFF
+  F0123456789ABCF
+  FFFFFFFFFFFFFFF
+}
+sprite $bar [8x4/8] {
+  0-0F0-0F
+  z_z_z_z_
+}
+sprite $baz [6x3/4] 0123456789AB
+sprite $col [2x2/color] {
+  ..,,
+  zzyy
+}
+sprite $bad [2x2/3] {
+ 00
+}
+A -> B : <$foo1>
+=== sprite gray bad level
+sprite $foo {
+  FG
+}
+=== sprite empty
+sprite $foo {
+}
+=== sprite z
+sprite $foo [16x16/16z] xxxxxxxx
+=== sprite svg
+sprite $s <svg viewBox="0 0 10 10"><rect width="10" height="10"/></svg>
+sprite $m <svg viewBox="0 0 10 10">
+<rect width="10" height="10"/>
+</svg>
+A -> B
+=== sprite base64
+sprite $img data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==
+A -> B
+=== sprite base64 not image
+sprite $img data:image/png;base64,AAAA
+A -> B
+=== sprite file missing
+sprite $f nofile.png
+=== sprite jar missing
+sprite $f jar:nofile
+=== sprite stdlib
+sprite $foo #nolib#bar
+=== sprite stdlib svg
+sprite $foo :nolib:bar
+=== sprite color bad
+sprite $col [2x2/color] {
+  !!##
+  ab
+}

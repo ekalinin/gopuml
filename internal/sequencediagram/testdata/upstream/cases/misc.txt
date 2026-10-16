@@ -1,0 +1,167 @@
+=== divider
+A -> B
+== Initialization ==
+B -> A
+==   spaced   ==
+====
+=== delays
+A -> B
+...
+B -> A
+... 5 minutes later ...
+…
+… later …
+...text with dots...
+=== spaces
+A -> B
+|||
+||45||
+||||
+B -> A
+=== references
+ref over A, B : init
+ref over A : single
+ref#red over A, B, C : colored
+ref over "Long A", B [[http://x.com]] : with url
+ref over A@b, C : split
+=== reference multiline
+ref over A, B
+  multi
+  line
+end ref
+ref #pink over A
+x
+end
+ref over A, B [[http://x.com]] #blue
+y
+endref
+=== reference bad color
+ref #nosuch over A : x
+=== newpage
+A -> B
+newpage
+B -> A
+newpage Part 3
+A -> A
+newpage : Part 4
+@newpage
+=== newpage title variants
+A -> B
+newpage    title with spaces
+A -> B
+newpage :
+=== ignore newpage
+ignore newpage
+A -> B
+newpage
+B -> A
+=== autonewpage
+autonewpage 10
+A -> B
+=== footbox
+hide footbox
+A -> B
+=== footbox show
+hide footbox
+show footbox
+A -> B
+=== footbox old
+footbox off
+A -> B
+=== footbox old on
+footbox on
+A -> B
+=== footbox bare
+footbox
+A -> B
+=== footbox skinparam
+skinparam footbox hide
+A -> B
+=== strictuml
+skinparam style strictuml
+A -> B
+=== autonumber basic
+autonumber
+A -> B
+B -> A
+=== autonumber start format
+autonumber 10 5 "<b>[000]"
+A -> B : one
+B -> A : two
+=== autonumber formats
+autonumber "<b>(<u>##</u>)"
+A -> B
+autonumber 1 "<font color=red><b>Message 0  "
+A -> B
+autonumber 15 "#,##0"
+A -> B
+autonumber 1234 "0,00"
+A -> B
+autonumber 3 "0.00"
+A -> B
+autonumber 7 "0%"
+A -> B
+autonumber 7 "'#'0"
+A -> B
+autonumber 12 "0E0"
+A -> B
+autonumber 1234 "##0.##E0"
+A -> B
+autonumber 5 "<font color=#FF0000>0"
+A -> B
+=== autonumber negative subpattern error
+autonumber 5 "x;y"
+=== autonumber bad pattern
+autonumber "Msg 0 (#)"
+=== autonumber bad pattern 2
+autonumber "0.0.0"
+=== autonumber dotted
+autonumber 1.1.1
+A -> B
+A -> B
+autonumber inc A
+A -> B
+autonumber inc B
+A -> B
+autonumber inc
+A -> B
+autonumber 2.1
+A -> B
+autonumber inc
+A -> B
+=== autonumber stop resume
+autonumber 10 10 "<b>[000]"
+A -> B
+autonumber stop
+A -> B
+autonumber resume "<font color=red><b>Message 0  "
+A -> B
+autonumber stop
+A -> B
+autonumber resume 1
+A -> B
+autonumber resume 5 "00"
+A -> B
+=== autonumber resume bad pattern
+autonumber
+autonumber resume "0#"
+=== autonumber inc before start
+autonumber inc
+=== autonumber inc out of range
+autonumber 1.2
+autonumber inc C
+=== autonumber too big
+autonumber 99999999999
+=== autonumber separators
+autonumber 1-2_3
+A -> B
+A -> B
+=== autonumber step too big
+autonumber 1 99999999999
+=== skin rose
+skin rose
+A -> B
+=== skin unknown
+skin foo
+=== skin strictuml
+skin strictuml

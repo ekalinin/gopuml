@@ -1,0 +1,43 @@
+=== syntax error
+A -> B
+this is not valid
+=== syntax error first line
+???
+=== empty
+=== only comments
+' only a comment
+=== error after newpage
+A -> B
+newpage
+garbage here
+=== unterminated note
+note left of A
+text
+=== unterminated legend
+legend
+text
+=== unterminated skinparam
+skinparam {
+ ArrowColor red
+=== skinparam bad block
+skinparam {
+ bad line {{
+}
+=== activate unknown
+activate
+=== create keyword alone
+create
+=== dot diagram misuse
+digraph G {
+}
+=== lonely bracket
+A -> B
+{
+=== class syntax
+class Foo
+=== activity syntax
+start
+:action;
+stop
+=== usecase syntax
+(Use case) --> (Other)

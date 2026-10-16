@@ -1,0 +1,26 @@
+=== vertical tab participant (escaped)
+participant\u000BA
+A -> B
+=== vertical tab arrow (escaped)
+A\u000B->\u000BB
+=== nbsp participant (escaped)
+participant A
+A -> B
+=== nbsp arrow (escaped)
+A -> B : x
+=== line separator in label (escaped)
+A -> B : one two
+=== next line in label (escaped)
+A -> B : one\u0085two
+=== form feed (escaped)
+participant\u000CA
+A -> B
+=== tab separated
+participant	A
+A	->	B	:	tab
+=== kelvin (escaped)
+participant K
+K -> B
+=== long s keyword (escaped)
+participant A
+ſkinparam ArrowColor red

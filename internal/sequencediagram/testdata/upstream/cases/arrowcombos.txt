@@ -1,0 +1,1944 @@
+=== a001 -
+Alice - Bob : m
+=== a002 ->
+Alice -> Bob : m
+=== a003 ->>
+Alice ->> Bob : m
+=== a004 -\
+Alice -\ Bob : m
+=== a005 -\\
+Alice -\\ Bob : m
+=== a006 -/
+Alice -/ Bob : m
+=== a007 -//
+Alice -// Bob : m
+=== a008 -x
+Alice -x Bob : m
+=== a009 -o
+Alice -o Bob : m
+=== a010 ->o
+Alice ->o Bob : m
+=== a011 ->x
+Alice ->x Bob : m
+=== a012 ->>o
+Alice ->>o Bob : m
+=== a013 -\\x
+Alice -\\x Bob : m
+=== a014 ->(5)
+Alice ->(5) Bob : m
+=== a015 -_>
+Alice -_> Bob : m
+=== a016 -_>>
+Alice -_>> Bob : m
+=== a017 -o 
+Alice -o  Bob : m
+=== a018 -x 
+Alice -x  Bob : m
+=== a019 --
+Alice -- Bob : m
+=== a020 -->
+Alice --> Bob : m
+=== a021 -->>
+Alice -->> Bob : m
+=== a022 --\
+Alice --\ Bob : m
+=== a023 --\\
+Alice --\\ Bob : m
+=== a024 --/
+Alice --/ Bob : m
+=== a025 --//
+Alice --// Bob : m
+=== a026 --x
+Alice --x Bob : m
+=== a027 --o
+Alice --o Bob : m
+=== a028 -->o
+Alice -->o Bob : m
+=== a029 -->x
+Alice -->x Bob : m
+=== a030 -->>o
+Alice -->>o Bob : m
+=== a031 --\\x
+Alice --\\x Bob : m
+=== a032 -->(5)
+Alice -->(5) Bob : m
+=== a033 --_>
+Alice --_> Bob : m
+=== a034 --_>>
+Alice --_>> Bob : m
+=== a035 --o 
+Alice --o  Bob : m
+=== a036 --x 
+Alice --x  Bob : m
+=== a037 -[#red]-
+Alice -[#red]- Bob : m
+=== a038 -[#red]->
+Alice -[#red]-> Bob : m
+=== a039 -[#red]->>
+Alice -[#red]->> Bob : m
+=== a040 -[#red]-\
+Alice -[#red]-\ Bob : m
+=== a041 -[#red]-\\
+Alice -[#red]-\\ Bob : m
+=== a042 -[#red]-/
+Alice -[#red]-/ Bob : m
+=== a043 -[#red]-//
+Alice -[#red]-// Bob : m
+=== a044 -[#red]-x
+Alice -[#red]-x Bob : m
+=== a045 -[#red]-o
+Alice -[#red]-o Bob : m
+=== a046 -[#red]->o
+Alice -[#red]->o Bob : m
+=== a047 -[#red]->x
+Alice -[#red]->x Bob : m
+=== a048 -[#red]->>o
+Alice -[#red]->>o Bob : m
+=== a049 -[#red]-\\x
+Alice -[#red]-\\x Bob : m
+=== a050 -[#red]->(5)
+Alice -[#red]->(5) Bob : m
+=== a051 -[#red]-_>
+Alice -[#red]-_> Bob : m
+=== a052 -[#red]-_>>
+Alice -[#red]-_>> Bob : m
+=== a053 -[#red]-o 
+Alice -[#red]-o  Bob : m
+=== a054 -[#red]-x 
+Alice -[#red]-x  Bob : m
+=== a055 <-
+Alice <- Bob : m
+=== a056 <->
+Alice <-> Bob : m
+=== a057 <->>
+Alice <->> Bob : m
+=== a058 <-\
+Alice <-\ Bob : m
+=== a059 <-\\
+Alice <-\\ Bob : m
+=== a060 <-/
+Alice <-/ Bob : m
+=== a061 <-//
+Alice <-// Bob : m
+=== a062 <-x
+Alice <-x Bob : m
+=== a063 <-o
+Alice <-o Bob : m
+=== a064 <->o
+Alice <->o Bob : m
+=== a065 <->x
+Alice <->x Bob : m
+=== a066 <->>o
+Alice <->>o Bob : m
+=== a067 <-\\x
+Alice <-\\x Bob : m
+=== a068 <->(5)
+Alice <->(5) Bob : m
+=== a069 <-_>
+Alice <-_> Bob : m
+=== a070 <-_>>
+Alice <-_>> Bob : m
+=== a071 <-o 
+Alice <-o  Bob : m
+=== a072 <-x 
+Alice <-x  Bob : m
+=== a073 <--
+Alice <-- Bob : m
+=== a074 <-->
+Alice <--> Bob : m
+=== a075 <-->>
+Alice <-->> Bob : m
+=== a076 <--\
+Alice <--\ Bob : m
+=== a077 <--\\
+Alice <--\\ Bob : m
+=== a078 <--/
+Alice <--/ Bob : m
+=== a079 <--//
+Alice <--// Bob : m
+=== a080 <--x
+Alice <--x Bob : m
+=== a081 <--o
+Alice <--o Bob : m
+=== a082 <-->o
+Alice <-->o Bob : m
+=== a083 <-->x
+Alice <-->x Bob : m
+=== a084 <-->>o
+Alice <-->>o Bob : m
+=== a085 <--\\x
+Alice <--\\x Bob : m
+=== a086 <-->(5)
+Alice <-->(5) Bob : m
+=== a087 <--_>
+Alice <--_> Bob : m
+=== a088 <--_>>
+Alice <--_>> Bob : m
+=== a089 <--o 
+Alice <--o  Bob : m
+=== a090 <--x 
+Alice <--x  Bob : m
+=== a091 <-[#red]-
+Alice <-[#red]- Bob : m
+=== a092 <-[#red]->
+Alice <-[#red]-> Bob : m
+=== a093 <-[#red]->>
+Alice <-[#red]->> Bob : m
+=== a094 <-[#red]-\
+Alice <-[#red]-\ Bob : m
+=== a095 <-[#red]-\\
+Alice <-[#red]-\\ Bob : m
+=== a096 <-[#red]-/
+Alice <-[#red]-/ Bob : m
+=== a097 <-[#red]-//
+Alice <-[#red]-// Bob : m
+=== a098 <-[#red]-x
+Alice <-[#red]-x Bob : m
+=== a099 <-[#red]-o
+Alice <-[#red]-o Bob : m
+=== a100 <-[#red]->o
+Alice <-[#red]->o Bob : m
+=== a101 <-[#red]->x
+Alice <-[#red]->x Bob : m
+=== a102 <-[#red]->>o
+Alice <-[#red]->>o Bob : m
+=== a103 <-[#red]-\\x
+Alice <-[#red]-\\x Bob : m
+=== a104 <-[#red]->(5)
+Alice <-[#red]->(5) Bob : m
+=== a105 <-[#red]-_>
+Alice <-[#red]-_> Bob : m
+=== a106 <-[#red]-_>>
+Alice <-[#red]-_>> Bob : m
+=== a107 <-[#red]-o 
+Alice <-[#red]-o  Bob : m
+=== a108 <-[#red]-x 
+Alice <-[#red]-x  Bob : m
+=== a109 <<-
+Alice <<- Bob : m
+=== a110 <<->
+Alice <<-> Bob : m
+=== a111 <<->>
+Alice <<->> Bob : m
+=== a112 <<-\
+Alice <<-\ Bob : m
+=== a113 <<-\\
+Alice <<-\\ Bob : m
+=== a114 <<-/
+Alice <<-/ Bob : m
+=== a115 <<-//
+Alice <<-// Bob : m
+=== a116 <<-x
+Alice <<-x Bob : m
+=== a117 <<-o
+Alice <<-o Bob : m
+=== a118 <<->o
+Alice <<->o Bob : m
+=== a119 <<->x
+Alice <<->x Bob : m
+=== a120 <<->>o
+Alice <<->>o Bob : m
+=== a121 <<-\\x
+Alice <<-\\x Bob : m
+=== a122 <<->(5)
+Alice <<->(5) Bob : m
+=== a123 <<-_>
+Alice <<-_> Bob : m
+=== a124 <<-_>>
+Alice <<-_>> Bob : m
+=== a125 <<-o 
+Alice <<-o  Bob : m
+=== a126 <<-x 
+Alice <<-x  Bob : m
+=== a127 <<--
+Alice <<-- Bob : m
+=== a128 <<-->
+Alice <<--> Bob : m
+=== a129 <<-->>
+Alice <<-->> Bob : m
+=== a130 <<--\
+Alice <<--\ Bob : m
+=== a131 <<--\\
+Alice <<--\\ Bob : m
+=== a132 <<--/
+Alice <<--/ Bob : m
+=== a133 <<--//
+Alice <<--// Bob : m
+=== a134 <<--x
+Alice <<--x Bob : m
+=== a135 <<--o
+Alice <<--o Bob : m
+=== a136 <<-->o
+Alice <<-->o Bob : m
+=== a137 <<-->x
+Alice <<-->x Bob : m
+=== a138 <<-->>o
+Alice <<-->>o Bob : m
+=== a139 <<--\\x
+Alice <<--\\x Bob : m
+=== a140 <<-->(5)
+Alice <<-->(5) Bob : m
+=== a141 <<--_>
+Alice <<--_> Bob : m
+=== a142 <<--_>>
+Alice <<--_>> Bob : m
+=== a143 <<--o 
+Alice <<--o  Bob : m
+=== a144 <<--x 
+Alice <<--x  Bob : m
+=== a145 <<-[#red]-
+Alice <<-[#red]- Bob : m
+=== a146 <<-[#red]->
+Alice <<-[#red]-> Bob : m
+=== a147 <<-[#red]->>
+Alice <<-[#red]->> Bob : m
+=== a148 <<-[#red]-\
+Alice <<-[#red]-\ Bob : m
+=== a149 <<-[#red]-\\
+Alice <<-[#red]-\\ Bob : m
+=== a150 <<-[#red]-/
+Alice <<-[#red]-/ Bob : m
+=== a151 <<-[#red]-//
+Alice <<-[#red]-// Bob : m
+=== a152 <<-[#red]-x
+Alice <<-[#red]-x Bob : m
+=== a153 <<-[#red]-o
+Alice <<-[#red]-o Bob : m
+=== a154 <<-[#red]->o
+Alice <<-[#red]->o Bob : m
+=== a155 <<-[#red]->x
+Alice <<-[#red]->x Bob : m
+=== a156 <<-[#red]->>o
+Alice <<-[#red]->>o Bob : m
+=== a157 <<-[#red]-\\x
+Alice <<-[#red]-\\x Bob : m
+=== a158 <<-[#red]->(5)
+Alice <<-[#red]->(5) Bob : m
+=== a159 <<-[#red]-_>
+Alice <<-[#red]-_> Bob : m
+=== a160 <<-[#red]-_>>
+Alice <<-[#red]-_>> Bob : m
+=== a161 <<-[#red]-o 
+Alice <<-[#red]-o  Bob : m
+=== a162 <<-[#red]-x 
+Alice <<-[#red]-x  Bob : m
+=== a163 \-
+Alice \- Bob : m
+=== a164 \->
+Alice \-> Bob : m
+=== a165 \->>
+Alice \->> Bob : m
+=== a166 \-\
+Alice \-\ Bob : m
+=== a167 \-\\
+Alice \-\\ Bob : m
+=== a168 \-/
+Alice \-/ Bob : m
+=== a169 \-//
+Alice \-// Bob : m
+=== a170 \-x
+Alice \-x Bob : m
+=== a171 \-o
+Alice \-o Bob : m
+=== a172 \->o
+Alice \->o Bob : m
+=== a173 \->x
+Alice \->x Bob : m
+=== a174 \->>o
+Alice \->>o Bob : m
+=== a175 \-\\x
+Alice \-\\x Bob : m
+=== a176 \->(5)
+Alice \->(5) Bob : m
+=== a177 \-_>
+Alice \-_> Bob : m
+=== a178 \-_>>
+Alice \-_>> Bob : m
+=== a179 \-o 
+Alice \-o  Bob : m
+=== a180 \-x 
+Alice \-x  Bob : m
+=== a181 \--
+Alice \-- Bob : m
+=== a182 \-->
+Alice \--> Bob : m
+=== a183 \-->>
+Alice \-->> Bob : m
+=== a184 \--\
+Alice \--\ Bob : m
+=== a185 \--\\
+Alice \--\\ Bob : m
+=== a186 \--/
+Alice \--/ Bob : m
+=== a187 \--//
+Alice \--// Bob : m
+=== a188 \--x
+Alice \--x Bob : m
+=== a189 \--o
+Alice \--o Bob : m
+=== a190 \-->o
+Alice \-->o Bob : m
+=== a191 \-->x
+Alice \-->x Bob : m
+=== a192 \-->>o
+Alice \-->>o Bob : m
+=== a193 \--\\x
+Alice \--\\x Bob : m
+=== a194 \-->(5)
+Alice \-->(5) Bob : m
+=== a195 \--_>
+Alice \--_> Bob : m
+=== a196 \--_>>
+Alice \--_>> Bob : m
+=== a197 \--o 
+Alice \--o  Bob : m
+=== a198 \--x 
+Alice \--x  Bob : m
+=== a199 \-[#red]-
+Alice \-[#red]- Bob : m
+=== a200 \-[#red]->
+Alice \-[#red]-> Bob : m
+=== a201 \-[#red]->>
+Alice \-[#red]->> Bob : m
+=== a202 \-[#red]-\
+Alice \-[#red]-\ Bob : m
+=== a203 \-[#red]-\\
+Alice \-[#red]-\\ Bob : m
+=== a204 \-[#red]-/
+Alice \-[#red]-/ Bob : m
+=== a205 \-[#red]-//
+Alice \-[#red]-// Bob : m
+=== a206 \-[#red]-x
+Alice \-[#red]-x Bob : m
+=== a207 \-[#red]-o
+Alice \-[#red]-o Bob : m
+=== a208 \-[#red]->o
+Alice \-[#red]->o Bob : m
+=== a209 \-[#red]->x
+Alice \-[#red]->x Bob : m
+=== a210 \-[#red]->>o
+Alice \-[#red]->>o Bob : m
+=== a211 \-[#red]-\\x
+Alice \-[#red]-\\x Bob : m
+=== a212 \-[#red]->(5)
+Alice \-[#red]->(5) Bob : m
+=== a213 \-[#red]-_>
+Alice \-[#red]-_> Bob : m
+=== a214 \-[#red]-_>>
+Alice \-[#red]-_>> Bob : m
+=== a215 \-[#red]-o 
+Alice \-[#red]-o  Bob : m
+=== a216 \-[#red]-x 
+Alice \-[#red]-x  Bob : m
+=== a217 \\-
+Alice \\- Bob : m
+=== a218 \\->
+Alice \\-> Bob : m
+=== a219 \\->>
+Alice \\->> Bob : m
+=== a220 \\-\
+Alice \\-\ Bob : m
+=== a221 \\-\\
+Alice \\-\\ Bob : m
+=== a222 \\-/
+Alice \\-/ Bob : m
+=== a223 \\-//
+Alice \\-// Bob : m
+=== a224 \\-x
+Alice \\-x Bob : m
+=== a225 \\-o
+Alice \\-o Bob : m
+=== a226 \\->o
+Alice \\->o Bob : m
+=== a227 \\->x
+Alice \\->x Bob : m
+=== a228 \\->>o
+Alice \\->>o Bob : m
+=== a229 \\-\\x
+Alice \\-\\x Bob : m
+=== a230 \\->(5)
+Alice \\->(5) Bob : m
+=== a231 \\-_>
+Alice \\-_> Bob : m
+=== a232 \\-_>>
+Alice \\-_>> Bob : m
+=== a233 \\-o 
+Alice \\-o  Bob : m
+=== a234 \\-x 
+Alice \\-x  Bob : m
+=== a235 \\--
+Alice \\-- Bob : m
+=== a236 \\-->
+Alice \\--> Bob : m
+=== a237 \\-->>
+Alice \\-->> Bob : m
+=== a238 \\--\
+Alice \\--\ Bob : m
+=== a239 \\--\\
+Alice \\--\\ Bob : m
+=== a240 \\--/
+Alice \\--/ Bob : m
+=== a241 \\--//
+Alice \\--// Bob : m
+=== a242 \\--x
+Alice \\--x Bob : m
+=== a243 \\--o
+Alice \\--o Bob : m
+=== a244 \\-->o
+Alice \\-->o Bob : m
+=== a245 \\-->x
+Alice \\-->x Bob : m
+=== a246 \\-->>o
+Alice \\-->>o Bob : m
+=== a247 \\--\\x
+Alice \\--\\x Bob : m
+=== a248 \\-->(5)
+Alice \\-->(5) Bob : m
+=== a249 \\--_>
+Alice \\--_> Bob : m
+=== a250 \\--_>>
+Alice \\--_>> Bob : m
+=== a251 \\--o 
+Alice \\--o  Bob : m
+=== a252 \\--x 
+Alice \\--x  Bob : m
+=== a253 \\-[#red]-
+Alice \\-[#red]- Bob : m
+=== a254 \\-[#red]->
+Alice \\-[#red]-> Bob : m
+=== a255 \\-[#red]->>
+Alice \\-[#red]->> Bob : m
+=== a256 \\-[#red]-\
+Alice \\-[#red]-\ Bob : m
+=== a257 \\-[#red]-\\
+Alice \\-[#red]-\\ Bob : m
+=== a258 \\-[#red]-/
+Alice \\-[#red]-/ Bob : m
+=== a259 \\-[#red]-//
+Alice \\-[#red]-// Bob : m
+=== a260 \\-[#red]-x
+Alice \\-[#red]-x Bob : m
+=== a261 \\-[#red]-o
+Alice \\-[#red]-o Bob : m
+=== a262 \\-[#red]->o
+Alice \\-[#red]->o Bob : m
+=== a263 \\-[#red]->x
+Alice \\-[#red]->x Bob : m
+=== a264 \\-[#red]->>o
+Alice \\-[#red]->>o Bob : m
+=== a265 \\-[#red]-\\x
+Alice \\-[#red]-\\x Bob : m
+=== a266 \\-[#red]->(5)
+Alice \\-[#red]->(5) Bob : m
+=== a267 \\-[#red]-_>
+Alice \\-[#red]-_> Bob : m
+=== a268 \\-[#red]-_>>
+Alice \\-[#red]-_>> Bob : m
+=== a269 \\-[#red]-o 
+Alice \\-[#red]-o  Bob : m
+=== a270 \\-[#red]-x 
+Alice \\-[#red]-x  Bob : m
+=== a271 /-
+Alice /- Bob : m
+=== a272 /->
+Alice /-> Bob : m
+=== a273 /->>
+Alice /->> Bob : m
+=== a274 /-\
+Alice /-\ Bob : m
+=== a275 /-\\
+Alice /-\\ Bob : m
+=== a276 /-/
+Alice /-/ Bob : m
+=== a277 /-//
+Alice /-// Bob : m
+=== a278 /-x
+Alice /-x Bob : m
+=== a279 /-o
+Alice /-o Bob : m
+=== a280 /->o
+Alice /->o Bob : m
+=== a281 /->x
+Alice /->x Bob : m
+=== a282 /->>o
+Alice /->>o Bob : m
+=== a283 /-\\x
+Alice /-\\x Bob : m
+=== a284 /->(5)
+Alice /->(5) Bob : m
+=== a285 /-_>
+Alice /-_> Bob : m
+=== a286 /-_>>
+Alice /-_>> Bob : m
+=== a287 /-o 
+Alice /-o  Bob : m
+=== a288 /-x 
+Alice /-x  Bob : m
+=== a289 /--
+Alice /-- Bob : m
+=== a290 /-->
+Alice /--> Bob : m
+=== a291 /-->>
+Alice /-->> Bob : m
+=== a292 /--\
+Alice /--\ Bob : m
+=== a293 /--\\
+Alice /--\\ Bob : m
+=== a294 /--/
+Alice /--/ Bob : m
+=== a295 /--//
+Alice /--// Bob : m
+=== a296 /--x
+Alice /--x Bob : m
+=== a297 /--o
+Alice /--o Bob : m
+=== a298 /-->o
+Alice /-->o Bob : m
+=== a299 /-->x
+Alice /-->x Bob : m
+=== a300 /-->>o
+Alice /-->>o Bob : m
+=== a301 /--\\x
+Alice /--\\x Bob : m
+=== a302 /-->(5)
+Alice /-->(5) Bob : m
+=== a303 /--_>
+Alice /--_> Bob : m
+=== a304 /--_>>
+Alice /--_>> Bob : m
+=== a305 /--o 
+Alice /--o  Bob : m
+=== a306 /--x 
+Alice /--x  Bob : m
+=== a307 /-[#red]-
+Alice /-[#red]- Bob : m
+=== a308 /-[#red]->
+Alice /-[#red]-> Bob : m
+=== a309 /-[#red]->>
+Alice /-[#red]->> Bob : m
+=== a310 /-[#red]-\
+Alice /-[#red]-\ Bob : m
+=== a311 /-[#red]-\\
+Alice /-[#red]-\\ Bob : m
+=== a312 /-[#red]-/
+Alice /-[#red]-/ Bob : m
+=== a313 /-[#red]-//
+Alice /-[#red]-// Bob : m
+=== a314 /-[#red]-x
+Alice /-[#red]-x Bob : m
+=== a315 /-[#red]-o
+Alice /-[#red]-o Bob : m
+=== a316 /-[#red]->o
+Alice /-[#red]->o Bob : m
+=== a317 /-[#red]->x
+Alice /-[#red]->x Bob : m
+=== a318 /-[#red]->>o
+Alice /-[#red]->>o Bob : m
+=== a319 /-[#red]-\\x
+Alice /-[#red]-\\x Bob : m
+=== a320 /-[#red]->(5)
+Alice /-[#red]->(5) Bob : m
+=== a321 /-[#red]-_>
+Alice /-[#red]-_> Bob : m
+=== a322 /-[#red]-_>>
+Alice /-[#red]-_>> Bob : m
+=== a323 /-[#red]-o 
+Alice /-[#red]-o  Bob : m
+=== a324 /-[#red]-x 
+Alice /-[#red]-x  Bob : m
+=== a325 //-
+Alice //- Bob : m
+=== a326 //->
+Alice //-> Bob : m
+=== a327 //->>
+Alice //->> Bob : m
+=== a328 //-\
+Alice //-\ Bob : m
+=== a329 //-\\
+Alice //-\\ Bob : m
+=== a330 //-/
+Alice //-/ Bob : m
+=== a331 //-//
+Alice //-// Bob : m
+=== a332 //-x
+Alice //-x Bob : m
+=== a333 //-o
+Alice //-o Bob : m
+=== a334 //->o
+Alice //->o Bob : m
+=== a335 //->x
+Alice //->x Bob : m
+=== a336 //->>o
+Alice //->>o Bob : m
+=== a337 //-\\x
+Alice //-\\x Bob : m
+=== a338 //->(5)
+Alice //->(5) Bob : m
+=== a339 //-_>
+Alice //-_> Bob : m
+=== a340 //-_>>
+Alice //-_>> Bob : m
+=== a341 //-o 
+Alice //-o  Bob : m
+=== a342 //-x 
+Alice //-x  Bob : m
+=== a343 //--
+Alice //-- Bob : m
+=== a344 //-->
+Alice //--> Bob : m
+=== a345 //-->>
+Alice //-->> Bob : m
+=== a346 //--\
+Alice //--\ Bob : m
+=== a347 //--\\
+Alice //--\\ Bob : m
+=== a348 //--/
+Alice //--/ Bob : m
+=== a349 //--//
+Alice //--// Bob : m
+=== a350 //--x
+Alice //--x Bob : m
+=== a351 //--o
+Alice //--o Bob : m
+=== a352 //-->o
+Alice //-->o Bob : m
+=== a353 //-->x
+Alice //-->x Bob : m
+=== a354 //-->>o
+Alice //-->>o Bob : m
+=== a355 //--\\x
+Alice //--\\x Bob : m
+=== a356 //-->(5)
+Alice //-->(5) Bob : m
+=== a357 //--_>
+Alice //--_> Bob : m
+=== a358 //--_>>
+Alice //--_>> Bob : m
+=== a359 //--o 
+Alice //--o  Bob : m
+=== a360 //--x 
+Alice //--x  Bob : m
+=== a361 //-[#red]-
+Alice //-[#red]- Bob : m
+=== a362 //-[#red]->
+Alice //-[#red]-> Bob : m
+=== a363 //-[#red]->>
+Alice //-[#red]->> Bob : m
+=== a364 //-[#red]-\
+Alice //-[#red]-\ Bob : m
+=== a365 //-[#red]-\\
+Alice //-[#red]-\\ Bob : m
+=== a366 //-[#red]-/
+Alice //-[#red]-/ Bob : m
+=== a367 //-[#red]-//
+Alice //-[#red]-// Bob : m
+=== a368 //-[#red]-x
+Alice //-[#red]-x Bob : m
+=== a369 //-[#red]-o
+Alice //-[#red]-o Bob : m
+=== a370 //-[#red]->o
+Alice //-[#red]->o Bob : m
+=== a371 //-[#red]->x
+Alice //-[#red]->x Bob : m
+=== a372 //-[#red]->>o
+Alice //-[#red]->>o Bob : m
+=== a373 //-[#red]-\\x
+Alice //-[#red]-\\x Bob : m
+=== a374 //-[#red]->(5)
+Alice //-[#red]->(5) Bob : m
+=== a375 //-[#red]-_>
+Alice //-[#red]-_> Bob : m
+=== a376 //-[#red]-_>>
+Alice //-[#red]-_>> Bob : m
+=== a377 //-[#red]-o 
+Alice //-[#red]-o  Bob : m
+=== a378 //-[#red]-x 
+Alice //-[#red]-x  Bob : m
+=== a379 x-
+Alice x- Bob : m
+=== a380 x->
+Alice x-> Bob : m
+=== a381 x->>
+Alice x->> Bob : m
+=== a382 x-\
+Alice x-\ Bob : m
+=== a383 x-\\
+Alice x-\\ Bob : m
+=== a384 x-/
+Alice x-/ Bob : m
+=== a385 x-//
+Alice x-// Bob : m
+=== a386 x-x
+Alice x-x Bob : m
+=== a387 x-o
+Alice x-o Bob : m
+=== a388 x->o
+Alice x->o Bob : m
+=== a389 x->x
+Alice x->x Bob : m
+=== a390 x->>o
+Alice x->>o Bob : m
+=== a391 x-\\x
+Alice x-\\x Bob : m
+=== a392 x->(5)
+Alice x->(5) Bob : m
+=== a393 x-_>
+Alice x-_> Bob : m
+=== a394 x-_>>
+Alice x-_>> Bob : m
+=== a395 x-o 
+Alice x-o  Bob : m
+=== a396 x-x 
+Alice x-x  Bob : m
+=== a397 x--
+Alice x-- Bob : m
+=== a398 x-->
+Alice x--> Bob : m
+=== a399 x-->>
+Alice x-->> Bob : m
+=== a400 x--\
+Alice x--\ Bob : m
+=== a401 x--\\
+Alice x--\\ Bob : m
+=== a402 x--/
+Alice x--/ Bob : m
+=== a403 x--//
+Alice x--// Bob : m
+=== a404 x--x
+Alice x--x Bob : m
+=== a405 x--o
+Alice x--o Bob : m
+=== a406 x-->o
+Alice x-->o Bob : m
+=== a407 x-->x
+Alice x-->x Bob : m
+=== a408 x-->>o
+Alice x-->>o Bob : m
+=== a409 x--\\x
+Alice x--\\x Bob : m
+=== a410 x-->(5)
+Alice x-->(5) Bob : m
+=== a411 x--_>
+Alice x--_> Bob : m
+=== a412 x--_>>
+Alice x--_>> Bob : m
+=== a413 x--o 
+Alice x--o  Bob : m
+=== a414 x--x 
+Alice x--x  Bob : m
+=== a415 x-[#red]-
+Alice x-[#red]- Bob : m
+=== a416 x-[#red]->
+Alice x-[#red]-> Bob : m
+=== a417 x-[#red]->>
+Alice x-[#red]->> Bob : m
+=== a418 x-[#red]-\
+Alice x-[#red]-\ Bob : m
+=== a419 x-[#red]-\\
+Alice x-[#red]-\\ Bob : m
+=== a420 x-[#red]-/
+Alice x-[#red]-/ Bob : m
+=== a421 x-[#red]-//
+Alice x-[#red]-// Bob : m
+=== a422 x-[#red]-x
+Alice x-[#red]-x Bob : m
+=== a423 x-[#red]-o
+Alice x-[#red]-o Bob : m
+=== a424 x-[#red]->o
+Alice x-[#red]->o Bob : m
+=== a425 x-[#red]->x
+Alice x-[#red]->x Bob : m
+=== a426 x-[#red]->>o
+Alice x-[#red]->>o Bob : m
+=== a427 x-[#red]-\\x
+Alice x-[#red]-\\x Bob : m
+=== a428 x-[#red]->(5)
+Alice x-[#red]->(5) Bob : m
+=== a429 x-[#red]-_>
+Alice x-[#red]-_> Bob : m
+=== a430 x-[#red]-_>>
+Alice x-[#red]-_>> Bob : m
+=== a431 x-[#red]-o 
+Alice x-[#red]-o  Bob : m
+=== a432 x-[#red]-x 
+Alice x-[#red]-x  Bob : m
+=== a433 o-
+Alice o- Bob : m
+=== a434 o->
+Alice o-> Bob : m
+=== a435 o->>
+Alice o->> Bob : m
+=== a436 o-\
+Alice o-\ Bob : m
+=== a437 o-\\
+Alice o-\\ Bob : m
+=== a438 o-/
+Alice o-/ Bob : m
+=== a439 o-//
+Alice o-// Bob : m
+=== a440 o-x
+Alice o-x Bob : m
+=== a441 o-o
+Alice o-o Bob : m
+=== a442 o->o
+Alice o->o Bob : m
+=== a443 o->x
+Alice o->x Bob : m
+=== a444 o->>o
+Alice o->>o Bob : m
+=== a445 o-\\x
+Alice o-\\x Bob : m
+=== a446 o->(5)
+Alice o->(5) Bob : m
+=== a447 o-_>
+Alice o-_> Bob : m
+=== a448 o-_>>
+Alice o-_>> Bob : m
+=== a449 o-o 
+Alice o-o  Bob : m
+=== a450 o-x 
+Alice o-x  Bob : m
+=== a451 o--
+Alice o-- Bob : m
+=== a452 o-->
+Alice o--> Bob : m
+=== a453 o-->>
+Alice o-->> Bob : m
+=== a454 o--\
+Alice o--\ Bob : m
+=== a455 o--\\
+Alice o--\\ Bob : m
+=== a456 o--/
+Alice o--/ Bob : m
+=== a457 o--//
+Alice o--// Bob : m
+=== a458 o--x
+Alice o--x Bob : m
+=== a459 o--o
+Alice o--o Bob : m
+=== a460 o-->o
+Alice o-->o Bob : m
+=== a461 o-->x
+Alice o-->x Bob : m
+=== a462 o-->>o
+Alice o-->>o Bob : m
+=== a463 o--\\x
+Alice o--\\x Bob : m
+=== a464 o-->(5)
+Alice o-->(5) Bob : m
+=== a465 o--_>
+Alice o--_> Bob : m
+=== a466 o--_>>
+Alice o--_>> Bob : m
+=== a467 o--o 
+Alice o--o  Bob : m
+=== a468 o--x 
+Alice o--x  Bob : m
+=== a469 o-[#red]-
+Alice o-[#red]- Bob : m
+=== a470 o-[#red]->
+Alice o-[#red]-> Bob : m
+=== a471 o-[#red]->>
+Alice o-[#red]->> Bob : m
+=== a472 o-[#red]-\
+Alice o-[#red]-\ Bob : m
+=== a473 o-[#red]-\\
+Alice o-[#red]-\\ Bob : m
+=== a474 o-[#red]-/
+Alice o-[#red]-/ Bob : m
+=== a475 o-[#red]-//
+Alice o-[#red]-// Bob : m
+=== a476 o-[#red]-x
+Alice o-[#red]-x Bob : m
+=== a477 o-[#red]-o
+Alice o-[#red]-o Bob : m
+=== a478 o-[#red]->o
+Alice o-[#red]->o Bob : m
+=== a479 o-[#red]->x
+Alice o-[#red]->x Bob : m
+=== a480 o-[#red]->>o
+Alice o-[#red]->>o Bob : m
+=== a481 o-[#red]-\\x
+Alice o-[#red]-\\x Bob : m
+=== a482 o-[#red]->(5)
+Alice o-[#red]->(5) Bob : m
+=== a483 o-[#red]-_>
+Alice o-[#red]-_> Bob : m
+=== a484 o-[#red]-_>>
+Alice o-[#red]-_>> Bob : m
+=== a485 o-[#red]-o 
+Alice o-[#red]-o  Bob : m
+=== a486 o-[#red]-x 
+Alice o-[#red]-x  Bob : m
+=== a487 o<-
+Alice o<- Bob : m
+=== a488 o<->
+Alice o<-> Bob : m
+=== a489 o<->>
+Alice o<->> Bob : m
+=== a490 o<-\
+Alice o<-\ Bob : m
+=== a491 o<-\\
+Alice o<-\\ Bob : m
+=== a492 o<-/
+Alice o<-/ Bob : m
+=== a493 o<-//
+Alice o<-// Bob : m
+=== a494 o<-x
+Alice o<-x Bob : m
+=== a495 o<-o
+Alice o<-o Bob : m
+=== a496 o<->o
+Alice o<->o Bob : m
+=== a497 o<->x
+Alice o<->x Bob : m
+=== a498 o<->>o
+Alice o<->>o Bob : m
+=== a499 o<-\\x
+Alice o<-\\x Bob : m
+=== a500 o<->(5)
+Alice o<->(5) Bob : m
+=== a501 o<-_>
+Alice o<-_> Bob : m
+=== a502 o<-_>>
+Alice o<-_>> Bob : m
+=== a503 o<-o 
+Alice o<-o  Bob : m
+=== a504 o<-x 
+Alice o<-x  Bob : m
+=== a505 o<--
+Alice o<-- Bob : m
+=== a506 o<-->
+Alice o<--> Bob : m
+=== a507 o<-->>
+Alice o<-->> Bob : m
+=== a508 o<--\
+Alice o<--\ Bob : m
+=== a509 o<--\\
+Alice o<--\\ Bob : m
+=== a510 o<--/
+Alice o<--/ Bob : m
+=== a511 o<--//
+Alice o<--// Bob : m
+=== a512 o<--x
+Alice o<--x Bob : m
+=== a513 o<--o
+Alice o<--o Bob : m
+=== a514 o<-->o
+Alice o<-->o Bob : m
+=== a515 o<-->x
+Alice o<-->x Bob : m
+=== a516 o<-->>o
+Alice o<-->>o Bob : m
+=== a517 o<--\\x
+Alice o<--\\x Bob : m
+=== a518 o<-->(5)
+Alice o<-->(5) Bob : m
+=== a519 o<--_>
+Alice o<--_> Bob : m
+=== a520 o<--_>>
+Alice o<--_>> Bob : m
+=== a521 o<--o 
+Alice o<--o  Bob : m
+=== a522 o<--x 
+Alice o<--x  Bob : m
+=== a523 o<-[#red]-
+Alice o<-[#red]- Bob : m
+=== a524 o<-[#red]->
+Alice o<-[#red]-> Bob : m
+=== a525 o<-[#red]->>
+Alice o<-[#red]->> Bob : m
+=== a526 o<-[#red]-\
+Alice o<-[#red]-\ Bob : m
+=== a527 o<-[#red]-\\
+Alice o<-[#red]-\\ Bob : m
+=== a528 o<-[#red]-/
+Alice o<-[#red]-/ Bob : m
+=== a529 o<-[#red]-//
+Alice o<-[#red]-// Bob : m
+=== a530 o<-[#red]-x
+Alice o<-[#red]-x Bob : m
+=== a531 o<-[#red]-o
+Alice o<-[#red]-o Bob : m
+=== a532 o<-[#red]->o
+Alice o<-[#red]->o Bob : m
+=== a533 o<-[#red]->x
+Alice o<-[#red]->x Bob : m
+=== a534 o<-[#red]->>o
+Alice o<-[#red]->>o Bob : m
+=== a535 o<-[#red]-\\x
+Alice o<-[#red]-\\x Bob : m
+=== a536 o<-[#red]->(5)
+Alice o<-[#red]->(5) Bob : m
+=== a537 o<-[#red]-_>
+Alice o<-[#red]-_> Bob : m
+=== a538 o<-[#red]-_>>
+Alice o<-[#red]-_>> Bob : m
+=== a539 o<-[#red]-o 
+Alice o<-[#red]-o  Bob : m
+=== a540 o<-[#red]-x 
+Alice o<-[#red]-x  Bob : m
+=== a541 x<-
+Alice x<- Bob : m
+=== a542 x<->
+Alice x<-> Bob : m
+=== a543 x<->>
+Alice x<->> Bob : m
+=== a544 x<-\
+Alice x<-\ Bob : m
+=== a545 x<-\\
+Alice x<-\\ Bob : m
+=== a546 x<-/
+Alice x<-/ Bob : m
+=== a547 x<-//
+Alice x<-// Bob : m
+=== a548 x<-x
+Alice x<-x Bob : m
+=== a549 x<-o
+Alice x<-o Bob : m
+=== a550 x<->o
+Alice x<->o Bob : m
+=== a551 x<->x
+Alice x<->x Bob : m
+=== a552 x<->>o
+Alice x<->>o Bob : m
+=== a553 x<-\\x
+Alice x<-\\x Bob : m
+=== a554 x<->(5)
+Alice x<->(5) Bob : m
+=== a555 x<-_>
+Alice x<-_> Bob : m
+=== a556 x<-_>>
+Alice x<-_>> Bob : m
+=== a557 x<-o 
+Alice x<-o  Bob : m
+=== a558 x<-x 
+Alice x<-x  Bob : m
+=== a559 x<--
+Alice x<-- Bob : m
+=== a560 x<-->
+Alice x<--> Bob : m
+=== a561 x<-->>
+Alice x<-->> Bob : m
+=== a562 x<--\
+Alice x<--\ Bob : m
+=== a563 x<--\\
+Alice x<--\\ Bob : m
+=== a564 x<--/
+Alice x<--/ Bob : m
+=== a565 x<--//
+Alice x<--// Bob : m
+=== a566 x<--x
+Alice x<--x Bob : m
+=== a567 x<--o
+Alice x<--o Bob : m
+=== a568 x<-->o
+Alice x<-->o Bob : m
+=== a569 x<-->x
+Alice x<-->x Bob : m
+=== a570 x<-->>o
+Alice x<-->>o Bob : m
+=== a571 x<--\\x
+Alice x<--\\x Bob : m
+=== a572 x<-->(5)
+Alice x<-->(5) Bob : m
+=== a573 x<--_>
+Alice x<--_> Bob : m
+=== a574 x<--_>>
+Alice x<--_>> Bob : m
+=== a575 x<--o 
+Alice x<--o  Bob : m
+=== a576 x<--x 
+Alice x<--x  Bob : m
+=== a577 x<-[#red]-
+Alice x<-[#red]- Bob : m
+=== a578 x<-[#red]->
+Alice x<-[#red]-> Bob : m
+=== a579 x<-[#red]->>
+Alice x<-[#red]->> Bob : m
+=== a580 x<-[#red]-\
+Alice x<-[#red]-\ Bob : m
+=== a581 x<-[#red]-\\
+Alice x<-[#red]-\\ Bob : m
+=== a582 x<-[#red]-/
+Alice x<-[#red]-/ Bob : m
+=== a583 x<-[#red]-//
+Alice x<-[#red]-// Bob : m
+=== a584 x<-[#red]-x
+Alice x<-[#red]-x Bob : m
+=== a585 x<-[#red]-o
+Alice x<-[#red]-o Bob : m
+=== a586 x<-[#red]->o
+Alice x<-[#red]->o Bob : m
+=== a587 x<-[#red]->x
+Alice x<-[#red]->x Bob : m
+=== a588 x<-[#red]->>o
+Alice x<-[#red]->>o Bob : m
+=== a589 x<-[#red]-\\x
+Alice x<-[#red]-\\x Bob : m
+=== a590 x<-[#red]->(5)
+Alice x<-[#red]->(5) Bob : m
+=== a591 x<-[#red]-_>
+Alice x<-[#red]-_> Bob : m
+=== a592 x<-[#red]-_>>
+Alice x<-[#red]-_>> Bob : m
+=== a593 x<-[#red]-o 
+Alice x<-[#red]-o  Bob : m
+=== a594 x<-[#red]-x 
+Alice x<-[#red]-x  Bob : m
+=== a595 o<<-
+Alice o<<- Bob : m
+=== a596 o<<->
+Alice o<<-> Bob : m
+=== a597 o<<->>
+Alice o<<->> Bob : m
+=== a598 o<<-\
+Alice o<<-\ Bob : m
+=== a599 o<<-\\
+Alice o<<-\\ Bob : m
+=== a600 o<<-/
+Alice o<<-/ Bob : m
+=== a601 o<<-//
+Alice o<<-// Bob : m
+=== a602 o<<-x
+Alice o<<-x Bob : m
+=== a603 o<<-o
+Alice o<<-o Bob : m
+=== a604 o<<->o
+Alice o<<->o Bob : m
+=== a605 o<<->x
+Alice o<<->x Bob : m
+=== a606 o<<->>o
+Alice o<<->>o Bob : m
+=== a607 o<<-\\x
+Alice o<<-\\x Bob : m
+=== a608 o<<->(5)
+Alice o<<->(5) Bob : m
+=== a609 o<<-_>
+Alice o<<-_> Bob : m
+=== a610 o<<-_>>
+Alice o<<-_>> Bob : m
+=== a611 o<<-o 
+Alice o<<-o  Bob : m
+=== a612 o<<-x 
+Alice o<<-x  Bob : m
+=== a613 o<<--
+Alice o<<-- Bob : m
+=== a614 o<<-->
+Alice o<<--> Bob : m
+=== a615 o<<-->>
+Alice o<<-->> Bob : m
+=== a616 o<<--\
+Alice o<<--\ Bob : m
+=== a617 o<<--\\
+Alice o<<--\\ Bob : m
+=== a618 o<<--/
+Alice o<<--/ Bob : m
+=== a619 o<<--//
+Alice o<<--// Bob : m
+=== a620 o<<--x
+Alice o<<--x Bob : m
+=== a621 o<<--o
+Alice o<<--o Bob : m
+=== a622 o<<-->o
+Alice o<<-->o Bob : m
+=== a623 o<<-->x
+Alice o<<-->x Bob : m
+=== a624 o<<-->>o
+Alice o<<-->>o Bob : m
+=== a625 o<<--\\x
+Alice o<<--\\x Bob : m
+=== a626 o<<-->(5)
+Alice o<<-->(5) Bob : m
+=== a627 o<<--_>
+Alice o<<--_> Bob : m
+=== a628 o<<--_>>
+Alice o<<--_>> Bob : m
+=== a629 o<<--o 
+Alice o<<--o  Bob : m
+=== a630 o<<--x 
+Alice o<<--x  Bob : m
+=== a631 o<<-[#red]-
+Alice o<<-[#red]- Bob : m
+=== a632 o<<-[#red]->
+Alice o<<-[#red]-> Bob : m
+=== a633 o<<-[#red]->>
+Alice o<<-[#red]->> Bob : m
+=== a634 o<<-[#red]-\
+Alice o<<-[#red]-\ Bob : m
+=== a635 o<<-[#red]-\\
+Alice o<<-[#red]-\\ Bob : m
+=== a636 o<<-[#red]-/
+Alice o<<-[#red]-/ Bob : m
+=== a637 o<<-[#red]-//
+Alice o<<-[#red]-// Bob : m
+=== a638 o<<-[#red]-x
+Alice o<<-[#red]-x Bob : m
+=== a639 o<<-[#red]-o
+Alice o<<-[#red]-o Bob : m
+=== a640 o<<-[#red]->o
+Alice o<<-[#red]->o Bob : m
+=== a641 o<<-[#red]->x
+Alice o<<-[#red]->x Bob : m
+=== a642 o<<-[#red]->>o
+Alice o<<-[#red]->>o Bob : m
+=== a643 o<<-[#red]-\\x
+Alice o<<-[#red]-\\x Bob : m
+=== a644 o<<-[#red]->(5)
+Alice o<<-[#red]->(5) Bob : m
+=== a645 o<<-[#red]-_>
+Alice o<<-[#red]-_> Bob : m
+=== a646 o<<-[#red]-_>>
+Alice o<<-[#red]-_>> Bob : m
+=== a647 o<<-[#red]-o 
+Alice o<<-[#red]-o  Bob : m
+=== a648 o<<-[#red]-x 
+Alice o<<-[#red]-x  Bob : m
+=== a649 x\\-
+Alice x\\- Bob : m
+=== a650 x\\->
+Alice x\\-> Bob : m
+=== a651 x\\->>
+Alice x\\->> Bob : m
+=== a652 x\\-\
+Alice x\\-\ Bob : m
+=== a653 x\\-\\
+Alice x\\-\\ Bob : m
+=== a654 x\\-/
+Alice x\\-/ Bob : m
+=== a655 x\\-//
+Alice x\\-// Bob : m
+=== a656 x\\-x
+Alice x\\-x Bob : m
+=== a657 x\\-o
+Alice x\\-o Bob : m
+=== a658 x\\->o
+Alice x\\->o Bob : m
+=== a659 x\\->x
+Alice x\\->x Bob : m
+=== a660 x\\->>o
+Alice x\\->>o Bob : m
+=== a661 x\\-\\x
+Alice x\\-\\x Bob : m
+=== a662 x\\->(5)
+Alice x\\->(5) Bob : m
+=== a663 x\\-_>
+Alice x\\-_> Bob : m
+=== a664 x\\-_>>
+Alice x\\-_>> Bob : m
+=== a665 x\\-o 
+Alice x\\-o  Bob : m
+=== a666 x\\-x 
+Alice x\\-x  Bob : m
+=== a667 x\\--
+Alice x\\-- Bob : m
+=== a668 x\\-->
+Alice x\\--> Bob : m
+=== a669 x\\-->>
+Alice x\\-->> Bob : m
+=== a670 x\\--\
+Alice x\\--\ Bob : m
+=== a671 x\\--\\
+Alice x\\--\\ Bob : m
+=== a672 x\\--/
+Alice x\\--/ Bob : m
+=== a673 x\\--//
+Alice x\\--// Bob : m
+=== a674 x\\--x
+Alice x\\--x Bob : m
+=== a675 x\\--o
+Alice x\\--o Bob : m
+=== a676 x\\-->o
+Alice x\\-->o Bob : m
+=== a677 x\\-->x
+Alice x\\-->x Bob : m
+=== a678 x\\-->>o
+Alice x\\-->>o Bob : m
+=== a679 x\\--\\x
+Alice x\\--\\x Bob : m
+=== a680 x\\-->(5)
+Alice x\\-->(5) Bob : m
+=== a681 x\\--_>
+Alice x\\--_> Bob : m
+=== a682 x\\--_>>
+Alice x\\--_>> Bob : m
+=== a683 x\\--o 
+Alice x\\--o  Bob : m
+=== a684 x\\--x 
+Alice x\\--x  Bob : m
+=== a685 x\\-[#red]-
+Alice x\\-[#red]- Bob : m
+=== a686 x\\-[#red]->
+Alice x\\-[#red]-> Bob : m
+=== a687 x\\-[#red]->>
+Alice x\\-[#red]->> Bob : m
+=== a688 x\\-[#red]-\
+Alice x\\-[#red]-\ Bob : m
+=== a689 x\\-[#red]-\\
+Alice x\\-[#red]-\\ Bob : m
+=== a690 x\\-[#red]-/
+Alice x\\-[#red]-/ Bob : m
+=== a691 x\\-[#red]-//
+Alice x\\-[#red]-// Bob : m
+=== a692 x\\-[#red]-x
+Alice x\\-[#red]-x Bob : m
+=== a693 x\\-[#red]-o
+Alice x\\-[#red]-o Bob : m
+=== a694 x\\-[#red]->o
+Alice x\\-[#red]->o Bob : m
+=== a695 x\\-[#red]->x
+Alice x\\-[#red]->x Bob : m
+=== a696 x\\-[#red]->>o
+Alice x\\-[#red]->>o Bob : m
+=== a697 x\\-[#red]-\\x
+Alice x\\-[#red]-\\x Bob : m
+=== a698 x\\-[#red]->(5)
+Alice x\\-[#red]->(5) Bob : m
+=== a699 x\\-[#red]-_>
+Alice x\\-[#red]-_> Bob : m
+=== a700 x\\-[#red]-_>>
+Alice x\\-[#red]-_>> Bob : m
+=== a701 x\\-[#red]-o 
+Alice x\\-[#red]-o  Bob : m
+=== a702 x\\-[#red]-x 
+Alice x\\-[#red]-x  Bob : m
+=== a703 (5)<-
+Alice (5)<- Bob : m
+=== a704 (5)<->
+Alice (5)<-> Bob : m
+=== a705 (5)<->>
+Alice (5)<->> Bob : m
+=== a706 (5)<-\
+Alice (5)<-\ Bob : m
+=== a707 (5)<-\\
+Alice (5)<-\\ Bob : m
+=== a708 (5)<-/
+Alice (5)<-/ Bob : m
+=== a709 (5)<-//
+Alice (5)<-// Bob : m
+=== a710 (5)<-x
+Alice (5)<-x Bob : m
+=== a711 (5)<-o
+Alice (5)<-o Bob : m
+=== a712 (5)<->o
+Alice (5)<->o Bob : m
+=== a713 (5)<->x
+Alice (5)<->x Bob : m
+=== a714 (5)<->>o
+Alice (5)<->>o Bob : m
+=== a715 (5)<-\\x
+Alice (5)<-\\x Bob : m
+=== a716 (5)<->(5)
+Alice (5)<->(5) Bob : m
+=== a717 (5)<-_>
+Alice (5)<-_> Bob : m
+=== a718 (5)<-_>>
+Alice (5)<-_>> Bob : m
+=== a719 (5)<-o 
+Alice (5)<-o  Bob : m
+=== a720 (5)<-x 
+Alice (5)<-x  Bob : m
+=== a721 (5)<--
+Alice (5)<-- Bob : m
+=== a722 (5)<-->
+Alice (5)<--> Bob : m
+=== a723 (5)<-->>
+Alice (5)<-->> Bob : m
+=== a724 (5)<--\
+Alice (5)<--\ Bob : m
+=== a725 (5)<--\\
+Alice (5)<--\\ Bob : m
+=== a726 (5)<--/
+Alice (5)<--/ Bob : m
+=== a727 (5)<--//
+Alice (5)<--// Bob : m
+=== a728 (5)<--x
+Alice (5)<--x Bob : m
+=== a729 (5)<--o
+Alice (5)<--o Bob : m
+=== a730 (5)<-->o
+Alice (5)<-->o Bob : m
+=== a731 (5)<-->x
+Alice (5)<-->x Bob : m
+=== a732 (5)<-->>o
+Alice (5)<-->>o Bob : m
+=== a733 (5)<--\\x
+Alice (5)<--\\x Bob : m
+=== a734 (5)<-->(5)
+Alice (5)<-->(5) Bob : m
+=== a735 (5)<--_>
+Alice (5)<--_> Bob : m
+=== a736 (5)<--_>>
+Alice (5)<--_>> Bob : m
+=== a737 (5)<--o 
+Alice (5)<--o  Bob : m
+=== a738 (5)<--x 
+Alice (5)<--x  Bob : m
+=== a739 (5)<-[#red]-
+Alice (5)<-[#red]- Bob : m
+=== a740 (5)<-[#red]->
+Alice (5)<-[#red]-> Bob : m
+=== a741 (5)<-[#red]->>
+Alice (5)<-[#red]->> Bob : m
+=== a742 (5)<-[#red]-\
+Alice (5)<-[#red]-\ Bob : m
+=== a743 (5)<-[#red]-\\
+Alice (5)<-[#red]-\\ Bob : m
+=== a744 (5)<-[#red]-/
+Alice (5)<-[#red]-/ Bob : m
+=== a745 (5)<-[#red]-//
+Alice (5)<-[#red]-// Bob : m
+=== a746 (5)<-[#red]-x
+Alice (5)<-[#red]-x Bob : m
+=== a747 (5)<-[#red]-o
+Alice (5)<-[#red]-o Bob : m
+=== a748 (5)<-[#red]->o
+Alice (5)<-[#red]->o Bob : m
+=== a749 (5)<-[#red]->x
+Alice (5)<-[#red]->x Bob : m
+=== a750 (5)<-[#red]->>o
+Alice (5)<-[#red]->>o Bob : m
+=== a751 (5)<-[#red]-\\x
+Alice (5)<-[#red]-\\x Bob : m
+=== a752 (5)<-[#red]->(5)
+Alice (5)<-[#red]->(5) Bob : m
+=== a753 (5)<-[#red]-_>
+Alice (5)<-[#red]-_> Bob : m
+=== a754 (5)<-[#red]-_>>
+Alice (5)<-[#red]-_>> Bob : m
+=== a755 (5)<-[#red]-o 
+Alice (5)<-[#red]-o  Bob : m
+=== a756 (5)<-[#red]-x 
+Alice (5)<-[#red]-x  Bob : m
+=== a757 <_-
+Alice <_- Bob : m
+=== a758 <_->
+Alice <_-> Bob : m
+=== a759 <_->>
+Alice <_->> Bob : m
+=== a760 <_-\
+Alice <_-\ Bob : m
+=== a761 <_-\\
+Alice <_-\\ Bob : m
+=== a762 <_-/
+Alice <_-/ Bob : m
+=== a763 <_-//
+Alice <_-// Bob : m
+=== a764 <_-x
+Alice <_-x Bob : m
+=== a765 <_-o
+Alice <_-o Bob : m
+=== a766 <_->o
+Alice <_->o Bob : m
+=== a767 <_->x
+Alice <_->x Bob : m
+=== a768 <_->>o
+Alice <_->>o Bob : m
+=== a769 <_-\\x
+Alice <_-\\x Bob : m
+=== a770 <_->(5)
+Alice <_->(5) Bob : m
+=== a771 <_-_>
+Alice <_-_> Bob : m
+=== a772 <_-_>>
+Alice <_-_>> Bob : m
+=== a773 <_-o 
+Alice <_-o  Bob : m
+=== a774 <_-x 
+Alice <_-x  Bob : m
+=== a775 <_--
+Alice <_-- Bob : m
+=== a776 <_-->
+Alice <_--> Bob : m
+=== a777 <_-->>
+Alice <_-->> Bob : m
+=== a778 <_--\
+Alice <_--\ Bob : m
+=== a779 <_--\\
+Alice <_--\\ Bob : m
+=== a780 <_--/
+Alice <_--/ Bob : m
+=== a781 <_--//
+Alice <_--// Bob : m
+=== a782 <_--x
+Alice <_--x Bob : m
+=== a783 <_--o
+Alice <_--o Bob : m
+=== a784 <_-->o
+Alice <_-->o Bob : m
+=== a785 <_-->x
+Alice <_-->x Bob : m
+=== a786 <_-->>o
+Alice <_-->>o Bob : m
+=== a787 <_--\\x
+Alice <_--\\x Bob : m
+=== a788 <_-->(5)
+Alice <_-->(5) Bob : m
+=== a789 <_--_>
+Alice <_--_> Bob : m
+=== a790 <_--_>>
+Alice <_--_>> Bob : m
+=== a791 <_--o 
+Alice <_--o  Bob : m
+=== a792 <_--x 
+Alice <_--x  Bob : m
+=== a793 <_-[#red]-
+Alice <_-[#red]- Bob : m
+=== a794 <_-[#red]->
+Alice <_-[#red]-> Bob : m
+=== a795 <_-[#red]->>
+Alice <_-[#red]->> Bob : m
+=== a796 <_-[#red]-\
+Alice <_-[#red]-\ Bob : m
+=== a797 <_-[#red]-\\
+Alice <_-[#red]-\\ Bob : m
+=== a798 <_-[#red]-/
+Alice <_-[#red]-/ Bob : m
+=== a799 <_-[#red]-//
+Alice <_-[#red]-// Bob : m
+=== a800 <_-[#red]-x
+Alice <_-[#red]-x Bob : m
+=== a801 <_-[#red]-o
+Alice <_-[#red]-o Bob : m
+=== a802 <_-[#red]->o
+Alice <_-[#red]->o Bob : m
+=== a803 <_-[#red]->x
+Alice <_-[#red]->x Bob : m
+=== a804 <_-[#red]->>o
+Alice <_-[#red]->>o Bob : m
+=== a805 <_-[#red]-\\x
+Alice <_-[#red]-\\x Bob : m
+=== a806 <_-[#red]->(5)
+Alice <_-[#red]->(5) Bob : m
+=== a807 <_-[#red]-_>
+Alice <_-[#red]-_> Bob : m
+=== a808 <_-[#red]-_>>
+Alice <_-[#red]-_>> Bob : m
+=== a809 <_-[#red]-o 
+Alice <_-[#red]-o  Bob : m
+=== a810 <_-[#red]-x 
+Alice <_-[#red]-x  Bob : m
+=== a811 <<_-
+Alice <<_- Bob : m
+=== a812 <<_->
+Alice <<_-> Bob : m
+=== a813 <<_->>
+Alice <<_->> Bob : m
+=== a814 <<_-\
+Alice <<_-\ Bob : m
+=== a815 <<_-\\
+Alice <<_-\\ Bob : m
+=== a816 <<_-/
+Alice <<_-/ Bob : m
+=== a817 <<_-//
+Alice <<_-// Bob : m
+=== a818 <<_-x
+Alice <<_-x Bob : m
+=== a819 <<_-o
+Alice <<_-o Bob : m
+=== a820 <<_->o
+Alice <<_->o Bob : m
+=== a821 <<_->x
+Alice <<_->x Bob : m
+=== a822 <<_->>o
+Alice <<_->>o Bob : m
+=== a823 <<_-\\x
+Alice <<_-\\x Bob : m
+=== a824 <<_->(5)
+Alice <<_->(5) Bob : m
+=== a825 <<_-_>
+Alice <<_-_> Bob : m
+=== a826 <<_-_>>
+Alice <<_-_>> Bob : m
+=== a827 <<_-o 
+Alice <<_-o  Bob : m
+=== a828 <<_-x 
+Alice <<_-x  Bob : m
+=== a829 <<_--
+Alice <<_-- Bob : m
+=== a830 <<_-->
+Alice <<_--> Bob : m
+=== a831 <<_-->>
+Alice <<_-->> Bob : m
+=== a832 <<_--\
+Alice <<_--\ Bob : m
+=== a833 <<_--\\
+Alice <<_--\\ Bob : m
+=== a834 <<_--/
+Alice <<_--/ Bob : m
+=== a835 <<_--//
+Alice <<_--// Bob : m
+=== a836 <<_--x
+Alice <<_--x Bob : m
+=== a837 <<_--o
+Alice <<_--o Bob : m
+=== a838 <<_-->o
+Alice <<_-->o Bob : m
+=== a839 <<_-->x
+Alice <<_-->x Bob : m
+=== a840 <<_-->>o
+Alice <<_-->>o Bob : m
+=== a841 <<_--\\x
+Alice <<_--\\x Bob : m
+=== a842 <<_-->(5)
+Alice <<_-->(5) Bob : m
+=== a843 <<_--_>
+Alice <<_--_> Bob : m
+=== a844 <<_--_>>
+Alice <<_--_>> Bob : m
+=== a845 <<_--o 
+Alice <<_--o  Bob : m
+=== a846 <<_--x 
+Alice <<_--x  Bob : m
+=== a847 <<_-[#red]-
+Alice <<_-[#red]- Bob : m
+=== a848 <<_-[#red]->
+Alice <<_-[#red]-> Bob : m
+=== a849 <<_-[#red]->>
+Alice <<_-[#red]->> Bob : m
+=== a850 <<_-[#red]-\
+Alice <<_-[#red]-\ Bob : m
+=== a851 <<_-[#red]-\\
+Alice <<_-[#red]-\\ Bob : m
+=== a852 <<_-[#red]-/
+Alice <<_-[#red]-/ Bob : m
+=== a853 <<_-[#red]-//
+Alice <<_-[#red]-// Bob : m
+=== a854 <<_-[#red]-x
+Alice <<_-[#red]-x Bob : m
+=== a855 <<_-[#red]-o
+Alice <<_-[#red]-o Bob : m
+=== a856 <<_-[#red]->o
+Alice <<_-[#red]->o Bob : m
+=== a857 <<_-[#red]->x
+Alice <<_-[#red]->x Bob : m
+=== a858 <<_-[#red]->>o
+Alice <<_-[#red]->>o Bob : m
+=== a859 <<_-[#red]-\\x
+Alice <<_-[#red]-\\x Bob : m
+=== a860 <<_-[#red]->(5)
+Alice <<_-[#red]->(5) Bob : m
+=== a861 <<_-[#red]-_>
+Alice <<_-[#red]-_> Bob : m
+=== a862 <<_-[#red]-_>>
+Alice <<_-[#red]-_>> Bob : m
+=== a863 <<_-[#red]-o 
+Alice <<_-[#red]-o  Bob : m
+=== a864 <<_-[#red]-x 
+Alice <<_-[#red]-x  Bob : m
+=== a865  o-
+Alice  o- Bob : m
+=== a866  o->
+Alice  o-> Bob : m
+=== a867  o->>
+Alice  o->> Bob : m
+=== a868  o-\
+Alice  o-\ Bob : m
+=== a869  o-\\
+Alice  o-\\ Bob : m
+=== a870  o-/
+Alice  o-/ Bob : m
+=== a871  o-//
+Alice  o-// Bob : m
+=== a872  o-x
+Alice  o-x Bob : m
+=== a873  o-o
+Alice  o-o Bob : m
+=== a874  o->o
+Alice  o->o Bob : m
+=== a875  o->x
+Alice  o->x Bob : m
+=== a876  o->>o
+Alice  o->>o Bob : m
+=== a877  o-\\x
+Alice  o-\\x Bob : m
+=== a878  o->(5)
+Alice  o->(5) Bob : m
+=== a879  o-_>
+Alice  o-_> Bob : m
+=== a880  o-_>>
+Alice  o-_>> Bob : m
+=== a881  o-o 
+Alice  o-o  Bob : m
+=== a882  o-x 
+Alice  o-x  Bob : m
+=== a883  o--
+Alice  o-- Bob : m
+=== a884  o-->
+Alice  o--> Bob : m
+=== a885  o-->>
+Alice  o-->> Bob : m
+=== a886  o--\
+Alice  o--\ Bob : m
+=== a887  o--\\
+Alice  o--\\ Bob : m
+=== a888  o--/
+Alice  o--/ Bob : m
+=== a889  o--//
+Alice  o--// Bob : m
+=== a890  o--x
+Alice  o--x Bob : m
+=== a891  o--o
+Alice  o--o Bob : m
+=== a892  o-->o
+Alice  o-->o Bob : m
+=== a893  o-->x
+Alice  o-->x Bob : m
+=== a894  o-->>o
+Alice  o-->>o Bob : m
+=== a895  o--\\x
+Alice  o--\\x Bob : m
+=== a896  o-->(5)
+Alice  o-->(5) Bob : m
+=== a897  o--_>
+Alice  o--_> Bob : m
+=== a898  o--_>>
+Alice  o--_>> Bob : m
+=== a899  o--o 
+Alice  o--o  Bob : m
+=== a900  o--x 
+Alice  o--x  Bob : m
+=== a901  o-[#red]-
+Alice  o-[#red]- Bob : m
+=== a902  o-[#red]->
+Alice  o-[#red]-> Bob : m
+=== a903  o-[#red]->>
+Alice  o-[#red]->> Bob : m
+=== a904  o-[#red]-\
+Alice  o-[#red]-\ Bob : m
+=== a905  o-[#red]-\\
+Alice  o-[#red]-\\ Bob : m
+=== a906  o-[#red]-/
+Alice  o-[#red]-/ Bob : m
+=== a907  o-[#red]-//
+Alice  o-[#red]-// Bob : m
+=== a908  o-[#red]-x
+Alice  o-[#red]-x Bob : m
+=== a909  o-[#red]-o
+Alice  o-[#red]-o Bob : m
+=== a910  o-[#red]->o
+Alice  o-[#red]->o Bob : m
+=== a911  o-[#red]->x
+Alice  o-[#red]->x Bob : m
+=== a912  o-[#red]->>o
+Alice  o-[#red]->>o Bob : m
+=== a913  o-[#red]-\\x
+Alice  o-[#red]-\\x Bob : m
+=== a914  o-[#red]->(5)
+Alice  o-[#red]->(5) Bob : m
+=== a915  o-[#red]-_>
+Alice  o-[#red]-_> Bob : m
+=== a916  o-[#red]-_>>
+Alice  o-[#red]-_>> Bob : m
+=== a917  o-[#red]-o 
+Alice  o-[#red]-o  Bob : m
+=== a918  o-[#red]-x 
+Alice  o-[#red]-x  Bob : m
+=== a919  x-
+Alice  x- Bob : m
+=== a920  x->
+Alice  x-> Bob : m
+=== a921  x->>
+Alice  x->> Bob : m
+=== a922  x-\
+Alice  x-\ Bob : m
+=== a923  x-\\
+Alice  x-\\ Bob : m
+=== a924  x-/
+Alice  x-/ Bob : m
+=== a925  x-//
+Alice  x-// Bob : m
+=== a926  x-x
+Alice  x-x Bob : m
+=== a927  x-o
+Alice  x-o Bob : m
+=== a928  x->o
+Alice  x->o Bob : m
+=== a929  x->x
+Alice  x->x Bob : m
+=== a930  x->>o
+Alice  x->>o Bob : m
+=== a931  x-\\x
+Alice  x-\\x Bob : m
+=== a932  x->(5)
+Alice  x->(5) Bob : m
+=== a933  x-_>
+Alice  x-_> Bob : m
+=== a934  x-_>>
+Alice  x-_>> Bob : m
+=== a935  x-o 
+Alice  x-o  Bob : m
+=== a936  x-x 
+Alice  x-x  Bob : m
+=== a937  x--
+Alice  x-- Bob : m
+=== a938  x-->
+Alice  x--> Bob : m
+=== a939  x-->>
+Alice  x-->> Bob : m
+=== a940  x--\
+Alice  x--\ Bob : m
+=== a941  x--\\
+Alice  x--\\ Bob : m
+=== a942  x--/
+Alice  x--/ Bob : m
+=== a943  x--//
+Alice  x--// Bob : m
+=== a944  x--x
+Alice  x--x Bob : m
+=== a945  x--o
+Alice  x--o Bob : m
+=== a946  x-->o
+Alice  x-->o Bob : m
+=== a947  x-->x
+Alice  x-->x Bob : m
+=== a948  x-->>o
+Alice  x-->>o Bob : m
+=== a949  x--\\x
+Alice  x--\\x Bob : m
+=== a950  x-->(5)
+Alice  x-->(5) Bob : m
+=== a951  x--_>
+Alice  x--_> Bob : m
+=== a952  x--_>>
+Alice  x--_>> Bob : m
+=== a953  x--o 
+Alice  x--o  Bob : m
+=== a954  x--x 
+Alice  x--x  Bob : m
+=== a955  x-[#red]-
+Alice  x-[#red]- Bob : m
+=== a956  x-[#red]->
+Alice  x-[#red]-> Bob : m
+=== a957  x-[#red]->>
+Alice  x-[#red]->> Bob : m
+=== a958  x-[#red]-\
+Alice  x-[#red]-\ Bob : m
+=== a959  x-[#red]-\\
+Alice  x-[#red]-\\ Bob : m
+=== a960  x-[#red]-/
+Alice  x-[#red]-/ Bob : m
+=== a961  x-[#red]-//
+Alice  x-[#red]-// Bob : m
+=== a962  x-[#red]-x
+Alice  x-[#red]-x Bob : m
+=== a963  x-[#red]-o
+Alice  x-[#red]-o Bob : m
+=== a964  x-[#red]->o
+Alice  x-[#red]->o Bob : m
+=== a965  x-[#red]->x
+Alice  x-[#red]->x Bob : m
+=== a966  x-[#red]->>o
+Alice  x-[#red]->>o Bob : m
+=== a967  x-[#red]-\\x
+Alice  x-[#red]-\\x Bob : m
+=== a968  x-[#red]->(5)
+Alice  x-[#red]->(5) Bob : m
+=== a969  x-[#red]-_>
+Alice  x-[#red]-_> Bob : m
+=== a970  x-[#red]-_>>
+Alice  x-[#red]-_>> Bob : m
+=== a971  x-[#red]-o 
+Alice  x-[#red]-o  Bob : m
+=== a972  x-[#red]-x 
+Alice  x-[#red]-x  Bob : m

@@ -1,0 +1,98 @@
+=== activate deactivate
+Alice -> Bob : call
+activate Bob
+Bob -> Alice
+deactivate Bob
+=== activate colors
+Alice -> Bob
+activate Bob #red
+activate Bob #FFBBBB #blue
+deactivate Bob
+deactivate Bob
+=== activate bad color
+Alice -> Bob
+activate Bob #nosuch
+=== initial activation
+activate Alice
+activate Alice #red
+Alice -> Bob
+deactivate Alice
+=== deactivate without activation
+deactivate Alice
+=== deactivate after initial
+activate Alice
+deactivate Alice
+Alice -> Bob
+=== destroy
+Alice -> Bob : bye
+destroy Bob
+=== destroy unrelated
+Alice -> Alice
+destroy Bob
+=== create command
+create Bob
+Alice -> Bob : new
+=== create command wrong
+create Bob
+Alice -> Carol
+=== double activation
+Alice -> Bob
+activate Bob
+deactivate Bob
+activate Bob
+=== activate after delay
+Alice -> Bob
+...
+activate Bob
+=== deactivate short
+Alice -> Bob ++
+deactivate
+=== deactivate short nothing
+Alice -> Bob
+deactivate
+=== shorthand
+Alice -> Bob
+Bob++
+Bob--
+Bob ++ #red
+=== return
+Alice -> Bob ++ : call
+Bob -> Carol ++ : call2
+return r2
+return r1
+=== return color
+Alice -> Bob ++ : call
+return #red done
+=== return parallel
+Alice -> Bob ++ : call
+& return done
+=== return without activation
+Alice -> Bob : call
+return back
+=== return nowhere
+return back
+=== return after note
+Alice -> Bob : call
+note right : n
+return back
+=== return after exo
+A ->] : out
+return back
+=== activate after divider
+Alice -> Bob
+activate Bob
+== sep ==
+deactivate Bob
+=== activate after end group
+alt x
+Alice -> Bob
+end
+activate Bob
+=== activate quoted
+"Long A" -> B
+activate "Long A"
+deactivate "Long A"
+=== autonumber with activation
+autonumber
+Alice -> Bob ++
+return

@@ -1,0 +1,154 @@
+=== create existing
+participant A
+create A
+A -> B
+=== self activation
+A -> A ++ : self
+A -> A -- : self back
+A -> A ++
+activate A
+=== self with life events
+A -> A
+activate A
+deactivate A
+destroy A
+=== embedded diagram in note
+participant A
+note left of A
+{{
+B -> C
+}}
+end note
+=== embedded json in note
+participant A
+note over A
+{{json
+{"a": 1}
+}}
+end note
+=== creole note
+participant A
+note left of A
+  * bullet
+  ** sub
+  |= a |= b |
+  | c | d |
+  ----
+  <color:red>red</color>
+end note
+=== emoji names (escaped)
+"😀" -> B : 😀 smile
+=== skinparam footbox show
+hide footbox
+skinparam footbox show
+A -> B
+=== participant then message with display
+participant "Display A" as A
+A -> "Display A" : not the same
+=== code with quotes inside
+"A ""quoted"" B" -> C
+=== tabs and indentation
+	participant A
+		A -> B : indented
+	note left of A
+		indented note
+			deeper
+	end note
+=== legend creole
+legend
+|= Key |= Value |
+| a | b |
+endlegend
+A -> B
+=== title with newline
+title Line1\nLine2
+A -> B
+=== header with newline
+header Line1\nLine2
+A -> B
+=== deep nesting
+alt 1
+alt 2
+alt 3
+A -> B
+end
+end
+end
+=== else after end
+alt 1
+A -> B
+end
+else x
+=== partition end
+partition p
+A -> B
+end
+=== activation on group end
+alt x
+A -> B
+end
+deactivate B
+=== box with stereotype and color
+box "B1" <<Grp>> #lightgreen
+participant A
+end box
+=== box name without quotes
+box My Box Name #red
+participant A
+end box
+=== participant order with box
+box "b"
+participant C order 2
+end box
+participant A order 1
+participant B order 1
+=== many participants
+participant P1
+participant P2
+participant P3
+participant P4
+participant P5
+participant P6
+participant P7
+participant P8
+participant P9
+participant P10
+participant P11
+P1 -> P11
+=== multicast existing
+A -> B & C
+B -> A & C & D
+=== message with only colon
+A -> B:
+A->B:x
+A->B :x
+=== participant keyword as name
+participant participant
+participant end
+end -> participant
+=== divider with equals
+== a == b ==
+A -> B
+=== delay with colon
+... wait: 5 min ...
+A -> B
+=== hspace large
+||1000||
+A -> B
+=== ref with url only
+ref over A [[http://x.com]] : t
+=== return twice
+A -> B ++
+return a
+return b
+=== destroy with activation
+A -> B ++
+destroy B
+=== activate deactivate on other
+A -> B
+activate C
+deactivate C
+=== note left of quoted alias
+participant "Long" as L
+note left of L : x
+note right of "Long" : y

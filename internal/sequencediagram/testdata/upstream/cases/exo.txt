@@ -1,0 +1,54 @@
+=== incoming and outgoing
+[-> A : in
+A ->] : out
+[<- A : back
+A <-] : back right
+[--> A
+A -->]
+[->> A
+A ->>]
+[-\ A
+A -/]
+[-// A
+=== short
+?-> A : short in
+A ->? : short out
+?<- A
+A <-?
+=== decorations
+[o-> A
+[x-> A
+A ->o]
+A ->x]
+[ox-> A
+A o->]
+A x-> ]
+=== both
+[<-> A
+A <->]
+=== colored exo
+[-[#red]> A
+A -[#blue]->]
+A -[dashed]>]
+=== exo activation
+[-> A ++ : act
+A -->] -- : ret
+[-> B ** : create
+[-> B !! : destroy
+[-> C +-+ : weird
+=== exo url label
+[-> A [[http://x.com]] : label
+=== exo parallel anchor
+& [-> A
+{an} A ->] : x
+=== exo return
+[-> A ++ : call
+return done
+=== exo quoted
+[-> "Long A" : x
+"Long A" ->] : y
+=== exo autoactivate
+autoactivate on
+[-> A : in
+A -->] : out
+[-->> A
