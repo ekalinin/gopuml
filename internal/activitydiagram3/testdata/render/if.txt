@@ -1,0 +1,583 @@
+=== simple
+start
+if (Graphviz installed?) then (yes)
+  :process all diagrams;
+else (no)
+  :process only sequence;
+endif
+stop
+=== nested
+start
+if (a?) then (yes)
+  if (b?) then (yes)
+    :ab;
+  else (no)
+    :a not b;
+  endif
+else (no)
+  if (c?) then
+    :c;
+  endif
+endif
+stop
+=== elseif chain
+start
+if (condition A) then (yes)
+  :Text 1;
+elseif (condition B) then (yes)
+  :Text 2;
+  stop
+elseif (condition C) then (yes)
+  :Text 3;
+elseif (condition D) then (yes)
+  :Text 4;
+else (nothing)
+  :Text else;
+endif
+stop
+=== elseif inlabels
+start
+if (A) then (yes)
+  :one;
+(no) elseif (B) then (yes)
+  :two;
+(maybe) elseif (C) then (yes)
+  :three;
+else (no)
+  :four;
+endif
+:after;
+=== vertical if
+!pragma useVerticalIf on
+start
+if (condition A) then (yes)
+  :Text 1;
+elseif (condition B) then (yes)
+  :Text 2;
+  stop
+(no) elseif (condition C) then (yes)
+  :Text 3;
+(no) elseif (condition D) then (yes)
+  :Text 4;
+else (nothing)
+  :Text else;
+endif
+stop
+=== vertical if two
+!pragma useVerticalIf on
+if (A) then
+  :one;
+elseif (B) then
+  :two;
+endif
+=== condition inside
+skinparam conditionStyle inside
+start
+if (test inside hexagon?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== condition diamond
+skinparam conditionStyle diamond
+start
+if (test above diamond?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== condition InsideDiamond
+skinparam conditionStyle InsideDiamond
+start
+if (test in diamond?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== condition foo1
+skinparam conditionStyle foo1
+start
+if (test foo1?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== condition diamond down
+skinparam conditionStyle diamond
+if (x) then (yes)
+  :only then;
+endif
+:next;
+=== condition InsideDiamond down
+skinparam conditionStyle InsideDiamond
+if (x) then (yes)
+  :only then;
+endif
+:next;
+=== end hline
+skinparam conditionEndStyle hline
+start
+if (test) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== end hline down
+skinparam conditionEndStyle hline
+start
+if (test) then (yes)
+  :a;
+endif
+stop
+=== end hline break
+skinparam conditionEndStyle hline
+start
+repeat
+:x;
+if (test) then (yes)
+  :a;
+  break
+else (no)
+  :b;
+endif
+repeat while (more)
+stop
+=== end hline then break
+skinparam conditionEndStyle hline
+while (w)
+if (test) then (yes)
+  :a;
+else (no)
+  break
+endif
+endwhile
+stop
+=== end hline elseif
+skinparam conditionEndStyle hline
+if (a) then
+  :one;
+elseif (b) then
+  :two;
+else
+  :three;
+endif
+=== swimlanes cross
+|A|
+start
+if (c?) then (yes)
+  |B|
+  :in B;
+else (no)
+  |A|
+  :in A;
+endif
+|A|
+stop
+=== swimlanes cross 2
+|A|
+start
+:a;
+|B|
+if (c?) then (yes)
+  :b1;
+  |A|
+  :a1;
+else (no)
+  :b2;
+endif
+stop
+=== swimlanes down
+|A|
+start
+if (c?) then (yes)
+  |B|
+  :in B;
+endif
+|A|
+:back;
+stop
+=== swimlanes elseif
+|A|
+start
+if (a) then
+  :x;
+elseif (b) then
+  |B|
+  :y;
+else
+  |C|
+  :z;
+endif
+|A|
+stop
+=== swimlanes hline
+skinparam conditionEndStyle hline
+|A|
+start
+if (c?) then (yes)
+  |B|
+  :in B;
+else (no)
+  |A|
+  :in A;
+endif
+stop
+=== swimlanes down left lane
+|A|
+|B|
+start
+if (c?) then (yes)
+  |A|
+  :in A;
+endif
+|B|
+stop
+=== note right on if
+start
+if (c) then (yes)
+  note right: a note on the test
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== note left on if
+start
+if (c) then (yes)
+  note left: a note on the left
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== notes both on if
+start
+if (c) then (yes)
+  note left: left note
+  note right
+    right note
+    on two lines
+  end note
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== note on if down
+start
+if (c) then (yes)
+  note left: on down
+  :a;
+endif
+stop
+=== note on if down right
+start
+if (c) then (yes)
+  note right: on down
+  :a;
+endif
+stop
+=== long labels
+start
+if (this is a very long test condition that is long) then (this is the yes label which is long)
+  :a;
+else (and this is the no label, quite long too)
+  :b;
+endif
+stop
+=== multiline test
+start
+if (first line\nsecond line\nthird) then (yes\nsure)
+  :a;
+else (no\nnever)
+  :b;
+endif
+stop
+=== url on if
+start
+[[http://plantuml.com]] if (linked?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== url tooltip on if
+start
+[[http://plantuml.com{tip}]] if (linked?) then (yes)
+  :a;
+endif
+stop
+=== colored if
+start
+#pink:if (colored?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== colored elseif
+start
+#pink:if (a?) then (yes)
+  :a;
+#palegreen:elseif (b?) then (yes)
+  :b;
+else (no)
+  :c;
+endif
+stop
+=== arrow colors in branches
+start
+if (c) then (yes)
+  -[#red]->
+  :a;
+  -[#blue]->
+else (no)
+  -[#green,dashed]-> label;
+  :b;
+endif
+-[#orange]->
+:after;
+=== arrow labels in branches
+start
+if (c) then (yes)
+  -> into a;
+  :a;
+  -> out of a;
+else (no)
+  :b;
+  -> out of b;
+endif
+:after;
+=== then kill
+start
+if (c) then (yes)
+  :a;
+  kill
+else (no)
+  :b;
+endif
+stop
+=== else detach
+start
+if (c) then (yes)
+  :a;
+else (no)
+  :b;
+  detach
+endif
+stop
+=== both stop
+start
+if (c) then (yes)
+  :a;
+  stop
+else (no)
+  :b;
+  stop
+endif
+=== then stop else empty
+start
+if (c) then (yes)
+  stop
+endif
+:after;
+stop
+=== then end
+start
+if (c) then (yes)
+  end
+else (no)
+  :b;
+endif
+:after;
+=== then spot
+start
+if (c) then (yes)
+  (A)
+else (no)
+  :b;
+endif
+:after;
+=== empty both
+start
+if (c) then (yes)
+else (no)
+endif
+stop
+=== empty then
+start
+if (c) then (yes)
+else (no)
+  :b;
+endif
+stop
+=== goto in branch
+start
+label here
+:a;
+if (again?) then (yes)
+  goto here
+else (no)
+  :b;
+endif
+stop
+=== break in loop if
+start
+while (w?)
+  if (c) then (yes)
+    break
+  endif
+  :a;
+endwhile
+stop
+=== endif colors
+start
+if (c) then (yes)
+  :a;
+else (no)
+  :b;
+endif <<#pink>>
+stop
+=== stereotype if
+start
+if <<s>> (c) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+=== if is equals
+start
+if (x) is (1) then
+  :one;
+elseif (x) equals (2) then
+  :two;
+else
+  :other;
+endif
+stop
+=== many elseif
+start
+if (1) then
+:a;
+elseif (2) then
+:b;
+elseif (3) then
+:c;
+elseif (4) then
+:d;
+elseif (5) then
+:e;
+elseif (6) then
+:f;
+endif
+stop
+=== elseif all stop
+start
+if (1) then
+stop
+elseif (2) then
+stop
+else
+stop
+endif
+=== elseif else stop
+start
+if (1) then
+:a;
+elseif (2) then
+:b;
+else
+stop
+endif
+:after;
+=== elseif break
+while (w)
+if (1) then
+break
+elseif (2) then
+:b;
+endif
+endwhile
+=== nested deep
+start
+if (a) then
+  if (b) then
+    if (c) then
+      :abc;
+    else
+      :ab;
+    endif
+  else
+    :a;
+  endif
+endif
+stop
+=== handwritten
+skinparam handwritten true
+if (c) then
+:a;
+else
+:b;
+endif
+=== arrow alignment center
+skinparam ArrowMessageAlignment center
+if (c) then (yes)
+  -> lbl;
+  :a;
+else (no)
+  :b;
+endif
+=== diamond style colors
+<style>
+activityDiagram {
+  diamond {
+    BackgroundColor #palegreen
+    LineColor #green
+    FontColor red
+    FontSize 14
+  }
+}
+</style>
+if (styled?) then (yes)
+:a;
+else (no)
+:b;
+endif
+=== arrow style
+<style>
+activityDiagram {
+  arrow {
+    LineColor blue
+    FontColor red
+  }
+}
+</style>
+if (styled?) then (yes)
+:a;
+else (no)
+:b;
+endif
+=== creole test
+if (**bold** and //italic// <color:red>red</color>) then (yes)
+:a;
+endif
+=== if then else inside swimlanes 3 lanes
+|L1|
+start
+|L2|
+if (q) then (y)
+|L3|
+:a;
+|L2|
+else (n)
+|L1|
+:b;
+endif
+|L2|
+stop

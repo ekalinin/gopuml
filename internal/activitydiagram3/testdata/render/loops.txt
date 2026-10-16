@@ -1,0 +1,596 @@
+=== while simple
+start
+while (data available?)
+  :read data;
+  :generate diagrams;
+endwhile
+stop
+=== while is not
+start
+while (check filesize ?) is (not empty)
+  :read file;
+endwhile (empty)
+:close file;
+stop
+=== while empty body
+start
+while (forever?)
+endwhile
+:after;
+=== while empty body labels
+while (c) is (yes)
+endwhile (no)
+stop
+=== while long test
+start
+while (this is a very long condition text that goes on and on?) is (yes it is true)
+  :a;
+endwhile (finally no)
+:b;
+=== while multiline test
+while (first line\nsecond line\nthird line) is (yes)
+  :a;
+endwhile
+=== while backward
+start
+while (c?) is (yes)
+  :a;
+  backward:back;
+endwhile (no)
+stop
+=== while backward style
+while (c?)
+  :a;
+  backward:back; <<input>>
+endwhile
+=== while backward arrow labels
+while (c?) is (yes)
+  :a;
+  -> into backward;
+  backward:back;
+  -> out of backward;
+endwhile (no)
+=== while backward multiline
+while (c?)
+  :a;
+  :b;
+  backward:going\nback\nnow;
+endwhile
+=== while break
+start
+while (c?)
+  :a;
+  break
+endwhile
+:after;
+stop
+=== while break after actions
+while (c?) is (yes)
+  :a;
+  :b;
+  break
+endwhile (no)
+:z;
+=== while kill
+while (c?)
+  :a;
+  kill
+endwhile
+:z;
+=== while detach
+while (c?)
+  :a;
+  detach
+endwhile
+=== while stop after
+start
+while (c?)
+  :a;
+endwhile
+stop
+=== while end after
+start
+while (c?) is (yes)
+  :a;
+endwhile (no)
+end
+=== while stop after label
+start
+while (c?) is (yes)
+  :a;
+endwhile (done)
+stop
+=== while kill after
+while (c?)
+  :a;
+endwhile
+kill
+=== while nested
+start
+while (outer?)
+  :a;
+  while (inner?)
+    :b;
+  endwhile
+  :c;
+endwhile
+stop
+=== while nested backward
+while (outer?)
+  while (inner?)
+    :b;
+    backward:ib;
+  endwhile
+  backward:ob;
+endwhile
+=== while arrow labels inside
+while (c?)
+  -> first;
+  :a;
+  -> second;
+  :b;
+endwhile
+=== while colored arrows
+while (c?)
+  -[#red]->
+  :a;
+  -[#blue,dashed]-> lbl;
+  :b;
+endwhile
+-[#green]-> out;
+:z;
+=== while colored diamond
+#yellow:while (c?) is (yes)
+  :a;
+endwhile
+=== while color endwhile arrow
+while (c?)
+  :a;
+endwhile
+-[#red]->
+:z;
+=== while bold arrow
+while (c?)
+  :a;
+  -[bold]->
+endwhile
+=== while hidden arrow
+while (c?)
+  :a;
+  -[hidden]->
+endwhile
+=== while condition inside hexagon
+skinparam conditionStyle inside
+while (c?) is (yes)
+  :a;
+endwhile (no)
+=== while condition diamond
+skinparam conditionStyle diamond
+while (c?) is (yes)
+  :a;
+endwhile (no)
+=== while condition empty diamond
+skinparam conditionStyle InsideDiamond
+while (c?) is (yes)
+  :a;
+endwhile (no)
+=== while condition foo1
+skinparam conditionStyle foo1
+while (c?) is (yes)
+  :a;
+endwhile (no)
+=== while swimlanes same lane
+|A|
+start
+while (c?)
+  :a;
+endwhile
+stop
+=== while swimlanes body other lane
+|A|
+start
+while (c?)
+  |B|
+  :b;
+endwhile
+|A|
+stop
+=== while swimlanes three lanes
+|A|
+start
+:x;
+while (c?) is (yes)
+  |B|
+  :b;
+  |C|
+  :c;
+endwhile (no)
+|A|
+:y;
+=== while swimlanes backward
+|A|
+while (c?)
+  :a;
+  |B|
+  backward:back;
+endwhile
+=== while swimlanes back lane
+|A|
+:a0;
+|B|
+while (c?)
+  :b;
+  |A|
+  :a;
+endwhile
+|B|
+:b2;
+=== while then repeat
+while (c?)
+  :a;
+endwhile
+repeat
+  :b;
+repeat while (d?)
+=== repeat simple
+start
+repeat
+  :read data;
+  :generate diagrams;
+repeat while (more data?)
+stop
+=== repeat labels
+start
+repeat :foo as starting label;
+  :read data;
+  :generate diagrams;
+repeat while (more data?) is (yes) not (no)
+stop
+=== repeat start label style
+repeat :start; <<output>>
+  :a;
+repeat while (c?)
+=== repeat backward
+start
+repeat
+  :a;
+  backward:This is backward;
+repeat while (c?) is (yes)
+stop
+=== repeat backward note
+repeat
+  :a;
+  backward:back;
+  note right: a note on backward
+repeat while (c?)
+=== repeat backward style
+repeat
+  :a;
+  backward:back; <<procedure>>
+repeat while (c?)
+=== repeat arrow color
+repeat
+  :a;
+repeat while (c?) -[#red]->
+:z;
+=== repeat arrow label
+repeat
+  :a;
+repeatwhile (c?) -[#blue]-> back label;
+:z;
+=== repeat arrow dashed
+repeat
+  :a;
+repeat while (c?) -[dashed]-> loop;
+=== repeat while multiline
+repeat
+  :a;
+repeat while (line one\nline two) is (y) not (n)
+=== repeat break
+start
+repeat
+  :a;
+  break
+repeat while (c?)
+:after;
+=== repeat break after action
+repeat
+  :a;
+  :b;
+  break
+repeat while (c?) is (yes)
+:z;
+stop
+=== repeat kill
+repeat
+  :a;
+  kill
+repeat while (c?)
+=== repeat detach
+repeat
+  :a;
+  detach
+repeat while (c?)
+:z;
+=== repeat kill after
+repeat
+  :a;
+repeat while (c?)
+kill
+=== repeat stop after
+repeat
+  :a;
+repeat while (c?)
+stop
+=== repeat empty
+repeat
+repeat while (c?)
+=== repeat empty test
+repeat
+  :a;
+repeat while ()
+=== repeat no test
+repeat
+  :a;
+repeat while
+:z;
+=== repeat nested
+repeat
+  :a;
+  repeat
+    :b;
+  repeat while (inner?)
+repeat while (outer?)
+=== repeat in while
+while (outer?)
+  repeat
+    :b;
+  repeat while (inner?)
+endwhile
+=== while in repeat
+repeat
+  while (inner?)
+    :b;
+  endwhile
+repeat while (outer?)
+=== repeat arrows inside
+repeat
+  -> lbl1;
+  :a;
+  -[#red]-> lbl2;
+  :b;
+repeat while (c?)
+=== repeat colored
+#pink:repeat
+  :a;
+repeat while (c?) <<#blue>>
+=== repeat condition inside
+skinparam conditionStyle inside
+repeat
+  :a;
+repeat while (c?) is (yes) not (no)
+=== repeat condition inside last
+skinparam conditionStyle inside
+:z;
+repeat
+  :a;
+repeat while
+=== repeat condition diamond
+skinparam conditionStyle InsideDiamond
+repeat
+  :a;
+repeat while (c?) is (yes) not (no)
+=== repeat condition empty diamond
+skinparam conditionStyle diamond
+repeat
+  :a;
+repeat while (c?) is (yes) not (no)
+=== repeat swimlanes same
+|A|
+repeat
+  :a;
+repeat while (c?)
+=== repeat swimlanes body other
+|A|
+:x;
+repeat
+  |B|
+  :b;
+  |A|
+repeat while (c?)
+=== repeat swimlanes test other
+|A|
+repeat
+  :a;
+  |B|
+  :b;
+repeat while (c?)
+|A|
+:z;
+=== repeat swimlanes right lane
+|A|
+:x;
+|B|
+repeat
+  :b;
+  |A|
+  :a;
+  |B|
+repeat while (c?)
+=== repeat swimlanes backward lane
+|A|
+repeat
+  :a;
+  |B|
+  backward:back;
+|A|
+repeat while (c?)
+=== repeat swimlanes backward left
+|A|
+:x;
+|B|
+repeat
+  :b;
+  |A|
+  backward:back;
+|B|
+repeat while (c?) is (yes) not (no)
+=== repeat swimlanes backward inside
+skinparam conditionStyle inside
+|A|
+:x;
+|B|
+repeat
+  :b;
+  |A|
+  backward:back;
+|B|
+repeat while (c?) is (yes) not (no)
+=== repeat long labels
+repeat
+  :a very long action label that is wide;
+repeat while (a very very long test condition here?) is (a long yes label) not (a long no label)
+=== loops with start stop
+start
+:init;
+repeat
+  :step;
+  while (sub?)
+    :x;
+    backward:y;
+  endwhile
+repeat while (again?) is (yes)
+-> done;
+stop
+=== while two breaks
+while (c?)
+  :a;
+  break
+  :b;
+endwhile
+=== repeat two breaks
+repeat
+  :a;
+  break
+  :b;
+  break
+repeat while (c?)
+=== while rainbow arrows
+while (c?)
+  -[#red;#blue]->
+  :a;
+  -[#green;#yellow;#black]-> label;
+endwhile
+-[#red;#green]->
+:z;
+=== repeat rainbow back
+repeat
+  :a;
+repeat while (c?) -[#red;#blue]-> back;
+=== while break and stop after
+while (c?)
+  :a;
+  break
+endwhile
+stop
+=== while swimlane cross backward label
+|A|
+while (c?) is (yes)
+  |B|
+  :b;
+  -> to back;
+  |A|
+  backward:back;
+endwhile (no)
+=== repeat swimlane cross labels
+|A|
+repeat
+  |B|
+  :b;
+  -> lbl;
+  |A|
+  :a;
+repeat while (c?) is (yes) not (no) -[#red]-> again;
+=== repeat inside last noout
+skinparam conditionStyle inside
+repeat
+  :a;
+repeat while
+=== repeat break swimlanes
+|A|
+repeat
+  :a;
+  |B|
+  :b;
+  break
+|A|
+repeat while (c?)
+:z;
+=== while break swimlanes
+|A|
+while (c?)
+  |B|
+  :b;
+  break
+endwhile
+|A|
+:z;
+=== repeat start label arrow
+:x;
+-> into repeat;
+repeat :start;
+  :a;
+repeat while (c?)
+=== while with arrow before
+:x;
+-> into while;
+while (c?)
+  :a;
+endwhile
+=== while label overwrite
+while (c?)
+-> overwritten yes;
+  :a;
+endwhile
+=== while long endwhile label
+while (c?)
+  :a;
+endwhile (this is a quite long label for the exit)
+:z;
+=== repeat entry colored action
+#lightblue:repeat :start;
+  :a;
+repeat while (c?) <<#pink>>
+=== repeat stereotype test color
+repeat
+  :a;
+repeat while (c?) <<#orange>>
+=== handwritten loops
+skinparam handwritten false
+skinparam ArrowColor red
+skinparam ActivityDiamondBackgroundColor yellow
+while (c?)
+  :a;
+endwhile
+repeat
+  :b;
+repeat while (d?)
+=== style arrow loops
+<style>
+activityDiagram {
+  arrow {
+    LineColor blue
+    FontColor green
+  }
+  diamond {
+    BackgroundColor pink
+    LineColor red
+  }
+}
+</style>
+while (c?) is (yes)
+  :a;
+endwhile (no)
+repeat
+  :b;
+repeat while (d?) is (y) not (n)

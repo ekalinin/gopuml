@@ -1,0 +1,14 @@
+@startuml
+|Lane1|
+start
+switch (x)
+case (a)
+  |Lane2|
+  :A;
+case (b)
+  |Lane1|
+  :B;
+endswitch
+|Lane1|
+stop
+@enduml

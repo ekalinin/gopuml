@@ -1,0 +1,11 @@
+@startuml
+|L1|
+start
+:A;
+|L2|
+note right: in L2
+:B;
+|L1|
+:C;
+stop
+@enduml

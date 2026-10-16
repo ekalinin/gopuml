@@ -8,15 +8,21 @@ package activitydiagram3
 import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
 
-// Swimlane is a lane of an activity diagram. The layout fields (translation,
-// actual width, MinMax) are added with the ftile layout.
+// Swimlane is a lane of an activity diagram, with its layout (translation,
+// actual width and bounds of its drawing).
 type Swimlane struct {
 	name    string
 	order   int
 	display *klimt.Display
 	colors  *color.Colors
+
+	translate   klimt.UTranslate
+	actualWidth float64
+	minMax      *geom.MinMax
 }
 
 // NewSwimlane returns the lane name at position order.
@@ -52,6 +58,30 @@ func (s *Swimlane) SetSpecificColorTOBEREMOVED(typ color.ColorType, c color.HCol
 
 // SetColors sets the colors.
 func (s *Swimlane) SetColors(colors *color.Colors) { s.colors = colors }
+
+// Translate returns the position of the lane.
+func (s *Swimlane) Translate() klimt.UTranslate { return s.translate }
+
+// SetTranslate sets the position of the lane.
+func (s *Swimlane) SetTranslate(translate klimt.UTranslate) { s.translate = translate }
+
+// SetWidth sets the actual width of the lane.
+func (s *Swimlane) SetWidth(actualWidth float64) { s.actualWidth = actualWidth }
+
+// ActualWidth returns the actual width of the lane.
+func (s *Swimlane) ActualWidth() float64 { return s.actualWidth }
+
+// SetMinMax sets the bounds of the drawing of the lane.
+func (s *Swimlane) SetMinMax(minMax geom.MinMax) { s.minMax = &minMax }
+
+// MinMax returns the bounds of the drawing of the lane; it panics before
+// they are set, as upstream dereferences null.
+func (s *Swimlane) MinMax() geom.MinMax {
+	if s.minMax == nil {
+		uml.ThrowNPE("")
+	}
+	return *s.minMax
+}
 
 // CompareTo orders lanes by position.
 func (s *Swimlane) CompareTo(other *Swimlane) int {

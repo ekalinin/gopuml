@@ -1,0 +1,15 @@
+@startuml
+switch (a very long test condition here?)
+case (c1)
+  :Action one;
+case (c2)
+  :Two;
+case (c3)
+  :Three is longer;
+case (c4)
+  :4;
+case (c5)
+  :Five;
+endswitch
+:after;
+@enduml

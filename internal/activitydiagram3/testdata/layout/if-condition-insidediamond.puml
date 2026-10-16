@@ -1,0 +1,10 @@
+@startuml
+skinparam conditionStyle InsideDiamond
+start
+if (test in diamond?) then (yes)
+  :a;
+else (no)
+  :b;
+endif
+stop
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+repeat
+  :a;
+  backward:back;
+  note right: a note on backward
+repeat while (c?)
+@enduml

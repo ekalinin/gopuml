@@ -1,0 +1,445 @@
+=== note right on action
+start
+:Action;
+note right: a note
+stop
+=== note left on action
+start
+:Action;
+note left: a note
+stop
+=== note right long
+:Action;
+note right
+  first line
+  second line
+  ----
+  //third// **bold**
+end note
+:Next;
+=== note left long
+:A;
+note left
+  line 1
+  line 2
+end note
+=== note on start
+start
+note right: started
+:A;
+=== note on stop
+:A;
+stop
+note left: done
+=== note on end
+:A;
+end
+note right: the end
+=== note on spot
+:A;
+(B)
+note right: spot note
+=== note on empty then action
+note left: alone
+:A;
+=== floating note
+:A;
+floating note left: floating
+:B;
+=== floating note right
+:A;
+floating note right
+  floating
+  long
+end note
+:B;
+=== note color
+:A;
+note right #pink: pink note
+=== note color long
+:A;
+note left #lightblue
+  colored
+end note
+=== note stereotype
+<style>
+.important {
+  BackgroundColor red
+}
+</style>
+:A;
+note right <<important>>: stereo
+=== two notes on action
+:A;
+note left: left one
+note right: right one
+=== three notes on action
+:A;
+note left: left one
+note left: left two
+note right: right one
+=== two notes right
+:A;
+note right: one
+note right: two
+=== creole note
+:A;
+note right
+  * bullet 1
+  * bullet 2
+  <b>bold</b> <i>italic</i>
+  ""mono""
+end note
+=== note url
+:A;
+note right: see [[http://example.com link]]
+=== note wide
+:A;
+note right: a very very very long note text that goes on and on and on
+:B;
+=== notes chain
+start
+:A;
+note right: na
+:B;
+note left: nb
+:C;
+note right: nc
+stop
+=== note in swimlanes same lane
+|L1|
+start
+:A;
+note right: in L1
+|L2|
+:B;
+stop
+=== note in swimlanes other lane
+|L1|
+start
+:A;
+|L2|
+note right: in L2
+:B;
+|L1|
+:C;
+stop
+=== note in swimlanes left
+|L1|
+:A;
+|L2|
+:B;
+note left: left of B
+:C;
+=== note on first swimlane action
+|A|
+:x;
+note left: left
+|B|
+:y;
+note right: right
+=== partition simple
+partition P {
+  :A;
+  :B;
+}
+=== partition with start stop
+start
+partition Part {
+  :A;
+}
+stop
+=== partition color
+partition P #lightgreen {
+  :A;
+}
+=== partition long title
+partition "A very long partition title here" {
+  :A;
+}
+=== partition empty
+start
+partition Empty {
+}
+stop
+=== nested partitions
+partition Outer {
+  :A;
+  partition Inner {
+    :B;
+  }
+  :C;
+}
+=== package group
+package Pkg {
+  :A;
+}
+=== rectangle group
+rectangle Rect {
+  :A;
+}
+=== card group
+card Crd {
+  :A;
+}
+=== group group
+group Grp
+  :A;
+end group
+=== partition with note
+partition P {
+  note right: on partition
+  :A;
+}
+=== partition note on content
+partition P {
+  :A;
+  note right: inner note
+}
+=== partition in swimlanes
+|L1|
+start
+partition P {
+  :A;
+}
+|L2|
+:B;
+stop
+=== partition across swimlanes
+|L1|
+partition P {
+  :A;
+  |L2|
+  :B;
+}
+=== skinparam note
+skinparam NoteBackgroundColor yellow
+skinparam NoteBorderColor blue
+:A;
+note right: styled
+=== style note
+<style>
+activityDiagram {
+  note {
+    BackgroundColor lightgreen
+    FontColor red
+    LineColor green
+  }
+}
+</style>
+:A;
+note left: styled note
+=== style partition
+<style>
+activityDiagram {
+  partition {
+    BackgroundColor lightyellow
+    LineColor red
+    RoundCorner 15
+  }
+}
+</style>
+partition P {
+  :A;
+}
+=== skinparam partition
+skinparam PartitionBackgroundColor pink
+skinparam PartitionBorderColor red
+partition P {
+  :A;
+}
+=== note arrow label
+:A;
+note right: n
+-> label;
+:B;
+=== partition arrow label
+:Z;
+-> into;
+partition P {
+  :A;
+}
+-> out;
+:B;
+=== kill in partition
+partition P {
+  :A;
+  kill
+}
+=== note on detach
+:A;
+detach
+note right: detached
+=== shadowing note
+skinparam shadowing true
+:A;
+note right: shadow
+=== partition in group
+group G
+  partition P {
+    :A;
+  }
+end group
+=== title and partition
+title My title
+partition P {
+  :A;
+}
+=== note text alignment
+skinparam noteTextAlignment center
+:A;
+note right
+  short
+  a longer line
+end note
+=== note text alignment right
+skinparam noteTextAlignment right
+:A;
+note left
+  short
+  a longer line
+end note
+=== note max width
+<style>
+activityDiagram {
+  note {
+    MaximumWidth 60
+  }
+}
+</style>
+:A;
+note right: this note text is long enough to be wrapped by the maximum width
+=== note round corner
+<style>
+activityDiagram {
+  note {
+    RoundCorner 10
+  }
+}
+</style>
+:A;
+note right: rounded
+=== note line thickness
+<style>
+activityDiagram {
+  note {
+    LineThickness 2
+  }
+}
+</style>
+:A;
+note left: thick
+=== partition arrow label wide
+partition P {
+  :A;
+  -> a very long arrow label sticking out of the box;
+  :B;
+}
+=== partition title bigger
+partition "Some long long long title for the partition" {
+  :x;
+}
+=== partition multiline title
+partition "line one\nline two" {
+  :x;
+}
+=== rectangle color
+rectangle R #lightblue {
+  :A;
+}
+=== card color
+card C #orange {
+  :A;
+}
+=== package color
+package P #ccffcc {
+  :A;
+}
+=== partition then actions
+:before;
+partition P {
+  :inside;
+}
+:after;
+=== partitions sequence
+partition P1 {
+  :a;
+}
+partition P2 {
+  :b;
+}
+=== note on label and goto
+label lbl
+note right: on label
+:A;
+=== note on first and last
+start
+note left: first
+:A;
+stop
+note right: last
+=== notes in three lanes
+|A|
+:a;
+note left: na
+|B|
+:b;
+note right: nb
+|C|
+:c;
+note left: nc
+=== note long in lane other
+|A|
+:a;
+|B|
+note right
+  long note
+  in lane B
+end note
+:b;
+=== note colored lane
+|#pink|A|
+:a;
+note right: n
+|B|
+:b;
+=== partition nested deep
+partition A {
+  partition B {
+    partition C {
+      :x;
+    }
+  }
+}
+=== partition with stop
+partition P {
+  :A;
+  stop
+}
+=== partition with end
+partition P {
+  :A;
+  end
+}
+=== group note empty with color
+group G
+  note right #pink: colored group note
+  :A;
+end group
+=== floating note in lane
+|A|
+:a;
+|B|
+floating note right: float B
+:b;
+=== note dashed partition style
+<style>
+activityDiagram {
+  partition {
+    LineStyle 5
+  }
+}
+</style>
+partition P {
+  :A;
+}

@@ -1,0 +1,10 @@
+@startuml
+start
+if (c) then (yes)
+  note right: a note on the test
+  :a;
+else (no)
+  :b;
+endif
+stop
+@enduml

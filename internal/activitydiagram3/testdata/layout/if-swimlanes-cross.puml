@@ -1,0 +1,13 @@
+@startuml
+|A|
+start
+if (c?) then (yes)
+  |B|
+  :in B;
+else (no)
+  |A|
+  :in A;
+endif
+|A|
+stop
+@enduml

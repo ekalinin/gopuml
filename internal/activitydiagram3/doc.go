@@ -2,22 +2,26 @@
 // Provenance: original
 
 // Package activitydiagram3 parses, lays out and draws activity diagrams in
-// the new syntax, upstream's activitydiagram3 and activitydiagram3.ftile
-// packages (one Go package: they form a cycle upstream; the ftile files
-// carry the "ftile_" prefix).
+// the new syntax: upstream's activitydiagram3 package with its ftile,
+// ftile.vertical, ftile.vcompact and ftile.vcompact.cond subpackages (one Go
+// package, as they form a cycle upstream; the ftile files carry the
+// "ftile_", "ftile_vertical_", "ftile_vcompact_" and "ftile_vcompact_cond_"
+// prefixes) and svek's UGraphicForSnake.
 //
-// Ported so far: the commands of ActivityDiagramFactory3 in upstream's
-// order (Factory), the diagram (ActivityDiagram3) and the instruction tree
-// it builds (Instruction and its implementations, Branch, LinkRendering,
-// PositionedNote), the lanes (Swimlane, Swimlanes without their drawing),
-// the identity of the box shapes (BoxStyle) and the arrow colors of
-// upstream's decoration package (Rainbow, HtmlColorAndStyle; their line
-// styles are internal/decoration's LinkStyle). The parse result matches
-// upstream's instruction tree, which testdata/upstream/Harness.java dumps
-// for the differential tests.
+// The commands of ActivityDiagramFactory3 (Factory) build the diagram
+// (ActivityDiagram3) and its instruction tree (Instruction and its
+// implementations, Branch, LinkRendering, PositionedNote). The
+// differential tests compare that tree with the one upstream builds, which
+// testdata/upstream/Harness.java dumps.
 //
-// Not ported yet (the ftile layout and the drawing): the createFtile and
-// createGtile methods of the instructions, the ftile factories and their
-// decorations, Swimlanes as a text block, BoxStyle shapes, Recentred and
-// the compression of the diagram. Export returns ErrNotDrawable.
+// ExportDiagram draws the diagram as upstream's getTextBlock: Swimlanes
+// builds the tiles (Ftile) of the instructions with the factory chain
+// (VCompactFactory, then the FtileFactoryDelegator decorators for URLs,
+// assembly, if, switch, while, repeat, fork/split/merge, notes and
+// groups), computes the lane widths, and draws the tiles, their arrows
+// (Snake, merged by UGraphicForSnake), the lane dividers and titles; the
+// result is compressed on both axes (internal/klimt's
+// CompressionXorYBuilder) and recentred, then exported with the
+// annotations through uml.ExportTitled. Upstream's other layout (the Gtile
+// classes behind Gtile.USE_GTILE, which is false) is not ported.
 package activitydiagram3

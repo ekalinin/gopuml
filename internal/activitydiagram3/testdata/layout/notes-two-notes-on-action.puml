@@ -1,0 +1,5 @@
+@startuml
+:A;
+note left: left one
+note right: right one
+@enduml

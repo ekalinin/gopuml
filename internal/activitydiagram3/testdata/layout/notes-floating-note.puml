@@ -1,0 +1,5 @@
+@startuml
+:A;
+floating note left: floating
+:B;
+@enduml

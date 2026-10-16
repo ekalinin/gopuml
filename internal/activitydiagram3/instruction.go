@@ -21,10 +21,12 @@ import (
 )
 
 // Instruction is a node of the instruction tree that the commands build.
-// Upstream's createFtile and createGtile (the layout) are added with the
-// ftile layout step.
+// Upstream's createGtile (the other layout, which upstream never selects)
+// is not ported.
 type Instruction interface {
 	Swimable
+	// CreateFtile builds the tile of the instruction.
+	CreateFtile(factory FtileFactory) Ftile
 	// Add appends an instruction to the current part of a composite
 	// instruction; simple instructions panic, as upstream.
 	Add(other Instruction) command.Result

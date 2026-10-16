@@ -33,9 +33,6 @@ func TestDiagramIdentity(t *testing.T) {
 	if Factory.DiagramType() != core.Activity {
 		t.Errorf("factory type %v", Factory.DiagramType())
 	}
-	if err := d.Export(0); !errors.Is(err, ErrNotDrawable) {
-		t.Errorf("Export = %v", err)
-	}
 }
 
 func TestInstructionTree(t *testing.T) {

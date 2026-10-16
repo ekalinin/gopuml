@@ -1,0 +1,9 @@
+@startuml
+start
+while (c?)
+  :a;
+  break
+endwhile
+:after;
+stop
+@enduml

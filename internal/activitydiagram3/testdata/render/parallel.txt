@@ -1,0 +1,655 @@
+=== switch one case
+start
+switch (test?)
+case (only)
+  :A;
+endswitch
+stop
+=== switch two cases
+start
+switch (test?)
+case (one)
+  :A;
+case (two)
+  :B;
+endswitch
+stop
+=== switch five cases
+switch (a very long test condition here?)
+case (c1)
+  :Action one;
+case (c2)
+  :Two;
+case (c3)
+  :Three is longer;
+case (c4)
+  :4;
+case (c5)
+  :Five;
+endswitch
+:after;
+=== switch empty cases
+switch (x)
+case (a)
+case (b)
+case (c)
+endswitch
+=== switch one empty case
+switch (x)
+case (a)
+endswitch
+=== switch stop in cases
+switch (x)
+case (a)
+  :A;
+  stop
+case (b)
+  :B;
+case (c)
+  :C;
+  kill
+endswitch
+:Z;
+=== switch all stop
+switch (x)
+case (a)
+  stop
+case (b)
+  end
+endswitch
+=== switch first and last stop
+switch (x)
+case (a)
+  stop
+case (b)
+  :B;
+case (c)
+  :C;
+case (d)
+  :D;
+  detach
+endswitch
+:after;
+=== switch colors
+#pink:switch (x)
+case (a)
+  :A;
+case (b)
+  :B;
+endswitch <<#lightblue>>
+=== switch long labels
+switch (some test)
+case (a really really long case label that goes on)
+  :A;
+case (short)
+  :B with a long action text inside it;
+case (x)
+  :C;
+endswitch
+=== switch multiline case
+switch (multi\nline\ntest)
+case (first\nline)
+  :A;
+case (second)
+  :B\nmulti\nline;
+endswitch
+=== switch nested
+switch (outer)
+case (o1)
+  switch (inner)
+  case (i1)
+    :X;
+  case (i2)
+    :Y;
+  endswitch
+case (o2)
+  :Z;
+endswitch
+=== switch arrows
+switch (x)
+case (a)
+  :A;
+  -> out a;
+case (b)
+  -[#red]-> colored;
+  :B;
+case (c)
+  :C;
+  -[#blue,dashed]->
+endswitch
+:end;
+=== switch empty test
+switch ()
+case (a)
+  :A;
+case (b)
+  :B;
+endswitch
+=== switch wide middle
+switch (t)
+case (1)
+  :A;
+case (2)
+  :A very very very wide middle action box;
+case (3)
+  :C;
+endswitch
+=== switch narrow big diamond
+switch (an extremely long condition text that makes the diamond very wide indeed)
+case (1)
+  :A;
+case (2)
+  :B;
+case (3)
+  :C;
+endswitch
+=== switch big diamond two
+switch (an extremely long condition text that makes the diamond very wide indeed)
+case (1)
+  :A;
+case (2)
+  :B;
+endswitch
+=== switch swimlanes
+|Lane1|
+start
+switch (x)
+case (a)
+  |Lane2|
+  :A;
+case (b)
+  |Lane1|
+  :B;
+endswitch
+|Lane1|
+stop
+=== switch swimlanes three
+|A|
+:start;
+switch (x)
+case (one)
+  :in A;
+case (two)
+  |B|
+  :in B;
+case (three)
+  |C|
+  :in C;
+endswitch
+|A|
+:end;
+=== switch case goto
+switch (x)
+case (a)
+  label here
+  :A;
+case (b)
+  :B;
+endswitch
+=== fork two
+start
+fork
+  :A;
+fork again
+  :B;
+end fork
+stop
+=== fork three
+start
+fork
+  :A;
+fork again
+  :B is longer;
+fork again
+  :C;
+end fork
+stop
+=== fork end merge
+start
+fork
+  :A;
+fork again
+  :B;
+end merge
+stop
+=== fork end merge three
+fork
+  :A;
+fork again
+  :B;
+fork again
+  :C;
+end merge
+:after;
+=== fork end fork label
+fork
+  :A;
+fork again
+  :B;
+end fork {or}
+=== fork end fork label long
+fork
+  :A;
+fork again
+  :B;
+end fork {join spec with a long label}
+:after;
+=== fork color
+fork <<#red>>
+  :A;
+fork again
+  :B;
+end fork
+=== fork color merge
+fork <<#green>>
+  :A;
+fork again
+  :B;
+end merge
+=== fork arrows labels
+fork
+  -> in label;
+  :A;
+  -> out label;
+fork again
+  :B;
+  -> other;
+end fork
+=== fork arrows colors
+fork
+  -[#red]->
+  :A;
+  -[#blue]->
+fork again
+  -[#green,bold]-> green;
+  :B;
+end fork
+=== fork kill branches
+fork
+  :A;
+  kill
+fork again
+  :B;
+end fork
+:after;
+=== fork detach branches
+fork
+  :A;
+  detach
+fork again
+  :B;
+  detach
+end fork
+=== fork stop branch
+fork
+  :A;
+  stop
+fork again
+  :B;
+fork again
+  :C;
+  end
+end fork
+:after;
+=== fork empty branches
+fork
+fork again
+end fork
+=== fork one empty
+fork
+  :A;
+fork again
+end fork
+=== fork single
+fork
+  :A;
+end fork
+=== fork nested
+fork
+  fork
+    :A1;
+  fork again
+    :A2;
+  end fork
+fork again
+  :B;
+end fork
+=== fork nested merge
+fork
+  :A;
+fork again
+  fork
+    :B1;
+  fork again
+    :B2;
+  end merge
+end fork
+=== fork swimlanes
+|L1|
+start
+fork
+  :A;
+fork again
+  |L2|
+  :B;
+end fork
+|L1|
+stop
+=== fork swimlanes cross end
+|L1|
+fork
+  :A;
+fork again
+  :B;
+|L2|
+end fork
+:C;
+=== fork swimlanes three
+|One|
+:x;
+fork
+  |Two|
+  :A;
+fork again
+  |Three|
+  :B;
+end fork
+|One|
+:y;
+=== merge swimlanes
+|L1|
+fork
+  :A;
+fork again
+  |L2|
+  :B;
+end merge
+:after;
+=== merge stop branch
+fork
+  :A;
+  stop
+fork again
+  :B;
+end merge
+:after;
+=== merge different widths
+fork
+  :A very very long action;
+fork again
+  :B;
+fork again
+  :C;
+end merge
+=== split two
+start
+split
+  :A;
+split again
+  :B;
+end split
+stop
+=== split three
+split
+  :A;
+split again
+  :B longer;
+split again
+  :C;
+end split
+:after;
+=== split stop branches
+split
+  :A;
+  stop
+split again
+  :B;
+end split
+:after;
+=== split all stop
+split
+  :A;
+  stop
+split again
+  :B;
+  end
+end split
+=== split all kill
+split
+  :A;
+  kill
+split again
+  :B;
+  detach
+end split
+=== split arrows
+split
+  -> in;
+  :A;
+  -> out;
+split again
+  -[#red]->
+  :B;
+end split
+=== split invisible
+split
+  -[hidden]->
+  :A;
+split again
+  -[hidden]->
+  :B;
+end split
+=== split start
+split
+  start
+  :A;
+split again
+  start
+  :B;
+end split
+:C;
+=== split empty
+split
+split again
+end split
+=== split swimlanes
+|L1|
+split
+  :A;
+split again
+  |L2|
+  :B;
+end split
+|L1|
+:C;
+=== split nested fork
+split
+  fork
+    :A;
+  fork again
+    :B;
+  end fork
+split again
+  :C;
+end split
+=== fork in switch
+switch (x)
+case (a)
+  fork
+    :A1;
+  fork again
+    :A2;
+  end fork
+case (b)
+  :B;
+endswitch
+=== switch in fork
+fork
+  switch (x)
+  case (a)
+    :A;
+  case (b)
+    :B;
+  endswitch
+fork again
+  :C;
+end fork
+=== fork label multiline
+fork
+  :A;
+fork again
+  :B;
+end fork {line1\nline2}
+=== fork many
+fork
+  :1;
+fork again
+  :2;
+fork again
+  :3;
+fork again
+  :4;
+fork again
+  :5;
+end fork
+=== switch kill middle
+switch (x)
+case (a)
+  :A;
+case (b)
+  :B;
+  kill
+case (c)
+  :C;
+endswitch
+=== switch out labels
+switch (x)
+case (a)
+  :A;
+  -> done a;
+case (b)
+  :B;
+  -> done b;
+case (c)
+  :C;
+  -> done c;
+endswitch
+=== fork skinparam
+skinparam activityBarColor red
+fork
+  :A;
+fork again
+  :B;
+end fork
+=== switch style
+<style>
+activityDiagram {
+  diamond {
+    BackgroundColor yellow
+    LineColor green
+  }
+}
+</style>
+switch (x)
+case (a)
+  :A;
+case (b)
+  :B;
+endswitch
+=== fork arrows rainbow
+fork
+  -[#red;#green]->
+  :A;
+fork again
+  :B;
+end fork
+=== fork swimlanes all lanes
+|A|
+fork
+  :a;
+fork again
+  |B|
+  :b;
+fork again
+  |C|
+  :c;
+|A|
+end fork
+:z;
+=== fork swimlanes labels
+|A|
+fork
+  -> go a;
+  :a;
+fork again
+  |B|
+  -> go b;
+  :b;
+  -> back;
+|A|
+end fork {done}
+=== split swimlanes stop
+|A|
+split
+  :a;
+  stop
+split again
+  |B|
+  :b;
+|A|
+end split
+:c;
+=== switch swimlanes cross out
+|A|
+switch (x)
+case (one)
+  |B|
+  :b1;
+case (two)
+  |B|
+  :b2;
+case (three)
+  |A|
+  :a3;
+endswitch
+|A|
+:end;
+=== switch case labels with arrows in
+switch (x)
+case (a)
+  -> label in a;
+  :A;
+case (b)
+  :B;
+endswitch
+=== merge three stop middle
+fork
+  :A;
+fork again
+  :B;
+  stop
+fork again
+  :C;
+end merge
+=== fork note free
+fork
+  :A;
+fork again
+  :B;
+end fork
+:C;
+-> lbl;
+:D;
+=== fork inside fork merge swimlanes
+|A|
+fork
+  |B|
+  fork
+    :x;
+  fork again
+    :y;
+  end merge
+fork again
+  |A|
+  :z;
+end fork

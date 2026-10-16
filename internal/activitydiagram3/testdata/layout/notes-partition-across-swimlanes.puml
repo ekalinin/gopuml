@@ -1,0 +1,8 @@
+@startuml
+|L1|
+partition P {
+  :A;
+  |L2|
+  :B;
+}
+@enduml

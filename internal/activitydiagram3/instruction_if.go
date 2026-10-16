@@ -11,9 +11,11 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 )
 
-// Branch is a branch of an "if" or a "switch": its test, its labels and
-// its instructions. The ftile of the branch is added with the layout.
+// Branch is a branch of an "if" or a "switch": its test, its labels, its
+// instructions and their tile.
 type Branch struct {
+	ftile Ftile
+
 	list      *InstructionList
 	labelTest *klimt.Display
 

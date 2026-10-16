@@ -1,0 +1,15 @@
+@startuml
+start
+if (a?) then (yes)
+  if (b?) then (yes)
+    :ab;
+  else (no)
+    :a not b;
+  endif
+else (no)
+  if (c?) then
+    :c;
+  endif
+endif
+stop
+@enduml

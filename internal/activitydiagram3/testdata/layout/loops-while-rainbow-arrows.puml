@@ -1,0 +1,9 @@
+@startuml
+while (c?)
+  -[#red;#blue]->
+  :a;
+  -[#green;#yellow;#black]-> label;
+endwhile
+-[#red;#green]->
+:z;
+@enduml

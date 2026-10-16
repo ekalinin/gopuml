@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: MIT
+// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/ftile/vcompact/FtileFactoryDelegatorAddNote.java
+// Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
+
+package activitydiagram3
+
+import (
+	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/plantuml-in-go/internal/uml"
+)
+
+// FtileFactoryDelegatorAddNote attaches notes to tiles.
+type FtileFactoryDelegatorAddNote struct {
+	FtileFactoryDelegator
+}
+
+// NewFtileFactoryDelegatorAddNote returns the delegator over factory.
+func NewFtileFactoryDelegatorAddNote(factory FtileFactory) *FtileFactoryDelegatorAddNote {
+	return &FtileFactoryDelegatorAddNote{newFtileFactoryDelegator(factory)}
+}
+
+// AddNote implements FtileFactory: a nil ftile (notes on an empty list)
+// gives the first note alone.
+func (d *FtileFactoryDelegatorAddNote) AddNote(ftile Ftile, swimlane *Swimlane, notes []*PositionedNote,
+	verticalAlignment geom.VerticalAlignment) Ftile {
+	if len(notes) == 0 {
+		uml.Throw(uml.IllegalArgumentException, "")
+	}
+	skinParam := d.SkinParam()
+	if ftile == nil {
+		note := notes[0]
+		if note.Colors() != nil {
+			skinParam = klimt.ColorsMute(note.Colors(), skinParam)
+		}
+		return NewFtileNoteAlone(skinParam.Shadowing(nil), note.Display(), skinParam, note.Type() == NoteTypeNote,
+			swimlane)
+	}
+	return FtileWithNoteOpaleCreate(ftile, notes, true, verticalAlignment)
+}

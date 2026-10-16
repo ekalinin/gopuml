@@ -1,0 +1,9 @@
+@startuml
+partition Outer {
+  :A;
+  partition Inner {
+    :B;
+  }
+  :C;
+}
+@enduml

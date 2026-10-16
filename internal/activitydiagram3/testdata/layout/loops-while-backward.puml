@@ -1,0 +1,8 @@
+@startuml
+start
+while (c?) is (yes)
+  :a;
+  backward:back;
+endwhile (no)
+stop
+@enduml

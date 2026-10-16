@@ -1,0 +1,9 @@
+@startuml
+|A|
+repeat
+  :a;
+  |B|
+  backward:back;
+|A|
+repeat while (c?)
+@enduml

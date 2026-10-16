@@ -4,6 +4,8 @@
 package symbol
 
 import (
+	"bytes"
+	"compress/gzip"
 	"io"
 	"maps"
 	"os"
@@ -111,6 +113,8 @@ func describe(shape klimt.UShape) string {
 		return "empty " + d2s(s.Width()) + "," + d2s(s.Height())
 	case *klimt.UHorizontalLine:
 		return "hline"
+	case *klimt.SpecialText:
+		return "SpecialText"
 	}
 	return "?"
 }
@@ -208,6 +212,15 @@ func readLines(t *testing.T, name string) []string {
 	data, err := os.ReadFile(filepath.Join(goldenDir, name))
 	if err != nil {
 		t.Fatal(err)
+	}
+	if strings.HasSuffix(name, ".gz") {
+		r, err := gzip.NewReader(bytes.NewReader(data))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if data, err = io.ReadAll(r); err != nil {
+			t.Fatal(err)
+		}
 	}
 	lines := strings.Split(string(data), "\n")
 	if len(lines) > 0 && lines[len(lines)-1] == "" {

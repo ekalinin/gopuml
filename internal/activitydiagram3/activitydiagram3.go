@@ -5,18 +5,12 @@
 package activitydiagram3
 
 import (
-	"errors"
-
 	"github.com/ekalinin/plantuml-in-go/internal/command"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
-
-// ErrNotDrawable is returned by Export: the ftile layout and the drawing of
-// activity diagrams are not ported yet.
-var ErrNotDrawable = errors.New("drawing of activity diagrams is not implemented yet")
 
 // SwimlaneStrategy tells whether swimlanes may still be declared.
 type SwimlaneStrategy int
@@ -55,10 +49,6 @@ var _ core.TypedDiagram = (*ActivityDiagram3)(nil)
 
 // Description implements core.Diagram: "activity3".
 func (d *ActivityDiagram3) Description() string { return "activity3" }
-
-// Export draws page index of the diagram. Drawing is not ported yet: it
-// returns ErrNotDrawable.
-func (d *ActivityDiagram3) Export(index int) error { return ErrNotDrawable }
 
 // Swimlanes returns the lanes and the instruction tree.
 func (d *ActivityDiagram3) Swimlanes() *Swimlanes { return d.swimlanes }

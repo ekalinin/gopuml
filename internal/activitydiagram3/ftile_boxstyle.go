@@ -9,12 +9,12 @@ import (
 	"strings"
 
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
 	"github.com/ekalinin/plantuml-in-go/internal/uml"
 )
 
 // BoxStyle is the shape of an action box, selected by a stereotype such as
-// <<input>>. Only the identity of the shapes is ported here; their drawing
-// belongs to the ftile layout step.
+// <<input>>.
 type BoxStyle int
 
 // Box styles, in upstream's order.
@@ -84,4 +84,86 @@ func boxStyleOf(stereogroup *klimt.Stereogroup) BoxStyle {
 		}
 	}
 	return BoxStylePlain
+}
+
+const (
+	boxStyleDeltaInputOutput = 10
+	boxStyleDeltaContinuous  = 5.0
+	boxStylePadding          = 5
+)
+
+// DrawMe draws the shape of size width x height (the shield included).
+func (s BoxStyle) DrawMe(ug klimt.UGraphic, width, height, shadowing, roundCorner float64) {
+	width -= s.Shield()
+	if s == BoxStyleSdlProcedure {
+		rect := klimt.URectangleBuild(width, height)
+		rect.SetDeltaShadow(shadowing)
+		ug.Draw(rect)
+		vline := klimt.ULineV(height)
+		ug.Apply(klimt.UTranslateDx(boxStylePadding)).Draw(vline)
+		ug.Apply(klimt.UTranslateDx(width - boxStylePadding)).Draw(vline)
+		return
+	}
+	shape := s.shape(width, height, roundCorner)
+	shape.(klimt.Shadowable).SetDeltaShadow(shadowing)
+	ug.Draw(shape)
+}
+
+// DrawMeDebug draws the bounds of the shape.
+func (s BoxStyle) DrawMeDebug(ug klimt.UGraphic, width, height, shadowing, roundCorner float64) {
+	rect := klimt.URectangleBuild(width, height)
+	rect.SetDeltaShadow(shadowing)
+	ug.Draw(rect)
+}
+
+// shape returns the outline of the shape of size width x height.
+func (s BoxStyle) shape(width, height, roundCorner float64) klimt.UShape {
+	switch s {
+	case BoxStylePlain:
+		return klimt.URectangleBuild(width, height).Rounded(roundCorner)
+	case BoxStyleSdlInput, BoxStyleUmlTrigger:
+		return boxStylePolygon(0, 0, width+boxStyleDeltaInputOutput, 0, width, height/2,
+			width+boxStyleDeltaInputOutput, height, 0, height)
+	case BoxStyleSdlOutput, BoxStyleUmlSendSignal:
+		return boxStylePolygon(0, 0, width, 0, width+boxStyleDeltaInputOutput, height/2, width, height, 0, height)
+	case BoxStyleSdlLoad:
+		return boxStylePolygon(0, 0, width-boxStyleDeltaInputOutput, 0, width, height, boxStyleDeltaInputOutput,
+			height)
+	case BoxStyleSdlSave:
+		return boxStylePolygon(boxStyleDeltaInputOutput, 0, width, 0, width-boxStyleDeltaInputOutput, height, 0,
+			height)
+	case BoxStyleSdlContinuous:
+		result := klimt.UPathNone()
+		result.Add([]float64{boxStyleDeltaContinuous, 0}, geom.SegMoveTo)
+		result.Add([]float64{0, height / 2}, geom.SegLineTo)
+		result.Add([]float64{boxStyleDeltaContinuous, height}, geom.SegLineTo)
+		result.Add([]float64{width - boxStyleDeltaContinuous, 0}, geom.SegMoveTo)
+		result.Add([]float64{width, height / 2}, geom.SegLineTo)
+		result.Add([]float64{width - boxStyleDeltaContinuous, height}, geom.SegLineTo)
+		return result
+	case BoxStyleSdlTask, BoxStyleUmlObject:
+		return klimt.URectangleBuild(width, height)
+	case BoxStyleUmlObjectSignal:
+		return boxStylePolygon(-boxStyleDeltaInputOutput, 0, width, 0, width+boxStyleDeltaInputOutput, height/2,
+			width, height, -boxStyleDeltaInputOutput, height, 0, height/2)
+	case BoxStyleUmlAcceptEvent:
+		return boxStylePolygon(-boxStyleDeltaInputOutput, 0, width, 0, width, height, -boxStyleDeltaInputOutput,
+			height, 0, height/2)
+	case BoxStyleUmlTimeEvent:
+		halfWidth := width / 2
+		thirdHeight := height / 3
+		return boxStylePolygon(halfWidth-thirdHeight, thirdHeight, halfWidth+thirdHeight, thirdHeight,
+			halfWidth-thirdHeight, height, halfWidth+thirdHeight, height)
+	}
+	uml.Throw(uml.IllegalStateException, "")
+	return nil
+}
+
+// boxStylePolygon returns the polygon of the coordinates x0, y0, x1, y1...
+func boxStylePolygon(coords ...float64) *klimt.UPolygon {
+	result := klimt.NewUPolygon()
+	for i := 0; i < len(coords); i += 2 {
+		result.AddPoint(coords[i], coords[i+1])
+	}
+	return result
 }
