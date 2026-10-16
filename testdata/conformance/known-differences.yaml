@@ -1,0 +1,19 @@
+# Cases that differ from the upstream reference on purpose or until a
+# follow-up change. Each entry names the case id, the reason, and the change
+# expected to resolve it (when there is one).
+
+- id: vega/tikz/tikz-scale-up
+  reason: a note embeds a {{ }} use case diagram; description diagrams are not supported yet
+  resolvedBy: add-description-diagrams
+- id: vega/tikz/tikz-scale-down
+  reason: a note embeds a {{ }} use case diagram; description diagrams are not supported yet
+  resolvedBy: add-description-diagrams
+- id: vega/tikz/tikz-scale-nested-scale
+  reason: a note embeds a {{ }} use case diagram; description diagrams are not supported yet
+  resolvedBy: add-description-diagrams
+- id: diagram-source/class-detected
+  reason: TXT output of class diagrams is rejected in this release (output-formats spec); upstream draws it
+  resolvedBy: add-class-activity-txt
+- id: diagram-source/activity-detected
+  reason: TXT output of activity diagrams is rejected in this release (output-formats spec); upstream draws it
+  resolvedBy: add-class-activity-txt
