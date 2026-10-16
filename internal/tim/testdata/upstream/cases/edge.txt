@@ -1,0 +1,822 @@
+=== edge-type-no-space-assign
+--- main
+!$x=1
+!y=2
+A : $x y
+=== edge-if-paren
+--- main
+!if(1)
+A : paren if
+!endif
+=== edge-endif-extra-text
+--- main
+!if 1
+A : x
+!endif some text
+=== edge-else-if-spaced
+--- main
+!if 0
+A : a
+!else if 1
+A : b
+!endif
+=== edge-ifdef-paren
+--- main
+!define X1
+!ifdef(X1)
+A : yes
+!endif
+=== edge-include-suffix-word
+--- main
+!includeX a.iuml
+!include_x a.iuml
+=== edge-procedure-without-space
+--- main
+!procedure$p()
+A : p
+!endprocedure
+$p()
+=== edge-function-tab
+--- main
+!function	$f()
+!return 1
+!endfunction
+A : $f()
+=== edge-define-tab
+--- main
+!define	X	value
+A : X
+=== edge-define-vertical-tab
+--- escaped
+--- main
+!define\u000bX(a) <a>
+A : X(1)
+=== edge-enddefinelong-spaces
+--- main
+!definelong M(a)
+one a
+two a
+!end definelong
+M(x)
+=== edge-endfunction-spaces
+--- main
+!function $f()
+!return 1
+! endfunction
+!end function
+A : $f()
+=== edge-strlen-emoji
+--- main
+A : %strlen("😀a") %upper("😀a")
+=== edge-emoji-in-expression
+--- main
+!$s = "😀" + "x"
+A : $s %strlen($s)
+=== edge-unquoted-nested-parens
+--- main
+!unquoted procedure $p($a)
+[$a]
+!endprocedure
+$p(f(1, 2))
+$p("x, y")
+=== edge-legacy-define-args-trim
+--- main
+!define F(x) <x>
+A : F( a )
+A : F(  "b c"  )
+=== edge-legacy-define-args-nested
+--- main
+!define F(x,y) <x|y>
+A : F(a,(b,c))
+=== edge-legacy-define-json-var
+--- main
+!$d = {"k": "v"}
+!define F(x) <x>
+A : F($d.k)
+=== edge-include-in-procedure
+--- file: body.iuml
+B : included in procedure $arg
+--- main
+!procedure $p($arg)
+!include body.iuml
+!endprocedure
+$p("one")
+$p("two")
+=== edge-include-in-function
+--- file: lib.iuml
+!$r = "R"
+--- main
+!function $f()
+!include lib.iuml
+!return $r
+!endfunction
+A : $f()
+=== edge-sub-in-include
+--- file: subs.iuml
+!startsub S1
+S : from sub in include
+!endsub
+--- main
+!include subs.iuml
+!includesub S1
+=== edge-json-comments-between
+--- main
+!$d = {
+' a comment
+  "a": 1
+}
+A : $d.a
+=== edge-json-if-between
+--- main
+!$d = {
+!if 1
+  "a": 1
+!endif
+}
+A : $d.a
+=== edge-assert-colon-in-string
+--- main
+!assert "a:b" == "x" : "msg"
+=== edge-assert-colon-in-string-ok
+--- main
+!assert "a:b" == "a:b" : "msg"
+A : ok
+=== edge-nested-builtins
+--- main
+!$a = %strlen("x") + 1
+A : %upper(%string(1)) $a %strlen(%upper("ab"))
+=== edge-if-builtins
+--- main
+!if %true()
+A : true
+!endif
+!if %not(%false())
+A : not false
+!endif
+=== edge-while-function-condition
+--- main
+!function $lt($a, $b)
+!return $a < $b
+!endfunction
+!$i = 0
+!while $lt($i, 2)
+A : $i
+!$i = $i + 1
+!endwhile
+=== edge-procedure-declares-function
+--- main
+!procedure $p()
+!function $f()
+!return 1
+!endfunction
+!endprocedure
+=== edge-function-declares-procedure
+--- main
+!function $f()
+!procedure $p()
+!endprocedure
+!return 1
+!endfunction
+A : $f()
+=== edge-definelong-in-procedure
+--- main
+!procedure $p()
+!definelong X
+!enddefinelong
+!endprocedure
+=== edge-legacy-define-pending
+--- main
+!procedure $p()
+!define LD(x) x
+!endprocedure
+A : LD(1)
+=== edge-function-pending-legacy-define
+--- main
+!function $f()
+!define LD(x) x
+!return 1
+!endfunction
+A : LD(1) $f()
+=== edge-define-while-pending-definelong
+--- main
+!definelong DL(a)
+!define X(b) b
+!enddefinelong
+=== edge-return-in-definelong
+--- main
+!definelong DL(a)
+!return 1
+x
+!enddefinelong
+DL(1)
+=== edge-var-inside-quotes-of-function-call
+--- main
+!$v = "V"
+!function $f($a)
+!return "[" + $a + "]"
+!endfunction
+A : $f("$v")
+A : $f($v)
+=== edge-function-arg-with-comma-string
+--- main
+!function $f($a, $b)
+!return $a + "|" + $b
+!endfunction
+A : $f("x,y", "z")
+=== edge-function-call-spaces
+--- main
+!function $f($a, $b)
+!return $a + "|" + $b
+!endfunction
+A : $f( 1 , 2 )
+A : $f (1, 2)
+=== edge-function-zero-arg-call-spaces
+--- main
+!function $f()
+!return "F"
+!endfunction
+A : $f( )
+=== edge-procedure-called-twice-on-line
+--- main
+!procedure $p($a)
+P $a
+!endprocedure
+$p(1) and $p(2)
+=== edge-function-name-like-variable
+--- main
+!$f = "VAR"
+!function $f()
+!return "FUN"
+!endfunction
+A : $f $f()
+=== edge-variable-followed-by-paren
+--- main
+!$v = "V"
+A : $v(1)
+=== edge-percent-variable
+--- main
+!$pct = 5
+A : $pct%
+=== edge-define-from-cli-empty
+--- define: EMPTYDEF=
+--- main
+A : [EMPTYDEF]
+=== edge-define-from-cli-quotes
+--- define: Q="quoted"
+--- main
+A : Q
+=== edge-foreach-modify-list
+--- main
+!$l = [1, 2, 3]
+!foreach $x in $l
+!$l = [9]
+A : $x
+!endfor
+=== edge-foreach-object-values
+--- main
+!$o = {"a": {"v": 1}, "b": {"v": 2}}
+!foreach $k in $o
+A : $k $o[$k].v
+!endfor
+=== edge-while-endwhile-text
+--- main
+!$i = 0
+!while $i < 1
+!$i = $i + 1
+!endwhile trailing
+A : $i
+=== edge-while-inside-false-if
+--- main
+!if 0
+!while 1
+A : never
+!endwhile
+!endif
+A : after
+=== edge-foreach-inside-false-if
+--- main
+!if 0
+!foreach $x in [1, 2]
+A : $x
+!endfor
+!endif
+A : after
+=== edge-if-inside-skipped-while
+--- main
+!while 0
+!if 1
+A : x
+!endif
+!endwhile
+A : after
+=== edge-if-unclosed-in-while
+--- main
+!$i = 0
+!while $i < 2
+!if 1
+A : $i
+!$i = $i + 1
+!endwhile
+=== edge-endif-in-function-without-if
+--- main
+!function $f()
+!endif
+!return 1
+!endfunction
+A : $f()
+=== edge-if-in-function-spanning
+--- main
+!if 1
+!function $f()
+!return 1
+!endfunction
+!endif
+A : $f()
+=== edge-theme-variable-name
+--- file: themes/puml-theme-mine.puml
+skinparam x 1
+--- main
+!$t = "mine"
+!$d = "themes"
+!theme $t from $d
+A : done
+=== edge-theme-uppercase-from
+--- file: themes/puml-theme-mine.puml
+skinparam x 1
+--- main
+!theme mine FROM themes
+=== edge-theme-from-url-sandbox
+--- profile: SANDBOX
+--- main
+!theme mine from https://example.com/themes
+=== edge-theme-nested-include
+--- file: themes/puml-theme-mine.puml
+!include part.iuml
+--- file: themes/part.iuml
+P : part of theme
+--- main
+!theme mine from themes
+=== edge-includesub-relative
+--- file: dir/subs.iuml
+!startsub S
+!include other.iuml
+!endsub
+--- file: dir/other.iuml
+O : other in dir
+--- main
+!includesub dir/subs.iuml!S
+=== edge-include-dot-dot
+--- file: a/one.iuml
+!include ../b/two.iuml
+--- file: b/two.iuml
+T : two
+--- main
+!include a/one.iuml
+=== edge-include-tilde
+--- main
+!include ~/nothing-here.iuml
+=== edge-include-colon-colon
+--- main
+!include ::nothing-here.iuml
+=== edge-include-quoted-name
+--- file: a.iuml
+A : a
+--- main
+!include "a.iuml"
+=== edge-include-trailing-spaces
+--- file: a.iuml
+A : a
+--- main
+!include a.iuml   
+=== edge-include-start-other-type
+--- file: m.puml
+@startmindmap
+* root
+@endmindmap
+--- main
+!include m.puml
+=== edge-include-start-only
+--- file: s.puml
+@startuml
+no end
+--- main
+!include s.puml
+=== edge-include-bom
+--- escaped
+--- file: b.iuml
+﻿B : with bom
+--- main
+!include b.iuml
+=== edge-include-endash
+--- file: e.iuml
+A –> B
+--- main
+!include e.iuml
+=== edge-include-crlf-file
+--- escaped
+--- file: c.iuml
+A : one\u000dB : two
+--- main
+!include c.iuml
+=== edge-include-empty-file
+--- file: empty.iuml
+--- main
+!include empty.iuml
+A : after
+=== edge-include-yaml-unterminated
+--- file: y.iuml
+---
+key: value
+--- main
+!include y.iuml
+A : after
+=== edge-includesub-uncomment
+--- file: s.iuml
+' @startuml
+' !startsub S
+' S : in comment wrapper
+' !endsub
+' @enduml
+--- main
+!includesub s.iuml!S
+=== edge-includedef-uses-vars
+--- main
+@startdef(id=d)
+!$x = 5
+@enddef
+@startuml
+!includedef d
+A : $x
+@enduml
+=== edge-includedef-case
+--- main
+@STARTDEF(ID=D)
+A : upper
+@ENDDEF
+@startuml
+!includedef d
+!includedef D
+@enduml
+=== edge-import-then-include
+--- file: lib.zip
+x
+--- main
+!import lib.zip
+!include inside.iuml
+=== edge-plain-dollar-before-name
+--- main
+!$a = "A"
+A : $$a $a$ \$a
+=== edge-double-hash-only
+--- main
+!$a = "A"
+A : ##$a## ####
+=== edge-backslash-n-variable
+--- main
+!$n = "N"
+!n = "M"
+A : \n \nn $n\n
+=== edge-very-long-line
+--- main
+!$s = "0123456789"
+!$i = 0
+!while $i < 6
+!$s = $s + $s
+!$i = $i + 1
+!endwhile
+A : %strlen($s)
+=== edge-int-min
+--- main
+!$m = -2147483648
+!$n = $m / -1
+!$o = $m - 1
+A : $m $n $o
+=== edge-intval-overflow
+--- main
+!$a = %intval("2147483648")
+=== edge-string-number-compare-equal
+--- main
+!$a = "1" == 1
+!$b = "01" == 1
+!$c = 1 == "01"
+A : $a $b $c
+=== edge-json-bool-compare
+--- main
+!$d = {"t": true}
+!$a = $d.t == "true"
+!$b = $d.t == 1
+A : $a $b
+=== edge-json-number-arith
+--- main
+!$d = {"n": 2}
+!$a = $d.n * 3
+!$b = $d.n + 1
+A : $a $b
+=== edge-json-in-string-concat
+--- main
+!$d = {"o": {"x": 1}}
+!$a = "obj=" + $d.o
+A : $a
+=== edge-json-variable-reassigned-string
+--- main
+!$d = {"a": 1}
+!$d = "plain"
+A : $d $d.a
+=== edge-json-key-with-space
+--- main
+!$d = {"a b": 1, "c-d": 2}
+A : $d["a b"] $d["c-d"] $d.c-d
+=== edge-json-unicode-key
+--- main
+!$d = {"clé": "v"}
+A : $d.clé
+=== edge-json-negative-index
+--- main
+!$d = [1, 2]
+A : $d[-1]
+=== edge-json-nested-brackets
+--- main
+!$d = [[1, 2], [3, [4, 5]]]
+!$i = [1]
+A : $d[1][1][0] $d[$i[0]][0]
+=== edge-json-bracket-unclosed
+--- main
+!$d = [1, 2]
+A : $d[0
+=== edge-json-escape-unicode
+--- main
+!$d = {"s": "é😀"}
+A : $d.s %strlen($d.s)
+=== edge-json-large-number
+--- main
+!$d = {"n": 12345678901234567890}
+A : $d.n
+!$x = $d.n + 1
+A : $x
+=== edge-json-float
+--- main
+!$d = {"f": 0.1}
+!$x = $d.f + 1
+A : $d.f $x
+=== edge-foreach-string-items
+--- main
+!foreach $s in ["a b", "c"]
+!$len = %strlen($s)
+A : $s $len
+!endfor
+=== edge-procedure-recursion
+--- main
+!procedure $count($n)
+!if $n > 0
+C : $n
+$count($n - 1)
+!endif
+!endprocedure
+$count(3)
+=== edge-mutual-recursion
+--- main
+!function $even($n)
+!if $n == 0
+!return 1
+!endif
+!return $odd($n - 1)
+!endfunction
+!function $odd($n)
+!if $n == 0
+!return 0
+!endif
+!return $even($n - 1)
+!endfunction
+A : $even(10) $odd(7)
+=== edge-local-shadow-in-recursion
+--- main
+!function $f($n)
+!local $x = $n
+!if $n > 0
+!$y = $f($n - 1)
+!endif
+!return $x
+!endfunction
+A : $f(3)
+=== edge-global-from-nested-call
+--- main
+!function $inner()
+!$counter = $counter + 1
+!return $counter
+!endfunction
+!$counter = 0
+!function $outer()
+!return $inner() + $inner()
+!endfunction
+A : $outer() $counter
+=== edge-set-variable-in-function
+--- main
+!function $f()
+!$z = %set_variable_value("$gv", "set")
+!return "ok"
+!endfunction
+A : $f() $gv
+=== edge-get-variable-local
+--- main
+!function $f($arg)
+!return %get_variable_value("$arg")
+!endfunction
+A : $f("val")
+=== edge-call-user-func-procedure
+--- main
+!procedure $p()
+P : p
+!endprocedure
+A : %call_user_func("$p")
+=== edge-invoke-procedure-function
+--- main
+!function $f()
+!return 1
+!endfunction
+%invoke_procedure("$f")
+=== edge-invoke-procedure-in-expression
+--- main
+!$x = %invoke_procedure("$p")
+=== edge-eval-variable
+--- main
+!$v = 5
+!$a = %eval("$v * 2")
+A : $a
+=== edge-eval-string-result
+--- main
+A : %eval("\"a\" + \"b\"")
+=== edge-xargs-no-args
+--- main
+@startuml
+A : %xargs(1)
+@enduml
+=== edge-unknown-builtin-in-expression
+--- main
+!$x = %nosuch(1)
+=== edge-unknown-builtin-zero
+--- main
+!$x = %nosuch()
+=== edge-function-call-as-statement
+--- main
+!function $f()
+!return "R"
+!endfunction
+$f()
+=== edge-dollar-function-in-word
+--- main
+!function $f()
+!return "R"
+!endfunction
+A : x$f() _$f() 1$f() é$f()
+=== edge-percent-function-in-word
+--- main
+A : x%strlen("ab") 1%true()
+=== edge-function-after-backslash-n
+--- main
+!function f()
+!return "R"
+!endfunction
+A : \nf() xf()
+=== edge-many-functions-and-vars
+--- main
+!$a = 1
+!$b = 2
+!function $sum($x, $y)
+!return $x + $y
+!endfunction
+A : $sum($a, $b) $sum($sum($a, $b), $sum($b, $a))
+=== edge-option-in-function
+--- main
+!procedure $p()
+!option handwritten true
+!endprocedure
+$p()
+=== edge-option-bad-name
+--- main
+!option 1abc
+=== edge-option-uppercase
+--- main
+!OPTION handwritten true
+=== edge-log-uppercase
+--- main
+!LOG hello
+=== edge-dump-memory-uppercase
+--- main
+!DUMP_MEMORY
+=== edge-undef-uppercase
+--- main
+!$a = 1
+!UNDEF $a
+A : $a
+=== edge-undef-in-function
+--- main
+!$g = 1
+!procedure $p()
+!undef $g
+!endprocedure
+$p()
+A : $g
+=== edge-undef-local-arg
+--- main
+!function $f($a)
+!undef $a
+!return "[" + %get_variable_value("$a") + "]"
+!endfunction
+A : $f(1)
+=== edge-comment-long-with-directive
+--- main
+/'
+!$x = 1
+'/
+A : $x
+=== edge-comment-long-end-same-line-text
+--- main
+/' start
+end '/ A : after
+B : next
+=== edge-comment-inner-in-directive
+--- main
+!$x = 1 /' comment '/
+A : $x
+=== edge-comment-simple-after-directive
+--- main
+!$x = 1 ' not a comment
+A : $x
+=== edge-comment-in-procedure-call
+--- main
+!procedure $p($a)
+P : $a
+!endprocedure
+$p("x") /' trailing '/
+=== edge-blank-lines
+--- main
+
+!$x = 1
+
+A : $x
+
+=== edge-exclamation-only
+--- main
+!
+!!
+A : x
+=== edge-define-redefine-as-variable
+--- main
+!define X 1
+!$X = 2
+A : X $X
+=== edge-legacy-define-overrides-function
+--- main
+!function F($a)
+!return "fn"
+!endfunction
+!define F(a) legacy
+A : F(1)
+=== edge-ifdef-variable-with-dollar
+--- main
+!$v = 1
+!ifdef $v
+A : yes
+!endif
+!ifdef v
+A : no dollar
+!endif
+=== edge-ifndef-function
+--- main
+!function $f()
+!return 1
+!endfunction
+!ifndef $f
+A : no
+!else
+A : exists
+!endif
+=== edge-ifndef-bad
+--- main
+!ifndef (
+!endif
+=== edge-unclosed-function
+--- main
+!function $f()
+!return 1
+=== edge-unclosed-procedure
+--- main
+!procedure $p()
+P : body
+=== edge-unclosed-while
+--- main
+!$i = 0
+!while $i < 2
+A : $i
+!$i = $i + 1
+=== edge-unclosed-foreach
+--- main
+!foreach $x in [1, 2]
+A : $x
+=== edge-endwhile-too-many
+--- main
+!$i = 0
+!while $i < 1
+!$i = $i + 1
+!endwhile
+!endwhile

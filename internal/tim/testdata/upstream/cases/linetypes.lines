@@ -1,0 +1,108 @@
+plain line
+' comment
+   ' indented comment
+/' one line '/
+/' one line '/ text
+/' start of long
+text with '/ end
+!define X
+!define X(a) a
+!define  X  (a)
+!define\u000bX(a)
+!define\u000bX(a) a b
+!definelong X
+!definelong X(a)
+!DEFINE X
+!Define X(a)
+!$x = 1
+!$x=1
+!x = 1
+!$x ?= 1
+!$x ? = 1
+!local $x = 1
+!global $x = 1
+!localx = 1
+! $x = 1
+!$x😀 = 1
+!$😀 = 1
+!$café = 1
+!$Kelvin = 1
+!$x == 1
+!$1x = 1
+!if 1
+!IF 1
+!iF 1
+!ifx
+!if(1)
+!ifdef X
+!ifdefX
+!ifndef X
+!else
+!elseif 1
+!else if 1
+!endif
+!endifx
+!while 1
+!endwhile
+!foreach $x in [1]
+!endfor
+!endforeach
+!function $f()
+!function f()
+!unquoted function $f()
+!final function $f()
+!unquoted final function $f()
+!unquoted  function $f()
+!unquoted\tfunction $f()
+!functionx $f()
+!function\u000b$f()
+!procedure $p()
+!procedure $p()
+!endfunction
+!end function
+!endprocedure
+!enddefinelong
+!end
+!return 1
+!returnx
+!theme foo
+!include foo
+!include_many foo
+!include_once foo
+!includeurl foo
+!include_x foo
+!includex foo
+!includedef foo
+!includesub foo
+!import foo
+!startsub X
+!endsub
+!log x
+!dump_memory
+!option x
+!assert 1
+!undef X
+!pragma layout elk
+!ſtartsub X
+!ıf 1
+!ınclude foo
+ !if 1
+\u000b!if 1
+\t!if 1
+!if 1
+!if 1
+!ifé
+!if_x
+!if1
+!if$
+!definelong X
+@startuml
+!Known = 1
+!unquoted function $f()
+!define X(a)
+!if 1
+!$x = 1
+!$𝐀 = 1
+!$ª = 1
+!$x́ = 1
+!function $f́()

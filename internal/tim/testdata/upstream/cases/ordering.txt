@@ -1,0 +1,167 @@
+=== order-guess-functions-bucket-collision
+--- main
+!function $f($a, $b)
+!return $a + "-" + $b
+!endfunction
+!function $g($x)
+!return "[" + $x + "]"
+!endfunction
+!$v = $f(1 + 1 + 1 + 1 + 1 + 1 + 1 + $g(1), 2)
+A : $v
+=== order-guess-functions-bucket-collision-text
+--- main
+!function $f($a, $b)
+!return $a + "-" + $b
+!endfunction
+!function $g($x)
+!return "[" + $x + "]"
+!endfunction
+A : $f(1 + 1 + 1 + 1 + 1 + 1 + 1 + $g(1), 2)
+=== order-guess-functions-many-parens
+--- main
+!function $g($x)
+!return "<" + $x + ">"
+!endfunction
+!$v = $g((1)+(2)+(3)+(4)+(5)+(6)+(7)+(8)+(9)+(10)+$g(11))
+A : $v
+=== order-overload-zero-args-h
+--- main
+!function $h($a="1")
+!return "one"
+!endfunction
+!function $h($a="1", $b="2")
+!return "two"
+!endfunction
+!function $h($a="1", $b="2", $c="3")
+!return "three"
+!endfunction
+A : $h()
+=== order-overload-zero-args-k
+--- main
+!function $k($a="1", $b="2", $c="3")
+!return "three"
+!endfunction
+!function $k($a="1", $b="2")
+!return "two"
+!endfunction
+!function $k($a="1")
+!return "one"
+!endfunction
+A : $k()
+=== order-overload-named
+--- main
+!function $q($a, $z="z1")
+!return "q2"
+!endfunction
+!function $q($a, $y="y", $z="z2")
+!return "q3"
+!endfunction
+A : $q(1, $z="Z")
+=== order-overload-many-names
+--- main
+!function $alpha($a="1")
+!return "alpha1"
+!endfunction
+!function $alpha($a="1", $b="2")
+!return "alpha2"
+!endfunction
+!function $beta($a="1")
+!return "beta1"
+!endfunction
+!function $beta($a="1", $b="2")
+!return "beta2"
+!endfunction
+!function $gamma($a="1", $b="2")
+!return "gamma2"
+!endfunction
+!function $gamma($a="1", $b="2", $c="3", $d="4")
+!return "gamma4"
+!endfunction
+!function $x1($a="1")
+!return "x1-1"
+!endfunction
+!function $x1($a="1", $b="2", $c="3")
+!return "x1-3"
+!endfunction
+A : $alpha() $beta() $gamma() $gamma(1) $x1()
+=== order-overload-many-functions
+--- main
+!function $f01()
+!return 1
+!endfunction
+!function $f02()
+!return 1
+!endfunction
+!function $f03()
+!return 1
+!endfunction
+!function $f04()
+!return 1
+!endfunction
+!function $f05()
+!return 1
+!endfunction
+!function $f06()
+!return 1
+!endfunction
+!function $f07()
+!return 1
+!endfunction
+!function $f08()
+!return 1
+!endfunction
+!function $f09()
+!return 1
+!endfunction
+!function $f10()
+!return 1
+!endfunction
+!function $f11()
+!return 1
+!endfunction
+!function $f12()
+!return 1
+!endfunction
+!function $f13()
+!return 1
+!endfunction
+!function $f14()
+!return 1
+!endfunction
+!function $f15()
+!return 1
+!endfunction
+!function $f16()
+!return 1
+!endfunction
+!function $f17()
+!return 1
+!endfunction
+!function $f18()
+!return 1
+!endfunction
+!function $f19()
+!return 1
+!endfunction
+!function $f20()
+!return 1
+!endfunction
+!function $f21()
+!return 1
+!endfunction
+!function $f22()
+!return 1
+!endfunction
+!function $f23()
+!return 1
+!endfunction
+!function $ov($a="1")
+!return "ov1"
+!endfunction
+!function $ov($a="1", $b="2")
+!return "ov2"
+!endfunction
+!function $ov($a="1", $b="2", $c="3")
+!return "ov3"
+!endfunction
+A : $ov()

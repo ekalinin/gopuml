@@ -1,0 +1,272 @@
+=== if-else
+--- main
+!$n = 2
+!if $n > 1
+A -> B : many
+!else
+A -> B : one
+!endif
+=== if-elseif
+--- main
+!$n = 2
+!if $n == 1
+A : one
+!elseif $n == 2
+A : two
+!elseif $n == 2
+A : two again
+!else
+A : other
+!endif
+=== if-nested
+--- main
+!$a = 1
+!$b = 0
+!if $a
+!if $b
+A : a and b
+!else
+A : a not b
+!endif
+!else
+!if $b
+A : b not a
+!endif
+!endif
+=== if-nested-false-elseif-evaluated
+--- main
+!if 0
+!if 0
+!elseif $missingfn()
+A : x
+!endif
+!endif
+A : done
+=== if-false-skips-errors
+--- main
+!if 0
+!$x = $missingfn()
+!include missing.iuml
+!assert 1 == 2
+!endif
+A : done
+=== if-unclosed
+--- main
+!if 1
+A : x
+=== if-endif-without-if
+--- main
+A : x
+!endif
+=== if-else-without-if
+--- main
+!else
+=== if-elseif-without-if
+--- main
+!elseif 1
+=== if-uppercase
+--- main
+!IF 1
+A : x
+!ENDIF
+=== if-missing-expression
+--- main
+!if
+A : x
+!endif
+=== if-string-condition
+--- main
+!$s = "abc"
+!if $s == "abc"
+A : equal
+!endif
+!if $s
+A : nonempty
+!endif
+=== if-double-else
+--- main
+!if 0
+A : a
+!else
+A : b
+!else
+A : c
+!endif
+=== ifndef
+--- main
+!$x = 1
+!ifndef $x
+A : no x
+!endif
+!ifndef $y
+A : no y
+!endif
+=== ifdef-else
+--- main
+!ifdef NOTDEFINED
+A : yes
+!else
+A : no
+!endif
+=== while-loop
+--- main
+!$i = 0
+!while $i < 3
+A -> B : $i
+!$i = $i + 1
+!endwhile
+=== while-false
+--- main
+!while 0
+A : never
+!endwhile
+A : after
+=== while-nested
+--- main
+!$i = 0
+!while $i < 2
+!$j = 0
+!while $j < 2
+A : $i $j
+!$j = $j + 1
+!endwhile
+!$i = $i + 1
+!endwhile
+=== while-nested-false-skip
+--- main
+!while 0
+!while 1
+A : inner
+!endwhile
+A : outer
+!endwhile
+A : after
+=== while-infinite
+--- main
+!$i = 0
+!while 1
+!$i = $i + 1
+!endwhile
+=== while-endwhile-without-while
+--- main
+!endwhile
+=== while-missing-expression
+--- main
+!while
+!endwhile
+=== while-in-if
+--- main
+!$i = 0
+!if 1
+!while $i < 2
+A : $i
+!$i = $i + 1
+!endwhile
+!endif
+=== while-998-iterations
+--- main
+!$i = 0
+!while $i < 998
+!$i = $i + 1
+!endwhile
+A : $i
+=== while-1000-iterations
+--- main
+!$i = 0
+!while $i < 1000
+!$i = $i + 1
+!endwhile
+A : $i
+=== foreach-array
+--- main
+!foreach $x in [1, 2, 3]
+A : $x
+!endfor
+=== foreach-variable
+--- main
+!$list = ["a", "b"]
+!foreach $item in $list
+A : $item
+!endfor
+=== foreach-object
+--- main
+!$obj = {"k1": "v1", "k2": "v2"}
+!foreach $k in $obj
+A : $k
+!endfor
+=== foreach-empty
+--- main
+!foreach $x in []
+A : $x
+!endfor
+A : after
+=== foreach-objects-in-array
+--- main
+!$data = [{"name": "a", "v": 1}, {"name": "b", "v": 2}]
+!foreach $e in $data
+A : $e.name = $e.v
+!endfor
+=== foreach-nested
+--- main
+!foreach $a in [1, 2]
+!foreach $b in ["x", "y"]
+A : $a$b
+!endfor
+!endfor
+=== foreach-not-json
+--- main
+!foreach $x in "abc"
+A : $x
+!endfor
+A : after
+=== foreach-endfor-without
+--- main
+!endfor
+=== foreach-missing-in
+--- main
+!foreach $x [1]
+!endfor
+=== foreach-var-after
+--- main
+!foreach $x in [1, 2]
+!endfor
+A : $x
+=== foreach-number
+--- main
+!foreach $x in 5
+!endfor
+=== startsub-basic
+--- main
+!startsub PART1
+A -> B : in sub
+!endsub
+!includesub PART1
+=== startsub-bad-name
+--- main
+!startsub bad-name
+!endsub
+=== startsub-nested
+--- main
+!startsub OUTER
+!startsub INNER
+!endsub
+!endsub
+=== includesub-missing
+--- main
+!includesub NOPE
+=== endsub-alone
+--- main
+!endsub
+=== startsub-unclosed
+--- main
+!startsub OPEN
+A : in open sub
+=== startsub-twice
+--- main
+!startsub S
+A : first
+!endsub
+!startsub S
+A : second
+!endsub
+!includesub S

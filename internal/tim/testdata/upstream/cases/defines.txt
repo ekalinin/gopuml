@@ -1,0 +1,174 @@
+=== define-macro-args
+--- main
+!define SEND(a,b) a -> b
+SEND(Alice,Bob)
+=== define-simple-value
+--- main
+!define FOO bar
+A : FOO
+A : $FOO
+=== define-simple-in-text
+--- main
+!define COLOR red
+!define SIZE 12
+A : COLOR SIZE COLORS XCOLOR
+=== define-no-value
+--- main
+!define EMPTY
+A : [EMPTY]
+=== define-macro-quoted-args
+--- main
+!define MSG(a,b) a says b
+MSG("Alice", "hello, world")
+MSG('Bob', 'it, is')
+=== define-macro-nested-parens
+--- main
+!define WRAP(x) [x]
+WRAP(f(1,2))
+WRAP((a,b))
+=== define-macro-zero-args
+--- main
+!define NOARG() nothing here
+A : NOARG()
+=== define-macro-default-arg
+--- main
+!define GREET(name, greeting="hello") greeting name
+GREET(Bob)
+GREET(Bob, hi)
+=== define-macro-in-macro
+--- main
+!define INNER(x) <x>
+!define OUTER(y) INNER(y)!
+A : OUTER(z)
+=== define-macro-uses-variable
+--- main
+!$v = "VAL"
+!define SHOW(x) x=$v
+SHOW(a)
+=== define-macro-wrong-arity
+--- main
+!define TWO(a,b) a+b
+TWO(1)
+TWO(1,2,3)
+=== define-macro-hash
+--- main
+!define CAT(a,b) a##b
+A : CAT(foo,bar)
+=== define-redefine
+--- main
+!define X 1
+!define X 2
+A : X
+=== define-undef
+--- main
+!define X 1
+!undef X
+A : X
+=== define-undef-macro
+--- main
+!define M(a) <a>
+!undef M
+A : M(1)
+=== definelong-basic
+--- main
+!definelong BLOCK(a, b)
+a -> b : one
+b -> a : two
+!enddefinelong
+BLOCK(Alice, Bob)
+=== definelong-single-line
+--- main
+!definelong ONE(a)
+a -> a
+!enddefinelong
+A : ONE(x)
+ONE(y)
+=== definelong-no-parens
+--- main
+!definelong NOP
+X -> Y
+Y -> X
+!enddefinelong
+NOP()
+=== definelong-prefix-text
+--- main
+!definelong TWO(a)
+first a
+second a
+!enddefinelong
+prefix TWO(x) suffix
+=== definelong-unclosed
+--- main
+!definelong OPEN(a)
+a -> a
+=== define-ifdef
+--- main
+!define DEBUG
+!ifdef DEBUG
+A : debug on
+!endif
+!ifndef DEBUG
+A : debug off
+!endif
+=== define-ifdef-expression
+--- main
+!define A1
+!define B1
+!ifdef A1 && B1
+X : both
+!endif
+!ifdef A1 || C1
+X : either
+!endif
+!ifdef !C1
+X : not c
+!endif
+!ifdef (A1 && !C1) || C1
+X : complex
+!endif
+=== define-ifdef-function
+--- main
+!function $f()
+!return 1
+!endfunction
+!ifdef $f
+X : f exists
+!endif
+=== define-ifdef-bad
+--- main
+!ifdef (
+X : y
+!endif
+=== define-ifdef-trailing
+--- main
+!define A1
+!ifdef A1 B1
+X : y
+!endif
+=== define-unquoted-function-call
+--- main
+!unquoted function $u($a)
+!return "<" + $a + ">"
+!endfunction
+A : $u(hello world)
+A : $u("quoted")
+A : $u(x, y)
+=== define-legacy-uppercase
+--- main
+!DEFINE FOO bar
+A : FOO
+=== define-uses-defined
+--- main
+!define A1 one
+!define B1 A1 two
+A : B1
+=== define-paren-not-call
+--- main
+!define F(x) <x>
+A : F (1)
+A : xF(1)
+A : _F(1)
+=== define-emoji
+--- main
+!define 😀X(a) smile a
+A : 😀X(1)

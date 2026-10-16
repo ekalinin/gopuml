@@ -1,0 +1,217 @@
+=== expr-mul
+--- main
+!$x = 2 * 3
+A -> B : $x
+=== expr-precedence
+--- main
+!$a = 1 + 2 * 3
+!$b = (1 + 2) * 3
+!$c = 10 - 2 - 3
+!$d = 100 / 10 / 5
+!$e = 2 * 3 + 4 * 5
+!$f = 7 / 2
+!$g = -7 / 2
+!$h = 1 - -1
+A : $a $b $c $d $e $f $g $h
+=== expr-compare-int
+--- main
+!$a = 1 < 2
+!$b = 2 < 1
+!$c = 2 <= 2
+!$d = 3 >= 4
+!$e = 3 > 2
+!$f = 3 == 3
+!$g = 3 != 3
+!$h = 1 + 1 == 2
+A : $a $b $c $d $e $f $g $h
+=== expr-compare-string
+--- main
+!$a = "abc" < "abd"
+!$b = "b" > "a"
+!$c = "abc" == "abc"
+!$d = "abc" != "abd"
+!$e = "10" < "9"
+!$f = "Z" < "a"
+!$g = "é" > "z"
+A : $a $b $c $d $e $f $g
+=== expr-compare-mixed
+--- main
+!$a = 10 < "9"
+!$b = "10" == 10
+!$c = 2 == "2"
+A : $a $b $c
+=== expr-logic
+--- main
+!$a = 1 && 0
+!$b = 1 || 0
+!$c = 0 || 0
+!$d = 1 && 2
+!$e = "" || "x"
+!$f = "a" && ""
+!$g = 1 < 2 && 2 < 3
+!$h = 1 > 2 || 2 > 3 && 1
+A : $a $b $c $d $e $f $g $h
+=== expr-string-concat
+--- main
+!$a = "foo" + "bar"
+!$b = "foo" + 1
+!$c = 1 + "foo"
+!$d = "a" - "b"
+!$e = "a" * "b"
+!$f = "a" / "b"
+!$g = "x" + 1 + 2
+!$h = 1 + 2 + "x"
+A : $a|$b|$c|$d|$e|$f|$g|$h
+=== expr-negative
+--- main
+!$a = -5
+!$b = -5 + 3
+!$c = 3 - 5
+!$d = 3-5
+!$e = 3 -5
+!$f = (-5)
+!$g = 2 * -3
+A : $a $b $c $d $e $f $g
+=== expr-int-overflow
+--- main
+!$a = 2147483647 + 1
+!$b = 65536 * 65536
+!$c = -2147483647 - 2
+!$d = 2147483647 * 2
+A : $a $b $c $d
+=== expr-int-parse-overflow
+--- main
+!$a = 2147483648
+A : $a
+=== expr-division-by-zero
+--- main
+!$a = 1 / 0
+A : $a
+=== expr-division-by-zero-in-text
+--- main
+!function $div($a, $b)
+!return $a / $b
+!endfunction
+A : $div(1, 0)
+=== expr-single-quotes
+--- main
+!$a = 'hello'
+!$b = 'it"s'
+!$c = "it's"
+A : $a $b $c
+=== expr-spaces
+--- main
+!$a=1+2
+!$b   =   3   *   4
+!$c = ( 1 + 2 ) * ( 3 + 4 )
+A : $a $b $c
+=== expr-unquoted-word
+--- main
+!$a = foo
+!$b = foo.bar
+!$c = $undefined
+A : $a $b $c
+=== expr-syntax-error-word
+--- main
+!$a = foo bar-baz!
+A : $a
+=== expr-two-values
+--- main
+!$a = 1 2
+!$b = "x" "y"
+A : $a $b
+=== expr-missing
+--- main
+!$a =
+A : $a
+=== expr-unclosed-string
+--- main
+!$a = "abc
+A : $a
+=== expr-unbalanced-paren
+--- main
+!$a = (1 + 2
+A : $a
+=== expr-extra-close-paren
+--- main
+!$a = 1 + 2)
+A : $a
+=== expr-operator-only
+--- main
+!$a = +
+A : $a
+=== expr-dangling-operator
+--- main
+!$a = 1 +
+A : $a
+=== expr-minus-alone
+--- main
+!$a = -
+A : $a
+=== expr-nested-parens
+--- main
+!$a = ((((1))))
+!$b = (2 + (3 * (4 - 1)))
+A : $a $b
+=== expr-bool-in-if
+--- main
+!if 0
+A : zero
+!endif
+!if ""
+A : empty
+!endif
+!if "0"
+A : string zero
+!endif
+!if 1
+A : one
+!endif
+=== expr-not-equals-vs-bang
+--- main
+!$a = 1 != 2
+!$b = !1
+A : $a
+=== expr-leading-zero
+--- main
+!$a = 007
+!$b = 007 + 1
+A : $a $b
+=== expr-unicode-digits
+--- main
+!$a = %intval("١٢٣")
+!$b = %intval("+5")
+!$c = %intval("-0")
+A : $a $b $c
+=== expr-commercial-minus
+--- main
+!$a = 5⁒3
+A : $a
+=== expr-nbsp-space
+--- escaped
+--- main
+!$a = 1 + 2
+A : $a
+=== expr-assignment-in-expression
+--- main
+!$a = 1 = 2
+A : $a
+=== expr-eval-builtin
+--- main
+!$a = %eval("1+2*3")
+!$b = %eval("\"x\"")
+!$c = %eval("10/3")
+A : $a $b $c
+=== expr-eval-error
+--- main
+!$a = %eval("1+")
+A : $a
+=== expr-eval-unknown-function
+--- main
+!$a = %eval("$nofunc(1)")
+A : $a
+=== expr-string-compare-surrogates
+--- escaped
+--- main
+!$a = "\ud83d\ude00" > "\uffff"
+A : $a

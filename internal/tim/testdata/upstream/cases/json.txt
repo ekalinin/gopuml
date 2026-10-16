@@ -1,0 +1,159 @@
+=== json-member-access
+--- main
+!$data = { "name": "api", "ports": [80, 443] }
+A -> B : $data.ports[1]
+=== json-object-print
+--- main
+!$data = { "name": "api", "ports": [80, 443] }
+A : $data
+A : $data.name
+A : $data.ports
+=== json-array
+--- main
+!$a = [1, "two", true, null, {"x": 1}]
+A : $a[0] $a[1] $a[2] $a[3] $a[4] $a[4].x
+=== json-nested
+--- main
+!$d = {"a": {"b": {"c": [10, [20, 30]]}}}
+A : $d.a.b.c[1][0] $d.a.b.c[1]
+=== json-index-variable
+--- main
+!$d = [10, 20, 30]
+!$i = 2
+A : $d[$i] $d[1+1]
+=== json-key-variable
+--- main
+!$d = {"k1": "v1", "k2": "v2"}
+!$k = "k2"
+A : $d[$k] $d["k1"] $d[k1]
+=== json-missing-key
+--- main
+!$d = {"a": 1}
+A : [$d.b]
+=== json-missing-key-bracket
+--- main
+!$d = {"a": 1}
+A : $d[zz]
+=== json-index-out-of-range
+--- main
+!$d = [1]
+A : $d[5]
+=== json-index-not-number
+--- main
+!$d = [1]
+A : $d[x]
+=== json-member-of-array
+--- main
+!$d = [1]
+A : $d.x
+=== json-in-expression
+--- main
+!$d = {"n": 5, "s": "str", "list": [1, 2]}
+!$x = $d.n + 1
+!$y = $d.s + "!"
+!$z = $d.list
+A : $x $y $z
+=== json-compare
+--- main
+!$d = {"n": 5}
+!if $d.n == 5
+A : five
+!endif
+!if $d.n > 3
+A : greater
+!endif
+=== json-multiline
+--- main
+!$d = {
+  "a": 1,
+  "b": [1,
+    2]
+}
+A : $d.a $d.b
+=== json-multiline-unclosed
+--- main
+!$d = {
+  "a": 1,
+=== json-invalid
+--- main
+!$d = {"a": }
+A : $d
+=== json-invalid-next-line-ok
+--- main
+!$d = {"a":
+1}
+A : $d.a
+=== json-string-value
+--- main
+!$d = {"s": "a\"b\\c\nd"}
+A : $d.s
+=== json-unicode
+--- main
+!$d = {"s": "é€"}
+A : $d.s
+=== json-numbers
+--- main
+!$d = {"i": 1, "f": 1.5, "e": 1e3, "n": -0}
+A : $d.i $d.f $d.e $d.n
+=== json-empty
+--- main
+!$o = {}
+!$a = []
+A : $o $a
+=== json-as-function-arg
+--- main
+!function $first($l)
+!return $l[0]
+!endfunction
+!$list = [7, 8]
+A : $first($list)
+=== json-return-from-function
+--- main
+!function $make()
+!return {"k": "v"}
+!endfunction
+!$o = $make()
+A : $o $o.k
+=== json-literal-in-function-call
+--- main
+!function $f($x)
+!return $x
+!endfunction
+A : $f({"a": 1})
+=== json-value-true
+--- main
+!$t = true
+!$j = [true]
+A : $t $j[0]
+!if $j[0]
+A : truthy
+!endif
+=== json-foreach-index
+--- main
+!$d = {"items": [{"name": "x"}, {"name": "y"}]}
+!foreach $it in $d.items
+A : $it.name
+!endfor
+=== json-dot-in-text
+--- main
+!$d = {"a": 1}
+A : $d.a.
+A : $d.a.b
+A : x.$d.a
+=== json-var-hash
+--- main
+!$d = {"a": "X"}
+A : $d.a##Y
+=== json-assign-array-literal
+--- main
+!$arr = [ "a" , "b" ]
+A : $arr[0]$arr[1]
+=== json-member-lookup-expression
+--- main
+!$d = {"items": [10, 20]}
+!$v = $d.items[0] + $d.items[1]
+A : $v
+=== json-array-element-object
+--- main
+!$d = [{"a": [1, {"b": "deep"}]}]
+A : $d[0].a[1].b

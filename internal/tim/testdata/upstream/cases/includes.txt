@@ -1,0 +1,296 @@
+=== include-relative
+--- file: diagrams/main.puml
+@startuml
+!include common/style.iuml
+Alice -> Bob : hi
+@enduml
+--- file: diagrams/common/style.iuml
+Bob -> Carol : from diagrams/common/style.iuml
+--- dir: diagrams
+--- main
+!include common/style.iuml
+Alice -> Bob : hi
+=== include-relative-nested
+--- file: a/one.iuml
+!include b/two.iuml
+one
+--- file: a/b/two.iuml
+two
+--- main
+!include a/one.iuml
+main
+=== include-once-twice
+--- file: a.iuml
+Alice -> Bob : from a.iuml
+--- main
+!include_once a.iuml
+!include_once a.iuml
+=== include-many
+--- file: a.iuml
+A : a
+--- main
+!include_many a.iuml
+!include_many a.iuml
+!include a.iuml
+=== include-missing
+--- main
+Alice -> Bob : hi
+!include missing.iuml
+=== include-missing-in-included
+--- file: a.iuml
+first
+!include nothere.iuml
+--- main
+!include a.iuml
+=== include-error-in-included
+--- file: a.iuml
+ok line
+!$x = $nofunction()
+--- main
+before
+!include a.iuml
+after
+=== include-defines-function
+--- file: lib.iuml
+!function $hello($n)
+!return "Hello " + $n
+!endfunction
+!$libvar = "L"
+--- main
+!include lib.iuml
+A : $hello("you") $libvar
+=== include-startuml-first-block
+--- file: multi.puml
+@startuml
+first block
+@enduml
+@startuml
+second block
+@enduml
+--- main
+!include multi.puml
+=== include-startuml-block-number
+--- file: multi.puml
+@startuml
+first block
+@enduml
+@startuml
+second block
+@enduml
+--- main
+!include multi.puml!1
+!include multi.puml!0
+=== include-startuml-block-id
+--- file: multi.puml
+@startuml(id=one)
+first block
+@enduml
+@startuml(id=two)
+second block
+@enduml
+--- main
+!include multi.puml!two
+=== include-with-variable
+--- file: inc/x.iuml
+X : included
+--- main
+!$dir = "inc"
+!include $dir/x.iuml
+=== include-yaml-header
+--- file: y.iuml
+---
+title: test
+---
+Y : after header
+--- main
+!include y.iuml
+=== include-backslash-continuation
+--- file: c.iuml
+A : one \
+two
+--- main
+!include c.iuml
+=== include-uncomment
+--- file: c.puml
+/' comment
+@startuml
+' x
+A : in comment wrapper
+@enduml
+'/
+--- main
+!include c.puml
+=== include-subdirectory-relative-again
+--- file: lib/a.iuml
+!include b.iuml
+--- file: lib/b.iuml
+B : lib b
+--- file: b.iuml
+B : root b
+--- main
+!include lib/a.iuml
+!include b.iuml
+=== include-absolute-etc
+--- main
+!include /etc/passwd
+=== include-sandbox
+--- profile: SANDBOX
+--- file: common.iuml
+Bob -> Carol : included
+--- main
+Alice -> Bob : hi
+!include common.iuml
+=== include-internet-local-denied
+--- profile: INTERNET
+--- file: common.iuml
+Bob -> Carol : included
+--- main
+!include common.iuml
+=== include-allowlist-includepath
+--- profile: ALLOWLIST
+--- includepath: lib
+--- file: lib/common.iuml
+C : from include path
+--- main
+!include common.iuml
+=== include-includepath
+--- includepath: lib
+--- file: lib/common.iuml
+C : from include path
+--- main
+!include common.iuml
+=== include-url-sandbox
+--- profile: SANDBOX
+--- main
+!include https://example.com/x.iuml
+=== include-url-bad
+--- main
+!include http://exa mple.com/x.iuml
+=== include-directory
+--- file: d/x.iuml
+x
+--- main
+!include d
+=== include-brackets
+--- main
+!include [foo]
+=== include-stdlib-no-slash
+--- main
+!include <foo>
+=== include-empty
+--- main
+!include
+=== includesub-file
+--- file: subs.iuml
+@startuml
+!startsub PART
+P : from part
+!endsub
+!startsub OTHER
+O : other
+!endsub
+@enduml
+--- main
+!includesub subs.iuml!PART
+=== includesub-file-twice-named
+--- file: subs.iuml
+!startsub PART
+P : one
+!endsub
+middle
+!startsub PART
+P : two
+!endsub
+--- main
+!includesub subs.iuml!PART
+=== includesub-file-missing-sub
+--- file: subs.iuml
+!startsub PART
+P : one
+!endsub
+--- main
+!includesub subs.iuml!NOPE
+=== includesub-file-missing
+--- main
+!includesub nofile.iuml!PART
+=== includedef
+--- main
+@startdef(id=mydef)
+A -> B : from def
+@enddef
+@startuml
+!includedef mydef
+@enduml
+=== includedef-missing
+--- main
+!includedef nothing
+A : after
+=== import-missing
+--- main
+!import missing.zip
+=== import-existing
+--- file: lib.zip
+not really a zip
+--- main
+!import lib.zip
+A : imported
+=== import-directory
+--- file: d/x
+x
+--- main
+!import d
+=== include-two-levels-error-location
+--- file: a.iuml
+!include b.iuml
+--- file: b.iuml
+line b1
+!assert 0 : "in b"
+--- main
+!include a.iuml
+=== include-procedure-from-file
+--- file: p.iuml
+!procedure $p($x)
+from p $x
+!endprocedure
+--- main
+!include p.iuml
+$p(1)
+=== include-uppercase
+--- file: a.iuml
+A : a
+--- main
+!INCLUDE a.iuml
+=== include-url-keyword
+--- file: a.iuml
+A : a
+--- main
+!includeurl a.iuml
+=== include-strip-suffix
+--- file: a.iuml
+A : a
+--- main
+!include a.iuml!
+=== include-theme-missing
+--- main
+!theme foo
+=== include-theme-from-dir
+--- file: themes/puml-theme-mine.puml
+skinparam backgroundColor red
+!$themevar = 1
+--- main
+!theme mine from themes
+A : $themevar
+=== include-theme-local
+--- file: puml-theme-local.puml
+---
+name: local
+---
+skinparam x y
+--- main
+!theme local
+=== include-theme-from-missing-dir
+--- main
+!theme mine from nowhere
+=== include-theme-from-stdlib
+--- main
+!theme mine from <nolib>

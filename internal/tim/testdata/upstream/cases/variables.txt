@@ -1,0 +1,174 @@
+=== var-in-message
+--- main
+!$user = "Alice"
+$user -> Bob : hi
+=== var-conditional-keeps
+--- main
+!$color = "red"
+!$color ?= "blue"
+A : $color
+=== var-conditional-sets
+--- main
+!$color ?= "blue"
+A : $color
+=== var-conditional-spaces
+--- main
+!$color = "red"
+!$color   ?=   "blue"
+!$other?="green"
+A : $color $other
+=== var-without-dollar
+--- main
+!x = 5
+!y = x + 1
+A : x y $x
+=== var-reassign
+--- main
+!$a = 1
+!$a = $a + 1
+!$a = $a * 10
+A : $a
+=== var-concat-adjacent
+--- main
+!$a = "X"
+A : $a$a $aY Y$a $a_b
+=== var-adjacent-letters
+--- main
+!$ab = 1
+!$a = 2
+A : $ab $a $abc x$a
+=== var-hash-concat
+--- main
+!$a = "X"
+!b = "Y"
+A : $a##suffix pre##$a b##c c##b ##b##
+=== var-local-at-top
+--- main
+!local $x = 1
+A : $x
+=== var-global-at-top
+--- main
+!global $x = 1
+A : $x
+=== var-named-local
+--- main
+!$local = 5
+!local = 6
+A : $local local
+=== var-local-in-function
+--- main
+!$x = "global"
+!function $f()
+!local $x = "local"
+!return $x
+!endfunction
+A : $f() $x
+=== var-global-in-function
+--- main
+!function $f()
+!global $y = "set in f"
+!return 1
+!endfunction
+!$z = $f()
+A : $y
+=== var-function-creates-local
+--- main
+!function $f()
+!$tmp = "inside"
+!return $tmp
+!endfunction
+A : $f() $tmp
+=== var-function-modifies-global
+--- main
+!$g = 1
+!function $f()
+!$g = 2
+!return $g
+!endfunction
+A : $f() $g
+=== var-argument-shadows-global
+--- main
+!$a = "global"
+!function $f($a)
+!$a = "changed"
+!return $a
+!endfunction
+A : $f("arg") $a
+=== var-undef
+--- main
+!$a = 1
+!undef $a
+A : $a
+=== var-undef-missing
+--- main
+!undef $nothing
+A : ok
+=== var-case-sensitive
+--- main
+!$A = 1
+!$a = 2
+A : $A $a
+=== var-uppercase-directive
+--- main
+!$X = 1
+!LOCAL $Y = 2
+A : $X
+=== var-emoji-name
+--- main
+!$x😀 = 1
+A : $x😀
+=== var-unicode-name
+--- main
+!$café = "coffee"
+!$имя = "name"
+A : $café $имя
+=== var-digit-start
+--- main
+!$1a = 5
+A : $1a
+=== var-underscore
+--- main
+!$_a_ = 5
+!_b = 6
+A : $_a_ _b
+=== var-value-with-newline-escape
+--- main
+!$a = "line1\nline2"
+A : $a
+=== var-in-quotes
+--- main
+!$a = "X"
+A : "$a" '$a'
+=== var-backslash-n-before
+--- main
+!$name = "X"
+A : a\n$name\nname
+=== var-define-from-cli
+--- define: FOO=bar
+--- define: $NUM=42
+--- main
+A : FOO $NUM
+=== var-define-from-cli-ifdef
+--- define: FOO=bar
+--- main
+!ifdef FOO
+A : yes
+!endif
+=== var-trailing-spaces-value
+--- main
+!$a = "x"   
+A : [$a]
+=== var-indented
+--- main
+    !$a = 1
+	!$b = 2
+A : $a $b
+=== var-space-after-bang
+--- main
+! $a = 1
+!  local $b = 2
+A : $a
+=== var-scope-then-name
+--- main
+!local$a = 1
+A : $a

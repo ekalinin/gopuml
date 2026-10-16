@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: MIT
+// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/FileExists.java
+// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/security/SFile.java
+// Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
+
+package tim
+
+import (
+	"path/filepath"
+
+	"github.com/ekalinin/plantuml-in-go/internal/text"
+)
+
+// fileExists is %file_exists(path): whether the file or directory exists
+// and the security profile allows reading it (SFile.exists). As upstream,
+// which creates a plain SFile, a relative path is resolved against the
+// working directory of the process, not the directory of the source; with
+// an fs.FS it is resolved against the root of the FS.
+type fileExists struct{ simpleReturnFunction }
+
+func (fileExists) Signature() TFunctionSignature { return NewTFunctionSignature("%file_exists", 1) }
+
+func (fileExists) CanCover(nbArg int, _ []string) bool { return nbArg == 1 }
+
+func (fileExists) ExecuteReturnFunction(context *TContext, _ TMemory, _ text.StringLocated, values []*TValue,
+	_ map[string]*TValue) (*TValue, error) {
+	path := values[0].String()
+	if path == "" {
+		// new File("").exists() is false
+		return TValueFromBoolean(false), nil
+	}
+	if !filepath.IsAbs(path) {
+		path = filepath.Join(context.fa.launchDir(), path)
+	}
+	return TValueFromBoolean(context.fa.canRead(path)), nil
+}

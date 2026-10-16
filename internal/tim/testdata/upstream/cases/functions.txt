@@ -1,0 +1,415 @@
+=== proc-default-argument
+--- main
+!procedure $msg($to, $text="ping")
+A -> $to : $text
+!endprocedure
+$msg("B")
+=== func-return-value
+--- main
+!function $double($x)
+!return $x * 2
+!endfunction
+A -> B : $double(21)
+=== func-one-line-return
+--- main
+!function $inc($x) return $x + 1
+!function $dec($x) !return $x - 1
+A : $inc(1) $dec(1)
+=== func-keyword-args
+--- main
+!function $f($a, $b="B", $c="C")
+!return $a + $b + $c
+!endfunction
+A : $f(1)
+A : $f(1, 2)
+A : $f(1, $c=3)
+A : $f($a=9)
+A : $f($c=3, $a=1, $b=2)
+=== func-keyword-args-in-expression
+--- main
+!function $f($a, $b="B")
+!return $a + $b
+!endfunction
+!$x = $f(1, $b="z")
+!$y = $f($a=1)
+A : $x $y
+=== func-overload
+--- main
+!function $f($a)
+!return "one"
+!endfunction
+!function $f($a, $b)
+!return "two"
+!endfunction
+A : $f(1) $f(1, 2)
+=== func-overload-defaults
+--- main
+!function $g($a, $b="x")
+!return "two-args"
+!endfunction
+!function $g($a, $b="x", $c="y")
+!return "three-args"
+!endfunction
+A : $g(1)
+=== func-recursive
+--- main
+!function $fact($n)
+!if $n <= 1
+!return 1
+!endif
+!return $n * $fact($n - 1)
+!endfunction
+A : $fact(5) $fact(10)
+=== func-nested-calls
+--- main
+!function $f($a, $b)
+!return $a + "-" + $b
+!endfunction
+!function $g($x)
+!return "[" + $x + "]"
+!endfunction
+A : $f($g(1), 2)
+A : $f($g($g(1)), $g(2))
+!$v = $f($g(1), $g(2))
+A : $v
+=== func-nested-calls-long
+--- main
+!function $f($a, $b)
+!return $a + "-" + $b
+!endfunction
+!function $g($x)
+!return "[" + $x + "]"
+!endfunction
+!$v = $f(1 + 1 + 1 + 1 + 1 + 1, $g(1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1))
+A : $v
+!$w = $g(1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + $g(2))
+A : $w
+=== func-no-return
+--- main
+!function $f()
+A : body
+!endfunction
+=== func-missing-return-value
+--- main
+!function $f($x)
+!if $x
+!return 1
+!endif
+!endfunction
+A : $f(0)
+=== func-return-in-procedure
+--- main
+!procedure $p()
+!return 1
+!endprocedure
+=== func-unknown-in-expression
+--- main
+!$x = $missing(1)
+A -> B : $x
+=== func-unknown-in-text
+--- main
+A -> B : $missing(1)
+=== func-wrong-arity-expression
+--- main
+!function $f($a)
+!return $a
+!endfunction
+!$x = $f(1, 2)
+=== func-wrong-arity-text
+--- main
+!function $f($a)
+!return $a
+!endfunction
+A : $f(1, 2)
+=== func-builtin-wrong-arity
+--- main
+!$x = %strlen("a", "b")
+=== func-procedure-in-expression
+--- main
+!procedure $p()
+A : p
+!endprocedure
+!$x = $p()
+=== func-procedure-in-text
+--- main
+!procedure $p($a)
+A -> B : $a
+B -> A : $a
+!endprocedure
+before $p("x") after
+=== func-procedure-empty-output
+--- main
+!procedure $p()
+!$dummy = 1
+!endprocedure
+prefix $p() suffix
+next line
+=== func-procedure-nested
+--- main
+!procedure $inner($x)
+inner $x
+!endprocedure
+!procedure $outer($y)
+outer start
+$inner($y)
+outer end
+!endprocedure
+$outer("v")
+=== func-procedure-first-line
+--- main
+!procedure $p()
+A : p
+!endprocedure
+$p()
+=== func-final
+--- main
+!final function $f()
+!return 1
+!endfunction
+!function $f()
+!return 2
+!endfunction
+=== func-final-later
+--- main
+!function $f()
+!return 1
+!endfunction
+!final function $f()
+!return 2
+!endfunction
+=== func-redefine
+--- main
+!function $f()
+!return 1
+!endfunction
+!function $f()
+!return 2
+!endfunction
+A : $f()
+=== func-unquoted-procedure
+--- main
+!unquoted procedure $p($a, $b)
+$a -> $b
+!endprocedure
+$p(Alice, Bob)
+$p("Carol", Dave)
+=== func-unquoted-named
+--- main
+!unquoted procedure $p($a, $b="def")
+$a -> $b
+!endprocedure
+$p(Alice, $b=Bob)
+$p(Alice)
+=== func-unquoted-final
+--- main
+!unquoted final function $f($a)
+!return $a
+!endfunction
+A : $f(x y)
+=== func-final-unquoted
+--- main
+!final unquoted function $f($a)
+!return $a
+!endfunction
+A : $f(x y)
+=== func-without-dollar
+--- main
+!function double(x)
+!return x * 2
+!endfunction
+A : double(4)
+=== func-in-function-body-if
+--- main
+!function $sign($n)
+!if $n > 0
+!return "+"
+!elseif $n < 0
+!return "-"
+!else
+!return "0"
+!endif
+!endfunction
+A : $sign(5) $sign(-5) $sign(0)
+=== func-while-in-function
+--- main
+!function $sum($n)
+!$s = 0
+!$i = 1
+!while $i <= $n
+!$s = $s + $i
+!$i = $i + 1
+!endwhile
+!return $s
+!endfunction
+A : $sum(10)
+=== func-text-in-function-body
+--- main
+!procedure $p()
+!endprocedure
+!function $f()
+some text $p()
+!return "r"
+!endfunction
+A : $f()
+=== func-endfunction-alone
+--- main
+!endfunction
+A : ok
+=== func-endprocedure-alone
+--- main
+!endprocedure
+A : ok
+=== func-declare-in-pending
+--- main
+!function $f()
+!function $g()
+!return 1
+!endfunction
+!return 2
+!endfunction
+A : $f()
+=== func-missing-paren
+--- main
+!function $f
+!return 1
+!endfunction
+=== func-bad-definition
+--- main
+!function $f(1)
+!return 1
+!endfunction
+=== func-default-is-expression
+--- main
+!$d = 10
+!function $f($a = $d * 2)
+!return $a
+!endfunction
+!$d = 0
+A : $f()
+=== func-default-calls-function
+--- main
+!function $g()
+!return "G"
+!endfunction
+!function $f($a = $g())
+!return $a
+!endfunction
+A : $f()
+=== func-call-user-func
+--- main
+!function $f($a, $b)
+!return $a + $b
+!endfunction
+A : %call_user_func("$f", 1, 2)
+A : %call_user_func("$nope")
+=== func-invoke-procedure
+--- main
+!procedure $p($a)
+A -> B : $a
+!endprocedure
+%invoke_procedure("$p", "x")
+%invoke_procedure("$nope")
+=== func-retrieve-procedure
+--- main
+!procedure $p($a)
+line1 $a
+line2 $a
+!endprocedure
+!$r = %retrieve_procedure("$p", "x")
+A : $r
+=== func-retrieve-procedure-missing
+--- main
+!$r = %retrieve_procedure("$nope")
+=== func-exists
+--- main
+!function $f()
+!return 1
+!endfunction
+A : %function_exists("$f") %function_exists("$g") %function_exists("%strlen")
+=== func-variable-builtins
+--- main
+!$v = "value"
+A : %variable_exists("$v") %variable_exists("$w")
+A : %get_variable_value("$v") [%get_variable_value("$w")]
+!$z = %set_variable_value("$n", 42)
+A : $n [$z]
+=== func-xargs
+--- main
+@startuml foo bar
+A : %xargs(1)
+!$a = %xargs()
+@enduml
+=== func-xargs-plain
+--- main
+A : %xargs(1)
+=== func-string-builtins
+--- main
+A : %strlen("abc") %upper("abc") %strlen("") %upper("ßtraße")
+A : %strlen("😀") %string(42) %intval("42") %not(0) %not(1) %true() %false()
+=== func-intval-error
+--- main
+!$a = %intval("abc")
+=== func-builtin-unported
+--- main
+A : %dec2hex(255) %lower("ABC")
+=== func-call-in-default-of-arg-with-space
+--- main
+!function $g($x)
+!return "<" + $x + ">"
+!endfunction
+!function $f($a = $g (1))
+!return $a
+!endfunction
+A : $f()
+=== func-named-arg-unknown
+--- main
+!function $f($a)
+!return $a
+!endfunction
+A : $f($zz=1)
+=== func-call-missing-close
+--- main
+!function $f($a)
+!return $a
+!endfunction
+A : $f(1
+=== func-call-garbage
+--- main
+!function $f($a)
+!return $a
+!endfunction
+A : $f(1 2)
+=== func-unquoted-garbage
+--- main
+!unquoted function $f($a)
+!return $a
+!endfunction
+A : $f("x" y)
+=== func-return-at-top
+--- main
+!return 1
+=== func-legacy-define-calls-function
+--- main
+!function $f($x)
+!return $x + 1
+!endfunction
+!define USE(a) value $f(a)
+A : USE(1)
+=== func-pending-text
+--- main
+!procedure $empty()
+!endprocedure
+A $empty() B
+C : D
+=== func-procedure-no-result-line
+--- main
+!procedure $p()
+A : from p
+!endprocedure
+@enduml
+=== func-procedure-in-include-line
+--- main
+!procedure $p()
+!$k = 1
+!endprocedure
+$p() trailing

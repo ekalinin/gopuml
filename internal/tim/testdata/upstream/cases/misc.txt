@@ -1,0 +1,248 @@
+=== assert-failing
+--- main
+Alice -> Bob : hi
+!assert 1 == 2 : "numbers differ"
+=== assert-failing-no-message
+--- main
+!assert 1 == 2
+=== assert-passing
+--- main
+!assert 1 == 1 : "ok"
+A : after
+=== assert-message-expression
+--- main
+!$n = 3
+!assert $n > 5 : "n is " + $n
+=== assert-string
+--- main
+!assert "" : "empty string"
+=== assert-uppercase
+--- main
+!ASSERT 1 == 2
+=== log-basic
+--- main
+!log hello world
+!$x = 5
+!log x is $x
+A : after log
+=== log-function
+--- main
+!function $f()
+!return "F"
+!endfunction
+!log value $f()
+=== dump-memory
+--- main
+!$b = 2
+!$a = "one"
+!dump_memory here
+A : ok
+=== dump-memory-in-function
+--- main
+!$g = 1
+!procedure $p($arg)
+!$loc = 2
+!dump_memory inside
+!endprocedure
+$p("v")
+=== option-handwritten
+--- main
+!option handwritten true
+A : ok
+=== option-default
+--- main
+!option handwritten
+!option debug
+A : ok
+=== option-no-default
+--- main
+!option language
+=== option-unknown
+--- main
+!option nosuchoption 1
+!option nosuchoption 2
+=== option-value-expression
+--- main
+!$l = "fr"
+!option language $l
+!option svg_title "Title " + "here"
+!option Use_Descriptive_Names 1
+=== pragma-passthrough
+--- main
+!pragma layout elk
+!pragma teoz true
+A -> B
+=== pragma-with-variable
+--- main
+!$v = "smetana"
+!pragma layout $v
+=== comment-simple
+--- main
+' a comment
+A : visible
+   ' indented comment
+=== comment-long
+--- main
+/' long
+comment
+'/
+A : visible
+/' one line '/
+B : visible
+=== comment-long-unclosed
+--- main
+/' never closed
+A : hidden
+=== comment-inner
+--- main
+A : before /' inner '/
+/' start '/ B : after
+C : x /''' special '''/ y
+=== comment-in-function
+--- main
+!function $f()
+' comment inside
+!return 1
+!endfunction
+A : $f()
+=== comment-quote-not-comment
+--- main
+A : it's fine
+=== jaws-breakline
+--- escaped
+--- main
+A : onetwothree
+B : {{xy}}z
+C : 
+=== plain-exclamation
+--- main
+A : hello!
+!unknown directive
+!$
+=== unknown-directive-like
+--- main
+!includes x
+!iff 1
+!ifdefx
+!ends
+=== compile-error-return-in-include
+--- file: r.iuml
+!return 1
+--- main
+!include r.iuml
+=== whitespace-lines
+--- escaped
+--- main
+   
+\u000b
+A : x
+=== crlf-source
+--- escaped
+--- main
+A : x\u000dB : y\u000d\u000aC : z
+=== tabs
+--- main
+	!$a = 1
+A :	$a
+=== legacy-newline-in-value
+--- main
+!$s = {"v": "a\nb"}
+A : $s.v
+=== legacy-newline-only
+--- main
+!$s = {"v": "\n"}
+A : $s.v
+B : after
+=== legacy-newline-trailing
+--- main
+!$s = {"v": "a\n"}
+A : $s.v
+=== multi-block
+--- main
+@startuml
+!$x = 1
+A : $x
+@enduml
+@startuml
+A : $x
+@enduml
+=== start-with-name
+--- main
+@startuml myname
+A : $x
+@enduml
+=== empty-block
+--- main
+@startuml
+@enduml
+=== bad-sub-in-function-body
+--- main
+!function $f()
+!startsub bad name
+!endsub
+!return 1
+!endfunction
+=== deep-recursion
+--- main
+!function $r($n)
+!if $n <= 0
+!return 0
+!endif
+!return 1 + $r($n - 1)
+!endfunction
+A : $r(150)
+=== infinite-recursion
+--- main
+!function $r($n)
+!return $r($n + 1)
+!endfunction
+A : $r(1)
+=== dollar-sign-text
+--- main
+A : $ $$ $1 cost $5
+=== percent-text
+--- main
+A : 50% %unknown(1) %strlen
+=== function-name-prefix
+--- main
+!function $ab()
+!return "AB"
+!endfunction
+!function $abc()
+!return "ABC"
+!endfunction
+A : $ab() $abc() $abcd()
+=== variable-name-prefix
+--- main
+!$ab = "AB"
+!$abc = "ABC"
+A : $ab $abc $abcd $ab_
+=== variable-after-backslash-n
+--- main
+!$x = "X"
+!x = "Y"
+A : a\nx b\n$x
+=== strings-with-equals
+--- main
+!$a = "a=b"
+A : $a
+=== affectation-to-function-call
+--- main
+!function $f()
+!return 3
+!endfunction
+!$a = $f() + $f()
+A : $a
+=== affectation-define-local
+--- main
+!procedure $p()
+!define LOC inside
+!endprocedure
+$p()
+A : LOC
+=== surrogate-function-name
+--- main
+!function $😀()
+!return "smile"
+!endfunction
+A : $😀()
