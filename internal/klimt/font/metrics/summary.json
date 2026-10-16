@@ -1,0 +1,24 @@
+{
+  "javaRuntime": "21.0.12.1+1-LTS",
+  "refSize": 100.0,
+  "maxAdditivityError": 0.0,
+  "dialogEqualsSansSerif": true,
+  "tables": [
+    {"family": "SansSerif", "style": "plain", "glyphs": 7094, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "SansSerif", "style": "bold", "glyphs": 7097, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "SansSerif", "style": "italic", "glyphs": 7098, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "SansSerif", "style": "bolditalic", "glyphs": 7100, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Serif", "style": "plain", "glyphs": 7094, "ranges": 300, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Serif", "style": "bold", "glyphs": 7095, "ranges": 300, "ascent": 93.896484375, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 117.48046875, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Serif", "style": "italic", "glyphs": 7100, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Serif", "style": "bolditalic", "glyphs": 7100, "ranges": 296, "ascent": 93.896484375, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 117.48046875, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Monospaced", "style": "plain", "glyphs": 7088, "ranges": 300, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.205078125},
+    {"family": "Monospaced", "style": "bold", "glyphs": 7091, "ranges": 300, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.205078125},
+    {"family": "Monospaced", "style": "italic", "glyphs": 7098, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.205078125},
+    {"family": "Monospaced", "style": "bolditalic", "glyphs": 7101, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.205078125},
+    {"family": "Dialog", "style": "plain", "glyphs": 7094, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Dialog", "style": "bold", "glyphs": 7097, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Dialog", "style": "italic", "glyphs": 7098, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625},
+    {"family": "Dialog", "style": "bolditalic", "glyphs": 7100, "ranges": 296, "ascent": 92.822265625, "descent": 23.583984375, "leading": 0.0, "boundsHeight": 116.40625, "missingCodePoint": 57344, "missingAdvance": 60.009765625}
+  ]
+}
