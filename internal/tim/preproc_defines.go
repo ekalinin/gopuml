@@ -37,7 +37,7 @@ func NewDefines() *Defines {
 func DefinesWithFileName(name string, modTime time.Time, dirpath string) *Defines {
 	d := NewDefines()
 	d.OverrideFilename(name)
-	d.environment["filedate"] = modTime.Format("Mon Jan 02 15:04:05 MST 2006")
+	d.environment["filedate"] = javaDateToString(modTime, zoneOfLocation(modTime.Location()))
 	if dirpath != "" {
 		d.environment["dirpath"] = strings.ReplaceAll(dirpath, `\`, "/")
 	}

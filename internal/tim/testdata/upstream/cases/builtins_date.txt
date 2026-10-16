@@ -1,0 +1,98 @@
+=== bi-date-basic
+--- main
+A : %date("yyyy-MM-dd HH:mm:ss", 0) %date("yyyy-MM-dd HH:mm:ss", 951782400) %date("yyyy-MM-dd'T'HH:mm:ss", 1234567890)
+A : %date("yyyy-MM-dd HH:mm:ss", -1) %date("yyyy-MM-dd HH:mm:ss", 2147483647) %date("yyyy-MM-dd HH:mm:ss", -2147483648)
+A : %date("yyyy-MM-dd HH:mm:ss", "x") %date("dd/MM/yy", 1000000000) [%date("", 0)] %date("yyyy", 0, "UTC")
+=== bi-date-letters
+--- main
+A : %date("G GG GGG GGGG GGGGG", 0) %date("y yy yyy yyyy yyyyy", 1000000000) %date("Y YY YYY YYYY", 1000000000)
+A : %date("M MM MMM MMMM MMMMM", 1000000000) %date("L LL LLL LLLL LLLLL", 1000000000) %date("MMMM", 1234567890) %date("LLLL", 1234567890)
+A : %date("d dd ddd", 1000000000) %date("E EE EEE EEEE EEEEE", 1000000000) %date("u uu uuu", 1000000000) %date("u", 1234567890)
+A : %date("D DD DDD DDDD", 1000000000) %date("D", 1609459199) %date("F FF", 1000000000) %date("F", 1609459199)
+A : %date("w ww W WW", 1000000000) %date("a aa aaaa", 1000000000) %date("a", 1700000000)
+A : %date("h hh H HH k kk K KK", 0) %date("h hh H HH k kk K KK", 1704110400) %date("h hh H HH k kk K KK", 1700000000)
+A : %date("m mm s ss S SS SSS SSSS", 1234567890) %date("yyyyyyyyyy", 0) %strlen(%date("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", 0))
+A : %date("z zz zzz zzzz zzzzz", 0) %date("Z ZZ ZZZZ ZZZZZ", 0) %date("X XX XXX", 0)
+=== bi-date-weeks
+--- main
+A : %date("yyyy-MM-dd E w W Y F D", 1609459199) %date("yyyy-MM-dd E w W Y F D", 1609459200)
+A : %date("yyyy-MM-dd E w W Y F D", 1704067200) %date("yyyy-MM-dd E w W Y F D", 1735603200)
+A : %date("yyyy-MM-dd E w W Y F D", 1230508800) %date("yyyy-MM-dd E w W Y F D", 1262304000)
+A : %date("yyyy-MM-dd E w W Y F D", 1293753600) %date("yyyy-MM-dd E w W Y F D", 1293840000)
+A : %date("yyyy-MM-dd E w W Y F D", 1000000000) %date("yyyy-MM-dd E w W Y YY F D", 2147483647) %date("YY w", -2147483648)
+A : %date("yyyy-MM-dd E w W Y F D", 1325289600) %date("yyyy-MM-dd E w W Y F D", 1356912000) %date("yyyy-MM-dd E w W Y F D", 1104451200)
+=== bi-date-quotes
+--- main
+A : %date("'quoted' yyyy", 0) %date("''", 0) %date("''''", 0) %date("'a''b'", 0) %date("é yyyy ü", 0) %date("'it''s' yyyy", 0)
+A : %date("yyyy'T'HH", 0) %date("ddMMMyyyy", 0) %date("yyyy.MM.dd G 'at' HH:mm:ss z", 1000000000) %date("[yyyy]", 0) %date("y-M-d", 0)
+A : %date("'yyyy'yyyy", 0) %date("yyyy''MM", 0) %date("'' yyyy ''", 0) %date("'é'", 0) %date("12:34 !", 0)
+=== bi-date-bad-letter-i
+--- main
+A : %date("it''s yyyy", 0)
+=== bi-date-long-padding
+--- main
+A : %strlen(%date("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", 0)) %strlen(%date("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", 0)) %strlen(%date("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", 0)) %strlen(%date("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", 0)) %strlen(%date("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy", 0))
+=== bi-date-bad-quote
+--- main
+A : %date("'unterminated", 0)
+=== bi-date-bad-letter
+--- main
+A : %date("yyyy q", 0)
+=== bi-date-bad-letter-b
+--- main
+A : %date("b", 0)
+=== bi-date-bad-iso
+--- main
+A : %date("XXXX", 0)
+=== bi-date-zones
+--- main
+A : %date("yyyy-MM-dd HH:mm z zzzz Z X XXX", 1593561600, "Europe/Paris") %date("HH:mm z zzzz Z XX", 1704067200, "Europe/Paris")
+A : %date("HH:mm z zzzz Z", 1593561600, "America/New_York") %date("HH:mm z zzzz Z", 1704067200, "America/New_York")
+A : %date("HH:mm z zzzz Z XXX", 1593561600, "Asia/Kolkata") %date("HH:mm z zzzz Z XXX", 1593561600, "Asia/Kathmandu")
+A : %date("HH:mm z zzzz Z XXX", 1593561600, "Pacific/Chatham") %date("HH:mm z zzzz Z XXX", 1704067200, "Pacific/Chatham")
+A : %date("HH:mm z zzzz Z XXX", 1593561600, "America/St_Johns") %date("HH:mm z zzzz Z X", 1593561600, "Etc/GMT+5")
+A : %date("HH:mm z zzzz Z", 1593561600, "EST") %date("HH:mm z zzzz Z", 1593561600, "MST") %date("HH:mm z zzzz Z", 1593561600, "HST")
+A : %date("HH:mm z zzzz Z", 1593561600, "PST") %date("HH:mm z zzzz Z", 1593561600, "IST") %date("HH:mm z zzzz Z", 1593561600, "AET")
+A : %date("HH:mm z zzzz Z", 1593561600, "CET") %date("HH:mm z zzzz Z", 1593561600, "GMT") %date("HH:mm z zzzz Z", 1593561600, "Zulu")
+A : %date("HH:mm z zzzz Z", 1593561600, "Europe/Dublin") %date("HH:mm z zzzz Z", 1704067200, "Europe/Dublin")
+A : %date("HH:mm z zzzz Z", 1593561600, "Africa/Casablanca") %date("HH:mm z zzzz Z", 1587600000, "Africa/Casablanca")
+A : %date("HH:mm z zzzz Z", 1593561600, "Asia/Dubai") %date("HH:mm z zzzz Z", 1309305600, "Europe/Moscow") %date("HH:mm z zzzz Z", 1593561600, "Europe/Moscow")
+A : %date("HH:mm z zzzz Z", 1584662400, "SystemV/EST5EDT") %date("HH:mm z zzzz Z", 1593561600, "SystemV/EST5EDT") %date("HH:mm z Z", 1593561600, "SystemV/AST4")
+A : %date("HH:mm z zzzz Z", 1704067200, "Australia/Lord_Howe") %date("HH:mm z zzzz Z", 1593561600, "Australia/Lord_Howe")
+A : %date("HH:mm z zzzz Z", 1593561600, "UTC") %date("HH:mm z zzzz Z", 1593561600, "Etc/UTC") %date("HH:mm z zzzz Z", 1593561600, "America/Sao_Paulo")
+A : %date("HH:mm z zzzz Z", 0, "Europe/London") %date("HH:mm z zzzz Z", -2147483648, "Europe/Paris") %date("HH:mm z zzzz Z", -2147483648, "America/New_York")
+A : %date("HH:mm z zzzz Z", 1593561600, "US/Pacific") %date("HH:mm z zzzz Z", 1593561600, "Asia/Tokyo") %date("HH:mm z zzzz Z", 1593561600, "SystemV/YST9YDT")
+=== bi-date-zone-unknown
+--- main
+A : %date("yyyy", 0, "Unknown/Zone")
+=== bi-date-zone-custom
+--- main
+A : %date("yyyy", 0, "GMT+05:00")
+=== bi-date-zone-lowercase
+--- main
+A : %date("yyyy", 0, "utc")
+=== bi-date-zone-before-pattern
+--- main
+A : %date("q", 0, "Bad/Zone")
+=== bi-date-now-shape
+--- main
+A : %strlen(%date()) %substr(%date(), 20, 3) %strlen(%date("yyyy-MM-dd")) %strlen(%date("z")) %date("G")
+!if %date("yyyy") > "2025"
+A : recent
+!endif
+!$t = %now()
+!if $t > 1700000000
+A : now is recent
+!endif
+!if %date("yyyy", %now()) == %date("yyyy")
+A : same year
+!endif
+=== bi-date-expression
+--- main
+!$d = %date("yyyy", 1000000000) + "!"
+A : $d
+=== bi-file-environment
+--- main
+A : [%filename()] [%filename_no_extension()] [%dirpath()] [%filedate()]
+!$f = %filename() + "x"
+A : $f

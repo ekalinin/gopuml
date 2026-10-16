@@ -7,6 +7,7 @@ package tim
 
 import (
 	"path/filepath"
+	"strings"
 
 	"github.com/ekalinin/plantuml-in-go/internal/text"
 )
@@ -30,7 +31,25 @@ func (fileExists) ExecuteReturnFunction(context *TContext, _ TMemory, _ text.Str
 		return TValueFromBoolean(false), nil
 	}
 	if !filepath.IsAbs(path) {
-		path = filepath.Join(context.fa.launchDir(), path)
+		path = context.fa.launchDir() + "/" + path
 	}
-	return TValueFromBoolean(context.fa.canRead(path)), nil
+	return TValueFromBoolean(context.fa.canRead(javaNormalizePath(path))), nil
+}
+
+// javaNormalizePath is the normalization of java.io.File on Unix: repeated
+// slashes become one and a trailing slash is removed. Unlike
+// filepath.Clean, "." and ".." are kept, so the security check sees them.
+func javaNormalizePath(path string) string {
+	var b strings.Builder
+	for i := 0; i < len(path); i++ {
+		if path[i] == '/' && i > 0 && path[i-1] == '/' {
+			continue
+		}
+		b.WriteByte(path[i])
+	}
+	s := b.String()
+	if len(s) > 1 {
+		s = strings.TrimSuffix(s, "/")
+	}
+	return s
 }

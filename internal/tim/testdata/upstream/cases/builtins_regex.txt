@@ -1,0 +1,1897 @@
+=== bi-rx-000
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d+")
+=== bi-rx-001
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d{2}")
+=== bi-rx-002
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d{2,}")
+=== bi-rx-003
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d{1,2}")
+=== bi-rx-004
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d{1,2}?")
+=== bi-rx-005
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d{2}+")
+=== bi-rx-006
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d++")
+=== bi-rx-007
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b22c333"
+A : %splitstr_regex($s, "\d?+")
+=== bi-rx-008
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaa"
+A : %splitstr_regex($s, "a??")
+=== bi-rx-009
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaa"
+A : %splitstr_regex($s, "a*?")
+=== bi-rx-010
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaa"
+A : %splitstr_regex($s, "a+?")
+=== bi-rx-011
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(abc)")
+=== bi-rx-012
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?:b)")
+=== bi-rx-013
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "b|c")
+=== bi-rx-014
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(b|c)+")
+=== bi-rx-015
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "[bc]+")
+=== bi-rx-016
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "[^a]")
+=== bi-rx-017
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?=c)")
+=== bi-rx-018
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?<=b)")
+=== bi-rx-019
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?!a).")
+=== bi-rx-020
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?<!a)c")
+=== bi-rx-021
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcabc"
+A : %splitstr_regex($s, "(?>b|bc)c")
+=== bi-rx-022
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "(?i)o")
+=== bi-rx-023
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "(?i)[a-k]")
+=== bi-rx-024
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "(?i)[^a-k]")
+=== bi-rx-025
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "(?i)L+")
+=== bi-rx-026
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "(?i)\p{Lower}")
+=== bi-rx-027
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "\p{Lower}")
+=== bi-rx-028
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "\p{Upper}")
+=== bi-rx-029
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "\p{Alpha}+")
+=== bi-rx-030
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello World"
+A : %splitstr_regex($s, "\p{Space}")
+=== bi-rx-031
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello, World!"
+A : %splitstr_regex($s, "\p{Punct}")
+=== bi-rx-032
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello, World!"
+A : %splitstr_regex($s, "\p{Graph}")
+=== bi-rx-033
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello, World!"
+A : %splitstr_regex($s, "\p{Print}")
+=== bi-rx-034
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "Hello, World!"
+A : %splitstr_regex($s, "\P{Alnum}")
+=== bi-rx-035
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "0x1F"
+A : %splitstr_regex($s, "\p{XDigit}")
+=== bi-rx-036
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$tab+"cd"
+A : %splitstr_regex($s, "\p{Blank}")
+=== bi-rx-037
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$tab+"cd"
+A : %splitstr_regex($s, "\h")
+=== bi-rx-038
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nbsp+"cd"
+A : %splitstr_regex($s, "\h")
+=== bi-rx-039
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nbsp+"cd"
+A : %splitstr_regex($s, "\s")
+=== bi-rx-040
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nbsp+"cd"
+A : %splitstr_regex($s, "(?U)\s")
+=== bi-rx-041
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl+"cd"
+A : %splitstr_regex($s, "\v")
+=== bi-rx-042
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl+"cd"
+A : %splitstr_regex($s, "\V+")
+=== bi-rx-043
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl+"cd"
+A : %splitstr_regex($s, "\R")
+=== bi-rx-044
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl+"cd"
+A : %splitstr_regex($s, ".")
+=== bi-rx-045
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nel+"cd"
+A : %splitstr_regex($s, ".")
+=== bi-rx-046
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nel+"cd"
+A : %splitstr_regex($s, "(?d).")
+=== bi-rx-047
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$ls+"cd"
+A : %splitstr_regex($s, "$")
+=== bi-rx-048
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$ls
+A : %splitstr_regex($s, "$")
+=== bi-rx-049
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl+"cd"
+A : %splitstr_regex($s, "(?m)^")
+=== bi-rx-050
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl+"cd"
+A : %splitstr_regex($s, "(?m)$")
+=== bi-rx-051
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl+"cd"+$nl
+A : %splitstr_regex($s, "(?m)^")
+=== bi-rx-052
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl+"cd"
+A : %splitstr_regex($s, "(?m)^")
+=== bi-rx-053
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl+"cd"
+A : %splitstr_regex($s, "(?m)$")
+=== bi-rx-054
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+"cd"
+A : %splitstr_regex($s, "(?m)^")
+=== bi-rx-055
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl
+A : %splitstr_regex($s, "$")
+=== bi-rx-056
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl
+A : %splitstr_regex($s, "\Z")
+=== bi-rx-057
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nl
+A : %splitstr_regex($s, "\z")
+=== bi-rx-058
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl
+A : %splitstr_regex($s, "$")
+=== bi-rx-059
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl
+A : %splitstr_regex($s, "(?d)$")
+=== bi-rx-060
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nel
+A : %splitstr_regex($s, "(?d)\Z")
+=== bi-rx-061
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$nel
+A : %splitstr_regex($s, "\Z")
+=== bi-rx-062
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"+$cr+$nl+"cd"
+A : %splitstr_regex($s, "(?md)^")
+=== bi-rx-063
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "\Gab")
+=== bi-rx-064
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "\Aab")
+=== bi-rx-065
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "^ab")
+=== bi-rx-066
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "ab$")
+=== bi-rx-067
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "word1 word2"
+A : %splitstr_regex($s, "\b")
+=== bi-rx-068
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "word1 word2"
+A : %splitstr_regex($s, "\B")
+=== bi-rx-069
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a_b c"
+A : %splitstr_regex($s, "\w+")
+=== bi-rx-070
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a_b c"
+A : %splitstr_regex($s, "\W")
+=== bi-rx-071
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "\w+")
+=== bi-rx-072
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "(?U)\w+")
+=== bi-rx-073
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "\p{L}+")
+=== bi-rx-074
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "\p{IsAlphabetic}+")
+=== bi-rx-075
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "\p{IsLatin}+")
+=== bi-rx-076
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "[\p{L}&&[^a-z]]")
+=== bi-rx-077
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "naïve café"
+A : %splitstr_regex($s, "[a-z&&[^aeiou]]+")
+=== bi-rx-078
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{IsGreek}")
+=== bi-rx-079
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{script=Greek}")
+=== bi-rx-080
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{sc=GREEK}")
+=== bi-rx-081
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{IsLu}")
+=== bi-rx-082
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{gc=Lu}")
+=== bi-rx-083
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{general_category=Ll}")
+=== bi-rx-084
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{javaUpperCase}")
+=== bi-rx-085
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "\p{javaLowerCase}")
+=== bi-rx-086
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "(?iu)γ")
+=== bi-rx-087
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "(?i)γ")
+=== bi-rx-088
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "(?iu)[α-γ]")
+=== bi-rx-089
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ΑΒΓ abc"
+A : %splitstr_regex($s, "(?i)[α-γ]")
+=== bi-rx-090
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1٣b"
+A : %splitstr_regex($s, "\p{Nd}")
+=== bi-rx-091
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1٣b"
+A : %splitstr_regex($s, "\d")
+=== bi-rx-092
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1٣b"
+A : %splitstr_regex($s, "(?U)\d")
+=== bi-rx-093
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1٣b"
+A : %splitstr_regex($s, "\p{javaDigit}")
+=== bi-rx-094
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1٣b"
+A : %splitstr_regex($s, "\p{IsDigit}")
+=== bi-rx-095
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, "[😀-😁]")
+=== bi-rx-096
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, "\x{1F600}")
+=== bi-rx-097
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, "😀")
+=== bi-rx-098
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, "\p{So}")
+=== bi-rx-099
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, "[^xyz]")
+=== bi-rx-100
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x😀y😁z"
+A : %splitstr_regex($s, ".")
+=== bi-rx-101
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a.b*c+d?e"
+A : %splitstr_regex($s, "[.*+?]")
+=== bi-rx-102
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a.b*c+d?e"
+A : %splitstr_regex($s, "\Q.*\E")
+=== bi-rx-103
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a.b*c+d?e"
+A : %splitstr_regex($s, "\Q*c+\E")
+=== bi-rx-104
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a.b*c+d?e"
+A : %splitstr_regex($s, "\Q.")
+=== bi-rx-105
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a1b"
+A : %splitstr_regex($s, "\Q1")
+=== bi-rx-106
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a(b)c"
+A : %splitstr_regex($s, "[()]")
+=== bi-rx-107
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a(b)c"
+A : %splitstr_regex($s, "\(|\)")
+=== bi-rx-108
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a[b]c"
+A : %splitstr_regex($s, "[\[\]]")
+=== bi-rx-109
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a[b]c"
+A : %splitstr_regex($s, "[]\[]")
+=== bi-rx-110
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a-b-c"
+A : %splitstr_regex($s, "[a-]")
+=== bi-rx-111
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a-b-c"
+A : %splitstr_regex($s, "[-a]")
+=== bi-rx-112
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a^b^c"
+A : %splitstr_regex($s, "[\^b]")
+=== bi-rx-113
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a^b^c"
+A : %splitstr_regex($s, "[b^]")
+=== bi-rx-114
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a&b&&c"
+A : %splitstr_regex($s, "&&")
+=== bi-rx-115
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a&b&&c"
+A : %splitstr_regex($s, "[&]")
+=== bi-rx-116
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abc"
+A : %splitstr_regex($s, "[a[b]]")
+=== bi-rx-117
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abc"
+A : %splitstr_regex($s, "[a[^b]]")
+=== bi-rx-118
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcdef"
+A : %splitstr_regex($s, "[a-f&&b-d&&c]")
+=== bi-rx-119
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcdef"
+A : %splitstr_regex($s, "[^a-f&&b-d]")
+=== bi-rx-120
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcdef"
+A : %splitstr_regex($s, "[a-f&&[^b-d]]")
+=== bi-rx-121
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab12"
+A : %splitstr_regex($s, "[\d\p{Lu}a]")
+=== bi-rx-122
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab12"
+A : %splitstr_regex($s, "[^\d]")
+=== bi-rx-123
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab12"
+A : %splitstr_regex($s, "[\D]")
+=== bi-rx-124
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab12"
+A : %splitstr_regex($s, "[\w&&[^\d]]")
+=== bi-rx-125
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a\b"
+A : %splitstr_regex($s, "\\")
+=== bi-rx-126
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "tab"
+A : %splitstr_regex($s, "\t")
+=== bi-rx-127
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "\t")
+=== bi-rx-128
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "\x09")
+=== bi-rx-129
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "\011")
+=== bi-rx-130
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "\u0009")
+=== bi-rx-131
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "\cI")
+=== bi-rx-132
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a"+$tab+"b"
+A : %splitstr_regex($s, "[\t]")
+=== bi-rx-133
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aAbB"
+A : %splitstr_regex($s, "\0101")
+=== bi-rx-134
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a b"
+A : %splitstr_regex($s, "\040")
+=== bi-rx-135
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aAbB"
+A : %splitstr_regex($s, "\x41")
+=== bi-rx-136
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aAbB"
+A : %splitstr_regex($s, "\x{41}")
+=== bi-rx-137
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aAbB"
+A : %splitstr_regex($s, "[\x41-\x42]")
+=== bi-rx-138
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a b"
+A : %splitstr_regex($s, "(?x) \  ")
+=== bi-rx-139
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a#b"
+A : %splitstr_regex($s, "(?x)\#")
+=== bi-rx-140
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a#b"
+A : %splitstr_regex($s, "#")
+=== bi-rx-141
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab ab"
+A : %splitstr_regex($s, "(?x)a b")
+=== bi-rx-142
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab ab"
+A : %splitstr_regex($s, "(?x)(a b)")
+=== bi-rx-143
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXb"
+A : %splitstr_regex($s, "(?i:x)")
+=== bi-rx-144
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXbx"
+A : %splitstr_regex($s, "(?i)x(?-i)")
+=== bi-rx-145
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXbx"
+A : %splitstr_regex($s, "((?i)x)")
+=== bi-rx-146
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXbx"
+A : %splitstr_regex($s, "(?i)(?-i:x)")
+=== bi-rx-147
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXbx"
+A : %splitstr_regex($s, "(?is-i:x)")
+=== bi-rx-148
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaa"
+A : %splitstr_regex($s, "(a)\1")
+=== bi-rx-149
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaaa"
+A : %splitstr_regex($s, "(a)\1+")
+=== bi-rx-150
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "(?<p>ab)\k<p>")
+=== bi-rx-151
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abab"
+A : %splitstr_regex($s, "(?<p>a)(?<q>b)\k<p>")
+=== bi-rx-152
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aa1"
+A : %splitstr_regex($s, "(a)\11")
+=== bi-rx-153
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abcdefghijkk"
+A : %splitstr_regex($s, "(a)(b)(c)(d)(e)(f)(g)(h)(i)(j)(k)\11")
+=== bi-rx-154
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aA"
+A : %splitstr_regex($s, "(?i)(a)\1")
+=== bi-rx-155
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "abc"
+A : %splitstr_regex($s, "\1(a)")
+=== bi-rx-156
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "x"
+A : %splitstr_regex($s, "(?c)x")
+=== bi-rx-157
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aXb"
+A : %splitstr_regex($s, "(?u)x")
+=== bi-rx-158
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "e"+%chr(769)+"x"
+A : %splitstr_regex($s, "\X")
+=== bi-rx-159
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a}b"
+A : %splitstr_regex($s, "a}")
+=== bi-rx-160
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a]b"
+A : %splitstr_regex($s, "a]")
+=== bi-rx-161
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a,b"
+A : %splitstr_regex($s, "\,")
+=== bi-rx-162
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a@b"
+A : %splitstr_regex($s, "\@")
+=== bi-rx-163
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aéb"
+A : %splitstr_regex($s, "\é")
+=== bi-rx-164
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a b"
+A : %splitstr_regex($s, "\ ")
+=== bi-rx-165
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "(?)")
+=== bi-rx-166
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "(?-)b")
+=== bi-rx-167
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "a(?#comment)")
+=== bi-rx-168
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "a{0}")
+=== bi-rx-169
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aab"
+A : %splitstr_regex($s, "a{0,1}")
+=== bi-rx-170
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaab"
+A : %splitstr_regex($s, "a{2,2}")
+=== bi-rx-171
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "(?=b)*")
+=== bi-rx-172
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "^*")
+=== bi-rx-173
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "$+")
+=== bi-rx-174
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "\b+")
+=== bi-rx-175
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "ab"
+A : %splitstr_regex($s, "(a)?+")
+=== bi-rx-176
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "aaa"
+A : %splitstr_regex($s, "(?:a|aa)++")
+=== bi-rx-177
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$tab = %chr(9)
+!$nbsp = %chr(160)
+!$nel = %chr(133)
+!$ls = %chr(8232)
+!$s = "a\nb"
+A : %splitstr_regex($s, "\\n")
+=== bi-rx-err-000
+--- main
+A : %splitstr_regex("abc", "a{")
+=== bi-rx-err-001
+--- main
+A : %splitstr_regex("abc", "{")
+=== bi-rx-err-002
+--- main
+A : %splitstr_regex("abc", "a{1")
+=== bi-rx-err-003
+--- main
+A : %splitstr_regex("abc", "a{1,2")
+=== bi-rx-err-004
+--- main
+A : %splitstr_regex("abc", "a{,2}")
+=== bi-rx-err-005
+--- main
+A : %splitstr_regex("abc", "+")
+=== bi-rx-err-006
+--- main
+A : %splitstr_regex("abc", "?")
+=== bi-rx-err-007
+--- main
+A : %splitstr_regex("abc", "a{2}{3}")
+=== bi-rx-err-008
+--- main
+A : %splitstr_regex("abc", "(?<name>a)(?<name>b)")
+=== bi-rx-err-009
+--- main
+A : %splitstr_regex("abc", "(?z)")
+=== bi-rx-err-010
+--- main
+A : %splitstr_regex("abc", "(?<=a")
+=== bi-rx-err-011
+--- main
+A : %splitstr_regex("abc", "[a-\d]")
+=== bi-rx-err-012
+--- main
+A : %splitstr_regex("abc", "\x")
+=== bi-rx-err-013
+--- main
+A : %splitstr_regex("abc", "\xZZ")
+=== bi-rx-err-014
+--- main
+A : %splitstr_regex("abc", "\u12")
+=== bi-rx-err-015
+--- main
+A : %splitstr_regex("abc", "\x{110000}")
+=== bi-rx-err-016
+--- main
+A : %splitstr_regex("abc", "\0")
+=== bi-rx-err-017
+--- main
+A : %splitstr_regex("abc", "\08")
+=== bi-rx-err-018
+--- main
+A : %splitstr_regex("abc", "\c")
+=== bi-rx-err-019
+--- main
+A : %splitstr_regex("abc", "\p{")
+=== bi-rx-err-020
+--- main
+A : %splitstr_regex("abc", "\p{}")
+=== bi-rx-err-021
+--- main
+A : %splitstr_regex("abc", "\p{IsNope}")
+=== bi-rx-err-022
+--- main
+A : %splitstr_regex("abc", "[^]")
+=== bi-rx-err-023
+--- main
+A : %splitstr_regex("abc", "[]")
+=== bi-rx-err-024
+--- main
+A : %splitstr_regex("abc", "\k")
+=== bi-rx-err-025
+--- main
+A : %splitstr_regex("abc", "\k<1>")
+=== bi-rx-err-026
+--- main
+A : %splitstr_regex("abc", "(?<a")
+=== bi-rx-err-027
+--- main
+A : %splitstr_regex("abc", "\E")
+=== bi-rx-err-028
+--- main
+A : %splitstr_regex("abc", "[\b]")
+=== bi-rx-err-029
+--- main
+A : %splitstr_regex("abc", "[\1]")
+=== bi-rx-err-030
+--- main
+A : %splitstr_regex("abc", "\g")
+=== bi-rx-err-031
+--- main
+A : %splitstr_regex("abc", "\l")
+=== bi-rx-err-032
+--- main
+A : %splitstr_regex("abc", "\q")
+=== bi-rx-err-033
+--- main
+A : %splitstr_regex("abc", "(?P<x>a)")
+=== bi-rx-err-034
+--- main
+A : %splitstr_regex("abc", "(?<=a+)b")
+=== bi-rx-err-035
+--- main
+A : %splitstr_regex("abc", "x{2147483648}")
+=== bi-rx-err-036
+--- main
+A : %splitstr_regex("abc", "(?<n>")
+=== bi-rx-err-037
+--- main
+A : %splitstr_regex("abc", "[a-z&&")
+=== bi-rx-err-038
+--- main
+A : %splitstr_regex("abc", "\p{sc=Nope}")

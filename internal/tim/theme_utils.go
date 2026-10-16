@@ -14,7 +14,8 @@ import (
 )
 
 // ThemeSource provides the themes bundled with the program, which !theme
-// finds before local theme files.
+// finds before local theme files. A ThemeSource that also implements
+// ThemeLister gives %get_all_theme its list.
 type ThemeSource interface {
 	// Theme returns the content of the bundled file puml-theme-<name>.puml.
 	Theme(name string) (content []byte, ok bool)

@@ -74,3 +74,35 @@ func TestGenerateUpstream(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+// TestGenerateTimeZoneNames runs testdata/upstream/TimeZoneNames.java in the
+// reference image and rewrites javatimezone_data.go:
+//
+//	go test -tags upstreamgen -run TestGenerateTimeZoneNames ./internal/tim
+func TestGenerateTimeZoneNames(t *testing.T) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Docker only mounts the home directory.
+	dir, err := os.MkdirTemp(home, "tim-tz-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.RemoveAll(dir)
+	cmd := exec.Command("javac", "--release", "21", "-d", dir, "testdata/upstream/TimeZoneNames.java")
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		t.Fatal(err)
+	}
+	cmd = exec.Command("docker", "run", "--rm", "--platform", "linux/amd64", "-v", dir+":/h",
+		"plantuml-go-reference", "java", "-cp", "/h", "TimeZoneNames")
+	cmd.Stderr = os.Stderr
+	out, err := cmd.Output()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile("javatimezone_data.go", out, 0o644); err != nil {
+		t.Fatal(err)
+	}
+}

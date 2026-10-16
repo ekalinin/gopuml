@@ -1,0 +1,116 @@
+=== bi-getenv
+--- main
+A : [%getenv("PATH")] %strlen(%getenv("line.separator")) %ord(%getenv("line.separator")) %getenv("path.separator")
+A : [%getenv("plantuml.security.credentials.path")] [%getenv("PLANTUML_SECURITY_PROFILE")] [%getenv("PlantUML.Security.x")]
+A : [%getenv("PLANTUML_NO_SUCH_VARIABLE_XYZ")] [%getenv("")] [%getenv("user.dir")] [%getenv("LINE.SEPARATOR")]
+=== bi-getenv-profile
+--- profile: SANDBOX
+--- main
+A : [%getenv("PLANTUML_SECURITY_PROFILE")] %strlen(%getenv("line.separator")) [%getenv("PATH")]
+=== bi-getenv-unsecure
+--- profile: UNSECURE
+--- main
+A : [%getenv("NO_SUCH_VARIABLE_XYZ")] [%getenv("PLANTUML_SECURITY_PROFILE")] %getenv("path.separator")
+=== bi-getenv-unsecure-empty
+--- profile: UNSECURE
+--- main
+A : %getenv("")
+=== bi-file-exists
+--- file: here.txt
+x
+--- main
+A : %file_exists("") %file_exists("/work") %file_exists("/nonexistent/zz") %file_exists("/etc/passwd") %file_exists("/")
+A : %file_exists("here.txt") %file_exists("/work/") %file_exists("//work")
+=== bi-file-exists-sandbox
+--- profile: SANDBOX
+--- main
+A : %file_exists("/work") %file_exists("/")
+=== bi-random
+--- main
+!$r = %random()
+!if $r >= 0 && $r < 2
+A : r0 ok
+!endif
+!$r = %random(10)
+!if $r >= 0 && $r < 10
+A : r1 ok
+!endif
+!$r = %random(5, 8)
+!if $r >= 5 && $r < 8
+A : r2 ok
+!endif
+!$r = %random(2147483647)
+!if $r >= 0
+A : r3 ok
+!endif
+!$r = %random(-5, -3)
+!if $r >= -5 && $r < -3
+A : r4 ok
+!endif
+A : %random(1) %random(7, 8) %random(-1, 0) %random("x", 1)
+=== bi-random-zero
+--- main
+A : %random(0)
+=== bi-random-negative
+--- main
+!$r = %random(-5)
+=== bi-random-empty-range
+--- main
+A : %random(5, 5)
+=== bi-random-reversed
+--- main
+A : %random(8, 5)
+=== bi-random-overflow
+--- main
+A : %random(-2147483648, 2147483647)
+=== bi-random-string
+--- main
+A : %random("x")
+=== bi-random-three-args
+--- main
+!$r = %random(1, 2, 3)
+=== bi-stdlib
+--- main
+A : %get_json_type(%get_all_stdlib()) %get_json_type(%get_all_stdlib(1)) %get_json_type(%get_stdlib())
+=== bi-stdlib-missing
+--- main
+A : %get_stdlib("nolib")
+=== bi-stdlib-missing-key
+--- main
+A : %get_stdlib("nolib", "version")
+=== bi-theme
+--- file: puml-theme-zzlocal.puml
+---
+name: zzlocal
+author: me
+author: you
+---
+skinparam backgroundColor red
+--- main
+A : %get_current_theme() %get_json_type(%get_all_theme())
+!theme zzlocal
+A : %get_current_theme()
+!$t = %get_current_theme()
+A : $t.name $t.author %json_key_exists($t, "name")
+=== bi-crash-substr-affectation
+--- main
+!$x = %substr("hello", -1)
+A : not reached
+=== bi-crash-regex-affectation
+--- main
+!$x = %splitstr_regex("a", "(")
+A : not reached
+=== bi-crash-stdlib-affectation
+--- main
+!$x = %get_stdlib("nolib")
+A : not reached
+=== bi-crash-json-add-affectation
+--- main
+!$o = {"a": 1}
+!$x = %json_add($o, "z")
+A : not reached
+=== bi-crash-random-if
+--- main
+!if %random(0) == 0
+A : not reached
+!endif

@@ -20,7 +20,9 @@ import (
 // Upstream deprecates it in favor of %get_stdlib.
 type getAllStdlib struct{ simpleReturnFunction }
 
-func (getAllStdlib) Signature() TFunctionSignature { return NewTFunctionSignature("%get_all_stdlib", 1) }
+func (getAllStdlib) Signature() TFunctionSignature {
+	return NewTFunctionSignature("%get_all_stdlib", 1)
+}
 
 func (getAllStdlib) CanCover(nbArg int, _ []string) bool { return nbArg == 0 || nbArg == 1 }
 

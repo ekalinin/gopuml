@@ -1,0 +1,146 @@
+=== bi-lower
+--- main
+A : %lower("ABC") %lower("ÀÉÎ") %lower("ẞ") %lower(123) [%lower("")] %lower("MiXeD 1")
+A : %lower("İ") %lower("İSTANBUL")
+=== bi-lower-sigma
+--- main
+A : %lower("ΣΑΣ") %lower("Σ") %lower("ΑΣ ΒΣ.") %lower("ΑΣΑ") %lower("ΟΔΟΣ") %lower("ΑΣ,ΑΣ")
+A : %lower("ΑΣ'Α") %lower("Α1Σ") %lower("ΑΣ1") %lower("1Σ") %lower("ΑΣ́")
+=== bi-lower-expression
+--- main
+!$s = %lower("HeLLo") + %lower(" WORLD")
+A : $s
+=== bi-boolval
+--- main
+A : %boolval("true") %boolval("TRUE") %boolval("True") %boolval("1") %boolval(1)
+A : %boolval("false") %boolval("FALSE") %boolval("0") %boolval(0)
+!$b = %boolval("tRuE") + 1
+A : $b
+=== bi-boolval-bad
+--- main
+A : %boolval("yes")
+=== bi-boolval-bad-space
+--- main
+A : %boolval("true ")
+=== bi-boolval-bad-number
+--- main
+!$x = %boolval(2)
+=== bi-boolval-bad-dotted
+--- main
+A : %boolval("İ")
+=== bi-chr
+--- main
+A : %chr(65)%chr(97) %chr(233) %chr(128512) %chr(8364) %chr(1114111)
+A : [%chr(0)] [%chr(-1)] [%chr(1114112)] [%chr("A")] [%chr(-2147483648)]
+A : %strlen(%chr(128512)) %strlen(%chr(65)) %strlen(%chr(-1))
+=== bi-chr-surrogate
+--- main
+A : [%chr(55296)] [%chr(57343)] %strlen(%chr(55296))
+=== bi-ord
+--- main
+A : %ord("A") %ord("AB") %ord("😀") %ord("é") %ord("") %ord(65) %ord(" ") %ord(%chr(128512))
+!$o = %ord("z") + 1
+A : $o
+=== bi-dec2hex
+--- main
+A : %dec2hex(255) %dec2hex(0) %dec2hex(16) %dec2hex(-1) %dec2hex(-255)
+A : %dec2hex(2147483647) %dec2hex(-2147483648) %dec2hex("255") %dec2hex("")
+!$h = %dec2hex(4095)
+A : $h
+=== bi-hex2dec
+--- main
+A : %hex2dec("ff") %hex2dec("FF") %hex2dec("-ff") %hex2dec("+ff") [%hex2dec("")] %hex2dec("0x10")
+A : %hex2dec("7fffffff") %hex2dec("80000000") %hex2dec("-80000000") %hex2dec("ffffffff") %hex2dec("-")
+A : %hex2dec("ｆｆ") %hex2dec("Ｆ0") %hex2dec("g") %hex2dec(255) %hex2dec("١٢") %hex2dec(" ff") %hex2dec("00000000ff")
+!$d = %hex2dec("10") * 2
+A : $d
+=== bi-mod
+--- main
+A : %mod(7, 3) %mod(-7, 3) %mod(7, -3) %mod(-7, -3) %mod(0, 5) %mod(-2147483648, -1) %mod("a", 3) %mod(5, 7)
+!$m = %mod(10, 4) + 1
+A : $m
+=== bi-mod-zero
+--- main
+A : %mod(5, 0)
+=== bi-mod-zero-string
+--- main
+!$m = %mod(5, "x")
+=== bi-strpos
+--- main
+A : %strpos("hello", "l") %strpos("hello", "z") %strpos("hello", "") %strpos("", "") %strpos("", "a")
+A : %strpos("😀a", "a") %strpos("aaa", "aa") %strpos(123, 2) %strpos("héllo", "llo") %strpos("ab😀c😀", "😀c")
+!$p = %strpos("abc", "c") + 10
+A : $p
+=== bi-substr
+--- main
+A : %substr("hello", 1) %substr("hello", 1, 3) [%substr("hello", 5)] [%substr("hello", 10)] [%substr("hello", 0, 0)]
+A : %substr("hello", 2, 100) %substr("hello", 0) [%substr("", 0)] %substr(12345, 1, 2) %substr("hello", "1")
+A : [%substr("😀abc", 1)] [%substr("😀abc", 0, 1)] [%substr("😀abc", 2)] %substr("😀abc", 0, 2)
+!$s = %substr("abcdef", 2, 2)
+A : $s
+=== bi-substr-negative
+--- main
+A : %substr("hello", -1)
+=== bi-substr-negative-len
+--- main
+A : %substr("hello", 1, -1)
+=== bi-substr-negative-empty
+--- main
+A : %substr("", -1)
+=== bi-substr-negative-len-long
+--- main
+A : [%substr("hello", 1, -100)]
+=== bi-substr-one-arg
+--- main
+A : %substr("hello")
+=== bi-substr-one-arg-expression
+--- main
+!$s = %substr("hello")
+=== bi-size
+--- main
+!$a = [1, 2, 3]
+!$o = {"x": 1, "y": [1, 2], "s": "abc", "n": null, "e": {}}
+A : %size("abc") %size("😀") %size(123) %size("") %size($a) %size($o) %size($o.y) %size($o.s) %size($o.n) %size($o.e) %size($o.x)
+=== bi-feature
+--- main
+A : %feature("style") %feature("STYLE") %feature("theme") %feature("Theme") %feature("other") %feature("") %feature(1)
+A : %feature("ſtyle") %feature("style ")
+=== bi-version
+--- main
+A : %version()
+!$v = %version()
+!if $v == "1.2026.8"
+A : same
+!endif
+=== bi-chars
+--- main
+A : a%percent()b%dollar()c%backslash()d%tab()e
+A : f%newline()g%n()h%left_align()i%right_align()j
+A : k%breakline()l%breakline()m
+!$x = "p" + %newline() + "q" + %breakline() + "r"
+A : $x
+=== bi-chars-strlen
+--- main
+A : %strlen(%newline()) %ord(%newline()) %ord(%n()) %ord(%breakline()) %ord(%tab()) %ord(%backslash()) %ord(%left_align()) %ord(%right_align())
+=== bi-chars-args
+--- main
+A : %percent(1)
+=== bi-logical
+--- main
+A : %and(1, 1) %and(1, 0) %and(1, 1, 1) %and(1, 1, 0) %and("a", "b") %and("", "a") %and(0, "x")
+A : %or(0, 0) %or(0, 1) %or(0, 0, 0, 1) %or("", "") %or("", "x")
+A : %nand(1, 1) %nand(1, 0) %nand(1, 1, 1) %nor(0, 0) %nor(1, 0) %nor(0, 0, 0)
+A : %xor(1, 0) %xor(1, 1) %xor(1, 0, 0) %xor(1, 1, 1) %xor(0, 0)
+A : %nxor(1, 0) %nxor(1, 1) %nxor(0, 0, 0) %nxor(0, 1, 0)
+!if %and(1, %or(0, 1), %not(0))
+A : nested
+!endif
+=== bi-logical-one-arg
+--- main
+!$x = %and(1)
+=== bi-logical-one-arg-plain
+--- main
+A : %or(1)
+=== bi-nested
+--- main
+A : %upper(%lower("AbC")) %strlen(%substr("hello", 1)) %dec2hex(%hex2dec("ff")) %chr(%ord("Z")) %mod(%strlen("abcdefg"), 4)

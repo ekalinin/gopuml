@@ -17,9 +17,7 @@ import (
 )
 
 // conformanceKnownDifferences are the cases that cannot pass yet.
-var conformanceKnownDifferences = map[string]string{
-	"preprocessor/dec2hex": "%dec2hex is not ported yet (task 4.5)",
-}
+var conformanceKnownDifferences = map[string]string{}
 
 // TestConformancePreproc preprocesses the curated preprocessor cases and
 // compares the lines with the PREPROC output of the reference jar

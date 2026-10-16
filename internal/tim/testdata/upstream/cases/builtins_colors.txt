@@ -1,0 +1,68 @@
+=== bi-darken
+--- main
+A : %darken("red", 10) %darken("#FF0000", 50) %darken("#F00", 0) %darken("red", 100) %darken("red", -50) %darken("red", 200)
+A : %darken("white", 10) %darken("black", 10) %darken("#80FF0000", 10) %darken("transparent", 10) %darken("automatic", 10)
+A : %darken("?red:blue", 10) %darken("red-blue", 10) %darken("red/blue", 10) %darken("#8", 10) %darken("Red", 33) %darken("#red", 10)
+A : %darken("RED", 10) %darken("lightGreen", 25) %darken("#123456", 1) %darken("#123", 77) %darken("red", "x") %darken("background", 5)
+=== bi-darken-bad
+--- main
+A : %darken("nosuchcolor", 10)
+=== bi-darken-bad-hex
+--- main
+A : %darken("#GGGGGG", 10)
+=== bi-darken-empty
+--- main
+A : %darken("", 10)
+=== bi-darken-scheme-bad
+--- main
+A : %darken("?red:nocolor", 10)
+=== bi-lighten
+--- main
+A : %lighten("red", 10) %lighten("#FF0000", 50) %lighten("navy", 100) %lighten("red", -50) %lighten("black", 50)
+A : %lighten("white", 10) %lighten("#80123456", 10) %lighten("transparent", 10) %lighten("#7F7F7F", 3) %lighten("blue", 2147483647)
+!$c = %lighten("gray", 20)
+A : $c
+=== bi-lighten-bad
+--- main
+!$c = %lighten("nocolor", 20)
+=== bi-is-dark
+--- main
+A : %is_dark("black") %is_dark("white") %is_dark("#808080") %is_dark("#7F7F7F") %is_dark("red") %is_dark("yellow")
+A : %is_dark("navy") %is_dark("transparent") %is_dark("automatic") %is_dark("?red:blue") %is_dark("red-blue") %is_dark("#80FFFFFF")
+A : %is_light("black") %is_light("white") %is_light("#808080") %is_light("#7F7F7F") %is_light("red") %is_light("yellow")
+A : %is_light("navy") %is_light("transparent") %is_light("automatic") %is_light("?red:blue") %is_light("red-blue")
+=== bi-is-dark-bad
+--- main
+A : %is_dark("nocolor")
+=== bi-is-light-bad
+--- main
+A : %is_light("#12345")
+=== bi-reverse-color
+--- main
+A : %reverse_color("red") %reverse_color("#123456") %reverse_color("#80123456") %reverse_color("white") %reverse_color("transparent")
+A : %reverse_color("automatic") %reverse_color("?red:blue") %reverse_color("red-blue") %reverse_color("#000")
+=== bi-reverse-color-bad
+--- main
+A : %reverse_color("nocolor")
+=== bi-reverse-hsluv
+--- main
+A : %reverse_hsluv_color("red") %reverse_hsluv_color("#123456") %reverse_hsluv_color("white") %reverse_hsluv_color("black")
+A : %reverse_hsluv_color("#808080") %reverse_hsluv_color("navy") %reverse_hsluv_color("#80123456") %reverse_hsluv_color("yellow")
+A : %reverse_hsluv_color("transparent") %reverse_hsluv_color("automatic") %reverse_hsluv_color("lightblue") %reverse_hsluv_color("#FF8000")
+=== bi-reverse-hsluv-bad
+--- main
+A : %reverse_hsluv_color("nocolor")
+=== bi-hsl-color
+--- main
+A : %hsl_color(0, 100, 50) %hsl_color(120, 100, 50) %hsl_color(240, 100, 50) %hsl_color(0, 0, 0) %hsl_color(0, 0, 100)
+A : %hsl_color(360, 100, 50) %hsl_color(720, 100, 50) %hsl_color(-120, 100, 50) %hsl_color(30, 150, 50) %hsl_color(30, 50, 150)
+A : %hsl_color(30, 50, -10) %hsl_color(200, 60, 40) %hsl_color(200, 60, 40, 50) %hsl_color(200, 60, 40, 0) %hsl_color(200, 60, 40, 100)
+A : %hsl_color(200, 60, 40, 150) %hsl_color(200, 60, 40, -5) %hsl_color("a", 50, 50) %hsl_color(77, 33, 66, 33) %hsl_color(359, 1, 99)
+!$c = %hsl_color(10, 90, 45, 25)
+A : $c
+=== bi-hsl-color-two-args
+--- main
+A : %hsl_color(1, 2)
+=== bi-hsl-color-five-args-expression
+--- main
+!$c = %hsl_color(1, 2, 3, 4, 5)

@@ -22,7 +22,9 @@ type randomFunction struct {
 
 func (*randomFunction) Signature() TFunctionSignature { return NewTFunctionSignature("%random", 2) }
 
-func (*randomFunction) CanCover(nbArg int, _ []string) bool { return nbArg == 0 || nbArg == 1 || nbArg == 2 }
+func (*randomFunction) CanCover(nbArg int, _ []string) bool {
+	return nbArg == 0 || nbArg == 1 || nbArg == 2
+}
 
 func (f *randomFunction) ExecuteReturnFunction(context *TContext, _ TMemory, location text.StringLocated,
 	values []*TValue, _ map[string]*TValue) (*TValue, error) {

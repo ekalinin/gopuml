@@ -13,10 +13,8 @@ type FunctionsSet struct {
 	functions map[signatureKey]TFunction
 	// keys and order reproduce the iteration order of upstream's HashMap,
 	// which decides which function getFunctionSmart picks when several
-	// can cover a call. phantom keys stand for builtins that are not ported
-	// yet: they take their place in the HashMap order but are never found.
+	// can cover a call.
 	keys            []signatureKey
-	phantom         []bool
 	order           *javaHashOrder
 	functionsByName map[string]map[signatureKey]TFunction
 	functionsFinal  map[signatureKey]bool
@@ -41,17 +39,9 @@ func (fs *FunctionsSet) putFunction(fn TFunction) {
 	key := sig.key()
 	if _, ok := fs.functions[key]; !ok {
 		fs.keys = append(fs.keys, key)
-		fs.phantom = append(fs.phantom, false)
 		fs.order.add(sig.hashCode())
 	}
 	fs.functions[key] = fn
-}
-
-// addPhantom reserves the HashMap slot of a builtin that is not ported yet.
-func (fs *FunctionsSet) addPhantom(sig TFunctionSignature) {
-	fs.keys = append(fs.keys, sig.key())
-	fs.phantom = append(fs.phantom, true)
-	fs.order.add(sig.hashCode())
 }
 
 func (fs *FunctionsSet) getFunctionSmart(searched TFunctionSignature) TFunction {
@@ -59,9 +49,6 @@ func (fs *FunctionsSet) getFunctionSmart(searched TFunctionSignature) TFunction 
 		return f
 	}
 	for _, idx := range fs.order.order() {
-		if fs.phantom[idx] {
-			continue
-		}
 		candidate := fs.functions[fs.keys[idx]]
 		if !candidate.Signature().sameFunctionNameAs(searched) {
 			continue

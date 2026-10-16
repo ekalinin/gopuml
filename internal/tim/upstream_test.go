@@ -12,6 +12,7 @@ import (
 	"strings"
 	"testing"
 	"testing/fstest"
+	"time"
 
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/security"
@@ -85,7 +86,15 @@ func TestUpstreamLineTypes(t *testing.T) {
 // knownDifferences are the cases where this implementation deliberately
 // differs from the reference jar, with the reason.
 var knownDifferences = map[string]string{
-	"func-builtin-unported": "%dec2hex and %lower are not ported yet (task 4.5)",
+	"bi-splitstr-regex-diff-surrogate-empty": "Java's regex matches between the two chars of a surrogate pair and " +
+		"splits into lone surrogates; Go strings hold no lone surrogate",
+	"bi-splitstr-regex-diff-block":             "Unicode blocks (\\p{InX}) are not supported in regular expressions",
+	"bi-splitstr-regex-diff-block-property":    "Unicode blocks (\\p{block=X}) are not supported in regular expressions",
+	"bi-splitstr-regex-diff-grapheme-boundary": "\\b{g} (grapheme boundary) is not supported in regular expressions",
+	"bi-splitstr-regex-diff-emoji":             "the Emoji properties are not supported in regular expressions (no Go table)",
+	"bi-splitstr-regex-diff-script-alias":      "four-letter script aliases are not supported in regular expressions",
+	"bi-splitstr-regex-diff-mirrored":          "\\p{javaMirrored} is not supported in regular expressions (no Go table)",
+	"bi-splitstr-regex-diff-named-char":        "\\N{name} is not supported in regular expressions (no Unicode name table)",
 	"edge-include-tilde": "the test reads from an fs.FS, where ~/ (the user's home directory) does not exist: " +
 		"the include is not found instead of failing to read the file",
 }
@@ -137,7 +146,12 @@ func runUpstreamCase(c upstreamCase) (blocks []upstreamBlock, log []string) {
 	ctx.Defines = c.Defines
 	defs := &BlockDefinitions{}
 	for _, b := range core.BuildBlocks(c.Main, "string", nil) {
-		res, _ := Preprocess(ctx, access, b.Lines, defs)
+		res, _ := PreprocessWith(ctx, access, b.Lines, Options{
+			Definitions: defs,
+			// The reference image runs in UTC.
+			Location: time.UTC,
+			Getenv:   harnessGetenv(c),
+		})
 		defs.Add(res.Lines)
 		blocks = append(blocks, upstreamBlock{
 			Error:    res.Artifact != nil && len(res.Lines) > 0 && res.Lines[len(res.Lines)-1].PreprocessorError != "",
@@ -149,6 +163,23 @@ func runUpstreamCase(c upstreamCase) (blocks []upstreamBlock, log []string) {
 		log = append(log, res.Log...)
 	}
 	return blocks, log
+}
+
+// harnessGetenv looks names up like %getenv in the harness: the Java system
+// properties that the harness sets or that depend on the platform, and no
+// environment variable of interest.
+func harnessGetenv(c upstreamCase) func(string) (string, bool) {
+	return func(name string) (string, bool) {
+		switch name {
+		case "line.separator":
+			return "\n", true
+		case "path.separator":
+			return ":", true
+		case "PLANTUML_SECURITY_PROFILE":
+			return c.Profile, c.Profile != ""
+		}
+		return "", false
+	}
 }
 
 func TestUpstreamCases(t *testing.T) {

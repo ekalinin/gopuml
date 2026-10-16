@@ -1,0 +1,159 @@
+=== bi-json-keys
+--- main
+!$o = {"a": 1, "b": [1, 2], "c": {"d": true}, "a": 2}
+!$arr = [1, "x", {"k": 1}, {"k2": 2, "k": 3}, [{"z": 0}]]
+A : %get_json_keys($o) %get_json_keys($arr) %get_json_keys($o.c)
+!$e = {}
+A : %get_json_keys($e)
+=== bi-json-keys-not-json
+--- main
+A : %get_json_keys("str")
+=== bi-json-keys-number
+--- main
+!$o = {"a": 1}
+A : %get_json_keys($o.a)
+=== bi-json-type
+--- main
+!$o = {"a": 1, "b": [1, 2], "c": {"d": true}, "n": null, "s": "txt", "f": 1.5}
+A : %get_json_type($o) %get_json_type($o.b) %get_json_type($o.c) %get_json_type($o.c.d) %get_json_type($o.a)
+A : %get_json_type($o.n) %get_json_type($o.s) %get_json_type($o.f) %get_json_type("s") %get_json_type(1) %get_json_type("")
+=== bi-json-add
+--- main
+!$o = {"a": 1}
+!$arr = [1]
+A : %json_add($arr, 5) %json_add($arr, "s") %json_add($arr, $o) %json_add($o, "z", 1) %json_add($o, "a", 2)
+A : %json_add($o, "z", "str") %json_add($o, "z", $arr) %json_add($o.a, 1) %json_add($o.a, 1, 2) $o $arr
+!$x = %json_add($arr, 2)
+!$x = %json_add($x, 3)
+A : $x $arr
+=== bi-json-add-not-json
+--- main
+A : %json_add("str", 1)
+=== bi-json-add-object-two-args
+--- main
+!$o = {"a": 1}
+A : %json_add($o, "z")
+=== bi-json-key-exists
+--- main
+!$o = {"a": 1, "c": {"d": true}}
+!$arr = [{"k": 1}]
+!$s = {"name": "a"}
+A : %json_key_exists($o, "a") %json_key_exists($o, "zz") %json_key_exists($arr, "k") %json_key_exists("str", "a")
+A : %json_key_exists($o, 1) %json_key_exists($o.c, "d") %json_key_exists($o, $s.name) %json_key_exists($o, "")
+!$k = %json_key_exists($o, "c")
+A : $k %json_key_exists("x")
+=== bi-json-key-exists-one-arg-object
+--- main
+!$o = {"a": 1}
+A : %json_key_exists($o)
+=== bi-json-key-exists-one-arg-expression
+--- main
+!$o = {"a": 1}
+!$k = %json_key_exists($o)
+=== bi-json-merge
+--- main
+!$o = {"a": 1, "b": 2}
+!$p = {"a": 9, "e": 3}
+!$arr = [1, 2]
+!$arr2 = [3, {"x": 1}]
+A : %json_merge($o, $p) %json_merge($arr, $arr2) %json_merge($o, $arr) %json_merge($arr, $o)
+A : %json_merge($o.a, $o.b) %json_merge($o, $o) $o
+=== bi-json-merge-number-array
+--- main
+!$o = {"a": 1}
+!$arr = [1, 2]
+A : %json_merge($o.a, $arr)
+=== bi-json-merge-not-json
+--- main
+!$o = {"a": 1}
+A : %json_merge("x", $o)
+=== bi-json-merge-not-json-second
+--- main
+!$o = {"a": 1}
+A : %json_merge($o, "x")
+=== bi-json-remove
+--- main
+!$o = {"a": 1, "b": 2, "a": 3}
+!$arr = [1, 2, 3]
+A : %json_remove($arr, 0) %json_remove($arr, 2) %json_remove($arr, 3) %json_remove($arr, -1) %json_remove($arr, "0")
+A : %json_remove($o, "a") %json_remove($o, "zz") %json_remove($o.b, "x") %json_remove($o, 1) $o $arr
+=== bi-json-remove-not-json
+--- main
+A : %json_remove("x", 1)
+=== bi-json-set
+--- main
+!$o = {"a": 1, "c": {"d": 1, "x": {"y": 1}}, "a": 5}
+!$arr = [1, 2, 3]
+!$patch = {"c": {"e": 2, "x": {"z": 3}}, "f": [1]}
+A : %json_set($arr, 1, "new") %json_set($arr, 3, 1) %json_set($arr, -1, 1) %json_set($arr, "1", 1)
+A : %json_set($o, "a", 99) %json_set($o, "new", $arr) %json_set($o, $patch) %json_set($o, "str")
+A : %json_set($o.a, "x", 1) %json_set($arr, "x") $o $arr
+=== bi-json-set-not-json
+--- main
+A : %json_set("x", 1, 2)
+=== bi-json-set-array-two-args
+--- main
+!$arr = [1, 2]
+A : %json_set($arr, 1)
+=== bi-json-set-one-arg
+--- main
+!$arr = [1, 2]
+!$x = %json_set($arr)
+=== bi-str2json
+--- main
+A : %str2json("[1,2]") %str2json('{"a": 1, "b": [true, null]}') [%str2json("bad")] [%str2json("")]
+A : %str2json("123") %str2json('"s"') %str2json("true") %str2json(" [ 1 ] ") [%str2json("[1,")] %str2json(12)
+!$j = %str2json('{"k": {"v": 42}}')
+A : $j.k.v %get_json_type($j) %get_json_type(%str2json("x"))
+=== bi-load-json
+--- file: data.json
+{"k": [1, 2], "s": "é"}
+--- file: sub/x.json
+[1, 2, 3]
+--- file: empty.json
+--- main
+!$d = %load_json("data.json")
+A : $d $d.k[1] $d.s
+A : %load_json("sub/x.json") %load_json("missing.json") %load_json("missing.json", '{"x": 1}') %load_json("missing.json", "[]")
+A : %load_json("empty.json") %load_json("empty.json", "[0]") %load_json("missing.json", "{}", "nocharset")
+A : %load_json("data.json", "{}", "ISO-8859-1") %load_json("data.json", "{}", "UTF-8") %load_json("sub")
+A : %load_json("<x>") %load_json("<>") %load_json(">foo<") %load_json("http://exa mple.com/x")
+=== bi-load-json-bad-file
+--- file: bad.json
+{"k": [1, 2
+--- main
+A : %load_json("bad.json")
+=== bi-load-json-bad-default
+--- main
+A : %load_json("missing.json", "{bad")
+=== bi-load-json-bad-charset
+--- file: data.json
+{"k": 1}
+--- main
+A : %load_json("data.json", "{}", "nocharset")
+=== bi-load-json-empty-charset
+--- file: data.json
+{"k": 1}
+--- main
+A : %load_json("data.json", "{}", "")
+=== bi-load-json-sandbox
+--- profile: SANDBOX
+--- file: data.json
+{"k": 1}
+--- main
+A : %load_json("data.json") %load_json("data.json", "[1]") %load_json("http://localhost:1/x", "[2]")
+=== bi-load-json-stdlib-missing
+--- main
+A : %load_json("<nolib/x>")
+=== bi-load-json-stdlib-short
+--- main
+A : %load_json("<")
+=== bi-load-json-includepath
+--- includepath: inc
+--- file: inc/lib.json
+{"from": "inc"}
+--- main
+A : %load_json("lib.json")
+=== bi-json-inline-literal-arg
+--- main
+A : %get_json_keys({"a": 1, "b": 2}) %size([1, 2]) %json_add([1], 2)

@@ -1,0 +1,136 @@
+=== bi-splitstr
+--- main
+A : %splitstr("a,b,,c", ",") %splitstr("a,b;c", ",;") %splitstr("", ",") %splitstr("abc", "") %splitstr(",,,", ",")
+A : %splitstr("a😀b", "😀") %splitstr(123, 2) %splitstr(" a b ", " ") %splitstr("a,b", "x") %splitstr("a,b", ",", "x")
+!$l = %splitstr("x-y-z", "-")
+A : $l[1] %size($l)
+!foreach $e in %splitstr("p q", " ")
+A : item $e
+!endfor
+=== bi-splitstr-three-args-expression
+--- main
+!$l = %splitstr("a,b", ",", "x")
+=== bi-splitstr-one-arg
+--- main
+A : %splitstr("a,b")
+=== bi-splitstr-regex
+--- main
+A : %splitstr_regex("a1b22c", "[0-9]+") %splitstr_regex("a, b ,c", "\s*,\s*") %splitstr_regex("abc", "") %splitstr_regex("aaa", "a")
+A : %splitstr_regex("", ",") %splitstr_regex("a,b,,", ",") %splitstr_regex(",a", ",") %splitstr_regex("a.b", ".") %splitstr_regex("a.b", "\.")
+A : %splitstr_regex("a|b", "\|") %splitstr_regex("AbcABC", "(?i)b") %splitstr_regex("aXbxc", "[x]") %splitstr_regex("a1b2", "\d")
+A : %splitstr_regex("a b", "\s") %splitstr_regex("a_b-c", "\W") %splitstr_regex("éaé", "\w") %splitstr_regex("x1y", "\p{Digit}")
+A : %splitstr_regex("xAy", "\p{Lu}") %splitstr_regex("abγδc", "\p{IsGreek}+") %splitstr_regex("a١b", "\p{javaDigit}") %splitstr_regex("aXb", "\p{Upper}")
+A : %splitstr_regex("a,b", "(?<=a),") %splitstr_regex("a,b", ",(?=b)") %splitstr_regex("abab", "(?<=a)b") %splitstr_regex("xaabx", "a*+b")
+A : %splitstr_regex("xaax", "a*+a") %splitstr_regex("a1b", "\Q1\E") %splitstr_regex("a.b", "\Q.\E") %splitstr_regex("a*b", "\*")
+A : %splitstr_regex("a{b", "\{") %splitstr_regex("1+2", "\+") %splitstr_regex("abba", "(b)\1") %splitstr_regex("abc", "(?<x>b)\k<x>")
+A : %splitstr_regex("aXXb", "(?<x>X)\k<x>") %splitstr_regex("ab", "\b") %splitstr_regex("a b", "\b") %splitstr_regex("é b", "\b")
+A : %splitstr_regex("aaa", "a{2}") %splitstr_regex("a}b", "}") %splitstr_regex("a]b", "]") %splitstr_regex(12321, 2) %splitstr_regex("a1b", 1)
+=== bi-splitstr-regex-classes
+--- main
+A : %splitstr_regex("a-b", "[-]") %splitstr_regex("a^b", "[\^]") %splitstr_regex("a]b", "[]]") %splitstr_regex("a1b2c", "[^a-z]")
+A : %splitstr_regex("abcdef", "[a-z&&[^aeiou]]") %splitstr_regex("a1b", "[\d]") %splitstr_regex("a1b", "[^\D]") %splitstr_regex("axb", "[a-c[x-z]]")
+A : %splitstr_regex("a b", "[\s]") %splitstr_regex("a-b+c", "[+-]") %splitstr_regex("a&b", "[&]") %splitstr_regex("a&b", "[a&&&]")
+A : %splitstr_regex("q1w2e", "[\w&&\D]") %splitstr_regex("a^b", "[b^]") %splitstr_regex("AbC", "[a-z]") %splitstr_regex("AbC", "(?i)[a-b]")
+A : %splitstr_regex("a1-b", "[\d-]") %splitstr_regex("x-y", "[a-]") %splitstr_regex("a[b", "[\[]") %splitstr_regex("aéb", "[à-ü]")
+=== bi-splitstr-regex-flags
+--- main
+!$nl = %chr(10)
+!$cr = %chr(13)
+!$s = "a" + $nl + "b" + $nl
+!$t = "x" + $cr + $nl + "y"
+A : %size(%splitstr_regex($s, "(?m)^")) %size(%splitstr_regex($s, "(?m)$")) %size(%splitstr_regex($s, "$"))
+A : %size(%splitstr_regex($s, ".")) %size(%splitstr_regex($s, "(?s).")) %size(%splitstr_regex($t, "$")) %size(%splitstr_regex($t, "(?m)$"))
+A : %size(%splitstr_regex($t, "\R")) %size(%splitstr_regex($t, "(?d)(?m)$")) %size(%splitstr_regex($s, "\Z")) %size(%splitstr_regex($s, "\z"))
+A : %splitstr_regex("aBc", "(?i:B)") %splitstr_regex("aBcb", "(?i)b(?-i)") %splitstr_regex("aBcb", "((?i)b)c") %splitstr_regex("a b", "(?x) a")
+A : %splitstr_regex("a b", "(?x) a # comment") %splitstr_regex("a b", "(?x)[ b]") %splitstr_regex("ÉéE", "(?i)é") %splitstr_regex("ÉéE", "(?iu)é")
+A : %splitstr_regex("a b", "\x20") %splitstr_regex("a b", "\040") %splitstr_regex("a b", " ") %splitstr_regex("a😀b", "\x{1F600}")
+A : %splitstr_regex("a😀b", "😀") %splitstr_regex("a😀b", ".") %splitstr_regex("a😀b", "[😀]") %splitstr_regex("aAb", "\x41")
+A : %splitstr_regex("a1b", "(?U)\w") %splitstr_regex("é b", "(?U)\b") %splitstr_regex("a_b", "\p{Punct}") %splitstr_regex("aéb", "\p{L}")
+A : %splitstr_regex("aéb", "\p{IsLatin}") %splitstr_regex("aéb", "\P{ASCII}") %splitstr_regex("a1b", "\p{Alnum}") %splitstr_regex("a1b", "\pN")
+A : %splitstr_regex("a1b", "\p{gc=Nd}") %splitstr_regex("aδb", "\p{sc=Greek}") %splitstr_regex("aXb", "\p{IsUppercase}") %splitstr_regex("a b", "\p{javaWhitespace}")
+=== bi-splitstr-regex-bad-curly
+--- main
+A : %splitstr_regex("a{b", "a{")
+=== bi-splitstr-regex-dangling
+--- main
+A : %splitstr_regex("abc", "*")
+=== bi-splitstr-regex-unclosed-group
+--- main
+A : %splitstr_regex("abc", "(")
+=== bi-splitstr-regex-unclosed-class
+--- main
+A : %splitstr_regex("abc", "[a")
+=== bi-splitstr-regex-trailing-backslash
+--- main
+A : %splitstr_regex("abc", "\")
+=== bi-splitstr-regex-bad-escape
+--- main
+A : %splitstr_regex("abc", "\y")
+=== bi-splitstr-regex-unmatched-paren
+--- main
+A : %splitstr_regex("abc", "a)")
+=== bi-splitstr-regex-bad-range
+--- main
+A : %splitstr_regex("abc", "[z-a]")
+=== bi-splitstr-regex-bad-property
+--- main
+A : %splitstr_regex("abc", "\p{NoSuchProperty}")
+=== bi-splitstr-regex-bad-repetition
+--- main
+A : %splitstr_regex("abc", "a{3,2}")
+=== bi-splitstr-regex-double-quantifier
+--- main
+A : %splitstr_regex("abc", "a**")
+=== bi-splitstr-regex-bad-group-name
+--- main
+A : %splitstr_regex("abc", "(?<1a>b)")
+=== bi-splitstr-regex-unknown-name
+--- main
+A : %splitstr_regex("abc", "\k<nope>")
+=== bi-splitstr-regex-missing-group
+--- main
+A : %splitstr_regex("abba", "b\2") %splitstr_regex("abba", "(b)\2") %splitstr_regex("a1b", "(1)\10")
+=== bi-splitstr-regex-expression
+--- main
+!$l = %splitstr_regex("1;2;3", ";")
+A : $l %size($l) $l[2]
+=== bi-splitstr-regex-empty-intersection
+--- main
+A : %splitstr_regex("abc&&d", "[&&]")
+=== bi-splitstr-regex-comment-class
+--- main
+A : %splitstr_regex("a b", "(?x)[ ]")
+=== bi-splitstr-regex-more
+--- main
+A : %splitstr_regex("a1b2c3", "(?<=\d)") %splitstr_regex("aBcDe", "(?=[A-Z])") %splitstr_regex("a::b:c", ":+") %splitstr_regex("a::b", ":+?")
+A : %splitstr_regex("one two  three", " +") %splitstr_regex("k=v;k2=v2", "[=;]") %splitstr_regex("x.y", "[.]") %splitstr_regex("a\b", "\\")
+A : %splitstr_regex("aaa", "a*") %splitstr_regex("abc", "x*") %splitstr_regex("aXbXc", "(?i)x") %splitstr_regex("AxBxC", "(?-i)x")
+A : %splitstr_regex("a1b", "\p{IsDigit}") %splitstr_regex("aAbB", "\p{javaUpperCase}") %splitstr_regex("a,b;c", "\p{Punct}") %splitstr_regex("ab12", "(?<letters>[a-z]+)")
+A : %splitstr_regex("aa", "(a)(?:\1)") %splitstr_regex("a-b_c", "[\W_]") %splitstr_regex("ab", "a|") %splitstr_regex("abc", "(?:)")
+=== bi-splitstr-regex-block
+--- main
+A : %splitstr_regex("été", "\p{InLatin1Supplement}")
+=== bi-splitstr-regex-diff-surrogate-empty
+--- main
+A : %splitstr_regex("x😀y", "")
+=== bi-splitstr-regex-diff-block
+--- main
+A : %splitstr_regex("aβb", "\p{InGreek}") %splitstr_regex("aéb", "\p{InLatin-1Supplement}")
+=== bi-splitstr-regex-diff-block-property
+--- main
+A : %splitstr_regex("aβb", "\p{block=Greek}")
+=== bi-splitstr-regex-diff-grapheme-boundary
+--- main
+A : %splitstr_regex("ab", "\b{g}")
+=== bi-splitstr-regex-diff-emoji
+--- main
+A : %splitstr_regex("a😀b", "\p{IsEmoji}")
+=== bi-splitstr-regex-diff-script-alias
+--- main
+A : %splitstr_regex("aβb", "\p{IsGrek}")
+=== bi-splitstr-regex-diff-mirrored
+--- main
+A : %splitstr_regex("a(b", "\p{javaMirrored}")
+=== bi-splitstr-regex-diff-named-char
+--- main
+A : %splitstr_regex("abc", "\N{LATIN SMALL LETTER A}")
