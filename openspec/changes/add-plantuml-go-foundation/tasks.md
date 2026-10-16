@@ -86,7 +86,7 @@
 - [x] 8.4 Port the sequence participant and arrow drawing (all participant shapes, all arrow heads, self, incoming and outgoing, and short messages). Verify with sequence conformance cases for participants and messages
 - [x] 8.5 Port fragment, note, divider, delay, reference and autonumber drawing. Verify with the sequence conformance cases for those scenarios
 - [x] 8.6 Accept `!pragma teoz` with any value and keep the Teoz layout, as upstream v1.2026.8 does. Verify with the "Teoz pragma has no effect" scenario
-- [ ] 8.7 Port `asciiart` for sequence diagrams (TXT `.atxt` and UTXT `.utxt`). Verify that the sequence TXT and UTXT conformance cases match exactly
+- [x] 8.7 Port `asciiart` for sequence diagrams (TXT `.atxt` and UTXT `.utxt`). Verify that the sequence TXT and UTXT conformance cases match exactly
 - [ ] 8.8 Run the sequence conformance slice. Verify that all sequence cases pass or are listed with justification in `known-differences.yaml`
 
 ## 9. Library API (first usable slice)
