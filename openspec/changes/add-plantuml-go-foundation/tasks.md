@@ -160,5 +160,5 @@
 
 - [x] 16.1 Run the full conformance suite (diagrams, formats, CLI, HTTP) in the reference image. Verify that `conformance-report.md` shows 100% pass or justified known differences for sequence, class, activity, SVG, PNG, TXT, UTXT and PREPROC
 - [x] 16.2 Check that the error paths for out-of-scope features are explicit: every Vega case of an unsupported family or type produces a "not supported yet" error, never wrong output. Verify with the runner's unsupported-case report
-- [ ] 16.3 Write `README.md` covering installation, CLI usage as a `plantuml.jar` replacement, library usage, the HTTP server, the WASM build, supported diagram types and formats (from the conformance report), the Graphviz requirement, and licensing. Verify that every command in the README runs successfully in a clean checkout
-- [ ] 16.4 Run `openspec validate add-plantuml-go-foundation --strict` and confirm that every task's verification passed. Verify that validation reports the change as valid
+- [x] 16.3 Write `README.md` covering installation, CLI usage as a `plantuml.jar` replacement, library usage, the HTTP server, the WASM build, supported diagram types and formats (from the conformance report), the Graphviz requirement, and licensing. Verify that every command in the README runs successfully in a clean checkout
+- [x] 16.4 Run `openspec validate add-plantuml-go-foundation --strict` and confirm that every task's verification passed. Verify that validation reports the change as valid

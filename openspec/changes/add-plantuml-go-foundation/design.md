@@ -75,11 +75,18 @@ Alternatives considered:
 | `internal/klimt` | `klimt`, `klimt.shape`, `klimt.drawing`, `klimt.creole`, `klimt.sprite`, `style`, `skin`, `stereo`, `url` | Drawing model, creole, styling (one package: see below) |
 | `internal/klimt/color`, `internal/klimt/geom`, `internal/klimt/font` | `klimt.color`, `klimt.geom`, `klimt.font` | Colors, geometry, text measurement |
 | `internal/klimt/svg`, `internal/klimt/g2d` | `klimt.drawing.svg`, `klimt.drawing.g2d` | Output drivers |
-| `internal/svek`, `internal/dot` | `svek`, `dot` | DOT generation, `dot` process, SVG coordinate parsing |
-| `internal/sequencediagram` | `sequencediagram` (+ `teoz`) | Sequence diagrams |
-| `internal/classdiagram`, `internal/abel`, `internal/cucadiagram` | same | Class diagrams and the shared entity model |
+| `internal/klimt/rose` | `skin.rose` | Skin components (participants, arrows, notes, groupings) |
+| `internal/uml` | `AbstractPSystem`, `TitledDiagram`, `UmlDiagram`, `command` (common commands), `DiagramChromeFactory` | Shared diagram base, common commands, annotations |
+| `internal/export`, `internal/png` | `core.TextBlockExporter`, `png` | Exporting a drawing to a format; PNG chunks |
+| `internal/engine` | `SourceStringReader`, `BlockUml` | Parsing and drawing of blocks, used by the root package, CLI, server and WASM |
+| `internal/errdiagram` | `error`, `PSystemWelcome` | Error, unsupported and welcome images |
+| `internal/svek`, `internal/svek/extremity`, `internal/dot` | `svek` (+ `svek.image`), `svek.extremity`, `dot` | DOT generation, entity images, arrow heads, `dot` process, SVG coordinate parsing |
+| `internal/decoration`, `internal/decoration/symbol` | `decoration`, `decoration.symbol` | Link types and decorations, USymbols |
+| `internal/sequencediagram` | `sequencediagram` (+ `teoz`, `graphic`) | Sequence diagrams |
+| `internal/classdiagram`, `internal/abel` | `classdiagram` (+ `objectdiagram`); `abel` (+ `cucadiagram`) | Class and object diagrams; the shared entity model |
 | `internal/activitydiagram3` | `activitydiagram3` (+ `ftile`) | Activity diagrams |
-| `internal/asciiart` | `asciiart` | TXT/UTXT rendering |
+| `internal/asciiverse`, `internal/asciiart` | `asciiverse`, `asciiart` | TXT/UTXT rendering |
+| `internal/themes`, `internal/version` | `themes/`, `version` | Bundled themes; version and license text |
 | `internal/code` | `code` | URL text encoding (re-exported by the root package) |
 | `internal/security` | `security` | Security profiles, file and URL access |
 | `internal/server` | `picoweb` + plantuml-server routes | HTTP server |
