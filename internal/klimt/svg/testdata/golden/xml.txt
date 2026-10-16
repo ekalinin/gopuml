@@ -1,0 +1,49 @@
+indent 0
+<root a="again" b=""><?pi data?><?empty?><?nul?><empty/><text>a &amp; b &lt; c > d " e</text><nul></nul><mixed>before<child><!--c- -d- --><!----><![CDATA[x]]]]><![CDATA[>y]]><![CDATA[]]></child>after<raw attr="1"/></mixed><l1><l2><l3 k="v"/>t</l2></l1></root>
+-----
+indent 2
+<root a="again" b="">
+  <?pi data?>
+  <?empty?>
+  <?nul?>
+  <empty/>
+  <text>a &amp; b &lt; c > d " e</text>
+  <nul></nul>
+  <mixed>before    <child>
+      <!--c- -d- -->
+      <!---->
+      <![CDATA[x]]]]><![CDATA[>y]]>
+      <![CDATA[]]>
+    </child>
+after<raw attr="1"/>  </mixed>
+  <l1>
+    <l2>
+      <l3 k="v"/>
+t</l2>
+  </l1>
+</root>
+
+-----
+indent 3
+<root a="again" b="">
+   <?pi data?>
+   <?empty?>
+   <?nul?>
+   <empty/>
+   <text>a &amp; b &lt; c > d " e</text>
+   <nul></nul>
+   <mixed>before      <child>
+         <!--c- -d- -->
+         <!---->
+         <![CDATA[x]]]]><![CDATA[>y]]>
+         <![CDATA[]]>
+      </child>
+after<raw attr="1"/>   </mixed>
+   <l1>
+      <l2>
+         <l3 k="v"/>
+t</l2>
+   </l1>
+</root>
+
+-----

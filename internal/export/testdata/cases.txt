@@ -1,0 +1,169 @@
+# Export scripts of the TextBlockExporter golden tests. The language is the
+# one of internal/klimt/svg/svgtest/script.go, plus "export KEY VALUE..."
+# settings (see export_test.go); the drawing commands are run by the drawU
+# of a text block of size "export dim W H" (100x50 by default).
+# internal/klimt/svg/testdata/javagen/SvgGolden.java runs the same scripts
+# with upstream's TextBlockExporter and writes golden/<case>.svg and
+# golden/imagedata.txt.
+
+case basic
+color #181818
+bg #FEFECE
+rect 80 30 5
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 basic
+write
+
+case margins
+export margin 10 20 30 40
+export dim 60.5 20.25
+color #181818
+rect 60.5 20.25
+write
+
+case backcolor
+export back #FEFECE
+color #181818
+rect 10 10
+write
+
+case backcolor-transparent
+export back transparent
+color #181818
+rect 10 10
+write
+
+case backcolor-gradient
+export back #FFFFFF/#AAAAFF
+color #181818
+rect 10 10
+write
+
+case textblock-backcolor
+export tbback #FF0000
+color #181818
+rect 10 10
+write
+
+case scale-simple
+export scale simple 2
+color #181818
+bg #FEFECE
+rect 20 10 3
+translate 5 30
+text SansSerif 12 plain - #000000 - - 0 scaled
+write
+
+case scale-width
+export scale width 300
+color #181818
+rect 20 10
+write
+
+case scale-maxwidth
+export scale maxwidth 50
+color #181818
+rect 20 10
+write
+
+case scale-capped
+export scale simple 10
+color #181818
+rect 20 10
+write
+
+case dpi
+export skinparam dpi 192
+color #181818
+rect 20 10
+write
+
+case border
+export skinparam diagramBorderColor #FF0000
+export margin 5 5 5 5
+color #181818
+rect 20 10
+write
+
+case border-thickness
+export skinparam diagramBorderThickness 3
+export skinparam roundCorner 10
+color #181818
+rect 20 10
+write
+
+case skinparam-svg
+export skinparam svglinktarget _blank
+export skinparam pathHoverColor #00FF00
+export skinparam preserveAspectRatio xMinYMin
+export skinparam lengthAdjust spacingAndGlyphs
+url http://example.com tip
+color #181818
+path 0 - - M 0 0 L 10 10
+endurl
+translate 10 20
+text SansSerif 12 plain - #000000 - - 0 adjusted
+write
+
+case skinparam-nodimension
+export skinparam svgDimensionStyle false
+color #181818
+rect 20 10
+write
+
+case fileformatoption
+export skinparam svglinktarget _blank
+export ffo linktarget _parent
+export ffo hover #123456
+export ffo preserve xMaxYMax
+export ffo decimal 1
+url http://example.com
+color #181818
+rect 20.333 10.666
+endurl
+write
+
+case diagramtype-sequence
+export diagramtype SEQUENCE
+export pragma svginteractive true
+color #181818
+rect 20 10
+write
+
+case diagramtype-class
+export diagramtype CLASS
+export pragma svginteractive true
+color #181818
+rect 20 10
+write
+
+case dark
+export ffo mapper dark
+color dark(#181818,#EEEEEE)
+bg dark(#FEFECE,#333333)
+rect 20 10
+write
+
+case metadata
+color #181818
+rect 20 10
+write @startuml\nBob\s->\sAlice\n@enduml\n1.2026.8
+
+case null-format
+export format NULL
+color #181818
+rect 20 10
+write @startuml\na\n@enduml
+
+case seed
+export seed 7
+color #181818
+bg #FF0000/#0000FF
+rect 20 10 0 3
+write
+
+case svgtitle
+export svgtitle Exported\stitle
+color #181818
+rect 20 10
+write

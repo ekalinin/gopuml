@@ -1,0 +1,701 @@
+# Drawing scripts of the SVG driver golden tests. The language is described
+# in ../svgtest/script.go; testdata/javagen/SvgGolden.java runs the same
+# scripts with the upstream jar and writes golden/<case>.svg.
+
+case empty
+write
+
+case rect-basic
+color #FF0000
+bg #00FF00
+translate 10 20
+rect 30 40
+write
+
+case rect-rounded-shadow
+color #181818
+bg #F1F1F1
+translate 10.5 7.25
+rect 72.031 48 5 4
+translate 100 0
+rect 20 20 0 3
+rect 20 20 10 0
+write
+
+case rect-degenerate
+color #181818
+bg #F1F1F1
+push
+clip 0 0 5 5
+translate 3 3
+rect 10 10
+translate 10 0
+rect 3 3
+translate -10 10
+rect 3 3
+translate -20 -20
+rect 4 4
+pop
+rect 1e-9 1e-9
+translate 1e6 -3
+rect 2 2
+write
+
+case strokes
+color #181818
+bg #FEFECE
+stroke 0.5
+rect 10 10
+translate 20 0
+stroke 1.5
+rect 10 10
+translate 20 0
+stroke 2 5 5
+rect 10 10
+translate 20 0
+stroke 1 2 3.3333
+line 30 0
+translate 0 20
+stroke 0
+rect 10 10
+line 10 10
+stroke 0.00001
+rect 10 10
+stroke -0.0001
+rect 10 10
+write
+
+case colors-alpha
+color #FF000080
+bg #00FF0040
+rect 10 10
+translate 20 0
+color transparent
+bg transparent
+rect 10 10
+translate 20 0
+bg opacity(transparent)
+rect 10 10
+translate 20 0
+bg opacity(#11223344)
+color #AABBCC
+rect 10 10
+translate 20 0
+color #AABBCD
+bg #ABCDEF
+rect 10 10
+translate 20 0
+color red
+bg navy
+rect 10 10
+translate 20 0
+color #00000000
+bg #FFFFFF00
+ellipse 10 10
+write
+
+case gradients-two-colors
+color #181818
+bg #FF0000/#0000FF
+rect 10 10
+translate 20 0
+bg #FF0000|#0000FF
+rect 10 10
+translate 20 0
+bg #FF0000\\#0000FF
+rect 10 10
+translate 20 0
+bg #FF0000-#0000FF
+rect 10 10
+translate 20 0
+bg #FF0000/#0000FF
+ellipse 10 10
+translate 20 0
+color #00FF00|#FFFF00
+rect 10 10
+line 10 10
+pixel
+polygon 0 0 0 10 0 5 10
+write
+
+case gradients-linear
+color #181818
+bg lg(0,0,1,0,false,PAD,0:#FF0000:1,1:#0000FF:1)
+rect 10 10
+translate 20 0
+bg lg(0,0,0,1,false,REFLECT,0:#FF000080:1,0.5:#00FF00:0.5,1:#0000FF:0.25)
+rect 10 10
+translate 20 0
+bg lg(5,6,30.5,40.25,true,REPEAT,0:#AABBCC:1,1:#112233:0.99995)
+rect 10 10
+translate 20 0
+bg lg(0,0,1,0,false,PAD,0:#FF0000:1,1:#0000FF:1)
+ellipse 10 10
+translate 20 0
+color lg(0,0.333333,1,0.5,false,PAD,0:red:1,0.25:green:0,1:blue:1)
+path 0 - - M 0 0 L 10 10
+polygon 0 0 0 10 0 5 10
+write
+
+case background-color
+opt back #FF0000
+color #181818
+bg #FEFECE
+rect 10 10
+write
+
+case background-white
+opt back #FFFFFF
+rect 10 10
+write
+
+case background-black
+opt back #000000
+rect 10 10
+write
+
+case background-transparent
+opt back transparent
+rect 10 10
+write
+
+case background-gradient
+opt back #FFFFFF/#FF0000
+opt mindim 120.5 80.25
+color #181818
+bg #FEFECE
+rect 10 10
+write
+
+case background-dark
+opt back dark(#FFFFFF,#000000)
+opt mapper dark
+color dark(#181818,#E0E0E0)
+bg dark(#FEFECE,#303030)
+rect 10 10
+write
+
+case mappers-mono
+opt back #FEFECE
+opt mapper mono
+color #FF0000
+bg #00FF00
+rect 10 10
+write
+
+case mappers-reverse
+opt mapper reverse
+color #FF0000
+bg #00FF00
+rect 10 10
+write
+
+case lines
+color #181818
+stroke 1
+line 30 0
+translate 0 10
+line 0 30 3
+translate 10 0
+line -5 -5
+translate 10 0
+push
+clip 0 0 10 10
+line 20 20
+line 5 5
+translate 100 100
+line 1 1
+pop
+line -0.0001 0.00049
+write
+
+case ellipses
+color #181818
+bg #ADD1B2
+ellipse 22 22
+translate 30 0
+ellipse 20 10 0 90
+translate 30 0
+ellipse 20 10 45 -120
+translate 30 0
+ellipse 20 10 30 300
+translate 30 0
+ellipse 12.5 7.25 0 0 4
+translate 30 0
+push
+clip 0 0 5 5
+ellipse 10 10
+pop
+write
+
+case polygons
+color #181818
+bg #181818
+polygon 0 38.104 32 42.104 42 46.104 32 42.104 36
+translate 50 0
+polygon 3 0 0 10 0 5 10
+translate 20 0
+push
+clip 0 0 8 8
+polygon 0 0 0 5 5 0 5
+polygon 0 0 0 10 0 5 10
+pop
+write
+
+case paths
+color #181818
+bg transparent
+path 0 B-backto-A 1 M 53.86 31 C 65.51 31 72.17 31 83.82 31
+path 2 - - M 0 0 L 10 0 Q 15 5 10 10 A 5 5 0 0 1 0 10 A 3 4 30 1 0 2 2 Z
+translate 20 20
+color #FF0000
+bg #FF0000
+path 0 - - M 0 0 L 5 5 L 0 5
+color #FF0000/#00FF00
+bg #FF0000/#00FF00
+path 0 id42 - M 0 0 L 5 5
+write
+
+case dotpaths
+color #181818
+stroke 1
+dotpath 0 0 10 0 20 10 30 10 40 10 50 0 60 0
+translate 10 50
+stroke 1 3 3
+dotpath 0 0 1.5 2.5 3.25 4.125 5 6
+color transparent
+dotpath 0 0 1 1 2 2 3 3
+write
+
+case pixels
+color #FF0000
+pixel
+translate 3.5 4.25
+pixel
+write
+
+case texts-fonts
+translate 10 20
+text SansSerif 12 plain - #000000 - - 0 Hello
+translate 0 20
+text SansSerif 14 bold - #000000 - - 0 Bold\stext
+translate 0 20
+text SansSerif 12 plain bold #000000 - - 0 Styled\sbold
+translate 0 20
+text SansSerif 12 italic - #000000 - - 0 Italic\stext
+translate 0 20
+text SansSerif 12 plain italic #000000 - - 0 Styled\sitalic
+translate 0 20
+text SansSerif 12 bolditalic - #000000 - - 0 Both
+translate 0 20
+text SansSerif 12 w300 - #000000 - - 0 Light
+translate 0 20
+text SansSerif 12 w900 bold #000000 - - 0 Black\sbold
+translate 0 20
+text SansSerif 12 iw500 - #000000 - - 0 Medium\sitalic
+translate 0 20
+text Serif 13 plain - #333333 - - 0 Serif\stext
+write
+
+case texts-families
+translate 10 20
+text Monospaced 12 plain - #000000 - - 0 a\sb\s\sc
+translate 0 20
+text monospace 12 plain - #000000 - - 0 x\sy
+translate 0 20
+text courier 12 plain - #000000 - - 0 courier\stext
+translate 0 20
+text Roboto 12 plain - #000000 - - 0 roboto\sone
+translate 0 20
+text Roboto 12 plain - #000000 - - 0 roboto\stwo
+translate 0 20
+text DejaVu\sSans 12 plain - #000000 - - 0 DejaVu
+translate 0 20
+text Arial 12 plain - #000000 - - 0 Arial\stext
+translate 0 20
+text sans-serif 12 plain - #000000 - - 0 explicit\sdefault
+write
+
+case texts-content
+translate 10 20
+text SansSerif 12 plain - #000000 - - 0 \s\s\sleading
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 \s\s\s
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 trailing\s\s
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 A
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 <&>"'
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 caf\u00E9\s\u65E5\u672C
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 \uD83D\uDE00
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 tab\there
+translate 0 20
+text SansSerif 12 plain - #000000 - - 0 \_
+write
+
+case texts-decorations
+translate 10 20
+text SansSerif 12 plain underline #000000 - - 0 underlined
+translate 0 20
+text SansSerif 12 plain underline #000000 #FF0000 - 0 red\sunderline
+translate 0 20
+text SansSerif 12 plain strike #000000 - - 0 striked
+translate 0 20
+text SansSerif 12 plain strike #000000 #00FF00 - 0 green\sstrike
+translate 0 20
+text SansSerif 12 plain wave #000000 #0000FF - 0 waved
+translate 0 20
+text SansSerif 12 plain underline,strike,wave #000000 - - 0 all\sthree
+translate 0 20
+text SansSerif 12 plain underline,strike #000000 #FF00FF - 0 both\scolored
+translate 0 20
+text SansSerif 12 plain underline,thinunderlinestroke #000000 - - 0 no\sunderline
+write
+
+case texts-backcolor
+translate 10 20
+text SansSerif 12 plain backcolor #000000 #FFFF00 - 0 yellow\sback
+translate 0 20
+text SansSerif 12 plain backcolor #000000 #FFFF00 - 0 same\sfilter
+translate 0 20
+text SansSerif 12 plain backcolor #000000 #00FFFF - 0 cyan\sback
+translate 0 20
+text SansSerif 12 plain backcolor #000000 #FF0000/#0000FF - 0 gradient\sback
+write
+
+case texts-misc
+translate 10 20
+text SansSerif 12 plain - transparent - - 0 invisible
+translate 0 20
+text SansSerif 12 plain - #FF000080 - - 0 half\sred
+translate 0 20
+text SansSerif 12 plain - #000000 - class=foo\sdata-x="a\sb" 0 with\sattributes
+translate 0 20
+text SansSerif 12 plain - #000000 - - 90 rotated\s90
+translate 30 0
+text SansSerif 12 plain - #000000 - - 270 rotated\s270
+translate 30 0
+push
+clip 0 0 10 10
+text SansSerif 12 plain - #000000 - - 0 clipped
+translate 5 5
+text SansSerif 12 plain - #000000 - - 0 inside
+pop
+write
+
+case texts-lengthadjust-none
+opt lengthadjust NONE
+translate 10 20
+text SansSerif 12 plain - #000000 - - 0 no\slength
+write
+
+case texts-lengthadjust-glyphs
+opt lengthadjust SPACING_AND_GLYPHS
+translate 10 20
+text SansSerif 12 plain - #000000 - - 0 glyphs
+write
+
+case hidden
+color #181818
+bg #FEFECE
+push
+hidden
+translate 100 200
+rect 10 10
+text SansSerif 12 plain - #000000 - - 0 hidden\stext
+line 5 5
+ellipse 3 3
+polygon 2 0 0 1 1 0 1
+path 1 - - M 0 0 L 300 1
+shown
+rect 5 5
+pop
+rect 7 7
+write
+
+case groups
+group CLASS=entity DATA_QUALIFIED_NAME=Order DATA_UID=ent0001 DATA_SOURCE_LINE=1
+color #181818
+bg #F1F1F1
+rect 72.031 48 5
+endgroup
+group TITLE=Some\stitle ID=ignored CLASS=link DATA_ENTITY_1_UID=ent0001 DATA_ENTITY_2_UID=ent0002 DATA_LINK_TYPE=composition
+line 10 10
+group DATA_PARTICIPANT_1=a DATA_PARTICIPANT_2=b DATA_ENTITY_UID=x DATA_VISIBILITY_MODIFIER=public DATA_ENTITY=dropped DATA_QUALIFIED_NAME=a.b-c\sd
+rect 3 3
+endgroup
+endgroup
+group CLASS=empty
+endgroup
+group TITLE=only\stitle
+endgroup
+write
+
+case links
+opt linktarget _blank
+url https://example.com
+color #181818
+rect 10 10
+endurl
+url http://a.b/?x=1&y=2 tooltip\s"quoted"\s<tag>
+rect 5 5
+endurl
+url http://u.example tip\\nline2\s<U+263A>\s<U+00E9><U+D83D><U+DE00>
+line 3 3
+endurl
+url javascript:alert(1)
+rect 4 4
+endurl
+url JaVa\sScRiPt:alert(2)
+rect 4 4
+endurl
+url http://empty.example
+endurl
+write
+
+case links-nested
+url http://outer
+rect 10 10
+url http://inner tip
+rect 5 5
+endurl
+rect 6 6
+endurl
+group CLASS=g
+url http://in-group
+rect 2 2
+group CLASS=inner
+rect 3 3
+endgroup
+rect 4 4
+endurl
+endgroup
+url http://around
+group CLASS=g2
+rect 1 1
+endgroup
+endurl
+write
+
+case comments
+comment class\sFoo
+color #181818
+rect 5 5
+comment a--b---c
+comment ends\swith-
+comment \_
+group CLASS=g
+comment inside
+rect 1 1
+endgroup
+write
+
+case images
+image 3 2
+translate 10 10
+image 1 1
+translate 20 0
+push
+clip 0 0 1 1
+image 5 5
+pop
+write
+
+case images-svg
+imagesvg 1 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="20"\sheight="10"><g><rect\swidth="20"\sheight="10"\sfill="red"/></g></svg>
+translate 30 0
+imagesvg 2 <svg\sxmlns="http://www.w3.org/2000/svg"\sviewBox="0\s0\s12.5\s8"><rect\swidth="5"\sheight="5"/></svg>
+translate 30 0
+imagesvg 1.5 <?xml\sversion="1.0"?><svg\sxmlns="http://www.w3.org/2000/svg"\sxmlns:xlink="http://www.w3.org/1999/xlink"\swidth="9"\sheight="9"\sstyle="background:#FF0000;"><g\sid="x"><a\sxlink:href="#">t</a></g></svg>
+write
+
+case images-svg-scaled
+opt scale 2
+imagesvg 1 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="20"\sheight="10"><g><rect\swidth="20"\sheight="10"/></g></svg>
+write
+
+case scale-1.5
+opt scale 1.5
+color #181818
+bg #FEFECE
+stroke 1.5 2 2
+rect 10.333 20.666 3 2
+translate 10 40
+text SansSerif 12 plain - #000000 - - 0 scaled\stext
+ellipse 7 9
+polygon 1 0 0 3 3 0 3
+path 0 - - M 0 0 A 2 2 0 1 0 4 4
+write
+
+case scale-0.75
+opt scale 0.75
+color #181818
+bg #FEFECE
+rect 101 51
+write
+
+case decimal-0
+opt decimal 0
+color #181818
+bg #FEFECE
+translate 0.5 1.5
+rect 10.499 20.5
+line 2.5 -0.4
+text SansSerif 12 plain - #000000 - - 0 dec0
+write
+
+case decimal-1
+opt decimal 1
+color #181818
+bg lg(0.123456,0,1,0,false,PAD,0.333333:#FF0000:0.5,1:#0000FF:1)
+translate 0.25 1.75
+rect 10.45 20.05
+write
+
+case decimal-5
+opt decimal 5
+color #181818
+bg #FEFECE
+translate 0.123456789 1.987654321
+rect 10.000005 20.0000049
+write
+
+case interactive-default
+opt interactive default
+color #181818
+rect 5 5
+write
+
+case interactive-sequence
+opt interactive sequencediagram
+color #181818
+rect 5 5
+write
+
+case hover
+opt hover #FF0000
+color #181818
+path 0 - - M 0 0 L 5 5
+write
+
+case root-options
+opt title Hello\nworld
+opt rootattr data-diagram-type SEQUENCE
+opt rootattr data-x 1
+opt rootattr data-diagram-type CLASS
+opt preserve xMidYMid
+opt dimstyle false
+opt mindim 50 60
+color #181818
+rect 5 5
+write
+
+case svg-title-desc
+opt title from\sdisplay
+opt svgtitle from\soption
+opt svgdesc A\s<desc>\s&\s"more"
+rect 5 5
+write
+
+case metadata
+color #181818
+rect 5 5
+write @startuml\nAlice\s->\sBob\s:\shello\n@enduml\n1.2026.8
+
+case metadata-group
+group CLASS=g
+rect 5 5
+write @startuml\na\n@enduml
+
+case seed-zero
+opt seed 0
+color #181818
+bg #FF0000/#0000FF
+rect 10 10 0 2
+text SansSerif 12 plain backcolor #000000 #FFFF00 - 0 back
+write
+
+case seed-negative
+opt seed -123456789
+color #181818
+bg #FF0000/#0000FF
+rect 10 10 0 2
+write
+
+case seed-min
+opt seed -9223372036854775808
+color #181818
+bg #FF0000/#0000FF
+rect 10 10 0 2
+write
+
+case centered-deterministic
+opt format SVG_DETERMINISTIC
+color #181818
+bg #ADD1B2
+ellipse 22 22
+translate 11 11
+color #000000
+centered C 17
+write
+
+case empty-shapes
+empty 100 100
+color #181818
+fg2bg
+rect 5 5
+write
+
+case large-coordinates
+color #181818
+bg #FEFECE
+translate 123456.7891 -0.0004
+rect 1e-7 5
+line 1e15 0
+translate -123456.7891 0
+rect 0.0005 0.0015
+write
+
+case centered-svg
+color #181818
+bg #ADD1B2
+ellipse 22 22
+translate 11 11
+color #000000
+centered C 17
+translate 30 0
+centered A 17
+translate 30 0
+centered I 17
+translate 30 0
+centered E 17
+translate 30 0
+centered @ 17
+translate 30 0
+color #FF0000
+centered X 12 SansSerif plain
+translate 30 0
+centered g 14 Serif italic
+translate 30 0
+centered Q 32 Serif bolditalic
+translate 30 0
+centered w 4 SansSerif bold
+translate 30 0
+centered \s 17
+translate 30 0
+centered " 4 SansSerif plain
+write
+
+case centered-svg-hidden-scaled
+opt scale 1.5
+translate 50 60
+push
+hidden
+centered M 20 Dialog bold
+pop
+centered N 9 DialogInput italic
+write

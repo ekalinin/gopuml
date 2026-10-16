@@ -1,0 +1,37 @@
+# Cases run by upstream with the INSECURE security profile and javascript
+# links allowed (system properties, see testdata/javagen/SvgGolden.java);
+# the Go side sets them with "opt insecure" and "opt allowjs".
+
+case insecure-imagesvg
+opt insecure
+opt allowjs
+translate 5 6
+imagesvg 1 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="20"\sheight="10"><g><rect\swidth="20"\sheight="10"\sfill="red"/></g></svg>
+translate 30 0
+imagesvg 2 <svg\sxmlns="http://www.w3.org/2000/svg"\sviewBox="0\s0\s12.5\s8"><rect\swidth="5"\sheight="5"/></svg>
+translate 30 0
+imagesvg 1 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="20"\sheight="10"><g><rect\swidth="20"\sheight="10"\sfill="red"/></g></svg>
+push
+hidden
+imagesvg 1 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="200"\sheight="100"><g/></svg>
+pop
+write
+
+case insecure-scaled
+opt insecure
+opt allowjs
+opt scale 2
+imagesvg 1.5 <svg\sxmlns="http://www.w3.org/2000/svg"\swidth="20"\sheight="10"><g\sid="a"><rect\swidth="20"\sheight="10"/></g></svg>
+write
+
+case insecure-javascript-links
+opt insecure
+opt allowjs
+url javascript:alert(1)
+color #181818
+rect 4 4
+endurl
+url JaVa\sScRiPt:alert(2) tip
+rect 4 4
+endurl
+write
