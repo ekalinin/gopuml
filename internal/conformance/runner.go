@@ -215,6 +215,11 @@ func readJSON(file string, v any) error {
 // CompareDiagram compares one diagram case.
 func (r *Runner) CompareDiagram(c *Case) (res CaseResult) {
 	res = CaseResult{ID: c.ID, Formats: c.Formats, Group: "none"}
+	if r.PNGReference == "" {
+		// PNG references are generated only with refgen -png: without them
+		// PNG is not compared, and must not count as passing.
+		res.Formats = slices.DeleteFunc(slices.Clone(c.Formats), func(f string) bool { return f == "png" })
+	}
 	defer r.markKnown(&res)
 	refDir, actDir := r.Reference(c.ID), filepath.Join(r.Actual, filepath.FromSlash(c.ID))
 
