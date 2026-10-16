@@ -316,6 +316,10 @@ func (r *Runner) compareBlock(res *CaseResult, c *Case, refDir, actDir string, r
 		}
 		name := *rr.File
 		format := formatOf(name)
+		if format == "png" {
+			// PNG renders live in their own trees; comparePNG checks them.
+			continue
+		}
 		ar, ok := actual[name]
 		if !ok {
 			res.fail(format, prefix+"missing output "+name)

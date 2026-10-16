@@ -17,3 +17,9 @@
 - id: diagram-source/activity-detected
   reason: TXT output of activity diagrams is rejected in this release (output-formats spec); upstream draws it
   resolvedBy: add-class-activity-txt
+- id: vega/tikz/tikz-1926
+  reason: an activity embeds a {{ }} deployment diagram (node); description diagrams are not supported yet
+  resolvedBy: add-description-diagrams
+- id: vega/tikz/tikz-1926-svg
+  reason: an activity embeds a {{ }} deployment diagram (node); description diagrams are not supported yet
+  resolvedBy: add-description-diagrams
