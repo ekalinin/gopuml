@@ -74,9 +74,9 @@
 
 - [x] 7.1 Port the `style` system: `SName`/`PName`, selectors, stereotype classes, nesting and precedence, and the default `plantuml.skin`. Verify with unit tests on resolved style values for representative selectors
 - [ ] 7.2 Port the `skinparam` to style conversion for the in-scope diagram types, ignoring unknown names. Verify with the `skinparam` scenarios
-- [ ] 7.3 Embed the themes per design D14: exclude `sunlust`, and resolve the license of the 9 themes without one before bundling them. Implement `!theme`, `!theme ... from` and `--theme`. Update `NOTICE`. Verify with the theme scenarios and a test that lists the bundled themes
-- [ ] 7.4 Port `klimt/creole`: inline styles, HTML-like tags, lists, tables, horizontal rules, links, escapes and Unicode escapes. Icons, emoji and sprites render as literal text. Verify with the creole scenarios and creole conformance cases
-- [ ] 7.5 Port the common annotations (`title`, `header`, `footer`, `caption`, `legend`, `scale`, `mainframe`). Verify with the annotation scenarios after task 8.8
+- [x] 7.3 Embed the themes per design D14: exclude `sunlust`, and resolve the license of the 9 themes without one before bundling them. Implement `!theme`, `!theme ... from` and `--theme`. Update `NOTICE`. Verify with the theme scenarios and a test that lists the bundled themes
+- [x] 7.4 Port `klimt/creole`: inline styles, HTML-like tags, lists, tables, horizontal rules, links, escapes and Unicode escapes. Icons, emoji and sprites render as literal text. Verify with the creole scenarios and creole conformance cases
+- [x] 7.5 Port the common annotations (`title`, `header`, `footer`, `caption`, `legend`, `scale`, `mainframe`). Verify with the annotation scenarios after task 8.8
 
 ## 8. Sequence diagrams (Teoz) and text output
 
@@ -87,7 +87,7 @@
 - [x] 8.5 Port fragment, note, divider, delay, reference and autonumber drawing. Verify with the sequence conformance cases for those scenarios
 - [x] 8.6 Accept `!pragma teoz` with any value and keep the Teoz layout, as upstream v1.2026.8 does. Verify with the "Teoz pragma has no effect" scenario
 - [x] 8.7 Port `asciiart` for sequence diagrams (TXT `.atxt` and UTXT `.utxt`). Verify that the sequence TXT and UTXT conformance cases match exactly
-- [ ] 8.8 Run the sequence conformance slice. Verify that all sequence cases pass or are listed with justification in `known-differences.yaml`
+- [x] 8.8 Run the sequence conformance slice. Verify that all sequence cases pass or are listed with justification in `known-differences.yaml`
 
 ## 9. Library API (first usable slice)
 
@@ -105,11 +105,11 @@
 
 - [x] 10.1 Port `CliFlag` parsing: long names, short aliases, deprecated aliases, case-insensitive matching, flags that are recognized but unsupported (exit 1), and usage help with no arguments. Verify with tests ported from upstream `cli/RunFlag*Test` for the in-scope flags
 - [x] 10.2 Port `FileGroup` input selection: files, directories with the upstream extension pattern, `*`, `**`, `-x`, sorted order. Verify with the input-selection scenarios on fixture trees
-- [ ] 10.3 Implement output naming and location (`SuggestedFile` rules, `_001` numbering, `-useseparatorminus`, `--ignore-startuml-filename`, `-o` resolved per source directory, `--overwrite`) and the default PNG format. PNG becomes available in section 13; until then it reports "not supported". Verify with the output-naming scenarios using `--svg`
-- [ ] 10.4 Implement pipe mode (`-p`, unmarked input wrapping, `-pipedelimitor`, `--pipe-image-index`, `-pipenostderr`). Verify with the pipe scenarios
-- [ ] 10.5 Implement the exit codes (0, 50, 100, 200, with precedence), `--no-error-image`, `--stop-on-error`, `--check-before-run`, `--check-syntax` and `-syntax`. Verify with the exit-code and syntax-checking scenarios and the CLI conformance cases
-- [ ] 10.6 Implement `-D`, `-I`, `-P`, `-S`, `--theme`, `--config`, `--charset`, `--dark-mode`, `-filedir`, `-filename`. Verify with the define scenario and one test per flag
-- [ ] 10.7 Implement `--encode-url`, `--decode-url`, `--disable-metadata`, `--extract-source` (SVG), `--skip-fresh` (SVG), `--list-keywords`, `-stdlib`, `--threads`, `--version`, `-license`, `--verbose`, `--duration`, `-headless`. Verify with the utility scenarios, including byte-identical output for `--threads 1` versus `--threads auto`
+- [x] 10.3 Implement output naming and location (`SuggestedFile` rules, `_001` numbering, `-useseparatorminus`, `--ignore-startuml-filename`, `-o` resolved per source directory, `--overwrite`) and the default PNG format. PNG becomes available in section 13; until then it reports "not supported". Verify with the output-naming scenarios using `--svg`
+- [x] 10.4 Implement pipe mode (`-p`, unmarked input wrapping, `-pipedelimitor`, `--pipe-image-index`, `-pipenostderr`). Verify with the pipe scenarios
+- [x] 10.5 Implement the exit codes (0, 50, 100, 200, with precedence), `--no-error-image`, `--stop-on-error`, `--check-before-run`, `--check-syntax` and `-syntax`. Verify with the exit-code and syntax-checking scenarios and the CLI conformance cases
+- [x] 10.6 Implement `-D`, `-I`, `-P`, `-S`, `--theme`, `--config`, `--charset`, `--dark-mode`, `-filedir`, `-filename`. Verify with the define scenario and one test per flag
+- [x] 10.7 Implement `--encode-url`, `--decode-url`, `--disable-metadata`, `--extract-source` (SVG), `--skip-fresh` (SVG), `--list-keywords`, `-stdlib`, `--threads`, `--version`, `-license`, `--verbose`, `--duration`, `-headless`. Verify with the utility scenarios, including byte-identical output for `--threads 1` versus `--threads auto`
 
 ## 11. Activity diagrams
 
@@ -138,7 +138,7 @@
 
 - [x] 13.1 Port the `g2d` driver onto an in-house rasterizer (design D6) with the embedded DejaVu fonts: shapes, strokes, dashes, gradients, text, shadows and antialiasing settings. Verify with driver-level image tests at SSIM ≥ 0.98 against the PNG references for primitive shapes
 - [x] 13.2 Implement PNG encoding with the `plantuml` text chunk, `skinparam dpi` scaling and `--disable-metadata`. Verify with the PNG metadata and DPI scenarios
-- [ ] 13.3 Enable PNG as the default CLI format, and extend `--extract-source` and `--skip-fresh` to PNG. Verify with the "No format flag" and "Extract source from PNG" scenarios
+- [x] 13.3 Enable PNG as the default CLI format, and extend `--extract-source` and `--skip-fresh` to PNG. Verify with the "No format flag" and "Extract source from PNG" scenarios
 - [ ] 13.4 Run PNG conformance for the sequence, activity and class slices. Verify that the PNG cases pass or are listed in `known-differences.yaml`
 
 ## 14. HTTP server
