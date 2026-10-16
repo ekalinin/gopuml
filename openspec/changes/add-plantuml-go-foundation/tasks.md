@@ -65,8 +65,8 @@
 
 - [x] 6.1 Port the `klimt` geometry, color (HTML names, hex, alpha, gradients) and `UGraphic` shape model. Verify with unit tests on color parsing (the styling Colors scenarios) and shape bounds
 - [x] 6.2 Implement the embedded font metrics loader and `StringBounder` using the tables from task 2.2 (design D5). Verify that the widths of 1,000 sample strings match the Java dump within 0.01 px
-- [ ] 6.3 Port upstream's number formatting and SVG writer helpers exactly. Verify with golden tests of formatted coordinates taken from reference SVGs
-- [ ] 6.4 Port `klimt/drawing/svg`: element order, attributes, links, gradients, shadows, and the `<?plantuml-src ...?>` metadata. Verify with driver-level golden tests and the SVG metadata scenario
+- [x] 6.3 Port upstream's number formatting and SVG writer helpers exactly. Verify with golden tests of formatted coordinates taken from reference SVGs
+- [x] 6.4 Port `klimt/drawing/svg`: element order, attributes, links, gradients, shadows, and the `<?plantuml-src ...?>` metadata. Verify with driver-level golden tests and the SVG metadata scenario
 - [ ] 6.5 Port the `TextBlock` model and text layout primitives (wrapping, alignment, `maxMessageSize`). Verify with unit tests on wrapped text dimensions
 - [ ] 6.6 Port the dark-mode color mapper. Verify with the dark-mode scenario once the first diagram type renders (task 8.8)
 
