@@ -1,0 +1,23 @@
+create	4:first : type|+field|<<stereo>>|page %page% of %lastpage%:null
+underlined	4:<u>first : type|<u>+field|<u><<stereo>>|<u>page %page% of %lastpage%:null
+underlinedName	4:<u>first</u> : type|<u>+field|<u><<stereo>>|<u>page %page% of %lastpage%:null
+guillemet	2:private «a» «b»|x «c»:null
+guillemetnovis	2:+private «a»|x:null
+withPage	4:first : type|+field|<<stereo>>|page 3 of 7:null
+replace	4:first : typE|+fiEld|<<stErEo>>|pagE %pagE% of %lastpagE%:null
+removeEndingStereotype	2:a|name :null
+endingStereotype	<< st >>
+addFirst	5:zero|first : type|+field|<<stereo>>|page %page% of %lastpage%:null
+appendFirstLine	4:>>first : type|+field|<<stereo>>|page %page% of %lastpage%:null
+addGeneric	1:List<T>:null
+addGenericEmpty	1:<T>:null
+addAll	6:first : type|+field|<<stereo>>|page %page% of %lastpage%|x|y:null
+subList	2:+field|<<stereo>>:null
+splitMultiline	1:a:null ; 3:b|c|d:null ; 1:e--f:null
+replaceBackslashT	1:a<TAB>b:null
+contentWidth	4
+isWhite	true,false,true
+guidelines	true,false,true
+equals	true,-2060243986,42,true
+tooltip	first : type,
+foo	2:a|}}:null

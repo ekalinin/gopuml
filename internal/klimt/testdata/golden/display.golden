@@ -1,0 +1,25 @@
+single line	1	single line	null	[single line]	false	false	false
+two\\nlines	2	two|lines	null	[two, lines]	false	false	false
+left\\lalign	2	left|align	LEFT	[leftalign]	false	false	false
+right\\ralign	2	right|align	RIGHT	[rightalign]	false	false	false
+tab\\there	1	tab\there	null	[tab\there]	false	false	false
+back\\\\slash	1	back\\slash	null	[back\\slash]	false	false	false
+unknown\\qescape	1	unknown\\qescape	null	[unknownescape]	false	false	false
+trailing\\n	2	trailing|	null	[trailing, ]	false	false	false
+\\nleading	2	|leading	null	[, leading]	false	false	false
+[[http://a\\nb]] after\\nx	2	[[http://a\\nb]] after|x	null	[[[http://a, b]] after, x]	false	true	false
+<math>a\\nb</math>\\nc	2	<math>a\\nb</math>|c	null	[<math>a, b</math>, c]	false	false	false
+<latex>x\\ny</latex>	1	<latex>x\\ny</latex>	null	[<latex>x, y</latex>]	false	false	false
+pre\uE100post	2	pre|post	null	[pre\uE100post]	false	false	false
+pre\uE101left	2	pre|left	LEFT	[pre\uE101left]	false	false	false
+pre\uE102right	2	pre|right	RIGHT	[pre\uE102right]	false	false	false
+pre\uE103break	2	pre|break	null	[pre\uE103break]	false	false	false
+real\uE110backslash	1	real\\backslash	null	[real\uE110backslash]	false	false	false
+real\uE111tab	1	real\uE111tab	null	[real\uE111tab]	false	false	false
+invisible\uE121quote	1	invisiblequote	null	[invisible\uE121quote]	false	false	false
+[[url\uE100x]]\uE100y	2	[[url\uE100x]]|y	null	[[[url\uE100x]]\uE100y]	false	true	false
+end with backslash\\\\	1	end with backslash\\	null	[end with backslash\\]	false	false	false
+lone backslash \\ 	1	lone backslash \\ 	null	[lone backslash ]	false	false	false
+%newline()x	1	%newline()x	null	[%newline()x]	false	false	false
+emoji 😀\\nnext	2	emoji 😀|next	null	[emoji 😀, next]	false	false	false
+	1		null	[]	false	false	true

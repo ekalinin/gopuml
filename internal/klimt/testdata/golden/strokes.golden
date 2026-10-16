@@ -1,0 +1,44 @@
+linestyle		0.0-0.0-1.0
+linestyle	7;7	7.0-7.0-1.0
+linestyle	1-3	1.0-3.0-1.0
+linestyle	x	0.0-0.0-1.0
+linestyle	5	5.0-5.0-1.0
+linestyle	-	0.0-0.0-1.0
+linestyle	2,8	2.0-8.0-1.0
+linestyle	 3 - 4 	3.0-4.0-1.0
+linestyle	1.5;2.5;9	1.5-2.5-1.0
+linestyle	;;	0.0-0.0-1.0
+linestyle	1e2-3	100.0-3.0-1.0
+overridestroke		4.0-2.0-3.0
+padding	5	5.0:5.0:5.0:5.0
+padding	1 2	1.0:2.0:1.0:2.0
+padding	1 2 3	1.0:2.0:3.0:2.0
+padding	1 2 3 4	1.0:2.0:3.0:4.0
+padding	1 2 3 4 5	0.0:0.0:0.0:0.0
+padding	 7 	7.0:7.0:7.0:7.0
+padding		0.0:0.0:0.0:0.0
+padding	a	0.0:0.0:0.0:0.0
+padding	1.5	0.0:0.0:0.0:0.0
+padding	99999999999	0.0:0.0:0.0:0.0
+padding	  1   2  	1.0:2.0:1.0:2.0
+linebreak	100	100.0,false
+linebreak	-20	-20.0,false
+linebreak	auto	0.0,true
+linebreak	AUTO	0.0,true
+linebreak		0.0,false
+linebreak	12px	0.0,false
+linebreak	007	7.0,false
+linebreak	null	0.0,false
+value	12	12,12,12.0,false,UFontFace[NORMAL, weight=100],null,#FFFFFF
+value	1.5	15,15,1.5,false,UFontFace[NORMAL, weight=400],null,#FFFFFF
+value	abc	0,-1,NaN,false,UFontFace[NORMAL, weight=400],null,#AABBCC
+value	a1b2	12,12,12.0,false,UFontFace[NORMAL, weight=400],null,#FFFFFF
+value		0,-1,NaN,false,UFontFace[NORMAL, weight=400],null,#FFFFFF
+value	  bold 	0,-1,NaN,false,UFontFace[NORMAL, weight=700],null,#FFFFFF
+value	italic	0,-1,NaN,false,UFontFace[ITALIC, weight=400],null,#FFFFFF
+value	600	600,600,600.0,false,UFontFace[NORMAL, weight=600],null,#660000
+value	bolder	0,-1,NaN,false,UFontFace[NORMAL, weight=800],null,#FFFFFF
+value	true	0,-1,NaN,true,UFontFace[NORMAL, weight=400],null,#FFFFFF
+value	TRUE	0,-1,NaN,true,UFontFace[NORMAL, weight=400],null,#FFFFFF
+value	center	0,-1,NaN,false,UFontFace[NORMAL, weight=400],CENTER,#FFFFFF
+value	1.2.3	123,123,ERR NumberFormatException,false,UFontFace[NORMAL, weight=400],null,#FFFFFF

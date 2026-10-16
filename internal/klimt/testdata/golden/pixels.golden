@@ -1,0 +1,4 @@
+source	ff102030,80ffffff,0,ff000000,ffffffff,ff7f7f7f,40102030
+monochrome	6400000,7f000000,0,ff000000,fe000000,7e000000,47400000
+mutecolor	ff102030,80ffffff,0,fe0ac81e,ffffffff,ff7f7f7f,40102030
+mutetransparent	ff102030,80ffffff,ff010203,ff000000,ffffffff,ff7f7f7f,40102030

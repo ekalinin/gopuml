@@ -1,0 +1,19 @@
+base	Courier/UFontFace[NORMAL, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+italic	Courier/UFontFace[ITALIC, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+unbold	Courier/UFontFace[NORMAL, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+plain	Courier/UFontFace[NORMAL, weight=400]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+bigger	Courier/UFontFace[NORMAL, weight=700]/15 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+smaller	Courier/UFontFace[NORMAL, weight=700]/-7 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+changeSize	Courier/UFontFace[NORMAL, weight=700]/9 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+exposant	Courier/UFontFace[NORMAL, weight=700]/10 #FF0000 null -6 false 0.0-0.0-2.0 4 {}
+indice	Courier/UFontFace[NORMAL, weight=700]/10 #FF0000 null 3 false 0.0-0.0-2.0 4 {}
+hyperlink	Courier/UFontFace[NORMAL, weight=700]/13 #0000FF null 0 true 0.0-0.0-2.0 4 {}
+wave	Courier/UFontFace[NORMAL, weight=700]/13 #FF0000 #00FF00 0 false 0.0-0.0-2.0 4 {}
+family	serif/UFontFace[NORMAL, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+forceFontNull	Courier/UFontFace[ITALIC, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+forceFont	monospace/UFontFace[NORMAL, weight=700]/10 #808080 null 0 false 0.0-0.0-2.0 4 {}
+reset	Courier/UFontFace[ITALIC, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+attrs	Courier/UFontFace[NORMAL, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {a=1, b=two words, c=x}
+faceweight	Courier/UFontFace[NORMAL, weight=700]/13 #FF0000 null 0 false 0.0-0.0-2.0 4 {}
+equals	true,false
+blackblue	serif/UFontFace[NORMAL, weight=400]/11 #000000 null 0 false 0.0-0.0-1.0 8 {}

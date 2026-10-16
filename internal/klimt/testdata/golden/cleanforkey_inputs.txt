@@ -1,0 +1,13 @@
+ParticipantBackgroundColor
+Participant_Background.Color
+sequenceParticipantBorderColor
+sequenceActorFontSize
+activityArrowColor
+classArrowThickness
+usecaseArrowColor
+noteTextAlign
+BackgroundColor<<foo>>
+noteBackgroundColor<<foo>><<bar>>
+  defaultFontName  
+StereotypeCBackgroundColor
+SequenceMessageAlign

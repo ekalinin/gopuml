@@ -1,0 +1,26 @@
+FontColor red\n}\nBackGroundColor blue	[] FontColor=red/null (1);BackGroundColor=blue/null (2)
+depth(1) {\n FontColor red\n}\nnode {\n LineColor blue\n}\nFontSize 3	[]#1 FontColor=red/null (1);FontSize=3/null (3) | node[]#1 LineColor=blue/null (2)
+@media dark {\n a { FontColor red }\n}\nb { FontColor blue }	[a] FontColor=null/red (1001) | [b] FontColor=null/blue (1002)
+a, b {\n FontColor red\n}	[a] FontColor=red/null (1001) | [b] FontColor=red/null (1001)
+.x, y {\n LineColor green\n}	[x] LineColor=green/null (1001) | [y] LineColor=green/null (1001)
+:depth(2) { FontColor red }	[]#2 FontColor=red/null (1)
+a* { FontColor red }	[a]* FontColor=red/null (1001)
+--v: 12;\nroot { FontSize var(--v) }	root[] FontSize=var(--v)/null (1)
+root { FontSize var(--unknown) }	root[] FontSize=var(--unknown)/null (1)
+a { FontColor : red ; }	[a] FontColor=red/null (1001)
+a {\n b {\n c { FontSize 5 }\n }\n}	[a, b, c] FontSize=5/null (1001)
+a { BackGroundColor red , blue }	[a] BackGroundColor=red, blue/null (1001)
+a { Padding 1 2 3 4 }	[a] Padding=1 2 3 4/null (1001)
+// c\na { FontColor red } /* x */\nb { FontColor blue }	[a] FontColor=red/null (1001) | [b] FontColor=blue/null (1002)
+a { FontColor "quoted value" }	[a] FontColor=quoted value/null (1001)
+a { BackGroundColor: transparent;}\na { FontSize 3 }	[a] BackGroundColor=transparent/null (1001) | [a] FontSize=3/null (1002)
+a { UnknownProperty 3 }	
+a {	
+}	
+a { FontColor }	ERR StyleParsingException
+a { FontColor: : red }	[a] FontColor=red/null (1001)
+. foo { FontColor red }	[ foo] FontColor=red/null (1001)
+a.b.c { FontSize 4 }	[abc] FontSize=4/null (1001)
+depth(x) { FontSize 4 }	ERR NumberFormatException
+a\n{\n FontSize 4\n}	[a] FontSize=4/null (1001)
+a,\nb { FontSize 4 }	ERR IllegalStateException

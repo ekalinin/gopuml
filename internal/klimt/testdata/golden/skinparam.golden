@@ -1,0 +1,39 @@
+value participantbackgroundcolor	#ABCDEF
+value missing	null
+hyperlink	#0000FF
+background	#EEEEEE
+html activityBackground	#FFAA00
+html noteBackground foo	null
+font note	Arial/UFontFace[NORMAL, weight=400]/15
+font note foo	Arial/UFontFace[NORMAL, weight=400]/20
+font package	Arial/UFontFace[NORMAL, weight=700]/15
+font circled	monospace/UFontFace[NORMAL, weight=700]/15
+fontcolor note	#0000FF
+fontcolor footer	#888888
+thickness arrow	0.0-0.0-2.0
+thickness legendBorder	0.0-0.0-3.0
+thickness noteBorder	null
+roundcorner default	7.0
+roundcorner titleBorder	10.0
+diagonal rectangle	0.0
+shadowing	true
+shadowingForNote	false
+strictuml	true
+underline	null
+circledradius	11
+align seqmsg	RIGHT
+align seqmsgtext	RIGHT
+align note	LEFT
+padding	0.0:0.0:0.0:0.0
+dpi	96
+tabsize	8
+guillemet	«x»
+forceUnderline	true
+padder	true
+splitparam	false
+componentstyle	UML2
+packagestyle	FOLDER
+conditionstyle	INSIDE_HEXAGON
+maxmessagesize	null
+lengthadjust	SPACING
+missingroot	[]

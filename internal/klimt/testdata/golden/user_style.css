@@ -1,0 +1,51 @@
+<style>
+--accent: #123456;
+participant {
+  BackGroundColor red
+  FontSize 17
+  FontStyle bold
+}
+.foo {
+  LineColor blue
+  FontName "Courier New"
+}
+participant.bar {
+  FontColor green
+}
+sequenceDiagram {
+  arrow {
+    LineStyle 4-2
+    LineThickness 2.5
+  }
+  note {
+    BackGroundColor var(--accent)
+    Padding 4 8
+    Margin 1 2 3
+  }
+}
+mindmapDiagram {
+  node {
+    :depth(1) {
+      BackGroundColor pink
+    }
+    :depth(2)* {
+      LineColor orange
+    }
+  }
+}
+element* {
+  Shadowing 3
+}
+@media dark {
+  participant {
+    BackGroundColor black
+  }
+}
+// a comment
+/* another
+   comment */
+classDiagram, componentDiagram {
+  FontWeight 600
+  HorizontalAlignment right
+}
+</style>

@@ -1,0 +1,122 @@
+raw	@0.0,14.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Hello' sans-serif/UFontFace[NORMAL, weight=400]/14 #000000
+raw	@0.0,31.5 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Tab' sans-serif/UFontFace[NORMAL, weight=400]/14 #000000
+raw	@67.2,31.5 c=#000000 b=transparent s=0.0-0.0-1.0 text 'here' sans-serif/UFontFace[NORMAL, weight=400]/14 #000000
+raw	@0.0,49.0 c=#000000 b=transparent s=0.0-0.0-1.0 text ' ' sans-serif/UFontFace[NORMAL, weight=400]/14 #000000
+error	@5.0,19.0 c=#33FF02 b=transparent s=0.0-0.0-1.0 text 'Syntax' sans-serif/UFontFace[NORMAL, weight=700]/14 #33FF02
+error	@5.0,36.5 c=#33FF02 b=transparent s=0.0-0.0-1.0 text 'line 2' sans-serif/UFontFace[NORMAL, weight=700]/14 #33FF02
+bordered	@0.0,0.0 c=#FF0000 b=#FEFECE s=0.0-0.0-1.5 rect 36.8,21.0 r=5.0,5.0 sh=0.0
+bordered	@5.0,14.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'note' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+borderednoback	@1.0,13.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'n' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+vertical	@0.0,0.0 c=#FF0000 b=#FF0000 s=0.0-0.0-1.0 rect 66.0,15.0 r=0.0,0.0 sh=0.0
+vertical	@7.800000000000001,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'colored' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+vertical	@0.0,25.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'wider plain' sans-serif/UFontFace[NORMAL, weight=400]/10 #000000
+horizontal	@0.0,20.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Big' sans-serif/UFontFace[NORMAL, weight=400]/20 #000000
+horizontal	@36.0,16.25 c=#000000 b=transparent s=0.0-0.0-1.0 text 'small' sans-serif/UFontFace[NORMAL, weight=400]/10 #000000
+margin	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 empty 13.2,23.0
+margin	@3.0,16.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'm' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+minwidth	@26.4,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'x' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+linebefore	@1.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 78.0,0.0
+linebefore	@1.0,2.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 78.0,0.0
+linebefore	@0.0,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+linebeforedotted	@1.0,7.0 c=#000000 b=transparent s=1.0-2.0-1.0 line 78.0,0.0
+linebeforedotted	@5.0,19.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+linebeforetitle	@0.0,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+linebeforetitle	@1.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 34.0,0.0
+linebeforetitle	@35.0,3.25 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Title' sans-serif/UFontFace[NORMAL, weight=400]/10 #000000
+linebeforetitle	@65.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 34.0,0.0
+linebeforedefault	@1.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 48.0,0.0
+linebeforedefault	@0.0,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+linebeforenostencil	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 hline
+linebeforenostencil	@0.0,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+bigframe	@0.0,0.0 c=#000000 b=#FFFFFF s=0.0-0.0-1.0 rect 75.6,76.0 r=4.0,4.0 sh=2.0
+bigframe	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [46.0, 0.0], SEG_LINETO [46.0, 8.0], SEG_LINETO [36.0, 18.0], SEG_LINETO [0.0, 18.0]] sh=0.0
+bigframe	@3.0,1.0 c=#000000 b=#FFFFFF s=0.0-0.0-1.0 SpecialText
+bigframelongtitle	@0.0,0.0 c=#0000FF b=transparent s=0.0-0.0-1.0 rect 190.0,55.0 r=0.0,0.0 sh=0.0
+bigframelongtitle	@0.0,0.0 c=#0000FF b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [190.0, 0.0], SEG_LINETO [190.0, 8.0], SEG_LINETO [180.0, 18.0], SEG_LINETO [0.0, 18.0]] sh=0.0
+bigframelongtitle	@3.0,13.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'a much longer frame title' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+package FOLDER	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 polygon [0.0:0.0, 30.0:0.0, 37.0:10.0, 60.0:10.0, 60.0:40.0, 0.0:40.0, 0.0:0.0] sh=3.0
+package FOLDER	@0.0,10.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 37.0,0.0
+package RECTANGLE	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=3.0
+package NODE	ERR UnsupportedOperationException
+package FRAME	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=3.0
+package FRAME	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [30.0, 1.0], SEG_LINETO [30.0, 3.0], SEG_LINETO [20.0, 13.0], SEG_LINETO [0.0, 13.0]] sh=0.0
+package CLOUD	@3.0,-3.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 10.0], SEG_CUBICTO [0.0, 7.0, 2.0, 5.0, 5.0, 5.0], SEG_CUBICTO [8.0, 5.0, 10.0, 7.0, 10.0, 10.0], SEG_CUBICTO [10.0, 7.0, 12.0, 5.0, 15.0, 5.0], SEG_CUBICTO [18.0, 5.0, 20.0, 7.0, 20.0, 10.0], SEG_CUBICTO [20.0, 7.0, 22.0, 5.0, 25.0, 5.0], SEG_CUBICTO [28.0, 5.0, 30.0, 7.0, 30.0, 10.0], SEG_CUBICTO [30.0, 7.0, 32.0, 5.0, 35.0, 5.0], SEG_CUBICTO [38.0, 5.0, 40.0, 7.0, 40.0, 10.0], SEG_CUBICTO [40.0, 7.0, 42.0, 5.0, 45.0, 5.0], SEG_CUBICTO [48.0, 5.0, 50.0, 7.0, 50.0, 10.0], SEG_CUBICTO [50.0, 7.0, 52.0, 5.0, 55.0, 5.0], SEG_CUBICTO [58.0, 5.0, 60.0, 7.0, 60.0, 10.0], SEG_CUBICTO [63.0, 10.0, 65.0, 12.0, 65.0, 15.0], SEG_CUBICTO [65.0, 18.0, 63.0, 20.0, 60.0, 20.0], SEG_CUBICTO [63.0, 20.0, 65.0, 22.0, 65.0, 25.0], SEG_CUBICTO [65.0, 28.0, 63.0, 30.0, 60.0, 30.0], SEG_CUBICTO [63.0, 30.0, 65.0, 32.0, 65.0, 35.0], SEG_CUBICTO [65.0, 38.0, 63.0, 40.0, 60.0, 40.0], SEG_CUBICTO [60.0, 43.0, 57.0, 45.0, 55.0, 45.0], SEG_CUBICTO [52.0, 45.0, 50.0, 43.0, 50.0, 40.0], SEG_CUBICTO [50.0, 43.0, 47.0, 45.0, 45.0, 45.0], SEG_CUBICTO [42.0, 45.0, 40.0, 43.0, 40.0, 40.0], SEG_CUBICTO [40.0, 43.0, 37.0, 45.0, 35.0, 45.0], SEG_CUBICTO [32.0, 45.0, 30.0, 43.0, 30.0, 40.0], SEG_CUBICTO [30.0, 43.0, 27.0, 45.0, 25.0, 45.0], SEG_CUBICTO [22.0, 45.0, 20.0, 43.0, 20.0, 40.0], SEG_CUBICTO [20.0, 43.0, 17.0, 45.0, 15.0, 45.0], SEG_CUBICTO [12.0, 45.0, 10.0, 43.0, 10.0, 40.0], SEG_CUBICTO [10.0, 43.0, 7.0, 45.0, 5.0, 45.0], SEG_CUBICTO [2.0, 45.0, 0.0, 43.0, 0.0, 40.0], SEG_CUBICTO [-3.0, 40.0, -5.0, 38.0, -5.0, 35.0], SEG_CUBICTO [-5.0, 32.0, -3.0, 30.0, 0.0, 30.0], SEG_CUBICTO [-3.0, 30.0, -5.0, 28.0, -5.0, 25.0], SEG_CUBICTO [-5.0, 22.0, -3.0, 20.0, 0.0, 20.0], SEG_CUBICTO [-3.0, 20.0, -5.0, 18.0, -5.0, 15.0], SEG_CUBICTO [-5.0, 12.0, -3.0, 10.0, 0.0, 10.0]] sh=3.0
+package DATABASE	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 10.0], SEG_CUBICTO [10.0, 0.0, 20.0, 0.0, 30.0, 0.0], SEG_CUBICTO [40.0, 0.0, 50.0, 0.0, 60.0, 10.0], SEG_LINETO [60.0, 30.0], SEG_CUBICTO [50.0, 40.0, 20.0, 40.0, 30.0, 40.0], SEG_CUBICTO [40.0, 40.0, 10.0, 40.0, 0.0, 30.0], SEG_LINETO [0.0, 10.0]] sh=3.0
+package DATABASE	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 10.0], SEG_CUBICTO [10.0, 20.0, 20.0, 20.0, 30.0, 20.0], SEG_CUBICTO [40.0, 20.0, 50.0, 20.0, 60.0, 10.0]] sh=0.0
+package AGENT	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=3.0
+package STORAGE	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=70.0,70.0 sh=3.0
+package COMPONENT1	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=4.0
+package COMPONENT1	@-5.0,5.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 10.0,5.0 r=0.0,0.0 sh=0.0
+package COMPONENT1	@-5.0,30.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 10.0,5.0 r=0.0,0.0 sh=0.0
+package COMPONENT2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=4.0
+package COMPONENT2	@40.0,5.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 15.0,10.0 r=0.0,0.0 sh=0.0
+package COMPONENT2	@38.0,7.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 4.0,2.0 r=0.0,0.0 sh=0.0
+package COMPONENT2	@38.0,11.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 4.0,2.0 r=0.0,0.0 sh=0.0
+package ARTIFACT	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 polygon [0.0:0.0, 0.0:40.0, 60.0:40.0, 60.0:10.0, 50.0:0.0, 0.0:0.0] sh=3.0
+package ARTIFACT	@50.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 0.0,10.0
+package ARTIFACT	@60.0,10.0 c=#000000 b=transparent s=0.0-0.0-1.0 line -10.0,0.0
+package CARD	ERR UnsupportedOperationException
+package frame notitle	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 60.0,40.0 r=0.0,0.0 sh=0.0
+package frame notitle	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [20.0, 1.0], SEG_LINETO [20.0, 5.0], SEG_LINETO [13.0, 12.0], SEG_LINETO [0.0, 12.0]] sh=0.0
+visibility PRIVATE_FIELD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PRIVATE_FIELD	startGroup {DATA_VISIBILITY_MODIFIER=PRIVATE_FIELD}
+visibility PRIVATE_FIELD	@2.0,2.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 rect 6.0,6.0 r=0.0,0.0 sh=0.0
+visibility PRIVATE_FIELD	closeGroup
+visibility PROTECTED_FIELD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PROTECTED_FIELD	startGroup {DATA_VISIBILITY_MODIFIER=PROTECTED_FIELD}
+visibility PROTECTED_FIELD	@1.0,0.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 polygon [4.0:0.0, 8.0:4.0, 4.0:8.0, 0.0:4.0] sh=0.0
+visibility PROTECTED_FIELD	closeGroup
+visibility PACKAGE_PRIVATE_FIELD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PACKAGE_PRIVATE_FIELD	startGroup {DATA_VISIBILITY_MODIFIER=PACKAGE_PRIVATE_FIELD}
+visibility PACKAGE_PRIVATE_FIELD	@1.0,0.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 polygon [4.0:1.0, 0.0:7.0, 8.0:7.0] sh=0.0
+visibility PACKAGE_PRIVATE_FIELD	closeGroup
+visibility PUBLIC_FIELD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PUBLIC_FIELD	startGroup {DATA_VISIBILITY_MODIFIER=PUBLIC_FIELD}
+visibility PUBLIC_FIELD	@2.0,2.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 ellipse 6.0,6.0 0.0,0.0 sh=0.0
+visibility PUBLIC_FIELD	closeGroup
+visibility PRIVATE_METHOD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PRIVATE_METHOD	startGroup {DATA_VISIBILITY_MODIFIER=PRIVATE_METHOD}
+visibility PRIVATE_METHOD	@2.0,2.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 rect 6.0,6.0 r=0.0,0.0 sh=0.0
+visibility PRIVATE_METHOD	closeGroup
+visibility PROTECTED_METHOD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PROTECTED_METHOD	startGroup {DATA_VISIBILITY_MODIFIER=PROTECTED_METHOD}
+visibility PROTECTED_METHOD	@1.0,0.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 polygon [4.0:0.0, 8.0:4.0, 4.0:8.0, 0.0:4.0] sh=0.0
+visibility PROTECTED_METHOD	closeGroup
+visibility PACKAGE_PRIVATE_METHOD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PACKAGE_PRIVATE_METHOD	startGroup {DATA_VISIBILITY_MODIFIER=PACKAGE_PRIVATE_METHOD}
+visibility PACKAGE_PRIVATE_METHOD	@1.0,0.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 polygon [4.0:1.0, 0.0:7.0, 8.0:7.0] sh=0.0
+visibility PACKAGE_PRIVATE_METHOD	closeGroup
+visibility PUBLIC_METHOD	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility PUBLIC_METHOD	startGroup {DATA_VISIBILITY_MODIFIER=PUBLIC_METHOD}
+visibility PUBLIC_METHOD	@2.0,2.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 ellipse 6.0,6.0 0.0,0.0 sh=0.0
+visibility PUBLIC_METHOD	closeGroup
+visibility IE_MANDATORY	@0.0,0.0 c=transparent b=transparent s=0.0-0.0-1.0 rect 20.0,10.0 r=0.0,0.0 sh=0.0
+visibility IE_MANDATORY	startGroup {DATA_VISIBILITY_MODIFIER=IE_MANDATORY}
+visibility IE_MANDATORY	@2.0,2.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 ellipse 6.0,6.0 0.0,0.0 sh=0.0
+visibility IE_MANDATORY	closeGroup
+visibility drawable	startGroup {DATA_VISIBILITY_MODIFIER=PRIVATE_FIELD}
+visibility drawable	@2.0,2.0 c=#FF0000 b=transparent s=0.0-0.0-1.0 rect 4.0,4.0 r=0.0,0.0 sh=0.0
+visibility drawable	closeGroup
+circled	@0.0,0.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 ellipse 18.0,18.0 0.0,0.0 sh=0.0
+circled	@9.0,9.0 c=#000000 b=#00FF00 s=0.0-0.0-1.0 char C monospace/UFontFace[NORMAL, weight=400]/17
+arrow RIGHT	@2.0,5.0 c=#000000 b=#000000 s=0.0-0.0-1.0 polygon [0.0:0.0, 6.0:3.0, 0.0:6.0, 0.0:0.0] sh=0.0
+arrow LEFT	@2.0,5.0 c=#000000 b=#000000 s=0.0-0.0-1.0 polygon [6.0:0.0, 0.0:3.0, 6.0:6.0, 6.0:0.0] sh=0.0
+arrow DOWN	@2.0,5.0 c=#000000 b=#000000 s=0.0-0.0-1.0 polygon [0.0:0.0, 3.0:6.0, 6.0:0.0, 0.0:0.0] sh=0.0
+arrow UP	@2.0,5.0 c=#000000 b=#000000 s=0.0-0.0-1.0 polygon [0.0:6.0, 3.0:0.0, 6.0:6.0, 0.0:6.0] sh=0.0
+arrow2	@5.0,7.0 c=#000000 b=#000000 s=0.0-0.0-1.0 polygon [3.221088436188455:3.8242109364224426, -0.358100495176384:-4.987159916761686, -4.853730075345784:-1.200543358518888, 3.221088436188455:3.8242109364224426] sh=0.0
+padder	@2.0,2.0 c=transparent b=#FF0000 s=0.0-0.0-1.0 rect 51.199999999999996,21.0 r=6.0,6.0 sh=0.0
+padder	@6.0,17.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'padded' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+motif	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 dotpath (2.0,3.0) (2.0,3.0) (-1.0,0.0) (-1.0,0.0)  - (-1.0,0.0) (-1.0,0.0) (-4.0,-3.0) (-4.0,-3.0)  - (-4.0,-3.0) (-4.0,-3.0) (-1.0,-6.0) (-1.0,-6.0)  - (-1.0,-6.0) (-1.0,-6.0) (2.0,-9.0) (2.0,-9.0)  - (2.0,-9.0) (2.0,-9.0) (-1.0,-11.0) (-1.0,-11.0)  - (-1.0,-11.0) (-1.0,-11.0) (-4.0,-13.0) (-4.0,-13.0)  - (-4.0,-13.0) (-4.0,-13.0) (-7.0,-16.0) (-7.0,-16.0)  - (-7.0,-16.0) (-7.0,-16.0) (-10.0,-19.0) (-10.0,-19.0)  - (-10.0,-19.0) (-10.0,-19.0) (-7.0,-22.0) (-7.0,-22.0)  - (-7.0,-22.0) (-7.0,-22.0) (-4.0,-25.0) (-4.0,-25.0)  - (-4.0,-25.0) (-4.0,-25.0) (-7.0,-27.0) (-7.0,-27.0)  - (-7.0,-27.0) (-7.0,-27.0) (-10.0,-29.0) (-10.0,-29.0)  - 
+motifrect	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 dotpath (0.0,0.0) (0.0,0.0) (-2.0,0.0) (-2.0,0.0)  - (-2.0,0.0) (-2.0,0.0) (0.0,2.0) (0.0,2.0)  - (0.0,2.0) (0.0,2.0) (2.0,0.0) (2.0,0.0)  - (2.0,0.0) (2.0,0.0) (0.0,0.0) (0.0,0.0)  - (0.0,0.0) (0.0,0.0) (2.0,2.0) (2.0,2.0)  - (2.0,2.0) (2.0,2.0) (4.0,0.0) (4.0,0.0)  - (4.0,0.0) (4.0,0.0) (2.0,0.0) (2.0,0.0)  - (2.0,0.0) (2.0,0.0) (4.0,2.0) (4.0,2.0)  - (4.0,2.0) (4.0,2.0) (6.0,0.0) (6.0,0.0)  - (6.0,0.0) (6.0,0.0) (4.0,0.0) (4.0,0.0)  - (4.0,0.0) (4.0,0.0) (6.0,2.0) (6.0,2.0)  - (6.0,2.0) (6.0,2.0) (8.0,0.0) (8.0,0.0)  - (8.0,0.0) (8.0,0.0) (6.0,0.0) (6.0,0.0)  - (6.0,0.0) (6.0,0.0) (8.0,2.0) (8.0,2.0)  - (8.0,2.0) (8.0,2.0) (10.0,0.0) (10.0,0.0)  - (10.0,0.0) (10.0,0.0) (10.0,-2.0) (10.0,-2.0)  - (10.0,-2.0) (10.0,-2.0) (12.0,0.0) (12.0,0.0)  - (12.0,0.0) (12.0,0.0) (10.0,2.0) (10.0,2.0)  - (10.0,2.0) (10.0,2.0) (10.0,0.0) (10.0,0.0)  - (10.0,0.0) (10.0,0.0) (12.0,2.0) (12.0,2.0)  - (12.0,2.0) (12.0,2.0) (10.0,4.0) (10.0,4.0)  - 
+diagonal	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [5.0, 0.0], SEG_LINETO [25.0, 0.0], SEG_LINETO [30.0, 5.0], SEG_LINETO [30.0, 15.0], SEG_LINETO [25.0, 20.0], SEG_LINETO [5.0, 20.0], SEG_LINETO [0.0, 15.0], SEG_LINETO [0.0, 5.0], SEG_LINETO [5.0, 0.0]] sh=0.0
+halfrounded	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [4.0, 0.0], SEG_LINETO [26.0, 0.0], SEG_ARCTO [4.0, 4.0, 0.0, 0.0, 1.0, 30.0, 4.0], SEG_LINETO [30.0, 20.0], SEG_LINETO [0.0, 20.0], SEG_LINETO [0.0, 4.0], SEG_ARCTO [4.0, 4.0, 0.0, 0.0, 1.0, 4.0, 0.0]] sh=0.0
+fashion	@0.0,0.0 c=transparent b=#FF0000 s=3.0-4.0-2.0 rect 5.0,5.0 r=0.0,0.0 sh=0.0
+url	startUrl http://x.org
+url	@0.0,12.0 c=#000000 b=transparent s=0.0-0.0-1.0 text 'link' sans-serif/UFontFace[NORMAL, weight=400]/12 #000000
+url	closeUrl
+style	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 10.0,0.0
+style	@0.0,0.0 c=#000000 b=#DDDDDD s=0.0-0.0-1.0 ellipse 4.0,4.0 0.0,0.0 sh=0.0
+rotate	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 polygon [0.0:0.0, 8.660254037844387:4.999999999999999, 0.8301270189221941:8.562177826491071] sh=0.0
+rotate	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 1.8623391340714672,10.272861964891087
+rotate	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [1.6998976786201863, 1.4527036456971196], SEG_LINETO [8.536742978949032, -0.35216375646054887]] sh=0.0
+rotate	@-4.797319423056627,-1.4091580298758655 c=#000000 b=transparent s=0.0-0.0-1.0 empty 1.0,1.0

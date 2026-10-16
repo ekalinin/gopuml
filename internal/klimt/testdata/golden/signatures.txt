@@ -1,0 +1,52 @@
+root
+root document
+root document title
+root document header
+root document footer
+root document legend
+root document caption
+root element
+root element sequenceDiagram participant
+root element sequenceDiagram actor
+root element sequenceDiagram arrow
+root element sequenceDiagram lifeLine
+root element sequenceDiagram note
+root element sequenceDiagram group
+root element sequenceDiagram groupHeader
+root element sequenceDiagram reference
+root element sequenceDiagram box
+root element sequenceDiagram separator
+root element sequenceDiagram participant @foo
+root element sequenceDiagram participant @bar
+root element sequenceDiagram participant @foo @bar
+root element sequenceDiagram participant clickable
+root element sequenceDiagram stereotype
+root element classDiagram class_
+root element classDiagram class_ header
+root element classDiagram class_ @foo
+root element classDiagram package_ title
+root element classDiagram note
+root element classDiagram arrow
+root element activityDiagram activity
+root element activityDiagram activity diamond
+root element activityDiagram activity arrow
+root element activityDiagram partition
+root element activityDiagram swimlane
+root element activityDiagram circle start
+root element componentDiagram component
+root element mindmapDiagram node #1
+root element mindmapDiagram node #2
+root element mindmapDiagram node #3
+root element wbsDiagram node #0
+root element spot spotClass
+root element visibilityIcon private_
+root element ganttDiagram task
+root element timingDiagram robust
+root element yamlDiagram node highlight
+root element *
+root element sequenceDiagram participant *
+root mainframe
+root group package_
+root note
+@foo
+@onlystereo

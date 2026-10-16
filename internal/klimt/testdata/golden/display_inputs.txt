@@ -1,0 +1,25 @@
+single line
+two\nlines
+left\lalign
+right\ralign
+tab\there
+back\\slash
+unknown\qescape
+trailing\n
+\nleading
+[[http://a\nb]] after\nx
+<math>a\nb</math>\nc
+<latex>x\ny</latex>
+prepost
+preleft
+preright
+prebreak
+realbackslash
+realtab
+invisiblequote
+[[urlx]]y
+end with backslash\\
+lone backslash \ 
+%newline()x
+emoji 😀\nnext
+

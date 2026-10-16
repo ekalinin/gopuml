@@ -1,0 +1,15 @@
+[[http://plantuml.com]]
+[[http://plantuml.com{tooltip here}]]
+[[http://plantuml.com{tooltip} label text]]
+[[http://plantuml.com label]]
+[["http://quoted.com" label]]
+[["http://quoted.com"{tip} label]]
+[[{only tooltip}]]
+[[{tooltip} and label]]
+[[relative/page.html]]
+text before [[http://x.org]] after
+no link here
+[[http://x.org{a{b}c}]]
+[[ http://spaces.org ]]
+[[http://x.org{}]]
+[[file:///etc/hosts]]

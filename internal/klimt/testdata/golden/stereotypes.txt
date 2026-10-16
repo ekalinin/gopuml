@@ -1,0 +1,20 @@
+<<foo>>
+<< foo >>
+<<foo>><<bar>>
+<<foo>> <<bar baz>>
+<<(C,#ADD1B2) Class>>
+<<(E,red)>>
+<<(X)>>
+<<(S, blue)Styled>>
+<<$sprite>>
+<<$sprite{scale=2}>>
+<<$archimate/business-actor>>
+<<(*,#FF0000)Star>>
+<<<style1>>> <<foo>>
+<<O-O>>
+<<Node>>
+<<B>>
+<<icon>>
+<<&key>>
+<<foo_bar.baz>>
+<<Spec>>

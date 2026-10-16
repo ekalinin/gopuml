@@ -1,0 +1,15 @@
+[[http://plantuml.com]]	http://plantuml.com|http://plantuml.com|http://plantuml.com	http://plantuml.com|http://plantuml.com|http://plantuml.com	http://plantuml.com|http://plantuml.com|http://plantuml.com
+[[http://plantuml.com{tooltip here}]]	http://plantuml.com|tooltip here|http://plantuml.com	http://plantuml.com|tooltip here|http://plantuml.com	http://plantuml.com|tooltip here|http://plantuml.com
+[[http://plantuml.com{tooltip} label text]]	http://plantuml.com|tooltip|label text	http://plantuml.com|tooltip|label text	http://plantuml.com|tooltip|label text
+[[http://plantuml.com label]]	http://plantuml.com|http://plantuml.com|label	http://plantuml.com|http://plantuml.com|label	http://plantuml.com|http://plantuml.com|label
+[["http://quoted.com" label]]	http://quoted.com|http://quoted.com|label	http://quoted.com|http://quoted.com|label	http://quoted.com|http://quoted.com|label
+[["http://quoted.com"{tip} label]]	http://quoted.com|tip|label	http://quoted.com|tip|label	http://quoted.com|tip|label
+[[{only tooltip}]]	|only tooltip|	|only tooltip|	|only tooltip|
+[[{tooltip} and label]]	|tooltip|and label	|tooltip|and label	|tooltip|and label
+[[relative/page.html]]	relative/page.html|relative/page.html|relative/page.html	relative/page.html|relative/page.html|relative/page.html	http://top/relative/page.html|http://top/relative/page.html|http://top/relative/page.html
+text before [[http://x.org]] after	http://x.org|http://x.org|http://x.org	null	http://x.org|http://x.org|http://x.org
+no link here	null	null	null
+[[http://x.org{a{b}c}]]	http://x.org|a{b}c|http://x.org	http://x.org|a{b}c|http://x.org	http://x.org|a{b}c|http://x.org
+[[ http://spaces.org ]]	http://spaces.org|http://spaces.org|http://spaces.org	http://spaces.org|http://spaces.org|http://spaces.org	http://spaces.org|http://spaces.org|http://spaces.org
+[[http://x.org{}]]	http://x.org||http://x.org	http://x.org||http://x.org	http://x.org||http://x.org
+[[file:///etc/hosts]]	file:///etc/hosts|file:///etc/hosts|file:///etc/hosts	file:///etc/hosts|file:///etc/hosts|file:///etc/hosts	file:///etc/hosts|file:///etc/hosts|file:///etc/hosts

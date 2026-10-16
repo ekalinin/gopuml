@@ -1,0 +1,26 @@
+FontColor red\n}\nBackGroundColor blue
+depth(1) {\n FontColor red\n}\nnode {\n LineColor blue\n}\nFontSize 3
+@media dark {\n a { FontColor red }\n}\nb { FontColor blue }
+a, b {\n FontColor red\n}
+.x, y {\n LineColor green\n}
+:depth(2) { FontColor red }
+a* { FontColor red }
+--v: 12;\nroot { FontSize var(--v) }
+root { FontSize var(--unknown) }
+a { FontColor : red ; }
+a {\n b {\n c { FontSize 5 }\n }\n}
+a { BackGroundColor red , blue }
+a { Padding 1 2 3 4 }
+// c\na { FontColor red } /* x */\nb { FontColor blue }
+a { FontColor "quoted value" }
+a { BackGroundColor: transparent;}\na { FontSize 3 }
+a { UnknownProperty 3 }
+a {
+}
+a { FontColor }
+a { FontColor: : red }
+. foo { FontColor red }
+a.b.c { FontSize 4 }
+depth(x) { FontSize 4 }
+a\n{\n FontSize 4\n}
+a,\nb { FontSize 4 }
