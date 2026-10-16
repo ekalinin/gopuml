@@ -85,6 +85,10 @@ func TestDescriptionBeforeActivity(t *testing.T) {
 		{"@startuml\nrectangle \"PlantUML at its best\" as leaf42\n@enduml\n", true, 1},
 		{"@startuml\ntitle T\ncard A {\n  rectangle B\n}\n@enduml\n", true, 2},
 		{"@startuml\nrectangle Lane {\n:step;\n}\n@enduml\n", false, 0},
+		{"@startuml\ncard \"A\" <<s>> #red {\n}\n@enduml\n", true, 1},
+		// vega/sub/repro2: the description factory rejects the trailing text,
+		// activity v3 accepts the block.
+		{"@startuml\ncard \"single line\"\ncard \"multi line\" 'uncomment to get an error\n@enduml\n", false, 0},
 		{"@startuml\n:step;\n@enduml\n", false, 0},
 		{"@startuml\n@enduml\n", false, 0},
 	} {

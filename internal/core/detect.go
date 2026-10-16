@@ -91,10 +91,14 @@ func detectUnsupportedUmlType(src *UmlSource) Diagram {
 	return nil
 }
 
-// descriptionElement matches a description diagram element or container
-// line that activity v3 also reads as a partition, for example
-// "rectangle Lane {" or `card "A" as a`.
-var descriptionElement = regexp.MustCompile(`^(rectangle|card|package|folder|frame|cloud|node|database|storage|component|artifact|agent|file|hexagon|label|person|process|stack|usecase|actor|queue|collections)[\t\n\x0B\f\r ]+[^;]*$`)
+// descriptionElement matches a whole description diagram element or
+// container line that activity v3 also reads as a partition, for example
+// "rectangle Lane {" or `card "A" as a`: keyword, name, optional alias,
+// stereotype, link, color and opening brace. Other text after it, which
+// the description factory rejects, does not match.
+var descriptionElement = regexp.MustCompile(`^(rectangle|card|package|folder|frame|cloud|node|database|storage|component|artifact|agent|file|hexagon|label|person|process|stack|usecase|actor|queue|collections)` +
+	`[\t\n\x0B\f\r ]+("[^"]*"|[^\t\n\x0B\f\r "{}]+)([\t\n\x0B\f\r ]+as[\t\n\x0B\f\r ]+[^\t\n\x0B\f\r {}]+)?` +
+	`([\t\n\x0B\f\r ]*<<[^>]*>>)?([\t\n\x0B\f\r ]*\[\[[^\]]*\]\])?([\t\n\x0B\f\r ]*#[\w#;:.-]+)?[\t\n\x0B\f\r ]*\{?$`)
 
 // commonLine matches the lines every diagram type accepts.
 var commonLine = regexp.MustCompile(`^(skinparam|title|caption|header|footer|scale|hide|show|left to right direction|top to bottom direction)\b`)
