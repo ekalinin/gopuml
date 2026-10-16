@@ -63,7 +63,7 @@
 
 ## 6. Drawing model, fonts and SVG driver
 
-- [ ] 6.1 Port the `klimt` geometry, color (HTML names, hex, alpha, gradients) and `UGraphic` shape model. Verify with unit tests on color parsing (the styling Colors scenarios) and shape bounds
+- [x] 6.1 Port the `klimt` geometry, color (HTML names, hex, alpha, gradients) and `UGraphic` shape model. Verify with unit tests on color parsing (the styling Colors scenarios) and shape bounds
 - [x] 6.2 Implement the embedded font metrics loader and `StringBounder` using the tables from task 2.2 (design D5). Verify that the widths of 1,000 sample strings match the Java dump within 0.01 px
 - [ ] 6.3 Port upstream's number formatting and SVG writer helpers exactly. Verify with golden tests of formatted coordinates taken from reference SVGs
 - [ ] 6.4 Port `klimt/drawing/svg`: element order, attributes, links, gradients, shadows, and the `<?plantuml-src ...?>` metadata. Verify with driver-level golden tests and the SVG metadata scenario
@@ -72,7 +72,7 @@
 
 ## 7. Styling and creole
 
-- [ ] 7.1 Port the `style` system: `SName`/`PName`, selectors, stereotype classes, nesting and precedence, and the default `plantuml.skin`. Verify with unit tests on resolved style values for representative selectors
+- [x] 7.1 Port the `style` system: `SName`/`PName`, selectors, stereotype classes, nesting and precedence, and the default `plantuml.skin`. Verify with unit tests on resolved style values for representative selectors
 - [ ] 7.2 Port the `skinparam` to style conversion for the in-scope diagram types, ignoring unknown names. Verify with the `skinparam` scenarios
 - [ ] 7.3 Embed the themes per design D14: exclude `sunlust`, and resolve the license of the 9 themes without one before bundling them. Implement `!theme`, `!theme ... from` and `--theme`. Update `NOTICE`. Verify with the theme scenarios and a test that lists the bundled themes
 - [ ] 7.4 Port `klimt/creole`: inline styles, HTML-like tags, lists, tables, horizontal rules, links, escapes and Unicode escapes. Icons, emoji and sprites render as literal text. Verify with the creole scenarios and creole conformance cases
