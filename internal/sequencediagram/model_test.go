@@ -228,12 +228,12 @@ func TestSyntaxErrorLine(t *testing.T) {
 	}
 }
 
-func TestExportTextNotImplemented(t *testing.T) {
+func TestExportXmiNotImplemented(t *testing.T) {
 	d := parseModel(t, "A -> B")
 	var buf bytes.Buffer
-	if _, err := d.ExportDiagram(&buf, 0, export.NewFileFormatOption(font.FormatATXT)); !errors.Is(err,
+	if _, err := d.ExportDiagram(&buf, 0, export.NewFileFormatOption(font.FormatXMIStandard)); !errors.Is(err,
 		export.ErrNotImplemented) || buf.Len() != 0 {
-		t.Errorf("ExportDiagram(ATXT) = %v", err)
+		t.Errorf("ExportDiagram(XMI) = %v", err)
 	}
 }
 

@@ -6,8 +6,11 @@
 package sequencediagram
 
 import (
+	"fmt"
 	"io"
 
+	"github.com/ekalinin/plantuml-in-go/internal/asciiart"
+	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
 	"github.com/ekalinin/plantuml-in-go/internal/export"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
@@ -19,14 +22,14 @@ import (
 // ExportDiagram draws page index of the diagram in an output format, as
 // upstream's UgDiagram.exportDiagram: the Teoz drawing of the page with
 // the annotations around it (title of the page, header, footer, caption,
-// legend, main frame). The text formats (ATXT, UTXT) and XMI are not
-// ported yet: they give an error wrapping export.ErrNotImplemented.
+// legend, main frame), or its text drawing for ATXT and UTXT. XMI is not
+// ported yet: it gives an error wrapping export.ErrNotImplemented.
 func (d *SequenceDiagram) ExportDiagram(w io.Writer, index int,
 	fileFormatOption export.FileFormatOption) (export.ImageData, error) {
 	format := fileFormatOption.FileFormat()
 	switch {
 	case format == font.FormatATXT || format == font.FormatUTXT:
-		return nil, &export.NotImplementedError{Format: format, What: "SequenceDiagram.exportTxt"}
+		return d.exportTxt(w, index, format)
 	case format.IsXmi():
 		return nil, &export.NotImplementedError{Format: format, What: "SequenceDiagramXmiMaker"}
 	}
@@ -37,6 +40,43 @@ func (d *SequenceDiagram) ExportDiagram(w io.Writer, index int,
 	return uml.ExportTitled(w, d, title, func() klimt.TextBlock {
 		return d.TextBlock(index, fileFormatOption)
 	}, fileFormatOption)
+}
+
+// exportTxt writes the text drawing of the diagram, as upstream's
+// SequenceDiagram.exportTxt: a Teoz layout measured with the
+// TextStringBounder of the format, its AsciiBlock with the title above it,
+// drawn on an InfinitePlan and written as text. As upstream, every page is
+// drawn whatever index is. A panic while drawing (upstream's
+// UnsupportedOperationException for the elements without text drawing,
+// such as delays, dividers and notes over participants) is returned as an
+// error and nothing is written; upstream writes a crash report instead.
+func (d *SequenceDiagram) exportTxt(w io.Writer, index int, fileFormat font.FileFormat) (data export.ImageData,
+	err error) {
+	var plan *asciiverse.InfinitePlan
+	func() {
+		defer func() {
+			if r := recover(); r != nil {
+				if e, ok := r.(error); ok {
+					err = fmt.Errorf("drawing crashed: %w", e)
+				} else {
+					err = fmt.Errorf("drawing crashed: %v", r)
+				}
+			}
+		}()
+		// FileFormatOption.getDefaultStringBounder of a text format
+		maker := NewSequenceDiagramFileMakerTeoz(d, rose.NewRose(), asciiart.NewTextStringBounder(fileFormat))
+		rawBlock := maker.AsciiBlock(index)
+		block := uml.DiagramChromeCreateASCII(rawBlock, d)
+		plan = asciiverse.NewInfinitePlan(fileFormat)
+		block.AsciiDraw(plan)
+	}()
+	if err != nil {
+		return nil, err
+	}
+	if err := plan.ExportTxt(w); err != nil {
+		return nil, err
+	}
+	return export.ImageDataOK(), nil
 }
 
 // TextBlock returns the drawing of page num, without annotations, as

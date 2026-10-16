@@ -41,6 +41,28 @@ var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Fact
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
 
+// ErrUnsupportedFormat is wrapped by the error of an output format a
+// diagram type does not have in this release.
+var ErrUnsupportedFormat = errors.New("output format not supported for this diagram type")
+
+// UnsupportedFormatError is an output format a diagram type does not have
+// in this release, such as TXT for a class diagram (upstream has it).
+type UnsupportedFormatError struct {
+	Format font.FileFormat
+	Type   core.DiagramType
+}
+
+func (e *UnsupportedFormatError) Error() string {
+	name := e.Format.String()
+	if e.Format == font.FormatATXT {
+		name = "TXT"
+	}
+	return name + " output is not supported for " + e.Type.HumanReadableName() + " diagrams"
+}
+
+// Unwrap returns ErrUnsupportedFormat.
+func (e *UnsupportedFormatError) Unwrap() error { return ErrUnsupportedFormat }
+
 // Block is one @start/@end block of a source and its diagram, as upstream's
 // BlockUml.
 type Block struct {
@@ -213,6 +235,12 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 			return ImageData{}, err
 		}
 		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
+	}
+	// Only sequence diagrams have the text formats in this release.
+	if opt.Format == font.FormatATXT || opt.Format == font.FormatUTXT {
+		if d, ok := b.Diagram.(core.TypedDiagram); ok && d.DiagramType() != core.Sequence {
+			return ImageData{}, &UnsupportedFormatError{Format: opt.Format, Type: d.DiagramType()}
+		}
 	}
 	// Diagrams that draw themselves; an output format they do not support
 	// yet is reported as not drawable.

@@ -13,6 +13,7 @@
 package sequencediagram
 
 import (
+	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
@@ -23,12 +24,19 @@ import (
 // a note, a fragment... It knows its height, its horizontal bounds (as
 // Reals of the X line) and its vertical gauge (Reals of the Y line).
 //
-// Upstream's Tile also extends asciiverse.AsciiBlock (asciiDimension,
-// asciiDraw) and declares the ASCII layout methods (asciiAddConstraints,
-// getAsciiMinX, getAsciiMaxX); the text output step adds them to the tile
-// types.
+// As upstream, a tile is also an asciiverse.AsciiBlock (its text drawing)
+// with its constraints and bounds on the text X line; abstractTile gives
+// the defaults (see teoz_ascii.go).
 type Tile interface {
 	klimt.UDrawable
+	asciiverse.AsciiBlock
+	// AsciiAddConstraints adds the constraints of the tile on the text X
+	// line.
+	AsciiAddConstraints()
+	// AsciiMinX and AsciiMaxX are the bounds on the text X line, nil for
+	// none.
+	AsciiMinX() Real
+	AsciiMaxX() Real
 	PreferredHeight() float64
 	// OnGaugeResolved runs once the Y line is solved (livebox steps,
 	// creations and destructions).

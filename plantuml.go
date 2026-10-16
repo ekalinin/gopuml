@@ -236,6 +236,9 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opts *Options
 	if errors.Is(err, engine.ErrNotDrawable) {
 		return nil, fmt.Errorf("%w: %s", ErrUnsupportedDiagram, err)
 	}
+	if errors.Is(err, engine.ErrUnsupportedFormat) {
+		return nil, fmt.Errorf("%w: %s", ErrUnsupportedFormat, err)
+	}
 	if err != nil {
 		return nil, err
 	}

@@ -6,6 +6,7 @@
 package sequencediagram
 
 import (
+	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
@@ -13,12 +14,11 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
 )
 
-// FileMaker draws the pages of a sequence diagram. Upstream's FileMaker
-// also returns the ASCII block of a page (getAsciiBlock), which the text
-// output step adds.
+// FileMaker draws the pages of a sequence diagram, as images and as text.
 type FileMaker interface {
 	NbPages() int
 	TextBlock(num int) klimt.TextBlock
+	AsciiBlock(num int) asciiverse.AsciiBlock
 }
 
 // SequenceDiagramFileMakerTeoz lays out a sequence diagram with Teoz: it

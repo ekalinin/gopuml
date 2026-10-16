@@ -72,6 +72,9 @@ type LivingSpace struct {
 
 	marginBefore float64
 	marginAfter  float64
+
+	// ascii holds the positions on the text X line (see teoz_ascii.go).
+	ascii livingSpaceASCII
 }
 
 // LevelAt returns the activation level of the participant at the event of

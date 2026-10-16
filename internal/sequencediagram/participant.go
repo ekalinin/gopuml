@@ -7,6 +7,7 @@
 package sequencediagram
 
 import (
+	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
@@ -92,6 +93,18 @@ func (p *Participant) Code() string { return p.code }
 
 // String is upstream's toString: the code.
 func (p *Participant) String() string { return p.code }
+
+// AsciiDimension returns the size of the head box in the text output: the
+// code (not the display) with a border, 3 rows.
+func (p *Participant) AsciiDimension() asciiverse.ADimension2D {
+	return asciiverse.NewADimension2D(uml.JavaLength(p.code)+2, 3)
+}
+
+// AsciiDraw draws the head box with the code at the position of plan.
+func (p *Participant) AsciiDraw(plan *asciiverse.InfinitePlan) {
+	plan.DrawBox(uml.JavaLength(p.code)+2, 3)
+	plan.Move(1, 1).DrawString(p.code)
+}
 
 // RawDisplay returns the text of the participant, without stereotype.
 func (p *Participant) RawDisplay() *klimt.Display { return p.display }

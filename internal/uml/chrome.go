@@ -8,6 +8,7 @@
 package uml
 
 import (
+	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/jmath"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
@@ -40,6 +41,22 @@ func DiagramChromeCreate(raw klimt.TextBlock, annotated Annotated, skinParam kli
 	result = chromeAddCaption(result, annotated, skinParam)
 	result = chromeAddHeaderAndFooter(result, annotated, skinParam)
 	return result
+}
+
+// DiagramChromeCreateASCII wraps the text drawing (ATXT, UTXT) of a
+// diagram with its title, centered above it, as upstream's
+// DiagramChromeFactory.createAscii. As upstream, the caption, header,
+// footer, legend, main frame and warnings are not drawn in text.
+func DiagramChromeCreateASCII(raw asciiverse.AsciiBlock, annotated Annotated) asciiverse.AsciiBlock {
+	return chromeAddASCIITitle(raw, annotated)
+}
+
+func chromeAddASCIITitle(original asciiverse.AsciiBlock, annotated Annotated) asciiverse.AsciiBlock {
+	title := annotated.Title()
+	if title.IsNull() {
+		return original
+	}
+	return asciiverse.NewAsciiBlockStackTB(asciiverse.DisplayBlock(title.Display()), original)
 }
 
 func chromeAddWarnings(original klimt.TextBlock, warnings []*klimt.Warning) klimt.TextBlock {

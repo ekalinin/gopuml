@@ -43,6 +43,10 @@ type groupingTileHooks interface {
 	area(stringBounder font.StringBounder) *klimt.Area
 	minCurrentValueForDrawing() float64
 	drawCompBackground(ug klimt.UGraphic, area *klimt.Area, back color.HColor, round float64)
+	// The text output (teoz_ascii.go).
+	asciiTitle() (string, bool)
+	asciiFrameHasTab() bool
+	asciiFrameColumns() [2]int
 }
 
 // GroupingTile is a fragment ("alt", "loop", "group"...) and its children.
