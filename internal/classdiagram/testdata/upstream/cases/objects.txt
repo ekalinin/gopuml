@@ -1,0 +1,99 @@
+=== objects
+object o1
+object "Long" as o2
+object o3 as "Long 3"
+object "o4"
+object o5 <<st>> #red
+object o6 [[http://x]]
+=== object exists
+class A
+object A
+=== object multiline
+object o1 {
+  name = "Dummy"
+  id = 123
+}
+object o2 <<s>> #pink {
+  -a = 1
+}
+object "Long" as o3 {
+
+  x = 1
+
+}
+=== object multiline existing
+class C
+object C {
+  f = 1
+}
+=== maps
+map m1 {
+  key1 => value1
+  key2 => value2
+}
+map "Display" as m2 {
+  a => b
+}
+map m3 <<st>> #pink ##[dashed]blue {
+  x => y
+}
+=== map links
+class Target
+map m1 {
+  k1 => v1
+  k2 *--> Target
+  k3 *---> Target
+}
+=== map bad line
+map m1 {
+  no arrow here
+}
+=== map exists
+class m1
+map m1 {
+  a => b
+}
+=== map link unknown
+map m1 {
+  k *-> Unknown
+}
+=== json
+json j1 {
+  "a": 1,
+  "b": [1, 2]
+}
+json "Disp" as j2 {
+   "x": {"y": true}
+}
+json j3 <<st>> #red {
+  "k": null
+}
+=== json array
+json j1 {
+  [1, 2, 3]
+}
+=== json multi continue
+json j1 {
+  "a": {
+    "b": 1
+  }
+}
+=== json bad
+json j1 {
+  not json
+}
+=== json single
+json j1 true
+json j2 42
+json j3 null
+json j4 "text"
+json j5 [1, 2]
+json j6 {"a": 1}
+json "D" as j7 false
+=== json single bad
+json j1 [1, 2
+=== json exists
+class j1
+json j1 {
+  "a": 1
+}

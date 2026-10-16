@@ -1,0 +1,35 @@
+=== interface and enum
+interface Shape
+enum Color {
+RED
+GREEN
+}
+=== object in class diagram
+object Alice
+Alice : age = 30
+=== generic class with stereotype
+class Repo<T> <<service>>
+=== visibility and static members
+class Order {
+-id : int
+{static} +create() : Order
+}
+=== composition with cardinalities
+Order "1" *-- "many" Line : contains
+=== direction hint
+A -left-> B
+=== nested package
+package shop {
+package model {
+class Order
+}
+}
+=== note attached to a class
+class A
+note right of A : important
+=== hide empty members
+class A
+hide empty members
+=== left to right
+left to right direction
+A --> B

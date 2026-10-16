@@ -87,7 +87,7 @@ func CommandLegend[D Diagram]() command.Command[D] {
 			b := d.Titled()
 			s, ok := arg.Lazy("LEGEND", 0)
 			display := klimt.DisplayWithNewlinesString(b.Pragma(), s, ok)
-			b.SetLegend(DisplayPositionedSingle(nil, display, geom.HorizontalAlignmentCenter, geom.VerticalAlignmentBottom))
+			setLegend(d, DisplayPositionedSingle(nil, display, geom.HorizontalAlignmentCenter, geom.VerticalAlignmentBottom))
 			return command.Ok()
 		})
 }
@@ -163,7 +163,7 @@ func CommandMultilinesLegend[D Diagram]() command.Command[D] {
 					alignment = a
 				}
 			}
-			d.Titled().SetLegend(DisplayPositionedSingle(location, strings.ReplaceBackslashT(), alignment, valignment))
+			setLegend(d, DisplayPositionedSingle(location, strings.ReplaceBackslashT(), alignment, valignment))
 			return command.Ok()
 		}
 		return command.Error("No legend defined")

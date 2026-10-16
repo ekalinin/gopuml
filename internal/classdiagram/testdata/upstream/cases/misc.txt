@@ -1,0 +1,223 @@
+=== allowmixing elements
+allowmixing
+class A
+component C1
+usecase U1
+actor Act
+node N1
+database DB
+cloud Cl
+artifact Ar
+rectangle R1
+interface I1
+circle Ci
+storage S1
+queue Q1
+stack St1
+person P1
+agent Ag1
+boundary B1
+control Co1
+entity E1
+label L1
+collections Coll
+file F1
+folder Fo1
+card Ca1
+frame Fr1
+hexagon H1
+action Ac1
+process Pr1
+state S2
+actor/ ActB
+usecase/ UB
+=== allow_mixing shorthand
+allow_mixing
+(Use case)
+:Actor:
+[Component]
+() Iface
+=== mixing forms
+allowmixing
+component "Display" as C1
+component C2 <<st>>
+component "D3" <<s3>> as C3
+actor :Human: as H
+usecase (Use) as U
+component [Comp] as K
+actor A1 #red
+component C4 [[http://x]]
+component C5 $tag
+=== mixing without allowmixing
+component C1
+=== mix prefix
+mix_component C1
+mix_actor A1
+mix_usecase U1
+mix_node N1
+=== port at root
+allowmixing
+port P1
+=== element parenthesis
+() I1
+() "Quoted" as I2
+() I3 <<st>>
+() #red I4
+() I5 #blue
+() "D6" <<s>> as I6
+() I7 as "D7"
+() I8 [[http://x]]
+=== element parenthesis exists
+class I1
+() I1
+=== create element multilines
+allowmixing
+component C1 as "first
+second
+third"
+node N1 [
+line a
+line b
+]
+rectangle R1 as "single"
+=== layout new line
+class A
+layout_new_line
+class B
+layout_new_line
+class C
+=== rankdir
+left to right direction
+class A
+=== rankdir top
+top to bottom direction
+=== newpage
+class A
+newpage
+class B
+newpage
+class C
+=== newpage with dpi
+skinparam dpi 150
+class A
+newpage
+class B
+=== newpage error
+class A
+newpage
+class B
+class B extends
+blah blah
+=== url of
+class A
+url of A is [[http://x]]
+url for A is [[http://y{tip}]]
+url A [[http://z]]
+=== url unknown
+url of B is [[http://x]]
+=== stereotype command
+class A
+A <<newst>>
+A << (S,red) spotted >>
+=== stereotype unknown
+B <<st>>
+=== title and annotations
+title My Title
+caption cap
+header head
+footer foot
+legend
+leg
+endlegend
+mainframe frame
+class A
+=== scale and skinparam
+scale 2
+skinparam classBackgroundColor red
+skinparam class {
+  BorderColor blue
+}
+class A
+=== style block
+<style>
+classDiagram {
+  class {
+    BackgroundColor pink
+  }
+}
+</style>
+class A
+=== pragma graphattributes
+!pragma graphattributes nodesep=1
+class A
+=== pragma labels
+!pragma labeldistance 2.5
+!pragma labelangle 30
+A --> B
+A ()- I1
+C --> D
+=== pragma default labels
+!pragma defaultlabeldistance 3
+!pragma defaultlabelangle 45
+A --> B
+=== pragma label non numeric
+!pragma labeldistance abc
+A --> B
+=== single strategy
+class A
+class B
+class C
+class D
+class E
+class F
+class G
+class H
+class I
+class J
+=== single strategy groups
+package p1 {
+  class A1
+  class A2
+  class A3
+}
+package p2 {
+  class B1
+  class B2
+  class B3
+}
+package p3 {
+  class C1
+  class C2
+  class C3
+}
+package p4 {
+  class D1
+  class D2
+  class D3
+}
+=== length one links
+A - B
+A -- B
+A --- B
+B -> A
+=== single links
+A -[single]-> B
+A -[single]-> B
+B -[single]-> A
+=== norank
+A -[norank]-> B
+=== skinparam after links
+A --> B
+skinparam ArrowColor red
+C --> D
+=== creole names
+class "<b>Bold</b>" as B
+class "Line1\nLine2" as L
+class X as "a\nb"
+=== unicode names
+class Ärger
+class 日本
+Ärger --> 日本
+=== spot in stereotype
+class A << (D,#AAAAAA) >>
+class B << (D) dummy >>

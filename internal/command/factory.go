@@ -113,11 +113,14 @@ func (f *Factory[D]) executeFewLines(sys Diagram, src *core.UmlSource, it *itera
 	if !cmd.EligibleFor(pass) {
 		return sys, nil
 	}
-	d, isD := sys.(D)
-	if !isD {
-		panic(fmt.Sprintf("command: diagram %T is not the factory's diagram type", sys))
+	var result Result
+	if del, isDel := sys.(Delegator); isDel {
+		result = del.Delegate(func(target Diagram) Result {
+			return cmd.Execute(asD[D](target), lines, pass)
+		})
+	} else {
+		result = execute(cmd, asD[D](sys), lines, pass)
 	}
-	result := execute(cmd, d, lines, pass)
 	if !result.IsOK() {
 		first, _ := lines.First()
 		return nil, f.newError(src, core.ExecutionError, result.Err(), result.Score(), first, it.trace)
@@ -126,6 +129,15 @@ func (f *Factory[D]) executeFewLines(sys Diagram, src *core.UmlSource, it *itera
 		return result.NewDiagram, nil
 	}
 	return sys, nil
+}
+
+// asD returns the diagram as the factory's diagram type.
+func asD[D Diagram](sys Diagram) D {
+	d, isD := sys.(D)
+	if !isD {
+		panic(fmt.Sprintf("command: diagram %T is not the factory's diagram type", sys))
+	}
+	return d
 }
 
 // execute runs a command, turning a panic into an error as upstream's

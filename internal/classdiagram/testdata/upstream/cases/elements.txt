@@ -1,0 +1,124 @@
+=== all keywords
+class C1
+abstract class C2
+abstract C3
+interface C4
+enum C5
+annotation C6
+entity C7
+circle C8
+diamond C9
+protocol C10
+struct C11
+exception C12
+metaclass C13
+stereotype C14
+dataclass C15
+record C16
+map C17
+static class C18
+abstract   class C19
+=== quoted and as
+class "Long Name" as LN
+class LN2 as "Other Name"
+class "Quoted"
+class "Gen<T>" as G1
+class G2 as "Gen<K,V>"
+class "with space" as W {
+}
+=== generics
+class Box<T>
+class Pair<K, V>
+class Nested<Map<String, List<Integer>>>
+class Sp <T extends Number>
+class Deep<A<B<C<D<E>>>>>
+=== stereotypes and spots
+class A <<service>>
+class B << (S,#FF7700) Singleton >>
+class C <<(X,red)>>
+class D <<a>> <<b>>
+class E <<<<style1>>>>
+class F << (I,orchid) >>
+interface G <<(C,#ADD1B2) control>>
+=== stereotype bad color
+class A << (S,#notacolor) Singleton >>
+=== colors and line colors
+class A #red
+class B #back:yellow;line:blue
+class C ##red
+class D ##[dashed]blue
+class E #pink ##[bold]green
+class F ##[dotted]
+class G #lightblue/white
+=== bad colors
+class A #notacolorx
+=== urls
+class A [[http://example.com]]
+class B [[http://example.com{tooltip}]]
+class C [[http://example.com{tooltip} label]]
+class D [[{only tooltip}]]
+=== visibility on classes
+-class A
+#class B
+~class C
++class D
+- class E
+=== extends implements
+class A extends B
+class C implements D
+class E extends F implements G, H
+interface I extends J
+class K extends "Long Name"
+class L extends M {
+}
+interface N extends O {
+  method()
+}
+class P implements Q,R,S
+=== tags
+class A $tag1
+class B $tag1 $tag2
+class C <<st>> $tag3
+class D $t1 <<st>> $t2
+=== redefinition
+class A
+interface A
+enum A
+class B
+B : field
+class B {
+  other
+}
+abstract class B
+=== redefinition errors
+note "x" as N
+class N
+=== redefinition multiline error
+note "x" as N
+class N {
+}
+=== empty braces
+class A {}
+class B { }
+interface C {   }
+=== static class
+static class A
+static   class B {
+  x
+}
+=== namespaced classes
+class a.b.C
+class a.b.D
+class x.Y
+class .Root
+=== bad names
+class a..b
+=== bad name trailing
+class a.b.
+=== bad hierarchy
+class A
+class A.B
+=== spaces
+class    A
+  class B  
+class	C

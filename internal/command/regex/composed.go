@@ -191,6 +191,16 @@ type Concat struct {
 	composed
 	once sync.Once
 	re   *regexp.Regexp
+
+	namesOnce sync.Once
+	names     []string
+}
+
+// javaOrder returns the names of the pattern in upstream's HashMap order
+// (see javaorder.go), computed once.
+func (c *Concat) javaOrder() []string {
+	c.namesOnce.Do(func() { c.names = javaNames(c) })
+	return c.names
 }
 
 // NewConcat concatenates parts; upstream's commands start with Start() and
@@ -231,7 +241,7 @@ func (c *Concat) Matcher(s string) *Result {
 			groups = append(groups, Group{S: s[idx[i]:idx[i+1]], OK: true})
 		}
 	}
-	r := &Result{data: map[string][]Group{}}
+	r := &Result{data: map[string][]Group{}, javaOrder: c.javaOrder()}
 	c.collect(&groups, r)
 	return r
 }
@@ -240,6 +250,9 @@ func (c *Concat) Matcher(s string) *Result {
 type Result struct {
 	data  map[string][]Group
 	order []string
+	// javaOrder holds the names in the iteration order of upstream's
+	// HashMap of groups, which getLazzy follows.
+	javaOrder []string
 }
 
 func (r *Result) put(name string, groups []Group) {
@@ -265,10 +278,14 @@ func (r *Result) Str(name string, num int) string {
 }
 
 // Lazy returns group num of the first name starting with prefix whose group
-// matched. Upstream iterates a HashMap; names are tried in pattern order
-// here, which only differs when several such groups match at once.
+// matched, trying the names in the iteration order of upstream's HashMap
+// of groups (which matters when several such groups match at once).
 func (r *Result) Lazy(prefix string, num int) (string, bool) {
-	for _, name := range r.order {
+	order := r.javaOrder
+	if order == nil {
+		order = r.order
+	}
+	for _, name := range order {
 		if !strings.HasPrefix(name, prefix) {
 			continue
 		}

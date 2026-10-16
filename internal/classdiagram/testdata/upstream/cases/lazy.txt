@@ -1,0 +1,55 @@
+=== element stereotype twice
+allowmixing
+component "D3" <<s3>> as C3 <<s4>>
+=== element tags twice
+allowmixing
+component C1 $a <<s>> $b
+=== container stereotype twice
+node "Display" <<s1>> as n1 <<s2>> {
+}
+node n2 <<s3>> as "Display" <<s4>> {
+}
+node d3 <<s5>> as n3 <<s6>> {
+}
+=== container tags twice
+node n1 $a <<s>> $b {
+}
+=== parenthesis stereotype twice
+() "D6" <<s>> as I6 <<t>>
+() I7 <<a>> as "D7" <<b>>
+() D8 <<c>> as I8 <<d>>
+=== parenthesis two colors
+() #red I4 #blue
+() #green I5
+=== note tags twice
+class A
+note right of A $t1 <<st>> $t2 : x
+note left of A $t3 <<st>> $t4
+  multi
+end note
+=== package tags twice
+package p $a <<st>> $b {
+}
+=== multiline class tags twice
+class A $a <<st>> $b {
+}
+=== tip tags twice
+class A {
+  f
+}
+note left of A::f $a <<st>> $b
+  tip
+end note
+=== link styles twice
+A -[#red]-[#blue]-> B
+A -[dashed]-[bold]-> C
+A -[#green]up-[dotted]-> D
+=== map display
+map "D" as m1 {
+  a => b
+}
+=== object display
+object "O" as o1
+object o2 as "O2"
+object "O3" as o3 {
+}

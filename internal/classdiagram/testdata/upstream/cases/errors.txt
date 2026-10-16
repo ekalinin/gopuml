@@ -1,0 +1,35 @@
+=== unknown line
+class A
+this is not valid
+=== unknown first
+foo bar baz
+=== empty
+=== only comment
+' comment
+=== bad link target
+A --> "unclosed
+=== class with bad stereotype color
+class A << (S,#badbad1) x >>
+=== link bad color
+A --> B #notacolor
+=== link style unknown color
+A -[#notacolorz]-> B
+=== package bad color
+package p #notacolorz {
+}
+=== error after newpage
+class A
+newpage
+%%%%
+=== link bad name with separator
+a..b --> c
+=== link not a package
+class A
+A.B --> C
+=== multiline class missing end
+class A {
+  f
+=== class keyword only
+class
+=== weight parse error
+@1.2.3 A --> B

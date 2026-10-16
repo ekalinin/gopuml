@@ -1,0 +1,167 @@
+=== hide empty members
+class A
+class B {
+  f
+}
+class C {
+  m()
+}
+hide empty members
+=== hide portions
+class A {
+  f
+  m()
+}
+hide members
+show methods
+hide circle
+hide stereotype
+show fields
+hide circled
+hide attributes
+hide methods
+show stereotypes
+=== hide by gender
+class A
+interface I
+enum E
+abstract X
+annotation An
+hide interface fields
+hide enum methods
+hide abstract circle
+hide class members
+show annotation stereotype
+hide protocol members
+hide struct members
+hide exception members
+hide metaclass members
+hide stereotype members
+hide dataclass members
+hide record members
+hide object fields
+=== hide by stereotype gender
+class A <<foo>>
+class B <<bar>>
+hide <<foo>> members
+show <<bar>> circle
+hide <<foo>> stereotype
+=== hide by name
+class A
+class B
+hide A members
+hide B circle
+show A methods
+=== hide unknown name
+hide Unknown fields
+=== hide unknown name methods
+hide Unknown methods
+=== hide empty variants
+class A
+hide empty fields
+hide empty methods
+hide empty attributes
+show empty members
+=== hide inside package
+package p {
+  class A
+  hide members
+  hide empty fields
+}
+class B
+=== hide visibility
+class A {
+  -priv
+  +pub
+  #prot
+  ~pack
+  -privm()
+  +pubm()
+}
+hide private members
+hide public fields
+hide protected methods
+show private fields
+hide package,public members
+hide members
+=== hide visibility after
+hide private members
+class A {
+  -priv
+  +pub
+}
+=== hide elements
+class A
+class B
+class C <<st>>
+hide A
+hide <<st>>
+show C
+hide-class B
+show-class B
+=== hide wildcard
+class FooBar
+class FooBaz
+class Other
+hide Foo*
+show *Baz
+=== hide wildcard regex chars
+class A
+class B
+hide A(*
+=== hide tags
+class A $t1
+class B $t2
+hide $t1
+remove $t2
+=== hide unlinked
+class A
+class B
+class C
+A --> B
+hide @unlinked
+=== remove unlinked
+class A
+class B
+class C
+A --> B
+remove @unlinked
+restore C
+=== remove restore
+class A
+class B <<st>>
+class C
+remove A
+remove <<st>>
+restore *
+remove C
+B --> C <<st>>
+=== remove in package
+package p {
+  class A
+  remove A
+}
+class A2
+=== hide note follows
+class A
+note right of A : n
+hide A
+=== remove note follows
+class A
+note right of A : n
+remove A
+=== hide stereotype labels
+class A <<a>> <<b>>
+hide <<a>> stereotype
+hide stereotypes
+show <<b>> stereotype
+=== hide footbox ignored
+hide footbox
+show footbox
+footbox
+=== hide empty description
+class A
+hide empty description
+=== strictuml circle
+skinparam style strictuml
+class A

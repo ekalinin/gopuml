@@ -1,0 +1,218 @@
+=== simple package
+package p1 {
+  class A
+}
+=== nested
+package shop {
+  package model {
+    class Order
+  }
+  class Cart
+}
+class Out
+=== package as
+package "Long Name" as LN {
+  class A
+}
+package LN2 as Short {
+}
+=== package styles
+package p1 <<Node>> {
+}
+package p2 <<Folder>> {
+}
+package p3 <<Frame>> {
+}
+package p4 <<Cloud>> {
+}
+package p5 <<Database>> {
+}
+package p6 <<Rectangle>> {
+}
+package p7 <<other>> {
+}
+package p8 <<Component>> {
+}
+package p9 <<package>> {
+}
+package p10 <<actor>> {
+}
+=== package colors url tags
+package p1 #lightblue {
+}
+package p2 [[http://x]] {
+}
+package p3 $tag {
+}
+package p4 #back:red;line:blue {
+}
+-package p5 {
+}
++ package p6 {
+}
+=== package bracket next line
+package p1
+{
+  class A
+}
+=== package empty
+package e1 {}
+package "e 2" {}
+package e3 as E3 {}
+package e4 #red {}
+package "" {}
+package e5 red {}
+=== package without name
+package {
+}
+=== container keywords
+node n1 {
+}
+rectangle r1 {
+}
+frame "Frame 1" as f1 {
+}
+cloud c1 <<st>> {
+}
+database "DB" {
+}
+folder fo1 #red {
+}
+artifact a1 {
+}
+card ca1 {
+}
+queue q1 {
+}
+stack s1 {
+}
+storage st1 {
+}
+hexagon h1 {
+}
+component co1 {
+}
+action ac1 {
+}
+process pr1 {
+}
+file fi1 {
+}
+=== container keyword forms
+node "Display" <<s1>> as n1 {
+}
+node n2 <<s2>> as "Display 2" {
+}
+node disp3 <<s3>> as n3 {
+}
+node "quoted" {
+}
+node {
+}
+=== namespaces
+namespace n1 {
+  class A
+}
+namespace n1.n2 {
+  class B
+}
+namespace "Disp" as n3 {
+}
+namespace n4 {}
+namespace n5 <<Node>> #red {
+}
+namespace n6 <<st>> [[http://x]] {
+}
+namespace n7 <<Cloud>> #back:blue {}
+=== namespace exists
+class n1
+namespace n1 {}
+=== set separator
+set separator ::
+class a::b::C
+class x.y
+=== set separator none
+set separator none
+class a.b.C
+package p.q {
+  class d.E
+}
+=== set namespaceseparator
+set namespaceseparator /
+class a/b/C
+=== separator backslashes
+set separator \\
+class a\\b\\C
+=== phantom groups
+class a.b.C
+class a.b.D
+class a.E
+a.b.C --> a.E
+=== packing
+!pragma useIntermediatePackages false
+package a {
+  package b {
+    package c {
+      class X
+    }
+  }
+}
+=== packing with separator none
+!pragma useIntermediatePackages false
+set separator none
+package a.x {
+  package b {
+    class X
+  }
+}
+=== together
+together {
+  class A
+  class B
+}
+class C
+together {
+  class D
+  together {
+    class E
+  }
+}
+=== together in package
+package p {
+  together {
+    class A
+  }
+}
+=== close too much
+class A
+}
+=== unclosed package
+package p {
+  class A
+=== reuse in package
+class A
+package p {
+  A --> B
+  class C
+}
+C --> A
+=== package link
+package p1 {
+}
+package p2 {
+}
+p1 --> p2
+=== class into package
+package p {
+class Q
+}
+class p.R
+=== legend in package
+package p {
+  legend
+  inner legend
+  endlegend
+}
+legend top
+outer
+endlegend

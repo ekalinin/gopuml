@@ -1,0 +1,165 @@
+=== newpage crash
+class A
+newpage
+@1.2.3 A --> B
+=== newpage bad color
+class A
+newpage
+class B #notacolorq
+=== newpage three pages error
+class A
+newpage
+class B
+newpage
+foo bar baz
+=== class bracket next line
+class A
+{
+  f
+}
+interface B
+{
+}
+=== extends generic multiline
+class A extends B<T> {
+}
+class C implements D<K, V> {
+}
+=== hidden links
+A -[hidden]-> B
+A -[hidden,#red]-> C
+=== separator double colon
+set separator ::
+class a::b::C
+a::b::C --> a::D
+a::b::C::port --> a::D
+=== ports without separator
+A::p1 --> B
+A::p1 --> B::p2
+=== hide in namespace
+package p {
+  class A
+  hide A
+  remove B
+}
+class B
+=== note on package
+package p {
+  class A
+}
+note right of p : on package
+=== remove stereotype link
+class A
+class B
+A --> B <<removed>>
+remove <<removed>>
+=== link to self
+class A
+A --> A
+A -left-> A
+=== link creates classes in package
+package p {
+  A --> B
+}
+=== quoted link ends
+"Class A" --> "Class B"
+"A" --> B
+=== class display creole
+class A as "<i>italic</i>"
+class "**bold**" as B
+=== class display newlines
+class "Line1\nLine2" as A {
+  f
+}
+=== redefine display multiline
+class A as "First"
+class A as "Second" {
+  f
+}
+class B
+class "B" as B {
+}
+=== package then class same name
+package A {
+}
+class A
+=== class then package same name
+class A<T>
+package A {
+}
+=== object then class
+object O
+class O
+=== json single with url
+json j1 [[http://x]] 1
+=== enum body with values
+enum E {
+  A
+  B,
+  C;
+  method()
+}
+=== interface members
+interface I {
+  +void m()
+  {abstract} x()
+}
+=== abstract members
+abstract class A {
+  {abstract} m()
+  f
+}
+=== members with brackets
+class A {
+  int[] arr
+  List<String> list
+  Map<K, V> map()
+}
+=== field with colon
+class A {
+  name : String
+  age : int = 3
+}
+=== member url quoted
+class A {
+  field [["http://x" {tip} label]]
+}
+=== method detection with url
+class A {
+  link [[http://x(y)]]
+}
+=== diamond keyword class
+diamond D
+D --> A
+=== circle keyword
+circle C
+C --> D
+=== map single line
+map M
+=== stereotype on existing package
+package p {
+}
+p <<pst>>
+=== long arrows
+A ------> B
+A <------ C
+A ......> D
+A =====> E
+=== link labels with guillemets
+A --> B : <<create>>
+A --> C : +public
+A --> D : -private label
+=== link label newline
+A --> B : line1\nline2
+A --> C : "quoted"
+=== link role quotes
+A /"r 1" --> /"r 2" B
+=== qualifiers
+A [k1] --> [k2] B : label
+A [ k ] --> B
+=== together close
+together {
+  class A
+}
+class B
+}

@@ -1,0 +1,126 @@
+=== note right of
+class A
+note right of A : important
+=== note positions
+class A
+note left of A : l
+note top of A : t
+note bottom of A : b
+note right of A : r
+=== note without of
+class A
+note right : on last
+=== note nothing to note to
+note right : nothing
+=== note of unknown
+note right of Unknown : x
+=== named notes
+note "Floating" as N1
+class A
+A .. N1
+note "Other" as N2 #red
+note "Third" as N3 <<st>>
+note "Tagged" as N4 $tag
+=== named note exists
+note "a" as N
+note "b" as N
+=== note multiline
+class A
+note right of A
+  line 1
+  line 2
+end note
+note as N
+  floating
+  text
+endnote
+note left of A {
+  braces
+}
+=== note multiline indentation
+class A
+note right of A
+    indented
+      more
+    back
+end note
+=== note colors and stereotypes
+class A
+note right of A #pink : colored
+note left of A <<st>> : stereo
+note top of A <<st>> #red : both
+note bottom of A #back:yellow;line:red : full
+=== note url
+class A
+note right of A [[http://x]] : url single
+note left of A [[http://y]]
+  multi
+end note
+=== note on link
+class A
+class B
+A --> B
+note on link : on link
+note left on link #red : colored
+note right of link
+  multi
+end note
+=== note on link without link
+class A
+note on link : x
+=== note on empty link note
+A --> B
+note on link
+end note
+=== note on link skips notes
+class A
+A --> B
+note right of A : n
+note on link : on the AB link
+=== tips
+class A {
+  field
+  method()
+}
+note left of A::field
+  tip on field
+end note
+note right of A::method
+  tip on method
+end note
+note right of A::"method"
+  quoted member
+end note
+note left of A::other {
+  bracket tip
+}
+note right of A::method <<st>> #red
+  colored
+end note
+=== tip nothing
+note left of X::y
+  tip
+end note
+=== constraint on links
+A --> B
+C --> D
+constraint on links : constraint text
+=== constraint too few
+A --> B
+constraint on links : x
+=== note with rankdir
+left to right direction
+class A
+note right of A : becomes bottom
+note top of A : becomes left
+=== kermor
+!pragma kermor true
+package p {
+}
+note right of p : group note
+note top of p : top
+=== note on note link
+note "n" as N
+class A
+N .. A
+note right of N : note of note

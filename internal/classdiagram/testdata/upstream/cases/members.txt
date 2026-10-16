@@ -1,0 +1,122 @@
+=== fields and methods
+class A {
+  int field
+  String name
+  void method()
+  int compute(int x)
+  {static} int counter
+  {abstract} void doIt()
+  {classifier} int c
+  {field} weird()
+  {method} notMethod
+  {static} {abstract} both()
+}
+=== visibilities
+class A {
+  -private
+  #protected
+  ~package
+  +public
+  -privateMethod()
+  #protectedMethod()
+  ~packageMethod()
+  +publicMethod()
+  *mandatory
+  --double
+  ++
+}
+=== separators
+class A {
+  a
+  --
+  b
+  ..
+  c
+  ==
+  d
+  __
+  e
+  -- title --
+  f
+  .. other ..
+}
+=== empty lines
+class A {
+
+  a
+
+  b()
+
+  c()
+
+}
+=== members with urls
+class A {
+  field [[http://x]]
+  method() [[http://y{tip}]]
+  +vis [[[http://z]]]
+}
+=== add method lines
+A : field
+A : method()
+A : -private
+B : {static} s
+"Quoted" : q
+a.b.C : x
+=== add method on package
+package P {
+}
+P : something
+=== object fields
+object O {
+  name = "x"
+  age = 30
+  -vis = 1
+  method() = 2
+}
+=== guillemets in members
+class A {
+  <<create>> make()
+  field <<tag>>
+}
+=== comments in body
+class A {
+  ' comment
+  field
+  'other
+}
+=== body with creole
+class A {
+  **bold**
+  <color:red>red</color>
+  |= table |
+  |  x |
+}
+=== members with modifiers case
+class A {
+  {STATIC} upper
+  {Abstract} mixed()
+  {FIELD} f()
+  {METHOD} m
+}
+=== long body
+class A {
+  a1
+  a2()
+  a3
+  a4()
+  a5
+  a6()
+}
+=== tabs in body
+class A {
+	tabbed
+		double tab()
+}
+=== method between fields with blank
+class A {
+  m1()
+
+  m2()
+  f
+}

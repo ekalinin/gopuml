@@ -1,0 +1,116 @@
+=== association class
+class A
+class B
+class C
+A -- B
+(A, B) .. C
+=== association class reversed
+class A
+class B
+class C
+A -- B
+C .. (A, B)
+=== association class without link
+class A
+class B
+class C
+(A, B) .. C : label
+=== association class two
+class A
+class B
+class C
+class D
+A -- B
+(A, B) .. C
+(A, B) .. D
+=== association class three
+class A
+class B
+class C
+class D
+class E
+A -- B
+(A, B) .. C
+(A, B) .. D
+(A, B) .. E
+=== association class missing
+(A, B) .. C
+=== association class same
+class A
+class C
+A -- A
+(A, A) .. C
+=== association class length
+class A
+class B
+class C
+A - B
+(A, B) .. C
+(A, B) .. C
+=== association two points
+class A
+class B
+class C
+class D
+A -- B
+C -- D
+(A, B) .. (C, D)
+=== association two points twice
+class A
+class B
+class C
+class D
+A -- B
+C -- D
+(A, B) .. C
+(A, B) .. (C, D)
+=== association with note
+class A
+class B
+class C
+A -- B
+note on link : n
+(A, B) .. C
+=== association quoted
+class "A x" as A
+class B
+class C
+A -- B
+("A", "B") .. C
+=== diamond
+<> diamond1
+class A
+class B
+A -- diamond1
+diamond1 -- B
+=== diamond exists
+class d
+<> d
+=== lollipops
+class A
+A ()- I1
+A ()-- I2
+I3 -() A
+I4 --() A
+A -(( I5
+I6 ))- A
+I7 ))-- A
+=== lollipops labels
+class A
+A "x" ()- "y" I1 : label
+A ()- I2 : "a" label "b"
+A ()- I3 : "a" label
+A ()- I4 : label "b"
+@2 A ()- I5
+=== lollipop no class
+I1 -() Unknown
+=== lollipop horizontal count
+class A
+A ()- I1
+A ()- I2
+A ()- I3
+=== lollipop with keyword
+class A
+interface B
+class A ()- I1
+interface B -() I2
