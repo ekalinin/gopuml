@@ -1,0 +1,87 @@
+plantuml - generate diagrams from plain text
+
+Usage:
+  java -jar plantuml.jar [options] [file|dir]...
+  java -jar plantuml.jar [options] --gui
+
+Description:
+  Process PlantUML sources from files, directories (optionally recursive), or stdin (-pipe).
+
+Wildcards (for files/dirs):
+  *   any characters except '/' and '\'
+  ?   exactly one character except '/' and '\'
+  **  any characters across directories (recursive)
+  Tip: quote patterns to avoid shell expansion (e.g., "**/*.puml").
+
+General:
+
+General:
+     --author .................... Show information about PlantUML authors
+     --check-graphviz ............ Check Graphviz installation
+     --dark-mode ................. Render diagrams in dark mode
+ -d, --define <VAR>=<value> ...... Define a preprocessing variable (equivalent to '!define <var> <value>')
+     --duration .................. Print total processing time
+     --gui ....................... Launch the graphical user interface
+ -h, --help ...................... Show help and usage information
+     --help-more ................. Show extended help (advanced options)
+     --http-server[:<port>] ...... Start internal HTTP server for rendering (default port : 8080)
+ -p, --pipe ...................... Read source from stdin, write result to stdout
+     --progress-bar .............. Show a textual progress bar
+     --splash-screen ............. Show splash screen with progress bar
+ -v, --verbose ................... Enable verbose logging
+     --version ................... Show PlantUML and Java version
+
+Execution control:
+     --check-before-run .......... Pre-check syntax of all inputs and stop faster on error
+     --check-syntax .............. Check diagram syntax without generating images
+     --no-error-image ............ Do not generate error images for diagrams with syntax errors
+     --stop-on-error ............. Stop at the first syntax error
+
+Metadata & assets:
+     --extract-source ............ Extract embedded PlantUML source from PNG or SVG metadata
+     --skip-fresh ................ Skip PNG/SVG files that are already up-to-date (using metadata)
+     --sprite <4|8|16[z]> <file>   Encode a sprite definition from an image file
+
+Output format (choose one):
+ -f, --format <name> ............. Set the output format for generated diagrams
+                                   (e.g. png, svg, pdf, eps, latex, txt, utxt, obfuscate, preproc...)
+
+Available formats:
+     --eps ....................... Generate images in EPS format
+     --latex ..................... Generate LaTeX/TikZ output
+     --obfuscate ................. Replace text in diagrams with obfuscated strings to share diagrams safely
+     --png ....................... Generate PNG images (default)
+     --preproc ................... Generate the preprocessed source after applying !include, !define... (no rendering)
+     --svg ....................... Generate SVG images
+     --txt ....................... Generate ASCII art diagrams
+     --utxt ...................... Generate ASCII art diagrams using Unicode characters
+
+
+Examples:
+  # Process all .puml recursively
+  java -jar plantuml.jar "**/*.puml"
+
+  # Check syntax only (CI)
+  java -jar plantuml.jar --check-syntax src/diagrams
+
+  # Read from stdin and write to stdout (SVG)
+  cat diagram.puml | java -jar plantuml.jar --svg -pipe > out.svg
+
+  # Encode a sprite from an image
+  java -jar plantuml.jar --sprite 16z myicon.png
+
+  # Use a define
+  java -jar plantuml.jar -DAUTHOR=John diagram.puml
+
+  # Change output directory
+  java -jar plantuml.jar --format svg --output-dir out diagrams/
+
+Exit codes:
+  0    Success
+  50   No file found
+  100  No diagram found in file(s)
+  200  Some diagrams have syntax errors
+
+See also:
+  java -jar plantuml.jar --help-more
+  Documentation: https://plantuml.com
