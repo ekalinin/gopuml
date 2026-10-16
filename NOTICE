@@ -44,5 +44,10 @@ locale data), so that %date() prints the same zone names as upstream. The
 CLDR data is Copyright (C) Unicode, Inc., licensed under the Unicode License
 v3 (https://www.unicode.org/license.txt).
 
+internal/klimt/svg/glyphs/dejavu.bin holds glyph outlines derived from the
+DejaVu fonts, used to center circled characters as upstream does. DejaVu
+fonts are (C) Bitstream, Inc. and Tavmjong Bah, with DejaVu changes in the
+public domain; see internal/klimt/svg/glyphs/LICENSE-DejaVu.txt.
+
 Attributions for bundled themes, fonts and other assets are added here when
 the assets are bundled.
