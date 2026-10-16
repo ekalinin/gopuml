@@ -205,6 +205,15 @@ func (b *Block) Pages() int {
 	return 1
 }
 
+// Metadata is AbstractDiagram.getMetadata: the source and the version that
+// SVG and PNG output embed; ok is false for a diagram without it.
+func (b *Block) Metadata() (string, bool) {
+	if d, ok := b.Diagram.(interface{ Metadata() string }); ok {
+		return d.Metadata(), true
+	}
+	return "", false
+}
+
 // ImageData is upstream's ImageData: the size of the drawn image and its
 // status, 0 or 200 on success.
 type ImageData struct {

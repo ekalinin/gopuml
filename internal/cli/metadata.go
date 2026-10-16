@@ -89,3 +89,31 @@ func (r *run) metadataFromSVG(f string) (string, bool) {
 	}
 	return decoded, true
 }
+
+// sameMetadata is FileFormat.equalsMetadata for --skip-fresh: whether the
+// existing output file already embeds metadata. For SVG, upstream compares
+// the encoded text; encodings of different deflate implementations may
+// differ byte-wise (design D10), so the decoded texts are compared.
+func (r *run) sameMetadata(file, metadata string) bool {
+	switch r.format {
+	case "SVG":
+		if _, err := os.Stat(file); err != nil {
+			return false
+		}
+		existing, ok := r.metadataFromSVG(file)
+		if !ok {
+			return false
+		}
+		current, err := code.Decode(code.Encode(metadata))
+		return err == nil && existing == current
+	case "PNG":
+		f, err := os.Open(file)
+		if err != nil {
+			return false
+		}
+		defer f.Close()
+		existing, ok, err := png.MetadataTag(f, "plantuml")
+		return err == nil && ok && existing == metadata
+	}
+	return false
+}

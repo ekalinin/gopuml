@@ -51,6 +51,10 @@ type Block interface {
 	Preprocessed() []string
 	// Pages is the number of images of the diagram.
 	Pages() int
+	// Metadata is the text upstream embeds in SVG and PNG output (the
+	// diagram source and the version); ok is false when the diagram has
+	// none.
+	Metadata() (string, bool)
 	// Log returns the !log lines of the block, which upstream prints to
 	// standard error while preprocessing.
 	Log() []string

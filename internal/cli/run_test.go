@@ -91,6 +91,8 @@ func (b *fakeBlock) Preprocessed() []string { return b.lines }
 
 func (b *fakeBlock) Pages() int { return b.pages }
 
+func (b *fakeBlock) Metadata() (string, bool) { return strings.Join(b.lines, "\n") + "\n", true }
+
 func (b *fakeBlock) Log() []string {
 	var out []string
 	for _, l := range b.lines {
@@ -626,6 +628,13 @@ func TestRunQuotedOutputDir(t *testing.T) {
 	}
 	if got := outputs(t, files); !slices.Equal(got, []string{"out/a.svg"}) {
 		t.Errorf("outputs %v", got)
+	}
+}
+
+func TestRunStdlib(t *testing.T) {
+	// No standard library is bundled (design D14): the list is empty.
+	if r := runCLI(t, "", "-stdlib"); r.code != ExitOK || r.stdout != "" {
+		t.Errorf("exit %d, stdout %q", r.code, r.stdout)
 	}
 }
 

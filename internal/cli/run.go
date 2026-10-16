@@ -30,6 +30,7 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/security"
 	"github.com/ekalinin/plantuml-in-go/internal/server"
 	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/plantuml-in-go/internal/tim"
 	"github.com/ekalinin/plantuml-in-go/internal/version"
 )
 
@@ -142,6 +143,11 @@ func (c *Command) Run(args []string) int {
 			return ExitOK
 		case TestDot:
 			return c.checkGraphviz(p, getenv)
+		case StdLib:
+			for _, line := range tim.PrintStdLib() {
+				fmt.Fprintln(c.Stdout, line)
+			}
+			return ExitOK
 		case Language:
 			if err := server.WriteLanguage(c.Stdout); err != nil {
 				fmt.Fprintln(c.Stderr, "plantuml:", err)
@@ -511,7 +517,19 @@ func (r *run) generatedImages(file string, blocks []Block, stderr io.Writer) []g
 			result = append(result, generatedImage{status: statusError, block: b})
 			continue
 		}
-		for page, f := range namer.Files(name, hasName, b.Pages()) {
+		s := namer.Suggest(name, hasName)
+		// --skip-fresh (PSystemUtils.exportDiagrams): an existing output that
+		// embeds the same source is kept, as one image.
+		if r.p.IsTrue(CheckMetadata) {
+			if meta, ok := b.Metadata(); ok && r.sameMetadata(s.File(0), meta) {
+				result = append(result, generatedImage{file: s.File(0), block: b})
+				continue
+			}
+		}
+		pages := max(b.Pages(), 1)
+		namer.AddPages(pages)
+		for page := range pages {
+			f := s.File(page)
 			if !r.canFileBeWritten(f, stderr) {
 				break
 			}

@@ -117,29 +117,52 @@ func (n *OutputNamer) dirIfDirectory(name string) (string, bool) {
 // page. hasName and name come from the start line; pages is the number of
 // images the diagram produces.
 func (n *OutputNamer) Files(name string, hasName bool, pages int) []string {
+	s := n.Suggest(name, hasName)
+	pages = max(pages, 1)
+	n.AddPages(pages)
+	files := make([]string, pages)
+	for i := range pages {
+		files[i] = s.File(i)
+	}
+	return files
+}
+
+// Suggested is upstream's SuggestedFile: the output file of a block, whose
+// pages are numbered from an initial counter.
+type Suggested struct {
+	outFile, separator, suffix string
+	initial                    int
+}
+
+// File returns the file of page i.
+func (s Suggested) File(i int) string {
+	dir, file := filepath.Split(s.outFile)
+	return filepath.Join(dir, changeName(file, s.initial+i, s.separator, s.suffix))
+}
+
+// Suggest is SourceFileReader.getSuggestedFile for the next block.
+func (n *OutputNamer) Suggest(name string, hasName bool) Suggested {
 	base := filepath.Base(n.Source)
-	var outFile string
-	initial := 0
+	s := Suggested{separator: n.Separator, suffix: n.Suffix}
 	switch {
 	case !hasName || n.IgnoreNames:
-		outFile = filepath.Join(n.OutputDir, base)
-		initial = n.cpt
+		s.outFile = filepath.Join(n.OutputDir, base)
+		s.initial = n.cpt
 		n.cpt++
 	default:
 		if dir, ok := n.dirIfDirectory(name); ok {
-			outFile = filepath.Join(dir, base)
+			s.outFile = filepath.Join(dir, base)
 		} else {
-			outFile = filepath.Join(n.OutputDir, name)
+			s.outFile = filepath.Join(n.OutputDir, name)
 		}
 	}
-	pages = max(pages, 1)
+	return s
+}
+
+// AddPages counts the extra pages of the block just suggested, as
+// SourceFileReaderAbstract.getGeneratedImages does.
+func (n *OutputNamer) AddPages(pages int) {
 	if pages > 1 {
 		n.cpt += pages - 1
 	}
-	files := make([]string, pages)
-	dir, file := filepath.Split(outFile)
-	for i := range pages {
-		files[i] = filepath.Join(dir, changeName(file, initial+i, n.Separator, n.Suffix))
-	}
-	return files
 }
