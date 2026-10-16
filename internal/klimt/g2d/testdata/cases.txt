@@ -1,0 +1,690 @@
+# Drawing scripts of the raster driver tests. The language is the one of
+# internal/klimt/svg/svgtest/script.go, with these settings and commands:
+#
+#   opt size W H        image size in pixels (200 x 100 by default)
+#   opt back COLOR      image background (white by default)
+#   opt dpi F           dpi factor of the graphic (1 by default)
+#   aa on|off           UAntiAliasing
+#   pattern NAME        UPattern (FULL, HORIZONTAL_STRIPE, ...)
+#
+# testdata/javagen/G2dGolden.java draws the same scripts with upstream's
+# UGraphicG2d and writes golden/<case>.png; g2d_test.go draws them with
+# this package and compares the images (size and SSIM).
+
+case rect-basic
+color #181818
+translate 10 10
+rect 60 30
+translate 70 0
+bg #FEFECE
+rect 50.5 30.25
+reset
+color #A80036
+bg #E2E2F0
+translate 20.3 55.6
+rect 40.4 25.7
+translate 60 0
+bg #FFAAAA
+color #FFAAAA
+rect 30 20
+write
+
+case rect-rounded
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 40 5
+translate 70 0
+rect 50 40 12.5
+translate 60 0
+stroke 2
+rect 45.5 35.5 25
+reset
+translate 15 60
+color #3333AA
+bg #CCCCFF
+rect 170 30 30
+write
+
+case rect-thick
+color #181818
+bg #FEFECE
+stroke 2
+translate 10 10
+rect 50 30
+stroke 3
+translate 60 0
+rect 50 30
+stroke 0.5
+translate 60 0
+rect 50 30
+stroke 1.5
+reset
+translate 10.5 55.5
+rect 80 30
+stroke 4
+translate 100 0
+rect 70 30 8
+write
+
+case rect-shadow
+opt size 220 120
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 40 0 4
+translate 80 0
+rect 60 40 10 4
+reset
+translate 20 70
+bg #00000000
+rect 60 30 0 4
+translate 100 0
+bg #AAFFAA
+rect 70 30 5 2.5
+write
+
+case rect-dashed
+color #181818
+bg #FEFECE
+stroke 1 5 5
+translate 10 10
+rect 60 30
+stroke 2 3 3
+translate 80 0
+rect 60 30 10
+stroke 1 2 2
+reset
+translate 10.5 55.5
+rect 170 30
+write
+
+case lines
+opt size 200 120
+color #181818
+translate 10 10
+line 100 0
+translate 0 10
+stroke 2
+line 100 0
+translate 0 10
+stroke 0.5
+line 100 0
+translate 0 10
+stroke 1
+line 100 50
+reset
+color #FF0000
+translate 150.5 10.5
+line 0 80
+translate 10.25 0
+stroke 3
+line 0 80
+translate 15.75 0
+stroke 1.5
+line 20 80
+reset
+color #0000FF
+translate 30 100
+line 0 0
+write
+
+case lines-dashed
+opt size 200 120
+color #181818
+stroke 1 5 5
+translate 10 10
+line 150 0
+translate 0 10.5
+stroke 1 2 2
+line 150 0
+translate 0 10
+stroke 2 6 3
+line 150 0
+translate 0 10
+stroke 1 4 1
+line 150 60
+reset
+translate 180 10
+stroke 1 3 3
+line 0 90
+write
+
+case line-shadow
+color #181818
+translate 10 20
+line 150 0 3
+translate 0 30
+stroke 2
+line 150 30 4
+write
+
+case ellipses
+opt size 220 120
+color #181818
+bg #FEFECE
+translate 10 10
+ellipse 40 40
+translate 50 0
+ellipse 70 40
+translate 80 0
+stroke 2
+ellipse 60.5 30.25
+reset
+color #A80036
+bg #FFFFFF
+translate 20.4 60.6
+ellipse 25 25
+translate 40 0
+stroke 3
+ellipse 50 40
+translate 70 0
+stroke 1
+bg #FF0000
+color #FF0000
+ellipse 22 22
+write
+
+case ellipse-shadow
+color #181818
+bg #FEFECE
+translate 10 10
+ellipse 50 50 0 0 4
+translate 70 0
+ellipse 90 40 0 0 3
+write
+
+case arcs
+opt size 200 120
+color #181818
+translate 10 10
+ellipse 60 60 0 90
+translate 70 0
+ellipse 60 60 45 180
+translate 70 0
+stroke 2
+ellipse 50 80 90 -270
+reset
+color #0000FF
+translate 10 80
+ellipse 40 20 0 360
+write
+
+case polygons
+opt size 220 120
+color #181818
+bg #FEFECE
+polygon 0 10 10 50 10 30 40
+polygon 0 70 10 110 30 70 50 90 30
+color #A80036
+bg #A80036
+polygon 0 120 10 130 20 120 30 110 20
+color #181818
+bg #00000000
+stroke 2
+polygon 0 150 10 210 10 180 50
+reset
+translate 0.5 0.5
+color #3366CC
+bg #DDEEFF
+polygon 0 10 60 100 60 110 100 20 110
+polygon 0 130 70 150 110 170 60 190 100
+write
+
+case polygon-shadow
+opt size 220 120
+color #181818
+bg #FEFECE
+polygon 4 10 10 60 10 70 30 60 50 10 50 20 30
+bg #00000000
+polygon 3 120 10 180 10 200 60 140 60
+write
+
+case paths
+opt size 220 120
+color #181818
+bg #FEFECE
+path 0 - - M 10 10 L 60 10 L 60 40 L 30 60 L 10 40
+path 0 - - M 80 10 C 100 10 120 60 140 60 L 140 70 L 80 70
+stroke 2
+bg #00000000
+path 0 - - M 160 10 A 20 20 0 0 1 200 10 A 20 30 0 1 1 160 50
+reset
+color #A80036
+bg #FFEEEE
+path 0 - - M 10 80 C 40 70 60 110 90 90 C 110 80 130 100 150 80 L 150 110 L 10 110
+color #0000FF
+stroke 1 4 2
+bg #00000000
+path 0 - - M 160 80 L 210 80 L 185 115 L 160 80
+write
+
+case path-shadow
+opt size 220 120
+color #181818
+bg #FEFECE
+path 4 - - M 10 10 L 70 10 L 80 40 L 70 70 L 10 70 L 20 40
+bg #00000000
+path 3 - - M 120 10 C 160 0 200 40 180 70 L 120 70
+write
+
+case dotpaths
+opt size 220 120
+color #181818
+dotpath 10 10 50 10 60 90 100 90
+stroke 1.5
+dotpath 110 10 120 80 150 20 160 90 170 100 190 30 210 60
+color #FF0000
+stroke 1 5 5
+dotpath 10 100 60 60 120 110 200 100
+write
+
+case text-basic
+opt size 260 120
+text SansSerif 12 plain - #000000 - - 0 Hello\sWorld\s(SansSerif\s12)
+translate 0 18
+text SansSerif 14 bold - #000000 - - 0 Bold\sparticipant\sname
+translate 0 18
+text SansSerif 13 italic - #181818 - - 0 Italic\smessage\stext\s0123456789
+translate 0 18
+text SansSerif 11 bolditalic - #A80036 - - 0 Bold\sitalic\s@#$%&*()[]{}
+translate 0 18
+text SansSerif 9 plain - #000000 - - 0 small\stext\sat\s9\spoints,\sfractional\spositions
+translate 0 18
+text SansSerif 18 plain - #3333AA - - 0 Large\sAgjpqy
+write
+
+case text-positions
+opt size 220 100
+translate 10.3 20.6
+text SansSerif 12 plain - #000000 - - 0 Hil\sat\s10.3,20.6
+reset
+translate 10.7 40.2
+text SansSerif 12 plain - #000000 - - 0 Hil\sat\s10.7,40.2
+reset
+translate 10.5 60.5
+text SansSerif 12 plain - #000000 - - 0 Hil\sat\s10.5,60.5
+reset
+translate 120.49 80.51
+text SansSerif 12 plain - #000000 - - 0 Hil
+write
+
+case text-fonts
+opt size 260 110
+translate 5 15
+text Serif 13 plain - #000000 - - 0 Serif\splain\sAaBbCc\s123
+translate 0 18
+text Serif 13 bold - #000000 - - 0 Serif\sbold\sAaBbCc\s123
+translate 0 18
+text Monospaced 13 plain - #000000 - - 0 Monospaced\sAaBbCc\s123
+translate 0 18
+text Monospaced 13 bolditalic - #000000 - - 0 Mono\sbold\sitalic\s{}[]
+translate 0 18
+text Arial 13 plain - #000000 - - 0 Arial\s(Dialog)\sAaBbCc
+translate 0 18
+text Courier 12 italic - #000000 - - 0 Courier\sitalic\sx=y+1
+write
+
+case text-styles
+opt size 240 110
+translate 5 15
+text SansSerif 12 plain underline #000000 - - 0 Underlined\stext
+translate 0 20
+text SansSerif 12 plain strike #000000 #FF0000 - 0 Struck\stext\sred
+translate 0 20
+text SansSerif 12 plain wave #000000 #0000FF - 0 Waved\stext\sblue\sline
+translate 0 20
+text SansSerif 12 plain backcolor #000000 #FFFF00 - 0 Highlighted
+translate 0 20
+text SansSerif 12 plain underline,thinunderlinestroke #000000 - - 0 Thin\sunderline
+write
+
+case text-orientation
+opt size 120 160
+translate 30 150
+text SansSerif 12 plain - #000000 - - 90 Rotated\s90\sdegrees
+reset
+translate 60 10
+text SansSerif 12 bold - #000000 - - 270 Rotated\s270
+reset
+translate 80 20
+text SansSerif 12 plain - #000000 - - 0 Flat
+write
+
+case text-unicode
+opt size 260 110
+translate 5 15
+text SansSerif 13 plain - #000000 - - 0 Café\snaïve\sÀÉÏÖÜß
+translate 0 20
+text SansSerif 13 plain - #000000 - - 0 Привет\sαβγδ
+translate 0 20
+text SansSerif 13 plain - #000000 - - 0 →⇒≠≤∞∑©™
+translate 0 20
+text Serif 13 plain - #000000 - - 0 Serif\séèê\sжз
+translate 0 20
+text SansSerif 13 plain - #000000 - - 0 missing\s\uE000\sglyph
+write
+
+case text-rich
+opt size 220 40
+translate 5 20
+text SansSerif 12 plain - #000000 - - 0 plain\s\uEEF2bold\uEEF1\splain\sagain
+write
+
+case gradients
+opt size 230 120
+color #181818
+bg #FFFFFF|#3333FF
+translate 10 10
+rect 50 40
+translate 55 0
+bg #FFFFFF/#FF3333
+rect 50 40
+translate 55 0
+bg #FFFFFF\\#33AA33
+rect 50 40
+translate 55 0
+bg #FFFFFF-#AAAA00
+rect 50 40
+reset
+translate 10 60
+bg #FFFF00|#FF00FF
+ellipse 60 50
+translate 70 0
+bg #00FFFF/#0000FF
+polygon 0 0 0 60 0 30 50
+translate 70 0
+bg #FFFFFF-#000000
+rect 60 50 10
+write
+
+case gradients-linear
+opt size 230 120
+color #181818
+bg lg(0,0,1,0,false,PAD,0:#FF0000:1,0.5:#FFFF00:1,1:#0000FF:1)
+translate 10 10
+rect 100 40
+translate 110 0
+bg lg(0,0,0,1,false,PAD,0:#FFFFFF:1,1:#000000:0.5)
+rect 100 40
+reset
+translate 10 60
+bg lg(0.25,0,0.5,0,false,REFLECT,0:#00FF00:1,1:#0000FF:1)
+rect 100 50
+translate 110 0
+bg lg(0.25,0,0.5,0,false,REPEAT,0:#00FF00:1,1:#0000FF:1)
+rect 100 50
+write
+
+case colors-alpha
+opt size 200 100
+color #000000
+bg #FF000080
+translate 10 10
+rect 80 50
+translate 40 20
+bg #0000FF80
+rect 80 50
+translate 50 -20
+bg #00FF0040
+ellipse 60 60
+reset
+color #00000080
+stroke 3
+translate 10 90
+line 180 0
+write
+
+case clip
+opt size 200 100
+color #181818
+bg #FEFECE
+clip 20 20 100 50
+rect 150 80
+translate 10 10
+ellipse 120 70
+reset
+clip 130.4 10.6 60.2 40.8
+color #A80036
+bg #E2E2F0
+translate 100 0
+rect 120 90
+translate 10 10
+text SansSerif 14 plain - #000000 - - 0 Clipped\stext\shere
+write
+
+case hidden
+color #181818
+bg #FEFECE
+translate 10 10
+rect 50 30
+push
+hidden
+translate 60 0
+rect 50 30
+shown
+translate 60 0
+rect 50 30
+write
+
+case image
+opt size 120 80
+translate 10 10
+image 30 20
+translate 40 10.6
+image 50 40
+write
+
+case pixel
+opt size 60 40
+color #FF0000
+translate 10 10
+pixel
+translate 5.7 5.3
+pixel
+color #0000FF
+translate 10 10
+pixel
+write
+
+case centered
+opt size 200 60
+# Upstream hints the glyphs drawn before the first text (fractional metrics
+# off); a text first sets the hints DriverTextG2d leaves on, as in diagrams.
+translate 150 55
+text SansSerif 9 plain - #000000 - - 0 spots
+reset
+color #181818
+bg #ADD1B2
+translate 10 10
+ellipse 22 22
+color #000000
+translate 11 11
+centered C 17
+reset
+color #181818
+bg #A9DCDF
+translate 40 10
+ellipse 22 22
+color #000000
+translate 11 11
+centered I 17
+reset
+color #000000
+translate 80 21
+centered A 14 SansSerif bold
+translate 30 0
+centered E 17 Monospaced bold
+translate 30 0
+centered @ 12 Serif plain
+write
+
+case centered-hinted
+opt size 60 40
+color #181818
+bg #ADD1B2
+translate 10 10
+ellipse 22 22
+color #000000
+translate 11 11
+centered C 17
+write
+
+case aa-off
+opt size 100 100
+color #181818
+stroke 1 1 4
+aa off
+translate 20 10
+line 0 80
+translate 20.5 0
+line 0 80
+stroke 2
+translate 20 0
+line 40 80
+aa on
+reset
+translate 70 10
+line 0 80
+write
+
+case pattern
+opt size 160 60
+color #181818
+bg #FF0000
+pattern VERTICAL_STRIPE
+translate 10 10
+rect 40 40
+pattern HORIZONTAL_STRIPE
+translate 50 0
+rect 40 40
+pattern SMALL_CIRCLE
+translate 50 0
+ellipse 40 40
+write
+
+case background-transparent
+opt size 120 60
+opt back #00000000
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 30 5
+translate 10 15
+text SansSerif 12 plain - #000000 - - 0 Transparent
+write
+
+case background-color
+opt size 120 60
+opt back #AAAAFF
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 30 5 3
+write
+
+case dpi2
+opt size 300 200
+opt dpi 2
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 30 5 3
+translate 10 18
+text SansSerif 12 plain - #000000 - - 0 dpi\s2\stext
+reset
+translate 80 10
+ellipse 40 30 0 0 3
+reset
+color #A80036
+stroke 1 5 5
+translate 10 60
+line 120 0
+reset
+color #181818
+stroke 1
+bg #FFAAAA
+polygon 2 130 10 140 40 120 40
+reset
+translate 10 70
+text SansSerif 11 plain underline #000000 - - 0 underlined\sat\sdpi\s2
+write
+
+case dpi1.5
+opt size 240 150
+opt dpi 1.5
+color #181818
+bg #FEFECE
+translate 10 10
+rect 60 30
+translate 8 18
+text SansSerif 12 bold - #000000 - - 0 dpi\s1.5
+reset
+translate 90 10
+stroke 2
+ellipse 40 40
+reset
+color #3333AA
+translate 10 60
+line 100 20
+reset
+translate 10 80
+image 20 10
+write
+
+case sequence
+opt size 260 200
+color #181818
+bg #E2E2F0
+stroke 0.5
+translate 20 10
+rect 60 30 5
+reset
+translate 150 10
+rect 70 30 5
+reset
+translate 35 30
+text SansSerif 14 plain - #000000 - - 0 Alice
+reset
+translate 171 30
+text SansSerif 14 plain - #000000 - - 0 Bob
+reset
+stroke 0.5 5 5
+translate 50 40
+line 0 120
+reset
+translate 185 40
+line 0 120
+reset
+stroke 1
+color #181818
+bg #181818
+polygon 0 173 76 183 80 173 84 177 80
+translate 50 80
+line 131 0
+reset
+translate 57 75
+text SansSerif 13 plain - #000000 - - 0 hello
+reset
+stroke 1 2 2
+polygon 0 62 106 52 110 62 114 58 110
+translate 52 110
+line 133 0
+reset
+translate 89 105
+text SansSerif 13 plain - #000000 - - 0 response
+reset
+stroke 0.5
+bg #E2E2F0
+translate 20 160
+rect 60 30 5
+reset
+translate 150 160
+rect 70 30 5
+reset
+translate 35 180
+text SansSerif 14 plain - #000000 - - 0 Alice
+reset
+translate 171 180
+text SansSerif 14 plain - #000000 - - 0 Bob
+write

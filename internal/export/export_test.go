@@ -133,6 +133,8 @@ func runExport(c svgtest.Case) (out []byte, data export.ImageData, err error) {
 					return o.WithDecimal(d)
 				case "mapper":
 					return o.WithColorMapper(svgtest.Mapper(v))
+				case "watermark":
+					return o.WithWatermark(v)
 				}
 				panic("bad ffo " + k)
 			})

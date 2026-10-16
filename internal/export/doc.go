@@ -14,7 +14,7 @@
 // Margin, Metadata, Seed...). Dark mode is the color mapper of the format
 // option (FileFormatOption.WithColorMapper(color.DarkModeMapper)).
 //
-// Only SVG output is ported (and NULL, which writes nothing). PNG, TXT and
+// SVG and PNG output are ported (and NULL, which writes nothing). TXT and
 // the other formats give an error wrapping ErrNotImplemented and naming the
 // format; their graphics plug into TextBlockExporter.createUGraphic, and
 // their text measurers into FileFormatOption.DefaultStringBounder, without

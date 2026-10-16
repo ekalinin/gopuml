@@ -1,0 +1,202 @@
+# Export scripts of the TextBlockExporter PNG tests. The language is the
+# one of cases.txt; "export format PNG" is implied. png_test.go runs them
+# with this package, and internal/klimt/g2d/testdata/javagen/G2dGolden.java
+# with upstream's TextBlockExporter, which writes golden-png/<case>.png and
+# golden-png/imagedata.txt (image data, then the PNG width and height).
+
+case basic
+export format PNG
+color #181818
+bg #FEFECE
+rect 80 30 5
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 basic
+write @startuml\nA\s->\sB\s:\shello\n@enduml
+
+case no-metadata
+export format PNG
+color #181818
+rect 80 30
+write
+
+case unicode-metadata
+export format PNG
+color #181818
+rect 20 20
+write @startuml\nAlice\s->\sBob\s:\sпривет\s→\s日本\n@enduml
+
+case margins
+export format PNG
+export margin 10 20 30 40
+export dim 60.5 20.25
+color #181818
+rect 60.5 20.25
+write
+
+case dpi72
+export format PNG
+export skinparam dpi 72
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s72
+write
+
+case dpi96
+export format PNG
+export skinparam dpi 96
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s96
+write
+
+case dpi120
+export format PNG
+export skinparam dpi 120
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s120
+write
+
+case dpi150
+export format PNG
+export skinparam dpi 150
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s150
+write
+
+case dpi192
+export format PNG
+export skinparam dpi 192
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s192
+write
+
+case dpi300
+export format PNG
+export skinparam dpi 300
+export dim 100.5 50.25
+color #181818
+bg #FEFECE
+rect 80 30 5 3
+translate 10 25
+text SansSerif 12 plain - #000000 - - 0 dpi\s300
+write
+
+case scale-simple
+export format PNG
+export scale simple 2
+color #181818
+bg #FEFECE
+rect 20 10 3
+translate 5 30
+text SansSerif 12 plain - #000000 - - 0 scaled
+write
+
+case scale-width
+export format PNG
+export scale width 300
+color #181818
+rect 20 10
+write
+
+case backcolor
+export format PNG
+export back #FEFECE
+color #181818
+rect 10 10
+write
+
+case backcolor-transparent
+export format PNG
+export back transparent
+color #181818
+bg #FEFECE
+rect 40 20 5
+write
+
+case backcolor-gradient
+export format PNG
+export back #FFFFFF/#AAAAFF
+color #181818
+rect 10 10
+write
+
+case textblock-backcolor
+export format PNG
+export tbback #FF0000
+color #181818
+rect 10 10
+write
+
+case border
+export format PNG
+export skinparam diagramBorderColor #FF0000
+export skinparam diagramBorderThickness 2
+color #181818
+rect 10 10
+write
+
+case mapper-dark
+export format PNG
+export ffo mapper dark
+color #181818
+bg #FEFECE
+rect 40 20 5
+translate 5 35
+text SansSerif 12 plain - #000000 - - 0 dark
+write
+
+case png-empty
+export format PNG_EMPTY
+color #181818
+rect 10 10
+write
+
+case limit
+export format PNG
+export dim 5000 60
+color #181818
+bg #FEFECE
+rect 4990 50
+translate 4000 30
+text SansSerif 12 plain - #000000 - - 0 clipped\sat\s4096
+write
+
+case links
+export format PNG
+export dim 120 60
+url https://example.com tooltip
+color #181818
+bg #FEFECE
+rect 50 30
+endurl
+url javascript:alert(1)
+translate 60 0
+rect 50 30
+endurl
+write
+
+case watermark
+export format PNG
+export ffo watermark Confidential\sdraft
+export dim 200 80
+color #181818
+rect 20 20
+write

@@ -13,6 +13,7 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/g2d"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/svg"
 	"github.com/ekalinin/plantuml-in-go/internal/security"
@@ -52,9 +53,10 @@ func unsupportedOperationError() error {
 // scale and dpi, creates the output graphic, draws the margins and the
 // border, then writes the stream. Build one with NewBuilder.
 //
-// Only SVG (and NULL, which writes nothing) is ported; the other formats
-// give an ErrNotImplemented error naming the format. The PNG and TXT
-// graphics plug into createUGraphic without changing the callers.
+// SVG, PNG (with PNG_EMPTY, which writes nothing, and RAW, which writes PNG
+// as upstream) and NULL (which writes nothing) are ported; the other formats
+// give an ErrNotImplemented error naming the format. The TXT graphic plugs
+// into createUGraphic without changing the callers.
 type TextBlockExporter struct {
 	textBlock        klimt.TextBlock
 	fileFormatOption FileFormatOption
@@ -74,13 +76,15 @@ type TextBlockExporter struct {
 	hasDiagramType   bool
 	securityProfile  security.Profile
 	allowJavascript  bool
+	imageLimit       int
 }
 
 func newTextBlockExporter(b *Builder) *TextBlockExporter {
 	e := &TextBlockExporter{textBlock: b.textBlock, fileFormatOption: b.fileFormatOption, skinParam: b.skinParam,
 		backcolor: b.backcolor, margin: b.margin, metadata: b.metadata, seed: b.seed, status: b.status,
 		scale: b.scale, warningOrError: b.warningOrError, pragma: b.pragma, diagramType: b.diagramType,
-		hasDiagramType: b.hasDiagramType, isHandwritten: b.isHandwritten, allowJavascript: b.allowJavascript}
+		hasDiagramType: b.hasDiagramType, isHandwritten: b.isHandwritten, allowJavascript: b.allowJavascript,
+		imageLimit: b.imageLimit}
 	e.securityProfile = b.securityProfileOrDefault()
 	var hack font.SvgCharSizeHack = font.NoHack
 	if b.skinParam != nil {
@@ -200,7 +204,7 @@ func (e *TextBlockExporter) createUGraphic(dim geom.XDimension2D, scaleFactor fl
 	format := e.fileFormatOption.FileFormat()
 	switch format {
 	case font.FormatPNG, font.FormatPNGEmpty, font.FormatRAW:
-		return nil, notImplemented(format, "UGraphicG2d")
+		return e.createUGraphicPNG(scaleFactor, dim, format), nil
 	case font.FormatSVG, font.FormatSVGDeterministic, font.FormatNULL:
 		return e.createUGraphicSVG(scaleFactor, dim, p), nil
 	case font.FormatPDF:
@@ -263,6 +267,30 @@ func (e *TextBlockExporter) createUGraphicSVG(scaleFactor float64, dim geom.XDim
 	return svg.Build(option, false, e.seed, e.stringBounder, e.fileFormatOption.FileFormat())
 }
 
+// createUGraphicPNG returns the raster graphic: an image of the scaled
+// size (each side limited to the image limit) filled with the background
+// when it is a simple color (transparent otherwise), the gradient
+// backgrounds drawn over it.
+func (e *TextBlockExporter) createUGraphicPNG(scaleFactor float64, dim geom.XDimension2D,
+	format font.FileFormat) klimt.UGraphic {
+	mapper := e.fileFormatOption.ColorMapper()
+	pngBackColor := color.NewXColorAlpha(0, 0, 0, 0)
+	if _, ok := e.backcolor.(*color.HColorSimple); ok {
+		pngBackColor = e.backcolor.ToColor(mapper)
+	}
+	watermark, _ := e.fileFormatOption.Watermark()
+	builder := g2d.NewEmptyImageBuilder(watermark, int(dim.Width()*scaleFactor), int(dim.Height()*scaleFactor),
+		pngBackColor, e.imageLimit)
+	ug := g2d.New(e.backcolor, mapper, e.stringBounder, builder, scaleFactor, format)
+	ug.AllowJavascriptInLink(e.allowJavascript)
+	if _, ok := e.backcolor.(*color.HColorGradient); ok {
+		im := builder.Image()
+		ug.Apply(klimt.Bg(e.backcolor)).Draw(klimt.URectangleBuild(float64(im.Width())/scaleFactor,
+			float64(im.Height())/scaleFactor))
+	}
+	return ug
+}
+
 // hoverPathColorRGB returns the hovered path color, "" for none.
 func (e *TextBlockExporter) hoverPathColorRGB() string {
 	if v, ok := e.fileFormatOption.HoverColor(); ok {
@@ -317,6 +345,7 @@ type Builder struct {
 	hasDiagramType  bool
 	securityProfile *security.Profile
 	allowJavascript bool
+	imageLimit      int
 }
 
 // NewBuilder returns a builder for a decorated text block and an output
@@ -326,7 +355,8 @@ type Builder struct {
 // (ExportTo gives an ErrNotImplemented error).
 func NewBuilder(textBlock klimt.TextBlock, fileFormatOption FileFormatOption, isHandwritten bool) *Builder {
 	b := &Builder{textBlock: textBlock, fileFormatOption: fileFormatOption, isHandwritten: isHandwritten,
-		backcolor: color.White.WithDark(color.Black), margin: klimt.ClockwiseNone(), seed: 42}
+		backcolor: color.White.WithDark(color.Black), margin: klimt.ClockwiseNone(), seed: 42,
+		imageLimit: g2d.DefaultImageLimit}
 	if bc := textBlock.Backcolor(); bc != nil {
 		b.backcolor = bc
 	}
@@ -409,6 +439,14 @@ func (b *Builder) SecurityProfile(profile security.Profile) *Builder {
 // default).
 func (b *Builder) AllowJavascriptInLink(allow bool) *Builder {
 	b.allowJavascript = allow
+	return b
+}
+
+// ImageLimit sets the largest width and height of PNG images, upstream's
+// PLANTUML_LIMIT_SIZE (4096 by default, see g2d.ImageLimit): larger images
+// are cut.
+func (b *Builder) ImageLimit(limit int) *Builder {
+	b.imageLimit = limit
 	return b
 }
 

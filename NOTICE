@@ -49,5 +49,14 @@ DejaVu fonts, used to center circled characters as upstream does. DejaVu
 fonts are (C) Bitstream, Inc. and Tavmjong Bah, with DejaVu changes in the
 public domain; see internal/klimt/svg/glyphs/LICENSE-DejaVu.txt.
 
+internal/klimt/g2d/dejavu/fonts/ holds the DejaVu fonts 2.37 (DejaVu Sans,
+DejaVu Sans Mono and DejaVu Serif, each in four styles), unmodified and
+compressed with gzip, which the PNG output draws text with. Copyright (c)
+2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is a trademark
+of Bitstream, Inc. Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+DejaVu changes are in public domain. The fonts are distributed under the
+Bitstream Vera and Arev fonts licenses, reproduced in
+internal/klimt/g2d/dejavu/fonts/LICENSE-DejaVu.txt.
+
 Attributions for bundled themes, fonts and other assets are added here when
 the assets are bundled.

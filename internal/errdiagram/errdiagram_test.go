@@ -130,13 +130,13 @@ func TestNotImplementedFormat(t *testing.T) {
 	d := &core.UnsupportedDiagram{Directive: "@startfoo"}
 	src := errdiagram.Source{Data: lines("string", "@startfoo", "@endfoo")}
 	var buf bytes.Buffer
-	if _, err := errdiagram.Export(&buf, d, src, export.NewFileFormatOption(font.FormatPNG)); !errors.Is(err,
+	if _, err := errdiagram.Export(&buf, d, src, export.NewFileFormatOption(font.FormatEPS)); !errors.Is(err,
 		export.ErrNotImplemented) {
-		t.Errorf("PNG: %v", err)
+		t.Errorf("EPS: %v", err)
 	}
-	if _, err := errdiagram.ExportNoValidStart(&buf, export.NewFileFormatOption(font.FormatPNG)); !errors.Is(err,
+	if _, err := errdiagram.ExportNoValidStart(&buf, export.NewFileFormatOption(font.FormatEPS)); !errors.Is(err,
 		export.ErrNotImplemented) {
-		t.Errorf("PNG: %v", err)
+		t.Errorf("EPS: %v", err)
 	}
 }
 

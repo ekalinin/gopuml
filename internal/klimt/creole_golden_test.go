@@ -229,9 +229,6 @@ var creoleDifferences = map[string]string{
 	"listnolinemax": "upstream throws NullPointerException for a list item without text and a maximum width",
 	"imgnotpng":     "upstream throws NullPointerException when ImageIO cannot read the image data",
 	"unicodebad":    "upstream throws IllegalArgumentException for a code point above U+10FFFF",
-	// Not a difference of the creole port: PortableImageARGB.Scale (Java2D
-	// image scaling) is left for the raster step and panics.
-	"imgpngscale": "scaled raster images need PortableImageARGB.Scale, not ported yet",
 	// The specification asks for the literal text of icons, emoji and
 	// sprites until they are ported; upstream draws them (or nothing for an
 	// unknown sprite).
@@ -344,7 +341,6 @@ func TestCreoleDifferences(t *testing.T) {
 	check("listnolinemax")
 	check("imgnotpng", "(Cannot decode: data:image/png;base64,aGVsbG8=)")
 	check("unicodebad", "&#1114112;")
-	contains("imgpngscale", "ERR UnsupportedOperationException")
 	check("icon1", "<&check>", " done")
 	check("icon2", "<&check{scale=2}>", " ", "<#red&star>", " ", "<&x,color=blue>")
 	check("emoji1", "<:smile:>", " emoji ", "<#red:smile:>")

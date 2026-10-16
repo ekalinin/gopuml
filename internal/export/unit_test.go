@@ -25,7 +25,7 @@ func rectBlock() *scriptBlock {
 }
 
 func TestNotImplementedFormats(t *testing.T) {
-	for _, f := range []font.FileFormat{font.FormatPNG, font.FormatPNGEmpty, font.FormatRAW, font.FormatATXT,
+	for _, f := range []font.FileFormat{font.FormatATXT,
 		font.FormatUTXT, font.FormatSVGDeterministic, font.FormatEPS, font.FormatPDF, font.FormatLATEX,
 		font.FormatHTML5, font.FormatVDX, font.FormatBraillePNG, font.FormatDEBUG} {
 		var buf bytes.Buffer

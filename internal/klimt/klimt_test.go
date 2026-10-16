@@ -758,9 +758,8 @@ func TestImages(t *testing.T) {
 	if !strings.HasPrefix(img.ToPngDataURL(), "data:image/png;base64,iVBOR") {
 		t.Error("png")
 	}
-	_, msg := expectPanic(t, func() { u.Scale(2).Image(1) })
-	if !strings.Contains(msg, "PortableImageAwt") {
-		t.Errorf("scale %q", msg)
+	if scaled := u.Scale(2).Image(1); scaled.Width() != 2*img.Width() || scaled.Height() != 2*img.Height() {
+		t.Errorf("scale %dx%d", scaled.Width(), scaled.Height())
 	}
 }
 

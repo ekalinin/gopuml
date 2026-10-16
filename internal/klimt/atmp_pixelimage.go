@@ -200,9 +200,7 @@ func (p *PortableImageARGB) Subimage(x, y, width, height int) PortableImage {
 	return result
 }
 
-// Scale is not ported: scaling with Java2D's interpolation belongs to the
-// raster driver step.
+// Scale returns the image scaled with an interpolation (see scaleARGB).
 func (p *PortableImageARGB) Scale(scaleFactor float64, interpolationType AffineTransformType) PortableImage {
-	notPorted("klimt/awt/PortableImageAwt.scale", "image scaling with AffineTransformOp")
-	return nil
+	return scaleARGB(p, scaleFactor, interpolationType)
 }
