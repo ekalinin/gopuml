@@ -1,0 +1,76 @@
+<「bB」>〶$V=〄>〘</「bB」>〙	<b>x</b>	true true '<b>x</b>' V=[x] prefix=null extract=[]
+<「bB」>〶$V=〄>〘</「bB」>〙	<B>x</b>y	true false '<B>x</b>' V=[x] prefix=null extract=[]
+<「bB」>〶$V=〄>〘</「bB」>〙	<b></b>	true true '<b></b>' V=[] prefix=null extract=[]
+<「bB」>〶$V=〄>〘</「bB」>〙	<b>x	false false '' V=[] prefix=null extract=[]
+<「bB」>〶$V=〄>〘</「bB」>〙	<bx>	false false '' V=[] prefix=null extract=[]
+**〶$V=〄+〴.->〘**〙	**a**	true true '**a**' V=[a] prefix=null extract=[]
+**〶$V=〄+〴.->〘**〙	****	false false '' V=[] prefix=null extract=[]
+**〶$V=〄+〴.->〘**〙	*****	true true '*****' V=[*] prefix=null extract=[]
+**〶$V=〄+〴.->〘**〙	**a**b**	true false '**a**' V=[a] prefix=null extract=[]
+**〶$V=〄+〴.->〘**〙	**	false false '' V=[] prefix=null extract=[]
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<back:#ff0000/blue>x</back>	true true '<back:#ff0000/blue>x</back>' V=[x] XC=[#ff0000/blue] prefix=null extract=[]
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<back:red>y</back>	true true '<back:red>y</back>' V=[y] XC=[red] prefix=null extract=[]
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<back:>z</back>	false false '' V=[] XC=[] prefix=null extract=[]
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<BACK:#00FF00-0000ff>w</back>	true true '<BACK:#00FF00-0000ff>w</back>' V=[w] XC=[#00FF00-0000ff] prefix=null extract=[]
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<back:#12>q</back>	false false '' V=[] XC=[] prefix=null extract=[]
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<s:red>a</s>	true true '<s:red>a</s>' V=[a] XC=[red] prefix=null extract=[]
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<strike>b</strike>	true true '<strike>b</strike>' V=[b] XC=[] prefix=null extract=[]
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<del>c</del>	true true '<del>c</del>' V=[c] XC=[] prefix=null extract=[]
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<sub>	false false '' V=[] XC=[] prefix=null extract=[]
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<S>d</STRIKE>	true true '<S>d</STRIKE>' V=[d] XC=[] prefix=null extract=[]
+<「uU」〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〇+〴.	<u>rest	true true '<u>rest' V=[rest] XC=[] prefix=null extract=[]
+<「uU」〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〇+〴.	<u:#123456>x	true true '<u:#123456>x' V=[x] XC=[#123456] prefix=null extract=[]
+<「uU」〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〇+〴.	<u:#1234567>y	false false '' V=[] XC=[] prefix=null extract=[]
+<「uU」〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〇+〴.	<u>	false false '' V=[] XC=[] prefix=null extract=[]
+<sup>〶$V=〄>〘</sup>〙	<sup>2</sup>	true true '<sup>2</sup>' V=[2] prefix=null extract=[]
+<sup>〶$V=〄>〘</sup>〙	<SUP>x</sup>	true true '<SUP>x</sup>' V=[x] prefix=null extract=[]
+<sup>〶$V=〄>〘</sup>〙	<sup></sup>	true true '<sup></sup>' V=[] prefix=null extract=[]
+a〒=b	ab	true false 'a'
+a〒=b	ac	false false ''
+a〒=b	a	false false ''
+a〒!b	ab	false false ''
+a〒!b	ac	true false 'a'
+a〒!b	a	true true 'a'
+a〒<=a b	ab	true true 'ab'
+a〒<=a b	b	false false ''
+x〒<!y z	xz	true true 'xz'
+a〒$	a	true true 'a'
+a〒$	ab	false false ''
+〶$N=〇l〴.〘end〙	xxendyy	false false '' N=[] prefix=null extract=[]
+〶$N=〇l〴.〘end〙	end	false false '' N=[] prefix=null extract=[]
+〶$N=〇l〴.〘end〙	xendend	false false '' N=[] prefix=null extract=[]
+〇{2-3}「a」	a	false false ''
+〇{2-3}「a」	aa	true true 'aa'
+〇{2-3}「a」	aaa	true true 'aaa'
+〇{2-3}「a」	aaaa	false false ''
+〇{2+}〴d	1	false false ''
+〇{2+}〴d	12	true true '12'
+〇{2+}〴d	12345	true true '12345'
+〇{2+}〴d	1_2	true true '1_2'
+〇{1;3}x	x	true true 'x'
+〇{1;3}x	xx	false false ''
+〇{1;3}x	xxx	true true 'xxx'
+〇{1;3}x	xxxx	false false ''
+〇+「〤ab」	xyab	true false 'xy'
+〇+「〤ab」	ab	false false ''
+〇+〴W	  ab	true false '  '
+〇+〴W	ab	false false ''
+〴an〴le	1a	true true '1a'
+〴an〴le	a1	false false ''
+〴an〴le	é9	false false ''
+〃x〃	"x"	true true '"x"'
+〃x〃	x	false false ''
+a∙b	a b	true true 'a b'
+a∙b	ab	false false ''
+【foo┇fo┇f】o	foo	false false ''
+【foo┇fo┇f】o	fo	false false ''
+【foo┇fo┇f】o	fooo	true true 'fooo'
+【foo┇fo┇f】o	fx	false false ''
+〶$A=〘〶$B=〇+〴d - 〶$C=〇+〴w〙	12-ab	true true '12-ab' A=[12-ab] A/B=[12] A/C=[ab] B=[] C=[] prefix=[12] extract=[B=12, C=ab]
+〶$A=〘〶$B=〇+〴d - 〶$C=〇+〴w〙	1-	false false '' A=[] A/B=[] A/C=[] B=[] C=[] prefix=null extract=[]
+〶$A=〘〶$B=〇+〴d - 〶$C=〇+〴w〙	12-a_b	true true '12-a_b' A=[12-a_b] A/B=[12] A/C=[a_b] B=[] C=[] prefix=[12] extract=[B=12, C=a_b]
+〇*〴s〶$W=〇+〴w〇?〴s	  word 	true true '  word ' A=[] prefix=null extract=[]
+〇*〴s〶$W=〇+〴w〇?〴s	word	true true 'word' A=[] prefix=null extract=[]
+〶$L=【〇+「a〜c」┇〇+「x〜z」】〶$L=〇+〴d	abc12	true true 'abc12' L=[abc, 12] prefix=null extract=[]
+〶$L=【〇+「a〜c」┇〇+「x〜z」】〶$L=〇+〴d	xyz9	true true 'xyz9' L=[xyz, 9] prefix=null extract=[]
+〶$L=【〇+「a〜c」┇〇+「x〜z」】〶$L=〇+〴d	ca	false false '' L=[] prefix=null extract=[]

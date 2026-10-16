@@ -335,8 +335,8 @@ func (c ComponentStyle) String() string {
 	return enumName("ComponentStyle", []string{"UML1", "UML2", "RECTANGLE"}, int(c))
 }
 
-// ActorStyle is the shape of actors. Upstream's toUSymbol and getTextBlock
-// (the actor drawings) belong to the symbols and components steps.
+// ActorStyle is the shape of actors. Its getTextBlock is TextBlock in
+// skin_actors.go; upstream's toUSymbol belongs to the symbols step.
 type ActorStyle int
 
 // Actor styles, in upstream's order.

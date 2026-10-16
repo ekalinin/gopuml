@@ -1,0 +1,157 @@
+plain		Hello world
+empty		
+blank		 
+emptylines		a⏎⏎b⏎
+bold		**important** text
+italic		//italic// text
+mono		""mono"" text
+strike		--strike-- text
+underline		__under__ text
+wave		~~wave~~ text
+nested		**bold //both// bold**
+nested2		//it **bi** it//
+unclosed		**unclosed and //open
+stars4		****
+stars5		*****
+stars6		a******b
+multibold		**a**b**c**
+htmlb		<b>bold</b> and <i>it</i>
+htmleol		<b>to end of line
+htmlupper		<B>Upper</B> <I>it</I>
+htmlempty		<b></b>x
+htmlu		<u>under</u> <u:red>red</u> <u:#00FF00>green</u>
+htmls		<s>strike</s> <strike>s2</strike> <del>d</del> <s:blue>c</s>
+htmlw		<w>wave</w> <w:#00ff00>green</w>
+plaintag		<b>bold <plain>plain</plain> bold</b>
+back		<back:yellow>hl</back> after
+back2		<back:#ff0000/blue>grad</back> <back:lightblue>x
+color		<color:red>red</color> <color:#00FF00>green</color> <color blue>blue</color>
+colorbad		<color:nosuch>x</color> y
+coloreol		<color:red>rest of line
+size		<size:20>big</size> <size:8>small</size>
+sizeeol		<size:18>rest
+fontfamily		<font:monospaced>mono</font> <font:serif>serif</font>
+fontcolorsize		<font color=red size=20>x</font> <font size="10" color="#0000FF">y</font>
+fontbadcolor		<font color=nosuch>x</font>
+supsub		x<sup>2</sup> y<sub>i</sub> <sup>open
+space		a<space:20>b<space:5/>c
+textattr		<text fill-opacity="0.5">attr</text> after
+url1		[[http://plantuml.com]]
+url2		[[http://plantuml.com label text]]
+url3		go [[http://x.com{tooltip} lab]] there
+url4		[[http://a.com line1\nline2]]
+url5		[[http://a.com <&check> label]] [[http://b.com <:smile:> x]] [[http://c.com <$foo> s]]
+escape1		~**not bold~** ~//no~//
+escape2		\~x ~~~x ~[[x]] ~<b>y
+escape3		~--a-- ~__b__ ~""c"" a~b
+unicode1		caf<U+00E9> &#233; <U+1F600> &#128512; <U+00e9>
+unicode2		&#99999999999; &#; &#x41; <U+12> <U+1234567>
+unicodebad		&#1114112;
+tab1		a\tb\tccc\td
+tab2		xyz
+start		~@start ~@end
+list1		* item1⏎* item2⏎** sub⏎*** subsub⏎* back
+list2		# one⏎# two⏎## a⏎## b⏎# three
+list3		* bullet⏎# num⏎# num2⏎* bullet2⏎# again
+list4		*  spaced item⏎**bold** not a list⏎* **bold** in list
+listnoline		* 
+listnolinemax	max=40	* 
+headings		= H1⏎== H2⏎=== H3⏎==== H4⏎plain
+headingbold		= **bold** heading
+hr1		a⏎----⏎b
+hr2		a⏎====⏎b
+hr3		a⏎....⏎b
+hr4		a⏎--title--⏎b
+hr5		a⏎==title==⏎b
+hr6		a⏎..dots..⏎b
+hr7		-- not hr --⏎x
+table1		|= Key |= Value |⏎| a | 1 |
+table2		<#lightblue,#red>|= A |= B |⏎|<#yellow> c | d |
+table3		| a | b | c |⏎| d |
+table4		| <r>right | left |⏎| x | longer text |
+table5		| a\nb | c |
+table6		| a \| b | c |
+table7		before⏎| a | b |⏎after
+table8		|= **bold** |= <color:red>red</color> |⏎| //it// | x |
+tree		|_ root⏎  |_ child⏎    |_ grand⏎  |_ child2
+code		<code>⏎int x = 1;⏎  y⏎</code>⏎after
+codeunterminated		<code>⏎a⏎b
+align1		<center>centered⏎<right>right⏎left
+align2		<c>c⏎<r>r⏎<l>l
+aligncenter	align=CENTER	short⏎a much longer line⏎mid
+alignright	align=RIGHT	short⏎a much longer line⏎mid
+alignnull	align=NULL	short⏎a much longer line
+max1	max=50	This is a long sentence that should wrap at the maximum width
+max2	max=60	* bullet with a fairly long text that wraps⏎** sub bullet also long enough to wrap
+max3	max=40	日本語のテキストです。とても長い
+max4	max=30	superlongwordwithoutspaces here and there
+max5	max=40,align=CENTER	aaa bbb ccc ddd eee fff ggg hhh
+max6	max=45	**bold words** and //italic words// together
+max7	max=-50	negative max width wraps the same way as positive
+max8	max=60	# numbered item that is long enough to wrap around⏎# second
+modenocreole	mode=NO_CREOLE	**not bold** <b>x</b>
+modesimple	mode=SIMPLE_LINE	__u__ **b** * notlist
+modebutunderscore	mode=FULL_BUT_UNDERSCORE	__u__ **b**⏎* item
+icon1		<&check> done
+icon2		<&check{scale=2}> <#red&star> <&x,color=blue>
+emoji1		<:smile:> emoji <#red:smile:>
+sprite1		<$sprite> sprite <$foo{scale=2}> <#blue$foo>
+imgpng		<img:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==> img
+imgpngscale		<img:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=={scale=3}>
+imgbad		<img:data:image/png;base64,abc>
+imgbad2		<img:data:image/png;base64,ab!d>
+imgnotpng		<img:data:image/png;base64,aGVsbG8=>
+imgsvg		<img:data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTAiPjwvc3ZnPg==>
+stereo1		STEREO:<<foo>>⏎text
+stereo2		text⏎STEREO:<<foo>><<bar>>
+guillemet		a <<stereo>> b
+newlines	nl=1	line1\nline2\lleft\rright
+newlines2	nl=1	a\tb\\c
+htmlnested		<color:red><b>bold red</b></color> <size:20><u>big under</u></size>
+mixed		**bold <color:blue>blue</color> back** //it <size:10>small</size>//
+underscoreid		__init__ and my_var_name
+paths		//path//to//file and see http://plantuml.com/ here
+sizestrike		<size:12>x</size> <s>y</s> <sub>z</sub>
+monospacedbold		""**mono bold**""
+bordered	bordered=1	a⏎----⏎b
+borderedtitle	bordered=1	first⏎==Title==⏎second line
+size10	size=10	**small** text⏎* item
+size20	size=20	big //text//⏎# n
+long		The quick brown fox jumps over the lazy dog **bold** //italic// ""mono"" <color:red>red</color>
+e100split		firstsecond
+e100table		| ab | c |
+url6		[[http://x.org <img:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==> img label]]
+url7		[[http://x.org{tip with space}]] [['http://quoted.org' q]] [[{only tooltip}]]
+url8	max=40	see [[http://plantuml.com/a/long/path the long label text]] after the link
+headingmax	max=50	= A heading that is long enough to wrap⏎text
+tabletitle	bordered=1	|= a |= b |⏎| 1 | 2 |⏎----⏎after
+treetabs		|_ a⏎⇥|_ b⏎⇥⇥|_ c⏎|_ d
+emojitext	max=30	😀😀 surrogate pairs 😀 in text with wrap
+liste100		* firstsecond⏎* third
+hrboldtitle		x⏎==**Bold** title==⏎y
+plaineol		<b>bold <plain>plain to end
+listrestart		# a⏎## b⏎## c⏎# d⏎## e⏎# f
+headingafterlist		* a⏎= h⏎* b
+ucolors		<u:#123456>a</u> <u:#12>b</u> <w:red>c</w> <s:#ff00ff>d</s>
+backgradients		<back:#ff0000-blue>a</back> <back:red\green>b</back> <back:red|green>c</back> <back:#abc>d</back>
+color2		<color:#12>a</color> <color:#123>b</color> <color:#1234567>c</color> <color:transparent>d</color>
+fontspaces		<font:Courier New>courier</font> <font:"Times">times</font>
+textattr2		<text font-weight="bold" fill="red">t</text> <text>bad</text>
+nocreoletable	mode=NO_CREOLE	| a | b |⏎* item⏎= h
+simplelinelist	mode=SIMPLE_LINE	* item⏎# num⏎= heading⏎----
+butunderscoreheading	mode=FULL_BUT_UNDERSCORE	= heading⏎| a |
+sizezero		<size:0>zero</size> <size:1>one</size> <size:99>big</size>
+monoinside		**bold ""mono"" bold**
+unclosedlegacy		<i>open <b>both
+supnested		x<sup>a<sub>b</sub></sup> <sub>**bold**</sub>
+spaceonly		<space:10>
+doubletilde		~~~~ ~~~ ~
+ltgt		a < b > c <<x>> <> <
+ampersand		a & b &amp; &lt; &#60; &#x3C;
+newlinesmax	nl=1,max=30	first line is quite long here\nsecond
+centerbordered	align=CENTER,bordered=1	short⏎----⏎a longer line
+codemax	max=20	<code>⏎a very long code line that does not wrap⏎</code>
+tablemax	max=20	| a long cell text | b |
+treemax	max=20	|_ a long tree cell text⏎  |_ b
+stereomax	max=30	STEREO:<<a long stereotype label>>⏎text
+stereoguillemets		STEREO:<<a>><<b>>

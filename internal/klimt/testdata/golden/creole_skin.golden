@@ -1,0 +1,213 @@
+arrow	NORMAL(NONE NONE)(NORMAL NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NORMAL NONE)(NORMAL NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NORMAL/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)true null dir=SELF self=true dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)true null dir=SELF self=true dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=true deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NORMAL NONE)(NONE NONE)false null dir=RIGHT_TO_LEFT_REVERSE self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NORMAL/FULL d2=NONE/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)true null dir=SELF self=true dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	DOTTED(NONE NONE)(NORMAL NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=true hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	HIDDEN(NONE NONE)(ASYNC NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=true head=ASYNC async=false,true part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=ASYNC/FULL color=null
+arrow	NORMAL(CROSSX NONE)(NONE NONE)false null dir=RIGHT_TO_LEFT_REVERSE self=false dotted=false hidden=false head=CROSSX async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=CROSSX/FULL d2=NONE/FULL color=null
+arrow	NORMAL(ASYNC NONE)(NORMAL NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NORMAL async=true,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=ASYNC/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NONE NONE)(NONE NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NONE async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NONE/FULL color=null
+arrow	NORMAL(NONE NONE)(NONE NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NONE async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NONE/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=false head=NORMAL async=false,false part=TOP_PART incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/TOP_PART color=null
+arrow	NORMAL(NONE NONE)(NONE NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NONE async=false,false part=BOTTOM_PART incl=0,0 rev=false deco=NONE,NONE d1=NONE/BOTTOM_PART d2=NONE/FULL color=null
+arrow	NORMAL(NORMAL CIRCLE)(NONE CIRCLE)false null dir=RIGHT_TO_LEFT_REVERSE self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=CIRCLE,CIRCLE d1=NORMAL/FULL d2=NONE/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)false [r=255,g=0,b=0,a=255] α=255 dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=#FF0000
+arrow	NORMAL(NONE NONE)(NORMAL NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,0 rev=true deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NONE NONE)(NORMAL NONE)false null dir=LEFT_TO_RIGHT_NORMAL self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,4 rev=false deco=NONE,NONE d1=NONE/FULL d2=NORMAL/FULL color=null
+arrow	NORMAL(NORMAL NONE)(CROSSX NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=CROSSX async=false,false part=FULL incl=4,4 rev=false deco=NONE,NONE d1=NORMAL/FULL d2=CROSSX/FULL color=null
+arrow	NORMAL(ASYNC NONE)(NONE NONE)false null dir=RIGHT_TO_LEFT_REVERSE self=false dotted=false hidden=false head=ASYNC async=true,false part=FULL incl=-2,0 rev=false deco=NONE,NONE d1=ASYNC/FULL d2=NONE/FULL color=null
+arrow	NORMAL(CROSSX NONE)(NORMAL NONE)false null dir=BOTH_DIRECTION self=false dotted=false hidden=false head=NORMAL async=false,false part=FULL incl=0,5 rev=false deco=NONE,NONE d1=CROSSX/FULL d2=NORMAL/FULL color=null
+stroke 0	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 10.0,0.0
+stroke 0	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-0.5 line 0.0,10.0
+stroke 0	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 1.0,1.0
+stroke 0	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 2.0,2.0
+stroke 0	@0.0,0.0 c=#000000 b=transparent s=5.0-3.0-2.0 line 3.0,3.0
+stroke 1	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-1.0 line 10.0,0.0
+stroke 1	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-0.5 line 0.0,10.0
+stroke 1	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-1.0 line 1.0,1.0
+stroke 1	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 2.0,2.0
+stroke 1	@0.0,0.0 c=#000000 b=transparent s=5.0-3.0-2.0 line 3.0,3.0
+stroke 2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 line 10.0,0.0
+stroke 2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-0.5 line 0.0,10.0
+stroke 2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-2.5 line 1.0,1.0
+stroke 2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-2.5 line 2.0,2.0
+stroke 2	@0.0,0.0 c=#000000 b=transparent s=5.0-3.0-2.0 line 3.0,3.0
+stroke 3	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-1.0 line 10.0,0.0
+stroke 3	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-0.5 line 0.0,10.0
+stroke 3	@0.0,0.0 c=#000000 b=transparent s=2.0-2.0-1.5 line 1.0,1.0
+stroke 3	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.5 line 2.0,2.0
+stroke 3	@0.0,0.0 c=#000000 b=transparent s=5.0-3.0-2.0 line 3.0,3.0
+area	[30.5,12.0] (0.0) [30.5,12.0] 0.0 0 0.0 0.0
+area	[30.5,12.0] (2.5) [30.5,12.0] 2.5 3 4.25 -1.0
+actor STICKMAN 0	dim 28.0x61.0
+actor STICKMAN 0	@6.0,1.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 ellipse 16.0,16.0 0.0,0.0 sh=0.0
+actor STICKMAN 0	@14.0,17.0 c=#A80036 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=0.0
+actor STICKMAN 1	dim 30.0x66.0
+actor STICKMAN 1	@7.0,2.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 ellipse 16.0,16.0 0.0,0.0 sh=3.0
+actor STICKMAN 1	@15.0,18.0 c=#0000FF b=transparent s=0.0-0.0-2.0 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=3.0
+actor STICKMAN 2	dim 27.0x60.0
+actor STICKMAN 2	@5.5,0.5 c=#000000 b=transparent s=2.0-3.0-0.5 ellipse 16.0,16.0 0.0,0.0 sh=0.0
+actor STICKMAN 2	@13.5,16.5 c=#000000 b=transparent s=2.0-3.0-0.5 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=0.0
+actor STICKMAN_BUSINESS 0	dim 28.0x61.0
+actor STICKMAN_BUSINESS 0	@6.0,1.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 ellipse 16.0,16.0 0.0,0.0 sh=0.0
+actor STICKMAN_BUSINESS 0	@12.05615856077389,16.760250025556353 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 line 9.704091464782463,-9.704091464782463
+actor STICKMAN_BUSINESS 0	@14.0,17.0 c=#A80036 b=transparent s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=0.0
+actor STICKMAN_BUSINESS 1	dim 30.0x66.0
+actor STICKMAN_BUSINESS 1	@7.0,2.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 ellipse 16.0,16.0 0.0,0.0 sh=3.0
+actor STICKMAN_BUSINESS 1	@13.05615856077389,17.760250025556353 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 line 9.704091464782463,-9.704091464782463
+actor STICKMAN_BUSINESS 1	@15.0,18.0 c=#0000FF b=transparent s=0.0-0.0-2.0 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=3.0
+actor STICKMAN_BUSINESS 2	dim 27.0x60.0
+actor STICKMAN_BUSINESS 2	@5.5,0.5 c=#000000 b=transparent s=2.0-3.0-0.5 ellipse 16.0,16.0 0.0,0.0 sh=0.0
+actor STICKMAN_BUSINESS 2	@11.55615856077389,16.260250025556353 c=#000000 b=transparent s=2.0-3.0-0.5 line 9.704091464782463,-9.704091464782463
+actor STICKMAN_BUSINESS 2	@13.5,16.5 c=#000000 b=transparent s=2.0-3.0-0.5 path [SEG_MOVETO [0.0, 0.0], SEG_LINETO [0.0, 27.0], SEG_MOVETO [-13.0, 8.0], SEG_LINETO [13.0, 8.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [-13.0, 42.0], SEG_MOVETO [0.0, 27.0], SEG_LINETO [13.0, 42.0]] sh=0.0
+actor AWESOME 0	dim 56.0x62.0
+actor AWESOME 0	@12.0,1.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 ellipse 32.0,32.0 0.0,0.0 sh=0.0
+actor AWESOME 0	@28.0,33.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 path [SEG_MOVETO [0.0, 4.0], SEG_CUBICTO [4.0, 4.0, 7.0, 4.0, 11.0, 0.0], SEG_CUBICTO [19.0, 0.0, 27.0, 8.0, 27.0, 16.0], SEG_LINETO [27.0, 20.0], SEG_CUBICTO [27.0, 24.0, 23.0, 28.0, 19.0, 28.0], SEG_LINETO [-19.0, 28.0], SEG_CUBICTO [-23.0, 28.0, -27.0, 24.0, -27.0, 20.0], SEG_LINETO [-27.0, 16.0], SEG_CUBICTO [-27.0, 8.0, -19.0, 0.0, -11.0, 0.0], SEG_CUBICTO [-7.0, 4.0, -4.0, 4.0, 0.0, 4.0]] sh=0.0
+actor AWESOME 1	dim 58.0x64.0
+actor AWESOME 1	@13.0,2.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 ellipse 32.0,32.0 0.0,0.0 sh=3.0
+actor AWESOME 1	@29.0,34.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 path [SEG_MOVETO [0.0, 4.0], SEG_CUBICTO [4.0, 4.0, 7.0, 4.0, 11.0, 0.0], SEG_CUBICTO [19.0, 0.0, 27.0, 8.0, 27.0, 16.0], SEG_LINETO [27.0, 20.0], SEG_CUBICTO [27.0, 24.0, 23.0, 28.0, 19.0, 28.0], SEG_LINETO [-19.0, 28.0], SEG_CUBICTO [-23.0, 28.0, -27.0, 24.0, -27.0, 20.0], SEG_LINETO [-27.0, 16.0], SEG_CUBICTO [-27.0, 8.0, -19.0, 0.0, -11.0, 0.0], SEG_CUBICTO [-7.0, 4.0, -4.0, 4.0, 0.0, 4.0]] sh=3.0
+actor AWESOME 2	dim 55.0x61.0
+actor AWESOME 2	@11.5,0.5 c=#000000 b=transparent s=2.0-3.0-0.5 ellipse 32.0,32.0 0.0,0.0 sh=0.0
+actor AWESOME 2	@27.5,32.5 c=#000000 b=transparent s=2.0-3.0-0.5 path [SEG_MOVETO [0.0, 4.0], SEG_CUBICTO [4.0, 4.0, 7.0, 4.0, 11.0, 0.0], SEG_CUBICTO [19.0, 0.0, 27.0, 8.0, 27.0, 16.0], SEG_LINETO [27.0, 20.0], SEG_CUBICTO [27.0, 24.0, 23.0, 28.0, 19.0, 28.0], SEG_LINETO [-19.0, 28.0], SEG_CUBICTO [-23.0, 28.0, -27.0, 24.0, -27.0, 20.0], SEG_LINETO [-27.0, 16.0], SEG_CUBICTO [-27.0, 8.0, -19.0, 0.0, -11.0, 0.0], SEG_CUBICTO [-7.0, 4.0, -4.0, 4.0, 0.0, 4.0]] sh=0.0
+actor HOLLOW 0	dim 27.0x34.0
+actor HOLLOW 0	@9.0,1.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 ellipse 9.0,9.0 0.0,0.0 sh=0.0
+actor HOLLOW 0	@13.5,12.0 c=#A80036 b=#FEFECE s=0.0-0.0-1.0 path [SEG_MOVETO [-12.5, 0.0], SEG_LINETO [-12.5, 5.0], SEG_LINETO [-3.0, 5.0], SEG_LINETO [-3.0, 7.257359312880716], SEG_LINETO [-12.5, 16.757359312880716], SEG_LINETO [-8.257359312880714, 21.0], SEG_LINETO [0.0, 12.742640687119286], SEG_LINETO [8.257359312880714, 21.0], SEG_LINETO [12.5, 16.757359312880716], SEG_LINETO [3.0, 7.257359312880716], SEG_LINETO [3.0, 5.0], SEG_LINETO [12.5, 5.0], SEG_LINETO [12.5, 0.0], SEG_LINETO [-12.5, 0.0]] sh=0.0
+actor HOLLOW 1	dim 29.0x39.0
+actor HOLLOW 1	@10.0,2.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 ellipse 9.0,9.0 0.0,0.0 sh=3.0
+actor HOLLOW 1	@14.5,13.0 c=#0000FF b=#FFFFFF s=0.0-0.0-2.0 path [SEG_MOVETO [-12.5, 0.0], SEG_LINETO [-12.5, 5.0], SEG_LINETO [-3.0, 5.0], SEG_LINETO [-3.0, 7.257359312880716], SEG_LINETO [-12.5, 16.757359312880716], SEG_LINETO [-8.257359312880714, 21.0], SEG_LINETO [0.0, 12.742640687119286], SEG_LINETO [8.257359312880714, 21.0], SEG_LINETO [12.5, 16.757359312880716], SEG_LINETO [3.0, 7.257359312880716], SEG_LINETO [3.0, 5.0], SEG_LINETO [12.5, 5.0], SEG_LINETO [12.5, 0.0], SEG_LINETO [-12.5, 0.0]] sh=3.0
+actor HOLLOW 2	dim 26.0x33.0
+actor HOLLOW 2	@8.5,0.5 c=#000000 b=transparent s=2.0-3.0-0.5 ellipse 9.0,9.0 0.0,0.0 sh=0.0
+actor HOLLOW 2	@13.0,11.5 c=#000000 b=transparent s=2.0-3.0-0.5 path [SEG_MOVETO [-12.5, 0.0], SEG_LINETO [-12.5, 5.0], SEG_LINETO [-3.0, 5.0], SEG_LINETO [-3.0, 7.257359312880716], SEG_LINETO [-12.5, 16.757359312880716], SEG_LINETO [-8.257359312880714, 21.0], SEG_LINETO [0.0, 12.742640687119286], SEG_LINETO [8.257359312880714, 21.0], SEG_LINETO [12.5, 16.757359312880716], SEG_LINETO [3.0, 7.257359312880716], SEG_LINETO [3.0, 5.0], SEG_LINETO [12.5, 5.0], SEG_LINETO [12.5, 0.0], SEG_LINETO [-12.5, 0.0]] sh=0.0
+circle 1.5	pref 13.5x13.5
+circle 1.5	@1.5,1.5 c=#A80036 b=#FEFECE s=0.0-0.0-1.5 ellipse 10.5,10.5 0.0,0.0 sh=0.0
+circle 0.3	pref 11.100000023841858x11.100000023841858
+circle 0.3	@0.30000001192092896,0.30000001192092896 c=#A80036 b=#FEFECE s=0.0-0.0-0.30000001192092896 ellipse 10.5,10.5 0.0,0.0 sh=0.0
+componenttype	ARROW true ERR UnsupportedOperationException
+componenttype	ACTOR_HEAD false ERR UnsupportedOperationException
+componenttype	ACTOR_TAIL false ERR UnsupportedOperationException
+componenttype	BOUNDARY_HEAD false ERR UnsupportedOperationException
+componenttype	BOUNDARY_TAIL false ERR UnsupportedOperationException
+componenttype	CONTROL_HEAD false ERR UnsupportedOperationException
+componenttype	CONTROL_TAIL false ERR UnsupportedOperationException
+componenttype	ENTITY_HEAD false ERR UnsupportedOperationException
+componenttype	ENTITY_TAIL false ERR UnsupportedOperationException
+componenttype	QUEUE_HEAD false ERR UnsupportedOperationException
+componenttype	QUEUE_TAIL false ERR UnsupportedOperationException
+componenttype	DATABASE_HEAD false ERR UnsupportedOperationException
+componenttype	DATABASE_TAIL false ERR UnsupportedOperationException
+componenttype	COLLECTIONS_HEAD false ERR UnsupportedOperationException
+componenttype	COLLECTIONS_TAIL false ERR UnsupportedOperationException
+componenttype	ACTIVATION_BOX_CLOSE_CLOSE false white #181818 14 0.5
+componenttype	ACTIVATION_BOX_CLOSE_OPEN false white #181818 14 0.5
+componenttype	ACTIVATION_BOX_OPEN_CLOSE false white #181818 14 0.5
+componenttype	ACTIVATION_BOX_OPEN_OPEN false white #181818 14 0.5
+componenttype	DELAY_TEXT false null #181818 11 0.5
+componenttype	DESTROY false null #A80036 14 2
+componenttype	DELAY_LINE false null #181818 11 0.5
+componenttype	PARTICIPANT_LINE false null #181818 14 0.5
+componenttype	GROUPING_ELSE_LEGACY false ERR UnsupportedOperationException
+componenttype	GROUPING_ELSE_TEOZ false ERR UnsupportedOperationException
+componenttype	GROUPING_HEADER_LEGACY false ERR UnsupportedOperationException
+componenttype	GROUPING_HEADER_TEOZ false ERR UnsupportedOperationException
+componenttype	GROUPING_SPACE false ERR UnsupportedOperationException
+componenttype	NEWPAGE false #f1f1f1 #181818 14 0.5
+componenttype	NOTE false #FEFFDD #181818 13 0.5
+componenttype	NOTE_HEXAGONAL false ERR UnsupportedOperationException
+componenttype	NOTE_BOX false ERR UnsupportedOperationException
+componenttype	DIVIDER false #e black 13 2.0
+componenttype	REFERENCE false ERR UnsupportedOperationException
+componenttype	ENGLOBER false #d #181818 13 0.5
+componenttype	PARTICIPANT_HEAD false #e2e2f0 #181818 14 0.5
+componenttype	PARTICIPANT_TAIL false #e2e2f0 #181818 14 0.5
+component label	fake	pure=78.0 text=90.0x37.5 pad=5.0,7.0,2.0 pref=[91.0,39.5]
+component label	fake	background [40.0,20.0] (0.0)
+component label	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component label	fake	internal [40.0,20.0] (0.0)
+component label	fake	@3.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Some ' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component label	fake	@42.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'label' sans-serif/UFontFace[NORMAL, weight=700]/13 #000000 [BOLD] ext=null space=0
+component label	fake	@3.0,29.61111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'second' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component label	svg	pure=76.806640625 text=88.806640625x35.265625 pad=5.0,7.0,2.0 pref=[89.806640625,37.265625]
+component label	svg	background [40.0,20.0] (0.0)
+component label	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component label	svg	internal [40.0,20.0] (0.0)
+component label	svg	@3.0,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'Some ' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component label	svg	@43.99951171875,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'label' sans-serif/UFontFace[NORMAL, weight=700]/13 #000000 [BOLD] ext=null space=0
+component label	svg	@3.0,27.19970703125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'second' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component emptylabel	fake	pure=0.0 text=12.0x5.0 pad=5.0,7.0,2.0 pref=[13.0,7.0]
+component emptylabel	fake	background [40.0,20.0] (0.0)
+component emptylabel	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component emptylabel	fake	internal [40.0,20.0] (0.0)
+component emptylabel	svg	pure=0.0 text=12.0x5.0 pad=5.0,7.0,2.0 pref=[13.0,7.0]
+component emptylabel	svg	background [40.0,20.0] (0.0)
+component emptylabel	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component emptylabel	svg	internal [40.0,20.0] (0.0)
+component nulllabel	fake	pure=0.0 text=12.0x5.0 pad=5.0,7.0,2.0 pref=[13.0,7.0]
+component nulllabel	fake	background [40.0,20.0] (0.0)
+component nulllabel	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component nulllabel	fake	internal [40.0,20.0] (0.0)
+component nulllabel	svg	pure=0.0 text=12.0x5.0 pad=5.0,7.0,2.0 pref=[13.0,7.0]
+component nulllabel	svg	background [40.0,20.0] (0.0)
+component nulllabel	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component nulllabel	svg	internal [40.0,20.0] (0.0)
+component display	fake	pure=39.0 text=51.0x37.5 pad=5.0,7.0,2.0 pref=[52.0,39.5]
+component display	fake	background [40.0,20.0] (0.0)
+component display	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component display	fake	internal [40.0,20.0] (0.0)
+component display	fake	@3.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'plain' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component display	fake	@3.0,29.61111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'bold' sans-serif/UFontFace[NORMAL, weight=700]/13 #000000 [BOLD] ext=null space=0
+component display	svg	pure=31.99853515625 text=43.99853515625x35.265625 pad=5.0,7.0,2.0 pref=[44.99853515625,37.265625]
+component display	svg	background [40.0,20.0] (0.0)
+component display	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component display	svg	internal [40.0,20.0] (0.0)
+component display	svg	@3.0,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'plain' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component display	svg	@3.0,27.19970703125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'bold' sans-serif/UFontFace[NORMAL, weight=700]/13 #000000 [BOLD] ext=null space=0
+component enhanced	fake	pure=78.0 text=90.0x82.0 pad=5.0,7.0,2.0 pref=[91.0,84.0]
+component enhanced	fake	background [40.0,20.0] (0.0)
+component enhanced	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component enhanced	fake	internal [40.0,20.0] (0.0)
+component enhanced	fake	@3.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'head' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	fake	@3.0,16.25 c=#000000 b=transparent s=0.0-0.0-1.0 hline
+component enhanced	fake	@3.0,16.25 c=#000000 b=transparent s=0.0-0.0-1.0 empty 78.0,24.25
+component enhanced	fake	@3.0,33.611111111111114 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after line' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	fake	@3.0,40.5 c=#000000 b=transparent s=0.0-0.0-1.0 empty 47.0,36.5
+component enhanced	fake	@3.0,48.625 c=#000000 b=transparent s=0.0-0.0-1.0 empty 29.4,28.375
+component enhanced	fake	@3.0,70.11111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'end' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	fake	@3.0,48.625 c=#000000 b=transparent s=0.0-0.0-1.0 hline
+component enhanced	svg	pure=58.576171875 text=70.576171875x77.53125 pad=5.0,7.0,2.0 pref=[71.576171875,79.53125]
+component enhanced	svg	background [40.0,20.0] (0.0)
+component enhanced	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component enhanced	svg	internal [40.0,20.0] (0.0)
+component enhanced	svg	@3.0,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'head' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	svg	@3.0,15.1328125 c=#000000 b=transparent s=0.0-0.0-1.0 hline
+component enhanced	svg	@3.0,15.1328125 c=#000000 b=transparent s=0.0-0.0-1.0 empty 58.576171875,23.1328125
+component enhanced	svg	@3.0,31.19970703125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'after line' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	svg	@3.0,38.265625 c=#000000 b=transparent s=0.0-0.0-1.0 empty 33.416015625,34.265625
+component enhanced	svg	@3.0,45.83203125 c=#000000 b=transparent s=0.0-0.0-1.0 empty 30.4892578125,26.69921875
+component enhanced	svg	@3.0,65.46533203125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'end' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhanced	svg	@3.0,45.83203125 c=#000000 b=transparent s=0.0-0.0-1.0 hline
+component enhancedplain	fake	pure=23.4 text=35.4x37.5 pad=5.0,7.0,2.0 pref=[36.4,39.5]
+component enhancedplain	fake	background [40.0,20.0] (0.0)
+component enhancedplain	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component enhancedplain	fake	internal [40.0,20.0] (0.0)
+component enhancedplain	fake	@3.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'one' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhancedplain	fake	@3.0,29.61111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'two' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhancedplain	svg	pure=24.19091796875 text=36.19091796875x35.265625 pad=5.0,7.0,2.0 pref=[37.19091796875,37.265625]
+component enhancedplain	svg	background [40.0,20.0] (0.0)
+component enhancedplain	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component enhancedplain	svg	internal [40.0,20.0] (0.0)
+component enhancedplain	svg	@3.0,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'one' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component enhancedplain	svg	@3.0,27.19970703125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'two' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component stereo	fake	pure=31.2 text=43.2x37.5 pad=5.0,7.0,2.0 pref=[44.2,39.5]
+component stereo	fake	background [40.0,20.0] (0.0)
+component stereo	fake	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component stereo	fake	internal [40.0,20.0] (0.0)
+component stereo	fake	@3.0,13.36111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text 'text' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component stereo	fake	@3.0,29.61111111111111 c=#000000 b=transparent s=0.0-0.0-1.0 text '«st»' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component stereo	svg	pure=27.77734375 text=39.77734375x35.265625 pad=5.0,7.0,2.0 pref=[40.77734375,37.265625]
+component stereo	svg	background [40.0,20.0] (0.0)
+component stereo	svg	@3.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 rect 40.0,20.0 r=0.0,0.0 sh=0.0
+component stereo	svg	internal [40.0,20.0] (0.0)
+component stereo	svg	@3.0,12.06689453125 c=#000000 b=transparent s=0.0-0.0-1.0 text 'text' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0
+component stereo	svg	@3.0,27.19970703125 c=#000000 b=transparent s=0.0-0.0-1.0 text '«st»' sans-serif/UFontFace[NORMAL, weight=400]/13 #000000 [] ext=null space=0

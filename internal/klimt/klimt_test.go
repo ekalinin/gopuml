@@ -585,8 +585,25 @@ func TestStyleCommands(t *testing.T) {
 
 func TestNotPortedPathsPanic(t *testing.T) {
 	sp := newTestSkinParam()
-	_, msg := expectPanic(t, func() { DisplayCreate("x").Create(testFC(12), geom.HorizontalAlignmentLeft, sp) })
-	if !strings.Contains(msg, "CreoleParser") {
+	for text, class := range map[string]string{"<math>x</math>": "AtomMath", "<latex>x</latex>": "AtomMath",
+		"<qrcode:x>": "createQrcode", "<img:file.png>": "AtomImg", "<img:http://x/y.png>": "AtomImg",
+		"<img:data:image/png;spm lib/1>": "AtomImg"} {
+		_, msg := expectPanic(t, func() { DisplayCreate(text).Create(testFC(12), geom.HorizontalAlignmentLeft, sp) })
+		if !strings.Contains(msg, class) {
+			t.Errorf("%s: message %q", text, msg)
+		}
+	}
+	_, msg := expectPanic(t, func() {
+		DisplayCreate("{{", "a -> b", "}}").Create(testFC(12), geom.HorizontalAlignmentLeft, sp)
+	})
+	if !strings.Contains(msg, "EmbeddedDiagram") {
+		t.Errorf("message %q", msg)
+	}
+	_, msg = expectPanic(t, func() {
+		DisplayCreate("<latex>", "x", "</latex>").Create(testFC(12), geom.HorizontalAlignmentLeft, sp).
+			CalculateDimension(fakeBounder{})
+	})
+	if !strings.Contains(msg, "AtomMath") {
 		t.Errorf("message %q", msg)
 	}
 	_, msg = expectPanic(t, func() { SpriteImageFromInternal("archimate/actor") })

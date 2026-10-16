@@ -1,0 +1,24 @@
+<「bB」>〶$V=〄>〘</「bB」>〙	<b>x</b>	<B>x</b>y	<b></b>	<b>x	<bx>	V
+**〶$V=〄+〴.->〘**〙	**a**	****	*****	**a**b**	**	V
+<「bB」「aA」「cC」「kK」〇?〘:〶$XC=〘【#〇{6}「0〜9a〜fA〜F」┇〇+〴w 】 〇?〘「-\|/」【〇{6}「0〜9a〜fA〜F」┇〇+〴w】 〙〙 〙>〶$V=〄>〘</「bB」「aA」「cC」「kK」>〙	<back:#ff0000/blue>x</back>	<back:red>y</back>	<back:>z</back>	<BACK:#00FF00-0000ff>w</back>	<back:#12>q</back>	V,XC
+<【strike┇STRIKE┇s┇S┇del┇DEL】〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〄>〘</【strike┇STRIKE┇s┇S┇del┇DEL】>〙	<s:red>a</s>	<strike>b</strike>	<del>c</del>	<sub>	<S>d</STRIKE>	V,XC
+<「uU」〇?〘:〶$XC=【#〇{6}「0〜9a〜fA〜F」┇〇+〴w】〙>〶$V=〇+〴.	<u>rest	<u:#123456>x	<u:#1234567>y	<u>	V,XC
+<sup>〶$V=〄>〘</sup>〙	<sup>2</sup>	<SUP>x</sup>	<sup></sup>	V
+a〒=b	ab	ac	a	
+a〒!b	ab	ac	a	
+a〒<=a b	ab	b	
+x〒<!y z	xz	
+a〒$	a	ab	
+〶$N=〇l〴.〘end〙	xxendyy	end	xendend	N
+〇{2-3}「a」	a	aa	aaa	aaaa	
+〇{2+}〴d	1	12	12345	1_2	
+〇{1;3}x	x	xx	xxx	xxxx	
+〇+「〤ab」	xyab	ab	
+〇+〴W	  ab	ab	
+〴an〴le	1a	a1	é9	
+〃x〃	"x"	x	
+a∙b	a b	ab	
+【foo┇fo┇f】o	foo	fo	fooo	fx	
+〶$A=〘〶$B=〇+〴d - 〶$C=〇+〴w〙	12-ab	1-	12-a_b	A,A/B,A/C,B,C
+〇*〴s〶$W=〇+〴w〇?〴s	  word 	word	A
+〶$L=【〇+「a〜c」┇〇+「x〜z」】〶$L=〇+〴d	abc12	xyz9	ca	L
