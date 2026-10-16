@@ -4,10 +4,12 @@
 package server
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"io"
 	"net/http"
+	"os"
 	"strings"
 	"testing"
 	"time"
@@ -173,4 +175,20 @@ func TestLanguage(t *testing.T) {
 		srv, _ := newTestServer(t, Config{Language: func(io.Writer) error { return errors.New("no keywords") }})
 		checkStatus(t, get(t, srv, "/language"), http.StatusInternalServerError)
 	})
+}
+
+func TestWriteLanguageMatchesUpstream(t *testing.T) {
+	// testdata/language-upstream.txt is the output of
+	// "java -jar plantuml.jar -language" in the reference image.
+	want, err := os.ReadFile("testdata/language-upstream.txt")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got bytes.Buffer
+	if err := WriteLanguage(&got); err != nil {
+		t.Fatal(err)
+	}
+	if got.String() != string(want) {
+		t.Error("the language description differs from upstream's")
+	}
 }

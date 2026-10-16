@@ -10,6 +10,7 @@ import (
 	"slices"
 	"strconv"
 
+	"github.com/ekalinin/plantuml-in-go/internal/klimt"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
 )
 
@@ -60,13 +61,8 @@ var (
 )
 
 // Lists of LanguageDescriptor.print that come from other parts of upstream.
-//
-// TODO: fill the skin parameters once SkinParam.getPossibleValues (which
-// enumerates FontParam, ColorParam, LineParam and AlignmentParam) is
-// ported. Until then GET /language prints that section empty;
-// Config.Language can supply a complete description.
 var (
-	languageSkinParameters = func() []string { return nil }
+	languageSkinParameters = klimt.SkinParamPossibleValues
 	languageColors         = func() []string { return color.Instance().Names() }
 )
 
