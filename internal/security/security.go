@@ -34,8 +34,9 @@ var profileNames = [...]string{"SANDBOX", "ALLOWLIST", "INTERNET", "INTERNET_WIT
 
 func (p Profile) String() string { return profileNames[p] }
 
-// ParseProfile reads a PLANTUML_SECURITY_PROFILE value. "UNSECURE" selects
-// Insecure, as upstream does. ok is false for empty or unknown values.
+// ParseProfile reads a PLANTUML_SECURITY_PROFILE value. "INSECURE" and
+// its misspelling "UNSECURE" select Insecure, as upstream does. ok is false
+// for empty or unknown values.
 func ParseProfile(s string) (p Profile, ok bool) {
 	switch strings.ToUpper(s) {
 	case "SANDBOX":
@@ -48,7 +49,7 @@ func ParseProfile(s string) (p Profile, ok bool) {
 		return InternetWithDotSVG, true
 	case "LEGACY":
 		return Legacy, true
-	case "UNSECURE":
+	case "INSECURE", "UNSECURE":
 		return Insecure, true
 	}
 	return Legacy, false

@@ -16,12 +16,12 @@ import (
 )
 
 func TestParseProfile(t *testing.T) {
-	for in, want := range map[string]Profile{"sandbox": Sandbox, "ALLOWLIST": Allowlist, "Internet": Internet, "INTERNET_WITH_DOTSVG": InternetWithDotSVG, "legacy": Legacy, "UNSECURE": Insecure} {
+	for in, want := range map[string]Profile{"sandbox": Sandbox, "ALLOWLIST": Allowlist, "Internet": Internet, "INTERNET_WITH_DOTSVG": InternetWithDotSVG, "legacy": Legacy, "UNSECURE": Insecure, "insecure": Insecure} {
 		if got, ok := ParseProfile(in); !ok || got != want {
 			t.Errorf("ParseProfile(%q) = %v, %v", in, got, ok)
 		}
 	}
-	for _, bad := range []string{"", "INSECURE", "strict"} {
+	for _, bad := range []string{"", "UNSAFE", "strict"} {
 		if _, ok := ParseProfile(bad); ok {
 			t.Errorf("ParseProfile(%q) must be unknown", bad)
 		}
