@@ -49,11 +49,11 @@
 - [x] 4.2 Port variables (`=`, `?=`, `!local`, `!global`) and the legacy `!define`/`!definelong`/`!undef` substitution. Verify with tests for the spec scenarios and upstream's define tests
 - [x] 4.3 Port `!if`/`!elseif`/`!else`/`!ifdef`/`!ifndef`/`!while`/`!foreach`, with the unbalanced-directive errors. Verify with tests including error line numbers
 - [x] 4.4 Port `!procedure`/`!function`/`!return`, with default and keyword arguments and `!unquoted`/`!final`. Verify with the spec scenarios and upstream's function tests
-- [ ] 4.5 Port all 74 builtin functions of v1.2026.8. `%splitstr_regex` uses regexp2 with a timeout (design D4). `%version` returns `1.2026.8`. Verify with the 48 upstream builtin test classes translated to Go table tests
+- [x] 4.5 Port all 74 builtin functions of v1.2026.8. `%splitstr_regex` uses regexp2 with a timeout (design D4). `%version` returns `1.2026.8`. Verify with the 48 upstream builtin test classes translated to Go table tests
 - [x] 4.6 Port JSON support (literals, member and index access, `%load_json`, `%json_*`). Verify with the JSON access scenario and upstream JSON tests
 - [x] 4.7 Port `!include` variants (`_many`, `_once`, `!includesub`, `!includedef`, `!import` zip, `!include file!id`), `!theme` loading hooks, and `<lib/...>` resolution against an empty stdlib index. Verify with filesystem fixture tests for each spec scenario, including the "not bundled" error
 - [x] 4.8 Port `!assert`, `!log`, `!dump_memory`, `!pragma` and `!option`. Verify with the assertion and pragma scenarios
-- [ ] 4.9 Wire PREPROC output and the preprocessor into block processing. Verify that the preproc conformance cases (Vega `preproc` group and curated cases) pass
+- [x] 4.9 Wire PREPROC output and the preprocessor into block processing. Verify that the preproc conformance cases (Vega `preproc` group and curated cases) pass
 
 ## 5. URL encoding and security
 
