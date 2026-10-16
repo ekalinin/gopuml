@@ -1,0 +1,271 @@
+# Built-in images without a conformance reference. Read by golden_test.go
+# and by javagen/ErrGolden.java, which writes golden/<case>.svg and
+# golden/imagedata.txt from the upstream jar.
+#
+#   case <name>               starts a case, which "end" closes
+#   kind <kind>               error (PSystemErrorV2), preprocerror
+#                             (PSystemErrorPreprocessor: no raw source, the
+#                             message on the last trace line), unsupported
+#                             (PSystemUnsupported), welcome (PSystemWelcome
+#                             at BACKGROUND_CORNER_BOTTOM_RIGHT) or novalid
+#                             (SourceStringReader.noValidStartFound)
+#   option <opt>              dark (dark mode color mapper), red
+#                             (useRedForError), nometadata
+#   line <text>               a source line, located in "string" (or in the
+#                             current include) at the next position
+#   repeat <n> <text>         n source lines, %d replaced by 1..n
+#   include <desc> <index>    the next lines are located in <desc> from
+#                             position 0, included from source line <index>
+#                             (0-based); "endinclude" goes back to "string"
+#   raw <text>                a raw line (by default the raw lines are the
+#                             source lines); "noraw" means none
+#   trace <n>                 the trace is the first n lines (default: all)
+#   error <message>           the error message
+#   assumed <TYPE>            the assumed diagram type (DiagramType name)
+#
+# In texts, \t is a tab, \\ a backslash and \uXXXX a UTF-16 unit.
+
+case novalid
+kind novalid
+end
+
+case novalid-red
+kind novalid
+option red
+end
+
+case novalid-dark
+kind novalid
+option dark
+end
+
+case novalid-nometadata
+kind novalid
+option nometadata
+end
+
+case error-dark
+kind error
+option dark
+line @startuml
+line Alice -> Bob : hi
+line Alice -> -> Bob
+line @enduml
+trace 3
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-nometadata
+kind error
+option nometadata
+line @startuml
+line Alice -> Bob : hi
+line Alice -> -> Bob
+line @enduml
+trace 3
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-five-lines
+kind error
+line @startuml
+line Alice -> Bob : hi
+line Bob -> Alice : ok
+line Alice -> -> Bob
+line @enduml
+trace 4
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-assumed-class
+kind error
+line @startuml
+line class A
+line class B {
+line A -->> B
+line }
+line @enduml
+trace 4
+error Syntax Error?
+assumed CLASS
+end
+
+case error-trace-40
+kind error
+line @startuml
+repeat 38 Alice -> Bob : message %d
+line Alice -> -> Bob
+line @enduml
+trace 40
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-trace-41
+kind error
+line @startuml
+repeat 39 Alice -> Bob : message %d
+line Alice -> -> Bob
+line @enduml
+trace 41
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-trace-60
+kind error
+line @startuml
+repeat 58 participant P%d
+line Alice -> -> Bob
+repeat 3 Bob -> Alice : after %d
+line @enduml
+trace 60
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-long-lines
+kind error
+line @startuml
+line Alice -> Bob : 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012
+line Alice -> Bob : 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+line Alice -> Bob : ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé
+line Alice -> -> Bob : 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+line @enduml
+trace 5
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-include
+kind error
+line @startuml
+line !include a.iuml
+include a.iuml 1
+line Alice -> Bob : from a
+line !include b.iuml
+include b.iuml 3
+line Bob -> Alice : from b
+line Bob -> -> Alice
+endinclude
+line @enduml
+trace 6
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-special-chars
+kind error
+line @startuml
+line Alice -> Bob : <b>bold</b> & "quoted" 'single'
+line Alice -> Bob : **creole** //italic// [[link]]
+line \tAlice -> Bob : tab
+line
+line
+line Alice -> Bob : 中文 😀 ß
+line Alice -> -> Bob <&>
+line @enduml
+trace 8
+error Syntax Error? <b>&amp; "x"
+assumed SEQUENCE
+end
+
+case error-no-assumed
+kind error
+line @startuml
+line foo
+line @enduml
+trace 2
+error Some error without diagram type
+end
+
+case error-raw-differs
+kind error
+raw @startuml
+raw !$a = 1
+raw Alice -> Bob : $a
+raw Alice -> -> Bob
+raw @enduml
+line @startuml
+line Alice -> Bob : 1
+line Alice -> -> Bob
+line @enduml
+trace 3
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case error-continuation
+kind error
+line @startuml
+line Alice -> Bob : a\\
+line b\\
+line c
+line Alice -> -> Bob
+line @enduml
+trace 5
+error Syntax Error?
+assumed SEQUENCE
+end
+
+case preprocerror-dark
+kind preprocerror
+option dark
+line @startuml
+line !include missing.iuml
+error cannot include missing.iuml
+end
+
+case preprocerror-long
+kind preprocerror
+line @startuml
+line Alice -> Bob : hi
+line Bob -> Alice : ok
+line Alice -> Bob : again
+line !assert 1 == 2 : "numbers differ"
+error Assertion error : numbers differ
+end
+
+case unsupported-dark
+kind unsupported
+option dark
+line @startfoo
+line x
+line @endfoo
+end
+
+case unsupported-nometadata
+kind unsupported
+option nometadata
+line @startfoo
+line @endfoo
+end
+
+case unsupported-special
+kind unsupported
+line @startxyz <b>bold</b> & "q" **c**
+line @endxyz
+end
+
+case welcome-dark
+kind welcome
+option dark
+line @startuml
+line @enduml
+end
+
+case welcome-nometadata
+kind welcome
+option nometadata
+line @startuml
+line @enduml
+end
+
+case welcome-named
+kind welcome
+line @startuml(id=foo) name
+line @enduml
+end
