@@ -29,6 +29,7 @@ import (
 	"github.com/ekalinin/plantuml-in-go/internal/security"
 	"github.com/ekalinin/plantuml-in-go/internal/sequencediagram"
 	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/plantuml-in-go/internal/themes"
 	"github.com/ekalinin/plantuml-in-go/internal/tim"
 )
 
@@ -106,7 +107,8 @@ func Parse(ctx context.Context, rc *core.RenderContext, src Source) ([]*Block, e
 		if err := ctx.Err(); err != nil {
 			return nil, err
 		}
-		res, err := tim.PreprocessWith(rc, access, blk.Lines, tim.Options{Definitions: defs, Defines: env.CloneMe()})
+		res, err := tim.PreprocessWith(rc, access, blk.Lines, tim.Options{Definitions: defs, Defines: env.CloneMe(),
+			Themes: themes.Bundled})
 		if res == nil {
 			return nil, err
 		}

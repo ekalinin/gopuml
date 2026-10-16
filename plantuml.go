@@ -127,6 +127,11 @@ func renderContext(opts *Options) (*core.RenderContext, error) {
 	if opts == nil {
 		return rc, nil
 	}
+	// The CliOptions constructor adds the --theme line before the --config
+	// lines.
+	if opts.Theme != "" {
+		rc.Config = append(rc.Config, "!theme "+opts.Theme)
+	}
 	rc.Config = append(rc.Config, opts.Config...)
 	for _, d := range opts.Defines {
 		rc.Defines[d.Name] = d.Value
