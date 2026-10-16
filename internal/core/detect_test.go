@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: MIT
+// Provenance: original
+
+package core
+
+import (
+	"strings"
+	"testing"
+)
+
+func TestDetectUnsupportedUmlTypes(t *testing.T) {
+	tests := []struct {
+		src  string
+		want string // type name in the message, "" for no detection
+		line int    // 0-based position of the reported line
+	}{
+		// Spec scenarios: state and legacy activity syntax.
+		{"@startuml\n[*] --> Idle\n@enduml\n", "state", 1},
+		{"@startuml\n(*) --> \"First step\"\n@enduml\n", "legacy activity", 1},
+
+		{"@startuml\nstate Idle\nIdle --> Busy\n@enduml\n", "state", 1},
+		{"@startuml\nIdle --> Busy\nBusy --> [*]\n@enduml\n", "state", 2},
+		{"@startuml\n\"First\" --> (*)\n@enduml\n", "legacy activity", 1},
+		{"@startuml\nUser -> (Login)\n@enduml\n", "description", 1},
+		{"@startuml\n:Admin: --> (Manage)\n@enduml\n", "description", 1},
+		{"@startuml\nusecase Login\n@enduml\n", "description", 1},
+		{"@startuml\n[Web] --> [Db]\n@enduml\n", "description", 1},
+		{"@startuml\narchimate #Business \"Shop\" as shop\n@enduml\n", "description", 1},
+		{"@startuml\nrobust \"Web\" as WB\n@0\nWB is Idle\n@enduml\n", "timing", 1},
+		{"@startuml\nclock clk with period 1\n@enduml\n", "timing", 1},
+
+		// Syntax that sequence, class or activity diagrams also use.
+		{"@startuml\nactor User\nUser -> Bob : hi\n@enduml\n", "", 0},
+		{"@startuml\nnode Server {\n}\n@enduml\n", "", 0},
+		{"@startuml\nA --> B\n@enduml\n", "", 0},
+		{"@startuml\n:Read input;\n@enduml\n", "", 0},
+	}
+	for _, tt := range tests {
+		lines := BuildBlocks(tt.src, "string", nil)[0].Lines
+		d := detectUnsupportedUmlType(NewUmlSource(lines, lines, true))
+		if tt.want == "" {
+			if d != nil {
+				t.Errorf("%q: unexpected detection %q", tt.src, d.(*ErrorDiagram).Error.Error)
+			}
+			continue
+		}
+		e, ok := d.(*ErrorDiagram)
+		if !ok {
+			t.Errorf("%q: no detection, want %s", tt.src, tt.want)
+			continue
+		}
+		if !strings.HasPrefix(e.Error.Error, tt.want) || !strings.HasSuffix(e.Error.Error, " diagrams are not supported yet") || e.Error.Position() != tt.line {
+			t.Errorf("%q: %q at %d, want %s at %d", tt.src, e.Error.Error, e.Error.Position(), tt.want, tt.line)
+		}
+	}
+}
+
+func TestCreateDiagramReportsUnsupportedUmlType(t *testing.T) {
+	// No in-scope factory accepts state syntax, so the block is reported as
+	// a state diagram, not as a generic syntax error.
+	factories := []Factory{fakeFactory{name: "sequence", typ: Sequence, consumed: 1}}
+	d, ok := CreateDiagram(NewRenderContext(), srcLines("@startuml\n[*] --> Idle\n@enduml\n"), nil, factories).(*ErrorDiagram)
+	if !ok || d.Error.Message() != "state diagrams are not supported yet" {
+		t.Fatalf("got %#v", d)
+	}
+	// A factory that accepts the block wins over detection.
+	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "-->"}}
+	if _, ok := CreateDiagram(NewRenderContext(), srcLines("@startuml\n[*] --> Idle\n@enduml\n"), nil, factories).(okDiagram); !ok {
+		t.Fatal("an accepting factory must win")
+	}
+}
