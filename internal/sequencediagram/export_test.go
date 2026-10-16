@@ -94,9 +94,15 @@ func sequenceReferences(t *testing.T, refRoot, casesRoot, prefix string) []seque
 		if err != nil {
 			return nil
 		}
-		for page, r := range meta.Blocks[0].Renders {
+		for _, r := range meta.Blocks[0].Renders {
 			if r.File == nil || !strings.HasSuffix(*r.File, ".svg") {
 				continue
+			}
+			// The page comes from the file name: renders of other formats
+			// may come first.
+			var block, page int
+			if _, err := fmt.Sscanf(*r.File, "block%d-page%d.svg", &block, &page); err != nil {
+				return fmt.Errorf("%s: %w", *r.File, err)
 			}
 			svg, err := os.ReadFile(filepath.Join(dir, *r.File))
 			if err != nil {
