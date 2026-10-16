@@ -136,8 +136,8 @@
 
 ## 13. Raster driver and PNG output
 
-- [ ] 13.1 Port the `g2d` driver onto `tdewolff/canvas` with the embedded DejaVu fonts: shapes, strokes, dashes, gradients, text, shadows and antialiasing settings. Verify with driver-level image tests at SSIM ≥ 0.98 against the PNG references for primitive shapes
-- [ ] 13.2 Implement PNG encoding with the `plantuml` text chunk, `skinparam dpi` scaling and `--disable-metadata`. Verify with the PNG metadata and DPI scenarios
+- [x] 13.1 Port the `g2d` driver onto an in-house rasterizer (design D6) with the embedded DejaVu fonts: shapes, strokes, dashes, gradients, text, shadows and antialiasing settings. Verify with driver-level image tests at SSIM ≥ 0.98 against the PNG references for primitive shapes
+- [x] 13.2 Implement PNG encoding with the `plantuml` text chunk, `skinparam dpi` scaling and `--disable-metadata`. Verify with the PNG metadata and DPI scenarios
 - [ ] 13.3 Enable PNG as the default CLI format, and extend `--extract-source` and `--skip-fresh` to PNG. Verify with the "No format flag" and "Extract source from PNG" scenarios
 - [ ] 13.4 Run PNG conformance for the sequence, activity and class slices. Verify that the PNG cases pass or are listed in `known-differences.yaml`
 

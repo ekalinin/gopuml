@@ -133,13 +133,14 @@ Alternatives considered:
 
 - Port `klimt`'s `UGraphic` model (shapes, strokes, colors, gradients, text, links, translations) as the single drawing API that diagram code uses.
 - **SVG driver:** a port of `klimt/drawing/svg`. It keeps upstream's element order, attribute names and number formatting rules, so SVG output stays structurally close and the text-parity check is meaningful.
-- **Raster driver:** a port of the `g2d` driver onto `github.com/tdewolff/canvas`. This is a pure Go 2D library with paths, strokes, dashes, gradients, text from embedded fonts, and PNG output. It works in WASM and is deterministic.
+- **Raster driver:** a port of the `g2d` driver onto an in-house rasterizer that follows Java2D's rules: exact fills, Marlin-like sampling and stroking (joins, caps, miter limit, dashes), Java's 8-bit compositing, and text drawn from the embedded DejaVu fonts (unhinted outlines, placed on whole pixels). It uses only the standard library, works in WASM and is deterministic.
 - **PNG metadata:** the `plantuml` text chunk is written by our own PNG chunk writer.
 
 Alternatives considered:
 
 - Rasterizing our own SVG: needs an SVG renderer, and none in pure Go supports everything upstream emits.
 - Building on `golang.org/x/image/vector` directly: means writing stroking, dashing and gradients ourselves.
+- `github.com/tdewolff/canvas` (the first choice): it pulls LGPL-2.1 code (fribidi) and an unlicensed package (scanx) into every binary, and it was only needed for stroking and dashing, which the in-house stroker now does with the same results.
 - `fogleman/gg`: unmaintained.
 
 ### D7. Graph layout behind an engine interface; `dot` process first
