@@ -45,7 +45,7 @@ var unsupportedTypes = []unsupportedType{
 		`-+>[%s]*(\[[^\]]*\])?[%s]*\(\*\)$`, // ... --> (*)
 	)},
 	{"description (use case, component, deployment, archimate)", patterns(
-		`^(usecase|component|artifact|agent|card|file|hexagon|label|node|person|process|stack|storage|action|portin|portout)[%s]+[^{]*$`,
+		`^(usecase|component|artifact|agent|card|file|hexagon|label|node|person|process|rectangle|stack|storage|action|portin|portout)[%s]+[^{]*$`,
 		`^archimate[%s]`,
 		`^\([%pLN_][^()]*\)`,                    // (Use case) --> ...
 		`-+>[%s]*\([%pLN_][^()]*\)[%s]*(:.*)?$`, // ... --> (Use case)

@@ -24,6 +24,7 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		{"@startuml\nUser -> (Login)\n@enduml\n", "description", 1},
 		{"@startuml\n:Admin: --> (Manage)\n@enduml\n", "description", 1},
 		{"@startuml\nusecase Login\n@enduml\n", "description", 1},
+		{"@startuml\nrectangle \"PlantUML at its best\" as leaf42\n@enduml\n", "description", 1},
 		{"@startuml\n[Web] --> [Db]\n@enduml\n", "description", 1},
 		{"@startuml\narchimate #Business \"Shop\" as shop\n@enduml\n", "description", 1},
 		{"@startuml\nrobust \"Web\" as WB\n@0\nWB is Idle\n@enduml\n", "timing", 1},
@@ -32,6 +33,7 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		// Syntax that sequence, class or activity diagrams also use.
 		{"@startuml\nactor User\nUser -> Bob : hi\n@enduml\n", "", 0},
 		{"@startuml\nnode Server {\n}\n@enduml\n", "", 0},
+		{"@startuml\nrectangle Lane {\n:step;\n}\n@enduml\n", "", 0},
 		{"@startuml\nA --> B\n@enduml\n", "", 0},
 		{"@startuml\n:Read input;\n@enduml\n", "", 0},
 	}
