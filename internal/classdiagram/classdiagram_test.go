@@ -4,13 +4,15 @@
 package classdiagram
 
 import (
-	"errors"
+	"bytes"
 	"strings"
 	"testing"
 
 	"github.com/ekalinin/plantuml-in-go/internal/abel"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/decoration"
+	"github.com/ekalinin/plantuml-in-go/internal/export"
+	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
 )
 
 func parseClass(t *testing.T, source string) *ClassDiagram {
@@ -94,8 +96,13 @@ func TestNewpage(t *testing.T) {
 	if !ok || len(n.Diagrams()) != 3 || n.Description() != "(1 entities) (1 entities) (1 entities)" {
 		t.Fatalf("newpage: %T %s", d, d.Description())
 	}
-	if !errors.Is(n.Export(0), abel.ErrNotDrawable) {
-		t.Error("export")
+	// Upstream draws the first page only (a single image).
+	var buf bytes.Buffer
+	if _, err := n.ExportDiagram(&buf, 0, export.NewFileFormatOption(font.FormatSVG)); err != nil {
+		t.Fatal(err)
+	}
+	if svg := buf.String(); !strings.Contains(svg, ">A</text>") || strings.Contains(svg, ">B</text>") {
+		t.Errorf("export: %s", svg)
 	}
 }
 

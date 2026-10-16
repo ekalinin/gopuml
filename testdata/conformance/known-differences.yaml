@@ -23,3 +23,15 @@
 - id: vega/tikz/tikz-1926-svg
   reason: an activity embeds a {{ }} deployment diagram (node); description diagrams are not supported yet
   resolvedBy: add-description-diagrams
+- id: vega/nonreg/group2712/down_direction
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2712/left_direction
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2712/reported_case
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2712/right_direction
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout

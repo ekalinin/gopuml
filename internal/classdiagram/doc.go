@@ -5,7 +5,6 @@
 // upstream also parses with its class factory: the ClassDiagram model
 // (upstream's classdiagram and objectdiagram packages, which refer to each
 // other and form one Go package per design D2, objectdiagram_*.go), the
-// factory and its commands in upstream's order. The graph layout and the
-// drawing of class diagrams are not ported yet: Export returns
-// abel.ErrNotDrawable.
+// factory and its commands in upstream's order, and the drawing
+// (ExportDiagram), laid out by Graphviz dot through internal/svek.
 package classdiagram

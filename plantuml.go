@@ -15,6 +15,7 @@ import (
 
 	"github.com/ekalinin/plantuml-in-go/internal/code"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
+	"github.com/ekalinin/plantuml-in-go/internal/dot"
 	"github.com/ekalinin/plantuml-in-go/internal/engine"
 	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
 	"github.com/ekalinin/plantuml-in-go/internal/security"
@@ -239,6 +240,11 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opts *Options
 	if errors.Is(err, engine.ErrUnsupportedFormat) {
 		return nil, fmt.Errorf("%w: %s", ErrUnsupportedFormat, err)
 	}
+	if gerr := graphvizError(err); gerr != nil {
+		// The image shows the Graphviz error.
+		return &Result{Width: int(math.Round(img.Width)), Height: int(math.Round(img.Height)),
+			Description: b.Description, Pages: b.Pages()}, gerr
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -281,3 +287,27 @@ func Encode(source string) string { return code.Encode(source) }
 // Decode returns the source of text in any format PlantUML server URLs use.
 // It fails with an error matching ErrDecode.
 func Decode(text string) (string, error) { return code.Decode(text) }
+
+// graphvizError returns the error of the package for an error of the dot
+// engine (ErrGraphvizNotFound, ErrGraphvizTimeout or ErrGraphvizFailed,
+// wrapping the engine's error), nil for other errors.
+func graphvizError(err error) error {
+	var sentinel error
+	switch {
+	case errors.Is(err, dot.ErrNotFound):
+		sentinel = ErrGraphvizNotFound
+	case errors.Is(err, dot.ErrTimeout):
+		sentinel = ErrGraphvizTimeout
+	case errors.Is(err, dot.ErrFailed):
+		sentinel = ErrGraphvizFailed
+	default:
+		return nil
+	}
+	return &graphvizErr{sentinel: sentinel, err: err}
+}
+
+// graphvizErr is a dot error as the package reports it.
+type graphvizErr struct{ sentinel, err error }
+
+func (e *graphvizErr) Error() string   { return "plantuml: " + e.err.Error() }
+func (e *graphvizErr) Unwrap() []error { return []error{e.sentinel, e.err} }

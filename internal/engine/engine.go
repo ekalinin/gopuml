@@ -258,14 +258,21 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		if opt.DarkMode {
 			fo = fo.WithColorMapper(color.DarkModeMapper)
 		}
-		data, err := d.ExportDiagram(w, page, fo)
+		var data export.ImageData
+		var err error
+		if dc, ok := d.(ContextDrawableDiagram); ok {
+			data, err = dc.ExportDiagramContext(ctx, w, page, fo)
+		} else {
+			data, err = d.ExportDiagram(w, page, fo)
+		}
 		if errors.Is(err, export.ErrNotImplemented) {
 			return ImageData{}, notDrawable{err}
 		}
-		if err != nil {
+		if err != nil && data == nil {
 			return ImageData{}, err
 		}
-		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
+		// A graph layout error comes with the image that shows it.
+		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, err
 	}
 	// Diagrams whose drawing is not ported yet report it from Export.
 	if d, ok := b.Diagram.(interface{ Export(page int) error }); ok {
@@ -280,6 +287,14 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 // Diagram.exportDiagram.
 type DrawableDiagram interface {
 	ExportDiagram(w io.Writer, page int, opt export.FileFormatOption) (export.ImageData, error)
+}
+
+// ContextDrawableDiagram is a drawable diagram whose drawing can be
+// cancelled (the graph diagrams, which run Graphviz dot). It may return an
+// error together with the data of the image it wrote, which then shows the
+// error (dot missing, failing or timed out).
+type ContextDrawableDiagram interface {
+	ExportDiagramContext(ctx context.Context, w io.Writer, page int, opt export.FileFormatOption) (export.ImageData, error)
 }
 
 // notDrawable is the error of a diagram that cannot be drawn yet: it reads

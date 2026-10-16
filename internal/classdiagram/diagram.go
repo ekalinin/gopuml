@@ -82,7 +82,3 @@ func (d *ClassDiagram) CheckIfPackageHierarchyIsOk(entity *abel.Entity) command.
 	}
 	return command.Ok()
 }
-
-// Export draws a page; the graph layout and the drawing of class diagrams
-// are not ported yet.
-func (d *ClassDiagram) Export(int) error { return abel.ErrNotDrawable }
