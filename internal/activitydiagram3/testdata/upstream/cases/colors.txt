@@ -1,0 +1,121 @@
+=== arrow long bad color
+:a;
+-[#zzz]-> first
+second;
+=== repeat while bad color
+repeat
+:a;
+repeat while (c) -[#zzz]-> back;
+=== backward bad incoming color
+repeat
+:a;
+(-[#zzz]-> in) backward :b;
+repeat while (c)
+=== backward bad outgoing color
+repeat
+:a;
+backward :b; (-[#zzz]-> out)
+repeat while (c)
+=== elseif bad incoming color
+if (c) then
+:a;
+(-[#zzz]-> in) elseif (d) then
+:b;
+endif
+=== elseif bad when color
+if (c) then
+:a;
+elseif (d) then (-[#zzz]-> z)
+:b;
+endif
+=== elseif bad prefix color
+if (c) then
+:a;
+#zzz:elseif (d) is (v) then
+:b;
+endif
+=== elseif bad stereo color
+if (c) then
+:a;
+elseif (d) then <<#zzz>>
+:b;
+endif
+=== else bad color
+if (c) then
+:a;
+else (-[#zzz]-> no)
+:b;
+endif
+=== if4 bad prefix color
+#zzz:if (c) is (v) then
+:a;
+endif
+=== if2 bad stereo color
+if (c) then <<#zzz>>
+:a;
+endif
+=== endif bad stereo color
+if (c) then
+:a;
+endif <<#zzz>>
+=== while bad stereo color
+while (c) <<#zzz>>
+:a;
+endwhile
+=== swimlane2 bad color
+swimlane #zzz A
+:a;
+=== switch bad stereo color
+switch (x) <<#zzz>>
+case (a)
+endswitch
+=== endswitch bad stereo color
+switch (x)
+case (a)
+endswitch <<#zzz>>
+=== fork bad stereo color
+fork <<#zzz>>
+:a;
+end fork
+=== start bad stereo color
+start <<#zzz>>
+=== stop bad stereo color
+stop <<#zzz>>
+=== end bad stereo color
+end <<#zzz>>
+=== repeat bad stereo color
+repeat <<#zzz>>
+:a;
+repeat while (c)
+=== activity long bad stereo color
+:a
+b; <<#zzz>>
+=== backward long bad stereo
+repeat
+:a;
+backward :b
+c; <<#zzz>>
+repeat while (c)
+=== partition bad back2
+partition P #zzz {
+:a;
+}
+=== note long bad color
+:a;
+note left #zzz
+x
+end note
+=== colors stereo text line
+:a; <<###zzz>> <<##zzz>>
+=== colors stereo legacy stroke
+:a; <<##[dotted]>> <<##[bold]blue>> <<##[unknown]red>>
+=== colors stereo style
+:a; <<BackGroundColor:red;LineColor:blue;FontColor:green>>
+:b; <<BackGroundColor:red;>>
+:c; <<foo:bar;>>
+=== colors two backs
+:a; <<#red>> <<#blue>>
+=== colors back and line
+:a; <<#red;line:blue>>
+:b; <<#red;line.dashed>>
+:c; <<#red;text:blue>>

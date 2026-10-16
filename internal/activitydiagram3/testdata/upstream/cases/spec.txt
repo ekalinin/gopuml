@@ -1,0 +1,138 @@
+=== simple flow
+start
+:Read input;
+:Process;
+stop
+=== sdl shape
+:Receive order; <<input>>
+=== sdl shapes all
+:a; <<input>>
+:b; <<output>>
+:c; <<procedure>>
+:d; <<load>>
+:e; <<save>>
+:f; <<continuous>>
+:g; <<task>>
+:h; <<object>>
+:i; <<objectSignal>>
+:j; <<trigger>>
+:k; <<sendSignal>>
+:l; <<acceptEvent>>
+:m; <<timeEvent>>
+:n; <<send-signal>>
+:o; <<INPUT>>
+:p; <<unknown>> <<output>>
+=== terminals
+start
+:a;
+end
+=== kill and detach
+start
+:a;
+kill
+:b;
+detach
+=== if with else
+if (valid?) then (yes)
+  :Save;
+else (no)
+  :Reject;
+endif
+=== switch
+switch (kind)
+case (A)
+  :Handle A;
+case (B)
+  :Handle B;
+case (C)
+  :Handle C;
+endswitch
+=== while loop
+while (more?) is (yes)
+  :Read;
+endwhile (no)
+=== repeat with backward
+repeat
+  :Read;
+  backward :Retry;
+repeat while (again?) is (yes) not (no)
+=== break in loop
+while (more?)
+  :Read;
+  if (error?) then (yes)
+    break
+  endif
+endwhile
+=== fork
+fork
+  :A;
+fork again
+  :B;
+end fork
+=== end merge
+fork
+  :A;
+fork again
+  :B;
+end merge
+=== split
+split
+  :A;
+split again
+  :B;
+end split
+=== two swimlanes
+|Customer|
+:Order;
+|Shop|
+:Ship;
+=== colored swimlane
+|#pink|Customer|
+:Order;
+|#lightblue|Shop| The Shop
+:Ship;
+=== partition and group
+partition Part1 {
+  :A;
+}
+group Grp {
+  :B;
+}
+package Pkg {
+  :C;
+}
+rectangle Rect {
+  :D;
+}
+card Crd {
+  :E;
+}
+=== labeled arrow
+:A;
+-> next;
+:B;
+=== arrow colors and styles
+:A;
+-[#red,dashed]->
+:B;
+-[#blue;#green,bold]-> two colors;
+:C;
+=== connector
+:A;
+(A)
+detach
+(A)
+:B;
+=== notes
+:A;
+note left: a note
+:B;
+note right
+  multi
+  line
+end note
+floating note: floating
+=== rendering without graphviz
+start
+:A;
+stop

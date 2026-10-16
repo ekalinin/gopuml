@@ -1,0 +1,985 @@
+=== footbox hide
+hide footbox
+:a;
+=== footbox show
+show footbox
+:a;
+=== footbox bare
+footbox
+:a;
+=== common title and skinparam
+title My title
+skinparam ActivityBackgroundColor red
+skinparam activity {
+  BorderColor blue
+}
+caption cap
+legend
+leg
+end legend
+header head
+footer foot
+:a;
+=== common style block
+<style>
+activityDiagram {
+  BackgroundColor pink
+}
+</style>
+:a;
+=== swimlane forms
+|A|
+:a;
+|#red|B|
+:b;
+|C| Label C
+:c;
+|#blue|D| Label D
+:d;
+|A|
+:a2;
+|#green|B|
+:b2;
+=== swimlane keyword
+swimlane A
+:a;
+swimlane #red B
+:b;
+swimlane C as The C
+:c;
+swimlane #blue D as The D
+:d;
+=== swimlane label newline
+|A| first\nsecond
+:a;
+=== swimlane bad color
+|#zzz|A|
+:a;
+=== swimlane color as name
+|A|B|
+:a;
+=== swimlane after action
+:a;
+|A|
+:b;
+=== swimlane after start
+start
+|A|
+=== swimlane after spot
+(A)
+|A|
+=== swimlane after label
+label x
+|A|
+:a;
+=== swimlane after goto
+goto x
+|A|
+:a;
+=== swimlane after note
+note left: n
+|A|
+:a;
+=== swimlane after arrow
+-> x;
+|A|
+:a;
+=== swimlane after split
+split
+|A|
+:a;
+end split
+=== swimlane after fork
+fork
+|A|
+=== swimlane after if
+if (c) then
+|A|
+=== partition forms
+partition P {
+:a;
+}
+partition "Quoted name" {
+:b;
+}
+partition #red P2 {
+:c;
+}
+partition P3 #lightblue {
+:d;
+}
+partition P4 <<stereo>> {
+:e;
+}
+partition (Paren) {
+:f;
+}
+partition :Colon: {
+:g;
+}
+PARTITION Upper {
+:h;
+}
+=== partition without bracket
+partition P
+:a;
+end group
+=== partition empty name
+partition {
+:a;
+}
+=== partition hex color both
+partition #FF0000 P #00FF00 {
+:a;
+}
+=== partition bad color
+partition #zzz P {
+:a;
+}
+=== group forms
+group G {
+:a;
+}
+group G2
+:b;
+group end
+group G3
+:c;
+endgroup;
+=== package rectangle card
+package Pkg {
+:a;
+}
+rectangle Rect {
+:b;
+}
+card Crd {
+:c;
+}
+=== nested groups
+partition Outer {
+  group Inner {
+    :a;
+  }
+  :b;
+}
+:c;
+=== close group without group
+}
+=== end group without group
+end group
+=== group in if
+if (c) then (y)
+  partition P {
+    :a;
+  }
+endif
+=== group note empty
+partition P {
+note right: on group
+:a;
+}
+=== group note after content
+partition P {
+:a;
+note right: on a
+}
+=== group kill
+partition P {
+:a;
+kill
+}
+=== group with stereotype style
+<style>
+partition {
+  LineColor red
+  .special {
+    BackgroundColor yellow
+  }
+}
+</style>
+partition P <<special>> {
+:a;
+}
+=== arrow plain
+:a;
+->
+:b;
+=== arrow label
+:a;
+-> label;
+:b;
+=== arrow color
+:a;
+-[#red]->
+:b;
+=== arrow color label
+:a;
+-[#red]-> lbl;
+:b;
+=== arrow dashed
+:a;
+-[dashed]->
+:b;
+=== arrow color style
+:a;
+-[#red,dashed]->
+:b;
+=== arrow rainbow
+:a;
+-[#red;#blue]->
+:b;
+=== arrow rainbow styles
+:a;
+-[#red,dotted;#blue,bold;#green]-> three;
+:b;
+=== arrow hidden
+:a;
+-[hidden]->
+:b;
+=== arrow thickness
+:a;
+-[#red,thickness=3]->
+:b;
+=== arrow plain style
+:a;
+-[plain]->
+:b;
+=== arrow empty style
+:a;
+-[]->
+:b;
+=== arrow unknown color
+:a;
+-[#zzz]->
+:b;
+=== arrow named color
+:a;
+-[#Blue]->
+:b;
+=== arrow label newline
+:a;
+-> first\nsecond;
+:b;
+=== arrow label empty
+:a;
+-> ;
+:b;
+=== arrow long
+:a;
+-> first
+second
+third;
+:b;
+=== arrow long color
+:a;
+-[#red]-> first
+  second;
+:b;
+=== arrow long with comment
+:a;
+-> first
+' comment
+second;
+:b;
+=== arrow twice
+:a;
+-> first;
+-> second;
+:b;
+=== arrow color then label
+:a;
+-[#red]->
+-> lbl;
+:b;
+=== arrow label then color
+:a;
+-> lbl;
+-[#red]->
+:b;
+=== arrow at start
+-> first;
+:a;
+=== arrow after endwhile
+while (c)
+:a;
+endwhile
+-[#red]->
+:b;
+=== arrow after endif
+if (c) then
+:a;
+endif
+-[#green]-> out;
+:b;
+=== arrow in empty while
+while (c)
+-> yes label;
+:a;
+endwhile
+=== arrow in while with content
+while (c)
+:a;
+-> in loop;
+endwhile
+=== arrow in switch before case
+switch (x)
+-[#red]->
+=== arrow label in switch before case
+switch (x)
+-> lbl;
+case (a)
+:a;
+endswitch
+=== arrow at end
+:a;
+-> end;
+=== link color
+:a;
+link #red
+:b;
+=== link bad color
+:a;
+link #zzz
+:b;
+=== link named
+:a;
+link red
+:b;
+=== activity simple
+:a;
+=== activity stereo colors
+:a; <<#red>>
+:b; <<#red>> <<input>>
+:c; <<###blue>>
+:d; <<##red>>
+:e; <<##[dashed]red>>
+:f; <<##[bold]>>
+=== activity style stereo
+:a; <<BackgroundColor:red;LineColor:blue>>
+=== activity ignored stereo
+<<foo>> :a;
+=== activity url
+:a; [[http://example.com]]
+:b; [[http://example.com{tip} label]]
+:c; <<#red>> [[http://x.org]]
+=== activity url in label
+:a [[http://example.com]] b;
+=== activity semicolon
+:with ; semi;
+=== activity newline
+:first\nsecond;
+:left\lright\r;
+=== activity creole
+:**bold** and //italic//;
+:<color:red>red</color>;
+=== activity bad color
+:a; <<#zzz>>
+=== activity empty stereo color
+:a; <<##>>
+=== activity empty
+:;
+=== activity long
+:first
+second
+third;
+=== activity long stereo url
+:first
+second; <<input>> [[http://x]]
+=== activity long color
+#red:first
+second;
+=== activity long indent
+:first
+    second
+    third;
+=== activity long comment
+:first
+' comment
+second;
+=== activity long unterminated
+:first
+second
+=== activity long last semi only
+:first
+;
+=== activity list
+- item one
+* item two
+-item three
+- item <<#red>>
+- item [[http://x]]
+*
+=== activity in switch before case
+switch (x)
+:a;
+=== start in switch before case
+switch (x)
+start
+case (a)
+:a;
+endswitch
+=== if in switch before case
+switch (x)
+if (c) then
+:a;
+endif
+=== note in switch before case
+switch (x)
+note left: n
+case (a)
+:a;
+endswitch
+=== kill in switch before case
+switch (x)
+kill
+=== case without switch
+case (a)
+=== endswitch without switch
+endswitch
+=== switch empty case
+switch ()
+case ()
+:a;
+endswitch
+=== switch colors
+#red:switch (x)
+case (a)
+:a;
+endswitch
+=== switch stereo
+switch (x) <<#blue>>
+case (a)
+:a;
+case (b)
+endswitch <<#pink>>
+=== switch notes
+switch (x)
+case (a)
+note left: on case empty
+:a;
+note right: on a
+case (b)
+:b;
+endswitch
+note right: after
+=== switch kill
+switch (x)
+case (a)
+:a;
+kill
+case (b)
+:b;
+endswitch
+=== switch nested
+switch (x)
+case (a)
+  switch (y)
+  case (1)
+  :a1;
+  endswitch
+case (b)
+:b;
+endswitch
+=== else without if
+else
+=== endif without if
+endif
+=== elseif without if
+elseif (c) then
+=== elseif after else
+if (c) then
+:a;
+else
+:b;
+elseif (d) then
+:c;
+endif
+=== else twice
+if (c) then
+:a;
+else
+:b;
+else
+:c;
+endif
+=== if notes
+if (c) then
+note right: on if
+:a;
+note left: on a
+else
+:b;
+endif
+note right: after endif
+=== if kill after endif
+if (c) then
+:a;
+else
+:b;
+endif
+kill
+=== if kill branch
+if (c) then
+:a;
+kill
+else
+:b;
+endif
+=== if detach empty branch
+if (c) then
+detach
+endif
+=== if stop branches
+if (c) then
+stop
+else
+end
+endif
+=== if spot branch
+if (c) then
+(A)
+endif
+=== if multiline decorator
+if (a
+b) then (yes)
+:x;
+endif
+=== if multiline decorator then
+if (a)
+then (yes)
+:x;
+endif
+=== else multiline decorator
+if (a) then
+:x;
+else (no
+really)
+:y;
+endif
+=== elseif multiline decorator
+if (a) then
+:x;
+elseif (b
+c) then (z)
+:y;
+endif
+=== if legacy
+if (c) then when yes
+:a;
+else when no
+:b;
+endif
+=== if url
+[[http://x.org]] if (c) then (y)
+:a;
+endif
+=== if ignored stereo
+if <<foo>> (c) then (y)
+:a;
+endif
+=== if empty test
+if () then (y)
+:a;
+endif
+=== while forms
+while (c)
+:a;
+endwhile
+while (c) is (yes)
+:b;
+endwhile (no)
+while (c) equals (yes)
+:c;
+end while
+while (c) equal (yes);
+:d;
+while end (out);
+=== while stereo color
+while (c) <<#red>>
+:a;
+endwhile
+=== while color prefix
+#red:while (c)
+:a;
+endwhile
+=== endwhile without while
+endwhile
+=== while empty
+while (c)
+endwhile
+=== while special stop
+while (c)
+:a;
+endwhile
+stop
+=== while special end
+while (c)
+:a;
+endwhile
+end
+=== while break then stop
+while (c)
+:a;
+break
+endwhile
+stop
+=== while kill after
+while (c)
+:a;
+endwhile
+kill
+=== while kill empty
+while (c)
+kill
+=== while kill inside
+while (c)
+:a;
+kill
+endwhile
+=== while note empty
+while (c)
+note left: on while
+:a;
+endwhile
+=== while note content
+while (c)
+:a;
+note left: on a
+endwhile
+=== while backward
+while (c)
+:a;
+backward :b;
+endwhile
+=== while backward arrows
+while (c)
+:a;
+(-[#red]-> in) backward :b; <<input>> (out)
+endwhile (exit)
+=== while backward long
+while (c)
+:a;
+backward :first
+second; <<output>>
+endwhile
+=== repeat forms
+repeat
+:a;
+repeat while (c)
+repeat :start;
+:b;
+repeat while (c) is (yes)
+repeat :s; <<#red>>
+:c;
+repeat while (c) is (y) not (n)
+repeat
+:d;
+repeat while (c) not (n)
+repeat
+:e;
+repeat while
+=== repeat color prefix
+#red:repeat
+:a;
+repeat while (c)
+=== repeat stereo box
+repeat :s; <<input>>
+:a;
+repeat while (c)
+=== repeat while arrows
+repeat
+:a;
+repeat while (c) -> back;
+repeat
+:b;
+repeat while (c) -[#red]-> back;
+repeat
+:c;
+repeat while (c) is (y) -[#blue,dashed]->
+repeat
+:d;
+repeat while (c) not (n) ->
+=== repeat while stereo
+repeat
+:a;
+repeat while (c) <<#green>>
+=== repeat while semicolon
+repeat
+:a;
+repeatwhile (c);
+=== repeat while multiline
+repeat
+:a;
+repeat while (first
+second
+third)
+=== repeat while multiline is
+repeat
+:a;
+repeat while (first
+second) is (yes)
+=== repeat while multiline open
+repeat
+:a;
+repeat while (a) is
+(b)
+=== repeat without end
+repeat
+:a;
+=== repeat while without repeat
+repeat while (c)
+=== backward without loop
+backward :b;
+=== repeat backward
+repeat
+:a;
+backward :b;
+repeat while (c)
+=== repeat backward notes
+repeat
+:a;
+backward :b;
+note right: on backward
+repeat while (c)
+=== repeat note empty
+repeat
+note right: on empty
+:a;
+repeat while (c)
+=== repeat kill after
+repeat
+:a;
+repeat while (c)
+kill
+=== repeat kill inside
+repeat
+:a;
+kill
+repeat while (c)
+=== repeat backward arrows
+repeat
+:a;
+(in) backward :b; (-[#red]-> out)
+repeat while (c)
+=== repeat backward long
+repeat
+:a;
+backward :first
+second;
+repeat while (c)
+=== repeat swimlanes
+|A|
+repeat
+:a;
+|B|
+backward :b;
+|C|
+repeat while (c)
+=== repeat last of parent
+repeat
+:a;
+repeat while (c)
+:b;
+=== fork again without fork
+fork again
+=== end fork without fork
+end fork
+=== fork forms
+fork
+:a;
+fork again
+:b;
+fork end
+fork;
+:c;
+fork again;
+:d;
+end merge;
+=== fork label
+fork
+:a;
+fork again
+:b;
+end fork {or}
+=== fork stereo
+fork <<#red>>
+:a;
+end fork
+=== fork notes
+fork
+note right: empty fork
+:a;
+note left: on a
+end fork
+note right: after fork
+=== fork kill
+fork
+:a;
+kill
+fork again
+:b;
+end fork
+=== fork arrows
+fork
+:a;
+-> out a;
+fork again
+:b;
+-[#red]-> out b;
+end fork
+=== fork nested
+fork
+  fork
+  :a;
+  fork again
+  :b;
+  end fork
+fork again
+:c;
+end fork
+=== fork swimlanes
+|A|
+fork
+:a;
+fork again
+|B|
+:b;
+end fork
+|C|
+:c;
+=== fork merge uppercase
+fork
+:a;
+END MERGE
+=== split again without split
+split again
+=== end split without split
+end split
+=== split arrows
+split
+:a;
+-> x;
+split again
+:b;
+-> y;
+split end
+=== split swimlanes
+|A|
+split
+:a;
+split again
+|B|
+:b;
+end split
+=== split kill
+split
+:a;
+kill
+end split
+=== split notes
+split
+note right: empty split
+:a;
+end split
+=== spot forms
+(A)
+#red:(B)
+(C);
+=== spot two letters
+(AB)
+=== spot bad color
+#zzz:(A)
+=== spot kill
+(A)
+kill
+=== break forms
+break
+break;
+=== kill forms
+:a;
+kill;
+:b;
+detach;
+=== kill first
+kill
+=== kill broad pattern
+:a;
+killer whale
+=== detach broad pattern
+:a;
+note right: we detach
+=== label and goto
+label start1
+:a;
+goto start1
+label x.y
+goto x.y;
+=== label note
+label x
+note right: on label
+=== notes forms
+:a;
+note left: left
+note right: right
+note: default
+note #red: red
+note left #red: left red
+note <<st>>: stereo
+note $tag: tagged
+floating note left: floating
+floating note: floating default
+=== notes long
+:a;
+note left
+  line 1
+  line 2
+end note
+note right #yellow
+x
+endnote
+note left <<st>> #red
+y
+end note
+floating note right
+z
+end note
+=== notes long comment
+:a;
+note left
+  line 1
+' comment
+  line 2
+end note
+=== note first
+note left: first
+:a;
+=== note url
+:a;
+note left: [[http://x]]
+=== note uppercase
+:a;
+NOTE LEFT: upper
+FLOATING NOTE RIGHT: upper floating
+=== note bad color
+:a;
+note #zzz: bad
+=== empty diagram
+=== empty lines only
+
+=== comments only
+' comment
+/' block '/
+=== preprocessor variables
+!$x = "value"
+:$x;
+=== hasurl note
+:a;
+note right
+[[http://x]]
+end note
+=== deprecation pragma
+!pragma show_deprecation true
+:first\nsecond;
+-> a\nb;
+:c;

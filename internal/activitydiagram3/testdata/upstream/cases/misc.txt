@@ -1,0 +1,537 @@
+=== tabs (escaped)
+start
+\u0009:a;
+if\u0009(c)\u0009then\u0009(y)
+:b;
+else\u0009(n)
+endif
+while\u0009(c)\u0009is\u0009(y)
+endwhile
+stop
+=== nbsp (escaped)
+if\u00a0(c)\u00a0then\u00a0(y)
+:b;
+end\u00a0if
+fork\u00a0again
+=== nbsp keywords (escaped)
+start
+fork
+:a;
+fork\u00a0again
+:b;
+end\u00a0fork
+note\u00a0left:\u00a0n
+=== vertical tab (escaped)
+if\u000b(c)\u000bthen
+:a;
+endif
+=== vertical tab swimlane keyword (escaped)
+swimlane\u000bA
+:a;
+=== kelvin kill (escaped)
+:a;
+\u212aill
+=== long s (escaped)
+:a;
+\u017ftop
+=== uppercase keywords
+START
+:a;
+IF (c) THEN (y)
+:b;
+ELSE (n)
+ENDIF
+WHILE (c) IS (y)
+ENDWHILE (n)
+REPEAT
+REPEAT WHILE (c)
+FORK
+FORK AGAIN
+END FORK
+SPLIT
+SPLIT AGAIN
+END SPLIT
+SWITCH (x)
+CASE (a)
+ENDSWITCH
+STOP
+=== unicode labels
+:Привет мир;
+:日本語;
+:emoji 😀;
+|Лейн|
+:x;
+=== unicode spot (escaped)
+(\u00e9)
+(\u65e5)
+=== emoji spot
+(😀)
+=== label unicode
+label été
+goto été
+=== trailing spaces
+start   
+:a;   
+if (c) then (y)   
+endif   
+stop   
+=== leading spaces
+   start
+   :a;
+      if (c) then (y)
+   endif
+=== syntax error then many lines
+foo bar baz
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+:a;
+=== unclosed if decorator
+if (a
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+:x;
+=== unclosed if decorator short
+if (a
+:x;
+:y;
+=== decorator joins then error
+if (a
+b) then
+:x;
+foo bar
+endif
+=== repeat while swallows
+repeat
+:a;
+repeat while (x) junk
+:b;
+:c);
+:d;
+=== activity long swallows
+:a
+:b
+:c;
+stop
+=== crlf (escaped)
+start\u000d
+:a;\u000d
+stop
+=== semicolon variants
+start;
+stop;
+end;
+break;
+kill;
+=== comment lines
+start
+' comment
+:a;
+/' block
+comment '/
+stop
+=== hidden newline creole
+:a\nb\tc;
+=== backslash escapes
+:a\\b;
+:c\d;
+=== arrow then nothing
+:a;
+-> x;
+=== swimlane only
+|A|
+|B|
+=== swimlane same name
+|A|
+:a;
+|A| Again
+:b;
+|#red|A|
+:c;
+=== partition swimlane
+|A|
+partition P {
+:a;
+|B|
+:b;
+}
+=== if swimlanes
+|A|
+if (c) then
+|B|
+:b;
+else
+|C|
+:c;
+endif
+|A|
+:d;
+=== while swimlanes
+|A|
+while (c)
+|B|
+:b;
+endwhile
+:c;
+=== switch swimlanes
+|A|
+switch (x)
+case (a)
+|B|
+:b;
+case (b)
+|C|
+:c;
+endswitch
+=== fork swimlanes spot
+|A|
+fork
+(X)
+fork again
+|B|
+(Y)
+end fork
+=== deep nesting
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+if (a) then
+:x;
+endif
+endif
+endif
+endif
+endif
+endif
+endif
+endif
+endif
+endif
+=== kill in nested if
+if (a) then
+if (b) then
+:x;
+endif
+kill
+endif
+=== kill after nested endif
+if (a) then
+:a;
+else
+if (b) then
+:x;
+else
+:y;
+endif
+endif
+kill
+=== kill after empty endif
+if (a) then
+endif
+kill
+=== detach after while in if
+if (a) then
+while (c)
+:a;
+endwhile
+detach
+endif
+=== stop after while in if
+if (a) then
+while (c)
+:a;
+endwhile
+stop
+endif
+=== stop after while in fork
+fork
+while (c)
+:a;
+endwhile
+stop
+end fork
+=== note after while
+while (c)
+:a;
+endwhile
+note right: after while
+=== note after repeat
+repeat
+:a;
+repeat while (c)
+note right: after repeat
+=== note after fork
+fork
+:a;
+end fork
+note right: after fork
+=== note after split
+split
+:a;
+end split
+note right: after split
+=== note after group
+partition P {
+:a;
+}
+note right: after group
+=== note after switch
+switch (x)
+case (a)
+:a;
+endswitch
+note right: after switch
+=== note on break
+while (c)
+break
+note right: on break
+endwhile
+=== note on spot
+(A)
+note right: on spot
+=== note on goto
+goto x
+note right: on goto
+=== arrow color in fork
+fork
+-[#red]->
+:a;
+fork again
+-[#blue]-> b;
+:b;
+end fork
+=== arrow before fork again
+fork
+:a;
+-> before again;
+fork again
+:b;
+-> before end;
+end fork
+=== arrow before endif
+if (c) then
+:a;
+-> before else;
+else
+:b;
+-> before endif;
+endif
+=== arrow before elseif
+if (c) then
+:a;
+-> x;
+elseif (d) then
+:b;
+-> y;
+else
+-> z;
+endif
+=== arrow before endwhile
+while (c)
+:a;
+-> back;
+endwhile
+=== arrow before repeat while
+repeat
+:a;
+-> to test;
+repeat while (c)
+=== arrow before case
+switch (x)
+case (a)
+:a;
+-> x;
+case (b)
+:b;
+-> y;
+endswitch
+=== arrow before backward
+repeat
+:a;
+-> to back;
+backward :b;
+repeat while (c)
+=== arrow color after while in if
+if (a) then
+while (c)
+:a;
+endwhile
+-[#red]->
+:b;
+endif
+=== arrow color after endif in while
+while (c)
+if (a) then
+:a;
+endif
+-[#red]-> lbl;
+endwhile
+=== arrow color after group
+partition P {
+while (c)
+:a;
+endwhile
+}
+-[#red]->
+:b;
+=== arrow color in group after while
+partition P {
+while (c)
+:a;
+endwhile
+-[#red]->
+}
+=== multiple diagrams
+@startuml
+:a;
+@enduml
+@startuml
+:b;
+@enduml
+=== arrow without semicolon
+:a;
+-> x
+:b;
+:c;
+=== partition bracket next line
+partition P
+{
+:a;
+}
+=== else if spaced
+if (a) then
+:x;
+else if (b) then (y)
+:y;
+endif
+=== end keyword prefixes
+start
+:a;
+end fork
+=== endwhile inside if
+if (a) then
+endwhile
+endif
+=== endif inside while
+while (a)
+endif
+endwhile
+=== end fork inside if
+fork
+if (a) then
+end fork
+endif
