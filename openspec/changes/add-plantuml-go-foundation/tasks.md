@@ -114,8 +114,8 @@
 ## 11. Activity diagrams
 
 - [x] 11.1 Port the activity v3 command set (actions, SDL shapes, terminals, `if`/`elseif`/`else`, `switch`, `repeat`, `while`, `break`, `fork`, `split`, swimlanes, `partition`/`group`, arrows, connectors, notes). Verify with parser unit tests built from upstream patterns
-- [ ] 11.2 Port the activity instruction model and `ftile` layout (including swimlanes and the `ftile` factories with decorations). Verify with layout tests on node positions against reference SVG coordinates
-- [ ] 11.3 Port the activity drawing (shapes, diamonds, bars, arrows, labels, lanes). Verify with the activity conformance cases
+- [x] 11.2 Port the activity instruction model and `ftile` layout (including swimlanes and the `ftile` factories with decorations). Verify with layout tests on node positions against reference SVG coordinates
+- [x] 11.3 Port the activity drawing (shapes, diamonds, bars, arrows, labels, lanes). Verify with the activity conformance cases
 - [ ] 11.4 Run the activity conformance slice. Verify that all activity cases pass or are listed in `known-differences.yaml`
 
 ## 12. Graph layout and class diagrams
