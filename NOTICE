@@ -1,0 +1,42 @@
+plantuml-in-go
+==============
+
+This project is a Go reimplementation of PlantUML (https://plantuml.com,
+https://github.com/plantuml/plantuml).
+
+Upstream origin
+---------------
+
+Source files that carry a "Provenance: plantuml-mit 1.2026.8 <path>" header
+are translations of the MIT-licensed variant of PlantUML v1.2026.8, as
+published on Maven Central:
+
+    net.sourceforge.plantuml:plantuml-mit:1.2026.8:sources
+
+    (C) Copyright 2009-2024, Arnaud Roques
+    Licensed under the MIT License.
+
+Files with a "Provenance: fdlibm 5.3 <file>" header are translations of
+fdlibm, the C math library behind Java's StrictMath:
+
+    Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+    Developed at SunSoft, a Sun Microsystems, Inc. business.
+    Permission to use, copy, modify, and distribute this software is freely
+    granted, provided that this notice is preserved.
+
+Files with a "Provenance: original" header are original work of this project.
+
+Excluded upstream components
+----------------------------
+
+The following PlantUML components are not part of the MIT variant and are not
+included in this project: ditaa, jcckit, sudoku, zxing (QR codes), and the
+webp decoder.
+
+The "sunlust" theme (GPL-3.0-or-later) is not bundled.
+
+Bundled assets
+--------------
+
+None yet. Attributions for bundled themes, fonts and other assets are added
+here when the assets are bundled.
