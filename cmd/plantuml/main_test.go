@@ -154,3 +154,20 @@ func TestExtractSourceFromOwnPNG(t *testing.T) {
 		t.Errorf("exit %d, stdout %q, want %q, stderr %q", code, stdout, want, stderr)
 	}
 }
+
+func TestMissingDotKeepsErrorImage(t *testing.T) {
+	// Spec scenario "Class diagram without Graphviz", on the command line:
+	// the error image stating that dot was not found is written, and the
+	// exit status reports the error.
+	t.Setenv("GRAPHVIZ_DOT", "/missing/dot")
+	dir := t.TempDir()
+	write(t, dir, map[string]string{"c.puml": "@startuml\nclass A\nclass B\nA --> B\n@enduml\n"})
+	code, _, stderr := run(t, dir, "", "--svg", "c.puml")
+	if code != cli.ExitSomeErrors || !strings.Contains(stderr, "Graphviz") {
+		t.Errorf("exit %d, stderr %q", code, stderr)
+	}
+	data, err := os.ReadFile(filepath.Join(dir, "c.svg"))
+	if err != nil || !bytes.Contains(data, []byte("Cannot find Graphviz")) {
+		t.Errorf("error image missing: %v", err)
+	}
+}

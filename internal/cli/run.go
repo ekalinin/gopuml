@@ -536,7 +536,9 @@ func (r *run) generatedImages(file string, blocks []Block, stderr io.Writer) []g
 			status, err := r.writeImage(f, b, page)
 			if err != nil {
 				fmt.Fprintf(stderr, "plantuml: %s: %v\n", file, err)
-				status = statusCrash
+				if !isErrorStatus(status) {
+					status = statusCrash
+				}
 			}
 			result = append(result, generatedImage{file: f, status: status, block: b})
 		}
@@ -578,8 +580,10 @@ func (r *run) writeImage(file string, b Block, page int) (int, error) {
 	if cerr := f.Close(); err == nil {
 		err = cerr
 	}
-	if err != nil {
-		// Do not leave an empty or partial image behind.
+	// An error with an error status comes with the image that shows it (for
+	// example Graphviz missing or failing): keep it. Otherwise do not leave
+	// an empty or partial image behind.
+	if err != nil && !isErrorStatus(status) {
 		os.Remove(file)
 	}
 	return status, err

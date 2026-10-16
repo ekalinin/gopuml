@@ -271,8 +271,14 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		if err != nil && data == nil {
 			return ImageData{}, err
 		}
-		// A graph layout error comes with the image that shows it.
-		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, err
+		// A graph layout error comes with the image that shows it; the image
+		// then has an error status (upstream's FileImageData.CRASH), so the
+		// command line keeps the file and exits with 200.
+		status := data.Status()
+		if err != nil && (status == 0 || status == 200) {
+			status = 503
+		}
+		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: status}, err
 	}
 	// Diagrams whose drawing is not ported yet report it from Export.
 	if d, ok := b.Diagram.(interface{ Export(page int) error }); ok {
