@@ -65,7 +65,7 @@ type cliBlock struct{ *engine.Block }
 func (b cliBlock) Error() *cli.BlockError {
 	switch d := b.Diagram.(type) {
 	case *core.ErrorDiagram:
-		return &cli.BlockError{Line: d.Error.Position(), Messages: []string{d.Error.Message()}}
+		return &cli.BlockError{Line: d.Position(), Messages: []string{d.Error.Message()}}
 	case *core.UnsupportedDiagram:
 		return &cli.BlockError{Unsupported: true}
 	}

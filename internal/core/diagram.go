@@ -79,6 +79,17 @@ type ErrorDiagram struct {
 // Description implements Diagram.
 func (*ErrorDiagram) Description() string { return "(Error)" }
 
+// Position is PSystemError.getLineLocation: the 0-based position of the
+// last line of the trace, which upstream reports as the error line. It can
+// differ from the line of the error itself, for example for multi-line
+// commands.
+func (d *ErrorDiagram) Position() int {
+	if n := len(d.Trace); n > 0 && d.Trace[n-1].Location != nil {
+		return d.Trace[n-1].Location.Position
+	}
+	return d.Error.Position()
+}
+
 // Score ranks errors from different parsers: parsers that consumed more
 // lines before failing are preferred.
 func (d *ErrorDiagram) Score() int { return len(d.Trace)*10 + d.Error.Score }
@@ -138,7 +149,7 @@ func CheckFamily(block *Block) Diagram {
 	}
 	return &ErrorDiagram{
 		Source: block.Lines,
-		Trace:  block.Lines,
+		Trace:  []text.StringLocated{first},
 		Error:  ErrorUml{Type: ExecutionError, Error: name + " diagrams are not supported yet", Line: &first},
 
 		NotSupportedYet: true,

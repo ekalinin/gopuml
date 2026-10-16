@@ -179,9 +179,9 @@ func Inspect(ctx context.Context, source string, opts *Options) ([]*Block, error
 		switch d := eb.Diagram.(type) {
 		case *core.ErrorDiagram:
 			if d.NotSupportedYet {
-				b.Err = &UnsupportedError{Line: d.Error.Position() + 1, Message: d.Error.Message()}
+				b.Err = &UnsupportedError{Line: d.Position() + 1, Message: d.Error.Message()}
 			} else {
-				b.Err = &SyntaxError{Line: d.Error.Position() + 1, Message: d.Error.Message()}
+				b.Err = &SyntaxError{Line: d.Position() + 1, Message: d.Error.Message()}
 			}
 		case *core.UnsupportedDiagram:
 			line := 1

@@ -76,7 +76,7 @@ func (g *generator) renderCaseGo(meta *conformance.Meta, j diagramJob, out strin
 			bm.Type = d.DiagramType().String()
 		case *core.ErrorDiagram:
 			bm.Type = "ERROR"
-			bm.Error = &conformance.ErrorMeta{Line: d.Error.Position() + 1, Messages: []string{d.Error.Message()}}
+			bm.Error = &conformance.ErrorMeta{Line: d.Position() + 1, Messages: []string{d.Error.Message()}}
 		}
 		for _, f := range j.c.Formats {
 			if f == "preproc" {

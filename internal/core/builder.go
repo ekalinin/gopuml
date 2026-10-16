@@ -69,7 +69,7 @@ func CreateDiagram(ctx *RenderContext, lines, raw []text.StringLocated, factorie
 	src := NewUmlSource(lines, raw, slices.Contains(types, Sequence))
 	if explain := src.ExplainTypes(); explain != nil {
 		first := lines[0]
-		return &ErrorDiagram{Source: lines, Trace: lines, Error: ErrorUml{Type: ExecutionError, Error: "explain diagrams are not supported yet", Line: &first}, NotSupportedYet: true}
+		return &ErrorDiagram{Source: lines, Trace: []text.StringLocated{first}, Error: ErrorUml{Type: ExecutionError, Error: "explain diagrams are not supported yet", Line: &first}, NotSupportedYet: true}
 	}
 	if d := checkBasicError(src.DiagramTypes(), src); d != nil {
 		return d
