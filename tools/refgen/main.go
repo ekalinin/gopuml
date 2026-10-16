@@ -53,8 +53,8 @@ const (
 	// workRoot holds one scratch directory per run, so that concurrent
 	// runs do not share files.
 	workRoot = ".cache/reference-work"
-	platform     = "linux/amd64"
-	jar          = "/opt/plantuml.jar"
+	platform = "linux/amd64"
+	jar      = "/opt/plantuml.jar"
 	// cliClasspath runs the CLI through RunCli, which disables the
 	// time-based decorations of error images.
 	cliClasspath = jar + ":/opt/tools"
