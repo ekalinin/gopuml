@@ -18,6 +18,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ekalinin/plantuml-in-go/internal/activitydiagram3"
+	"github.com/ekalinin/plantuml-in-go/internal/classdiagram"
 	"github.com/ekalinin/plantuml-in-go/internal/code"
 	"github.com/ekalinin/plantuml-in-go/internal/core"
 	"github.com/ekalinin/plantuml-in-go/internal/errdiagram"
@@ -32,7 +34,8 @@ import (
 
 // Factories are the parsers of the supported diagram types, in upstream's
 // order (PSystemBuilder). They are added with each diagram type.
-var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory}
+var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
+	activitydiagram3.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
@@ -204,6 +207,22 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		}
 		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
 	}
+	// Diagrams that draw themselves; an output format they do not support
+	// yet is reported as not drawable.
+	if d, ok := b.Diagram.(DrawableDiagram); ok {
+		fo := export.NewFileFormatOptionMetadata(opt.Format, !opt.NoMetadata)
+		if opt.DarkMode {
+			fo = fo.WithColorMapper(color.DarkModeMapper)
+		}
+		data, err := d.ExportDiagram(w, page, fo)
+		if errors.Is(err, export.ErrNotImplemented) {
+			return ImageData{}, notDrawable{err}
+		}
+		if err != nil {
+			return ImageData{}, err
+		}
+		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
+	}
 	// Diagrams whose drawing is not ported yet report it from Export.
 	if d, ok := b.Diagram.(interface{ Export(page int) error }); ok {
 		if err := d.Export(page); err != nil {
@@ -211,6 +230,12 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		}
 	}
 	return ImageData{}, ErrNotDrawable
+}
+
+// DrawableDiagram is a diagram that draws its pages, as upstream's
+// Diagram.exportDiagram.
+type DrawableDiagram interface {
+	ExportDiagram(w io.Writer, page int, opt export.FileFormatOption) (export.ImageData, error)
 }
 
 // notDrawable is the error of a diagram that cannot be drawn yet: it reads
