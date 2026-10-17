@@ -1,0 +1,6 @@
+id: upstream-compatibility/stale-committed-reference-fails-the-run
+scenarios:
+  - "upstream-compatibility: Stale committed reference fails the run"
+package: internal/conformance
+test: TestCIWorkflow
+why: Behavior of the CI workflow. The test checks that the committed references are in the reference cache key and that the job fails when the Java render changes them.

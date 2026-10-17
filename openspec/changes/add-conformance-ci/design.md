@@ -95,6 +95,22 @@ Alternative: a `supported.yaml` that lists the supported groups. Wrong output in
 
 The job uploads `conformance-report.md` as a run artifact and appends it to the run summary (`$GITHUB_STEP_SUMMARY`), in steps that run whether the comparison passed or failed. The failing cases are also in the test log, one line per case with its ID, from the existing `t.Errorf`.
 
+### D8. Cover the CI scenarios with cases
+
+`TestScenarioCoverage` requires every scenario of the specs, including the delta specs of active changes, to be referenced by a case under `testdata/conformance/cases/`. Each scenario of this change gets a `.go.yaml` case in `upstream-compatibility/`:
+
+- "Regression fails the run" → `TestConformance`, which fails on a failing case of a required group
+- "Drawing an unsupported type fails the run" → `TestReportsUnsupported`, whose "wrong output" case is not reported as unsupported, so it is compared and fails
+- "Known differences do not fail the run" → `TestCompareDiagramPreprocAndKnown`
+- "Stale committed reference fails the run" and "Report published on failure" → a new `TestCIWorkflow` in `internal/conformance`
+
+`TestCIWorkflow` reads `.github/workflows/ci.yml` and checks the contract of the `conformance` job: the triggers, the `make conformance REQUIRE=all GO_IN_IMAGE=1` step, the reference cache key on the committed references, the reference check after the Java render, and the report steps that also run after a failure. Mutated copies of the workflow must fail the check. The test checks the workflow file, not GitHub's behavior; tasks 3.3 and 3.4 check the behavior in CI.
+
+Alternatives:
+
+- Point the two workflow scenarios at existing tests. Those tests do not check the behavior, so the link would be formal only.
+- Remove the two scenarios from the spec. That narrows the specified behavior.
+
 ## Risks / Trade-offs
 
 - **[Unknown duration of a cold run]** The Java render with CLI and HTTP cases has never run on linux/amd64 without emulation. → Measure it in the first run. The job gets a timeout above the 30-minute `go test` timeout. Cold runs happen only when a key in D3 changes.

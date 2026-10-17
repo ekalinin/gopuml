@@ -1,0 +1,6 @@
+id: upstream-compatibility/unsupported-drawing-fails-the-run
+scenarios:
+  - "upstream-compatibility: Drawing an unsupported type fails the run"
+package: internal/conformance
+test: TestReportsUnsupported
+why: Behavior of the conformance harness itself. A drawing where the reference type is not supported yet is not reported as unsupported, so the case is compared and fails.
