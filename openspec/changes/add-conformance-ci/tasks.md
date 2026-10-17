@@ -18,11 +18,11 @@
 
 - [x] 3.1 Push the branch and open a pull request. Verify that the cold run of the `conformance` job passes, that both caches of D3 are saved, that the report artifact exists and the run summary shows the report, and note the duration of the cold run
 - [x] 3.2 Re-run the job. Verify that the image is built from the layer cache, that the image ID equals the one of 3.1, that the reference cache hits and the Java render is skipped, and note the duration of the warm run. If the image ID differs, key the reference cache on the hash of `tools/reference/Dockerfile` instead (design risk "Unstable image ID") and verify again
-- [ ] 3.3 Push a temporary commit that changes the Go implementation so that a sequence case no longer matches (for example, a changed message label in the SVG). Verify that the job fails, that the log names the case, and that the report artifact and the run summary are still published. Then drop the commit
-- [ ] 3.4 Push a temporary commit that edits one file under `testdata/conformance/reference/`. Verify that the reference cache misses, that the check of 2.3 fails and names the file, and that the comparison does not run. Then drop the commit
-- [ ] 3.5 Set the job timeout from the durations of 3.1 and 3.2, keeping it above the 30-minute `go test` timeout. Verify with actionlint
+- [x] 3.3 Push a temporary commit that changes the Go implementation so that a sequence case no longer matches (for example, a changed message label in the SVG). Verify that the job fails, that the log names the case, and that the report artifact and the run summary are still published. Then drop the commit
+- [x] 3.4 Push a temporary commit that edits one file under `testdata/conformance/reference/`. Verify that the reference cache misses, that the check of 2.3 fails and names the file, and that the comparison does not run. Then drop the commit
+- [x] 3.5 Set the job timeout from the durations of 3.1 and 3.2, keeping it above the 30-minute `go test` timeout. Verify with actionlint
 
 ## 4. Documentation and validation
 
 - [x] 4.1 Update the "Conformance suite" section of `README.md`: CI runs the suite on every pull request and every push to `main` with every group required; on a linux/amd64 host, `make reference` followed by `make conformance REQUIRE=all GO_IN_IMAGE=1` reproduces the CI run; on arm64 hosts, `make conformance` runs the Go side natively and its results are indicative. Verify that every command in the section exists in the `Makefile` with `make -n`
-- [ ] 4.2 Run `openspec validate add-conformance-ci --strict`. Verify that the change is reported as valid
+- [x] 4.2 Run `openspec validate add-conformance-ci --strict`. Verify that the change is reported as valid

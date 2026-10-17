@@ -41,8 +41,9 @@ jobs:
 
   conformance:
     runs-on: ubuntu-latest
-    # Above the 30-minute timeout of the conformance test.
-    timeout-minutes: 60
+    # Above the 30-minute timeout of the conformance test. Runs take about
+    # 4 minutes with a cold cache and 1.5 minutes with a warm one.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
 
