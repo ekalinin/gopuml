@@ -12,6 +12,7 @@
 - [x] 2.4 Run `make conformance REQUIRE=all GO_IN_IMAGE=1` (D5, D6), and set a job timeout above the 30-minute `go test` timeout. Verify with actionlint
 - [x] 2.5 Upload `conformance-report.md` as a run artifact and append it to `$GITHUB_STEP_SUMMARY`, in steps that run whether the comparison passed or failed (D7). Verify with actionlint that both steps use `if: always()` or an equivalent condition
 - [x] 2.6 Add the five `.go.yaml` cases of D8 under `testdata/conformance/cases/upstream-compatibility/`, and `TestCIWorkflow` in `internal/conformance`, which checks the contract of the `conformance` job in `.github/workflows/ci.yml`. Verify that `make test` passes, and that `TestCIWorkflow` fails for copies of the workflow without `REQUIRE=all`, without the committed references in the reference cache key, without the reference check, or without the `!cancelled()` condition of the report steps
+- [ ] 2.7 Disable keep-alive in the HTTP client of the refgen HTTP cases (design risk "Flaky HTTP render"). Verify that `go vet ./tools/refgen` passes, and that the next Java render in CI passes the committed-reference check of 2.3, so the recorded references do not change
 
 ## 3. Verification in CI
 
