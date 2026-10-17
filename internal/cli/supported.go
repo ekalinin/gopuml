@@ -6,7 +6,7 @@ package cli
 import (
 	"fmt"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // supported are the upstream flags this implementation provides; the cli

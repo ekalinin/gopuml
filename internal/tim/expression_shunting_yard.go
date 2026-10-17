@@ -7,7 +7,7 @@ package tim
 import (
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // shuntingYard turns an infix token list into reverse Polish notation

@@ -7,8 +7,8 @@ package klimt
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // UEllipse is an ellipse inscribed in a width x height box, or an arc of it

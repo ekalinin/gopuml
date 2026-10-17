@@ -5,13 +5,13 @@
 package classdiagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/decoration"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // AbstractClassOrObjectDiagram is upstream's base of class and object

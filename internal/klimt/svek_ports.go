@@ -10,7 +10,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // PortGeometry is the vertical position of a port (a member of a class box

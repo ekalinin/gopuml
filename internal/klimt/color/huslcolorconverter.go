@@ -9,7 +9,7 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // The HSLuv and HPLuv conversions, taken by upstream from

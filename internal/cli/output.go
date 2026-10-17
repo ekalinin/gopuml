@@ -15,7 +15,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // Output file suffixes of the formats this implementation writes.

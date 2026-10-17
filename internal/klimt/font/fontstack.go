@@ -7,7 +7,7 @@ package font
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // The family names of Java's logical fonts used by upstream.

@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // maxCallDepth bounds the nesting of function and procedure calls. Upstream

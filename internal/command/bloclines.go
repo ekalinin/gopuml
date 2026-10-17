@@ -8,7 +8,7 @@ package command
 import (
 	"slices"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // BlocLines is an immutable list of source lines given to a command.

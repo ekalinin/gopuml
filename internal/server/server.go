@@ -18,9 +18,9 @@ import (
 	"strings"
 	"time"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
-	"github.com/ekalinin/plantuml-in-go/internal/code"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml"
+	"github.com/ekalinin/gopuml/internal/code"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // Defaults of Config and of the listen address.
@@ -40,18 +40,18 @@ const (
 	UpstreamVersion = "1.2026.8"
 )
 
-// RenderFunc renders a source; it has the signature of plantuml.Render.
-type RenderFunc func(ctx context.Context, source string, opts *plantuml.Options) (*plantuml.Result, error)
+// RenderFunc renders a source; it has the signature of gopuml.Render.
+type RenderFunc func(ctx context.Context, source string, opts *gopuml.Options) (*gopuml.Result, error)
 
 // InspectFunc lists the blocks of a source; it has the signature of
-// plantuml.Inspect.
-type InspectFunc func(ctx context.Context, source string, opts *plantuml.Options) ([]*plantuml.Block, error)
+// gopuml.Inspect.
+type InspectFunc func(ctx context.Context, source string, opts *gopuml.Options) ([]*gopuml.Block, error)
 
 // Config configures a Handler. The zero value is valid.
 type Config struct {
-	// Render renders diagrams; nil means plantuml.Render.
+	// Render renders diagrams; nil means gopuml.Render.
 	Render RenderFunc
-	// Inspect checks diagrams for GET /check; nil means plantuml.Inspect.
+	// Inspect checks diagrams for GET /check; nil means gopuml.Inspect.
 	Inspect InspectFunc
 	// SecurityProfile is passed to every render. Empty means the
 	// PLANTUML_SECURITY_PROFILE environment variable, or INTERNET when it is
@@ -96,10 +96,10 @@ func New(cfg Config) (*Handler, error) {
 		log:      cfg.Logger,
 	}
 	if h.render == nil {
-		h.render = plantuml.Render
+		h.render = gopuml.Render
 	}
 	if h.inspect == nil {
-		h.inspect = plantuml.Inspect
+		h.inspect = gopuml.Inspect
 	}
 	if h.profile == "" {
 		h.profile = DefaultSecurityProfile
@@ -130,11 +130,11 @@ func New(cfg Config) (*Handler, error) {
 func (h *Handler) SecurityProfile() string { return h.profile }
 
 // mimeTypes are upstream's FileFormat.getMimeType values.
-var mimeTypes = map[plantuml.Format]string{
-	plantuml.PNG:  "image/png",
-	plantuml.SVG:  "image/svg+xml",
-	plantuml.TXT:  "text/plain",
-	plantuml.UTXT: "text/plain;charset=UTF-8",
+var mimeTypes = map[gopuml.Format]string{
+	gopuml.PNG:  "image/png",
+	gopuml.SVG:  "image/svg+xml",
+	gopuml.TXT:  "text/plain",
+	gopuml.UTXT: "text/plain;charset=UTF-8",
 }
 
 // Header values shared by several routes.
@@ -191,29 +191,29 @@ var (
 // text, with and without the /plantuml prefix.
 type getRoute struct {
 	prefix string
-	format plantuml.Format
+	format gopuml.Format
 	dark   bool
 	style  style
 }
 
 var getRoutes = []getRoute{
 	// Upstream's built-in server.
-	{"/png/", plantuml.PNG, false, builtinGET},
-	{"/svg/", plantuml.SVG, false, builtinGET},
-	{"/txt/", plantuml.TXT, false, builtinGET},
-	{"/utxt/", plantuml.UTXT, false, builtinGET},
+	{"/png/", gopuml.PNG, false, builtinGET},
+	{"/svg/", gopuml.SVG, false, builtinGET},
+	{"/txt/", gopuml.TXT, false, builtinGET},
+	{"/utxt/", gopuml.UTXT, false, builtinGET},
 	// plantuml-server.
-	{"/img/", plantuml.PNG, false, serverGET},
-	{"/dpng/", plantuml.PNG, true, serverGET},
-	{"/dimg/", plantuml.PNG, true, serverGET},
-	{"/dsvg/", plantuml.SVG, true, serverGET},
+	{"/img/", gopuml.PNG, false, serverGET},
+	{"/dpng/", gopuml.PNG, true, serverGET},
+	{"/dimg/", gopuml.PNG, true, serverGET},
+	{"/dsvg/", gopuml.SVG, true, serverGET},
 }
 
 // Raw-body POST routes of plantuml-server.
-var postRoutes = map[string]plantuml.Format{
-	"/png": plantuml.PNG,
-	"/svg": plantuml.SVG,
-	"/txt": plantuml.TXT,
+var postRoutes = map[string]gopuml.Format{
+	"/png": gopuml.PNG,
+	"/svg": gopuml.SVG,
+	"/txt": gopuml.TXT,
 }
 
 // ServeHTTP dispatches a request like PicoWebServer.run, extended with the
@@ -301,16 +301,16 @@ func (h *Handler) serveEncoded(w http.ResponseWriter, r *http.Request, p string,
 		writeText(w, http.StatusRequestEntityTooLarge, textPlain, "Decoded source too large")
 		return
 	}
-	h.serveRender(w, r, rt.style, source, plantuml.Options{Format: rt.format, DarkMode: rt.dark})
+	h.serveRender(w, r, rt.style, source, gopuml.Options{Format: rt.format, DarkMode: rt.dark})
 }
 
 // serveRaw renders the request body of a raw POST route.
-func (h *Handler) serveRaw(w http.ResponseWriter, r *http.Request, format plantuml.Format) {
+func (h *Handler) serveRaw(w http.ResponseWriter, r *http.Request, format gopuml.Format) {
 	body, ok := h.readBody(w, r)
 	if !ok {
 		return
 	}
-	h.serveRender(w, r, serverPOST, wrapSource(string(body)), plantuml.Options{Format: format})
+	h.serveRender(w, r, serverPOST, wrapSource(string(body)), gopuml.Options{Format: format})
 }
 
 // serveRenderRequest is PicoWebServer.handleRenderRequest: a JSON body
@@ -410,16 +410,16 @@ func call[T any](ctx context.Context, f func(context.Context) (T, error)) (T, er
 }
 
 // serveRender renders source and answers like PicoWebServer.sendDiagram.
-func (h *Handler) serveRender(w http.ResponseWriter, r *http.Request, st style, source string, opts plantuml.Options) {
+func (h *Handler) serveRender(w http.ResponseWriter, r *http.Request, st style, source string, opts gopuml.Options) {
 	opts.SecurityProfile = h.profile
 	ctx := r.Context()
-	res, err := call(ctx, func(ctx context.Context) (*plantuml.Result, error) {
+	res, err := call(ctx, func(ctx context.Context) (*gopuml.Result, error) {
 		return h.render(ctx, source, &opts)
 	})
 	if err == nil && res == nil {
 		err = errors.New("server: renderer returned no result")
 	}
-	var syntax *plantuml.SyntaxError
+	var syntax *gopuml.SyntaxError
 	switch {
 	case err == nil:
 		h.writeDiagram(w, st, http.StatusOK, opts.Format, res, nil)
@@ -428,13 +428,13 @@ func (h *Handler) serveRender(w http.ResponseWriter, r *http.Request, st style, 
 		writeText(w, http.StatusServiceUnavailable, textPlain, "Rendering time limit exceeded")
 	case ctx.Err() != nil:
 		// The client went away; nobody reads the answer.
-	case errors.As(err, &syntax), errors.Is(err, plantuml.ErrUnsupportedDiagram), errors.Is(err, plantuml.ErrUnsupportedFormat):
+	case errors.As(err, &syntax), errors.Is(err, gopuml.ErrUnsupportedDiagram), errors.Is(err, gopuml.ErrUnsupportedFormat):
 		h.writeDiagram(w, st, st.errorStatus, opts.Format, res, err)
-	case errors.Is(err, plantuml.ErrNoDiagram) && st.redirectNoDiagram:
+	case errors.Is(err, gopuml.ErrNoDiagram) && st.redirectNoDiagram:
 		// handleGET returns false without a block, and run() redirects.
 		w.Header().Set("Location", defaultLocation)
 		w.WriteHeader(http.StatusFound)
-	case errors.Is(err, plantuml.ErrNoDiagram):
+	case errors.Is(err, gopuml.ErrNoDiagram):
 		writeText(w, http.StatusBadRequest, textPlain, noValidStart)
 	default:
 		// A rendering failure, such as a dot crash. Upstream draws a crash
@@ -450,7 +450,7 @@ func (h *Handler) serveRender(w http.ResponseWriter, r *http.Request, st style, 
 
 // writeDiagram is PicoWebServer.sendDiagram. err is the diagram error of
 // an error image, or nil.
-func (h *Handler) writeDiagram(w http.ResponseWriter, st style, status int, format plantuml.Format, res *plantuml.Result, err error) {
+func (h *Handler) writeDiagram(w http.ResponseWriter, st style, status int, format gopuml.Format, res *gopuml.Result, err error) {
 	hdr := w.Header()
 	hdr.Set("Cache-Control", st.cache)
 	if st.picoweb {
@@ -468,8 +468,8 @@ func (h *Handler) writeDiagram(w http.ResponseWriter, st style, status int, form
 	}
 	hdr.Set("Content-Length", strconv.Itoa(len(data)))
 	setRaw(hdr, "X-PlantUML-Diagram-Description", description)
-	var syntax *plantuml.SyntaxError
-	var unsupported *plantuml.UnsupportedError
+	var syntax *gopuml.SyntaxError
+	var unsupported *gopuml.UnsupportedError
 	switch {
 	case errors.As(err, &syntax):
 		// The line of upstream's built-in server: 1 + the 0-based position.
@@ -488,7 +488,7 @@ func (h *Handler) writeDiagram(w http.ResponseWriter, st style, status int, form
 // errorMessage strips the package prefix from a diagram error.
 func errorMessage(err error) string {
 	msg := err.Error()
-	for _, e := range []error{plantuml.ErrUnsupportedDiagram, plantuml.ErrUnsupportedFormat} {
+	for _, e := range []error{gopuml.ErrUnsupportedDiagram, gopuml.ErrUnsupportedFormat} {
 		if errors.Is(err, e) {
 			msg = strings.TrimPrefix(msg, e.Error()+": ")
 		}

@@ -12,8 +12,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // UpstreamVersion appears in crash messages, as upstream's version does.

@@ -5,10 +5,10 @@
 package abel
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/decoration"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // Link is a relation between two entities, with its type, label, end

@@ -7,12 +7,12 @@ package svek
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/decoration/symbol"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/decoration/symbol"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // EntityImageDescription is the image of a description element (component,

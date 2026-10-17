@@ -8,7 +8,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterIf is "!if expression".
 type EaterIf struct {

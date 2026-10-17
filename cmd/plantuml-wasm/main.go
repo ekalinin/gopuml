@@ -14,7 +14,7 @@ import (
 	"syscall/js"
 	"testing/fstest"
 
-	"github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 func main() {
@@ -23,14 +23,14 @@ func main() {
 	select {}
 }
 
-var formats = map[string]plantuml.Format{"svg": plantuml.SVG, "png": plantuml.PNG, "txt": plantuml.TXT, "utxt": plantuml.UTXT}
+var formats = map[string]gopuml.Format{"svg": gopuml.SVG, "png": gopuml.PNG, "txt": gopuml.TXT, "utxt": gopuml.UTXT}
 
 // options reads the render options of the JavaScript API: format, diagram,
 // page, darkMode, metadata (true by default) and files, an object mapping
 // include file names to their text. The profile is SANDBOX: includes are
 // read only from those files.
-func options(o js.Value) (*plantuml.Options, error) {
-	opts := &plantuml.Options{SecurityProfile: "SANDBOX", FS: fstest.MapFS{}, Dir: "/"}
+func options(o js.Value) (*gopuml.Options, error) {
+	opts := &gopuml.Options{SecurityProfile: "SANDBOX", FS: fstest.MapFS{}, Dir: "/"}
 	if o.Type() != js.TypeObject {
 		return opts, nil
 	}
@@ -68,22 +68,22 @@ var errorKinds = []struct {
 	err  error
 	kind string
 }{
-	{plantuml.ErrSyntax, "syntax"},
-	{plantuml.ErrNoDiagram, "no-diagram"},
-	{plantuml.ErrUnsupportedDiagram, "unsupported-diagram"},
-	{plantuml.ErrUnsupportedFormat, "unsupported-format"},
-	{plantuml.ErrGraphvizNotFound, "graph-layout-unavailable"},
-	{plantuml.ErrGraphvizTimeout, "graphviz-timeout"},
-	{plantuml.ErrGraphvizFailed, "graphviz-failed"},
-	{plantuml.ErrAccessDenied, "access-denied"},
-	{plantuml.ErrDecode, "decode"},
+	{gopuml.ErrSyntax, "syntax"},
+	{gopuml.ErrNoDiagram, "no-diagram"},
+	{gopuml.ErrUnsupportedDiagram, "unsupported-diagram"},
+	{gopuml.ErrUnsupportedFormat, "unsupported-format"},
+	{gopuml.ErrGraphvizNotFound, "graph-layout-unavailable"},
+	{gopuml.ErrGraphvizTimeout, "graphviz-timeout"},
+	{gopuml.ErrGraphvizFailed, "graphviz-failed"},
+	{gopuml.ErrAccessDenied, "access-denied"},
+	{gopuml.ErrDecode, "decode"},
 }
 
 // result converts a render result to a JavaScript object: data (a
 // Uint8Array, or null), width, height, description, pages, diagrams and
 // error (null, or an object with kind, message and, for syntax errors,
 // line).
-func result(res *plantuml.Result, err error) js.Value {
+func result(res *gopuml.Result, err error) js.Value {
 	out := map[string]any{"data": nil, "width": 0, "height": 0, "description": "", "pages": 0, "diagrams": 0, "error": nil}
 	if res != nil {
 		data := js.Global().Get("Uint8Array").New(len(res.Data))
@@ -99,10 +99,10 @@ func result(res *plantuml.Result, err error) js.Value {
 				break
 			}
 		}
-		if se, ok := errors.AsType[*plantuml.SyntaxError](err); ok {
+		if se, ok := errors.AsType[*gopuml.SyntaxError](err); ok {
 			e["line"] = se.Line
 		}
-		if errors.Is(err, plantuml.ErrGraphvizNotFound) {
+		if errors.Is(err, gopuml.ErrGraphvizNotFound) {
 			e["message"] = "graph layout is not available in this build"
 		}
 		out["error"] = e
@@ -128,7 +128,7 @@ func render(_ js.Value, args []js.Value) any {
 			return nil
 		}
 		go func() {
-			res, err := plantuml.Render(context.Background(), source, o)
+			res, err := gopuml.Render(context.Background(), source, o)
 			resolve.Invoke(result(res, err))
 		}()
 		return nil

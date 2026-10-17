@@ -7,7 +7,7 @@ package rose
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // NotePosition is the position of a note in a sequence diagram. Upstream

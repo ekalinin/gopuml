@@ -5,9 +5,9 @@
 package classdiagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // Factory is the parser of class diagrams (and of object diagrams),

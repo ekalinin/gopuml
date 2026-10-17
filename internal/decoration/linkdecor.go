@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // LinkDecor is the decoration at one end of a link: an arrow head, a

@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Block is one @start...@end block of a source.

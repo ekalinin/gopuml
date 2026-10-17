@@ -4,7 +4,7 @@
 
 package color
 
-import "github.com/ekalinin/plantuml-in-go/internal/command/regex"
+import "github.com/ekalinin/gopuml/internal/command/regex"
 
 // ubrexColorRegexp translates upstream's UBrex pattern
 // "# 〇+〴w 〇?〘 「-\|/」 〇+〴w 〙": '#', one or more word characters, then

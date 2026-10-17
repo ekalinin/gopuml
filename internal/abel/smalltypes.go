@@ -13,10 +13,10 @@
 package abel
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // EntityPosition is where an entity sits relative to its container: inside

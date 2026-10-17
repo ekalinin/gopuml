@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/command/regex"
 )
 
 // javaDot is the character class of Java's regex ".": any character but

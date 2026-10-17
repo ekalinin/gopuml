@@ -5,11 +5,11 @@
 package activitydiagram3
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // SwimlaneStrategy tells whether swimlanes may still be declared.

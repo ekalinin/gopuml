@@ -5,7 +5,7 @@
 package abel
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // OptString is a Java String that may be null: S is meaningful when OK.

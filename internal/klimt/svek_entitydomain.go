@@ -5,8 +5,8 @@
 package klimt
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // entityDomainSuppY is the gap between the circle and the bar of the

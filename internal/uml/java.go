@@ -9,8 +9,8 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Java exception classes thrown by the ported code. A command that panics

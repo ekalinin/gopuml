@@ -10,8 +10,8 @@ package export
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // ImageData describes a generated image: its size in pixels, its status

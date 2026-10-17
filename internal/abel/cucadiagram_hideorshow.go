@@ -13,9 +13,9 @@ import (
 
 	"github.com/dlclark/regexp2"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // HideOrShow is one "hide", "show", "remove" or "restore" rule on

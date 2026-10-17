@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // URL is a link of a diagram element: a target, a tooltip and a label. It

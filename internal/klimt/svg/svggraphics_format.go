@@ -7,7 +7,7 @@ package svg
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/jfmt"
 )
 
 // The number formatting of SvgGraphics. Upstream formats with

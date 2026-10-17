@@ -12,7 +12,7 @@ package klimt
 import (
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // ArrowBody is the line of a sequence arrow.

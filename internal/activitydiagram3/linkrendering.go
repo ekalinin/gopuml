@@ -5,8 +5,8 @@
 package activitydiagram3
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // LinkRendering is the label and the colors of an arrow. It is immutable;

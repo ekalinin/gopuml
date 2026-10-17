@@ -8,8 +8,8 @@ package decoration
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // LinkStrategy tells how link decorations are drawn with Graphviz. Upstream

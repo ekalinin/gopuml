@@ -5,9 +5,9 @@
 package svek
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // dotData is upstream's dot.DotData: what is laid out (the links in their

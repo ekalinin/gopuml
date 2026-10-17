@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterFunctionCall reads the arguments of a call: "name(a, b, c=1)".
 type EaterFunctionCall struct {

@@ -8,7 +8,7 @@ import (
 	"maps"
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // TMemoryLocal is the memory of a function call: the arguments (overridden

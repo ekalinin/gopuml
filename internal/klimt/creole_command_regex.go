@@ -20,7 +20,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // The patterns of the regular expression commands, compiled once.

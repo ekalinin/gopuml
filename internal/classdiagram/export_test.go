@@ -11,10 +11,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/dot"
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/svek"
+	"github.com/ekalinin/gopuml/internal/dot"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/svek"
 )
 
 // recordingEngine records the DOT graphs given to the engine it wraps.

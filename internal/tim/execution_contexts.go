@@ -8,8 +8,8 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // executionContexts holds the open !if, !while and !foreach of a memory.

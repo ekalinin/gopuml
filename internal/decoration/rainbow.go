@@ -5,8 +5,8 @@
 package decoration
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // Rainbow is the part of upstream's Rainbow that the links of graph

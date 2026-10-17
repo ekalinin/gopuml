@@ -24,14 +24,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/code"
-	"github.com/ekalinin/plantuml-in-go/internal/dot"
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/server"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/tim"
-	"github.com/ekalinin/plantuml-in-go/internal/version"
+	"github.com/ekalinin/gopuml/internal/code"
+	"github.com/ekalinin/gopuml/internal/dot"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/server"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/tim"
+	"github.com/ekalinin/gopuml/internal/version"
 )
 
 // Image statuses of upstream's FileImageData.

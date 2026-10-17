@@ -8,7 +8,7 @@ package klimt
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // UPath is a path of segments (move, line, cubic and arc). Its bounds follow

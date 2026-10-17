@@ -8,8 +8,8 @@ package tim
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // splitStr is %splitstr(str, separators): the tokens of a StringTokenizer,

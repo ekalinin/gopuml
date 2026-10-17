@@ -8,7 +8,7 @@ import (
 	"maps"
 	"slices"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/command/regex"
 )
 
 // SvgAttributes are extra SVG attributes of a text, sorted by name

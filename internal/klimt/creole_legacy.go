@@ -17,9 +17,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // creoleParser is upstream's legacy CreoleParser, the SheetBuilder of the

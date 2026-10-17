@@ -41,7 +41,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/conformance"
 )
 
 const (

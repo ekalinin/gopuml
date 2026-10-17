@@ -13,9 +13,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // skinFiles are upstream's /skin resources: plantuml.skin (the default

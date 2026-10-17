@@ -7,8 +7,8 @@ package klimt
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // fontStyleSet is a set of font.FontStyle, upstream's EnumSet<FontStyle>,

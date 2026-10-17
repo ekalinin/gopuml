@@ -10,11 +10,11 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // CharSequence is a line of a Display: a Text, a *Stereotype, or another

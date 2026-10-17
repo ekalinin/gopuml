@@ -4,7 +4,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+import "github.com/ekalinin/gopuml/internal/klimt/geom"
 
 // Direction is one of the four directions. Upstream defines it in
 // net.sourceforge.plantuml.utils; it lives here because Arrows, GuideLine

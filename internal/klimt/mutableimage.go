@@ -5,7 +5,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+import "github.com/ekalinin/gopuml/internal/klimt/color"
 
 // PortableImage is a raster image, upstream's klimt.awt.PortableImage
 // without the java.awt accessors (getBufferedImage, createGraphics,

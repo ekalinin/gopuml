@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 func TestCoderRoundTrip(t *testing.T) {
@@ -32,7 +32,7 @@ func TestCoderRoundTrip(t *testing.T) {
 				t.Fatalf("encoded text %q is not URL-safe", r.body)
 			}
 		}
-		decoded, err := plantuml.Decode(r.body)
+		decoded, err := gopuml.Decode(r.body)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -57,28 +57,28 @@ func TestCoderRoundTrip(t *testing.T) {
 }
 
 func TestCheck(t *testing.T) {
-	var blocks []*plantuml.Block
+	var blocks []*gopuml.Block
 	var inspectErr error
-	var gotOpts plantuml.Options
-	inspect := func(_ context.Context, _ string, opts *plantuml.Options) ([]*plantuml.Block, error) {
+	var gotOpts gopuml.Options
+	inspect := func(_ context.Context, _ string, opts *gopuml.Options) ([]*gopuml.Block, error) {
 		gotOpts = *opts
 		return blocks, inspectErr
 	}
 	srv, fake := newTestServer(t, Config{Inspect: inspect})
-	encoded := plantuml.Encode(helloSource)
+	encoded := gopuml.Encode(helloSource)
 	for _, tt := range []struct {
 		name   string
-		blocks []*plantuml.Block
+		blocks []*gopuml.Block
 		err    error
 		want   string
 	}{
-		{"valid", []*plantuml.Block{{Type: "SEQUENCE", Description: "(2 participants)"}}, nil, "SEQUENCE\n(2 participants)\n"},
-		{"other", []*plantuml.Block{{Description: "(Empty)"}}, nil, "OTHER\n(Empty)\n"},
-		{"syntax error", []*plantuml.Block{{Description: "(Error)", Err: &plantuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}}}, nil,
+		{"valid", []*gopuml.Block{{Type: "SEQUENCE", Description: "(2 participants)"}}, nil, "SEQUENCE\n(2 participants)\n"},
+		{"other", []*gopuml.Block{{Description: "(Empty)"}}, nil, "OTHER\n(Empty)\n"},
+		{"syntax error", []*gopuml.Block{{Description: "(Error)", Err: &gopuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}}}, nil,
 			"ERROR\n2\nSyntax Error? (Assumed diagram type: sequence)\n"},
-		{"unsupported", []*plantuml.Block{{Err: wrapf(plantuml.ErrUnsupportedDiagram, "mindmap")}}, nil, ""},
+		{"unsupported", []*gopuml.Block{{Err: wrapf(gopuml.ErrUnsupportedDiagram, "mindmap")}}, nil, ""},
 		{"no block", nil, nil, ""},
-		{"no diagram", nil, plantuml.ErrNoDiagram, ""},
+		{"no diagram", nil, gopuml.ErrNoDiagram, ""},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
 			blocks, inspectErr = tt.blocks, tt.err
@@ -101,7 +101,7 @@ func TestCheck(t *testing.T) {
 		checkStatus(t, get(t, srv, "/check/@@not-valid@@"), http.StatusBadRequest)
 	})
 	t.Run("timeout", func(t *testing.T) {
-		slow := func(ctx context.Context, _ string, _ *plantuml.Options) ([]*plantuml.Block, error) {
+		slow := func(ctx context.Context, _ string, _ *gopuml.Options) ([]*gopuml.Block, error) {
 			<-ctx.Done()
 			return nil, ctx.Err()
 		}

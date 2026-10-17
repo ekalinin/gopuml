@@ -13,25 +13,25 @@ import (
 	"testing"
 	"time"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 // renderCall records one call of the fake renderer.
 type renderCall struct {
 	source      string
-	opts        plantuml.Options
+	opts        gopuml.Options
 	hasDeadline bool
 }
 
-// fakeRenderer stands in for plantuml.Render, which cannot draw diagrams
+// fakeRenderer stands in for gopuml.Render, which cannot draw diagrams
 // yet. It records its calls and answers with fn.
 type fakeRenderer struct {
 	mu    sync.Mutex
 	calls []renderCall
-	fn    func(ctx context.Context, source string, opts *plantuml.Options) (*plantuml.Result, error)
+	fn    func(ctx context.Context, source string, opts *gopuml.Options) (*gopuml.Result, error)
 }
 
-func (f *fakeRenderer) render(ctx context.Context, source string, opts *plantuml.Options) (*plantuml.Result, error) {
+func (f *fakeRenderer) render(ctx context.Context, source string, opts *gopuml.Options) (*gopuml.Result, error) {
 	_, ok := ctx.Deadline()
 	f.mu.Lock()
 	f.calls = append(f.calls, renderCall{source: source, opts: *opts, hasDeadline: ok})
@@ -44,7 +44,7 @@ func (f *fakeRenderer) render(ctx context.Context, source string, opts *plantuml
 }
 
 // set replaces the answer of the renderer.
-func (f *fakeRenderer) set(fn func(ctx context.Context, source string, opts *plantuml.Options) (*plantuml.Result, error)) {
+func (f *fakeRenderer) set(fn func(ctx context.Context, source string, opts *gopuml.Options) (*gopuml.Result, error)) {
 	f.mu.Lock()
 	defer f.mu.Unlock()
 	f.fn = fn
@@ -68,8 +68,8 @@ func (f *fakeRenderer) count() int {
 
 // okResult is a canned rendering of "Alice -> Bob : hello", with the size
 // and description of the svg-by-url reference.
-func okResult(format plantuml.Format) *plantuml.Result {
-	return &plantuml.Result{
+func okResult(format gopuml.Format) *gopuml.Result {
+	return &gopuml.Result{
 		Data:        []byte("<" + format.String() + " data>"),
 		Width:       119,
 		Height:      129,
@@ -81,8 +81,8 @@ func okResult(format plantuml.Format) *plantuml.Result {
 
 // errorResult is a canned error image, with the size of the
 // syntax-error-by-url reference.
-func errorResult() *plantuml.Result {
-	return &plantuml.Result{Data: []byte("<error image>"), Width: 591, Height: 340, Description: "(Error)", Pages: 1, Diagrams: 1}
+func errorResult() *gopuml.Result {
+	return &gopuml.Result{Data: []byte("<error image>"), Width: 591, Height: 340, Description: "(Error)", Pages: 1, Diagrams: 1}
 }
 
 // newTestServer starts a server whose renderer is a fake. cfg.Render is

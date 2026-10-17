@@ -9,11 +9,11 @@ import (
 	"context"
 	"io"
 
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/svek"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/svek"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // ExportDiagram draws the diagram, as ExportDiagramContext without

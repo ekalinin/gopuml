@@ -9,7 +9,7 @@ import (
 	"slices"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // DefaultDotTimeout is upstream's Graphviz timeout.

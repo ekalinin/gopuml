@@ -11,10 +11,10 @@
 package sequencediagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
+	"github.com/ekalinin/gopuml/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/rose"
 )
 
 // The note decorators wrap the tile of a message with a note attached to

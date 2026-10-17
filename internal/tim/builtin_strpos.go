@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // strpos is %strpos(full, searched): the index in UTF-16 chars of the first
 // occurrence, or -1.

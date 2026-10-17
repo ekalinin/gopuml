@@ -11,7 +11,7 @@ import (
 	"image"
 	"image/png"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // pixelImage is upstream's net.atmp.PixelImage: an image kept at scale 1,

@@ -15,7 +15,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // javaLineReader reads lines like Java's BufferedReader.readLine: a line

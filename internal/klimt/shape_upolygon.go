@@ -7,7 +7,7 @@ package klimt
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // UPolygon is a closed polygon. Its bounds follow the added points.

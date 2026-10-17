@@ -10,8 +10,8 @@ package abel
 import (
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // USymbol names one of upstream's USymbols constants, the shape drawn

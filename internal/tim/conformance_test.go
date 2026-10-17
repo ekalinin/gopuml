@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // conformanceKnownDifferences are the cases that cannot pass yet.

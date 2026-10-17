@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/code"
-	"github.com/ekalinin/plantuml-in-go/internal/png"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/code"
+	"github.com/ekalinin/gopuml/internal/png"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 const (

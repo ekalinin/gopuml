@@ -7,7 +7,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/command/regex"
 )
 
 // The expected values below were checked against upstream's classes run on

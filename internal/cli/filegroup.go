@@ -12,7 +12,7 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/command/regex"
 )
 
 // directoryPattern selects the files of a directory argument, as upstream's

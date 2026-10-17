@@ -18,8 +18,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/asciiverse"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // The text output (ATXT, UTXT) of the Teoz layout. It has its own X line,

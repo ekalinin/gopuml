@@ -7,7 +7,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterInclude is "!include", "!includeurl", "!include_many" or
 // "!include_once" followed by what to include.

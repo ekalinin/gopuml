@@ -6,7 +6,7 @@ package g2d
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // This file holds the geometry the drivers hand to the emulated Graphics2D:

@@ -12,11 +12,11 @@ package activitydiagram3
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // commandFork3 is "fork <<stereo>>".

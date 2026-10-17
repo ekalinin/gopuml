@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/code"
+	"github.com/ekalinin/gopuml/internal/code"
 )
 
 // fakeEngine splits a source into @start/@end blocks. A line "foo bar
@@ -640,7 +640,7 @@ func TestRunStdlib(t *testing.T) {
 
 func TestRunVersionAndLicense(t *testing.T) {
 	r := runCLI(t, "", "--version")
-	if r.code != ExitOK || !strings.HasPrefix(r.stdout, "plantuml-go ") || !strings.HasSuffix(r.stdout, " (PlantUML 1.2026.8 compatible)\n") {
+	if r.code != ExitOK || !strings.HasPrefix(r.stdout, "gopuml ") || !strings.HasSuffix(r.stdout, " (PlantUML 1.2026.8 compatible)\n") {
 		t.Errorf("--version: exit %d, stdout %q", r.code, r.stdout)
 	}
 	r = runCLI(t, "", "-license")

@@ -5,7 +5,7 @@
 package json
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/jfmt"
 
 	"errors"
 	"io"

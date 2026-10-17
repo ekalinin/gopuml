@@ -6,9 +6,9 @@
 package svek
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // Bibliotekon holds the nodes, edges and clusters of one layout, and the

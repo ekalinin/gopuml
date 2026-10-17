@@ -6,10 +6,10 @@
 package extremity
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // Arrow is upstream's ExtremityArrow: a filled arrow head, with a line from

@@ -6,7 +6,7 @@ package asciiart
 import (
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 func TestTextStringBounder(t *testing.T) {

@@ -16,7 +16,7 @@
 // its AsciiBlock.
 package asciiverse
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+import "github.com/ekalinin/gopuml/internal/klimt/color"
 
 // Java exception classes thrown by this package.
 const (

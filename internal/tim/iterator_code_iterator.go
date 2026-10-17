@@ -8,7 +8,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // codeIterator walks the lines of a body. Each layer handles some

@@ -17,11 +17,11 @@ import (
 	"testing"
 	"testing/fstest"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/themes"
-	"github.com/ekalinin/plantuml-in-go/internal/tim"
+	"github.com/ekalinin/gopuml"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/themes"
+	"github.com/ekalinin/gopuml/internal/tim"
 )
 
 var (
@@ -277,33 +277,33 @@ func TestURLTheme(t *testing.T) {
 	}
 }
 
-// TestLibraryTheme checks plantuml.Options.Theme: it acts as a !theme line
+// TestLibraryTheme checks gopuml.Options.Theme: it acts as a !theme line
 // placed before the Config lines, as upstream's --theme comes before
 // --config, -P and -S.
 func TestLibraryTheme(t *testing.T) {
-	render := func(src string, opts plantuml.Options) []byte {
+	render := func(src string, opts gopuml.Options) []byte {
 		t.Helper()
 		opts.NoMetadata = true
-		res, err := plantuml.Render(context.Background(), src, &opts)
+		res, err := gopuml.Render(context.Background(), src, &opts)
 		if err != nil {
 			t.Fatal(err)
 		}
 		return res.Data
 	}
 	const body = "Alice -> Bob : hello\n@enduml\n"
-	want := render("@startuml\n!theme cerulean\nskinparam backgroundColor red\n"+body, plantuml.Options{})
-	got := render("@startuml\n"+body, plantuml.Options{Theme: "cerulean", Config: []string{"skinparam backgroundColor red"}})
+	want := render("@startuml\n!theme cerulean\nskinparam backgroundColor red\n"+body, gopuml.Options{})
+	got := render("@startuml\n"+body, gopuml.Options{Theme: "cerulean", Config: []string{"skinparam backgroundColor red"}})
 	if !bytes.Equal(got, want) {
 		t.Errorf("Theme and Config render\n%s\nwant\n%s", got, want)
 	}
-	if plain := render("@startuml\n"+body, plantuml.Options{}); bytes.Equal(plain, want) {
+	if plain := render("@startuml\n"+body, gopuml.Options{}); bytes.Equal(plain, want) {
 		t.Error("the theme changed nothing")
 	}
 
 	// An excluded theme is an unknown theme.
-	opts := &plantuml.Options{Theme: "sunlust", NoErrorImage: true}
-	_, err := plantuml.Render(context.Background(), "@startuml\n"+body, opts)
-	if e, ok := errors.AsType[*plantuml.SyntaxError](err); !ok || e.Message != "Cannot load theme sunlust" {
+	opts := &gopuml.Options{Theme: "sunlust", NoErrorImage: true}
+	_, err := gopuml.Render(context.Background(), "@startuml\n"+body, opts)
+	if e, ok := errors.AsType[*gopuml.SyntaxError](err); !ok || e.Message != "Cannot load theme sunlust" {
 		t.Errorf("got %v, want the unknown theme error", err)
 	}
 }

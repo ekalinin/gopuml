@@ -8,8 +8,8 @@ package tim
 import (
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Eater reads a line char by char (UTF-16 code units, as Java does). The

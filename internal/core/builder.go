@@ -12,7 +12,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Factory parses the blocks of one diagram type.

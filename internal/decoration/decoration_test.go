@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/command/regex"
 )
 
 func TestLookupDecors(t *testing.T) {

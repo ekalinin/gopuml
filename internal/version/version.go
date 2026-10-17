@@ -12,7 +12,7 @@ import "runtime/debug"
 const Upstream = "1.2026.8"
 
 // Version is the version of this implementation. It can be set at build
-// time with -ldflags "-X github.com/ekalinin/plantuml-in-go/internal/version.Version=v1.0.0";
+// time with -ldflags "-X github.com/ekalinin/gopuml/internal/version.Version=v1.0.0";
 // otherwise it comes from the module build information.
 var Version = ""
 
@@ -29,4 +29,4 @@ func Semver() string {
 }
 
 // Full is the line printed by --version (design D15).
-func Full() string { return "plantuml-go " + Semver() + " (PlantUML " + Upstream + " compatible)" }
+func Full() string { return "gopuml " + Semver() + " (PlantUML " + Upstream + " compatible)" }

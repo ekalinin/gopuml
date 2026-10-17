@@ -7,7 +7,7 @@ package tim
 import (
 	"math/rand/v2"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // randomFunction is %random() (0 or 1), %random(max) (from 0 to max-1) and

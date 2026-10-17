@@ -2,7 +2,7 @@
 // Provenance: original
 
 // Package engine parses and draws diagram sources, as upstream's
-// SourceStringReader and BlockUml. The public plantuml package, the command
+// SourceStringReader and BlockUml. The public gopuml package, the command
 // line and the HTTP server are built on it.
 package engine
 
@@ -18,19 +18,19 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/activitydiagram3"
-	"github.com/ekalinin/plantuml-in-go/internal/classdiagram"
-	"github.com/ekalinin/plantuml-in-go/internal/code"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/errdiagram"
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/sequencediagram"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/themes"
-	"github.com/ekalinin/plantuml-in-go/internal/tim"
+	"github.com/ekalinin/gopuml/internal/activitydiagram3"
+	"github.com/ekalinin/gopuml/internal/classdiagram"
+	"github.com/ekalinin/gopuml/internal/code"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/errdiagram"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/sequencediagram"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/themes"
+	"github.com/ekalinin/gopuml/internal/tim"
 )
 
 // Factories are the parsers of the supported diagram types, in upstream's

@@ -14,8 +14,8 @@ import (
 	"testing/fstest"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // The builtins are compared with the reference jar by the differential

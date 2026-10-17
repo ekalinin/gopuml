@@ -6,7 +6,7 @@ package klimt
 import (
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 func TestPlacementStrategies(t *testing.T) {

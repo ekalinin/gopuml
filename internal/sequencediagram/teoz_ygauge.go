@@ -5,8 +5,8 @@
 package sequencediagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // YGauge is the vertical extent of a tile on the Y line: its top (min),

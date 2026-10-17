@@ -1,4 +1,4 @@
-module github.com/ekalinin/plantuml-in-go
+module github.com/ekalinin/gopuml
 
 go 1.26.0
 

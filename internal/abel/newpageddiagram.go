@@ -9,10 +9,10 @@ import (
 	"io"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // NewpagedDiagram is a diagram split by "newpage" into several diagrams of

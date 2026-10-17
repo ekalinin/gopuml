@@ -4,7 +4,7 @@
 
 package asciiverse
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt"
+import "github.com/ekalinin/gopuml/internal/klimt"
 
 // DisplayBlock returns a Display as an AsciiBlock, upstream's
 // Display.asciiDimension and Display.asciiDraw: one row per line, drawn as

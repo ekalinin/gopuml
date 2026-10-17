@@ -5,7 +5,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+import "github.com/ekalinin/gopuml/internal/klimt/font"
 
 // Stencil gives the horizontal extent of a shape at each height, so that
 // separators span the shape they are drawn in. Upstream defines it in

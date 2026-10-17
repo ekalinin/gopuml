@@ -14,9 +14,9 @@ import (
 	"testing/fstest"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // upstreamCase is one case of testdata/upstream/upstream.json, produced by

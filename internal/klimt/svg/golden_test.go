@@ -14,8 +14,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/svg"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/svg/svgtest"
+	"github.com/ekalinin/gopuml/internal/klimt/svg"
+	"github.com/ekalinin/gopuml/internal/klimt/svg/svgtest"
 )
 
 // TestGoldenScripts runs testdata/cases.txt and cases-insecure.txt and

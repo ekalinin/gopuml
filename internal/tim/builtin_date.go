@@ -8,7 +8,7 @@ package tim
 import (
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // currentTime is System.currentTimeMillis: Options.Now, or the clock.

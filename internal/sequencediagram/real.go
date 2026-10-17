@@ -29,9 +29,9 @@ import (
 	"math"
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // Real is a coordinate of the Teoz layout.

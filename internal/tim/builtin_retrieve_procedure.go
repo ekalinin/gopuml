@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // retrieveProcedure is %retrieve_procedure(name, args...): the output of
 // the procedure, as a string.

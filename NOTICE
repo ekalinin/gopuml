@@ -1,4 +1,4 @@
-plantuml-in-go
+gopuml
 ==============
 
 This project is a Go reimplementation of PlantUML (https://plantuml.com,

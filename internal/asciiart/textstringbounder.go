@@ -4,7 +4,7 @@
 
 package asciiart
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+import "github.com/ekalinin/gopuml/internal/klimt/font"
 
 // TextStringBounder measures text for the text formats (ATXT, UTXT): a text
 // is one character high and as wide as its number of UTF-16 code units,

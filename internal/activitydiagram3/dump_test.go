@@ -12,12 +12,12 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/tim"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/tim"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // testCase is one source of the differential tests.

@@ -13,8 +13,8 @@
 package klimt
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // ColorParam is a color skinparam of the legacy (pre-style) skin.

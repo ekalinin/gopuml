@@ -15,7 +15,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command"
+	"github.com/ekalinin/gopuml/internal/command"
 )
 
 // StyleParsingError is upstream's StyleParsingException: a style sheet that

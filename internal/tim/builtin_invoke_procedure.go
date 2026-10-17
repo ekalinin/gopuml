@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // invokeProcedure is %invoke_procedure(name, args...).
 type invokeProcedure struct{}

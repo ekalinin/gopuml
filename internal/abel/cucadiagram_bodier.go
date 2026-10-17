@@ -17,10 +17,10 @@ import (
 	"unicode"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // Bodier holds the body of an entity: the members of a class or an object,

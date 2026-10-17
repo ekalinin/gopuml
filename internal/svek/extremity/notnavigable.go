@@ -6,8 +6,8 @@
 package extremity
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // notNavigable is upstream's ExtremityNotNavigable: a cross on the line.

@@ -9,14 +9,14 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ekalinin/plantuml-in-go/internal/asciiart"
-	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/asciiart"
+	"github.com/ekalinin/gopuml/internal/asciiverse"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/rose"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // ExportDiagram draws page index of the diagram in an output format, as

@@ -4,7 +4,7 @@
 
 package activitydiagram3
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+import "github.com/ekalinin/gopuml/internal/klimt/font"
 
 // ftileDimensionMemoizeHook is upstream's abstract
 // calculateDimensionInternalSlow of FtileDimensionMemoize.

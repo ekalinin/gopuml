@@ -7,7 +7,7 @@ package tim
 import (
 	"slices"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // TFunctionImpl is a function or procedure defined by the diagram, or a

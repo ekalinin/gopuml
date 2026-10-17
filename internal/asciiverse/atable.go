@@ -5,7 +5,7 @@
 
 package asciiverse
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt"
+import "github.com/ekalinin/gopuml/internal/klimt"
 
 // ATable is a table of displays drawn with ASCII borders (Gantt and WBS
 // text output upstream). A cell shows the first line of its display; cells

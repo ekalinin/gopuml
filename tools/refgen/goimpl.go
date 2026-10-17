@@ -16,10 +16,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/engine"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/engine"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // goFormats are the formats the Go implementation renders in process, by

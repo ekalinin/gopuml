@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Version is the upstream version this preprocessor targets.

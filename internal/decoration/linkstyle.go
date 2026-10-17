@@ -5,9 +5,9 @@
 package decoration
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // linkStyleType is upstream's LinkStyle.Type.

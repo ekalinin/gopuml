@@ -13,7 +13,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // ReadLine is a source of located lines. ReadLine returns ok false at the end.

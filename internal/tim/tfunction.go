@@ -7,7 +7,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // TFunction is a preprocessor function or procedure: a builtin, a user

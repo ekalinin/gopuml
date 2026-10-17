@@ -4,7 +4,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+import "github.com/ekalinin/gopuml/internal/klimt/geom"
 
 // URectangle is a rectangle, possibly with round corners. Only its shadow
 // can be changed after creation.

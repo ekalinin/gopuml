@@ -13,8 +13,8 @@ import (
 	"fmt"
 	"strings"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // renderRequest is the JSON body of POST /render (upstream's RenderRequest):
@@ -82,7 +82,7 @@ func jsonString(data json.RawMessage, s *string) error {
 // case.
 type formatFlag struct {
 	names  []string
-	format plantuml.Format
+	format gopuml.Format
 	// unsupported is the upstream format name when this implementation
 	// cannot produce the format.
 	unsupported string
@@ -97,13 +97,13 @@ var formatFlags = []formatFlag{
 	{names: []string{"--latex-nopreamble", "-tlatex:nopreamble", "-latex:nopreamble"}, unsupported: "LATEX_NO_PREAMBLE"},
 	{names: []string{"--obfuscate", "-cypher"}, unsupported: "OBFUSCATE"},
 	{names: []string{"--pdf", "-tpdf", "-pdf"}, unsupported: "PDF"},
-	{names: []string{"--png", "-tpng", "-png"}, format: plantuml.PNG},
+	{names: []string{"--png", "-tpng", "-png"}, format: gopuml.PNG},
 	{names: []string{"--preproc", "-preproc"}, unsupported: "PREPROC"},
 	{names: []string{"--scxml", "-tscxml"}, unsupported: "SCXML"},
-	{names: []string{"--svg", "-tsvg", "-svg"}, format: plantuml.SVG},
+	{names: []string{"--svg", "-tsvg", "-svg"}, format: gopuml.SVG},
 	{names: []string{"--null"}, unsupported: "NULL"},
-	{names: []string{"--txt", "-ttxt", "-txt"}, format: plantuml.TXT},
-	{names: []string{"--utxt", "-tutxt", "-utxt"}, format: plantuml.UTXT},
+	{names: []string{"--txt", "-ttxt", "-txt"}, format: gopuml.TXT},
+	{names: []string{"--utxt", "-tutxt", "-utxt"}, format: gopuml.UTXT},
 	{names: []string{"--vdx", "-tvdx", "-vdx"}, unsupported: "VDX"},
 	{names: []string{"--xmi", "-txmi", "-xmi"}, unsupported: "XMI_STANDARD"},
 	{names: []string{"--xmi:argo", "-xmi:argo"}, unsupported: "XMI_ARGO"},
@@ -115,11 +115,11 @@ var formatFlags = []formatFlag{
 }
 
 // Formats of FileFormat.fromCli that this implementation produces.
-var cliFormats = map[font.FileFormat]plantuml.Format{
-	font.FormatPNG:  plantuml.PNG,
-	font.FormatSVG:  plantuml.SVG,
-	font.FormatATXT: plantuml.TXT,
-	font.FormatUTXT: plantuml.UTXT,
+var cliFormats = map[font.FileFormat]gopuml.Format{
+	font.FormatPNG:  gopuml.PNG,
+	font.FormatSVG:  gopuml.SVG,
+	font.FormatATXT: gopuml.TXT,
+	font.FormatUTXT: gopuml.UTXT,
 }
 
 // Flags that take the next argument as their value (BINARY_NEXT_ARGUMENT_VALUE).
@@ -171,9 +171,9 @@ func putKeyValue(list []keyValue, s string) []keyValue {
 // (--config, -I, -filedir) are ignored too, because they would bypass the
 // server's security profile. A format this implementation cannot produce
 // is an error.
-func parseOptions(args []string) (plantuml.Options, error) {
+func parseOptions(args []string) (gopuml.Options, error) {
 	var (
-		opts                    plantuml.Options
+		opts                    gopuml.Options
 		formatName              *string
 		themes                  []string
 		defines, pragmas, skins []keyValue
@@ -250,7 +250,7 @@ func parseOptions(args []string) (plantuml.Options, error) {
 	}
 	opts.Format = format
 	for _, d := range defines {
-		opts.Defines = append(opts.Defines, plantuml.Define{Name: d.key, Value: d.value})
+		opts.Defines = append(opts.Defines, gopuml.Define{Name: d.key, Value: d.value})
 	}
 	// The config lines of the CliOptions constructor, in its order.
 	for _, t := range themes {
@@ -268,7 +268,7 @@ func parseOptions(args []string) (plantuml.Options, error) {
 // selectFormat is CliOptions.getFileFormatOption: the --format value when
 // FileFormat.fromCli knows it, otherwise the first format flag, in
 // declaration order, given exactly once, otherwise PNG.
-func selectFormat(name *string, counts []int) (plantuml.Format, error) {
+func selectFormat(name *string, counts []int) (gopuml.Format, error) {
 	if name != nil {
 		if f, ok := font.FileFormatFromCli(*name); ok {
 			if pf, ok := cliFormats[f]; ok {
@@ -286,7 +286,7 @@ func selectFormat(name *string, counts []int) (plantuml.Format, error) {
 		}
 		return formatFlags[j].format, nil
 	}
-	return plantuml.PNG, nil
+	return gopuml.PNG, nil
 }
 
 func unsupportedFormat(name string) error {

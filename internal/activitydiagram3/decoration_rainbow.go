@@ -8,10 +8,10 @@ package activitydiagram3
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/decoration"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // The arrow colors of upstream's decoration package. Only the activity

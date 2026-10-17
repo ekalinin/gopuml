@@ -4,7 +4,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+import "github.com/ekalinin/gopuml/internal/klimt/color"
 
 // Fashion is the look of a shape: colors, stroke, shadow and corners. It is
 // immutable; the With methods return new values.

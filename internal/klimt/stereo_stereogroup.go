@@ -11,8 +11,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 const stereogroupKey = "STEREOGROUP"

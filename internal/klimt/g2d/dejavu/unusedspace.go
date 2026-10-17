@@ -9,7 +9,7 @@ import (
 	"encoding/binary"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // Upstream's UnusedSpace centers a character by rasterizing it with Java2D

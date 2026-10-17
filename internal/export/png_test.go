@@ -13,11 +13,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
-	"github.com/ekalinin/plantuml-in-go/internal/export"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/svg/svgtest"
-	ipng "github.com/ekalinin/plantuml-in-go/internal/png"
+	"github.com/ekalinin/gopuml/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/export"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/svg/svgtest"
+	ipng "github.com/ekalinin/gopuml/internal/png"
 )
 
 var pngOut = flag.String("png-out", "", "write the PNG files of the export tests to this directory")

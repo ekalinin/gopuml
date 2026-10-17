@@ -6,7 +6,7 @@ package g2d
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // The cap and join styles of java.awt.BasicStroke, with Java's values.

@@ -5,8 +5,8 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
-	"github.com/ekalinin/plantuml-in-go/internal/version"
+	"github.com/ekalinin/gopuml/internal/text"
+	"github.com/ekalinin/gopuml/internal/version"
 )
 
 // getVersion is %version(): the upstream version this implementation

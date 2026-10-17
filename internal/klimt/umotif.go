@@ -4,7 +4,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+import "github.com/ekalinin/gopuml/internal/klimt/geom"
 
 // UMotif is a repeated pattern of points, drawn as a path along a rectangle
 // border.

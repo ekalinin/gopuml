@@ -5,8 +5,8 @@
 package sequencediagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // Factory is the parser of sequence diagrams, upstream's

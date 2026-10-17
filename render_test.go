@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Provenance: original
 
-package plantuml
+package gopuml
 
 import (
 	"bytes"

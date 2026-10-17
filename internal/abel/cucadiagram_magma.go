@@ -8,8 +8,8 @@
 package abel
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/decoration"
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // magma is a set of standalone entities of one group, put in a square by

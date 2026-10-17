@@ -8,7 +8,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // EaterTheme is "!theme name [from location]".

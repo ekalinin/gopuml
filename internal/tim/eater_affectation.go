@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterAffectation is "!$name = value", with an optional local or global
 // modifier and the conditional form "?=".

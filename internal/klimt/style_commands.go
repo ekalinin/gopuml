@@ -15,9 +15,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command"
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // StyleDiagram is a diagram that has skin parameters, upstream's

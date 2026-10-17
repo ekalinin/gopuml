@@ -14,7 +14,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ekalinin/plantuml-in-go/internal/server"
+	"github.com/ekalinin/gopuml/internal/server"
 )
 
 // serve is --http-server[:port[:address]] (PicoWebServer.startServer): it

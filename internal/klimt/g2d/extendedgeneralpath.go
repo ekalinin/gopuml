@@ -7,7 +7,7 @@ package g2d
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // extendedGeneralPath is a general path with SVG elliptical arcs (upstream's

@@ -25,7 +25,7 @@ import (
 	"io"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 //go:embed fonts/*.ttf.gz

@@ -7,7 +7,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 func TestFindStartTypes(t *testing.T) {

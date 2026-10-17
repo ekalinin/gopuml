@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // fileAccess reads files and URLs through the security layer (design D9).

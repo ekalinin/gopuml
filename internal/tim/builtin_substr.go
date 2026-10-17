@@ -7,7 +7,7 @@ package tim
 import (
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // substr is %substr(full, pos[, len]), with positions and lengths in UTF-16

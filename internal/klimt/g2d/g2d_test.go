@@ -16,12 +16,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/svg/svgtest"
-	ipng "github.com/ekalinin/plantuml-in-go/internal/png"
+	"github.com/ekalinin/gopuml/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/svg/svgtest"
+	ipng "github.com/ekalinin/gopuml/internal/png"
 )
 
 var outDir = flag.String("g2d-out", "", "write the PNG files of the driver tests to this directory")

@@ -7,7 +7,7 @@ package tim
 import (
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
+	"github.com/ekalinin/gopuml/internal/json"
 )
 
 // TValue is a preprocessor value: a Java int, a string or a JSON value. A

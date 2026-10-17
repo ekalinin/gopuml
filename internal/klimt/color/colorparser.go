@@ -4,7 +4,7 @@
 
 package color
 
-import "github.com/ekalinin/plantuml-in-go/internal/command/regex"
+import "github.com/ekalinin/gopuml/internal/command/regex"
 
 // colorRegexp is a single color: '#', a word, then optionally a gradient
 // separator and a second word. As upstream, it needs two word characters at

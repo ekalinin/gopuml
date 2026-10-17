@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // AbstractEntityDiagram is the base of the class, description and state

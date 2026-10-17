@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // The centered characters of class headers and spots are drawn as glyph

@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/security"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // getenv is %getenv(name): the Java system property or environment

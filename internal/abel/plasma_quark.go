@@ -9,7 +9,7 @@ package abel
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // MagicSeparator is upstream's Plasma.MAGIC_SEPARATOR, the separator of a

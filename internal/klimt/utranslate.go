@@ -4,7 +4,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+import "github.com/ekalinin/gopuml/internal/klimt/geom"
 
 // UTranslate is a translation, the change that moves what is drawn next. It
 // is an immutable value.

@@ -5,7 +5,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterLegacyDefine is the legacy macro "!define NAME(args) definition".
 type EaterLegacyDefine struct {

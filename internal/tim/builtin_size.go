@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // size is %size(v): the length of a string in UTF-16 chars, the number of
 // elements of a JSON array or members of a JSON object, otherwise 0.

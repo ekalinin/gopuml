@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 const helloSource = "@startuml\nAlice -> Bob : hello\n@enduml\n"
@@ -25,23 +25,23 @@ func TestGETRoutes(t *testing.T) {
 	pserver := map[string]string{"Cache-Control": "public, max-age=432000", "Server": ""}
 	tests := []struct {
 		route  string
-		format plantuml.Format
+		format gopuml.Format
 		mime   string
 		dark   bool
 		style  map[string]string
 	}{
-		{"png", plantuml.PNG, "image/png", false, builtin},
-		{"svg", plantuml.SVG, "image/svg+xml", false, builtin},
-		{"txt", plantuml.TXT, "text/plain", false, builtin},
-		{"utxt", plantuml.UTXT, "text/plain;charset=UTF-8", false, builtin},
-		{"img", plantuml.PNG, "image/png", false, pserver},
-		{"dpng", plantuml.PNG, "image/png", true, pserver},
-		{"dimg", plantuml.PNG, "image/png", true, pserver},
-		{"dsvg", plantuml.SVG, "image/svg+xml", true, pserver},
+		{"png", gopuml.PNG, "image/png", false, builtin},
+		{"svg", gopuml.SVG, "image/svg+xml", false, builtin},
+		{"txt", gopuml.TXT, "text/plain", false, builtin},
+		{"utxt", gopuml.UTXT, "text/plain;charset=UTF-8", false, builtin},
+		{"img", gopuml.PNG, "image/png", false, pserver},
+		{"dpng", gopuml.PNG, "image/png", true, pserver},
+		{"dimg", gopuml.PNG, "image/png", true, pserver},
+		{"dsvg", gopuml.SVG, "image/svg+xml", true, pserver},
 	}
 	srv, fake := newTestServer(t, Config{})
-	encoded := plantuml.Encode(helloSource)
-	want, err := plantuml.Decode(encoded)
+	encoded := gopuml.Encode(helloSource)
+	want, err := gopuml.Decode(encoded)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -100,15 +100,15 @@ func TestGETRoutes(t *testing.T) {
 // TestHeaderSpelling checks that the X-PlantUML-* headers go out with
 // upstream's spelling.
 func TestHeaderSpelling(t *testing.T) {
-	fake := &fakeRenderer{fn: func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return errorResult(), &plantuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
+	fake := &fakeRenderer{fn: func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return errorResult(), &gopuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
 	}}
 	h, err := New(Config{Render: fake.render})
 	if err != nil {
 		t.Fatal(err)
 	}
 	rec := httptest.NewRecorder()
-	h.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, "/svg/"+plantuml.Encode(helloSource), nil))
+	h.ServeHTTP(rec, httptest.NewRequest(http.MethodGet, "/svg/"+gopuml.Encode(helloSource), nil))
 	for _, k := range []string{
 		"X-PlantUML-Diagram-Width", "X-PlantUML-Diagram-Height", "X-PlantUML-Diagram-Description",
 		"X-PlantUML-Diagram-Error", "X-PlantUML-Diagram-Error-Line",
@@ -121,10 +121,10 @@ func TestHeaderSpelling(t *testing.T) {
 
 func TestSyntaxErrorByURL(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return errorResult(), &plantuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
+	fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return errorResult(), &gopuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
 	})
-	encoded := plantuml.Encode("@startuml\nAlice -> Bob\nfoo bar baz\n@enduml\n")
+	encoded := gopuml.Encode("@startuml\nAlice -> Bob\nfoo bar baz\n@enduml\n")
 	for _, tt := range []struct {
 		path  string
 		cache string
@@ -152,8 +152,8 @@ func TestSyntaxErrorByURL(t *testing.T) {
 		})
 	}
 	t.Run("without error image", func(t *testing.T) {
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-			return nil, &plantuml.SyntaxError{Line: 2, Message: "cannot include /etc/passwd"}
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+			return nil, &gopuml.SyntaxError{Line: 2, Message: "cannot include /etc/passwd"}
 		})
 		r := get(t, srv, "/svg/"+encoded)
 		checkStatus(t, r, http.StatusBadRequest)
@@ -168,10 +168,10 @@ func TestSyntaxErrorByURL(t *testing.T) {
 
 func TestUnsupportedDiagram(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return errorResult(), wrapf(plantuml.ErrUnsupportedDiagram, "state diagrams are not supported yet")
+	fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return errorResult(), wrapf(gopuml.ErrUnsupportedDiagram, "state diagrams are not supported yet")
 	})
-	r := get(t, srv, "/svg/"+plantuml.Encode("@startuml\n[*] --> Idle\n@enduml\n"))
+	r := get(t, srv, "/svg/"+gopuml.Encode("@startuml\n[*] --> Idle\n@enduml\n"))
 	checkStatus(t, r, http.StatusBadRequest)
 	checkHeaders(t, r.header, map[string]string{
 		"X-PlantUML-Diagram-Error":      "state diagrams are not supported yet",
@@ -179,7 +179,7 @@ func TestUnsupportedDiagram(t *testing.T) {
 	})
 }
 
-// wrapf wraps a sentinel error like the plantuml package does.
+// wrapf wraps a sentinel error like the gopuml package does.
 func wrapf(sentinel error, msg string) error {
 	return &wrapped{sentinel, msg}
 }
@@ -194,8 +194,8 @@ func (w *wrapped) Unwrap() error { return w.sentinel }
 
 func TestUndecodableURL(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(_ context.Context, source string, _ *plantuml.Options) (*plantuml.Result, error) {
-		return &plantuml.Result{Data: []byte("<bad url image>"), Width: 789, Height: 310, Description: "(0 entities)"}, nil
+	fake.set(func(_ context.Context, source string, _ *gopuml.Options) (*gopuml.Result, error) {
+		return &gopuml.Result{Data: []byte("<bad url image>"), Width: 789, Height: 310, Description: "(0 entities)"}, nil
 	})
 	r := get(t, srv, "/svg/@@not-valid@@")
 	checkStatus(t, r, http.StatusOK)
@@ -227,10 +227,10 @@ func TestUndecodableURL(t *testing.T) {
 
 func TestNoDiagram(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return nil, wrapf(plantuml.ErrNoDiagram, "diagram 0 out of range (0 diagrams)")
+	fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return nil, wrapf(gopuml.ErrNoDiagram, "diagram 0 out of range (0 diagrams)")
 	})
-	r := get(t, srv, "/svg/"+plantuml.Encode("@startuml\nAlice -> Bob"))
+	r := get(t, srv, "/svg/"+gopuml.Encode("@startuml\nAlice -> Bob"))
 	checkStatus(t, r, http.StatusFound)
 	checkHeaders(t, r.header, map[string]string{"Location": defaultLocation})
 
@@ -243,10 +243,10 @@ func TestNoDiagram(t *testing.T) {
 
 func TestRenderFailureReturns503(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	encoded := plantuml.Encode("@startuml\nclass A\n@enduml\n")
+	encoded := gopuml.Encode("@startuml\nclass A\n@enduml\n")
 
-	fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return nil, wrapf(plantuml.ErrGraphvizFailed, "dot crashed")
+	fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return nil, wrapf(gopuml.ErrGraphvizFailed, "dot crashed")
 	})
 	r := get(t, srv, "/png/"+encoded)
 	checkStatus(t, r, http.StatusServiceUnavailable)
@@ -256,8 +256,8 @@ func TestRenderFailureReturns503(t *testing.T) {
 	}
 
 	t.Run("crash image", func(t *testing.T) {
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-			return &plantuml.Result{Data: []byte("<crash image>"), Width: 400, Height: 300, Description: "(Error)"}, wrapf(plantuml.ErrGraphvizFailed, "dot crashed")
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+			return &gopuml.Result{Data: []byte("<crash image>"), Width: 400, Height: 300, Description: "(Error)"}, wrapf(gopuml.ErrGraphvizFailed, "dot crashed")
 		})
 		r := get(t, srv, "/png/"+encoded)
 		checkStatus(t, r, http.StatusServiceUnavailable)
@@ -268,7 +268,7 @@ func TestRenderFailureReturns503(t *testing.T) {
 	})
 
 	t.Run("panic", func(t *testing.T) {
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
 			panic("boom")
 		})
 		r := get(t, srv, "/svg/"+encoded)
@@ -279,7 +279,7 @@ func TestRenderFailureReturns503(t *testing.T) {
 	})
 
 	t.Run("no result", func(t *testing.T) {
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) { return nil, nil })
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) { return nil, nil })
 		checkStatus(t, get(t, srv, "/svg/"+encoded), http.StatusServiceUnavailable)
 	})
 }
@@ -287,11 +287,11 @@ func TestRenderFailureReturns503(t *testing.T) {
 func TestTimeoutReturns503(t *testing.T) {
 	const limit = 100 * time.Millisecond
 	srv, fake := newTestServer(t, Config{Timeout: limit})
-	encoded := plantuml.Encode(helloSource)
+	encoded := gopuml.Encode(helloSource)
 
 	t.Run("renderer stops", func(t *testing.T) {
 		stopped := make(chan error, 1)
-		fake.set(func(ctx context.Context, _ string, _ *plantuml.Options) (*plantuml.Result, error) {
+		fake.set(func(ctx context.Context, _ string, _ *gopuml.Options) (*gopuml.Result, error) {
 			<-ctx.Done()
 			stopped <- ctx.Err()
 			return nil, ctx.Err()
@@ -315,9 +315,9 @@ func TestTimeoutReturns503(t *testing.T) {
 	t.Run("renderer ignores the context", func(t *testing.T) {
 		release := make(chan struct{})
 		defer close(release)
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
 			<-release
-			return okResult(plantuml.SVG), nil
+			return okResult(gopuml.SVG), nil
 		})
 		start := time.Now()
 		r := get(t, srv, "/svg/"+encoded)
@@ -351,7 +351,7 @@ func TestTimeoutReturns503(t *testing.T) {
 	})
 
 	t.Run("POST /render", func(t *testing.T) {
-		fake.set(func(ctx context.Context, _ string, _ *plantuml.Options) (*plantuml.Result, error) {
+		fake.set(func(ctx context.Context, _ string, _ *gopuml.Options) (*gopuml.Result, error) {
 			<-ctx.Done()
 			return nil, ctx.Err()
 		})
@@ -401,8 +401,8 @@ func TestOversizedSourceReturns413(t *testing.T) {
 
 func TestJSONRenderRequest(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-		return &plantuml.Result{Data: []byte("<svg/>"), Width: 118, Height: 114, Description: "(2 participants)"}, nil
+	fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+		return &gopuml.Result{Data: []byte("<svg/>"), Width: 118, Height: 114, Description: "(2 participants)"}, nil
 	})
 	r := do(t, srv, http.MethodPost, "/render", "application/json", `{"source": "Alice -> Bob", "options": ["--svg"]}`)
 	checkStatus(t, r, http.StatusOK)
@@ -419,7 +419,7 @@ func TestJSONRenderRequest(t *testing.T) {
 	if c.source != "@startuml\nAlice -> Bob\n@enduml" {
 		t.Errorf("rendered source %q", c.source)
 	}
-	if c.opts.Format != plantuml.SVG || c.opts.SecurityProfile != "INTERNET" || !c.hasDeadline {
+	if c.opts.Format != gopuml.SVG || c.opts.SecurityProfile != "INTERNET" || !c.hasDeadline {
 		t.Errorf("options %+v, deadline %v", c.opts, c.hasDeadline)
 	}
 
@@ -427,7 +427,7 @@ func TestJSONRenderRequest(t *testing.T) {
 		r := do(t, srv, http.MethodPost, "/plantuml/render", "application/json", `{"source": "@startuml\nA -> B\n@enduml", "extra": 1}`)
 		checkStatus(t, r, http.StatusOK)
 		checkHeaders(t, r.header, map[string]string{"Content-Type": "image/png"})
-		if c := fake.last(t); c.source != "@startuml\nA -> B\n@enduml" || c.opts.Format != plantuml.PNG {
+		if c := fake.last(t); c.source != "@startuml\nA -> B\n@enduml" || c.opts.Format != gopuml.PNG {
 			t.Errorf("call %+v", c)
 		}
 	})
@@ -436,15 +436,15 @@ func TestJSONRenderRequest(t *testing.T) {
 		body := `{"source": "A -> B", "options": ["-tutxt", "--dark-mode", "-DX=1", "--theme", "cerulean"]}`
 		checkStatus(t, do(t, srv, http.MethodPost, "/render", "application/json", body), http.StatusOK)
 		c := fake.last(t)
-		if c.opts.Format != plantuml.UTXT || !c.opts.DarkMode || len(c.opts.Defines) != 1 || c.opts.Config[0] != "!theme cerulean" {
+		if c.opts.Format != gopuml.UTXT || !c.opts.DarkMode || len(c.opts.Defines) != 1 || c.opts.Config[0] != "!theme cerulean" {
 			t.Errorf("options %+v", c.opts)
 		}
 	})
 
 	t.Run("syntax error", func(t *testing.T) {
 		// handleRenderRequest answers 200 even for an error image.
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-			return errorResult(), &plantuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+			return errorResult(), &gopuml.SyntaxError{Line: 3, Message: "Syntax Error? (Assumed diagram type: sequence)"}
 		})
 		r := do(t, srv, http.MethodPost, "/render", "application/json", `{"source": "Alice -> Bob\nfoo bar baz", "options": ["--svg"]}`)
 		checkStatus(t, r, http.StatusOK)
@@ -491,14 +491,14 @@ func TestRawPOST(t *testing.T) {
 	srv, fake := newTestServer(t, Config{})
 	for _, tt := range []struct {
 		path   string
-		format plantuml.Format
+		format gopuml.Format
 		mime   string
 	}{
-		{"/png", plantuml.PNG, "image/png"},
-		{"/svg", plantuml.SVG, "image/svg+xml"},
-		{"/txt", plantuml.TXT, "text/plain"},
-		{"/plantuml/svg", plantuml.SVG, "image/svg+xml"},
-		{"/svg/", plantuml.SVG, "image/svg+xml"},
+		{"/png", gopuml.PNG, "image/png"},
+		{"/svg", gopuml.SVG, "image/svg+xml"},
+		{"/txt", gopuml.TXT, "text/plain"},
+		{"/plantuml/svg", gopuml.SVG, "image/svg+xml"},
+		{"/svg/", gopuml.SVG, "image/svg+xml"},
 	} {
 		t.Run(tt.path, func(t *testing.T) {
 			r := do(t, srv, http.MethodPost, tt.path, "text/plain", "Alice -> Bob")
@@ -524,8 +524,8 @@ func TestRawPOST(t *testing.T) {
 		}
 	})
 	t.Run("syntax error", func(t *testing.T) {
-		fake.set(func(context.Context, string, *plantuml.Options) (*plantuml.Result, error) {
-			return errorResult(), &plantuml.SyntaxError{Line: 2, Message: "Syntax Error?"}
+		fake.set(func(context.Context, string, *gopuml.Options) (*gopuml.Result, error) {
+			return errorResult(), &gopuml.SyntaxError{Line: 2, Message: "Syntax Error?"}
 		})
 		r := do(t, srv, http.MethodPost, "/svg", "text/plain", "foo bar baz")
 		checkStatus(t, r, http.StatusBadRequest)
@@ -543,7 +543,7 @@ func TestRedirect(t *testing.T) {
 		{http.MethodGet, "/render"},
 		{http.MethodPost, "/foo"},
 		{http.MethodPost, "/utxt"},
-		{http.MethodPut, "/svg/" + plantuml.Encode(helloSource)},
+		{http.MethodPut, "/svg/" + gopuml.Encode(helloSource)},
 		{http.MethodDelete, "/render"},
 	} {
 		t.Run(tt.method+" "+tt.path, func(t *testing.T) {
@@ -558,16 +558,16 @@ func TestRedirect(t *testing.T) {
 }
 
 func TestSecurityProfile(t *testing.T) {
-	encoded := plantuml.Encode("@startuml\n!include /etc/passwd\nAlice -> Bob\n@enduml\n")
+	encoded := gopuml.Encode("@startuml\n!include /etc/passwd\nAlice -> Bob\n@enduml\n")
 	t.Run("default", func(t *testing.T) {
 		t.Setenv("PLANTUML_SECURITY_PROFILE", "")
 		srv, fake := newTestServer(t, Config{})
-		fake.set(func(_ context.Context, _ string, opts *plantuml.Options) (*plantuml.Result, error) {
+		fake.set(func(_ context.Context, _ string, opts *gopuml.Options) (*gopuml.Result, error) {
 			if opts.SecurityProfile != "INTERNET" {
 				return okResult(opts.Format), nil // the file would be read
 			}
-			return &plantuml.Result{Data: []byte("<error image>"), Width: 591, Height: 324, Description: "(Error)"},
-				&plantuml.SyntaxError{Line: 2, Message: "cannot include /etc/passwd"}
+			return &gopuml.Result{Data: []byte("<error image>"), Width: 591, Height: 324, Description: "(Error)"},
+				&gopuml.SyntaxError{Line: 2, Message: "cannot include /etc/passwd"}
 		})
 		r := get(t, srv, "/svg/"+encoded)
 		checkStatus(t, r, http.StatusBadRequest)

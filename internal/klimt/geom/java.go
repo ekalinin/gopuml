@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"unicode"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // javaDoubleString formats d like Java's Double.toString; see jfmt.

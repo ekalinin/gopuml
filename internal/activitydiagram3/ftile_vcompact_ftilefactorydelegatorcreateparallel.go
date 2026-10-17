@@ -5,8 +5,8 @@
 package activitydiagram3
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // FtileFactoryDelegatorCreateParallel draws the parallel blocks: fork,

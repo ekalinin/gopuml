@@ -7,7 +7,7 @@ package klimt
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jmath"
+	"github.com/ekalinin/gopuml/internal/jmath"
 )
 
 // scaleARGB is upstream's PortableImageAwt.scale: an image of

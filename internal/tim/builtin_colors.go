@@ -11,8 +11,8 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // getColor is HColorSet.instance().getColor, with upstream's "No such

@@ -17,8 +17,8 @@ import (
 	"strings"
 	"testing"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
+	"github.com/ekalinin/gopuml"
+	"github.com/ekalinin/gopuml/internal/conformance"
 )
 
 const (
@@ -69,7 +69,7 @@ func replay(t *testing.T, c *conformance.HTTPCase) {
 	}
 
 	srv, fake := newTestServer(t, Config{})
-	fake.set(func(_ context.Context, _ string, _ *plantuml.Options) (*plantuml.Result, error) {
+	fake.set(func(_ context.Context, _ string, _ *gopuml.Options) (*gopuml.Result, error) {
 		return referenceDiagram(t, &ref, refBody)
 	})
 
@@ -119,7 +119,7 @@ func replay(t *testing.T, c *conformance.HTTPCase) {
 	var wantSource string
 	switch {
 	case ref.Encoded != "":
-		if wantSource, err = plantuml.Decode(ref.Encoded); err != nil {
+		if wantSource, err = gopuml.Decode(ref.Encoded); err != nil {
 			t.Fatal(err)
 		}
 	case strings.HasPrefix(ref.Path, "/svg/@@"):
@@ -144,8 +144,8 @@ func replay(t *testing.T, c *conformance.HTTPCase) {
 	// The coder answer is the server's own encoding: it must decode to the
 	// same source as the reference's.
 	if ref.Path == "/coder" {
-		mine, err1 := plantuml.Decode(body)
-		theirs, err2 := plantuml.Decode(string(refBody))
+		mine, err1 := gopuml.Decode(body)
+		theirs, err2 := gopuml.Decode(string(refBody))
 		if err1 != nil || err2 != nil || mine != theirs {
 			t.Errorf("coder: %q (%v), reference %q (%v)", mine, err1, theirs, err2)
 		}
@@ -154,9 +154,9 @@ func replay(t *testing.T, c *conformance.HTTPCase) {
 
 // referenceDiagram is the diagram recorded in a reference, as the renderer
 // would return it.
-func referenceDiagram(t *testing.T, ref *conformance.HTTPRecord, body []byte) (*plantuml.Result, error) {
+func referenceDiagram(t *testing.T, ref *conformance.HTTPRecord, body []byte) (*gopuml.Result, error) {
 	h := ref.Headers
-	res := &plantuml.Result{Data: body, Description: h["X-Plantuml-Diagram-Description"]}
+	res := &gopuml.Result{Data: body, Description: h["X-Plantuml-Diagram-Description"]}
 	res.Width, _ = strconv.Atoi(h["X-Plantuml-Diagram-Width"])
 	res.Height, _ = strconv.Atoi(h["X-Plantuml-Diagram-Height"])
 	msg, ok := h["X-Plantuml-Diagram-Error"]
@@ -170,7 +170,7 @@ func referenceDiagram(t *testing.T, ref *conformance.HTTPRecord, body []byte) (*
 	if ref.Server == "plantuml-server" {
 		line++ // plantuml-server sends the 0-based line
 	}
-	return res, &plantuml.SyntaxError{Line: line, Message: msg}
+	return res, &gopuml.SyntaxError{Line: line, Message: msg}
 }
 
 // TestRecordedReferenceHeaders keeps the header set of the svg-by-url

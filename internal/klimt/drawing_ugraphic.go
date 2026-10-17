@@ -8,8 +8,8 @@ package klimt
 import (
 	"io"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // UGraphic is a drawing surface. Apply returns a new surface with a change

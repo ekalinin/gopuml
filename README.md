@@ -1,4 +1,4 @@
-# plantuml-in-go
+# gopuml
 
 A Go reimplementation of [PlantUML](https://plantuml.com) v1.2026.8 (MIT
 variant). It reads the same diagram language and produces the same SVG, PNG
@@ -81,12 +81,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 func main() {
 	src := "@startuml\nAlice -> Bob : hello\n@enduml\n"
-	res, err := plantuml.Render(context.Background(), src, &plantuml.Options{Format: plantuml.SVG})
+	res, err := gopuml.Render(context.Background(), src, &gopuml.Options{Format: gopuml.SVG})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
@@ -96,11 +96,11 @@ func main() {
 }
 ```
 
-`Render` returns typed errors (`*plantuml.SyntaxError` with the line and
-message, `plantuml.ErrGraphvizNotFound`, `plantuml.ErrUnsupportedDiagram`,
+`Render` returns typed errors (`*gopuml.SyntaxError` with the line and
+message, `gopuml.ErrGraphvizNotFound`, `gopuml.ErrUnsupportedDiagram`,
 ...) and, for a syntax error, the error image together with the error.
-`plantuml.Inspect` lists the blocks of a source, and `plantuml.Encode` and
-`plantuml.Decode` convert sources to and from the text of server URLs.
+`gopuml.Inspect` lists the blocks of a source, and `gopuml.Encode` and
+`gopuml.Decode` convert sources to and from the text of server URLs.
 Includes can be resolved from an `fs.FS` given in the options.
 
 ## HTTP server

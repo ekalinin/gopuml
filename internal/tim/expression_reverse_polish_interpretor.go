@@ -6,7 +6,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Knowledge gives an expression access to variables and functions.

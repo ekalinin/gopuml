@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // modulo is %mod(dividend, divisor): the remainder of the int division,
 // with the sign of the dividend.

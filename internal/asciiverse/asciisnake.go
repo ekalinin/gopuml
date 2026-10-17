@@ -5,8 +5,8 @@
 package asciiverse
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // AsciiSnake is upstream's placeholder for the text counterpart of an

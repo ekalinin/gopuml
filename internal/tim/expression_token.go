@@ -7,7 +7,7 @@ package tim
 import (
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
+	"github.com/ekalinin/gopuml/internal/json"
 )
 
 // Token is one token of a preprocessor expression.

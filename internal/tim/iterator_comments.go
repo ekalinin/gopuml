@@ -9,7 +9,7 @@ package tim
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // codeIteratorLongComment skips /' ... '/ comments spanning several lines.

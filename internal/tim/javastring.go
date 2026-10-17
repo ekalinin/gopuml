@@ -9,7 +9,7 @@ import (
 	"unicode"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Java strings are sequences of UTF-16 code units. The preprocessor works

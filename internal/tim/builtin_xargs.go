@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // xargs is %xargs(): the data given after @startuml. Its signature has no
 // argument but, as upstream, it only covers calls with one argument.

@@ -17,8 +17,8 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // preprocessBlock preprocesses the first block of src, read from dir.

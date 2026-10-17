@@ -5,8 +5,8 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/core"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Sub is a !startsub ... !endsub block.

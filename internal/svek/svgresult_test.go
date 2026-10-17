@@ -7,7 +7,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // A fragment of the SVG written by dot -Tsvg (Graphviz 14.0.1) for a graph

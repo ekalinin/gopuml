@@ -6,8 +6,8 @@
 package extremity
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // halfArrow is upstream's ExtremityHalfArrow: one wing of an arrow head,

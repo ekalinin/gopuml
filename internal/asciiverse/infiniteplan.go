@@ -10,8 +10,8 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/ekalinin/plantuml-in-go/internal/asciiart"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/asciiart"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // InfinitePlan is the character grid of the text formats, unbounded in

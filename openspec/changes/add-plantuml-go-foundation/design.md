@@ -60,13 +60,13 @@ Alternatives considered:
 
 ### D2. Module and package layout mirrors upstream
 
-- **Module path:** `github.com/ekalinin/plantuml-in-go`. This is an assumption based on the GitHub account and directory name, and is cheap to change before the first release.
+- **Module path:** `github.com/ekalinin/gopuml`. The project was renamed from `plantuml-in-go` to `gopuml`, and the root package is `gopuml`.
 - **Go version:** the `go.mod` directive is `go 1.26`, so the two supported Go releases build it.
 - **Binary:** `plantuml`.
 
 | Go path | Upstream source | Purpose |
 |---|---|---|
-| `/` (package `plantuml`) | `SourceStringReader`, API | Public library API (library-api spec) |
+| `/` (package `gopuml`) | `SourceStringReader`, API | Public library API (library-api spec) |
 | `cmd/plantuml` | `Run`, `cli/*` | CLI |
 | `cmd/plantuml-wasm` | TeaVM entry points | WASM entry point (`GOOS=js GOARCH=wasm`) |
 | `internal/core` | `BlockUml`, `PSystemBuilder`, `core/DiagramType` | Block extraction, factory order, error diagrams |
@@ -163,7 +163,7 @@ Alternatives considered:
   - runs `dot` with `exec.CommandContext`, which gives the timeout and context cancellation from the graph-layout and library-api specs
   - finds `dot` in the order given in the graph-layout spec
   - reads `dot`'s stderr for error messages
-- **Smetana engine** (follow-up change): a separate Go module, `github.com/ekalinin/plantuml-in-go/smetana`, in a subdirectory with its own `go.mod` and EPL-1.0 `LICENSE`. That keeps the EPL file-level copyleft out of the MIT module. The main module only imports it behind a build tag or an optional registration.
+- **Smetana engine** (follow-up change): a separate Go module, `github.com/ekalinin/gopuml/smetana`, in a subdirectory with its own `go.mod` and EPL-1.0 `LICENSE`. That keeps the EPL file-level copyleft out of the MIT module. The main module only imports it behind a build tag or an optional registration.
 
 Alternatives considered:
 
@@ -268,7 +268,7 @@ Alternatives considered:
 
 ### D15. Versioning
 
-- `--version` prints `plantuml-go <semver> (PlantUML 1.2026.8 compatible)`.
+- `--version` prints `gopuml <semver> (PlantUML 1.2026.8 compatible)`.
 - `%version` returns `1.2026.8`, because diagrams use it to branch on upstream features.
 
 ### D16. Upstream bugs: fix them, follow upstream elsewhere

@@ -5,7 +5,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // codeIteratorSub records !startsub ... !endsub blocks and then lets their

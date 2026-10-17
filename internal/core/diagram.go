@@ -9,7 +9,7 @@ package core
 import (
 	"slices"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Diagram is the result of parsing one block.

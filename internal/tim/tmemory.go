@@ -5,7 +5,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // TMemory holds the variables and the open control structures of the code

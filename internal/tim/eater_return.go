@@ -9,7 +9,7 @@ package tim
 import (
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // EaterReturn is "!return expression".

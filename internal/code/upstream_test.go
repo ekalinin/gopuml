@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/conformance"
 )
 
 // TestEncodeDecodedByUpstream encodes the source of every curated diagram

@@ -5,7 +5,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+import "github.com/ekalinin/gopuml/internal/klimt/color"
 
 // back is upstream's HColor.Back, the background change of a color.
 type back struct {

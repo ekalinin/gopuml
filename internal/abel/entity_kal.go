@@ -4,7 +4,7 @@
 
 package abel
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt"
+import "github.com/ekalinin/gopuml/internal/klimt"
 
 // Kal is the qualifier box drawn at one end of a qualified association
 // (upstream's svek.Kal, which the graph layout creates and draws). The

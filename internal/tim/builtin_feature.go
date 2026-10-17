@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // feature is %feature(name): 1 for the features "style" and "theme"
 // (ignoring case), 0 otherwise.

@@ -13,7 +13,7 @@ package svg
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // XMLContent is a piece of content inside an XMLNode: a nested element or a

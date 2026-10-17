@@ -14,7 +14,7 @@
 
 package klimt
 
-import "github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+import "github.com/ekalinin/gopuml/internal/klimt/color"
 
 // UShape is anything a UGraphic can draw. Upstream's UShape is a marker
 // interface; drawing code dispatches on the concrete type (URectangle,

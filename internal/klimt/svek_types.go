@@ -15,7 +15,7 @@ import (
 	"math"
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // The small types below are defined by upstream in diagram-level packages

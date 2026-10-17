@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"strings"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
-	"github.com/ekalinin/plantuml-in-go/internal/code"
+	"github.com/ekalinin/gopuml"
+	"github.com/ekalinin/gopuml/internal/code"
 )
 
 // infoBody is the JSON of PicoWebServer.handleInfo, with the line end its
@@ -98,8 +98,8 @@ func (h *Handler) serveCheck(w http.ResponseWriter, r *http.Request, encoded str
 		return
 	}
 	ctx := r.Context()
-	opts := plantuml.Options{SecurityProfile: h.profile}
-	blocks, err := call(ctx, func(ctx context.Context) ([]*plantuml.Block, error) {
+	opts := gopuml.Options{SecurityProfile: h.profile}
+	blocks, err := call(ctx, func(ctx context.Context) ([]*gopuml.Block, error) {
 		return h.inspect(ctx, source, &opts)
 	})
 	switch {
@@ -109,7 +109,7 @@ func (h *Handler) serveCheck(w http.ResponseWriter, r *http.Request, encoded str
 		return
 	case ctx.Err() != nil:
 		return
-	case errors.Is(err, plantuml.ErrNoDiagram):
+	case errors.Is(err, gopuml.ErrNoDiagram):
 		blocks = nil
 	default:
 		h.log.Error("syntax check failed", "path", r.URL.Path, "error", err)
@@ -121,13 +121,13 @@ func (h *Handler) serveCheck(w http.ResponseWriter, r *http.Request, encoded str
 }
 
 // checkReport is Pipe.syntaxCheckDiagram for the first block.
-func checkReport(blocks []*plantuml.Block) string {
+func checkReport(blocks []*gopuml.Block) string {
 	if len(blocks) == 0 || blocks[0] == nil {
 		return ""
 	}
 	b := blocks[0]
-	var syntax *plantuml.SyntaxError
-	var unsupported *plantuml.UnsupportedError
+	var syntax *gopuml.SyntaxError
+	var unsupported *gopuml.UnsupportedError
 	var sb strings.Builder
 	switch {
 	case b.Err == nil && b.Type != "":

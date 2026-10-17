@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // callUserFunction is %call_user_func(name, args...).
 type callUserFunction struct{ simpleReturnFunction }

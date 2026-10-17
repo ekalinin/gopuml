@@ -8,7 +8,7 @@ package tim
 import (
 	"unicode/utf8"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // chr is %chr(codePoint): the character of a Unicode code point, or the NUL

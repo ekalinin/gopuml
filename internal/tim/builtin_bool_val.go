@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // boolVal is %boolval(s): 1 for "true" and "1", 0 for "false" and "0",
 // ignoring case.

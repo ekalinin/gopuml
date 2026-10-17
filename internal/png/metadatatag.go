@@ -14,7 +14,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 var signature = []byte("\x89PNG\r\n\x1a\n")

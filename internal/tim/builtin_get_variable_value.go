@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // getVariableValue is %get_variable_value(name).
 type getVariableValue struct{ simpleReturnFunction }

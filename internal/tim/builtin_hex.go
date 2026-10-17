@@ -8,7 +8,7 @@ package tim
 import (
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // dec2hex is %dec2hex(i): Integer.toHexString, the unsigned hexadecimal

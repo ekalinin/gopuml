@@ -2,7 +2,7 @@
 
 ## 1. Project setup and licensing
 
-- [x] 1.1 Initialize the Go module `github.com/ekalinin/plantuml-in-go` with `go 1.26`, and create the package skeleton from design D2 with a `doc.go` per package. Verify that `go build ./...` and `go vet ./...` succeed
+- [x] 1.1 Initialize the Go module `github.com/ekalinin/gopuml` with `go 1.26`, and create the package skeleton from design D2 with a `doc.go` per package. Verify that `go build ./...` and `go vet ./...` succeed
 - [x] 1.2 Add a `Makefile` with `build`, `test`, `lint`, `wasm`, `reference` and `conformance` targets (empty targets print "not implemented"). Verify that `make build test` succeeds
 - [x] 1.3 Add `LICENSE` (MIT with upstream's copyright line plus the project's) and `NOTICE` (upstream origin and version, excluded components, placeholders for asset attributions). Verify that both files exist and name PlantUML v1.2026.8
 - [x] 1.4 Add `tools/upstream/fetch.sh`, which downloads `plantuml-mit-1.2026.8-sources.jar` and `plantuml-mit-1.2026.8.jar` from Maven Central into `.cache/upstream/`, checks SHA-256 against committed checksums and unpacks the sources. Verify that the script succeeds twice in a row and fails on a tampered checksum
@@ -91,7 +91,7 @@
 
 ## 9. Library API (first usable slice)
 
-- [x] 9.1 Implement the root `plantuml` package:
+- [x] 9.1 Implement the root `gopuml` package:
   - `Render` with options and a context
   - diagram and page selection
   - result metadata (width, height, description, counts)

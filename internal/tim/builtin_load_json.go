@@ -9,8 +9,8 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // loadJSON is %load_json(source[, default[, charset]]): the JSON data of a

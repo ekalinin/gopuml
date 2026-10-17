@@ -12,7 +12,7 @@
 
 package export
 
-import "github.com/ekalinin/plantuml-in-go/internal/jmath"
+import "github.com/ekalinin/gopuml/internal/jmath"
 
 // Scale is the "scale" of a diagram: the factor applied to an image of a
 // given size.

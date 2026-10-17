@@ -11,7 +11,7 @@
 package sequencediagram
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/asciiverse"
+	"github.com/ekalinin/gopuml/internal/asciiverse"
 )
 
 // The text drawing of the messages and of the notes attached to them. The

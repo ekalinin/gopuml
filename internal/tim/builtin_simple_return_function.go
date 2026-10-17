@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // simpleReturnFunction is the base of the builtins that return a value:
 // embed it and implement Signature, CanCover and ExecuteReturnFunction.

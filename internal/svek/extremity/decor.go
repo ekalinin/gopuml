@@ -6,8 +6,8 @@
 package extremity
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/decoration"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // The drawing methods of upstream's LinkDecor and LinkMiddleDecor enums.

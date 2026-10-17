@@ -7,7 +7,7 @@ package klimt
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // UClip is a clipping rectangle, an immutable value.

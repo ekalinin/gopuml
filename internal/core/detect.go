@@ -17,8 +17,8 @@ package core
 import (
 	"regexp"
 
-	"github.com/ekalinin/plantuml-in-go/internal/command/regex"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/command/regex"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // unsupportedType recognizes an @startuml diagram type this implementation

@@ -7,7 +7,7 @@ package main
 import (
 	"os"
 
-	"github.com/ekalinin/plantuml-in-go/internal/cli"
+	"github.com/ekalinin/gopuml/internal/cli"
 )
 
 func main() {

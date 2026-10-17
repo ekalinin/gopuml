@@ -14,7 +14,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // More private-use characters of Jaws. JawsFlags.USE_BLOCK_E1_IN_NEWLINE_FUNCTION
 // is true, so %newline, %n and %breakline return them instead of "\n".

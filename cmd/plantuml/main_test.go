@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ekalinin/plantuml-in-go/internal/cli"
+	"github.com/ekalinin/gopuml/internal/cli"
 )
 
 // run runs the command line with the real engine in dir.

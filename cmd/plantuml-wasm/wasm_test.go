@@ -17,7 +17,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 var (
@@ -139,8 +139,8 @@ func TestWasmBuildProducesModule(t *testing.T) {
 func TestWasmRenderMatchesNative(t *testing.T) {
 	// Spec scenario "Render in a browser".
 	src := "@startuml\nAlice -> Bob : hello\n@enduml\n"
-	native, err := plantuml.Render(context.Background(), src, &plantuml.Options{SecurityProfile: "SANDBOX"})
-	if errors.Is(err, plantuml.ErrUnsupportedDiagram) {
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if errors.Is(err, gopuml.ErrUnsupportedDiagram) {
 		t.Skip("sequence diagrams are not drawn yet (task 8.8)")
 	}
 	if err != nil {

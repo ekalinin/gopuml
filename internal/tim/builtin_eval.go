@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // eval is %eval(expression): the int value of the expression.
 type eval struct{ simpleReturnFunction }

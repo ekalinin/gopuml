@@ -9,7 +9,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // logicalFunction is one of the logical builtins with two or more
 // arguments: %and, %nand, %nor, %nxor, %or and %xor. eval gets the number

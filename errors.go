@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 // Provenance: original
 
-package plantuml
+package gopuml
 
 import (
 	"errors"
 	"fmt"
 
-	"github.com/ekalinin/plantuml-in-go/internal/code"
-	"github.com/ekalinin/plantuml-in-go/internal/security"
+	"github.com/ekalinin/gopuml/internal/code"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 // Errors returned by the package. Test for them with errors.Is; a syntax

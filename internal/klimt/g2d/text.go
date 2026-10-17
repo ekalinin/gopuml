@@ -6,8 +6,8 @@ package g2d
 import (
 	"math"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/g2d/dejavu"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/g2d/dejavu"
 )
 
 // This file draws text as Java2D does on the reference JVM with text

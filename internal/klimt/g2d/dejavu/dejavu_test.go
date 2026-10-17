@@ -13,7 +13,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // outlineString writes an outline as SvgGolden.java's outline does: the

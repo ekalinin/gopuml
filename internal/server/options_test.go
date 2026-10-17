@@ -7,39 +7,39 @@ import (
 	"reflect"
 	"testing"
 
-	plantuml "github.com/ekalinin/plantuml-in-go"
+	"github.com/ekalinin/gopuml"
 )
 
 func TestParseOptions(t *testing.T) {
 	tests := []struct {
 		name string
 		args []string
-		want plantuml.Options
+		want gopuml.Options
 	}{
-		{"none", nil, plantuml.Options{Format: plantuml.PNG}},
-		{"charset padding", []string{"--charset", "UTF-8"}, plantuml.Options{Format: plantuml.PNG}},
-		{"svg", []string{"--svg"}, plantuml.Options{Format: plantuml.SVG}},
-		{"deprecated alias", []string{"-tsvg"}, plantuml.Options{Format: plantuml.SVG}},
-		{"case", []string{"-TSVG"}, plantuml.Options{Format: plantuml.SVG}},
-		{"txt", []string{"-txt"}, plantuml.Options{Format: plantuml.TXT}},
-		{"utxt", []string{"--utxt"}, plantuml.Options{Format: plantuml.UTXT}},
-		{"declaration order", []string{"--utxt", "--svg"}, plantuml.Options{Format: plantuml.SVG}},
-		{"given twice", []string{"--svg", "--svg", "--txt"}, plantuml.Options{Format: plantuml.TXT}},
-		{"all twice", []string{"--svg", "-svg"}, plantuml.Options{Format: plantuml.PNG}},
-		{"format flag", []string{"--svg", "-f", "txt"}, plantuml.Options{Format: plantuml.TXT}},
-		{"unknown format name", []string{"--svg", "--format", "nope"}, plantuml.Options{Format: plantuml.SVG}},
-		{"dark mode", []string{"-darkmode"}, plantuml.Options{Format: plantuml.PNG, DarkMode: true}},
-		{"no metadata", []string{"--disable-metadata", "--svg"}, plantuml.Options{Format: plantuml.SVG, NoMetadata: true}},
-		{"defines", []string{"-DA=1", "-D", "B=2", "--define", "A=3", "-DC"}, plantuml.Options{
-			Format:  plantuml.PNG,
-			Defines: []plantuml.Define{{Name: "A", Value: "3"}, {Name: "B", Value: "2"}, {Name: "C"}},
+		{"none", nil, gopuml.Options{Format: gopuml.PNG}},
+		{"charset padding", []string{"--charset", "UTF-8"}, gopuml.Options{Format: gopuml.PNG}},
+		{"svg", []string{"--svg"}, gopuml.Options{Format: gopuml.SVG}},
+		{"deprecated alias", []string{"-tsvg"}, gopuml.Options{Format: gopuml.SVG}},
+		{"case", []string{"-TSVG"}, gopuml.Options{Format: gopuml.SVG}},
+		{"txt", []string{"-txt"}, gopuml.Options{Format: gopuml.TXT}},
+		{"utxt", []string{"--utxt"}, gopuml.Options{Format: gopuml.UTXT}},
+		{"declaration order", []string{"--utxt", "--svg"}, gopuml.Options{Format: gopuml.SVG}},
+		{"given twice", []string{"--svg", "--svg", "--txt"}, gopuml.Options{Format: gopuml.TXT}},
+		{"all twice", []string{"--svg", "-svg"}, gopuml.Options{Format: gopuml.PNG}},
+		{"format flag", []string{"--svg", "-f", "txt"}, gopuml.Options{Format: gopuml.TXT}},
+		{"unknown format name", []string{"--svg", "--format", "nope"}, gopuml.Options{Format: gopuml.SVG}},
+		{"dark mode", []string{"-darkmode"}, gopuml.Options{Format: gopuml.PNG, DarkMode: true}},
+		{"no metadata", []string{"--disable-metadata", "--svg"}, gopuml.Options{Format: gopuml.SVG, NoMetadata: true}},
+		{"defines", []string{"-DA=1", "-D", "B=2", "--define", "A=3", "-DC"}, gopuml.Options{
+			Format:  gopuml.PNG,
+			Defines: []gopuml.Define{{Name: "A", Value: "3"}, {Name: "B", Value: "2"}, {Name: "C"}},
 		}},
-		{"config order", []string{"-Sshadowing=false", "-Pteoz=true", "--theme", "cerulean", "--skinparam", "dpi=200"}, plantuml.Options{
-			Format: plantuml.PNG,
+		{"config order", []string{"-Sshadowing=false", "-Pteoz=true", "--theme", "cerulean", "--skinparam", "dpi=200"}, gopuml.Options{
+			Format: gopuml.PNG,
 			Config: []string{"!theme cerulean", "!pragma teoz true", "skinparamlocked shadowing false", "skinparamlocked dpi 200"},
 		}},
-		{"filename", []string{"-filename", "a.puml"}, plantuml.Options{Format: plantuml.PNG, Filename: "a.puml"}},
-		{"local files ignored", []string{"--config", "/etc/passwd", "-I/etc/passwd", "-filedir", "/etc"}, plantuml.Options{Format: plantuml.PNG}},
+		{"filename", []string{"-filename", "a.puml"}, gopuml.Options{Format: gopuml.PNG, Filename: "a.puml"}},
+		{"local files ignored", []string{"--config", "/etc/passwd", "-I/etc/passwd", "-filedir", "/etc"}, gopuml.Options{Format: gopuml.PNG}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -67,7 +67,7 @@ func TestParseOptionsErrors(t *testing.T) {
 		}
 	}
 	// A second, unsupported format flag does not matter when given twice.
-	if got, err := parseOptions([]string{"--pdf", "--pdf", "--svg"}); err != nil || got.Format != plantuml.SVG {
+	if got, err := parseOptions([]string{"--pdf", "--pdf", "--svg"}); err != nil || got.Format != gopuml.SVG {
 		t.Errorf("got %v, %v", got.Format, err)
 	}
 }

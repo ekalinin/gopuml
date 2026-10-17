@@ -4,7 +4,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // strlen is %strlen(s): the length in UTF-16 chars.
 type strlen struct{ simpleReturnFunction }

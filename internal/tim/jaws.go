@@ -7,7 +7,7 @@ package tim
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // Private-use characters that the preprocessor puts in lines.

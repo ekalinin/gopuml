@@ -5,7 +5,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // EaterDumpMemory is "!dump_memory [message]": it writes the variables to
 // the diagnostic log.

@@ -3,7 +3,7 @@
 
 package svek
 
-import "github.com/ekalinin/plantuml-in-go/internal/uml"
+import "github.com/ekalinin/gopuml/internal/uml"
 
 // The Java exceptions thrown by the ported code, as panics with
 // *color.RuntimeError (see internal/uml).

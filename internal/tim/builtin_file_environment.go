@@ -7,7 +7,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // environmentFunction is a builtin without argument that returns a value of
 // the environment of the source file, read from the Defines when the

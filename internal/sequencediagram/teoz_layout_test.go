@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/font"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/rose"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/rose"
 )
 
 // The layout tests check the positions computed by Teoz (the lifeline x

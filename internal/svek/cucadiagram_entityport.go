@@ -8,8 +8,8 @@ package svek
 import (
 	"strings"
 
-	"github.com/ekalinin/plantuml-in-go/internal/abel"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/abel"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // entityPort is upstream's cucadiagram.EntityPort: the dot node of a link

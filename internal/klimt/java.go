@@ -11,8 +11,8 @@ import (
 	"unicode"
 	"unicode/utf16"
 
-	"github.com/ekalinin/plantuml-in-go/internal/jfmt"
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/jfmt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // Upstream's unchecked exceptions are panics with a *color.RuntimeError

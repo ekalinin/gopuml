@@ -5,7 +5,7 @@
 package tim
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // codeIteratorIf handles !if, !ifdef, !ifndef, !elseif, !else and !endif,

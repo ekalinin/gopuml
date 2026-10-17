@@ -5,7 +5,7 @@
 package activitydiagram3
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // FtileFactoryDelegatorIf builds the tiles of "if": a conditional for one

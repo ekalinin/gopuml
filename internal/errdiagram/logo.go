@@ -13,7 +13,7 @@ import (
 	"image/png"
 	"sync"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt"
 )
 
 // logoPNG is upstream's version/logo.png as Java's ImageIO writes it in SVG

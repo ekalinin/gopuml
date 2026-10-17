@@ -9,8 +9,8 @@ package tim
 import (
 	"slices"
 
-	"github.com/ekalinin/plantuml-in-go/internal/json"
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/json"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // ThemeLister is implemented by a ThemeSource that can list its themes. It

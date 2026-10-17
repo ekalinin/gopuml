@@ -9,7 +9,7 @@ import (
 	"slices"
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/text"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // TMemoryGlobal is the memory of top-level code.

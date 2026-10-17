@@ -6,8 +6,8 @@
 package abel
 
 import (
-	"github.com/ekalinin/plantuml-in-go/internal/klimt"
-	"github.com/ekalinin/plantuml-in-go/internal/uml"
+	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/uml"
 )
 
 // EntityGender selects entities, for "hide" and "show" on portions.

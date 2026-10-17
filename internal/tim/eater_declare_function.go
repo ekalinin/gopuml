@@ -5,7 +5,7 @@
 
 package tim
 
-import "github.com/ekalinin/plantuml-in-go/internal/text"
+import "github.com/ekalinin/gopuml/internal/text"
 
 // eaterDeclare reads "![unquoted] [final] procedure|function $name(args)".
 type eaterDeclare struct {

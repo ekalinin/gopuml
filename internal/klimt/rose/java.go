@@ -6,7 +6,7 @@ package rose
 import (
 	"strconv"
 
-	"github.com/ekalinin/plantuml-in-go/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // Upstream's unchecked exceptions are panics with a *color.RuntimeError
