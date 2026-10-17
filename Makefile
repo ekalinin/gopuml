@@ -36,9 +36,25 @@ reference-check:
 IMPL ?= go
 CONFORMANCE_DIR := .cache/conformance
 
+# GO_IN_IMAGE=1 renders the IMPL=go outputs in the reference image, so that
+# they use its Graphviz, as the references do. It needs a linux/amd64 host:
+# Go binaries crash under amd64 emulation. The image has no C compiler and
+# no git, hence CGO_ENABLED=0 and -buildvcs=false.
+ifeq ($(GO_IN_IMAGE),1)
+GO_IN_IMAGE_DIRS := $(CURDIR) $(shell $(GO) env GOROOT GOMODCACHE GOCACHE)
+REFGEN_GO = docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+	$(foreach d,$(GO_IN_IMAGE_DIRS),-v "$(d):$(d)") -w "$(CURDIR)" \
+	-e HOME=/tmp -e CGO_ENABLED=0 -e GOFLAGS=-buildvcs=false \
+	-e GOMODCACHE="$(word 3,$(GO_IN_IMAGE_DIRS))" -e GOCACHE="$(word 4,$(GO_IN_IMAGE_DIRS))" \
+	-e PATH="$(word 2,$(GO_IN_IMAGE_DIRS))/bin:/usr/local/bin:/usr/bin:/bin" \
+	$(REFERENCE_IMAGE) go
+else
+REFGEN_GO = $(GO)
+endif
+
 conformance:
 	tools/reference/fetch-tools.sh
-	$(GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -png -impl $(IMPL) -out $(CONFORMANCE_DIR)/actual
+	$(REFGEN_GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -png -impl $(IMPL) -out $(CONFORMANCE_DIR)/actual
 	$(GO) test -tags conformance -count=1 -timeout 30m -run TestConformance -v ./internal/conformance -args \
 		-root $(CURDIR) -actual $(CURDIR)/$(CONFORMANCE_DIR)/actual -impl $(IMPL) \
 		-resvg $(CURDIR)/.cache/tools/resvg -fonts $(CURDIR)/.cache/fonts/dejavu \

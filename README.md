@@ -152,6 +152,22 @@ the outputs with the references of upstream PlantUML, which `make reference`
 records in a Docker image (`tools/reference/Dockerfile`). The comparison
 writes `conformance-report.md`.
 
+CI runs the suite on every pull request and every push to `main`, with every
+group required: a failing case that is not listed in
+`testdata/conformance/known-differences.yaml` fails the run. The report is
+attached to the run and shown in its summary. On a linux/amd64 host, these
+commands reproduce the CI run:
+
+```sh
+make reference
+make conformance REQUIRE=all GO_IN_IMAGE=1
+```
+
+`GO_IN_IMAGE=1` renders the outputs of this implementation in the reference
+image, so that both implementations use the same Graphviz. On arm64 hosts,
+`make conformance` renders them natively with the host's Graphviz, so the
+results there are indicative only.
+
 ## License
 
 MIT, see `LICENSE`. This project translates the MIT-licensed variant of

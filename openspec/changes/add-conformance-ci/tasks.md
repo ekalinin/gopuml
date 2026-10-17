@@ -2,15 +2,15 @@
 
 ## 1. Go render in the reference image
 
-- [ ] 1.1 Add the `GO_IN_IMAGE` option to the `conformance` target of the `Makefile` (design D5). With `GO_IN_IMAGE=1`, the refgen step (`go run ./tools/refgen -impl go -png -out ...`) runs in a `linux/amd64` container of `$(REFERENCE_IMAGE)`: as the host user, with the repository, `go env GOROOT`, `go env GOMODCACHE` and `go env GOCACHE` mounted, and with `CGO_ENABLED=0` and `GOFLAGS=-buildvcs=false`. The other steps do not change. Verify that `make -n conformance` prints the same commands as before the change, and that `make -n conformance GO_IN_IMAGE=1` prints the `docker run` form of the refgen step only
+- [x] 1.1 Add the `GO_IN_IMAGE` option to the `conformance` target of the `Makefile` (design D5). With `GO_IN_IMAGE=1`, the refgen step (`go run ./tools/refgen -impl go -png -out ...`) runs in a `linux/amd64` container of `$(REFERENCE_IMAGE)`: as the host user, with the repository, `go env GOROOT`, `go env GOMODCACHE` and `go env GOCACHE` mounted, and with `CGO_ENABLED=0` and `GOFLAGS=-buildvcs=false`. The other steps do not change. Verify that `make -n conformance` prints the same commands as before the change, and that `make -n conformance GO_IN_IMAGE=1` prints the `docker run` form of the refgen step only
 
 ## 2. CI job
 
-- [ ] 2.1 Add the `conformance` job to `.github/workflows/ci.yml` with the triggers and permissions of the workflow (D1): checkout, Go from `go.mod`, Docker Buildx, and the build of `tools/reference/Dockerfile` for `linux/amd64` with the GitHub Actions layer cache, loaded as `plantuml-go-reference` (D2). Record the image ID as a step output. Verify that `go run github.com/rhysd/actionlint/cmd/actionlint@latest` reports no errors for the workflow
-- [ ] 2.2 Add the caches of D3: `.cache/vega` keyed on `tools/corpus/fetch-vega.sh`, and `.cache/reference/vega` with `.cache/reference-png` keyed on the image ID and the hash of the inputs listed in D3. On a reference cache miss, run `tools/corpus/fetch-vega.sh` and `go run ./tools/refgen -image plantuml-go-reference -png`. Verify with actionlint, and verify that the key expression names every input path from D3
-- [ ] 2.3 After the Java render of 2.2, fail the job when `git status --porcelain -- testdata/conformance/reference` is not empty, printing the differing files (D4). Verify locally by running the step's script once on a clean tree (it passes) and once after editing a committed reference file (it fails and names the file), then restore the file
-- [ ] 2.4 Run `make conformance REQUIRE=all GO_IN_IMAGE=1` (D5, D6), and set a job timeout above the 30-minute `go test` timeout. Verify with actionlint
-- [ ] 2.5 Upload `conformance-report.md` as a run artifact and append it to `$GITHUB_STEP_SUMMARY`, in steps that run whether the comparison passed or failed (D7). Verify with actionlint that both steps use `if: always()` or an equivalent condition
+- [x] 2.1 Add the `conformance` job to `.github/workflows/ci.yml` with the triggers and permissions of the workflow (D1): checkout, Go from `go.mod`, Docker Buildx, and the build of `tools/reference/Dockerfile` for `linux/amd64` with the GitHub Actions layer cache, loaded as `plantuml-go-reference` (D2). Record the image ID as a step output. Verify that `go run github.com/rhysd/actionlint/cmd/actionlint@latest` reports no errors for the workflow
+- [x] 2.2 Add the caches of D3: `.cache/vega` keyed on `tools/corpus/fetch-vega.sh`, and `.cache/reference/vega` with `.cache/reference-png` keyed on the image ID and the hash of the inputs listed in D3. Run `tools/corpus/fetch-vega.sh` on every run, because the Go render and the comparison read the corpus too, and on a reference cache miss run `go run ./tools/refgen -image plantuml-go-reference -png`. Verify with actionlint, and verify that the key expression names every input path from D3
+- [x] 2.3 After the Java render of 2.2, fail the job when `git status --porcelain -- testdata/conformance/reference` is not empty, printing the differing files (D4). Verify locally by running the step's script once on a clean tree (it passes) and once after editing a committed reference file (it fails and names the file), then restore the file
+- [x] 2.4 Run `make conformance REQUIRE=all GO_IN_IMAGE=1` (D5, D6), and set a job timeout above the 30-minute `go test` timeout. Verify with actionlint
+- [x] 2.5 Upload `conformance-report.md` as a run artifact and append it to `$GITHUB_STEP_SUMMARY`, in steps that run whether the comparison passed or failed (D7). Verify with actionlint that both steps use `if: always()` or an equivalent condition
 
 ## 3. Verification in CI
 
@@ -22,5 +22,5 @@
 
 ## 4. Documentation and validation
 
-- [ ] 4.1 Update the "Conformance suite" section of `README.md`: CI runs the suite on every pull request and every push to `main` with every group required; on a linux/amd64 host, `make reference` followed by `make conformance REQUIRE=all GO_IN_IMAGE=1` reproduces the CI run; on arm64 hosts, `make conformance` runs the Go side natively and its results are indicative. Verify that every command in the section exists in the `Makefile` with `make -n`
+- [x] 4.1 Update the "Conformance suite" section of `README.md`: CI runs the suite on every pull request and every push to `main` with every group required; on a linux/amd64 host, `make reference` followed by `make conformance REQUIRE=all GO_IN_IMAGE=1` reproduces the CI run; on arm64 hosts, `make conformance` runs the Go side natively and its results are indicative. Verify that every command in the section exists in the `Makefile` with `make -n`
 - [ ] 4.2 Run `openspec validate add-conformance-ci --strict`. Verify that the change is reported as valid

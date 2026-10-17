@@ -51,9 +51,9 @@ Alternatives:
 
 ### D3. Cache the Vega corpus and the uncommitted references
 
-- `.cache/vega` is cached with a key on `tools/corpus/fetch-vega.sh`. The script is a no-op when the corpus is complete.
+- `.cache/vega` is cached with a key on `tools/corpus/fetch-vega.sh`. The job runs the script on every run, because the Go render and the comparison read the corpus too. The script is a no-op when the corpus is complete.
 - `.cache/reference/vega` and `.cache/reference-png` are cached together. The key combines the ID of the built image with a hash of `tools/reference/**`, `tools/refgen/**`, `internal/conformance/**`, `tools/corpus/fetch-vega.sh`, `testdata/conformance/cases/**` and `testdata/conformance/reference/**`. Every input that can change a reference is in the key, so a cache hit is safe to use.
-- On a miss, the job runs `tools/corpus/fetch-vega.sh` and `go run ./tools/refgen -image plantuml-go-reference -png`, which renders all suites with Java. It does not use `make reference`, because that target runs `docker build` again outside Buildx and its cache.
+- On a miss, the job runs `go run ./tools/refgen -image plantuml-go-reference -png`, which renders all suites with Java. It does not use `make reference`, because that target runs `docker build` again outside Buildx and its cache.
 
 Alternatives:
 
