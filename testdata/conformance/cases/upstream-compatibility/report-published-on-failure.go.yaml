@@ -1,0 +1,6 @@
+id: upstream-compatibility/report-published-on-failure
+scenarios:
+  - "upstream-compatibility: Report published on failure"
+package: internal/conformance
+test: TestCIWorkflow
+why: Behavior of the CI workflow. The test checks that the steps publishing the report also run after a failed comparison.

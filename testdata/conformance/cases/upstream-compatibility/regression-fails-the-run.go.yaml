@@ -1,0 +1,6 @@
+id: upstream-compatibility/regression-fails-the-run
+scenarios:
+  - "upstream-compatibility: Regression fails the run"
+package: internal/conformance
+test: TestConformance
+why: Behavior of the conformance harness itself. With every group required, as in CI, a failing case fails the test and is named in its log.

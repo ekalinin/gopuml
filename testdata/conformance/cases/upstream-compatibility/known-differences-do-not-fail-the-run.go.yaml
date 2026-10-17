@@ -1,0 +1,6 @@
+id: upstream-compatibility/known-differences-do-not-fail-the-run
+scenarios:
+  - "upstream-compatibility: Known differences do not fail the run"
+package: internal/conformance
+test: TestCompareDiagramPreprocAndKnown
+why: Behavior of the conformance harness itself. A failing case listed as a known difference has the known status, which no required group fails on.

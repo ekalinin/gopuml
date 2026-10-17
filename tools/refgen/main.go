@@ -428,6 +428,10 @@ func (g *generator) recordHTTP(cases []*conformance.HTTPCase) error {
 	}
 
 	client := &http.Client{
+		// PicoWebServer closes the connection after each response without
+		// "Connection: close"; a request sent on that connection fails with
+		// EOF, and a POST is not retried.
+		Transport:     &http.Transport{DisableKeepAlives: true},
 		Timeout:       2 * time.Minute,
 		CheckRedirect: func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse },
 	}

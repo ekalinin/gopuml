@@ -38,3 +38,79 @@ jobs:
 
       - name: WASM build
         run: make wasm
+
+  conformance:
+    runs-on: ubuntu-latest
+    # Above the 30-minute timeout of the conformance test. Runs take about
+    # 4 minutes with a cold cache and 1.5 minutes with a warm one.
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - uses: docker/setup-buildx-action@v4
+
+      - name: Build reference image
+        id: image
+        uses: docker/build-push-action@v7
+        with:
+          context: tools/reference
+          platforms: linux/amd64
+          load: true
+          tags: plantuml-go-reference
+          cache-from: type=gha,scope=reference-image
+          cache-to: type=gha,scope=reference-image,mode=max
+
+      - name: Cache Vega corpus
+        uses: actions/cache@v4
+        with:
+          path: .cache/vega
+          key: vega-${{ hashFiles('tools/corpus/fetch-vega.sh') }}
+
+      - name: Fetch Vega corpus
+        run: tools/corpus/fetch-vega.sh
+
+      # Every input that can change a reference is in the key.
+      - name: Cache references
+        id: references
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/reference/vega
+            .cache/reference-png
+          key: reference-${{ steps.image.outputs.imageid }}-${{ hashFiles('tools/reference/**', 'tools/refgen/**', 'internal/conformance/**', 'tools/corpus/fetch-vega.sh', 'testdata/conformance/cases/**', 'testdata/conformance/reference/**') }}
+
+      - name: Render references
+        if: steps.references.outputs.cache-hit != 'true'
+        run: go run ./tools/refgen -image plantuml-go-reference -png
+
+      - name: Check committed references
+        if: steps.references.outputs.cache-hit != 'true'
+        run: |
+          changed="$(git status --porcelain -- testdata/conformance/reference)"
+          if [ -n "$changed" ]; then
+            echo "The reference image renders different curated references; regenerate them with make reference:"
+            echo "$changed"
+            exit 1
+          fi
+
+      - name: Conformance
+        run: make conformance REQUIRE=all GO_IN_IMAGE=1
+
+      - name: Report summary
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f conformance-report.md ]; then
+            cat conformance-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: conformance-report
+          path: conformance-report.md
+          if-no-files-found: ignore
