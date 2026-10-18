@@ -46,7 +46,20 @@ type RenderContext struct {
 	// block being built, upstream's PreprocessingArtifact.
 	PreprocOptions  map[string]string
 	PreprocWarnings []string
+	// Previous are the skinparam values a new diagram starts with,
+	// upstream's Previous: those of the diagram that embeds it ("{{" ...
+	// "}}"), nil otherwise.
+	Previous map[string]string
+	// EmbeddedDiagram renders an embedded diagram; the engine sets it. nil
+	// means that embedded diagrams cannot be drawn.
+	EmbeddedDiagram EmbeddedDiagramRenderer
 }
+
+// EmbeddedDiagramRenderer renders the lines of an embedded diagram, from
+// "@start<type>" to "@end<type>", as upstream's EmbeddedDiagram builds and
+// exports a BlockUml: previous are the skinparam values of the embedding
+// diagram, and the image is SVG when svg is true, PNG otherwise.
+type EmbeddedDiagramRenderer func(lines []string, previous map[string]string, svg bool) ([]byte, error)
 
 // NewRenderContext returns a context with upstream's defaults.
 func NewRenderContext() *RenderContext {
@@ -66,6 +79,7 @@ func (c *RenderContext) Clone() *RenderContext {
 	out.Config = slices.Clone(c.Config)
 	out.Defines = maps.Clone(c.Defines)
 	out.Pragmas = maps.Clone(c.Pragmas)
+	out.Previous = maps.Clone(c.Previous)
 	return &out
 }
 

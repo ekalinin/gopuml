@@ -35,7 +35,7 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeActivity:
 		notPorted("EntityImageActivity")
 	case leafType == abel.LeafTypePortin || leafType == abel.LeafTypePortout:
-		notPorted("EntityImagePort")
+		return newEntityImagePort(leaf, bibliotekon.cluster(leaf.ParentContainer()), bibliotekon)
 	case leafType == abel.LeafTypeState:
 		notPorted("EntityImageState")
 	case leafType == abel.LeafTypeCircleStart:
@@ -81,8 +81,8 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeChenEntity, leafType == abel.LeafTypeChenRelationship,
 		leafType == abel.LeafTypeChenAttribute, leafType == abel.LeafTypeChenCircle:
 		notPorted("EntityImageChen")
-	case leafType == abel.LeafTypeDomain, leafType == abel.LeafTypeRequirement:
-		notPorted("EntityImageDomain")
+	case leafType == abel.LeafTypeDomain || leafType == abel.LeafTypeRequirement:
+		return newEntityImageProblemFrames(leaf)
 	default:
 		throwUnsupported(leafType.String())
 	}
@@ -95,4 +95,26 @@ func forcedStroke(stereotype *klimt.Stereotype, skinParam klimt.ISkinParam) klim
 		return *stroke
 	}
 	return klimt.UStrokeWithThickness(1.5)
+}
+
+// newEntityImageProblemFrames is the end of upstream's createEntityImageBlockInternal:
+// the image of a domain chosen by its stereotype, or of a requirement.
+func newEntityImageProblemFrames(leaf *abel.Entity) klimt.IEntityImage {
+	stereotype := leaf.Stereotype()
+	isDomain := leaf.LeafType() == abel.LeafTypeDomain
+	switch {
+	case isDomain && stereotype != nil && stereotype.IsMachineOrSpecification():
+		return newEntityImageMachine(leaf)
+	case isDomain && stereotype != nil && stereotype.IsDesignedOrSolved():
+		return newEntityImageDesignedDomain(leaf)
+	case leaf.LeafType() == abel.LeafTypeRequirement:
+		return newEntityImageRequirement(leaf)
+	case isDomain && stereotype != nil && stereotype.IsLexicalOrGiven():
+		return newEntityImageDomain(leaf, 'X')
+	case isDomain && stereotype != nil && stereotype.IsCausal():
+		return newEntityImageDomain(leaf, 'C')
+	case isDomain && stereotype != nil && stereotype.IsBiddableOrUncertain():
+		return newEntityImageDomain(leaf, 'B')
+	}
+	return newEntityImageDomain(leaf, 'P')
 }

@@ -1,0 +1,17 @@
+---
+id: description-diagram/linked-ports
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Linked ports"
+---
+@startuml
+component C1 {
+  portout p1
+}
+component C2 {
+  portin p2
+}
+p1 --> p2
+@enduml

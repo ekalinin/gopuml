@@ -1,0 +1,6 @@
+{
+  "id": "description-diagram/machine-and-requirement",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 211, "height": 155, "status": 0}]}
+  ]
+}

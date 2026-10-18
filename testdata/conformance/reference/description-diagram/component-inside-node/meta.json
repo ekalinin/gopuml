@@ -1,0 +1,6 @@
+{
+  "id": "description-diagram/component-inside-node",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(1 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 168, "height": 132, "status": 0}]}
+  ]
+}

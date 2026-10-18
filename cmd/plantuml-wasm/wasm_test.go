@@ -185,3 +185,15 @@ func TestWasmClassDiagramError(t *testing.T) {
 		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
 	}
 }
+
+func TestWasmDescriptionDiagram(t *testing.T) {
+	// Spec scenario "Description diagram in WASM".
+	r := renderInNode(t, "@startuml\nnode Server\ndatabase Orders\nServer --> Orders\n@enduml\n",
+		map[string]any{"format": "svg"})
+	if r.Error == nil {
+		t.Fatal("description diagram rendered without graph layout")
+	}
+	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
+		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
+	}
+}

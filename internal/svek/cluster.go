@@ -297,8 +297,33 @@ func clusterStrokeInternal(group *abel.Entity, style *klimt.Style) klimt.UStroke
 	return style.Stroke()
 }
 
-func (c *Cluster) manageEntryExitPoint(font.StringBounder) {
-	notPorted("FrontierCalculator")
+// manageEntryExitPoint is Cluster.manageEntryExitPoint: the cluster box
+// becomes the frontier of its inner nodes and clusters and of its entry
+// and exit points, and the title is centered on it.
+func (c *Cluster) manageEntryExitPoint(stringBounder font.StringBounder) {
+	var insides []geom.RectangleArea
+	var points []geom.XPoint2D
+	for _, sh := range c.nodes {
+		if isNormalPosition(sh) {
+			insides = append(insides, sh.rectangleArea())
+		} else {
+			points = append(points, sh.rectangleArea().PointCenter())
+		}
+	}
+	for _, in := range c.children {
+		// Upstream prints "Frontier null for" a child without a box.
+		if in.rectangleArea != nil {
+			insides = append(insides, *in.rectangleArea)
+		}
+	}
+	calculator := newFrontierCalculator(*c.rectangleArea, insides, points, c.skinParam.Rankdir())
+	if c.titleAndAttributeWidth() > 0 && c.titleAndAttributeHeight() > 0 {
+		calculator.ensureMinWidth(float64(c.titleAndAttributeWidth() + 10))
+	}
+	r := calculator.suggestedPosition()
+	c.rectangleArea = &r
+	widthTitle := c.clusterHeader.title.CalculateDimension(stringBounder).Width()
+	c.xyTitle = &geom.XPoint2D{X: r.MinX() + (r.Width()-widthTitle)/2, Y: r.MinY() + klimt.IEntityImageMargin}
 }
 
 func (c *Cluster) drawSwinLinesState(ug klimt.UGraphic, borderColor color.HColor) {

@@ -1,0 +1,6 @@
+{
+  "id": "description-diagram/dotted-link-direction",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 184, "height": 66, "status": 0}]}
+  ]
+}

@@ -1,0 +1,17 @@
+---
+id: styling/embedded-sequence-in-activity
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "styling: Sequence diagram in an activity"
+---
+@startuml
+start
+:Exchange
+{{
+Alice -> Bob : hello
+}}
+;
+stop
+@enduml

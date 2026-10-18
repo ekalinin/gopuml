@@ -1,0 +1,13 @@
+---
+id: description-diagram/actor-and-use-case
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "description-diagram: Actor and use case"
+---
+@startuml
+actor User
+usecase Login
+User --> Login
+@enduml

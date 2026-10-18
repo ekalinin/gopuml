@@ -1,0 +1,13 @@
+---
+id: description-diagram/dotted-link-direction
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Dotted link with direction and label"
+---
+@startuml
+component A
+component B
+A .left.> B : uses
+@enduml

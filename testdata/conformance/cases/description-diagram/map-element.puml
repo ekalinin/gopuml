@@ -1,0 +1,15 @@
+---
+id: description-diagram/map-element
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Map element"
+---
+@startuml
+component App
+map Config {
+  port => 8080
+}
+App --> Config
+@enduml

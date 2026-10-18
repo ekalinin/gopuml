@@ -1,0 +1,6 @@
+id: styling/embedded-unsupported-type
+scenarios:
+  - "styling: Embedded diagram of an unsupported type"
+package: internal/engine
+test: TestEmbeddedUnsupportedType
+why: Upstream draws the embedded state diagram, while this change draws its "not supported yet" error image.

@@ -9,6 +9,7 @@ import (
 	"strings"
 	"unicode/utf16"
 
+	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/text"
 )
@@ -165,4 +166,35 @@ func JavaLength(s string) int {
 		}
 	}
 	return n
+}
+
+// QueueDirection is upstream's StringUtils.getQueueDirection: the
+// direction named in an arrow body, DOWN by default (RIGHT for a single
+// character).
+func QueueDirection(s string) klimt.Direction {
+	if strings.ContainsAny(s, "<>") {
+		Throw(IllegalArgumentException, s)
+	}
+	s = strings.ToLower(s)
+	switch {
+	case strings.Contains(s, "left"):
+		return klimt.DirectionLeft
+	case strings.Contains(s, "right"):
+		return klimt.DirectionRight
+	case strings.Contains(s, "up"):
+		return klimt.DirectionUp
+	case strings.Contains(s, "down"):
+		return klimt.DirectionDown
+	case strings.Contains(s, "l"):
+		return klimt.DirectionLeft
+	case strings.Contains(s, "r"):
+		return klimt.DirectionRight
+	case strings.Contains(s, "u"):
+		return klimt.DirectionUp
+	case strings.Contains(s, "d"):
+		return klimt.DirectionDown
+	case JavaLength(s) == 1:
+		return klimt.DirectionRight
+	}
+	return klimt.DirectionDown
 }

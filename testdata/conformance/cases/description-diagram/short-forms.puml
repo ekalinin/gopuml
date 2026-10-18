@@ -1,0 +1,12 @@
+---
+id: description-diagram/short-forms
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Short forms"
+---
+@startuml
+:Admin: --> (Reset password)
+[API] --> () REST
+@enduml

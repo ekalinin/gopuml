@@ -1,0 +1,14 @@
+---
+id: description-diagram/note-attached-actor
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Note attached to an actor"
+---
+@startuml
+actor User
+usecase Login
+User --> Login
+note right of User : signs in
+@enduml

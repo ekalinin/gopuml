@@ -1,0 +1,6 @@
+id: description-diagram/without-dot
+scenarios:
+  - "description-diagram: Description diagram without dot"
+package: internal/descdiagram
+test: TestDescriptionWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

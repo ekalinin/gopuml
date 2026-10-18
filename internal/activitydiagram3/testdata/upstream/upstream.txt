@@ -25689,6 +25689,28 @@ not activity3
 not activity3
 === allconf/class-diagram/visibility-static.puml
 not activity3
+=== allconf/description-diagram/actor-and-use-case.puml
+not activity3
+=== allconf/description-diagram/component-inside-node.puml
+not activity3
+=== allconf/description-diagram/deployment-symbols.puml
+not activity3
+=== allconf/description-diagram/dotted-link-direction.puml
+not activity3
+=== allconf/description-diagram/element-body-multiline.puml
+not activity3
+=== allconf/description-diagram/left-to-right.puml
+not activity3
+=== allconf/description-diagram/linked-ports.puml
+not activity3
+=== allconf/description-diagram/machine-and-requirement.puml
+not activity3
+=== allconf/description-diagram/map-element.puml
+not activity3
+=== allconf/description-diagram/note-attached-actor.puml
+not activity3
+=== allconf/description-diagram/short-forms.puml
+not activity3
 === allconf/diagram-source/activity-detected.puml
 result ActivityDiagram3
 description activity3
@@ -25710,6 +25732,8 @@ ins 2 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null o
 ins 3 1 item InstructionStop lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
 current 0
 === allconf/diagram-source/class-detected.puml
+not activity3
+=== allconf/diagram-source/description-detected.puml
 not activity3
 === allconf/diagram-source/diagram-name-rules.puml
 not activity3
@@ -25802,6 +25826,28 @@ not activity3
 === allconf/styling/creole-bold-color.puml
 not activity3
 === allconf/styling/creole-table.puml
+not activity3
+=== allconf/styling/embedded-sequence-in-activity.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionStart lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
+ins 2 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[Exchange|{{|Alice -> Bob : hello|}}] colors={} null box=null url=null stereo=null killed=false notes=[]
+ins 3 1 item InstructionStop lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
+current 0
+=== allconf/styling/embedded-use-case-in-note.puml
 not activity3
 === allconf/styling/gradient-fill.puml
 not activity3

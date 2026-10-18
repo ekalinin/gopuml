@@ -1,0 +1,6 @@
+id: description-diagram/txt-unsupported
+scenarios:
+  - "description-diagram: TXT for a description diagram"
+package: internal/descdiagram
+test: TestDescriptionTxtUnsupported
+why: Upstream draws description diagrams as TXT, while this change rejects that format, as it does for class diagrams.

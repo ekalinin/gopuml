@@ -1,0 +1,13 @@
+---
+id: description-diagram/deployment-symbols
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Deployment symbols"
+---
+@startuml
+node Server
+database Orders
+Server --> Orders
+@enduml

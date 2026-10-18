@@ -22,6 +22,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/classdiagram"
 	"github.com/ekalinin/gopuml/internal/code"
 	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/descdiagram"
 	"github.com/ekalinin/gopuml/internal/errdiagram"
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
@@ -36,7 +37,7 @@ import (
 // Factories are the parsers of the supported diagram types, in upstream's
 // order (PSystemBuilder). They are added with each diagram type.
 var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
-	activitydiagram3.Factory}
+	descdiagram.Factory, activitydiagram3.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
@@ -116,6 +117,7 @@ func defines(rc *core.RenderContext, src Source) *tim.Defines {
 // Parse splits a source into blocks, preprocesses each and builds its
 // diagram, as upstream's BlockUmlBuilder.
 func Parse(ctx context.Context, rc *core.RenderContext, src Source) ([]*Block, error) {
+	rc = withEmbeddedDiagrams(rc)
 	defs := &tim.BlockDefinitions{}
 	env := defines(rc, src)
 	access := &security.Access{FS: rc.FS}

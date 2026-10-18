@@ -1,0 +1,6 @@
+{
+  "id": "styling/embedded-use-case-in-note",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 227, "height": 304, "status": 0}, {"file": "block0-page0.png", "width": 226, "height": 303, "status": 0}]}
+  ]
+}

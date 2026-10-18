@@ -1,0 +1,13 @@
+---
+id: description-diagram/left-to-right
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Left to right use cases"
+---
+@startuml
+left to right direction
+actor User
+User --> (Login)
+@enduml
