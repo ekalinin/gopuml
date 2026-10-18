@@ -10,7 +10,7 @@
 ## 2. Shared code moves
 
 - [x] 2.1 Move `Labels`, `StringWithArrow` and their helpers from `internal/classdiagram/commands_link.go` to `internal/descdiagram`, exported, and make `internal/classdiagram` use them from there (D1). No logic changes. Verify that `make test` passes and that the sequence, class and activity groups of `make conformance` have the same results as on `main`
-- [ ] 2.2 Move the `map` and `json` commands from `internal/classdiagram/objectdiagram_commands.go` to a new `internal/objectdiagram`, typed on the entity-diagram interface of `internal/abel` instead of `*ClassDiagram` (D1). Verify as in 2.1
+- [x] 2.2 Move the `map` and `json` commands from `internal/classdiagram/objectdiagram_commands.go` to `internal/abel`, generic over `abel.Diagram` instead of typed on `*ClassDiagram` (D1). Verify as in 2.1
 - [ ] 2.3 Add a `CleanID` hook to `abel.CucaHooks` and make the shared commands call it (D2). Verify with a unit test that a diagram with an overriding hook gets its IDs cleaned by the note and package commands, and that `make test` passes
 
 ## 3. Description diagram

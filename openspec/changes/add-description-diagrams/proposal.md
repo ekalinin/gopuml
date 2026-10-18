@@ -41,7 +41,7 @@ Out of scope:
 
 ## Impact
 
-- **Code:** a new `internal/descdiagram` package (diagram, factory, the element, link and domain commands), the remaining entity images (ports and Problem Frames elements) and `FrontierCalculator` in `internal/svek`, the embedded diagram maker between `internal/klimt` and `internal/engine`, the factory list in `internal/engine`, and the detectors in `internal/core`. Shared pieces now private to `internal/classdiagram` (`Labels`, `StringWithArrow`, the `map` and `json` commands) move to a shared package.
+- **Code:** a new `internal/descdiagram` package (diagram, factory, the element, link and domain commands), the remaining entity images (ports and Problem Frames elements) and `FrontierCalculator` in `internal/svek`, the embedded diagram maker between `internal/klimt` and `internal/engine`, the factory list in `internal/engine`, and the detectors in `internal/core`. Shared pieces now inside `internal/classdiagram` move out: `Labels` and `StringWithArrow` to `internal/descdiagram`, and the `map` and `json` commands to `internal/abel`.
 - **Runtime dependency:** description diagrams need Graphviz `dot`, like class diagrams.
 - **Conformance:** new curated cases and committed references under `testdata/conformance/`. CI renders the references again and checks them against the committed ones.
 - **Compatibility:** inputs that failed with "not supported yet" now render. Inputs with `{{ }}` that crashed now render.

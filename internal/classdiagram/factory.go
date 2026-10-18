@@ -35,9 +35,9 @@ func commands() []cmd {
 		abel.CommandRemoveRestore[*ClassDiagram](),
 		commandCreateClassMultilines(),
 		commandCreateEntityObjectMultilines(),
-		commandCreateMap(),
-		commandCreateJSON(),
-		commandCreateJSONSingleLine(),
+		abel.CommandCreateMap[*ClassDiagram](),
+		abel.CommandCreateJSON[*ClassDiagram](),
+		abel.CommandCreateJSONSingleLine[*ClassDiagram](),
 		commandCreateClass(),
 		commandCreateEntityObject(),
 
