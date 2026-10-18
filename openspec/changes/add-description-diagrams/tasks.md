@@ -38,5 +38,5 @@
 - [x] 6.2 Remove the 5 `tikz` entries from `testdata/conformance/known-differences.yaml`. Verify that `make conformance REQUIRE=all` reports 0 failures, with the 10 Vega description cases and the 5 `tikz` cases passing
 - [x] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
 - [x] 6.4 Update `README.md`: description diagrams (use case, component, deployment) in the table of supported types with SVG and PNG, archimate in the list of unsupported types, and embedded diagrams. Verify that the README's counts match the conformance report of 6.2
-- [ ] 6.5 Push the branch and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
+- [x] 6.5 Push the branch and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
 - [x] 6.6 Run `openspec validate add-description-diagrams --strict`. Verify that the change is reported as valid
