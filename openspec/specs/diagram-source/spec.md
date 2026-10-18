@@ -84,7 +84,7 @@ An `@startuml` block without content SHALL render upstream's welcome diagram.
 
 ### Requirement: Diagram type detection under @startuml
 
-For `@startuml` blocks, the system SHALL try the supported diagram types in the same relative order as upstream (sequence, then class, then activity) and SHALL use the first type that parses the whole block without error. In this change the supported types SHALL be sequence, class and activity (new syntax).
+For `@startuml` blocks, the system SHALL try the supported diagram types in the same relative order as upstream (sequence, then class, then description, then activity) and SHALL use the first type that parses the whole block without error. The supported types SHALL be sequence, class, description (use case, component and deployment) and activity (new syntax).
 
 #### Scenario: Sequence diagram detected
 
@@ -96,6 +96,11 @@ For `@startuml` blocks, the system SHALL try the supported diagram types in the 
 - **WHEN** a `@startuml` block contains `class Order` and `Order --> Customer`
 - **THEN** the diagram type is class
 
+#### Scenario: Description diagram detected
+
+- **WHEN** a `@startuml` block contains `component Web` and `node Server`
+- **THEN** the diagram type is description
+
 #### Scenario: Activity diagram detected
 
 - **WHEN** a `@startuml` block contains `start`, `:Read input;` and `stop`
@@ -103,7 +108,7 @@ For `@startuml` blocks, the system SHALL try the supported diagram types in the 
 
 ### Requirement: Explicit errors for unsupported @startuml types
 
-When no supported type parses a `@startuml` block, the system SHALL report a syntax error. When the block uses syntax that belongs to a `@startuml` diagram type that this change does not support (use case, component, deployment, archimate, state, timing, legacy activity), the error message SHALL name that diagram type and state that it is not supported yet.
+When no supported type parses a `@startuml` block, the system SHALL report a syntax error. When the block uses syntax that belongs to a `@startuml` diagram type that is not supported yet (archimate, state, timing, legacy activity), the error message SHALL name that diagram type and state that it is not supported yet.
 
 #### Scenario: State diagram syntax
 
@@ -114,6 +119,11 @@ When no supported type parses a `@startuml` block, the system SHALL report a syn
 
 - **WHEN** a `@startuml` block contains `(*) --> "First step"`
 - **THEN** the system reports an error stating that legacy activity diagrams are not supported yet
+
+#### Scenario: Archimate syntax
+
+- **WHEN** a `@startuml` block contains `archimate #Business "Customer" as C`
+- **THEN** the system reports an error stating that archimate diagrams are not supported yet
 
 ### Requirement: Syntax error reporting
 
