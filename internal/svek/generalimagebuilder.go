@@ -35,7 +35,7 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeActivity:
 		notPorted("EntityImageActivity")
 	case leafType == abel.LeafTypePortin || leafType == abel.LeafTypePortout:
-		notPorted("EntityImagePort")
+		return newEntityImagePort(leaf, bibliotekon.cluster(leaf.ParentContainer()), bibliotekon)
 	case leafType == abel.LeafTypeState:
 		notPorted("EntityImageState")
 	case leafType == abel.LeafTypeCircleStart:
