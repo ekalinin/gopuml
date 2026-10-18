@@ -15,7 +15,7 @@
 
 ## 3. Description diagram
 
-- [ ] 3.1 Port `DescriptionDiagram` (`cleanId`, `isUsecase`, `makeDiagramReady`, `checkFinalError`) into `internal/descdiagram`. Verify with unit tests of `cleanId` on the short forms `:Actor:`, `(Use case)`, `[Component]` and `() Interface`
+- [x] 3.1 Port `DescriptionDiagram` (`cleanId`, `isUsecase`, `makeDiagramReady`, `checkFinalError`) into `internal/descdiagram`. Verify with unit tests of `cleanId` on the short forms `:Actor:`, `(Use case)`, `[Component]` and `() Interface`
 - [ ] 3.2 Complete `CommandCreateElementFull` in `internal/abel/descdiagram_command_createelement.go` (regex, `executeArg` with the usecase, actor, component, port and circle logic, `isForbidden`). Verify with parser unit tests built from upstream's patterns: every keyword, `actor/` and `usecase/`, the short forms, `as` aliases, stereotypes and colors
 - [ ] 3.3 Port `CommandLinkElement` (regex, `getLinkType`, `getDirection`, `executeArg`, `getDummy`) into `internal/descdiagram`. Verify with parser unit tests of heads, line styles, direction hints, length, labels and bracket colors
 - [ ] 3.4 Port `CommandCreateDomain` into `internal/descdiagram`. Verify with parser unit tests of `domain` with each of the five stereotypes and of `requirement`
