@@ -1,0 +1,18 @@
+---
+id: styling/embedded-use-case-in-note
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Use case diagram in a note"
+---
+@startuml
+Alice -> Bob : request
+note right
+{{
+actor User
+usecase Login
+User --> Login
+}}
+end note
+@enduml

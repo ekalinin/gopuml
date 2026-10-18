@@ -58,6 +58,7 @@ type sequenceReference struct {
 
 // exportExceptions are the reference pages that differ, with the reason.
 var exportExceptions = map[string]string{
+	"styling/embedded-use-case-in-note/0":    "embedded diagram {{ }} in a note (EmbeddedDiagramMaker not ported)",
 	"styling/theme-cerulean/0":               "themes are not bundled yet (tim.Options.Themes is never set)",
 	"vega/svg/option/sequence_desc/0":        "!option svgDesc does not reach the diagram (core.Factory has no preprocessing artifact)",
 	"vega/svg/option/sequence_title/0":       "!option svgTitle does not reach the diagram (core.Factory has no preprocessing artifact)",

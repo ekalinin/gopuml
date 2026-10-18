@@ -1,0 +1,13 @@
+---
+id: description-diagram/machine-and-requirement
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Machine and requirement"
+---
+@startuml
+domain "Controller" as M <<Machine>>
+requirement "Keep the temperature" as R
+M -- R
+@enduml

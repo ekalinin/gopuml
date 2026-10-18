@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/description-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 223, "height": 77, "status": 0}]}
+  ]
+}

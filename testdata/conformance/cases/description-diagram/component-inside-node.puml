@@ -1,0 +1,13 @@
+---
+id: description-diagram/component-inside-node
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Component inside a node"
+---
+@startuml
+node Server {
+  component Web
+}
+@enduml

@@ -1,0 +1,16 @@
+---
+id: description-diagram/element-body-multiline
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Element body on several lines"
+---
+@startuml
+actor Author
+rectangle Summary [
+first line
+second line
+]
+Author --> Summary
+@enduml

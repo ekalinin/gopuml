@@ -1,0 +1,6 @@
+{
+  "id": "description-diagram/short-forms",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(4 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 255, "height": 216, "status": 0}]}
+  ]
+}

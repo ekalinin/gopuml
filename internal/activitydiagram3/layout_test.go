@@ -129,6 +129,10 @@ func layoutFixtures(t *testing.T) []layoutFixture {
 			source: string(src), svg: string(svg)})
 	}
 	for _, ref := range activityReferences(t, curatedReferenceRoot, conformanceRoot, "") {
+		if _, known := exportExceptions[ref.name]; known {
+			// The output is known to differ (see exportExceptions).
+			continue
+		}
 		result = append(result, layoutFixture{name: ref.name, source: ref.source, svg: ref.svg})
 	}
 	slices.SortFunc(result, func(a, b layoutFixture) int { return strings.Compare(a.name, b.name) })

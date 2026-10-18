@@ -1,0 +1,12 @@
+---
+id: diagram-source/description-detected
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "diagram-source: Description diagram detected"
+---
+@startuml
+component Web
+node Server
+@enduml
