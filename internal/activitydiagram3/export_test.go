@@ -53,9 +53,9 @@ type activityReference struct {
 
 // exportExceptions are the reference pages that differ, with the reason.
 var exportExceptions = map[string]string{
-	"styling/embedded-sequence-in-activity": "embedded diagram {{ }} in an activity (EmbeddedDiagramMaker not ported)",
-	"vega/tikz/tikz-1926":                   "embedded diagram {{ }} in a note (EmbeddedDiagramMaker not ported)",
-	"vega/tikz/tikz-1926-svg":               "embedded diagram {{ }} in a note (EmbeddedDiagramMaker not ported)",
+	"styling/embedded-sequence-in-activity": "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
+	"vega/tikz/tikz-1926":                   "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
+	"vega/tikz/tikz-1926-svg":               "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 }
 
 // activityReferences lists the SVG of block 0 of the activity cases under

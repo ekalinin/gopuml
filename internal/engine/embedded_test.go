@@ -5,12 +5,16 @@ package engine
 
 import (
 	"bytes"
+	"context"
+	"encoding/base64"
 	"image/png"
+	"regexp"
 	"strings"
 	"testing"
 
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 var nestedSequence = []string{"@startuml", "Bob -> Carol : nested", "@enduml"}
@@ -66,5 +70,36 @@ func TestEmbeddedDiagramPrevious(t *testing.T) {
 	w2, _ := pngSize(t, scaled)
 	if w2 < w1*19/10 {
 		t.Errorf("width %d with dpi 192, %d without", w2, w1)
+	}
+}
+
+// TestEmbeddedUnsupportedType checks the styling scenario "Embedded
+// diagram of an unsupported type": the note shows the "not supported yet"
+// error image of the nested state diagram, and the rest of the diagram
+// renders normally.
+func TestEmbeddedUnsupportedType(t *testing.T) {
+	src := "@startuml\nAlice -> Bob : hello\nnote right\n{{\n[*] --> Idle\n}}\nend note\n@enduml\n"
+	blocks, err := Parse(context.Background(), core.NewRenderContext(), Source{Text: src})
+	if err != nil || len(blocks) != 1 {
+		t.Fatalf("%d blocks, error %v", len(blocks), err)
+	}
+	var buf bytes.Buffer
+	if _, err := blocks[0].Render(context.Background(), &buf, 0, Options{Format: font.FormatSVG}); err != nil {
+		t.Fatal(err)
+	}
+	svg := buf.String()
+	if !strings.Contains(svg, ">hello</text>") {
+		t.Error("the sequence diagram is not drawn")
+	}
+	m := regexp.MustCompile(`data:image/svg\+xml;base64,([A-Za-z0-9+/=]+)`).FindStringSubmatch(svg)
+	if m == nil {
+		t.Fatal("no embedded diagram")
+	}
+	nested, err := base64.StdEncoding.DecodeString(m[1])
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(nested), "state diagrams are not supported yet") {
+		t.Errorf("the embedded diagram is not the error image: %.300s", nested)
 	}
 }
