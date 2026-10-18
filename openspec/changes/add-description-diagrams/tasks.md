@@ -25,7 +25,7 @@
 ## 4. Entity images
 
 - [x] 4.1 Port `EntityImagePort`, `AbstractEntityImageBorder` and `FrontierCalculator` into `internal/svek`, replacing the stubs in `generalimagebuilder.go` and `cluster.go` (D4). Verify that the Vega case `svg/interactive/SVG0005_Svek` and the curated "Linked ports" case pass in `make conformance`
-- [ ] 4.2 Port `EntityImageDomain`, `EntityImageDesignedDomain`, `EntityImageMachine`, `EntityImageRequirement` and `BoxedCharacter` into `internal/svek` (D4). Verify that the curated "Machine and requirement" case passes in `make conformance`
+- [x] 4.2 Port `EntityImageDomain`, `EntityImageDesignedDomain`, `EntityImageMachine`, `EntityImageRequirement` and `BoxedCharacter` into `internal/svek` (D4). Verify that the curated "Machine and requirement" case passes in `make conformance`
 
 ## 5. Embedded diagrams
 
