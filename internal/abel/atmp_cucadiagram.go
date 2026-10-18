@@ -28,16 +28,21 @@ type Diagram interface {
 }
 
 // CucaHooks are the methods of CucaDiagram that diagram types override
-// (upstream's protected updateLasts and isHideEmptyDescriptionForState).
+// (upstream's protected updateLasts and isHideEmptyDescriptionForState, and
+// the public cleanId).
 type CucaHooks interface {
 	UpdateLasts(result *Entity)
 	IsHideEmptyDescriptionForState() bool
+	// CleanID is the cleanId of the diagram type; DefaultCleanID is
+	// CucaDiagram's.
+	CleanID(id string) string
 }
 
 type noHooks struct{}
 
 func (noHooks) UpdateLasts(*Entity)                  {}
 func (noHooks) IsHideEmptyDescriptionForState() bool { return false }
+func (noHooks) CleanID(id string) string             { return DefaultCleanID(id) }
 
 // EntityHideOrShow is a "hide" or "show" rule on a portion of the entities
 // of a gender.
@@ -152,8 +157,13 @@ func (d *CucaDiagram) CurrentTogether() *Together {
 	return nil
 }
 
-// CleanID removes the quotes around an id; null stays null.
-func (d *CucaDiagram) CleanID(id string) string { return uml.RemoveQuotes(id) }
+// CleanID is upstream's cleanId, overridden by diagram types through
+// CucaHooks.
+func (d *CucaDiagram) CleanID(id string) string { return d.hooks.CleanID(id) }
+
+// DefaultCleanID is CucaDiagram's cleanId: it removes the quotes around an
+// id; null stays null.
+func DefaultCleanID(id string) string { return uml.RemoveQuotes(id) }
 
 // HasURL reports whether an entity has a link.
 func (d *CucaDiagram) HasURL() bool {

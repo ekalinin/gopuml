@@ -40,7 +40,7 @@ Alternative: export `Labels` and the object commands from `internal/classdiagram
 
 ### D2. A CleanID hook
 
-`abel.CucaHooks` (`internal/abel/atmp_cucadiagram.go`) gets a `CleanID` hook, and the shared commands call the hook instead of the method. `DescriptionDiagram` sets it to upstream's `cleanId`, which strips the short-form markers (`:Actor:`, `(Use case)`, `[Component]`, `()`). Class diagrams keep the current behavior through the default.
+`abel.CucaHooks` (`internal/abel/atmp_cucadiagram.go`) gets a `CleanID` hook, and `CucaDiagram.CleanID` calls it, so every command that calls `CleanID` gets the override without a change at the call site. The previous body becomes `DefaultCleanID`, upstream's `super.cleanId`. The hooks are a separate value, not the diagram itself: a diagram type that embeds `CucaDiagram` already has a promoted `CleanID`, which would call itself. `DescriptionDiagram` sets it to upstream's `cleanId`, which strips the short-form markers (`:Actor:`, `(Use case)`, `[Component]`, `()`). Class diagrams keep the current behavior through the default.
 
 ### D3. Registration and detection
 
