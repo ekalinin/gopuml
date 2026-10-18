@@ -10,7 +10,8 @@ and text output, and it works as:
   plantuml-server routes
 - a WebAssembly module for browsers and Node.js
 
-No JVM is needed. Graphviz `dot` is needed only for class diagrams.
+No JVM is needed. Graphviz `dot` is needed only for class and description
+(use case, component, deployment) diagrams.
 
 ## Supported diagrams and formats
 
@@ -18,20 +19,22 @@ No JVM is needed. Graphviz `dot` is needed only for class diagrams.
 |---|---|---|---|
 | Sequence | yes | yes | yes |
 | Class and object | yes (needs `dot`) | yes (needs `dot`) | no |
+| Use case, component and deployment | yes (needs `dot`) | yes (needs `dot`) | no |
 | Activity (new syntax) | yes | yes | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
-themes, skin parameters, styles and creole are supported, and so is the
-PREPROC output (`--preproc`).
+themes, skin parameters, styles and creole are supported, including diagrams
+embedded in text with `{{` ... `}}`, and so is the PREPROC output
+(`--preproc`).
 
-Other diagram types (state, use case, component, deployment, timing, gantt,
-mindmap, the legacy activity syntax, and so on) are reported with an explicit
+Other diagram types (state, archimate, timing, gantt, mindmap, the legacy
+activity syntax, and so on) are reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.8 with a
-conformance suite of 455 cases (upstream's Vega test corpus plus curated
-cases): every case passes, apart from 11 documented known differences
-(`testdata/conformance/known-differences.yaml`) and 154 cases of diagram types
+conformance suite of 469 cases (upstream's Vega test corpus plus curated
+cases): every case passes, apart from 6 documented known differences
+(`testdata/conformance/known-differences.yaml`) and 144 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
@@ -133,12 +136,13 @@ const result = await plantuml.render('@startuml\nAlice -> Bob\n@enduml', { forma
 ```
 
 The module runs in the `SANDBOX` security profile: includes come only from
-the `files` option. Class diagrams report that graph layout is not available
-in this build.
+the `files` option. Class and description diagrams report that graph layout
+is not available in this build.
 
 ## Graphviz
 
-Class and object diagrams are laid out by Graphviz `dot`, as upstream does.
+Class, object and description diagrams are laid out by Graphviz `dot`, as
+upstream does.
 `dot` is looked up from `--dot-path` (or the library option), then the
 `GRAPHVIZ_DOT` environment variable, then `PATH` and the usual install
 locations. `./plantuml --check-graphviz` reports the version found. The
