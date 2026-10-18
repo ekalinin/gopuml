@@ -95,12 +95,12 @@ The system SHALL support `left to right direction` and `top to bottom direction`
 
 ### Requirement: Description output formats
 
-Description diagrams SHALL render to SVG and PNG. TXT and UTXT output SHALL report that the format is not supported for description diagrams, as it does for class diagrams.
+Description diagrams SHALL render to SVG and PNG. TXT and UTXT output SHALL report that the format is not supported, naming the diagram type with upstream's name for it ("component"), as it does for class diagrams.
 
 #### Scenario: TXT for a description diagram
 
 - **WHEN** a description diagram is rendered as TXT
-- **THEN** the system reports that TXT output is not supported for description diagrams and produces no output file
+- **THEN** the system reports that TXT output is not supported for component diagrams and produces no output file
 
 ### Requirement: Description graph layout dependency
 
