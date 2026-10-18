@@ -34,7 +34,7 @@ See proposal.md for the motivation. The current state that shapes the approach:
 - `internal/descdiagram` holds `DescriptionDiagram`, `DescriptionDiagramFactory`, `CommandCreateDomain` and the commands of `descdiagram/command` (`CommandCreateElementFull`, `CommandLinkElement`, `Labels`, `StringWithArrow`), one Go file per Java file where practical, as the other diagram packages do.
 - `Labels` and `StringWithArrow` move from `internal/classdiagram/commands_link.go` to `internal/descdiagram`, exported. `internal/classdiagram` then imports `internal/descdiagram`, the same direction as upstream (`classdiagram.command` imports `descdiagram.command`).
 - The `map` and `json` commands move from `internal/classdiagram/objectdiagram_commands.go` to `internal/abel/objectdiagram_commands.go`, generic over `abel.Diagram` instead of typed on `*ClassDiagram`, as upstream types them on `AbstractEntityDiagram`. `internal/abel` already holds the other commands that class and description diagrams share (notes, packages, element creation). The `object` commands and `AbstractClassOrObjectDiagram` stay in `internal/classdiagram`, because they are class-only.
-- The rest of `CommandCreateElementFull` (regex, `executeArg`, `isForbidden`) completes the existing `internal/abel/descdiagram_command_createelement.go`, which class diagrams with `allowmixing` keep using.
+- `CommandCreateElementFull` goes into `internal/descdiagram`, using the patterns and `ExistsWithBadType3` already in `internal/abel/descdiagram_command_createelement.go`. Class diagrams with `allowmixing` use their own `CommandCreateElementFull2` (`internal/classdiagram/commands_element.go`), so they do not depend on it.
 
 Alternative: export `Labels` and the object commands from `internal/classdiagram` and let `internal/descdiagram` import it. The diff would be about the same size, but the dependency would run against upstream's, and a description package would depend on the class package.
 
@@ -83,7 +83,6 @@ Alternatives:
 - **[Sprites in deployment diagrams]** Stereotypes such as `<<$server>>` and `<$icon>` references crash the drawing today, because sprite drawing is not ported. Deployment diagrams use them often. → Out of scope, and unchanged by this change. The error is explicit, not a wrong drawing.
 - **[Embedded rendering cost]** A nested diagram is parsed and rendered once per atom, including its own `dot` run for graph diagrams. → As upstream. The atom caches its image, so measuring and drawing do not render twice.
 - **[PNG in PNG]** For PNG output, the nested diagram is rendered as PNG and decoded into a `UImage`. → Upstream does the same (`getImage` reads the PNG it exported). The PNG is decoded with `image/png` into a `PortableImage`, as `internal/errdiagram/logo.go` does for the logo.
-- **[Partial port of a shared command]** Completing `CommandCreateElementFull` changes a file that class diagrams with `allowmixing` use. → No conformance case uses `allowmixing` today. Parser unit tests built from upstream's patterns cover the completed command, and the description cases exercise the same code.
 
 ## Migration Plan
 
