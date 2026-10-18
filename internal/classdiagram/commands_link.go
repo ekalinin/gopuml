@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandLinkClass.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandLinkLollipop.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/Labels.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/StringWithArrow.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/StringUtils.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
@@ -17,6 +15,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/command"
 	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/decoration"
+	"github.com/ekalinin/gopuml/internal/descdiagram"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/text"
@@ -157,10 +156,10 @@ func executeLinkClass(d *ClassDiagram, location *text.LineLocation, arg *regex.R
 	if dir != klimt.DirectionLeft && dir != klimt.DirectionRight {
 		queue = linkQueueLength(arg)
 	}
-	labels := newLabels(arg)
-	linkArg := abel.LinkArgBuildManage(labels.display(d.Pragma()), queue, d.SkinParam().ClassAttributeIconSize() > 0).
-		WithQuantifier(labels.firstLabel, labels.secondLabel).
-		WithRole(labels.firstRole, labels.secondRole).
+	labels := descdiagram.NewLabels(arg)
+	linkArg := abel.LinkArgBuildManage(labels.Display(d.Pragma()), queue, d.SkinParam().ClassAttributeIconSize() > 0).
+		WithQuantifier(labels.FirstLabel, labels.SecondLabel).
+		WithRole(labels.FirstRole, labels.SecondRole).
 		WithDistanceAngle(d.Labeldistance(), d.Labelangle()).
 		WithKal(abel.Opt(arg.Get("QUALIFIER1", 0)), abel.Opt(arg.Get("QUALIFIER2", 0)))
 	link := abel.NewLink(location, &d.CucaDiagram, d.SkinParam().CurrentStyleBuilder(), cl1, cl2, linkType, linkArg)
@@ -171,7 +170,7 @@ func executeLinkClass(d *ClassDiagram, location *text.LineLocation, arg *regex.R
 	if dir == klimt.DirectionLeft || dir == klimt.DirectionUp {
 		link = link.Inv()
 	}
-	link.SetLinkArrow(labels.linkArrow)
+	link.SetLinkArrow(labels.LinkArrow)
 	colors, err := color.SimpleColor(color.TypeLine).Color(arg, color.Instance())
 	if err != nil {
 		return abel.ColorResult(err)
@@ -300,38 +299,7 @@ func linkDirection(arg *regex.Result) klimt.Direction {
 	s := notDirectionChars.ReplaceAllString(fullArrow(arg), "")
 	s = strings.TrimPrefix(s, "o")
 	s = strings.TrimSuffix(s, "o")
-	return queueDirection(s)
-}
-
-// queueDirection is upstream's StringUtils.getQueueDirection: the
-// direction named in an arrow body, DOWN by default (RIGHT for a single
-// character).
-func queueDirection(s string) klimt.Direction {
-	if strings.ContainsAny(s, "<>") {
-		uml.Throw(uml.IllegalArgumentException, s)
-	}
-	s = strings.ToLower(s)
-	switch {
-	case strings.Contains(s, "left"):
-		return klimt.DirectionLeft
-	case strings.Contains(s, "right"):
-		return klimt.DirectionRight
-	case strings.Contains(s, "up"):
-		return klimt.DirectionUp
-	case strings.Contains(s, "down"):
-		return klimt.DirectionDown
-	case strings.Contains(s, "l"):
-		return klimt.DirectionLeft
-	case strings.Contains(s, "r"):
-		return klimt.DirectionRight
-	case strings.Contains(s, "u"):
-		return klimt.DirectionUp
-	case strings.Contains(s, "d"):
-		return klimt.DirectionDown
-	case uml.JavaLength(s) == 1:
-		return klimt.DirectionRight
-	}
-	return klimt.DirectionDown
+	return uml.QueueDirection(s)
 }
 
 func arrowHead(arg *regex.Result, key string) string {
@@ -341,96 +309,6 @@ func arrowHead(arg *regex.Result, key string) string {
 func fullArrow(arg *regex.Result) string {
 	return arrowHead(arg, "ARROW_HEAD1") + arg.Str("ARROW_BODY1", 0) + arg.Str("ARROW_DIRECTION", 0) +
 		arrowBody2(arg) + arrowHead(arg, "ARROW_HEAD2")
-}
-
-// labels is upstream's Labels: the cardinalities, roles and label of a
-// link, the cardinalities possibly written in the label
-// (`: "1" label "many"`).
-type labels struct {
-	firstLabel, secondLabel abel.OptString
-	firstRole, secondRole   abel.OptString
-	label                   abel.OptString
-	linkArrow               abel.LinkArrow
-}
-
-var (
-	labelsBoth       = uml.Compile(`^[%g]([^%g]+)[%g]([^%g]+)[%g]([^%g]+)[%g]$`)
-	labelsFirstOnly  = uml.Compile(`^[%g]([^%g]+)[%g]([^%g]+)$`)
-	labelsSecondOnly = uml.Compile(`^([^%g]+)[%g]([^%g]+)[%g]$`)
-)
-
-func cleanRole(role string, ok bool) abel.OptString {
-	if !ok {
-		return abel.OptString{}
-	}
-	return abel.Some(text.RemoveQuotesFormat(role, `"`))
-}
-
-func newLabels(arg *regex.Result) *labels {
-	l := &labels{
-		firstLabel:  abel.Opt(arg.Get("FIRST_LABEL", 0)),
-		secondLabel: abel.Opt(arg.Get("SECOND_LABEL", 0)),
-		firstRole:   cleanRole(arg.Get("FIRST_ROLE", 0)),
-		secondRole:  cleanRole(arg.Get("SECOND_ROLE", 0)),
-	}
-	labelLink, ok := arg.Get("LABEL_LINK", 0)
-	if ok {
-		labelLink = l.init(labelLink)
-	}
-	l.label, l.linkArrow = stringWithArrow(labelLink, ok)
-	return l
-}
-
-func (l *labels) init(labelLink string) string {
-	if !l.firstLabel.OK && !l.secondLabel.OK {
-		if m := labelsBoth.FindStringSubmatch(labelLink); m != nil {
-			l.firstLabel = abel.Some(m[1])
-			l.secondLabel = abel.Some(m[3])
-			return text.Trin(uml.RemoveQuotes(text.Trin(m[2])))
-		}
-		if m := labelsFirstOnly.FindStringSubmatch(labelLink); m != nil {
-			l.firstLabel = abel.Some(m[1])
-			l.secondLabel = abel.OptString{}
-			return text.Trin(uml.RemoveQuotes(text.Trin(m[2])))
-		}
-		if m := labelsSecondOnly.FindStringSubmatch(labelLink); m != nil {
-			l.firstLabel = abel.OptString{}
-			l.secondLabel = abel.Some(m[2])
-			return text.Trin(uml.RemoveQuotes(text.Trin(m[1])))
-		}
-	}
-	return text.RemoveQuotesFormat(labelLink, `"`)
-}
-
-func (l *labels) display(pragma *klimt.Pragma) *klimt.Display {
-	return klimt.DisplayWithNewlinesString(pragma, l.label.S, l.label.OK)
-}
-
-// stringWithArrow is upstream's StringWithArrow: a label with a leading or
-// trailing "<" or ">" gives the label arrow.
-func stringWithArrow(completeLabel string, ok bool) (abel.OptString, abel.LinkArrow) {
-	if !ok {
-		return abel.OptString{}, abel.LinkArrowNoneOrSeveral
-	}
-	completeLabel = text.RemoveQuotesFormat(completeLabel, `"`)
-	if klimt.DisplayHasSeveralGuideLines(completeLabel) {
-		return abel.Some(completeLabel), abel.LinkArrowNoneOrSeveral
-	}
-	switch {
-	case completeLabel == "<":
-		return abel.OptString{}, abel.LinkArrowBackward
-	case completeLabel == ">":
-		return abel.OptString{}, abel.LinkArrowDirectNormal
-	case strings.HasPrefix(completeLabel, "< "):
-		return abel.Some(text.Trin(completeLabel[2:])), abel.LinkArrowBackward
-	case strings.HasPrefix(completeLabel, "> "):
-		return abel.Some(text.Trin(completeLabel[2:])), abel.LinkArrowDirectNormal
-	case strings.HasSuffix(completeLabel, " >"):
-		return abel.Some(text.Trin(completeLabel[:len(completeLabel)-2])), abel.LinkArrowDirectNormal
-	case strings.HasSuffix(completeLabel, " <"):
-		return abel.Some(text.Trin(completeLabel[:len(completeLabel)-2])), abel.LinkArrowBackward
-	}
-	return abel.Some(completeLabel), abel.LinkArrowNoneOrSeveral
 }
 
 // lollipopKeywords is upstream's CommandLinkLollipop.optionalKeywords for
