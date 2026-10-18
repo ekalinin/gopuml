@@ -117,6 +117,7 @@ func defines(rc *core.RenderContext, src Source) *tim.Defines {
 // Parse splits a source into blocks, preprocesses each and builds its
 // diagram, as upstream's BlockUmlBuilder.
 func Parse(ctx context.Context, rc *core.RenderContext, src Source) ([]*Block, error) {
+	rc = withEmbeddedDiagrams(rc)
 	defs := &tim.BlockDefinitions{}
 	env := defines(rc, src)
 	access := &security.Access{FS: rc.FS}

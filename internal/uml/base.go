@@ -80,6 +80,12 @@ func NewBase(ctx *core.RenderContext, src *core.UmlSource, diagramType core.Diag
 			options.Define(key, ctx.PreprocOptions[name], true)
 		}
 	}
+	skinParam := klimt.SkinParamCreate(md5map, ctx, diagramType, klimt.PragmaCreateEmpty(), options)
+	if ctx.Previous != nil {
+		// TitledDiagram: the diagram starts with the skinparam values of the
+		// diagram that embeds it.
+		skinParam.CopyAllFrom(ctx.Previous)
+	}
 	return Base{
 		source:               src,
 		ctx:                  ctx,
@@ -87,7 +93,7 @@ func NewBase(ctx *core.RenderContext, src *core.UmlSource, diagramType core.Diag
 		md5map:               md5map,
 		splitPagesHorizontal: 1,
 		splitPagesVertical:   1,
-		skinParam:            klimt.SkinParamCreate(md5map, ctx, diagramType, klimt.PragmaCreateEmpty(), options),
+		skinParam:            skinParam,
 		title:                DisplayPositionedNone(geom.HorizontalAlignmentCenter, geom.VerticalAlignmentTop),
 		caption:              DisplayPositionedNone(geom.HorizontalAlignmentCenter, geom.VerticalAlignmentBottom),
 		legend:               DisplayPositionedNone(geom.HorizontalAlignmentCenter, geom.VerticalAlignmentBottom),

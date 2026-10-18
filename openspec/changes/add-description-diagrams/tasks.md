@@ -29,7 +29,7 @@
 
 ## 5. Embedded diagrams
 
-- [ ] 5.1 Add the embedded-diagram renderer to `core.RenderContext` and set it in the engine: it parses the lines as one block with the same render context and renders it as SVG or PNG (D6). Verify with a unit test that renders a nested sequence diagram to both formats and returns its size
+- [x] 5.1 Add the embedded-diagram renderer to `core.RenderContext` and set it in the engine: it parses the lines as one block with the same render context and renders it as SVG or PNG (D6). Verify with a unit test that renders a nested sequence diagram to both formats and returns its size
 - [ ] 5.2 Port upstream's `EmbeddedDiagram` atom (size from the rendered image, `UImageSvg` for SVG output without the `<?plantuml ...?>` instruction, `UImage` decoded from PNG otherwise, rendered once), make `klimt.SkinParam` and the skin parameter wrappers implement `EmbeddedDiagramMaker`, add `TestEmbeddedUnsupportedType`, remove the two embedded-diagram cases of 1.1 and the `tikz` cases from the `exportExceptions` of the sequence and activity tests, and update `internal/klimt/HANDOFF.md`. Verify that a sequence note with `{{ Bob -> Carol }}` renders to SVG and PNG instead of crashing, that `TestEmbeddedUnsupportedType` passes, and that the curated styling cases of 1.1 pass in `make conformance`
 
 ## 6. WASM, known differences and documentation

@@ -58,7 +58,7 @@ The description export follows `internal/classdiagram/export.go`: the generic `s
 
 ### D6. Embedded diagrams through the render context
 
-- `core.RenderContext` gets an embedded-diagram renderer, a function the engine sets when it creates the context. It parses the given lines as one block with the same render context, as upstream builds a `BlockUml` with empty defines, and renders it as SVG or PNG. It returns the image and its size.
+- `core.RenderContext` gets an embedded-diagram renderer, a function the engine sets when it creates the context. It parses the given lines as one block with a copy of the render context, as upstream builds a `BlockUml`: without the definitions, configuration lines and pragmas of the command line (`Defines.createEmpty()`), and starting with the skinparam values of the embedding diagram (upstream's `Previous`, applied in `uml.NewBase`). It renders the block as SVG or PNG and returns the image. The engine sets the renderer on a copy of the caller's context in `engine.Parse`, so concurrent renders do not share a modified context.
 - `klimt.SkinParam` implements `EmbeddedDiagramMaker` with that renderer, taken from its `pathSystem` field. The skin parameter wrappers (`SkinParamDelegator` and the others) forward the call to the wrapped skin parameters.
 - The atom is upstream's `EmbeddedDiagram`: its size comes from the rendered image. Its drawing uses `UImageSvg` when the output is SVG (with the `<?plantuml ...?>` processing instruction removed, as upstream does) and `UImage` otherwise. The rendering happens once per atom and is reused.
 - A nested diagram of an unsupported type renders the error image that the engine produces for it, so no special case is needed.
