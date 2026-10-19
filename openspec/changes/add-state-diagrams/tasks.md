@@ -33,7 +33,7 @@
 
 ## 6. WASM, known differences and documentation
 
-- [ ] 6.1 Add `TestWasmStateDiagram`, which renders a state diagram in the WASM build and gets the "graph layout is not available in this build" error with the error image. Verify that `go test ./cmd/plantuml-wasm` passes
+- [x] 6.1 Add `TestWasmStateDiagram`, which renders a state diagram in the WASM build and gets the "graph layout is not available in this build" error with the error image. Verify that `go test ./cmd/plantuml-wasm` passes
 - [ ] 6.2 Check the 19 `vega/state/` cases without their pragma (D10): render each with the pragma removed by the upstream jar and by this implementation with the same `dot`, and compare the SVGs apart from the encoded source. Then list the cases that differ from their references in `testdata/conformance/known-differences.yaml` with the reason of the `group2712` entries and `resolvedBy: add-smetana-layout`. Verify that every case matches without the pragma, and that `make conformance REQUIRE=all` reports 0 failures and no known differences that pass, with the 19 other state cases passing
 - [ ] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
 - [ ] 6.4 Update `README.md`: state diagrams in the table of supported types with SVG and PNG, state removed from the list of unsupported types, and the case and known-difference counts. Verify that the README's counts match the conformance report of 6.2
