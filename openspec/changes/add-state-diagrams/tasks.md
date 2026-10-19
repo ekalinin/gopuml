@@ -18,7 +18,7 @@
 - [x] 3.2 Port `CommandCreateState`, `CommandAddField` and `Stereogroup.getLeafType` (D1). Verify with parser unit tests built from upstream's patterns: both `as` forms, quoted names, the stereotypes that map to leaf types, tags, URLs, background colors, `##[dashed]red`, `: text`, and the error for a border stereotype at the top level
 - [x] 3.3 Port `CommandLinkStateCommon`, `CommandLinkState` and `CommandLinkStateReverse`, with the sequence number in the name of label nodes (D7). Verify with parser unit tests: `[*]` on each side, `[H]`, `[H*]`, `X[H]`, `X[H*]`, `==bar==`, direction hints, bracket styles and colors, the `x` start, the `o` end, labels, stereotypes, the reversed form, and the label node created by `-[node]->` and by `skinparam stateDiagramEdgeLabelStyle node`
 - [x] 3.4 Port `CommandCreatePackageState`, `CommandCreatePackage2`, `CommandEndState` and `CommandConcurrentState`. Verify with parser unit tests: nested composite states closed by `}` and by `end state`, `frame` groups, and `--` and `||` regions with their separators
-- [ ] 3.5 Port `StateDiagramFactory` with upstream's command list, the note commands wrapped for their passes (D3), and the state export (D8). Add the multi-pass unit tests of D3, which parse with the state factory directly. Verify that these tests and `make test` pass
+- [x] 3.5 Port `StateDiagramFactory` with upstream's command list, the note commands wrapped for their passes (D3), and the state export (D8). Add the multi-pass unit tests of D3, which parse with the state factory directly. Verify that these tests and `make test` pass
 
 ## 4. Registration and detection
 
