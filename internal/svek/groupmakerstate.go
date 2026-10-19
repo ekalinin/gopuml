@@ -96,7 +96,28 @@ func (m *groupMakerState) image() (klimt.IEntityImage, error) {
 	if image == nil || err != nil {
 		return image, err
 	}
+	if m.containsSomeConcurrentStates() {
+		inners := []klimt.IEntityImage{image}
+		for _, inner := range m.group.Leafs() {
+			if inner.LeafType() == abel.LeafTypeStateConcurrent {
+				inners = append(inners, inner.SvekImage())
+			}
+		}
+		image = newConcurrentStates(inners, m.group.ConcurrentSeparator(), m.diagram.SkinParam(),
+			m.group.Stereotype())
+	}
 	return newInnerStateAutonom(image, m.group), nil
+}
+
+// containsSomeConcurrentStates reports whether the group has concurrent
+// regions, laid out already.
+func (m *groupMakerState) containsSomeConcurrentStates() bool {
+	for _, entity := range m.group.Leafs() {
+		if entity.LeafType() == abel.LeafTypeStateConcurrent {
+			return true
+		}
+	}
+	return false
 }
 
 // createGeneralImageBuilder is the builder of the layout of leafs, with
