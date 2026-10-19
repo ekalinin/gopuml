@@ -51,13 +51,16 @@ func parseError(t *testing.T, commands func() []cmd, body ...string) string {
 	return e.Error.Message()
 }
 
+// entity returns the entity of the first quark named code, at any level.
 func entity(t *testing.T, d *StateDiagram, code string) *abel.Entity {
 	t.Helper()
-	e := d.QuarkInContext(false, code).Data()
-	if e == nil {
-		t.Fatalf("no entity %q", code)
+	for _, q := range d.Quarks() {
+		if q.Name() == code && q.Data() != nil {
+			return q.Data()
+		}
 	}
-	return e
+	t.Fatalf("no entity %q", code)
+	return nil
 }
 
 func displayOf(e *abel.Entity) string {

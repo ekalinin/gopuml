@@ -20,6 +20,8 @@ type StateDiagram struct {
 	abel.AbstractEntityDiagram
 
 	hideEmptyDescription bool
+	// transitionNodes counts the label nodes of transitions.
+	transitionNodes int
 }
 
 var (
