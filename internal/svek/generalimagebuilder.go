@@ -38,7 +38,7 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 		return newEntityImagePort(leaf, bibliotekon.cluster(leaf.ParentContainer()), bibliotekon)
 	case leafType == abel.LeafTypeState:
 		if leaf.EntityPosition() != abel.EntityPositionNormal {
-			notPorted("EntityImageStateBorder")
+			return newEntityImageStateBorder(leaf, bibliotekon.cluster(leaf.ParentContainer()), bibliotekon)
 		}
 		if isHideEmptyDescriptionForState && len(leaf.Bodier().RawBody()) == 0 {
 			return newEntityImageStateEmptyDescription(leaf)

@@ -13,6 +13,9 @@
 package abel
 
 import (
+	"math"
+
+	"github.com/ekalinin/gopuml/internal/jmath"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
@@ -83,6 +86,49 @@ func (p EntityPosition) Dimension(rankdir geom.Rankdir) geom.XDimension2D {
 		return geom.NewXDimension2D(EntityPositionRadius*2, EntityPositionRadius*2*4)
 	}
 	return geom.NewXDimension2D(EntityPositionRadius*2, EntityPositionRadius*2)
+}
+
+// DrawSymbol draws the symbol of the position: a circle for entry points,
+// crossed for exit points, a square for pins, and a row (a column from left
+// to right) of four squares for expansion nodes. NORMAL panics as upstream
+// throws IllegalStateException.
+func (p EntityPosition) DrawSymbol(ug klimt.UGraphic, rankdir geom.Rankdir) {
+	const radius = EntityPositionRadius
+	switch p {
+	case EntityPositionNormal:
+		uml.Throw(uml.IllegalStateException, "")
+	case EntityPositionEntryPoint, EntityPositionExitPoint:
+		ug.Draw(klimt.UEllipseBuild(radius*2, radius*2))
+		if p == EntityPositionExitPoint {
+			xc, yc, r := radius+.5, radius+.5, radius-.5
+			drawPositionLine(ug, pointOnCircle(xc, yc, math.Pi/4, r), pointOnCircle(xc, yc, math.Pi+math.Pi/4, r))
+			drawPositionLine(ug, pointOnCircle(xc, yc, -math.Pi/4, r), pointOnCircle(xc, yc, math.Pi-math.Pi/4, r))
+		}
+	case EntityPositionInputPin, EntityPositionOutputPin:
+		ug.Draw(klimt.URectangleBuild(radius*2, radius*2))
+	case EntityPositionExpansionInput, EntityPositionExpansionOutput:
+		if rankdir == geom.RankdirTopToBottom {
+			ug.Draw(klimt.URectangleBuild(radius*2*4, radius*2))
+			vline := klimt.ULineV(radius * 2)
+			ug.Apply(klimt.UTranslateDx(radius * 2)).Draw(vline)
+			ug.Apply(klimt.UTranslateDx(radius * 2 * 2)).Draw(vline)
+			ug.Apply(klimt.UTranslateDx(radius * 2 * 3)).Draw(vline)
+		} else {
+			ug.Apply(klimt.UTranslateDy(0)).Draw(klimt.URectangleBuild(radius*2, radius*2*4))
+			hline := klimt.ULineH(radius * 2)
+			ug.Apply(klimt.UTranslateDy(radius * 2)).Draw(hline)
+			ug.Apply(klimt.UTranslateDy(radius * 2 * 2)).Draw(hline)
+			ug.Apply(klimt.UTranslateDy(radius * 2 * 3)).Draw(hline)
+		}
+	}
+}
+
+func pointOnCircle(xc, yc, angle, radius float64) geom.XPoint2D {
+	return geom.XPoint2D{X: xc + radius*jmath.Cos(angle), Y: yc + radius*jmath.Sin(angle)}
+}
+
+func drawPositionLine(ug klimt.UGraphic, p1, p2 geom.XPoint2D) {
+	ug.Apply(klimt.NewUTranslate(p1.X, p1.Y)).Draw(klimt.NewULine(p2.X-p1.X, p2.Y-p1.Y))
 }
 
 // ShapeType returns the shape of the position; NORMAL panics as upstream
