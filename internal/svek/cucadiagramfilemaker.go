@@ -162,7 +162,7 @@ func TextBlock(ctx context.Context, d *abel.CucaDiagram, dotStrings []string, fi
 	cm := &clusterManager{bibliotekon: bibliotekon, current: rootCluster}
 
 	dotStringFactory := newDotStringFactory(bibliotekon, cm.current, d.DiagramType(), d.SkinParam(), version)
-	data := newDotData(d, d.RootGroup(), orderedLinks(d.Links()), d.Leafs(), d)
+	data := newDotData(d, d.RootGroup(), orderedLinks(d.Links()), d.Leafs(), d, d)
 	builder := &graphvizImageBuilder{dotData: data, pragma: d.Pragma(),
 		styleName: uml.DiagramTypeStyleName(d.DiagramType()), dotMode: DotModeNormal, dotStringFactory: dotStringFactory,
 		clusterManager: cm}

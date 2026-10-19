@@ -10,7 +10,7 @@
 ## 2. Shared code
 
 - [x] 2.1 Add the pass wrapper to `internal/command`, which makes a command eligible for the given passes only (D3). Verify with a unit test that a wrapped single-line command and a wrapped multi-line command run only in their pass, and that `make test` passes
-- [ ] 2.2 Add the group hierarchy to `dotData`, with the diagram's children groups as the default (D6). Verify that `make test` passes and that the class and description groups of `make conformance` have the same results as on `main`
+- [x] 2.2 Add the group hierarchy to `dotData`, with the diagram's children groups as the default (D6). Verify that `make test` passes and that the class and description groups of `make conformance` have the same results as on `main`
 
 ## 3. State diagram
 
