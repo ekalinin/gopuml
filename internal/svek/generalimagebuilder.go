@@ -12,8 +12,8 @@ import (
 
 // createEntityImageBlock is GeneralImageBuilder.createEntityImageBlock: the
 // image of a leaf, by its type. The images of the entities that only the
-// diagram types not ported yet use (states, activities, descriptions...)
-// panic with "not ported yet".
+// diagram types not ported yet use (activities, Chen diagrams...) panic
+// with "not ported yet".
 func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bool, portionShower PortionShower,
 	bibliotekon *Bibliotekon, graphvizVersion dot.GraphvizVersion, links []*abel.Link) klimt.IEntityImage {
 	if leaf.IsRemoved() {
@@ -37,13 +37,24 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypePortin || leafType == abel.LeafTypePortout:
 		return newEntityImagePort(leaf, bibliotekon.cluster(leaf.ParentContainer()), bibliotekon)
 	case leafType == abel.LeafTypeState:
-		notPorted("EntityImageState")
+		if leaf.EntityPosition() != abel.EntityPositionNormal {
+			notPorted("EntityImageStateBorder")
+		}
+		if isHideEmptyDescriptionForState && len(leaf.Bodier().RawBody()) == 0 {
+			return newEntityImageStateEmptyDescription(leaf)
+		}
+		if st := leaf.Stereotype(); st != nil {
+			if label, ok := st.Label(klimt.GuillemetDoubleComparator()); ok && label == "<<sdlreceive>>" {
+				return newEntityImageState2(leaf)
+			}
+		}
+		return newEntityImageState(leaf)
 	case leafType == abel.LeafTypeCircleStart:
-		notPorted("EntityImageCircleStart")
+		return newEntityImageCircleStart(leaf)
 	case leafType == abel.LeafTypeCircleEnd:
-		notPorted("EntityImageCircleEnd")
+		return newEntityImageCircleEnd(leaf)
 	case leafType == abel.LeafTypeBranch || leafType == abel.LeafTypeStateChoice:
-		notPorted("EntityImageBranch")
+		return newEntityImageBranch(leaf)
 	case leafType == abel.LeafTypeLollipopFull || leafType == abel.LeafTypeLollipopHalf:
 		return newEntityImageLollipopInterface(leaf)
 	case leafType == abel.LeafTypeCircle, leafType == abel.LeafTypeDescription, leafType == abel.LeafTypeUsecase,
@@ -56,7 +67,7 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeJSON:
 		return newEntityImageJson(leaf, portionShower)
 	case leafType == abel.LeafTypeSynchroBar || leafType == abel.LeafTypeStateForkJoin:
-		notPorted("EntityImageSynchroBar")
+		return newEntityImageSynchroBar(leaf)
 	case leafType == abel.LeafTypeArcCircle:
 		notPorted("EntityImageArcCircle")
 	case leafType == abel.LeafTypePointForAssociation:
@@ -71,11 +82,11 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeAssociation:
 		return newEntityImageAssociation(leaf)
 	case leafType == abel.LeafTypePseudoState:
-		notPorted("EntityImagePseudoState")
+		return newEntityImagePseudoState(leaf, "H")
 	case leafType == abel.LeafTypeStateTransitionLabel:
-		notPorted("EntityImageTransitionLabel")
+		return newEntityImageTransitionLabel(leaf)
 	case leafType == abel.LeafTypeDeepHistory:
-		notPorted("EntityImageDeepHistory")
+		return newEntityImagePseudoState(leaf, "H*")
 	case leafType == abel.LeafTypeTips:
 		return newEntityImageTips(leaf, bibliotekon)
 	case leafType == abel.LeafTypeChenEntity, leafType == abel.LeafTypeChenRelationship,

@@ -144,17 +144,23 @@ func TextBlock(ctx context.Context, d *abel.CucaDiagram, dotStrings []string, fi
 	if err != nil {
 		return nil, err
 	}
+	// The engine is resolved first, so that the composite states laid out
+	// on their own use the same dot, timeout and context. Without dot, they
+	// are not laid out: the main run gives the not-found error image.
+	le, version := layout.resolve(ctx)
 	switch d.DiagramType() {
 	case core.Activity:
 		notPorted("CucaDiagramSimplifierActivity")
 	case core.State:
-		notPorted("CucaDiagramSimplifierState")
+		if le.notFound == nil {
+			if image, err := simplifyState(d, stringBounder, DotModeNormal, le, version); image != nil || err != nil {
+				return image, err
+			}
+		}
 	}
 	for _, leaf := range d.Leafs() {
 		leaf.ClearKals()
 	}
-
-	le, version := layout.resolve(ctx)
 
 	// CucaDiagramFileMaker
 	bibliotekon := newBibliotekon(d.Links())
