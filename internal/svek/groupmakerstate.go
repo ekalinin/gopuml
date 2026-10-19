@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/GroupMakerState.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/PortionShower.java
+// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/PortionShower.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek

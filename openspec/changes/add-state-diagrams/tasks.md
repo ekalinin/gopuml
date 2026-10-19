@@ -38,4 +38,4 @@
 - [x] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
 - [x] 6.4 Update `README.md`: state diagrams in the table of supported types with SVG and PNG, state removed from the list of unsupported types, and the case and known-difference counts. Verify that the README's counts match the conformance report of 6.2
 - [ ] 6.5 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
-- [ ] 6.6 Run `openspec validate add-state-diagrams --strict`. Verify that the change is reported as valid
+- [x] 6.6 Run `openspec validate add-state-diagrams --strict`. Verify that the change is reported as valid
