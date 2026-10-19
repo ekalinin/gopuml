@@ -1,0 +1,41 @@
+# Tasks
+
+## 1. Conformance cases first
+
+`TestScenarioCoverage` also reads the delta specs of active changes, so the cases come first and `make test` passes on the branch from the start (design D10). Until task 4.1, the new state cases are reported as not supported yet. From task 4.1 to group 5 they are compared and fail, because the state images and layout are not ported yet.
+
+- [ ] 1.1 Add curated cases under `testdata/conformance/cases/`: one `.puml` per compared scenario of `state-diagram` under `state-diagram/` (with `type: state`, including the error case "Transition out of a region"), and `diagram-source/state-detected` for "diagram-source: State diagram detected". Render their references with `make reference` and regenerate the golden dumps of `internal/sequencediagram`, `internal/classdiagram` and `internal/activitydiagram3`, which cover every case of the corpus (`go test -tags upstreamgen -run TestGenerateUpstream <package>`). Verify that the new references and dumps are written and that the other committed references and dumps do not change
+- [ ] 1.2 Add `.go.yaml` cases for the scenarios that are not compared with Java (D10): "Transition label as a node" (`TestTransitionLabelNode` in `internal/statediagram`, task 5.2), "TXT for a state diagram" (`TestStateTxtUnsupported` in `internal/statediagram`, task 4.1), "State diagram without dot" (`TestStateWithoutDot` in `internal/statediagram`, task 5.1) and "State diagram in WASM" (`TestWasmStateDiagram` in `cmd/plantuml-wasm`, task 6.1). Verify that `TestScenarioCoverage` passes and `make test` passes
+
+## 2. Shared code
+
+- [ ] 2.1 Add the pass wrapper to `internal/command`, which makes a command eligible for the given passes only (D3). Verify with a unit test that a wrapped single-line command and a wrapped multi-line command run only in their pass, and that `make test` passes
+- [ ] 2.2 Add the group hierarchy to `dotData`, with the diagram's children groups as the default (D6). Verify that `make test` passes and that the class and description groups of `make conformance` have the same results as on `main`
+
+## 3. State diagram
+
+- [ ] 3.1 Port `StateDiagram` into `internal/statediagram` (D2): the hooks with `hideEmptyDescription`, the namespace separator, `RequiredPasses`, `getStart`, `getEnd`, both `getHistorical` and `getDeepHistory`, `concurrentState`, `EndGroup`, `checkConcurrentStateOk`, `ensureParentState` and `CheckFinalError`. Verify with unit tests: the start and end of the root and of a composite state are different entities, `getHistorical` with a name creates the history state inside that state, a second `--` closes the previous region, and a transition out of a region gives upstream's error
+- [ ] 3.2 Port `CommandCreateState`, `CommandAddField` and `Stereogroup.getLeafType` (D1). Verify with parser unit tests built from upstream's patterns: both `as` forms, quoted names, the stereotypes that map to leaf types, tags, URLs, background colors, `##[dashed]red`, `: text`, and the error for a border stereotype at the top level
+- [ ] 3.3 Port `CommandLinkStateCommon`, `CommandLinkState` and `CommandLinkStateReverse`, with the sequence number in the name of label nodes (D7). Verify with parser unit tests: `[*]` on each side, `[H]`, `[H*]`, `X[H]`, `X[H*]`, `==bar==`, direction hints, bracket styles and colors, the `x` start, the `o` end, labels, stereotypes, the reversed form, and the label node created by `-[node]->` and by `skinparam stateDiagramEdgeLabelStyle node`
+- [ ] 3.4 Port `CommandCreatePackageState`, `CommandCreatePackage2`, `CommandEndState` and `CommandConcurrentState`. Verify with parser unit tests: nested composite states closed by `}` and by `end state`, `frame` groups, and `--` and `||` regions with their separators
+- [ ] 3.5 Port `StateDiagramFactory` with upstream's command list, the note commands wrapped for their passes (D3), and the state export (D8). Add the multi-pass unit tests of D3, which parse with the state factory directly. Verify that these tests and `make test` pass
+
+## 4. Registration and detection
+
+- [ ] 4.1 Register `statediagram.Factory` in `engine.Factories` between the description and activity factories, and remove the `state` entry of `unsupportedTypes` (D4). Update `TestDetectUnsupportedUmlTypes` (no error for the state inputs), `TestCreateDiagramReportsUnsupportedUmlType` (timing syntax) and `TestEmbeddedUnsupportedType` (`(*) --> "First step"`), and the `why` of `diagram-source/unsupported-uml-types.go.yaml` and `styling/embedded-unsupported-type.go.yaml` (D9). Add `TestStateTxtUnsupported` (TXT and UTXT return `UnsupportedFormatError` naming state diagrams, with no output). Verify that it passes, that `make test` passes and that the state cases of `make conformance` are compared instead of reported as not supported yet
+
+## 5. State layout and images
+
+- [ ] 5.1 Make `svek.TextBlock` resolve the layout engine before the simplifier, and port `CucaDiagramSimplifierState`, `GroupMakerState` (with the group hierarchy of 2.2) and `InnerStateAutonom` into `internal/svek` (D6). Add `TestStateWithoutDot` (a state diagram with a missing `dot` gives the Graphviz-not-found error diagram). Verify that it passes, that `make test` passes, and that the class and description groups of `make conformance` keep their results
+- [ ] 5.2 Port `EntityImageStateCommon`, `EntityImageState`, `EntityImageState2`, `EntityImageStateEmptyDescription`, `EntityImageCircleStart`, `EntityImageCircleEnd`, `EntityImageBranch`, `EntityImageSynchroBar`, `EntityImagePseudoState`, `EntityImageDeepHistory` and `EntityImageTransitionLabel` into `internal/svek`, replacing their stubs (D5), and add `TestTransitionLabelNode` (two renders give the same SVG, with the label drawn as a node). Verify that it passes and that the curated cases of states, pseudo states, transitions, notes, hide empty description, the map element, the direction and `diagram-source/state-detected` pass in `make conformance`, together with the Vega cases `svg/id/state_01`, `scxml/state1` and the 5 state cases of `nonreg/group2727`
+- [ ] 5.3 Port `Cluster.drawUState` and `EntityImageStateBorder`, replacing their stubs (D5). Verify that the curated cases "History state", "Composite state with its own start and end", "Dotted state names" and "Entry and exit points" pass in `make conformance`, together with the Vega cases `svg/id/state_02` to `state_05`, `scxml/state2` to `state5` and the 4 cases of `nonreg/group2783`
+- [ ] 5.4 Port `ConcurrentStates` and the concurrent part of `GroupMakerState` (D6), and update the "not ported yet" list of `internal/svek/doc.go`. Verify that the curated cases "Stacked regions", "Side by side regions" and "Transition out of a region" pass in `make conformance`
+
+## 6. WASM, known differences and documentation
+
+- [ ] 6.1 Add `TestWasmStateDiagram`, which renders a state diagram in the WASM build and gets the "graph layout is not available in this build" error with the error image. Verify that `go test ./cmd/plantuml-wasm` passes
+- [ ] 6.2 Check the 19 `vega/state/` cases without their pragma (D10): render each with the pragma removed by the upstream jar and by this implementation with the same `dot`, and compare the SVGs apart from the encoded source. Then list the cases that differ from their references in `testdata/conformance/known-differences.yaml` with the reason of the `group2712` entries and `resolvedBy: add-smetana-layout`. Verify that every case matches without the pragma, and that `make conformance REQUIRE=all` reports 0 failures and no known differences that pass, with the 19 other state cases passing
+- [ ] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
+- [ ] 6.4 Update `README.md`: state diagrams in the table of supported types with SVG and PNG, state removed from the list of unsupported types, and the case and known-difference counts. Verify that the README's counts match the conformance report of 6.2
+- [ ] 6.5 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
+- [ ] 6.6 Run `openspec validate add-state-diagrams --strict`. Verify that the change is reported as valid
