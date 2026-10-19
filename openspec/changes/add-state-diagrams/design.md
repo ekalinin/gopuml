@@ -41,7 +41,7 @@ Alternative: a function in `internal/abel` next to the leaf types. Nothing else 
 
 - `StateDiagram` embeds `abel.AbstractEntityDiagram`, sets the namespace separator to `.`, and passes hooks that read its `hideEmptyDescription` field for `IsHideEmptyDescriptionForState`. As in description diagrams (description design D2), the hooks are a separate value holding a pointer to the diagram, not the diagram itself. `CleanID` keeps the default, because upstream's `StateDiagram` does not override `cleanId`.
 - Upstream's `endGroup` override, which also closes an open concurrent region, becomes `StateDiagram.EndGroup`. Only the state commands call it (`CommandEndState`), so no hook is needed: the shared commands of the state factory do not close groups.
-- `CheckFinalError` ports upstream's check of transitions out of a concurrent region, then does what upstream's `CucaDiagram.checkFinalError` does, as `DescriptionDiagram.CheckFinalError` does.
+- `CheckFinalError` ports upstream's check of transitions out of a concurrent region. Otherwise it reports no error, as upstream's `AbstractDiagram.checkFinalError`, which `StateDiagram` calls: unlike description diagrams, state diagrams do not pack packages or apply the single strategy.
 
 ### D3. Three parser passes
 
