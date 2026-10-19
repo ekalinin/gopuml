@@ -1,0 +1,16 @@
+---
+id: state-diagram/history-state
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: History state"
+---
+@startuml
+state Active {
+  [*] --> Running
+  Running --> Waiting
+}
+Active --> Paused : pause
+Paused --> Active[H] : resume
+@enduml

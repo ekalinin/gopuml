@@ -1,0 +1,19 @@
+---
+id: state-diagram/entry-exit-points
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Entry and exit points"
+---
+@startuml
+state Somp {
+  state entry1 <<entryPoint>>
+  state exit1 <<exitPoint>>
+  state Inner
+  entry1 --> Inner
+  Inner --> exit1
+}
+[*] --> entry1
+exit1 --> [*]
+@enduml

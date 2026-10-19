@@ -1,0 +1,14 @@
+---
+id: state-diagram/display-names-and-descriptions
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Display names and descriptions"
+---
+@startuml
+state Idle : waiting for input
+Idle : no job
+state "Waiting for input" as Wait
+Idle --> Wait
+@enduml

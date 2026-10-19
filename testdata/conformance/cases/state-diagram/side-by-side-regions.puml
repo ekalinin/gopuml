@@ -1,0 +1,15 @@
+---
+id: state-diagram/side-by-side-regions
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Side by side regions"
+---
+@startuml
+state Active {
+  [*] --> A1
+  ||
+  [*] --> B1
+}
+@enduml

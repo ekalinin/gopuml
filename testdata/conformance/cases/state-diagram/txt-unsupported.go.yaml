@@ -1,0 +1,6 @@
+id: state-diagram/txt-unsupported
+scenarios:
+  - "state-diagram: TXT for a state diagram"
+package: internal/statediagram
+test: TestStateTxtUnsupported
+why: Upstream draws state diagrams as TXT, while this change rejects that format, as it does for class and description diagrams.

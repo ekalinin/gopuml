@@ -1,0 +1,17 @@
+---
+id: state-diagram/transition-out-of-region
+family: uml
+type: state
+formats: [svg]
+scenarios:
+  - "state-diagram: Transition out of a region"
+---
+@startuml
+state Active {
+  state A
+  --
+  state B
+}
+state Other
+B --> Other
+@enduml

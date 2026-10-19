@@ -16657,6 +16657,12 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/diagram-source/state-detected.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/diagram-source/two-blocks.puml
 result ClassDiagram
 description (2 entities)
@@ -17548,6 +17554,114 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/state-diagram/choice-fork-join.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/composite-own-start-end.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/direction-style-label.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/display-names-and-descriptions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/dotted-state-names.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/entry-exit-points.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/hide-empty-description.puml
+result error
+error EXECUTION_ERROR 2 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/state-diagram/history-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/left-to-right.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/state-diagram/map-element.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/note-on-state.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/reversed-transition.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/side-by-side-regions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/stacked-regions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/state-colors.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/states-and-transitions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/synchronization-bar.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/transition-out-of-region.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/styling/background-color.puml
 result ClassDiagram
 description (2 entities)

@@ -10993,6 +10993,12 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/diagram-source/state-detected.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/diagram-source/two-blocks.puml
 result SequenceDiagram
 description (2 participants)
@@ -11760,6 +11766,114 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/state-diagram/choice-fork-join.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/composite-own-start-end.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/direction-style-label.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/display-names-and-descriptions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/dotted-state-names.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/entry-exit-points.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/hide-empty-description.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
+=== conformance/state-diagram/history-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/left-to-right.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/map-element.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/note-on-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/reversed-transition.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/side-by-side-regions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/stacked-regions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/state-colors.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/states-and-transitions.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/synchronization-bar.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/state-diagram/transition-out-of-region.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/styling/background-color.puml
 result SequenceDiagram
 description (2 participants)

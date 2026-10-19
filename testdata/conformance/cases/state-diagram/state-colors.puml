@@ -1,0 +1,12 @@
+---
+id: state-diagram/state-colors
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: State colors"
+---
+@startuml
+state Error #pink ##[dashed]red
+[*] --> Error
+@enduml

@@ -1,0 +1,15 @@
+---
+id: state-diagram/synchronization-bar
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Synchronization bar"
+---
+@startuml
+state A
+state B
+A --> ==sync==
+B --> ==sync==
+==sync== --> C
+@enduml
