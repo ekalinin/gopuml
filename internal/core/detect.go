@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/CommandLinkActivity.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/statediagram/command/CommandCreateState.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/statediagram/command/CommandLinkState.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandRobustConcise.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandClock.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandBinary.java
@@ -44,11 +42,6 @@ var unsupportedTypes = []unsupportedType{
 	)},
 	{"archimate", patterns(
 		`^archimate[%s]`,
-	)},
-	{"state", patterns(
-		`^state[%s]+`,
-		`^\[(\*|H\*?)\]`,                    // [*] --> Idle
-		`-+>[%s]*\[(\*|H\*?)\][%s]*(:.*)?$`, // Idle --> [*]
 	)},
 	{"timing", patterns(
 		`^(compact[%s]+)?(robust|concise)[%s]+`,
