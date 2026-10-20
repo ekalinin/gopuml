@@ -253,7 +253,23 @@ type Result struct {
 	// javaOrder holds the names in the iteration order of upstream's
 	// HashMap of groups, which getLazzy follows.
 	javaOrder []string
+	// captures, when set, back the result instead of data: the result of
+	// a UBrex command (upstream's RegexResult(UMatcher)).
+	captures Captures
 }
+
+// Captures are the captures of a UBrex match, upstream's UMatcher as
+// RegexResult reads it: the values of a key, and the values of the first
+// key that starts with a prefix (nil for none).
+type Captures interface {
+	FindValuesByKey(key string) []string
+	FindFirstValuesByKeyPrefix(keyPrefix string) []string
+}
+
+// NewResultFromCaptures returns the result of a UBrex match. Group num of a
+// name is its num-th value, which must exist when the name has values, as
+// upstream's List.get.
+func NewResultFromCaptures(captures Captures) *Result { return &Result{captures: captures} }
 
 func (r *Result) put(name string, groups []Group) {
 	if _, ok := r.data[name]; !ok {
@@ -264,6 +280,9 @@ func (r *Result) put(name string, groups []Group) {
 
 // Get returns group num of name; ok is false when the group did not match.
 func (r *Result) Get(name string, num int) (string, bool) {
+	if r.captures != nil {
+		return capturedValue(r.captures.FindValuesByKey(name), num)
+	}
 	g, ok := r.data[name]
 	if !ok || num >= len(g) {
 		return "", false
@@ -281,6 +300,9 @@ func (r *Result) Str(name string, num int) string {
 // matched, trying the names in the iteration order of upstream's HashMap
 // of groups (which matters when several such groups match at once).
 func (r *Result) Lazy(prefix string, num int) (string, bool) {
+	if r.captures != nil {
+		return capturedValue(r.captures.FindFirstValuesByKeyPrefix(prefix), num)
+	}
 	order := r.javaOrder
 	if order == nil {
 		order = r.order
@@ -294,4 +316,13 @@ func (r *Result) Lazy(prefix string, num int) (string, bool) {
 		}
 	}
 	return "", false
+}
+
+// capturedValue is value num of a UBrex capture list; an empty list is
+// upstream's null.
+func capturedValue(values []string, num int) (string, bool) {
+	if len(values) == 0 {
+		return "", false
+	}
+	return values[num], true
 }
