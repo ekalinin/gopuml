@@ -1,0 +1,16 @@
+---
+id: legacy-activity-diagram/branch-two-outcomes
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Branch with two outcomes"
+---
+@startuml
+(*) --> "Check"
+if "valid?" then
+  -->[yes] "Ship"
+else
+  -->[no] "Reject"
+endif
+@enduml

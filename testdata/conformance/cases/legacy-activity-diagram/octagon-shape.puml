@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/octagon-shape
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Octagon shape"
+---
+@startuml
+skinparam activityShape octagon
+(*) --> "Pay"
+--> (*)
+@enduml

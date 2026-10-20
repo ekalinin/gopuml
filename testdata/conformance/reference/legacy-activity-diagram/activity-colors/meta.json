@@ -1,0 +1,6 @@
+{
+  "id": "legacy-activity-diagram/activity-colors",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "(3 activities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 61, "height": 174, "status": 0}, {"file": "block0-page0.png", "width": 61, "height": 174, "status": 0}]}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "id": "legacy-activity-diagram/activity-several-lines",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "(3 activities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 108, "height": 188, "status": 0}, {"file": "block0-page0.png", "width": 108, "height": 188, "status": 0}]}
+  ]
+}

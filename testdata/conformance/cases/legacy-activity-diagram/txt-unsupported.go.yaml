@@ -1,0 +1,6 @@
+id: legacy-activity-diagram/txt-unsupported
+scenarios:
+  - "legacy-activity-diagram: TXT for a legacy activity diagram"
+package: internal/activitydiagram
+test: TestLegacyActivityTxtUnsupported
+why: Upstream draws legacy activity diagrams as TXT, while this change rejects that format, as it does for class, description and state diagrams.

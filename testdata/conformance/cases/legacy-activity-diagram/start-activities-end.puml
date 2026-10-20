@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/start-activities-end
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Start, activities and end"
+---
+@startuml
+(*) --> "First step"
+"First step" --> "Second step"
+"Second step" --> (*)
+@enduml

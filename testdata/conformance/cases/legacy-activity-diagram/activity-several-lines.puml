@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/activity-several-lines
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Activity on several lines"
+---
+@startuml
+(*) --> "First line
+second line"
+--> (*)
+@enduml

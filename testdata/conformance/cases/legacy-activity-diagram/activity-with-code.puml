@@ -1,0 +1,12 @@
+---
+id: legacy-activity-diagram/activity-with-code
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Activity with a code"
+---
+@startuml
+(*) --> "Long name" as L
+L --> (*)
+@enduml

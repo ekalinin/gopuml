@@ -1,0 +1,16 @@
+---
+id: legacy-activity-diagram/fork-and-join
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Fork and join"
+---
+@startuml
+(*) --> ===B1===
+===B1=== --> "Pack"
+===B1=== --> "Bill"
+"Pack" --> ===B2===
+"Bill" --> ===B2===
+===B2=== --> (*)
+@enduml
