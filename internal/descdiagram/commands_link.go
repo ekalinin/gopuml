@@ -27,6 +27,14 @@ const (
 	lineStyleMultiples = LineStyle + `(?:(?:;` + LineStyle + `)*)`
 )
 
+// UBrexLineStyle is upstream's CommandLinkElement.UBREX_LINE_STYLE: LineStyle
+// written with UBrex, for the commands written with UBrex.
+const (
+	ubrexKey1      = "dotted┇dashed┇plain┇bold┇hidden┇norank┇single┇node┇thickness=〇+〴d"
+	ubrexKey2      = ",dotted┇,dashed┇,plain┇,bold┇,hidden┇,norank┇,single┇,node┇,thickness=〇+〴d"
+	UBrexLineStyle = "【 #〇+〴w ┇" + ubrexKey1 + "】 〇*【 ,#〇+〴w ┇" + ubrexKey2 + "】"
+)
+
 // linkElementEnd is upstream's CommandLinkElement.getGroup: a name, a
 // quoted name, "() name", ":actor:", "[component]" or "(use case)". The
 // negative lookaheads of upstream, which keep "[*]" and "(*)" for state
