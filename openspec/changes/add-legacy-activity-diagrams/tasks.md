@@ -11,7 +11,7 @@
 
 - [x] 2.1 Export from `internal/klimt` the UBrex expression building, matching, `exactMatch` and capture lookups, port the builder parts the commands use (`UBrexConcat`, `UBrexLeaf` with `end`, `spaceZeroOrMore` and `spaceOneOrMore`, `UBrexNamed`, `UBrexOptional`, `UBrexOr`), and let `regex.Result` be backed by UBrex captures through an interface of `internal/command/regex` (D3). Verify with unit tests: a builder expression matches and captures as the same expression written as a string, `Get` and `Lazy` of a capture-backed result follow upstream's `RegexResult(UMatcher)`, and `TestGoldenUbrex` and the creole tests pass
 - [x] 2.2 Add `uml.UBrexSingle` (upstream's `UBrexSingleLineCommand2`), and `UBrexCommandFootboxIgnored`, `UBrexCommandRankDir` and `UBrexCommandHideShow2` in `internal/abel` (D3). Verify with unit tests that a UBrex command accepts only exact matches of the trimmed line, and that the three commands accept upstream's forms (`hide footbox`, `left to right direction`, `hide <<stereo>>`, `show Name`) and set the rank direction and the hide and show rules
-- [ ] 2.3 Make `color.UBrexColorParser` return upstream's UBrex part (D3), and move its unit test to that form. Verify that `make test` passes
+- [x] 2.3 Make the UBrex color parser return upstream's UBrex part, moving it from `internal/klimt/color` into `internal/klimt` (D3), and move its unit test to that form. Verify that `make test` passes
 
 ## 3. Legacy activity diagram
 

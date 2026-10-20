@@ -253,34 +253,3 @@ func TestColorParserLegacyLeaves(t *testing.T) {
 		t.Errorf("BACKCOLOR2 = %q", r.Str("BACKCOLOR2", 0))
 	}
 }
-
-func TestUBrexColorParser(t *testing.T) {
-	p := UBrexSimpleColor(TypeBack)
-	// The legacy partition command: color, optional stereotype, spaces, "{".
-	cmd := regex.NewConcat(regex.Start(), regex.NewLeaf("partition"), regex.SpaceOneOrMore(),
-		regex.NewNamedLeaf(1, "NAME", `([^#\s]+)`), regex.SpaceZeroOrMore(), p.Regex(),
-		regex.Optional(regex.NewNamedLeaf(1, "STEREOTYPE", "(<<.+>>)")), regex.SpaceZeroOrMore(),
-		regex.Optional(regex.NewLeaf(`\{`)), regex.End())
-	for line, want := range map[string]string{
-		"partition P #red {":         "#red",
-		"partition P #a":             "#a", // unlike ColorParser, one word character is enough
-		"partition P #red-blue<<s>>": "#red-blue",
-		"partition P #red/blue {":    "#red/blue",
-	} {
-		r := cmd.Matcher(line)
-		if r == nil {
-			t.Errorf("%q must match", line)
-			continue
-		}
-		if got := r.Str("COLOR", 0); got != want {
-			t.Errorf("%q: COLOR = %q, want %q", line, got, want)
-		}
-		colors, err := p.Color(r, Instance())
-		if err != nil || colors.Color(TypeBack) == nil {
-			t.Errorf("%q: Color = %v, %v", line, colors, err)
-		}
-	}
-	if cmd.Match("partition P {") {
-		t.Error("the UBrex color is mandatory")
-	}
-}

@@ -42,7 +42,7 @@ See proposal.md for the motivation. The current state that shapes the approach:
 - `regex.Result` can be backed by UBrex captures, through an interface of two lookups defined in `internal/command/regex` and implemented by the klimt matcher: `Get` returns the values of a key, and `Lazy` those of the first key with a prefix, as upstream's `RegexResult(UMatcher)`. `internal/command/regex` does not import `internal/klimt`, which imports it.
 - `uml.UBrexSingle` is upstream's `UBrexSingleLineCommand2`: an exact match of the trimmed line, executed with a capture-backed `regex.Result`, with the `Passes` and `Forbidden` options of `command.SingleLine`.
 - The UBrex variants of shared commands are ported next to their regex versions in `internal/abel`: `UBrexCommandFootboxIgnored`, `UBrexCommandRankDir` and `UBrexCommandHideShow2`.
-- `color.UBrexColorParser` returns upstream's UBrex part instead of the regex leaf, since the partition command, its only user, is now a UBrex command.
+- `color.UBrexColorParser` returns upstream's UBrex part instead of the regex leaf, since the partition command, its only user, is now a UBrex command. It moves into `internal/klimt` (`klimt.UBrexColorParser`), because a UBrex part is a type of `internal/klimt`, which imports `internal/klimt/color`, as `klimt.ColorsColorOf` and the other color helpers that need style types did.
 
 Alternatives:
 
@@ -76,7 +76,7 @@ The export follows `internal/statediagram/export.go`. TXT and UTXT are rejected 
 
 - **[Detection order]** The legacy parser now runs before the description and state parsers, so a block that it accepts becomes a legacy activity diagram. → That is upstream's order, so the references expect it. CI requires every group, so a description, state or activity case that changes type fails the run.
 - **[Shared UBrex code]** Exporting the engine and adding capture-backed results touches the creole commands and `regex.Result`. → The engine does not change; its golden test (`TestGoldenUbrex`) and the creole tests must stay green.
-- **[Color parser]** `color.UBrexColorParser` changes form. → Its only user is the partition command; its unit test moves to the UBrex form.
+- **[Color parser]** `color.UBrexColorParser` changes form and package. → Its only user is the partition command; its unit test moves with it, to the UBrex form.
 - **[Inner activities]** They are ported without a scenario, because upstream's own output for them is broken. → The code follows upstream; a later change can add a scenario if upstream fixes them.
 
 ## Migration Plan
