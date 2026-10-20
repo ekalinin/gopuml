@@ -23,7 +23,7 @@
 
 ## 4. Registration and detection
 
-- [ ] 4.1 Register `activitydiagram.Factory` in `engine.Factories` between the class and description factories, and remove the `legacy activity` entry of `unsupportedTypes` (D4). Update `TestDetectUnsupportedUmlTypes` (no error for the legacy inputs) and `TestEmbeddedUnsupportedType` (`robust "Web" as WB`), and the `why` of `diagram-source/unsupported-uml-types.go.yaml` and `styling/embedded-unsupported-type.go.yaml`. Add `TestLegacyActivityTxtUnsupported` (TXT and UTXT return `UnsupportedFormatError` naming activity diagrams, with no output). Verify that it passes, that `make test` passes, and that in `make conformance` the legacy activity cases are compared instead of reported as not supported yet, while the sequence, class, description, state and activity (new syntax) groups keep their results
+- [x] 4.1 Register `activitydiagram.Factory` in `engine.Factories` between the class and description factories, and remove the `legacy activity` entry of `unsupportedTypes` (D4). Update `TestDetectUnsupportedUmlTypes` (no error for the legacy inputs) and `TestEmbeddedUnsupportedType` (`robust "Web" as WB`), and the `why` of `diagram-source/unsupported-uml-types.go.yaml` and `styling/embedded-unsupported-type.go.yaml`. Add `TestLegacyActivityTxtUnsupported` (TXT and UTXT return `UnsupportedFormatError` naming activity diagrams, with no output). Verify that it passes, that `make test` passes, and that in `make conformance` the legacy activity cases are compared instead of reported as not supported yet, while the sequence, class, description, state and activity (new syntax) groups keep their results
 
 ## 5. Activity layout and images
 

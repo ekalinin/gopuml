@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/CommandLinkActivity.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandRobustConcise.java
 // Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandClock.java
@@ -36,10 +35,6 @@ func patterns(p ...string) []*regexp.Regexp {
 
 // unsupportedTypes are tried in upstream's factory order.
 var unsupportedTypes = []unsupportedType{
-	{"legacy activity", patterns(
-		`^\(\*(top)?\)`,                     // (*) --> First
-		`-+>[%s]*(\[[^\]]*\])?[%s]*\(\*\)$`, // ... --> (*)
-	)},
 	{"archimate", patterns(
 		`^archimate[%s]`,
 	)},
