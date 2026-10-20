@@ -1,0 +1,21 @@
+---
+id: state-diagram/choice-fork-join
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Choice, fork and join"
+---
+@startuml
+state c <<choice>>
+state f <<fork>>
+state j <<join>>
+[*] --> f
+f --> A
+f --> B
+A --> j
+B --> j
+j --> c
+c --> Done : [ok]
+c --> A : [retry]
+@enduml

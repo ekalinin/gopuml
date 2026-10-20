@@ -1,0 +1,15 @@
+---
+id: state-diagram/map-element
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Map element in a state diagram"
+---
+@startuml
+state App
+map Config {
+  port => 8080
+}
+App --> Config
+@enduml

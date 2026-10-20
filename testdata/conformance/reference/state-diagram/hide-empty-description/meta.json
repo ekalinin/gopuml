@@ -1,0 +1,6 @@
+{
+  "id": "state-diagram/hide-empty-description",
+  "blocks": [
+    {"index": 0, "name": null, "type": "STATE", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 74, "height": 172, "status": 0}, {"file": "block0-page0.png", "width": 74, "height": 172, "status": 0}]}
+  ]
+}

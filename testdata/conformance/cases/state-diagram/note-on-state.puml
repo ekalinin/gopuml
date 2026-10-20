@@ -1,0 +1,12 @@
+---
+id: state-diagram/note-on-state
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Note on a state"
+---
+@startuml
+state Idle
+note right of Idle : waiting
+@enduml

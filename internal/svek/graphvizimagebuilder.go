@@ -302,7 +302,7 @@ func (b *graphvizImageBuilder) unpackagedEntities() []*abel.Entity {
 }
 
 func (b *graphvizImageBuilder) printGroups(stringBounder font.StringBounder, parent *abel.Entity) {
-	for _, g := range b.dotData.diagram.ChildrenGroups(parent) {
+	for _, g := range b.dotData.groupHierarchy.ChildrenGroups(parent) {
 		if g.IsRemoved() {
 			continue
 		}

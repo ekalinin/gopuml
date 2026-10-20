@@ -197,3 +197,15 @@ func TestWasmDescriptionDiagram(t *testing.T) {
 		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
 	}
 }
+
+func TestWasmStateDiagram(t *testing.T) {
+	// Spec scenario "State diagram in WASM".
+	r := renderInNode(t, "@startuml\n[*] --> Idle\nstate Active {\n[*] --> Running\n}\nIdle --> Active\n@enduml\n",
+		map[string]any{"format": "svg"})
+	if r.Error == nil {
+		t.Fatal("state diagram rendered without graph layout")
+	}
+	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
+		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
+	}
+}

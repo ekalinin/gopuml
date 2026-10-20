@@ -1,0 +1,6 @@
+id: state-diagram/without-dot
+scenarios:
+  - "state-diagram: State diagram without dot"
+package: internal/statediagram
+test: TestStateWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

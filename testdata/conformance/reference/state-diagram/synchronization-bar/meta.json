@@ -1,0 +1,6 @@
+{
+  "id": "state-diagram/synchronization-bar",
+  "blocks": [
+    {"index": 0, "name": null, "type": "STATE", "description": "(4 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 156, "height": 248, "status": 0}, {"file": "block0-page0.png", "width": 156, "height": 248, "status": 0}]}
+  ]
+}

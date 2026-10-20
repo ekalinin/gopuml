@@ -1,0 +1,14 @@
+---
+id: state-diagram/hide-empty-description
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Hide empty description"
+---
+@startuml
+hide empty description
+state A
+state B : busy
+A --> B
+@enduml

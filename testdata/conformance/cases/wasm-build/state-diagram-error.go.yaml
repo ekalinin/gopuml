@@ -1,0 +1,6 @@
+id: wasm-build/state-diagram-error
+scenarios:
+  - "wasm-build: State diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmStateDiagram
+why: Upstream has no Graphviz-free WASM build; the error is specific to this implementation.

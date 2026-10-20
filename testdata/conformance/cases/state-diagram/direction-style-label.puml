@@ -1,0 +1,13 @@
+---
+id: state-diagram/direction-style-label
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Direction, style and label"
+---
+@startuml
+state A
+A -left-> B : back
+A -[#blue,dashed]-> C
+@enduml

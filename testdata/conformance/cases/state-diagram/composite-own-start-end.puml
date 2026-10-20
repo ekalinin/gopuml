@@ -1,0 +1,16 @@
+---
+id: state-diagram/composite-own-start-end
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Composite state with its own start and end"
+---
+@startuml
+state Active {
+  [*] --> Running
+  Running --> [*]
+}
+[*] --> Active
+Active --> [*]
+@enduml

@@ -1,0 +1,13 @@
+---
+id: state-diagram/left-to-right
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Left to right states"
+---
+@startuml
+left to right direction
+[*] --> Idle
+Idle --> Busy
+@enduml

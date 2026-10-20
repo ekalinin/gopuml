@@ -20,3 +20,60 @@
 - id: vega/nonreg/group2712/right_direction
   reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
   resolvedBy: add-smetana-layout
+- id: vega/state/composite-autarkic-simple
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/composite-non-autarkic-outgoing-only
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/composite-non-autarkic-start-end
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/composite-siblings-with-transition
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/composite-two-levels-nested
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/composite-two-levels-non-autarkic
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-composite-non-autarkic-sibling-link
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-composite-non-autarkic-start-end
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-dash-three-regions
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-dash-two-regions
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-empty-first-region
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-nested-inside-composite
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-pipe-three-regions
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-pipe-two-regions
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-pipe-with-nested-composite-region
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-region-nested-composite
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-top-level-root
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/concurrent-with-internal-transitions
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/state/simple-states
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout

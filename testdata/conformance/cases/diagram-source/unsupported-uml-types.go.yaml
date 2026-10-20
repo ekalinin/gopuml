@@ -5,4 +5,4 @@ scenarios:
   - "diagram-source: Archimate syntax"
 package: internal/core
 test: TestDetectUnsupportedUmlTypes
-why: Upstream renders state, legacy activity and archimate diagrams, while this change must report that these diagram types are not supported yet.
+why: Upstream renders legacy activity and archimate diagrams, while this implementation must report that these diagram types are not supported yet, and must not report it for state syntax.

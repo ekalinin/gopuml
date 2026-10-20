@@ -259,7 +259,8 @@ func (c *Cluster) DrawU(ug klimt.UGraphic) {
 	}
 	isState := diagramType == core.State
 	if isState && c.group.USymbol() == abel.USymbolNull {
-		notPorted("Cluster.drawUState")
+		c.drawUState(ug, rounded, shadowing)
+		return
 	}
 	packageStyle, ok := c.group.PackageStyle()
 	if !ok {
@@ -277,6 +278,59 @@ func (c *Cluster) DrawU(ug klimt.UGraphic) {
 	horizontalAlignment := c.clusterHeader.titleHorizontalAlignment()
 	decoration.drawU(ug, backColor, borderColor, shadowing, rounded, horizontalAlignment,
 		c.skinParam.StereotypeAlignment(), diagonalCorner)
+}
+
+// drawUState draws a composite state laid out with its parent: a rounded
+// box with the title, the description lines and the oo symbol.
+func (c *Cluster) drawUState(ug klimt.UGraphic, rounded, shadowing float64) {
+	styleBuilder := c.skinParam.CurrentStyleBuilder()
+	colorSet := c.skinParam.IHtmlColorSet()
+	stereotype := c.group.Stereotype()
+	borderColor := c.group.Colors().Color(color.TypeLine)
+	if borderColor == nil {
+		borderColor = styleStateOf(stereotype, styleBuilder).Value(klimt.PNameLineColor).AsColor(colorSet)
+	}
+	northBackcolor := c.group.Colors().Color(color.TypeBack)
+	centerBackColor, southBackcolor := northBackcolor, northBackcolor
+	if northBackcolor == nil {
+		backColor := func(part klimt.SName) color.HColor {
+			return stateStyle().AddSName(part).WithTOBECHANGED(stereotype).MergedStyle(styleBuilder).
+				Value(klimt.PNameBackGroundColor).AsColor(colorSet)
+		}
+		northBackcolor = backColor(klimt.SNameName)
+		centerBackColor = backColor(klimt.SNameDescription)
+		southBackcolor = backColor(klimt.SNameBody)
+	}
+	attribute := stateDescription(c.group, c.skinParam)
+	attributeHeight := attribute.CalculateDimension(ug.StringBounder()).Height()
+	area := *c.rectangleArea
+	if area.Dimension().Width() == 0 {
+		// Upstream prints "Cluster::drawUState issue".
+		return
+	}
+	var stroke klimt.UStroke
+	if s := klimt.ColorsSpecificLineStroke(c.group.Colors()); s != nil {
+		stroke = *s
+	} else {
+		stroke = styleStateOf(stereotype, styleBuilder).Stroke()
+	}
+	descriptionHeight := attributeHeight
+	if attributeHeight > 0 {
+		descriptionHeight += klimt.IEntityImageMargin
+	}
+	nameHeight := c.clusterHeader.title.CalculateDimension(ug.StringBounder()).Height() + klimt.IEntityImageMargin
+	newRoundedContainer(borderColor, area.Dimension(), nameHeight, descriptionHeight, northBackcolor,
+		centerBackColor, southBackcolor, stroke, rounded, shadowing).
+		DrawU(ug.Apply(klimt.NewUTranslate(area.MinX(), area.MinY())))
+	drawAligned(c.clusterHeader.titleHorizontalAlignment(), ug.Apply(klimt.NewUTranslate(area.MinX(), c.xyTitle.Y)),
+		c.clusterHeader.title, klimt.IEntityImageMargin, 0, area.Width())
+	if attributeHeight > 0 {
+		attribute.DrawU(ug.Apply(klimt.NewUTranslate(area.MinX()+klimt.IEntityImageMargin,
+			area.MinY()+nameHeight+klimt.IEntityImageMargin/2.0)))
+	}
+	if stereotype != nil && stereotype.IsWithOOSymbol() {
+		drawStateSymbol(ug.Apply(borderColor), area.MaxX(), area.MaxY())
+	}
 }
 
 func (c *Cluster) style() *klimt.Style {

@@ -11,21 +11,32 @@ import (
 )
 
 // dotData is upstream's dot.DotData: what is laid out (the links in their
-// order, the leaves, the top group) and the diagram that owns them.
+// order, the leaves, the top group, the groups under each group) and the
+// diagram that owns them.
 type dotData struct {
-	diagram       *abel.CucaDiagram
-	links         []*abel.Link
-	leafs         []*abel.Entity
-	topParent     *abel.Entity
-	portionShower PortionShower
+	diagram        *abel.CucaDiagram
+	links          []*abel.Link
+	leafs          []*abel.Entity
+	groupHierarchy groupHierarchy
+	topParent      *abel.Entity
+	portionShower  PortionShower
+}
+
+// groupHierarchy is upstream's cucadiagram.GroupHierarchy: the groups laid
+// out under a group. The diagram is the hierarchy of its whole layout;
+// GroupMakerState has its own for the layout of one composite state.
+type groupHierarchy interface {
+	ChildrenGroups(parent *abel.Entity) []*abel.Entity
+	IsEmpty(g *abel.Entity) bool
 }
 
 func newDotData(diagram *abel.CucaDiagram, topParent *abel.Entity, links []*abel.Link, leafs []*abel.Entity,
-	portionShower PortionShower) *dotData {
+	groupHierarchy groupHierarchy, portionShower PortionShower) *dotData {
 	if topParent == nil {
 		throwNPE()
 	}
-	return &dotData{diagram: diagram, topParent: topParent, links: links, leafs: leafs, portionShower: portionShower}
+	return &dotData{diagram: diagram, topParent: topParent, links: links, leafs: leafs,
+		groupHierarchy: groupHierarchy, portionShower: portionShower}
 }
 
 func (d *dotData) rootGroup() *abel.Entity { return d.diagram.RootGroup() }
@@ -42,7 +53,7 @@ func (d *dotData) diagramType() core.DiagramType { return d.diagram.DiagramType(
 
 func (d *dotData) skinParam() klimt.ISkinParam { return d.diagram.SkinParam() }
 
-func (d *dotData) isEmpty(g *abel.Entity) bool { return d.diagram.IsEmpty(g) }
+func (d *dotData) isEmpty(g *abel.Entity) bool { return d.groupHierarchy.IsEmpty(g) }
 
 // removeIrrelevantSametail gives the extends links the same tail, and
 // keeps it only where a parent has at least groupInheritance children.

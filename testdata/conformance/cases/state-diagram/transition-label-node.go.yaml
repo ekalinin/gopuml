@@ -1,0 +1,6 @@
+id: state-diagram/transition-label-node
+scenarios:
+  - "state-diagram: Transition label as a node"
+package: internal/statediagram
+test: TestTransitionLabelNode
+why: Upstream names the label node with the current time, so its output changes from one run to the next and cannot be compared.

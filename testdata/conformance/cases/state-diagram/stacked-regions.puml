@@ -1,0 +1,15 @@
+---
+id: state-diagram/stacked-regions
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Stacked regions"
+---
+@startuml
+state Active {
+  [*] --> A1
+  --
+  [*] --> B1
+}
+@enduml

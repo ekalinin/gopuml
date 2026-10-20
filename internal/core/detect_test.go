@@ -14,13 +14,14 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		want string // type name in the message, "" for no detection
 		line int    // 0-based position of the reported line
 	}{
-		// Spec scenarios: state, legacy activity and archimate syntax.
-		{"@startuml\n[*] --> Idle\n@enduml\n", "state", 1},
+		// Spec scenarios: state syntax is not reported (state diagrams are
+		// supported), legacy activity and archimate syntax are.
+		{"@startuml\n[*] --> Idle\n@enduml\n", "", 0},
 		{"@startuml\n(*) --> \"First step\"\n@enduml\n", "legacy activity", 1},
 		{"@startuml\narchimate #Business \"Customer\" as C\n@enduml\n", "archimate", 1},
 
-		{"@startuml\nstate Idle\nIdle --> Busy\n@enduml\n", "state", 1},
-		{"@startuml\nIdle --> Busy\nBusy --> [*]\n@enduml\n", "state", 2},
+		{"@startuml\nstate Idle\nIdle --> Busy\n@enduml\n", "", 0},
+		{"@startuml\nIdle --> Busy\nBusy --> [*]\n@enduml\n", "", 0},
 		{"@startuml\n\"First\" --> (*)\n@enduml\n", "legacy activity", 1},
 		{"@startuml\narchimate #Business \"Shop\" as shop\n@enduml\n", "archimate", 1},
 		{"@startuml\nrobust \"Web\" as WB\n@0\nWB is Idle\n@enduml\n", "timing", 1},
@@ -62,16 +63,17 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 }
 
 func TestCreateDiagramReportsUnsupportedUmlType(t *testing.T) {
-	// No in-scope factory accepts state syntax, so the block is reported as
-	// a state diagram, not as a generic syntax error.
+	// No in-scope factory accepts timing syntax, so the block is reported as
+	// a timing diagram, not as a generic syntax error.
+	src := "@startuml\nrobust \"Web\" as WB\n@enduml\n"
 	factories := []Factory{fakeFactory{name: "sequence", typ: Sequence, consumed: 1}}
-	d, ok := CreateDiagram(NewRenderContext(), srcLines("@startuml\n[*] --> Idle\n@enduml\n"), nil, factories).(*ErrorDiagram)
-	if !ok || d.Error.Message() != "state diagrams are not supported yet" {
+	d, ok := CreateDiagram(NewRenderContext(), srcLines(src), nil, factories).(*ErrorDiagram)
+	if !ok || d.Error.Message() != "timing diagrams are not supported yet" {
 		t.Fatalf("got %#v", d)
 	}
 	// A factory that accepts the block wins over detection.
-	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "-->"}}
-	if _, ok := CreateDiagram(NewRenderContext(), srcLines("@startuml\n[*] --> Idle\n@enduml\n"), nil, factories).(okDiagram); !ok {
+	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "robust"}}
+	if _, ok := CreateDiagram(NewRenderContext(), srcLines(src), nil, factories).(okDiagram); !ok {
 		t.Fatal("an accepting factory must win")
 	}
 }

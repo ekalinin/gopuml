@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/state-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "STATE", "description": "(3 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 71, "height": 231, "status": 0}]}
+  ]
+}

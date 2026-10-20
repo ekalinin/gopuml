@@ -1,0 +1,13 @@
+---
+id: state-diagram/states-and-transitions
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: States and transitions"
+---
+@startuml
+[*] --> Idle
+Idle --> Running : start
+Running --> [*]
+@enduml

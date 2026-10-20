@@ -1,0 +1,6 @@
+{
+  "id": "state-diagram/transition-out-of-region",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 8, "messages": ["The state B cannot be used here. (Assumed diagram type: state)"]}, "renders": [{"file": "block0-page0.svg", "width": 527, "height": 216, "status": 400}]}
+  ]
+}

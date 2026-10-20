@@ -1,0 +1,12 @@
+---
+id: diagram-source/state-detected
+family: uml
+type: state
+formats: [svg]
+scenarios:
+  - "diagram-source: State diagram detected"
+---
+@startuml
+[*] --> Idle
+Idle --> [*]
+@enduml

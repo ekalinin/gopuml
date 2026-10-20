@@ -1,0 +1,13 @@
+---
+id: state-diagram/reversed-transition
+family: uml
+type: state
+formats: [svg, png]
+scenarios:
+  - "state-diagram: Reversed transition"
+---
+@startuml
+state A
+state B
+B <-- A : back
+@enduml
