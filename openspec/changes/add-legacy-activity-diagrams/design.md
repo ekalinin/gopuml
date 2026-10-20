@@ -41,7 +41,7 @@ See proposal.md for the motivation. The current state that shapes the approach:
 - The UBrex engine stays in `internal/klimt`, which exports what commands need: building an expression from builder parts, matching a line, and the matcher's `exactMatch` and capture lookups. Upstream's builder is ported there for the parts the commands use (`UBrexConcat`, `UBrexLeaf` with `end`, `spaceZeroOrMore` and `spaceOneOrMore`, `UBrexNamed`, `UBrexOptional`, `UBrexOr`).
 - `regex.Result` can be backed by UBrex captures, through an interface of two lookups defined in `internal/command/regex` and implemented by the klimt matcher: `Get` returns the values of a key, and `Lazy` those of the first key with a prefix, as upstream's `RegexResult(UMatcher)`. `internal/command/regex` does not import `internal/klimt`, which imports it.
 - `uml.UBrexSingle` is upstream's `UBrexSingleLineCommand2`: an exact match of the trimmed line, executed with a capture-backed `regex.Result`, with the `Passes` and `Forbidden` options of `command.SingleLine`.
-- The UBrex variants of shared commands are ported next to their regex versions: `UBrexCommandFootboxIgnored` and `UBrexCommandRankDir` in `internal/uml`, `UBrexCommandHideShow2` in `internal/abel`.
+- The UBrex variants of shared commands are ported next to their regex versions in `internal/abel`: `UBrexCommandFootboxIgnored`, `UBrexCommandRankDir` and `UBrexCommandHideShow2`.
 - `color.UBrexColorParser` returns upstream's UBrex part instead of the regex leaf, since the partition command, its only user, is now a UBrex command.
 
 Alternatives:

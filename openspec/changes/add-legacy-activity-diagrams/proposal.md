@@ -39,7 +39,7 @@ Out of scope:
 
 ## Impact
 
-- **Code:** a new `internal/activitydiagram` package (diagram, conditional context, factory, the link, branch, partition and note commands); the UBrex builder and an exported matcher in `internal/klimt`, `regex.Result` backed by UBrex captures, a UBrex single-line command and the UBrex variants of `footbox`, `direction` and `hide`/`show` in `internal/uml` and `internal/abel`, and the UBrex color parser as a UBrex part; `EntityImageActivity`, `InnerActivity`, `GroupMakerActivity` and `CucaDiagramSimplifierActivity` in `internal/svek`; the factory list in `internal/engine` and the detectors in `internal/core`.
+- **Code:** a new `internal/activitydiagram` package (diagram, conditional context, factory, the link, branch, partition and note commands); the UBrex builder and an exported matcher in `internal/klimt`, `regex.Result` backed by UBrex captures, a UBrex single-line command in `internal/uml` and the UBrex variants of `footbox`, `direction` and `hide`/`show` in `internal/abel`, and the UBrex color parser as a UBrex part; `EntityImageActivity`, `InnerActivity`, `GroupMakerActivity` and `CucaDiagramSimplifierActivity` in `internal/svek`; the factory list in `internal/engine` and the detectors in `internal/core`.
 - **Runtime dependency:** legacy activity diagrams need Graphviz `dot`.
 - **Conformance:** new curated cases and committed references under `testdata/conformance/`, and regenerated golden dumps.
 - **Compatibility:** inputs that failed with "legacy activity diagrams are not supported yet" now render. Blocks that both the legacy activity and the state parser accept become legacy activity diagrams, as upstream.
