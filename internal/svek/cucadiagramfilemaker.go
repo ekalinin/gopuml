@@ -150,7 +150,11 @@ func TextBlock(ctx context.Context, d *abel.CucaDiagram, dotStrings []string, fi
 	le, version := layout.resolve(ctx)
 	switch d.DiagramType() {
 	case core.Activity:
-		notPorted("CucaDiagramSimplifierActivity")
+		if le.notFound == nil {
+			if image, err := simplifyActivity(d, stringBounder, DotModeNormal, le, version); image != nil || err != nil {
+				return image, err
+			}
+		}
 	case core.State:
 		if le.notFound == nil {
 			if image, err := simplifyState(d, stringBounder, DotModeNormal, le, version); image != nil || err != nil {

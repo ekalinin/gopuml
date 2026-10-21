@@ -12,6 +12,7 @@ import (
 
 	"github.com/ekalinin/gopuml/internal/activitydiagram"
 	"github.com/ekalinin/gopuml/internal/core"
+	"github.com/ekalinin/gopuml/internal/dot"
 	"github.com/ekalinin/gopuml/internal/engine"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
@@ -43,6 +44,25 @@ func TestLegacyActivityTxtUnsupported(t *testing.T) {
 		}
 		if buf.Len() != 0 {
 			t.Errorf("%v: %d bytes written", format, buf.Len())
+		}
+	}
+}
+
+// TestLegacyActivityWithoutDot checks the legacy-activity-diagram scenario
+// "Legacy activity diagram without dot", with an inner activity, which is
+// not laid out on its own without dot.
+func TestLegacyActivityWithoutDot(t *testing.T) {
+	rc := core.NewRenderContext()
+	rc.DotPath = "/nonexistent/graphviz/dot"
+	block := parseBlock(t, rc, "@startuml\n(*) --> \"A\"\n--> {\n--> \"B\"\n}\n--> (*)\n@enduml\n")
+	var buf bytes.Buffer
+	_, err := block.Render(context.Background(), &buf, 0, engine.Options{Format: font.FormatSVG})
+	if !errors.Is(err, dot.ErrNotFound) {
+		t.Fatalf("error %v, want dot.ErrNotFound", err)
+	}
+	for _, want := range []string{"Dot Executable: /nonexistent/graphviz/dot", "Cannot find Graphviz. You should try"} {
+		if !strings.Contains(buf.String(), want) {
+			t.Errorf("the image does not say %q", want)
 		}
 	}
 }

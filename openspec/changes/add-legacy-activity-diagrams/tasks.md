@@ -27,8 +27,8 @@
 
 ## 5. Activity layout and images
 
-- [ ] 5.1 Port `EntityImageActivity` into `internal/svek`, replacing its stub (D5). Verify that the curated legacy activity cases and `diagram-source/legacy-activity-before-state` pass in `make conformance`, and that `vega/nonreg/simple/A0004` passes
-- [ ] 5.2 Port `CucaDiagramSimplifierActivity`, `GroupMakerActivity` and `InnerActivity` into `internal/svek`, and run the simplifier in `svek.TextBlock` after the layout engine is resolved, skipped without `dot` (D5). Add `TestLegacyActivityWithoutDot` (a legacy activity diagram with a missing `dot` gives the Graphviz-not-found error diagram). Verify that it passes, that an inner activity renders with the activities upstream draws, and update the "not ported yet" list of `internal/svek/doc.go`
+- [x] 5.1 Port `EntityImageActivity` into `internal/svek`, replacing its stub (D5). Verify that the curated legacy activity cases and `diagram-source/legacy-activity-before-state` pass in `make conformance`, and that `vega/nonreg/simple/A0004` passes
+- [x] 5.2 Port `CucaDiagramSimplifierActivity`, `GroupMakerActivity` and `InnerActivity` into `internal/svek`, and run the simplifier in `svek.TextBlock` after the layout engine is resolved, skipped without `dot` (D5). Add `TestLegacyActivityWithoutDot` (a legacy activity diagram with a missing `dot` gives the Graphviz-not-found error diagram). Verify that it passes, that an inner activity renders with the activities upstream draws, and update the "not ported yet" list of `internal/svek/doc.go`
 
 ## 6. WASM and documentation
 

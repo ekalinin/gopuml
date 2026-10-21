@@ -30,7 +30,6 @@
 // layout always reports dot as not found.
 //
 // Not ported yet, because only diagram types of later changes use them:
-// the images of activities and Chen diagrams, the Kermor layout pragma and
-// the diagram simplifier of activity diagrams; they panic with "not ported
-// yet".
+// the images of Chen diagrams and the Kermor layout pragma; they panic with
+// "not ported yet".
 package svek
