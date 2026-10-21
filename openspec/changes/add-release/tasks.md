@@ -20,7 +20,7 @@
 ## 4. Release notes and documentation
 
 - [ ] 4.1 Write `docs/releases/v0.1.0.md` (D5) with the output of 3.2 and the conformance results of a `make conformance REQUIRE=all` run, and add `TestReleaseNotes` in the root package. Add the case `release/release-notes.go.yaml` for "release: Notes of v0.1.0". Verify that the test passes, and that `TestScenarioCoverage` and `make test` pass
-- [ ] 4.2 Add an installation section to `README.md`: the archives of a release, the checksums, `go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0` (with `GOPRIVATE` while the repository is private), and the quarantine attribute on macOS. Verify that the commands of the section work with the snapshot archives of 1.1
+- [x] 4.2 Add an installation section to `README.md`: the archives of a release, the checksums, `go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0` (with `GOPRIVATE` while the repository is private), and the quarantine attribute on macOS. Verify that the commands of the section work with the snapshot archives of 1.1
 
 ## 5. Publication
 

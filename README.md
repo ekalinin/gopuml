@@ -10,8 +10,8 @@ and text output, and it works as:
   plantuml-server routes
 - a WebAssembly module for browsers and Node.js
 
-No JVM is needed. Graphviz `dot` is needed only for class and description
-(use case, component, deployment) diagrams.
+No JVM is needed. Graphviz `dot` is needed only for class, description
+(use case, component, deployment), state and legacy activity diagrams.
 
 ## Supported diagrams and formats
 
@@ -40,6 +40,40 @@ cases): every case passes, apart from 25 documented known differences
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
+
+## Installation
+
+Each [release](https://github.com/ekalinin/gopuml/releases) has an archive of
+the command line for linux, macOS and windows on amd64 and arm64
+(`gopuml_<version>_<os>_<arch>.tar.gz`, `.zip` on windows), with `LICENSE`,
+`NOTICE` and this README, an archive of the WebAssembly module
+(`gopuml_<version>_wasm.tar.gz`), and `checksums.txt` with the SHA-256 of
+every archive. Download the archive of your system and `checksums.txt` from
+the release page, or with the GitHub CLI, then check and unpack it:
+
+```sh
+gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
+shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
+tar xzf gopuml_0.1.0_darwin_arm64.tar.gz plantuml
+./plantuml --version
+```
+
+The macOS binaries are not signed. When a browser downloaded the archive,
+macOS blocks the binary until its quarantine attribute is removed:
+
+```sh
+xattr -d com.apple.quarantine plantuml
+```
+
+With Go 1.26 or later, the command line can also be installed from source:
+
+```sh
+go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0
+```
+
+While the repository is private, set
+`GOPRIVATE=github.com/ekalinin/gopuml`, so that the go command fetches it with
+your git credentials instead of the module proxy.
 
 ## Building
 
