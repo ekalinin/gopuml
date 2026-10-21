@@ -1,0 +1,6 @@
+id: release/comparison
+scenarios:
+  - "release: Comparison table"
+package: tools/bench
+test: TestComparisonTable
+why: Comparison tool of this implementation, run with fake commands so that it does not depend on Java or Graphviz.

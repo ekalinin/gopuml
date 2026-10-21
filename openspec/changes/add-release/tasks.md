@@ -14,7 +14,7 @@
 
 ## 3. Comparison with upstream
 
-- [ ] 3.1 Add `tools/bench` and the `bench` target of the Makefile (D6), with a unit test `TestComparisonTable` that runs the tool with fake commands and checks the medians, the table and the environment lines. Add the case `release/comparison.go.yaml` for "release: Comparison table". Verify that the test passes and that `make bench` runs on this machine
+- [x] 3.1 Add `tools/bench` and the `bench` target of the Makefile (D6), with a unit test `TestComparisonTable` that runs the tool with fake commands and checks the medians, the table and the environment lines. Add the case `release/comparison.go.yaml` for "release: Comparison table". Verify that the test passes and that `make bench` runs on this machine
 - [ ] 3.2 Run `make bench` on this machine with 10 start runs and 5 rendering runs, and keep its output for the notes. Verify that both implementations render every case without error in the runs, or record the cases that fail in both
 
 ## 4. Release notes and documentation
