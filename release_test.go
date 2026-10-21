@@ -7,6 +7,8 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 	"testing"
@@ -303,6 +305,81 @@ func TestReleaseWorkflow(t *testing.T) {
 		}
 		if checkReleaseWorkflow([]byte(mutated)) == nil {
 			t.Errorf("%s: the check passes", m.name)
+		}
+	}
+}
+
+// checkReleaseNotes checks the notes of a release (release: Release notes)
+// against the README, whose table of supported diagrams they repeat.
+func checkReleaseNotes(notes, readme string) error {
+	var errs []error
+	for _, section := range []string{
+		"## Supported diagrams and formats",
+		"## Not supported yet",
+		"## Graphviz",
+		"## Conformance",
+		"## Comparison with upstream",
+		"## Installation",
+	} {
+		if !strings.Contains(notes, "\n"+section+"\n") {
+			errs = append(errs, fmt.Errorf("no section %q", section))
+		}
+	}
+	_, table, _ := strings.Cut(readme, "\n## Supported diagrams and formats\n")
+	table, _, _ = strings.Cut(table, "\n\n## ")
+	var rows int
+	for line := range strings.SplitSeq(table, "\n") {
+		if strings.HasPrefix(line, "|") {
+			rows++
+			if !strings.Contains(notes, "\n"+line+"\n") {
+				errs = append(errs, fmt.Errorf("no row %q of the table of the README", line))
+			}
+		}
+	}
+	if rows == 0 {
+		errs = append(errs, errors.New("no table of supported diagrams in the README"))
+	}
+	for _, want := range []string{
+		"| | PlantUML 1.2026.8 (Java) | gopuml |",
+		"| Start time (one small sequence diagram) |",
+		"- Runs: median of ",
+		"xattr -d com.apple.quarantine plantuml",
+	} {
+		if !strings.Contains(notes, want) {
+			errs = append(errs, fmt.Errorf("no %q", want))
+		}
+	}
+	return errors.Join(errs...)
+}
+
+func TestReleaseNotes(t *testing.T) {
+	readme, err := os.ReadFile("README.md")
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The releases that the installation of the README names (go install
+	// and gh release download), and the releases that have notes.
+	var tags []string
+	for _, m := range regexp.MustCompile(`(?:plantuml@|release download )(v\d+\.\d+\.\d+)\b`).FindAllStringSubmatch(string(readme), -1) {
+		tags = append(tags, m[1])
+	}
+	notes, _ := filepath.Glob(filepath.Join("docs", "releases", "v*.md"))
+	for _, n := range notes {
+		tags = append(tags, strings.TrimSuffix(filepath.Base(n), ".md"))
+	}
+	slices.Sort(tags)
+	tags = slices.Compact(tags)
+	if !slices.Contains(tags, "v0.1.0") {
+		t.Errorf("v0.1.0 is not among the releases %v", tags)
+	}
+	for _, tag := range tags {
+		data, err := os.ReadFile(filepath.Join("docs", "releases", tag+".md"))
+		if err != nil {
+			t.Errorf("%s: %v", tag, err)
+			continue
+		}
+		if err := checkReleaseNotes(string(data), string(readme)); err != nil {
+			t.Errorf("%s: %v", tag, err)
 		}
 	}
 }

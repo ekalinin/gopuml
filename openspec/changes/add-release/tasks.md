@@ -15,11 +15,11 @@
 ## 3. Comparison with upstream
 
 - [x] 3.1 Add `tools/bench` and the `bench` target of the Makefile (D6), with a unit test `TestComparisonTable` that runs the tool with fake commands and checks the medians, the table and the environment lines. Add the case `release/comparison.go.yaml` for "release: Comparison table". Verify that the test passes and that `make bench` runs on this machine
-- [ ] 3.2 Run `make bench` on this machine with 10 start runs and 5 rendering runs, and keep its output for the notes. Verify that both implementations render every case without error in the runs, or record the cases that fail in both
+- [x] 3.2 Run `make bench` on this machine with 10 start runs and 5 rendering runs, and keep its output for the notes. Verify that both implementations render every case without error in the runs, or record the cases that fail in both
 
 ## 4. Release notes and documentation
 
-- [ ] 4.1 Write `docs/releases/v0.1.0.md` (D5) with the output of 3.2 and the conformance results of a `make conformance REQUIRE=all` run, and add `TestReleaseNotes` in the root package. Add the case `release/release-notes.go.yaml` for "release: Notes of v0.1.0". Verify that the test passes, and that `TestScenarioCoverage` and `make test` pass
+- [x] 4.1 Write `docs/releases/v0.1.0.md` (D5) with the output of 3.2 and the conformance results of a `make conformance REQUIRE=all` run, and add `TestReleaseNotes` in the root package. Add the case `release/release-notes.go.yaml` for "release: Notes of v0.1.0". Verify that the test passes, and that `TestScenarioCoverage` and `make test` pass
 - [x] 4.2 Add an installation section to `README.md`: the archives of a release, the checksums, `go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0` (with `GOPRIVATE` while the repository is private), and the quarantine attribute on macOS. Verify that the commands of the section work with the snapshot archives of 1.1
 
 ## 5. Publication
