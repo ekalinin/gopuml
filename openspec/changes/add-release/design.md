@@ -45,7 +45,7 @@ Alternative: building the WASM bundle with `make wasm` in a hook and uploading i
 
 ### D2. Version stamping
 
-The `cli` build sets `-X github.com/ekalinin/gopuml/internal/version.Version={{ .Tag }}`. The tag keeps its `v`, as the module versions that `Semver` reads otherwise, so `--version` prints the same thing for a release archive and for `go install ...@v0.1.0`. No product code changes.
+The `cli` build sets `-X github.com/ekalinin/gopuml/internal/version.Version=v{{ .Version }}`. For a tag, it is the tag with its `v` (`{{ .Version }}` is the tag without it); for a snapshot build, the snapshot version, where `{{ .Tag }}` would be the last tag. The tag keeps its `v`, as the module versions that `Semver` reads otherwise, so `--version` prints the same thing for a release archive and for `go install ...@v0.1.0`. No product code changes.
 
 ### D3. Release workflow
 

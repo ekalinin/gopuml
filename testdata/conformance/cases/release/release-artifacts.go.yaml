@@ -1,0 +1,6 @@
+id: release/release-artifacts
+scenarios:
+  - "release: Release of a tag"
+package: .
+test: TestReleaseConfig
+why: Release configuration of this implementation, checked by parsing .goreleaser.yaml; the snapshot build and the published release are checked by hand.

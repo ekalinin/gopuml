@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# Release of gopuml (openspec/specs/release). A pushed v* tag runs it
+# through .github/workflows/release.yml; check it locally with
+# `goreleaser check` and `goreleaser release --snapshot --clean`.
+version: 2
+
+project_name: gopuml
+
+before:
+  hooks:
+    # wasm_exec.js must come from the Go root that builds plantuml.wasm.
+    - mkdir -p .cache/release
+    - sh -c 'cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" .cache/release/wasm_exec.js'
+
+builds:
+  - id: cli
+    main: ./cmd/plantuml
+    binary: plantuml
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    # v{{ .Version }} is the tag of a release and the snapshot version of
+    # a snapshot build.
+    ldflags:
+      - -s -w -X github.com/ekalinin/gopuml/internal/version.Version=v{{ .Version }}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+  - id: wasm
+    main: ./cmd/plantuml-wasm
+    # GoReleaser adds the .wasm extension: plantuml.wasm.
+    binary: plantuml
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+    goos:
+      - js
+    goarch:
+      - wasm
+
+archives:
+  - id: cli
+    ids:
+      - cli
+    name_template: "gopuml_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - LICENSE
+      - NOTICE
+      - README.md
+  - id: wasm
+    ids:
+      - wasm
+    name_template: "gopuml_{{ .Version }}_wasm"
+    formats:
+      - tar.gz
+    files:
+      - src: .cache/release/wasm_exec.js
+        strip_parent: true
+      - src: cmd/plantuml-wasm/plantuml.mjs
+        strip_parent: true
+
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
+
+# The description of a release is its notes file (docs/releases/<tag>.md),
+# given to GoReleaser with --release-notes.
+changelog:
+  disable: true
