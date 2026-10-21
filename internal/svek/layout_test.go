@@ -90,7 +90,8 @@ func TestClassDiagramWithoutDotReportsError(t *testing.T) {
 }
 
 func TestSmetanaPragmaFallsBackToDot(t *testing.T) {
-	// Spec graph-layout "Smetana pragma before the port" and design D16:
+	// Spec graph-layout "Smetana pragma before the port", preprocessor
+	// "Layout pragma for an unsupported engine" (elk) and design D16:
 	// smetana, elk and vizjs are laid out with dot.
 	layout := realDot(t)
 	_, _, err := export1(context.Background(), parseSource(t, twoClasses), layout)

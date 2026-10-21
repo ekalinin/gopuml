@@ -301,7 +301,8 @@ func TestGoldenCreole(t *testing.T) {
 }
 
 // TestCreoleDifferences checks the cases of creoleDifferences: what this
-// port draws instead of upstream's exception or icon.
+// port draws instead of upstream's exception or icon. "icon1" is the
+// styling scenario "Icon reference before icons are supported".
 func TestCreoleDifferences(t *testing.T) {
 	byName := map[string][]string{}
 	for _, l := range creoleGoldenLines(t) {

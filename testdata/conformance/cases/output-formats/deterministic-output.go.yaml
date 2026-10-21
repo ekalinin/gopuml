@@ -1,6 +1,6 @@
 id: output-formats/deterministic-output
 scenarios:
   - "output-formats: Same output on two machines"
-package: "."
-test: TestSequenceSVGIsByteIdenticalAcrossPlatforms
-why: Byte-identical output across operating systems is a property of the Go implementation that a single Java reference cannot verify.
+package: internal/sequencediagram
+test: TestExportCuratedReferences
+why: Byte-identical output across operating systems is a property of the Go implementation that a single Java reference cannot verify. The test requires the SVG of every curated sequence case to be byte-identical to its committed reference, rendered on Linux, and it runs on macOS and on Linux.
