@@ -117,3 +117,22 @@ func TestScenarioCoverage(t *testing.T) {
 		t.Errorf("%d of %d scenarios have no case:\n  %s", len(uncovered), len(scenarios), strings.Join(uncovered, "\n  "))
 	}
 }
+
+// TestGoCaseTestsExist checks that the test named by every .go.yaml case
+// exists in its package, so that the scenarios these cases cover are
+// tested.
+func TestGoCaseTestsExist(t *testing.T) {
+	root := filepath.Join("..", "..")
+	cases, err := LoadGoCases(os.DirFS(filepath.Join(root, "testdata/conformance")), "cases")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(cases) == 0 {
+		t.Fatal("no Go case")
+	}
+	for _, c := range cases {
+		if !c.TestExists(root) {
+			t.Errorf("%s: no %s in %s", c.ID, c.Test, c.Package)
+		}
+	}
+}

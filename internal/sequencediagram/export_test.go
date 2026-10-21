@@ -201,6 +201,10 @@ func checkReferences(t *testing.T, refs []sequenceReference) {
 	t.Logf("%d of %d reference pages identical", identical, len(refs))
 }
 
+// TestExportCuratedReferences requires the SVG of every curated sequence
+// case to be byte-identical to its reference. The references are rendered
+// on Linux and the test runs on macOS and Linux: the output-formats
+// scenario "Same output on two machines".
 func TestExportCuratedReferences(t *testing.T) {
 	refs := sequenceReferences(t, curatedReferenceRoot, conformanceRoot, "")
 	if len(refs) == 0 {
