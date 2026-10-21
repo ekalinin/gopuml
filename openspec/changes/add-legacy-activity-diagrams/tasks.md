@@ -37,4 +37,4 @@
 - [x] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
 - [x] 6.4 Update `README.md`: legacy activity diagrams in the table of supported types with SVG and PNG (needs `dot`), legacy activity removed from the list of unsupported types, the WASM and Graphviz notes, and the case and known-difference counts. Verify that the README's counts match the conformance report of 6.2
 - [ ] 6.5 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
-- [ ] 6.6 Run `openspec validate add-legacy-activity-diagrams --strict` and `make provenance`. Verify that both pass
+- [x] 6.6 Run `openspec validate add-legacy-activity-diagrams --strict` and `make provenance`. Verify that both pass
