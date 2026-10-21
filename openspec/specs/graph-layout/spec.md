@@ -43,7 +43,7 @@ For graph-based diagrams, the system SHALL measure every node and label itself, 
 
 ### Requirement: Missing dot
 
-When `dot` cannot be found, rendering a graph-based diagram SHALL produce an error diagram stating that Graphviz `dot` was not found and listing the ways to configure it. Diagram types that do not need `dot` (sequence, activity) SHALL render normally.
+When `dot` cannot be found, rendering a graph-based diagram SHALL produce an error diagram stating that Graphviz `dot` was not found and listing the ways to configure it. Diagram types that do not need `dot` (sequence, and activity in the new syntax) SHALL render normally.
 
 #### Scenario: Class diagram without Graphviz
 
