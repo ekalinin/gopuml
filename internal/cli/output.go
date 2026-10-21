@@ -156,6 +156,9 @@ func (n *OutputNamer) Suggest(name string, hasName bool) Suggested {
 			s.outFile = filepath.Join(n.OutputDir, name)
 		}
 	}
+	// As getSuggestedFile, which creates the parent directory of the file,
+	// for a name such as x/login.
+	os.MkdirAll(filepath.Dir(s.outFile), 0o755)
 	return s
 }
 
