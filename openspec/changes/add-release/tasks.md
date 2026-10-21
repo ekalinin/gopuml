@@ -10,7 +10,7 @@
 
 ## 2. Release workflow
 
-- [ ] 2.1 Add `.github/workflows/release.yml` (D3) and `TestReleaseWorkflow` in the root package: tags `v*.*.*` only, `contents: write`, full history, upstream sources, `make lint` and `make test` before the pinned GoReleaser action, and `--release-notes docs/releases/<tag>.md`. Add the case `release/release-gate.go.yaml` for "release: Failing tests". Verify that the test passes and fails when the tests step is removed or moved after GoReleaser
+- [x] 2.1 Add `.github/workflows/release.yml` (D3) and `TestReleaseWorkflow` in the root package: tags `v*.*.*` only, `contents: write`, full history, upstream sources, `make lint` and `make test` before the pinned GoReleaser action, and `--release-notes docs/releases/<tag>.md`. Add the case `release/release-gate.go.yaml` for "release: Failing tests". Verify that the test passes and fails when the tests step is removed or moved after GoReleaser
 
 ## 3. Comparison with upstream
 

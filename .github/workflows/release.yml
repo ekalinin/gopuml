@@ -1,0 +1,48 @@
+name: release
+
+# Publishes the GitHub Release of a pushed tag (openspec/specs/release).
+# The tests run first: a failing step stops the job before GoReleaser, so
+# nothing is published.
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # GoReleaser reads the tag and the commits before it.
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Cache upstream sources
+        uses: actions/cache@v4
+        with:
+          path: .cache/upstream
+          key: upstream-${{ hashFiles('tools/upstream/checksums.sha256') }}
+
+      - name: Fetch upstream sources
+        run: tools/upstream/fetch.sh
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+      - name: Release
+        uses: goreleaser/goreleaser-action@v7
+        with:
+          version: "~> v2"
+          args: release --clean --release-notes docs/releases/${{ github.ref_name }}.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

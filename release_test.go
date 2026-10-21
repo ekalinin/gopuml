@@ -198,3 +198,111 @@ func TestReleaseConfig(t *testing.T) {
 		}
 	}
 }
+
+// releaseWorkflow is the part of the release workflow that
+// checkReleaseWorkflow reads.
+type releaseWorkflow struct {
+	On          map[string]any    `yaml:"on"`
+	Permissions map[string]string `yaml:"permissions"`
+	Jobs        map[string]struct {
+		Steps []workflowStep `yaml:"steps"`
+	} `yaml:"jobs"`
+}
+
+type workflowStep struct {
+	If              string         `yaml:"if"`
+	Uses            string         `yaml:"uses"`
+	Run             string         `yaml:"run"`
+	With            map[string]any `yaml:"with"`
+	ContinueOnError any            `yaml:"continue-on-error"`
+}
+
+// checkReleaseWorkflow checks the contract of the release workflow
+// (release: Release gate, Release notes).
+func checkReleaseWorkflow(data []byte) error {
+	var w releaseWorkflow
+	if err := yaml.Unmarshal(data, &w); err != nil {
+		return err
+	}
+	var errs []error
+	push, _ := w.On["push"].(map[string]any)
+	tags, _ := push["tags"].([]any)
+	if len(w.On) != 1 || len(push) != 1 || !slices.Equal(tags, []any{"v*.*.*"}) {
+		errs = append(errs, fmt.Errorf("the workflow runs on %v, not on pushed v*.*.* tags only", w.On))
+	}
+	if w.Permissions["contents"] != "write" {
+		errs = append(errs, errors.New("the workflow cannot write the contents of the repository"))
+	}
+	job, ok := w.Jobs["release"]
+	if len(w.Jobs) != 1 || !ok {
+		return errors.Join(append(errs, errors.New("the workflow does not have one release job"))...)
+	}
+	steps := job.Steps
+	find := func(what string, match func(s workflowStep) bool) int {
+		i := slices.IndexFunc(steps, match)
+		if i < 0 {
+			errs = append(errs, fmt.Errorf("no step that %s", what))
+		}
+		return i
+	}
+	// A gate step runs unconditionally and fails the job when it fails.
+	gate := func(run string) func(s workflowStep) bool {
+		return func(s workflowStep) bool {
+			return s.Run == run && s.If == "" && s.ContinueOnError == nil
+		}
+	}
+	checkout := find("checks out the full history", func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/checkout@") && s.With["fetch-depth"] == 0
+	})
+	setup := find("sets up Go from go.mod", func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/setup-go@") && s.With["go-version-file"] == "go.mod"
+	})
+	fetch := find("fetches the upstream sources", gate("tools/upstream/fetch.sh"))
+	lint := find("runs the lint", gate("make lint"))
+	test := find("runs the tests", gate("make test"))
+	release := find("publishes with the pinned GoReleaser action and the notes of the tag", func(s workflowStep) bool {
+		version, _ := s.With["version"].(string)
+		args, _ := s.With["args"].(string)
+		return strings.HasPrefix(s.Uses, "goreleaser/goreleaser-action@v") && s.If == "" && strings.HasPrefix(version, "~> v2") &&
+			strings.HasPrefix(args, "release --clean ") && strings.Contains(args, "--release-notes docs/releases/${{ github.ref_name }}.md")
+	})
+	if len(errs) == 0 && !(checkout < fetch && setup < lint && fetch < lint && fetch < test && lint < release && test < release) {
+		errs = append(errs, errors.New("the steps are not in the order checkout, setup, upstream sources, lint and tests, release"))
+	}
+	return errors.Join(errs...)
+}
+
+func TestReleaseWorkflow(t *testing.T) {
+	data, err := os.ReadFile(".github/workflows/release.yml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := checkReleaseWorkflow(data); err != nil {
+		t.Fatal(err)
+	}
+	s := string(data)
+	testStep := "      - name: Test\n        run: make test\n\n"
+	releaseStep := s[strings.Index(s, "      - name: Release\n"):]
+	for _, m := range []struct{ name, old, new string }{
+		{"no tests", testStep, ""},
+		{"tests after the release", testStep + releaseStep, releaseStep + "\n" + strings.TrimSuffix(testStep, "\n")},
+		{"tests allowed to fail", "        run: make test\n", "        run: make test\n        continue-on-error: true\n"},
+		{"release after a failure", "      - name: Release\n", "      - name: Release\n        if: always()\n"},
+		{"no lint", "      - name: Lint\n        run: make lint\n\n", ""},
+		{"runs on branches", "  push:\n", "  push:\n    branches: [main]\n"},
+		{"runs on pull requests", "on:\n", "on:\n  pull_request:\n"},
+		{"read-only contents", "contents: write", "contents: read"},
+		{"shallow checkout", "fetch-depth: 0", "fetch-depth: 1"},
+		{"no release notes", " --release-notes docs/releases/${{ github.ref_name }}.md", ""},
+		{"unpinned GoReleaser", `version: "~> v2"`, "version: latest"},
+	} {
+		mutated := strings.ReplaceAll(s, m.old, m.new)
+		if mutated == s {
+			t.Errorf("%s: %q is not in the workflow", m.name, m.old)
+			continue
+		}
+		if checkReleaseWorkflow([]byte(mutated)) == nil {
+			t.Errorf("%s: the check passes", m.name)
+		}
+	}
+}
