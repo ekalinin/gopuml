@@ -32,7 +32,7 @@
 
 ## 6. WASM and documentation
 
-- [ ] 6.1 Add `TestWasmLegacyActivityDiagram`, which renders a legacy activity diagram in the WASM build and gets the "graph layout is not available in this build" error with the error image. Verify that `go test ./cmd/plantuml-wasm` passes
+- [x] 6.1 Add `TestWasmLegacyActivityDiagram`, which renders a legacy activity diagram in the WASM build and gets the "graph layout is not available in this build" error with the error image. Verify that `go test ./cmd/plantuml-wasm` passes
 - [ ] 6.2 Verify that `make conformance REQUIRE=all` reports 0 failures and no known differences that pass
 - [ ] 6.3 Verify that every test named in the `.go.yaml` cases of 1.2 exists in its package (`GoCase.TestExists`)
 - [ ] 6.4 Update `README.md`: legacy activity diagrams in the table of supported types with SVG and PNG (needs `dot`), legacy activity removed from the list of unsupported types, the WASM and Graphviz notes, and the case and known-difference counts. Verify that the README's counts match the conformance report of 6.2
