@@ -1,0 +1,14 @@
+---
+id: legacy-activity-diagram/partition-block
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Partition block"
+---
+@startuml
+partition Payment {
+(*) --> "Pay"
+"Pay" --> (*)
+}
+@enduml

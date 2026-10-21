@@ -1,0 +1,16 @@
+---
+id: legacy-activity-diagram/note-several-lines
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Note on several lines"
+---
+@startuml
+(*) --> "Pay"
+note left
+first line
+second line
+end note
+"Pay" --> (*)
+@enduml

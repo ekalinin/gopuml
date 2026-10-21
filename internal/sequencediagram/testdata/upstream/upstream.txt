@@ -10945,6 +10945,12 @@ error SYNTAX_ERROR 2 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 30
 error.last 2
+=== conformance/diagram-source/legacy-activity-before-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/diagram-source/named-diagram.puml
 result SequenceDiagram
 description (2 participants)
@@ -11030,6 +11036,84 @@ error.message Empty description (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === conformance/graph-layout/class-layout.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/activity-colors.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/activity-in-partition.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/activity-several-lines.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/activity-with-code.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/branch-two-outcomes.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/fork-and-join.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/note-one-line.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/note-several-lines.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/octagon-shape.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
+=== conformance/legacy-activity-diagram/partition-block.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
+=== conformance/legacy-activity-diagram/start-activities-end.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/transition-styles.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/legacy-activity-diagram/transitions-from-last.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)

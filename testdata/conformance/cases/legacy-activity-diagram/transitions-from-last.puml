@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/transitions-from-last
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Transitions from the last activity"
+---
+@startuml
+(*) --> "Check order"
+--> "Pay"
+--> (*)
+@enduml

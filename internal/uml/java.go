@@ -5,6 +5,7 @@
 package uml
 
 import (
+	"regexp"
 	"strconv"
 	"strings"
 	"unicode/utf16"
@@ -166,6 +167,44 @@ func JavaLength(s string) int {
 		}
 	}
 	return n
+}
+
+// ArrowDirection is upstream's StringUtils.getArrowDirection: the
+// direction of an arrow ending with '>' (named in its body), or starting
+// with '<' (LEFT for two characters, UP otherwise).
+func ArrowDirection(s string) klimt.Direction {
+	if strings.HasSuffix(s, ">") {
+		return QueueDirection(s[:len(s)-1])
+	}
+	if strings.HasPrefix(s, "<") {
+		if JavaLength(s) == 2 {
+			return klimt.DirectionLeft
+		}
+		return klimt.DirectionUp
+	}
+	Throw(IllegalArgumentException, s)
+	return klimt.DirectionDown
+}
+
+var (
+	arrowWordChars = regexp.MustCompile(`\w*`)
+	arrowDashes    = regexp.MustCompile(`-+`)
+)
+
+// ManageArrowForCuca is upstream's StringUtils.manageArrowForCuca: the
+// arrow without its direction names, one dash long from left to right, and
+// at least two dashes long from top to bottom.
+func ManageArrowForCuca(s string) string {
+	dir := ArrowDirection(s)
+	s = strings.ReplaceAll(s, "=", "-")
+	s = arrowWordChars.ReplaceAllString(s, "")
+	if dir == klimt.DirectionLeft || dir == klimt.DirectionRight {
+		s = arrowDashes.ReplaceAllString(s, "-")
+	}
+	if JavaLength(s) == 2 && (dir == klimt.DirectionUp || dir == klimt.DirectionDown) {
+		s = strings.Replace(s, "-", "--", 1)
+	}
+	return s
 }
 
 // QueueDirection is upstream's StringUtils.getQueueDirection: the

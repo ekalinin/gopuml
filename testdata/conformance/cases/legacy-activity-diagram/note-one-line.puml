@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/note-one-line
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Note on one line"
+---
+@startuml
+(*) --> "Pay"
+note right: by card
+"Pay" --> (*)
+@enduml

@@ -1,0 +1,6 @@
+id: wasm-build/legacy-activity-diagram-error
+scenarios:
+  - "wasm-build: Legacy activity diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmLegacyActivityDiagram
+why: Upstream has no Graphviz-free WASM build; the error is specific to this implementation.

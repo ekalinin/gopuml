@@ -14,15 +14,15 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		want string // type name in the message, "" for no detection
 		line int    // 0-based position of the reported line
 	}{
-		// Spec scenarios: state syntax is not reported (state diagrams are
-		// supported), legacy activity and archimate syntax are.
+		// Spec scenarios: state and legacy activity syntax are not reported
+		// (these diagrams are supported), archimate syntax is.
 		{"@startuml\n[*] --> Idle\n@enduml\n", "", 0},
-		{"@startuml\n(*) --> \"First step\"\n@enduml\n", "legacy activity", 1},
+		{"@startuml\n(*) --> \"First step\"\n@enduml\n", "", 0},
 		{"@startuml\narchimate #Business \"Customer\" as C\n@enduml\n", "archimate", 1},
 
 		{"@startuml\nstate Idle\nIdle --> Busy\n@enduml\n", "", 0},
 		{"@startuml\nIdle --> Busy\nBusy --> [*]\n@enduml\n", "", 0},
-		{"@startuml\n\"First\" --> (*)\n@enduml\n", "legacy activity", 1},
+		{"@startuml\n\"First\" --> (*)\n@enduml\n", "", 0},
 		{"@startuml\narchimate #Business \"Shop\" as shop\n@enduml\n", "archimate", 1},
 		{"@startuml\nrobust \"Web\" as WB\n@0\nWB is Idle\n@enduml\n", "timing", 1},
 		{"@startuml\nclock clk with period 1\n@enduml\n", "timing", 1},

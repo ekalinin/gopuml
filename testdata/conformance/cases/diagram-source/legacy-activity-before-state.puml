@@ -1,0 +1,12 @@
+---
+id: diagram-source/legacy-activity-before-state
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "diagram-source: Legacy activity before state"
+---
+@startuml
+A --> ==sync==
+==sync== --> C
+@enduml

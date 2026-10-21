@@ -1,0 +1,13 @@
+---
+id: legacy-activity-diagram/transition-styles
+family: uml
+type: activity
+formats: [svg, png]
+scenarios:
+  - "legacy-activity-diagram: Transition styles"
+---
+@startuml
+(*) -left-> "A"
+"A" ..> "B"
+"B" -->[label] (*)
+@enduml

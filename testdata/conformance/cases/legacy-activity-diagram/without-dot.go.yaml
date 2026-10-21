@@ -1,0 +1,6 @@
+id: legacy-activity-diagram/without-dot
+scenarios:
+  - "legacy-activity-diagram: Legacy activity diagram without dot"
+package: internal/activitydiagram
+test: TestLegacyActivityWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

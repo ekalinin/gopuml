@@ -209,3 +209,15 @@ func TestWasmStateDiagram(t *testing.T) {
 		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
 	}
 }
+
+func TestWasmLegacyActivityDiagram(t *testing.T) {
+	// Spec scenario "Legacy activity diagram in WASM".
+	r := renderInNode(t, "@startuml\n(*) --> \"First step\"\n\"First step\" --> (*)\n@enduml\n",
+		map[string]any{"format": "svg"})
+	if r.Error == nil {
+		t.Fatal("legacy activity diagram rendered without graph layout")
+	}
+	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
+		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
+	}
+}

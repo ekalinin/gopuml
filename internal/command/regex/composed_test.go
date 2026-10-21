@@ -3,7 +3,10 @@
 
 package regex
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 // participantPattern resembles upstream's sequence participant command.
 func participantPattern() *Concat {
@@ -96,4 +99,45 @@ func TestNamedLeafCountChecked(t *testing.T) {
 		}
 	}()
 	NewNamedLeaf(2, "X", "(a)")
+}
+
+// fakeCaptures are UBrex captures for TestResultFromCaptures.
+type fakeCaptures map[string][]string
+
+func (f fakeCaptures) FindValuesByKey(key string) []string { return f[key] }
+
+func (f fakeCaptures) FindFirstValuesByKeyPrefix(keyPrefix string) []string {
+	for _, key := range []string{"ARROW_STYLE1", "ARROW_STYLE2", "IF1", "IF2"} {
+		if strings.HasPrefix(key, keyPrefix) && len(f[key]) > 0 {
+			return f[key]
+		}
+	}
+	return nil
+}
+
+// TestResultFromCaptures checks that a result backed by UBrex captures
+// reads them as upstream's RegexResult(UMatcher): get returns a value of
+// the key, getLazzy a value of the first key with the prefix, and an empty
+// list is null.
+func TestResultFromCaptures(t *testing.T) {
+	r := NewResultFromCaptures(fakeCaptures{"IF2": {"valid?"}, "ARROW_STYLE2": {"dotted"}, "BAR": {"B1", "B2"}})
+	for _, c := range []struct {
+		name string
+		num  int
+		want string
+		ok   bool
+	}{{"IF2", 0, "valid?", true}, {"BAR", 1, "B2", true}, {"IF1", 0, "", false}, {"NONE", 0, "", false}} {
+		if got, ok := r.Get(c.name, c.num); got != c.want || ok != c.ok {
+			t.Errorf("Get(%q, %d) = %q, %v", c.name, c.num, got, ok)
+		}
+	}
+	if got, ok := r.Lazy("ARROW_STYLE", 0); got != "dotted" || !ok {
+		t.Errorf("Lazy = %q, %v", got, ok)
+	}
+	if got, ok := r.Lazy("STEREO", 0); ok {
+		t.Errorf("Lazy of a missing prefix = %q", got)
+	}
+	if got := r.Str("IF2", 0); got != "valid?" {
+		t.Errorf("Str = %q", got)
+	}
 }

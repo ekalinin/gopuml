@@ -1,0 +1,6 @@
+{
+  "id": "legacy-activity-diagram/fork-and-join",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "(6 activities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 126, "height": 270, "status": 0}, {"file": "block0-page0.png", "width": 126, "height": 270, "status": 0}]}
+  ]
+}
