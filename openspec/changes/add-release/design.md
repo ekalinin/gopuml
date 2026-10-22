@@ -37,7 +37,7 @@ See proposal.md for the motivation. The current state that shapes the approach:
 - A `before` hook copies `wasm_exec.js` from the Go root that builds the release into a staging directory under `.cache/`, so that it matches the compiler of `plantuml.wasm`.
 - Archives `gopuml_<version>_<os>_<arch>` (`tar.gz`, `zip` on windows) with the binary, `LICENSE`, `NOTICE` and `README.md`, and `gopuml_<version>_wasm.tar.gz` with `plantuml.wasm`, `wasm_exec.js` and `plantuml.mjs`.
 - `checksums.txt` with the SHA-256 of every archive.
-- No generated changelog: the description of the release is the notes file (D5).
+- No generated changelog: the description of the release is the notes file (D5), given with `--release-notes`, which replaces the generated changelog. The changelog stays enabled, because `changelog.disable` also ignores that file (v0.1.0 was published with an empty description for this reason).
 
 The archives keep the binary name `plantuml`, which the README already uses, and name the project `gopuml`, the module name.
 

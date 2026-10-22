@@ -78,6 +78,5 @@ checksum:
   algorithm: sha256
 
 # The description of a release is its notes file (docs/releases/<tag>.md),
-# given to GoReleaser with --release-notes.
-changelog:
-  disable: true
+# given to GoReleaser with --release-notes, which replaces the generated
+# changelog. Disabling the changelog would also ignore that file.
