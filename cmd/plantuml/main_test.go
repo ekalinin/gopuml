@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"slices"
 	"strings"
@@ -14,6 +15,7 @@ import (
 	"time"
 
 	"github.com/ekalinin/gopuml/internal/cli"
+	"go.yaml.in/yaml/v3"
 )
 
 // run runs the command line with the real engine in dir.
@@ -185,5 +187,46 @@ func TestMissingDotKeepsErrorImage(t *testing.T) {
 	data, err := os.ReadFile(filepath.Join(dir, "c.svg"))
 	if err != nil || !bytes.Contains(data, []byte("Cannot find Graphviz")) {
 		t.Errorf("error image missing: %v", err)
+	}
+}
+
+func TestReleaseVersion(t *testing.T) {
+	// Spec scenario "Version of v0.1.0": the CLI is built with the version
+	// flag of the release configuration for the tag v0.1.0.
+	if testing.Short() {
+		t.Skip("builds the CLI")
+	}
+	data, err := os.ReadFile(filepath.Join("..", "..", ".goreleaser.yaml"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	type build struct {
+		Main    string   `yaml:"main"`
+		Ldflags []string `yaml:"ldflags"`
+	}
+	var config struct {
+		Builds []build `yaml:"builds"`
+	}
+	if err := yaml.Unmarshal(data, &config); err != nil {
+		t.Fatal(err)
+	}
+	i := slices.IndexFunc(config.Builds, func(b build) bool {
+		return b.Main == "./cmd/plantuml"
+	})
+	if i < 0 {
+		t.Fatal("no build of ./cmd/plantuml in .goreleaser.yaml")
+	}
+	// GoReleaser gives the tag v0.1.0 as the version 0.1.0.
+	ldflags := strings.ReplaceAll(strings.Join(config.Builds[i].Ldflags, " "), "{{ .Version }}", "0.1.0")
+	bin := filepath.Join(t.TempDir(), "plantuml")
+	if out, err := exec.Command("go", "build", "-trimpath", "-ldflags", ldflags, "-o", bin, ".").CombinedOutput(); err != nil {
+		t.Fatalf("go build: %v\n%s", err, out)
+	}
+	out, err := exec.Command(bin, "--version").Output()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, want := strings.TrimSpace(string(out)), "gopuml v0.1.0 (PlantUML 1.2026.8 compatible)"; got != want {
+		t.Errorf("--version prints %q, want %q", got, want)
 	}
 }

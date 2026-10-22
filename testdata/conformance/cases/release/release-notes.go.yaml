@@ -1,0 +1,6 @@
+id: release/release-notes
+scenarios:
+  - "release: Notes of v0.1.0"
+package: .
+test: TestReleaseNotes
+why: Release notes of this implementation, checked against the sections of the design and the table of the README.

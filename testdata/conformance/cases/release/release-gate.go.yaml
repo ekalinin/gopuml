@@ -1,0 +1,6 @@
+id: release/release-gate
+scenarios:
+  - "release: Failing tests"
+package: .
+test: TestReleaseWorkflow
+why: Release workflow of this implementation, checked by parsing .github/workflows/release.yml; a failing step stops the job before GoReleaser.

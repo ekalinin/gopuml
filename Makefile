@@ -1,7 +1,7 @@
 GO ?= go
 WASM_OUT ?= dist/wasm
 
-.PHONY: build test lint provenance wasm reference reference-check conformance
+.PHONY: build test lint provenance wasm bench reference reference-check conformance
 
 build:
 	$(GO) build ./...
@@ -21,6 +21,15 @@ wasm:
 	GOOS=js GOARCH=wasm $(GO) build -trimpath -o $(WASM_OUT)/plantuml.wasm ./cmd/plantuml-wasm
 	cp "$$($(GO) env GOROOT)/lib/wasm/wasm_exec.js" cmd/plantuml-wasm/plantuml.mjs $(WASM_OUT)/
 	@echo "plantuml.wasm size: $$(wc -c < $(WASM_OUT)/plantuml.wasm | tr -d ' ') bytes"
+
+# Compares this implementation with the upstream jar (tools/bench), e.g.
+# make bench BENCH_FLAGS="-start-runs 3 -render-runs 1".
+BENCH_FLAGS ?=
+
+bench:
+	mkdir -p .cache/bench
+	$(GO) build -trimpath -o .cache/bench/plantuml ./cmd/plantuml
+	$(GO) run ./tools/bench -cli .cache/bench/plantuml $(BENCH_FLAGS)
 
 REFERENCE_IMAGE ?= plantuml-go-reference
 

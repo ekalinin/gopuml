@@ -1,0 +1,6 @@
+id: release/release-version
+scenarios:
+  - "release: Version of v0.1.0"
+package: cmd/plantuml
+test: TestReleaseVersion
+why: Version of a release build of this implementation, built with the version flag of .goreleaser.yaml.
