@@ -4,6 +4,7 @@
 package cli
 
 import (
+	"os"
 	"path/filepath"
 	"slices"
 	"testing"
@@ -68,6 +69,18 @@ func TestOutputNameDirectory(t *testing.T) {
 	got := n.Files("out/", true, 1)
 	if want := filepath.Join(dir, "out", "flows.svg"); len(got) != 1 || got[0] != want {
 		t.Errorf("got %v, want %s", got, want)
+	}
+}
+
+func TestOutputNameSubdirectory(t *testing.T) {
+	dir := t.TempDir()
+	n := OutputNamer{Source: filepath.Join(dir, "flows.puml"), OutputDir: dir, Suffix: ".svg", Separator: "_"}
+	got := n.Files("x/login", true, 1)
+	if want := filepath.Join(dir, "x", "login.svg"); len(got) != 1 || got[0] != want {
+		t.Errorf("got %v, want %s", got, want)
+	}
+	if st, err := os.Stat(filepath.Join(dir, "x")); err != nil || !st.IsDir() {
+		t.Errorf("the directory of the file is not created: %v", err)
 	}
 }
 

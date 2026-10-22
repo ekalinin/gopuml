@@ -140,6 +140,22 @@ func TestSkipFreshDoesNotRewriteOutput(t *testing.T) {
 	}
 }
 
+func TestNamedDiagramInSubdirectory(t *testing.T) {
+	// As upstream, the directory of a name such as x/login is created, in
+	// the output directory too.
+	dir := t.TempDir()
+	write(t, dir, map[string]string{"flows.puml": "@startuml x/login\nAlice -> Bob : login\n@enduml\n"})
+	if code, _, stderr := run(t, dir, "", "--svg", "flows.puml"); code != 0 {
+		t.Fatalf("exit %d, stderr %q", code, stderr)
+	}
+	if code, _, stderr := run(t, dir, "", "--svg", "-o", "out", "flows.puml"); code != 0 {
+		t.Fatalf("with -o: exit %d, stderr %q", code, stderr)
+	}
+	if got, want := listFiles(t, dir), []string{"flows.puml", "out/x/login.svg", "x/login.svg"}; !slices.Equal(got, want) {
+		t.Errorf("files %v, want %v", got, want)
+	}
+}
+
 func TestExtractSourceFromOwnPNG(t *testing.T) {
 	// Spec scenario "Extract source from PNG".
 	dir := t.TempDir()
