@@ -33,6 +33,9 @@ type releaseConfig struct {
 		NameTemplate string `yaml:"name_template"`
 		Algorithm    string `yaml:"algorithm"`
 	} `yaml:"checksum"`
+	Changelog struct {
+		Disable any `yaml:"disable"`
+	} `yaml:"changelog"`
 }
 
 type releaseBuild struct {
@@ -164,6 +167,10 @@ func checkReleaseConfig(data []byte) error {
 	if c.Checksum.NameTemplate != "checksums.txt" || c.Checksum.Algorithm != "sha256" {
 		errs = append(errs, fmt.Errorf("the checksums are %q with %q, not checksums.txt with sha256", c.Checksum.NameTemplate, c.Checksum.Algorithm))
 	}
+	// A disabled changelog also ignores the notes given with --release-notes.
+	if c.Changelog.Disable != nil && c.Changelog.Disable != false {
+		errs = append(errs, fmt.Errorf("the changelog is disabled (%v), so the release notes would be ignored", c.Changelog.Disable))
+	}
 	return errors.Join(errs...)
 }
 
@@ -189,6 +196,7 @@ func TestReleaseConfig(t *testing.T) {
 		{"wasm_exec.js not staged", "/lib/wasm/wasm_exec.js\" .cache", "/misc/wasm/wasm_exec.js\" .cache"},
 		{"no WASM build", "  - id: wasm\n    main: ./cmd/plantuml-wasm\n", "  - id: wasm\n    main: ./cmd/other\n"},
 		{"checksums with SHA-1", "algorithm: sha256", "algorithm: sha1"},
+		{"changelog disabled", "  algorithm: sha256\n", "  algorithm: sha256\n\nchangelog:\n  disable: true\n"},
 	} {
 		mutated := strings.ReplaceAll(string(data), m.old, m.new)
 		if mutated == string(data) {
