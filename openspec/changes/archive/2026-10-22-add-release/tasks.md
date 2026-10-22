@@ -25,5 +25,5 @@
 ## 5. Publication
 
 - [x] 5.1 Run `make lint`, `make test`, `make provenance`, `goreleaser check` and `openspec validate add-release --strict`. Verify that all pass
-- [ ] 5.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
-- [ ] 5.3 After the merge, create the tag `v0.1.0` on `main` and push it, with the user's approval (D7). Verify that the release workflow passes, that the release has the six CLI archives, the WASM archive, `checksums.txt` and the notes of `docs/releases/v0.1.0.md`, that the checksums match the downloaded archives, and that a downloaded binary prints `gopuml v0.1.0 (PlantUML 1.2026.8 compatible)`
+- [x] 5.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
+- [x] 5.3 After the merge, create the tag `v0.1.0` on `main` and push it, with the user's approval (D7). Verify that the release workflow passes, that the release has the six CLI archives, the WASM archive, `checksums.txt` and the notes of `docs/releases/v0.1.0.md`, that the checksums match the downloaded archives, and that a downloaded binary prints `gopuml v0.1.0 (PlantUML 1.2026.8 compatible)`
