@@ -28,17 +28,21 @@ var moduleFiles = map[string]string{
 }
 
 // sources writes a page with a style sheet and an image in a subdirectory
-// into a temporary directory and returns it.
+// into the site directory of a temporary repository root, whose LICENSE and
+// NOTICE it also writes, and returns the site directory.
 func sources(t *testing.T) string {
 	t.Helper()
-	src := t.TempDir()
+	root := t.TempDir()
+	src := filepath.Join(root, "site")
 	for name, data := range map[string]string{
-		"index.html":     page,
-		"style.css":      "body {}",
-		"img/hero.svg":   "<svg/>",
-		"playground.mjs": "export {}",
+		"site/index.html":     page,
+		"site/style.css":      "body {}",
+		"site/img/hero.svg":   "<svg/>",
+		"site/playground.mjs": "export {}",
+		"LICENSE":             "license",
+		"NOTICE":              "notice",
 	} {
-		writeFile(t, filepath.Join(src, name), data)
+		writeFile(t, filepath.Join(root, name), data)
 	}
 	return src
 }
@@ -102,7 +106,7 @@ func TestLocalBuild(t *testing.T) {
 	writeFile(t, filepath.Join(out, "stale.txt"), "old")
 
 	var stdout bytes.Buffer
-	if err := run([]string{"-src", src, "-out", out, "-wasm", build}, &stdout); err != nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-wasm", build}, &stdout); err != nil {
 		t.Fatal(err)
 	}
 	checkSite(t, src, out)
@@ -116,7 +120,7 @@ func TestLocalBuild(t *testing.T) {
 	// A build without one of the module files writes nothing.
 	os.Remove(filepath.Join(build, "wasm_exec.js"))
 	out2 := filepath.Join(t.TempDir(), "site")
-	if err := run([]string{"-src", src, "-out", out2, "-wasm", build}, &stdout); err == nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out2, "-wasm", build}, &stdout); err == nil {
 		t.Error("no error without wasm_exec.js")
 	}
 	noOutput(t, out2)
@@ -135,7 +139,7 @@ func TestUsage(t *testing.T) {
 	}
 	// A page without its release.
 	writeFile(t, filepath.Join(src, "index.html"), strings.Replace(page, "gopuml-release", "release", 1))
-	if err := run([]string{"-src", src, "-out", filepath.Join(t.TempDir(), "site"), "-wasm", t.TempDir()}, new(bytes.Buffer)); err == nil || !strings.Contains(err.Error(), "0 gopuml-release meta tags") {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", filepath.Join(t.TempDir(), "site"), "-wasm", t.TempDir()}, new(bytes.Buffer)); err == nil || !strings.Contains(err.Error(), "0 gopuml-release meta tags") {
 		t.Errorf("page without release: %v", err)
 	}
 }
@@ -206,7 +210,7 @@ func TestDownloadRelease(t *testing.T) {
 	output := githubOutput(t)
 	out := filepath.Join(t.TempDir(), "site")
 	var stdout bytes.Buffer
-	if err := run([]string{"-src", src, "-out", out, "-download", releaseServer(t, published(t, moduleFiles, "")) + "/"}, &stdout); err != nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-download", releaseServer(t, published(t, moduleFiles, "")) + "/"}, &stdout); err != nil {
 		t.Fatal(err)
 	}
 	checkSite(t, src, out)
@@ -217,7 +221,7 @@ func TestDownloadRelease(t *testing.T) {
 	// An archive without one of the module files writes nothing.
 	partial := map[string]string{"plantuml.wasm": moduleFiles["plantuml.wasm"], "plantuml.mjs": moduleFiles["plantuml.mjs"]}
 	out2 := filepath.Join(t.TempDir(), "site")
-	err := run([]string{"-src", src, "-out", out2, "-download", releaseServer(t, published(t, partial, ""))}, &stdout)
+	err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out2, "-download", releaseServer(t, published(t, partial, ""))}, &stdout)
 	if err == nil || !strings.Contains(err.Error(), "has no wasm_exec.js") {
 		t.Errorf("archive without wasm_exec.js: %v", err)
 	}
@@ -229,7 +233,7 @@ func TestDownloadMismatch(t *testing.T) {
 	output := githubOutput(t)
 	out := filepath.Join(t.TempDir(), "site")
 	files := published(t, moduleFiles, strings.Repeat("ab", 32))
-	err := run([]string{"-src", src, "-out", out, "-download", releaseServer(t, files)}, new(bytes.Buffer))
+	err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-download", releaseServer(t, files)}, new(bytes.Buffer))
 	if err == nil || !strings.Contains(err.Error(), "SHA-256") {
 		t.Errorf("mismatch: %v", err)
 	}
@@ -241,7 +245,7 @@ func TestDownloadMismatch(t *testing.T) {
 	// A checksums file without the WASM archive writes nothing either.
 	delete(files, "gopuml_0.1.0_wasm.tar.gz")
 	files["checksums.txt"] = []byte(strings.Repeat("0", 64) + "  gopuml_0.1.0_linux_amd64.tar.gz\n")
-	if err := run([]string{"-src", src, "-out", out, "-download", releaseServer(t, files)}, new(bytes.Buffer)); err == nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-download", releaseServer(t, files)}, new(bytes.Buffer)); err == nil {
 		t.Error("no error without the WASM archive in checksums.txt")
 	}
 	noOutput(t, out)
@@ -252,7 +256,7 @@ func TestDownloadUnpublished(t *testing.T) {
 	output := githubOutput(t)
 	out := filepath.Join(t.TempDir(), "site")
 	var stdout bytes.Buffer
-	if err := run([]string{"-src", src, "-out", out, "-download", releaseServer(t, nil)}, &stdout); err != nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-download", releaseServer(t, nil)}, &stdout); err != nil {
 		t.Fatal(err)
 	}
 	if !strings.HasPrefix(stdout.String(), "::notice::release v0.1.0 is not published: ") {
@@ -268,8 +272,43 @@ func TestDownloadUnpublished(t *testing.T) {
 		http.Error(w, "unavailable", http.StatusServiceUnavailable)
 	}))
 	defer srv.Close()
-	if err := run([]string{"-src", src, "-out", out, "-download", srv.URL}, new(bytes.Buffer)); err == nil {
+	if err := run([]string{"-src", src, "-root", filepath.Dir(src), "-out", out, "-download", srv.URL}, new(bytes.Buffer)); err == nil {
 		t.Error("no error for status 503")
+	}
+	noOutput(t, out)
+}
+
+func TestLicenseFiles(t *testing.T) {
+	// The license files of the repository go next to the module, in both
+	// modes.
+	root := t.TempDir()
+	writeFile(t, filepath.Join(root, "LICENSE"), "MIT License of the repository")
+	writeFile(t, filepath.Join(root, "NOTICE"), "notices of the repository")
+	src := sources(t)
+	build := t.TempDir()
+	for name, data := range moduleFiles {
+		writeFile(t, filepath.Join(build, name), data)
+	}
+	release := releaseServer(t, published(t, moduleFiles, ""))
+	for _, mode := range [][]string{{"-wasm", build}, {"-download", release}} {
+		out := filepath.Join(t.TempDir(), "site")
+		if err := run(append([]string{"-src", src, "-root", root, "-out", out}, mode...), new(bytes.Buffer)); err != nil {
+			t.Fatalf("%s: %v", mode[0], err)
+		}
+		for _, name := range []string{"LICENSE", "NOTICE"} {
+			want, _ := os.ReadFile(filepath.Join(root, name))
+			got, err := os.ReadFile(filepath.Join(out, "wasm", name))
+			if err != nil || !bytes.Equal(got, want) {
+				t.Errorf("%s: wasm/%s = %q, %v; want %q", mode[0], name, got, err, want)
+			}
+		}
+	}
+
+	// A root without NOTICE writes nothing.
+	os.Remove(filepath.Join(root, "NOTICE"))
+	out := filepath.Join(t.TempDir(), "site")
+	if err := run([]string{"-src", src, "-root", root, "-out", out, "-wasm", build}, new(bytes.Buffer)); err == nil {
+		t.Error("no error without NOTICE")
 	}
 	noOutput(t, out)
 }

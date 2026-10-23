@@ -72,6 +72,8 @@ archives:
         strip_parent: true
       - src: cmd/plantuml-wasm/plantuml.mjs
         strip_parent: true
+      - LICENSE
+      - NOTICE
 
 checksum:
   name_template: checksums.txt

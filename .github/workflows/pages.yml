@@ -11,6 +11,9 @@ on:
       - "site/**"
       - "tools/site/**"
       - ".github/workflows/pages.yml"
+      # The site serves them next to the WebAssembly module.
+      - "LICENSE"
+      - "NOTICE"
   # GoReleaser publishes the release with GITHUB_TOKEN, whose events start no
   # other workflow, so the site follows the release workflow instead of a
   # release event.

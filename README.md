@@ -51,9 +51,10 @@ Each [release](https://github.com/ekalinin/gopuml/releases) has an archive of
 the command line for linux, macOS and windows on amd64 and arm64
 (`gopuml_<version>_<os>_<arch>.tar.gz`, `.zip` on windows), with `LICENSE`,
 `NOTICE` and this README, an archive of the WebAssembly module
-(`gopuml_<version>_wasm.tar.gz`), and `checksums.txt` with the SHA-256 of
-every archive. Download the archive of your system and `checksums.txt` from
-the release page, or with the GitHub CLI:
+(`gopuml_<version>_wasm.tar.gz`, with `LICENSE` and `NOTICE` in the releases
+after v0.1.0), and `checksums.txt` with the SHA-256 of every archive.
+Download the archive of your system and `checksums.txt` from the release page,
+or with the GitHub CLI:
 
 ```sh
 gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt

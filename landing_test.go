@@ -473,7 +473,7 @@ func checkPagesWorkflow(data []byte, release string) error {
 	if !slices.Equal(branches, []any{"main"}) {
 		errs = append(errs, fmt.Errorf("the workflow runs on pushes to %v, not to main", branches))
 	}
-	for _, p := range []string{"site/**", "tools/site/**", ".github/workflows/pages.yml"} {
+	for _, p := range []string{"site/**", "tools/site/**", ".github/workflows/pages.yml", "LICENSE", "NOTICE"} {
 		if !slices.Contains(paths, any(p)) {
 			errs = append(errs, fmt.Errorf("a push that changes %s does not deploy", p))
 		}
@@ -567,6 +567,7 @@ func TestPagesWorkflow(t *testing.T) {
 		{"runs on pull requests", "on:\n", "on:\n  pull_request:\n"},
 		{"runs on every branch", "    branches: [main]\n", ""},
 		{"page changes not deployed", "      - \"site/**\"\n", ""},
+		{"notice changes not deployed", "      - \"NOTICE\"\n", ""},
 		{"no id-token: write", "  id-token: write\n", ""},
 		{"cancelled deployments", "cancel-in-progress: false", "cancel-in-progress: true"},
 		{"local module", "-download https://github.com/ekalinin/gopuml/releases/download", "-wasm dist/wasm"},
