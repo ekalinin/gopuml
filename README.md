@@ -53,10 +53,22 @@ the command line for linux, macOS and windows on amd64 and arm64
 `NOTICE` and this README, an archive of the WebAssembly module
 (`gopuml_<version>_wasm.tar.gz`), and `checksums.txt` with the SHA-256 of
 every archive. Download the archive of your system and `checksums.txt` from
-the release page, or with the GitHub CLI, then check and unpack it:
+the release page, or with the GitHub CLI:
 
 ```sh
 gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
+```
+
+or with `curl`:
+
+```sh
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.1.0/gopuml_0.1.0_darwin_arm64.tar.gz
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.1.0/checksums.txt
+```
+
+then check and unpack it:
+
+```sh
 shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
 tar xzf gopuml_0.1.0_darwin_arm64.tar.gz plantuml
 ./plantuml --version
