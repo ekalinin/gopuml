@@ -301,3 +301,131 @@ func TestLandingPage(t *testing.T) {
 		}
 	}
 }
+
+var (
+	anyTag         = regexp.MustCompile(`\bv\d+\.\d+\.\d+\b`)
+	archiveVersion = regexp.MustCompile(`gopuml_(\d+\.\d+\.\d+)_`)
+	barTime        = regexp.MustCompile(`(?s)<td[^>]*style="--t: (\d+)"[^>]*>(.*?)</td>`)
+	barMax         = regexp.MustCompile(`style="--max: (\d+)"`)
+)
+
+// checkLandingRelease checks that the page names one release, the release
+// of the README, and that its comparison is the one of the notes of that
+// release (landing-page: Consistency with the release, Comparison with
+// upstream on the page). notes returns the notes of a release.
+func checkLandingRelease(page, readme string, notes func(tag string) (string, error)) error {
+	tag, err := pageRelease(page)
+	if err != nil {
+		return err
+	}
+	var errs []error
+	for _, m := range anyTag.FindAllString(page, -1) {
+		if m != tag {
+			errs = append(errs, fmt.Errorf("the page names %s besides %s", m, tag))
+		}
+	}
+	for _, m := range archiveVersion.FindAllStringSubmatch(page, -1) {
+		if "v"+m[1] != tag {
+			errs = append(errs, fmt.Errorf("the page names the archive %s of %s", m[0], tag))
+		}
+	}
+	if releaseTag.FindString(page) == "" {
+		errs = append(errs, errors.New("the installation of the page names no release"))
+	}
+	readmeTags := releaseTag.FindAllStringSubmatch(readme, -1)
+	if len(readmeTags) == 0 {
+		errs = append(errs, errors.New("the installation of the README names no release"))
+	}
+	for _, m := range readmeTags {
+		if m[1] != tag {
+			errs = append(errs, fmt.Errorf("the README names %s, the page %s", m[1], tag))
+		}
+	}
+
+	n, err := notes(tag)
+	if err != nil {
+		return errors.Join(append(errs, fmt.Errorf("notes of %s: %w", tag, err))...)
+	}
+	comparison, err := mdSection(n, "## Comparison with upstream")
+	if err != nil {
+		return errors.Join(append(errs, fmt.Errorf("notes of %s: %w", tag, err))...)
+	}
+	section, err := htmlSection(page, "comparison")
+	if err != nil {
+		return errors.Join(append(errs, err)...)
+	}
+	if err := checkRows("the comparison of the notes of "+tag, mdRows(comparison), htmlRows(section)); err != nil {
+		errs = append(errs, err)
+	}
+	env := mdItems(comparison)
+	if len(env) == 0 {
+		errs = append(errs, fmt.Errorf("notes of %s: no environment of the comparison", tag))
+	}
+	for _, item := range env {
+		if !slices.Contains(htmlItems(section), item) {
+			errs = append(errs, fmt.Errorf("no %q in the comparison of the page", item))
+		}
+	}
+
+	// Each activation bar is as long as the time of its cell, relative to
+	// the longest time of the table.
+	bars := barTime.FindAllStringSubmatch(section, -1)
+	if len(bars) == 0 {
+		errs = append(errs, errors.New("no activation bar in the comparison"))
+	}
+	longest := 0
+	for _, b := range bars {
+		var ms int
+		fmt.Sscan(b[1], &ms)
+		longest = max(longest, ms)
+		if text := htmlText(b[2]); !strings.HasPrefix(text, b[1]+" ms") {
+			errs = append(errs, fmt.Errorf("the bar of %q is %s ms long", text, b[1]))
+		}
+	}
+	if m := barMax.FindStringSubmatch(section); m == nil || m[1] != fmt.Sprint(longest) {
+		errs = append(errs, fmt.Errorf("the scale of the bars is not the longest time, %d ms", longest))
+	}
+	return errors.Join(errs...)
+}
+
+func TestLandingRelease(t *testing.T) {
+	page, readme, notes := readLanding(t)
+	notesOf := func(n string) func(string) (string, error) {
+		return func(tag string) (string, error) {
+			if _, err := os.Stat(filepath.Join("docs", "releases", tag+".md")); err != nil {
+				return "", err
+			}
+			return n, nil
+		}
+	}
+	if err := checkLandingRelease(page, readme, notesOf(notes)); err != nil {
+		t.Fatal(err)
+	}
+	tag, _ := pageRelease(page)
+	for _, m := range []struct{ name, file, old, new string }{
+		{"another release in the meta tag", "page", `content="` + tag + `"`, `content="v9.9.9"`},
+		{"page behind the README", "readme", tag, "v9.9.9"},
+		{"another archive", "page", "gopuml_" + tag[1:] + "_darwin", "gopuml_9.9.9_darwin"},
+		{"changed cell", "page", "897 ms (17 ms per case)", "897 ms (18 ms per case)"},
+		{"comparison out of date", "notes", "| 18 ms |", "| 17 ms |"},
+		{"bar of another time", "page", `style="--t: 86"`, `style="--t: 68"`},
+		{"other scale", "page", `style="--max: 959"`, `style="--max: 1000"`},
+		{"no environment", "page", "<li>Runs: ", "<li>Run: "},
+	} {
+		p, r, n := page, readme, notes
+		target := map[string]*string{"page": &p, "readme": &r, "notes": &n}[m.file]
+		mutated := strings.ReplaceAll(*target, m.old, m.new)
+		if mutated == *target {
+			t.Errorf("%s: %q is not in the %s", m.name, m.old, m.file)
+			continue
+		}
+		*target = mutated
+		if checkLandingRelease(p, r, notesOf(n)) == nil {
+			t.Errorf("%s: the check passes", m.name)
+		}
+	}
+	noNotes := func(tag string) (string, error) { return "", os.ErrNotExist }
+	if checkLandingRelease(page, readme, noNotes) == nil {
+		t.Error("release without notes: the check passes")
+	}
+}

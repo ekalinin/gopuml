@@ -1,0 +1,8 @@
+id: landing-page/release
+scenarios:
+  - "landing-page: Comparison of v0.1.0"
+  - "landing-page: Page behind the README"
+  - "landing-page: Comparison out of date"
+package: .
+test: TestLandingRelease
+why: Release named by the landing page of this implementation, checked against the README and the notes of that release, with mutations of the page, the README and the notes.
