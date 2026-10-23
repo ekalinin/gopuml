@@ -13,7 +13,7 @@
 
 ## 3. Documentation
 
-- [ ] 3.1 Say in the installation section of `README.md` that the WASM archive contains `LICENSE` and `NOTICE`. Verify that `TestReleaseNotes`, `TestLandingPage` and `TestLandingRelease` pass
+- [x] 3.1 Say in the installation section of `README.md` that the WASM archive contains `LICENSE` and `NOTICE`. Verify that `TestReleaseNotes`, `TestLandingPage` and `TestLandingRelease` pass
 
 ## 4. Checks and publication
 
