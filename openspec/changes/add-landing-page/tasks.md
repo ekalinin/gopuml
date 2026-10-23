@@ -30,5 +30,5 @@
 ## 6. Checks and publication
 
 - [x] 6.1 Run `make lint`, `make test` (with `node` installed), `make provenance` and `openspec validate add-landing-page --strict`. Verify that all pass and that the playground tests ran, not skipped, in `go test -v ./cmd/plantuml-wasm`
-- [ ] 6.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
+- [x] 6.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
 - [ ] 6.3 After the merge and after the user has made the repository public and enabled GitHub Pages with "GitHub Actions" as the source, run the Pages workflow by hand, with the user's approval. Verify that it deploys, that `https://ekalinin.github.io/gopuml/` shows the page and that its playground renders a sequence diagram, record whether `plantuml.wasm` is served with `content-encoding: gzip` (design, Open Questions), and set the page as the homepage of the repository with the user's approval
