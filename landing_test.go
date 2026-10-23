@@ -585,3 +585,30 @@ func TestPagesWorkflow(t *testing.T) {
 		}
 	}
 }
+
+// TestPlaygroundStartHint checks the hint of a playground that did not
+// start: shown by the page, hidden by page.mjs when it starts, and hidden
+// without JavaScript, where the <noscript> message shows instead.
+func TestPlaygroundStartHint(t *testing.T) {
+	read := func(name string) string {
+		data, err := os.ReadFile(filepath.Join("site", name))
+		if err != nil {
+			t.Fatal(err)
+		}
+		return string(data)
+	}
+	playground, err := htmlSection(read("index.html"), "playground")
+	if err != nil {
+		t.Fatal(err)
+	}
+	hint := regexp.MustCompile(`(?s)<p id="pg-start"[^>]*>(.*?)</p>`).FindStringSubmatch(playground)
+	if hint == nil || strings.Contains(hint[0], " hidden") || !strings.Contains(htmlText(hint[1]), "over HTTP") {
+		t.Errorf("no shown hint that the playground needs the page over HTTP: %q", hint)
+	}
+	if !regexp.MustCompile(`(?s)@media \(scripting: none\) \{\s*#pg-start \{\s*display: none;`).MatchString(read("style.css")) {
+		t.Error("style.css does not hide #pg-start without JavaScript")
+	}
+	if !strings.Contains(read("page.mjs"), `document.getElementById('pg-start').hidden = true;`) {
+		t.Error("page.mjs does not hide #pg-start when it starts")
+	}
+}

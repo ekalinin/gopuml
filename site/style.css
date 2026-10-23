@@ -598,6 +598,13 @@ select {
   width: auto;
 }
 
+/* Without JavaScript, the <noscript> message replaces the start hint. */
+@media (scripting: none) {
+  #pg-start {
+    display: none;
+  }
+}
+
 /* Narrow screens */
 
 @media (max-width: 52rem) {
