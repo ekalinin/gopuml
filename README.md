@@ -71,10 +71,6 @@ With Go 1.26 or later, the command line can also be installed from source:
 go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0
 ```
 
-While the repository is private, set
-`GOPRIVATE=github.com/ekalinin/gopuml`, so that the go command fetches it with
-your git credentials instead of the module proxy.
-
 ## Building
 
 Go 1.26 or later is needed. In a checkout of this repository:
