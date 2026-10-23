@@ -7,12 +7,15 @@ import (
 	"errors"
 	"fmt"
 	"html"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
 	"slices"
 	"strings"
 	"testing"
+
+	"go.yaml.in/yaml/v3"
 )
 
 var (
@@ -427,5 +430,154 @@ func TestLandingRelease(t *testing.T) {
 	noNotes := func(tag string) (string, error) { return "", os.ErrNotExist }
 	if checkLandingRelease(page, readme, noNotes) == nil {
 		t.Error("release without notes: the check passes")
+	}
+}
+
+// pagesWorkflow is the part of the Pages workflow that checkPagesWorkflow
+// reads.
+type pagesWorkflow struct {
+	On          map[string]any    `yaml:"on"`
+	Permissions map[string]string `yaml:"permissions"`
+	Concurrency map[string]any    `yaml:"concurrency"`
+	Jobs        map[string]struct {
+		If          string            `yaml:"if"`
+		Environment map[string]string `yaml:"environment"`
+		Steps       []pagesStep       `yaml:"steps"`
+	} `yaml:"jobs"`
+}
+
+// pagesStep is a step of the Pages workflow, with its id.
+type pagesStep struct {
+	workflowStep `yaml:",inline"`
+	ID           string `yaml:"id"`
+}
+
+// checkPagesWorkflow checks the contract of the Pages workflow
+// (landing-page: Deployment). release is the name of the release workflow.
+func checkPagesWorkflow(data []byte, release string) error {
+	var w pagesWorkflow
+	if err := yaml.Unmarshal(data, &w); err != nil {
+		return err
+	}
+	var errs []error
+	triggers := slices.Sorted(maps.Keys(w.On))
+	if !slices.Equal(triggers, []string{"push", "workflow_dispatch", "workflow_run"}) {
+		errs = append(errs, fmt.Errorf("the workflow runs on %v, not on push, workflow_run and workflow_dispatch", triggers))
+	}
+	push, _ := w.On["push"].(map[string]any)
+	branches, _ := push["branches"].([]any)
+	paths, _ := push["paths"].([]any)
+	if !slices.Equal(branches, []any{"main"}) {
+		errs = append(errs, fmt.Errorf("the workflow runs on pushes to %v, not to main", branches))
+	}
+	for _, p := range []string{"site/**", "tools/site/**", ".github/workflows/pages.yml"} {
+		if !slices.Contains(paths, any(p)) {
+			errs = append(errs, fmt.Errorf("a push that changes %s does not deploy", p))
+		}
+	}
+	after, _ := w.On["workflow_run"].(map[string]any)
+	workflows, _ := after["workflows"].([]any)
+	types, _ := after["types"].([]any)
+	if !slices.Equal(workflows, []any{release}) || !slices.Equal(types, []any{"completed"}) {
+		errs = append(errs, fmt.Errorf("the workflow does not run after the %s workflow", release))
+	}
+	for k, v := range map[string]string{"contents": "read", "pages": "write", "id-token": "write"} {
+		if w.Permissions[k] != v {
+			errs = append(errs, fmt.Errorf("permission %s is %q, not %s", k, w.Permissions[k], v))
+		}
+	}
+	if w.Concurrency["group"] != "pages" || w.Concurrency["cancel-in-progress"] != false {
+		errs = append(errs, errors.New("deployments are not serialized in the pages group"))
+	}
+	job, ok := w.Jobs["deploy"]
+	if len(w.Jobs) != 1 || !ok {
+		return errors.Join(append(errs, errors.New("the workflow does not have one deploy job"))...)
+	}
+	if job.If != "github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'" {
+		errs = append(errs, fmt.Errorf("the job runs after a failed release workflow: if %q", job.If))
+	}
+	if job.Environment["name"] != "github-pages" {
+		errs = append(errs, errors.New("the job does not deploy in the github-pages environment"))
+	}
+
+	find := func(what string, match func(s workflowStep) bool) int {
+		i := slices.IndexFunc(job.Steps, func(s pagesStep) bool { return match(s.workflowStep) })
+		if i < 0 {
+			errs = append(errs, fmt.Errorf("no step that %s", what))
+		}
+		return i
+	}
+	checkout := find("checks out the repository", func(s workflowStep) bool { return strings.HasPrefix(s.Uses, "actions/checkout@") })
+	setup := find("sets up Go from go.mod", func(s workflowStep) bool {
+		return strings.HasPrefix(s.Uses, "actions/setup-go@") && s.With["go-version-file"] == "go.mod"
+	})
+	site := find("assembles the site with the module of the release", func(s workflowStep) bool {
+		return s.Run == "go run ./tools/site -download https://github.com/ekalinin/gopuml/releases/download -out _site" &&
+			s.If == "" && s.ContinueOnError == nil
+	})
+	if len(errs) > 0 {
+		return errors.Join(errs...)
+	}
+	id := job.Steps[site].ID
+	if id == "" {
+		return errors.New("the step that assembles the site has no id")
+	}
+	// The deployment steps run only when the site was assembled.
+	deployed := func(action string, with func(map[string]any) bool) func(s workflowStep) bool {
+		return func(s workflowStep) bool {
+			return strings.HasPrefix(s.Uses, action+"@") && s.If == "steps."+id+".outputs.deploy == 'true'" && with(s.With)
+		}
+	}
+	anything := func(map[string]any) bool { return true }
+	configure := find("configures Pages when the site is assembled", deployed("actions/configure-pages", anything))
+	upload := find("uploads _site when the site is assembled", deployed("actions/upload-pages-artifact", func(w map[string]any) bool { return w["path"] == "_site" }))
+	deploy := find("deploys when the site is assembled", deployed("actions/deploy-pages", anything))
+	if len(errs) == 0 && !(checkout < site && setup < site && site < configure && configure < upload && upload < deploy) {
+		errs = append(errs, errors.New("the steps are not in the order checkout, setup, site, configure, upload, deploy"))
+	}
+	return errors.Join(errs...)
+}
+
+func TestPagesWorkflow(t *testing.T) {
+	data, err := os.ReadFile(".github/workflows/pages.yml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var release struct {
+		Name string `yaml:"name"`
+	}
+	releaseData, err := os.ReadFile(".github/workflows/release.yml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := yaml.Unmarshal(releaseData, &release); err != nil || release.Name == "" {
+		t.Fatalf("name of the release workflow: %q, %v", release.Name, err)
+	}
+	if err := checkPagesWorkflow(data, release.Name); err != nil {
+		t.Fatal(err)
+	}
+	s := string(data)
+	for _, m := range []struct{ name, old, new string }{
+		{"no workflow_run", "  workflow_run:\n    workflows: [release]\n    types: [completed]\n", ""},
+		{"after another workflow", "workflows: [release]", "workflows: [ci]"},
+		{"no success condition", "    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'\n", ""},
+		{"runs on pull requests", "on:\n", "on:\n  pull_request:\n"},
+		{"runs on every branch", "    branches: [main]\n", ""},
+		{"page changes not deployed", "      - \"site/**\"\n", ""},
+		{"no id-token: write", "  id-token: write\n", ""},
+		{"cancelled deployments", "cancel-in-progress: false", "cancel-in-progress: true"},
+		{"local module", "-download https://github.com/ekalinin/gopuml/releases/download", "-wasm dist/wasm"},
+		{"failure tolerated", "        id: site\n", "        id: site\n        continue-on-error: true\n"},
+		{"unconditional deployment", "        id: deployment\n        if: steps.site.outputs.deploy == 'true'\n", "        id: deployment\n"},
+		{"other directory", "path: _site", "path: site"},
+	} {
+		mutated := strings.ReplaceAll(s, m.old, m.new)
+		if mutated == s {
+			t.Errorf("%s: %q is not in the workflow", m.name, m.old)
+			continue
+		}
+		if checkPagesWorkflow([]byte(mutated), release.Name) == nil {
+			t.Errorf("%s: the check passes", m.name)
+		}
 	}
 }

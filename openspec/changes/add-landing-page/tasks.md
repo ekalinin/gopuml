@@ -19,7 +19,7 @@
 
 ## 4. Deployment
 
-- [ ] 4.1 Add `.github/workflows/pages.yml` (D5) and `TestPagesWorkflow` in the root package, with mutations (no `workflow_run`, no success condition, a `pull_request` trigger, no `id-token: write`, a deployment step not conditional on `deploy=true`) that must make the check fail. Add the case `landing-page/deployment.go.yaml` for "landing-page: Change of the page". Verify that the test passes, that each mutation makes the check fail, and that `TestScenarioCoverage` passes
+- [x] 4.1 Add `.github/workflows/pages.yml` (D5) and `TestPagesWorkflow` in the root package, with mutations (no `workflow_run`, no success condition, a `pull_request` trigger, no `id-token: write`, a deployment step not conditional on `deploy=true`) that must make the check fail. Add the case `landing-page/deployment.go.yaml` for "landing-page: Change of the page". Verify that the test passes, that each mutation makes the check fail, and that `TestScenarioCoverage` passes
 
 ## 5. Documentation
 

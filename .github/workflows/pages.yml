@@ -1,0 +1,62 @@
+name: pages
+
+# Deploys the landing page (site/) with the WebAssembly module of the release
+# it names to GitHub Pages (openspec/specs/landing-page). tools/site checks
+# the module against the checksums of the release, and deploys nothing, with
+# a notice, while that release is not published.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "tools/site/**"
+      - ".github/workflows/pages.yml"
+  # GoReleaser publishes the release with GITHUB_TOKEN, whose events start no
+  # other workflow, so the site follows the release workflow instead of a
+  # release event.
+  workflow_run:
+    workflows: [release]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Assemble the site
+        id: site
+        run: go run ./tools/site -download https://github.com/ekalinin/gopuml/releases/download -out _site
+
+      - name: Configure Pages
+        if: steps.site.outputs.deploy == 'true'
+        uses: actions/configure-pages@v6
+
+      - name: Upload the site
+        if: steps.site.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        if: steps.site.outputs.deploy == 'true'
+        uses: actions/deploy-pages@v5
