@@ -113,3 +113,4 @@ Rollback: disable GitHub Pages in the settings, or revert the commit and run the
 ## Open Questions
 
 - Does GitHub Pages compress `plantuml.wasm` (a `content-encoding: gzip` response)? It is checked after the first deployment. If it does not, a follow-up can serve a gzip copy and decompress it with `DecompressionStream`, without changing the spec.
+  - Answered after the first deployment (2026-10-23): yes. GitHub Pages serves `plantuml.wasm` as `application/wasm` with `content-encoding: gzip`, 10.4 MB transferred for 36.5 MB, so no follow-up is needed.
