@@ -2,7 +2,7 @@
 
 ## Why
 
-The implementation supports six diagram types (sequence, class and object, use case, component and deployment, state, and activity in both syntaxes) with 0 conformance failures, but there is no release: users have to clone the repository and build it with Go 1.26. `.TODO.md` lists the release and a comparison of the start and rendering time with Java PlantUML.
+The implementation supports six diagram types (sequence, class and object, use case, component and deployment, state, and activity in both syntaxes) with 0 conformance failures, but there is no release: users have to clone the repository and build it with Go 1.26.
 
 ## What Changes
 
@@ -20,7 +20,7 @@ The implementation supports six diagram types (sequence, class and object, use c
 
 Out of scope:
 
-- a landing page (`.TODO.md` lists it separately)
+- a landing page
 - packages for Homebrew, Scoop, Linux distributions or container registries
 - signing or notarizing the binaries
 
