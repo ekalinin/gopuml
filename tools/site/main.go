@@ -76,7 +76,7 @@ func run(args []string, stdout io.Writer) error {
 		module, err = downloadModule(strings.TrimSuffix(*download, "/"), tag)
 	}
 	if errors.Is(err, errUnpublished) {
-		fmt.Fprintf(stdout, "::notice::%v: nothing to deploy\n", err)
+		fmt.Fprintf(stdout, "::notice::%v; nothing to deploy\n", err)
 		return setOutput(false)
 	}
 	if err != nil {
@@ -116,7 +116,7 @@ func readModule(dir string) (map[string][]byte, error) {
 	return module, nil
 }
 
-var errUnpublished = errors.New("release not published")
+var errUnpublished = errors.New("not published")
 
 // downloadModule downloads the WASM archive of the release tag from base,
 // checks it against the checksums file of the release and returns its
@@ -127,7 +127,7 @@ func downloadModule(base, tag string) (map[string][]byte, error) {
 		return nil, err
 	}
 	if status == http.StatusNotFound {
-		return nil, fmt.Errorf("%w: %s has no %s/checksums.txt", errUnpublished, tag, base)
+		return nil, fmt.Errorf("release %s is %w: %s/%s/checksums.txt answers 404", tag, errUnpublished, base, tag)
 	}
 	if status != http.StatusOK {
 		return nil, fmt.Errorf("%s/%s/checksums.txt: status %d", base, tag, status)

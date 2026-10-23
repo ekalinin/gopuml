@@ -1,0 +1,6 @@
+id: landing-page/unpublished
+scenarios:
+  - "landing-page: Release not published yet"
+package: tools/site
+test: TestDownloadUnpublished
+why: Site assembly tool of this implementation against a fake release server without the release; the deployment after the release workflow is checked by TestPagesWorkflow.

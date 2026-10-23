@@ -1,0 +1,6 @@
+id: landing-page/checksum
+scenarios:
+  - "landing-page: Checksum mismatch"
+package: tools/site
+test: TestDownloadMismatch
+why: Site assembly tool of this implementation against a fake release server whose WASM archive does not match its checksums file.
