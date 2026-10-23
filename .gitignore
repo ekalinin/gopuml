@@ -1,3 +1,5 @@
 .cache/
 dist/
 conformance-report.md
+/plantuml
+.claude/
