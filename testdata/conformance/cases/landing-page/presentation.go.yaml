@@ -1,0 +1,9 @@
+id: landing-page/presentation
+scenarios:
+  - "landing-page: Visit the page"
+  - "landing-page: JavaScript disabled"
+  - "landing-page: Supported diagram types"
+  - "landing-page: Installation"
+package: .
+test: TestLandingPage
+why: Landing page of this implementation, checked in its static HTML against the README and the notes of its release; its look is checked by hand in a browser.

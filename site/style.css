@@ -1,0 +1,630 @@
+/* SPDX-License-Identifier: MIT */
+/* Provenance: original */
+
+/* The palette comes from PlantUML's default diagram look: #181818 lines,
+   #E2E2F0 participants, #FEFFDD notes. The two series of the comparison
+   are PlantUML's classic crimson (Java) and Go's blue (gopuml). */
+:root {
+  --paper: #f6f6fa;
+  --panel: #e2e2f0;
+  --ink: #181818;
+  --ink-2: #4a4a57;
+  --rule: #c9c9d9;
+  --note: #feffdd;
+  --note-fold: #ecedc4;
+  --link: #006a85;
+  --java: #a80036;
+  --go: #007d9c;
+  --sheet: #ffffff;
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 72rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --radius: 5px;
+  --line: 1.5px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16161d;
+    --panel: #262633;
+    --ink: #e8e8f0;
+    --ink-2: #a9a9b8;
+    --rule: #3a3a4a;
+    --note: #2b2a1a;
+    --note-fold: #3d3b22;
+    --link: #4fc3e6;
+    --java: #ee4d80;
+    --go: #0aa0c8;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--go);
+  outline-offset: 2px;
+}
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+:not(pre) > code {
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel) 45%, var(--paper));
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.skip {
+  position: absolute;
+  left: -100vw;
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  background: var(--paper);
+}
+
+/* Header and footer */
+
+.top,
+main,
+.bottom {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1.25rem;
+}
+
+.wordmark {
+  color: var(--ink);
+  font: 800 1.2rem var(--mono);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+
+.top nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.top nav a {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.top nav a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+main > section {
+  padding-block: 3.5rem;
+}
+
+.bottom {
+  padding-block: 2.5rem 3.5rem;
+  border-top: var(--line) solid var(--ink);
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.bottom h2 {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 2.5rem 3.5rem;
+  padding-block: 3rem 4rem;
+}
+
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font: 800 clamp(2.1rem, 4.2vw, 3.5rem) / 1.05 var(--mono);
+  letter-spacing: -0.045em;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.lede {
+  max-width: 34em;
+  margin: 0 0 2rem;
+  color: var(--ink-2);
+  font-size: 1.15rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: box-shadow 120ms ease, transform 120ms ease;
+  }
+}
+
+/* PlantUML's old drop shadow, as a hover state. */
+.button:hover {
+  box-shadow: 3px 3px 0 var(--ink-2);
+  transform: translate(-1px, -1px);
+}
+
+/* The hero sheet: a source, the command, and the diagram it renders, framed
+   as a PlantUML participant box. */
+.sheet {
+  margin: 0;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.sheet-label {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  font: 600 0.8rem var(--mono);
+}
+
+.sheet-source {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 0.82rem;
+}
+
+.sheet-command {
+  margin: 0;
+  padding: 0.45rem 1rem;
+  border-block: 1px dashed var(--ink-2);
+  font-size: 0.85rem;
+}
+
+.sheet-command code {
+  padding: 0;
+  background: none;
+}
+
+.sheet-paper {
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: var(--sheet);
+}
+
+.sheet-paper img {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+}
+
+/* Notes: PlantUML's note shape, with its folded corner. */
+.note {
+  --fold: 14px;
+  position: relative;
+  max-width: 46rem;
+  margin: 1.25rem 0;
+  padding: 0.8rem 2rem 0.8rem 1rem;
+  border: 1px solid var(--ink);
+  background: var(--note);
+  font-size: 0.95rem;
+  clip-path: polygon(0 0, calc(100% - var(--fold)) 0, 100% var(--fold), 100% 100%, 0 100%);
+}
+
+.note::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: calc(var(--fold) + 1px);
+  height: calc(var(--fold) + 1px);
+  border-bottom: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  background: linear-gradient(to bottom left, transparent calc(50% - 0.75px), var(--ink) calc(50% - 0.75px), var(--ink) calc(50% + 0.75px), var(--note-fold) calc(50% + 0.75px));
+}
+
+/* Four ways */
+
+.ways {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 2.5rem;
+}
+
+.ways article {
+  padding-top: 1rem;
+  border-top: var(--line) solid var(--ink);
+}
+
+.ways p {
+  margin: 0 0 0.75rem;
+  color: var(--ink-2);
+}
+
+.ways pre {
+  margin: 0;
+}
+
+/* Tables */
+
+.scroll {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.support {
+  width: 100%;
+  min-width: 36rem;
+}
+
+.support th,
+.support td {
+  padding: 0.6rem 1rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.support thead th {
+  border-bottom: var(--line) solid var(--ink);
+  font-size: 0.9rem;
+}
+
+.support tbody th {
+  font-weight: 600;
+}
+
+/* The comparison: each implementation is a participant with its lifeline,
+   and each time is an activation bar, as long as the time it measures
+   (relative to --max, the longest time of the table). */
+.lifelines {
+  width: 100%;
+  min-width: 40rem;
+}
+
+.lifelines th,
+.lifelines td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.lifelines tbody tr + tr > * {
+  border-top: 1px solid var(--rule);
+}
+
+.lifelines tbody th {
+  padding-left: 0;
+  font-weight: 500;
+}
+
+.lifelines .java {
+  --series: var(--java);
+}
+
+.lifelines .go {
+  --series: var(--go);
+}
+
+.lifelines thead th {
+  padding-bottom: 0;
+}
+
+.lifelines thead span {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+  font: 600 0.85rem var(--mono);
+}
+
+.lifelines thead span::before {
+  content: "";
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+  background: var(--series);
+  vertical-align: -0.05em;
+}
+
+.lifelines td.java,
+.lifelines td.go {
+  position: relative;
+  width: 34%;
+  padding: 0.7rem 1rem 1.6rem 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+}
+
+/* The lifeline. */
+.lifelines td.java::before,
+.lifelines td.go::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  border-left: 1px dashed var(--ink-2);
+}
+
+/* The activation bar, growing from the lifeline. */
+.lifelines td.java::after,
+.lifelines td.go::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  bottom: 0.6rem;
+  height: 8px;
+  width: calc((100% - 2rem) * var(--t) / var(--max));
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+  background: var(--series);
+}
+
+.env {
+  margin: 1.25rem 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-2);
+  font: 0.85rem/1.7 var(--mono);
+}
+
+/* Conformance */
+
+.tally {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tally li {
+  padding-top: 0.75rem;
+  border-top: var(--line) solid var(--ink);
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.tally strong {
+  display: block;
+  color: var(--ink);
+  font: 800 2.2rem/1.1 var(--mono);
+  letter-spacing: -0.03em;
+}
+
+/* Playground */
+
+.pg-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.pg-bar label {
+  font-weight: 600;
+}
+
+select {
+  padding: 0.45rem 0.6rem;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+#pg-download {
+  margin-left: auto;
+}
+
+.pg-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+#pg-source {
+  width: 100%;
+  min-height: 24rem;
+  padding: 1rem;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--ink);
+  font: 0.88rem/1.55 var(--mono);
+  resize: vertical;
+}
+
+.pg-out {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.pg-status {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+}
+
+.pg-status.error {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pg-out .sheet-paper {
+  flex: 1;
+  min-height: 12rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: auto;
+}
+
+.pg-out img {
+  max-width: 100%;
+  width: auto;
+}
+
+/* Narrow screens */
+
+@media (max-width: 52rem) {
+  .hero,
+  .pg-panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ways {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tally {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #pg-source {
+    min-height: 14rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .lifelines td.java::after,
+  .lifelines td.go::after {
+    background: CanvasText;
+  }
+
+  .lifelines .go::after {
+    background: repeating-linear-gradient(45deg, CanvasText 0 2px, Canvas 2px 4px);
+  }
+}

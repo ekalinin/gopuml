@@ -1,0 +1,192 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: MIT -->
+<!-- Provenance: original -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="gopuml-release" content="v0.1.0">
+<meta name="description" content="gopuml is a Go reimplementation of PlantUML 1.2026.8: a command line, a Go library, an HTTP server and a WebAssembly module. No JVM is needed.">
+<meta name="color-scheme" content="light dark">
+<title>gopuml - PlantUML, without the JVM</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="page.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <a class="wordmark" href="#main">gopuml</a>
+  <nav aria-label="Sections">
+    <a href="#install">Install</a>
+    <a href="#playground">Playground</a>
+    <a href="#comparison">Comparison</a>
+    <a href="https://github.com/ekalinin/gopuml">GitHub</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-text">
+    <h1 id="hero-title">PlantUML,<br><span class="nowrap">without the JVM.</span></h1>
+    <p class="lede">gopuml is a Go reimplementation of <a href="https://plantuml.com">PlantUML</a> 1.2026.8 (MIT variant). It reads the same diagram language and produces the same SVG, PNG and text output.</p>
+    <p class="actions">
+      <a class="button primary" href="#install">Install v0.1.0</a>
+      <a class="button" href="#playground">Try it in the browser</a>
+      <a class="button" href="https://github.com/ekalinin/gopuml">Source on GitHub</a>
+    </p>
+  </div>
+  <figure class="sheet">
+    <figcaption class="sheet-label">diagram.puml</figcaption>
+    <pre class="sheet-source"><code>@startuml
+Alice -&gt; Bob: Authentication Request
+Bob --&gt; Alice: Authentication Response
+
+Alice -&gt; Bob: Another authentication Request
+Alice &lt;-- Bob: Another authentication Response
+@enduml</code></pre>
+    <p class="sheet-command"><code>$ plantuml --svg diagram.puml</code></p>
+    <div class="sheet-paper">
+      <img src="hero.svg" width="306" height="218" alt="Sequence diagram rendered by gopuml v0.1.0: Alice sends Bob two authentication requests, and Bob answers each with an authentication response.">
+    </div>
+  </figure>
+</section>
+
+<section id="ways" aria-labelledby="ways-title">
+  <h2 id="ways-title">Four ways to run it</h2>
+  <div class="ways">
+    <article>
+      <h3>Command line</h3>
+      <p>Replaces <code>java -jar plantuml.jar</code> and accepts its flags. Flags it does not provide, such as <code>--pdf</code>, are rejected with exit status 1 instead of being silently ignored.</p>
+      <pre><code>plantuml --svg diagram.puml</code></pre>
+    </article>
+    <article>
+      <h3>Go library</h3>
+      <p><code>Render</code> returns the image and typed errors, such as <code>*gopuml.SyntaxError</code> with the line and the message.</p>
+      <pre><code>res, err := gopuml.Render(ctx, src,
+	&amp;gopuml.Options{Format: gopuml.SVG})</code></pre>
+    </article>
+    <article>
+      <h3>HTTP server</h3>
+      <p>Compatible with PlantUML's built-in server and the main plantuml-server routes: <code>/svg/&lt;encoded&gt;</code>, <code>/png/&lt;encoded&gt;</code>, <code>POST /render</code> and more.</p>
+      <pre><code>plantuml --http-server:8080</code></pre>
+    </article>
+    <article>
+      <h3>WebAssembly module</h3>
+      <p>An ES module for browsers and Node.js, in the <code>SANDBOX</code> security profile. The playground on this page runs it.</p>
+      <pre><code>const result = await plantuml.render(source,
+  { format: 'svg' });</code></pre>
+    </article>
+  </div>
+</section>
+
+<section id="playground" aria-labelledby="playground-title">
+  <h2 id="playground-title">Playground</h2>
+  <p>Edit the source, and gopuml v0.1.0 renders it in this page with WebAssembly. No server is involved.</p>
+  <aside class="note">Sequence diagrams and activity diagrams in the new syntax render here. Class, object, use case, component, deployment, state and legacy activity diagrams need Graphviz, which the browser build does not have, so they show its error.</aside>
+  <div class="pg" hidden>
+    <div class="pg-bar">
+      <label for="pg-example">Example</label>
+      <select id="pg-example"></select>
+      <a id="pg-download" class="button" download="diagram.svg" hidden>Download SVG</a>
+    </div>
+    <div class="pg-panes">
+      <textarea id="pg-source" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Diagram source"></textarea>
+      <div class="pg-out">
+        <p id="pg-status" class="pg-status" role="status" aria-live="polite">The module loads when the playground is on screen.</p>
+        <div class="sheet-paper"><img id="pg-image" alt="" hidden></div>
+      </div>
+    </div>
+  </div>
+  <noscript><p class="note">The playground needs JavaScript. The rest of this page works without it.</p></noscript>
+</section>
+
+<section id="diagrams" aria-labelledby="diagrams-title">
+  <h2 id="diagrams-title">Supported diagrams</h2>
+  <div class="scroll">
+    <table class="support">
+      <thead>
+        <tr><th scope="col">Diagram type</th><th scope="col">SVG</th><th scope="col">PNG</th><th scope="col">TXT / UTXT</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Sequence</th><td>yes</td><td>yes</td><td>yes</td></tr>
+        <tr><th scope="row">Class and object</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
+        <tr><th scope="row">Use case, component and deployment</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
+        <tr><th scope="row">State</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
+        <tr><th scope="row">Activity (new syntax)</th><td>yes</td><td>yes</td><td>no</td></tr>
+        <tr><th scope="row">Activity (legacy syntax)</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <aside class="note">Graphviz <code>dot</code> is needed only for class, object, description (use case, component, deployment), state and legacy activity diagrams, which it lays out as upstream does. Sequence diagrams and activity diagrams in the new syntax do not need it.</aside>
+  <p>The preprocessor (<code>!include</code>, <code>!define</code>, functions, all 74 builtins, JSON), themes, skin parameters, styles and creole are supported, including diagrams embedded in text with <code>{{</code> ... <code>}}</code>, and so is the PREPROC output (<code>--preproc</code>).</p>
+  <p>Other diagram types (archimate, timing, gantt, mindmap, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
+</section>
+
+<section id="install" aria-labelledby="install-title">
+  <h2 id="install-title">Install</h2>
+  <p>Each <a href="https://github.com/ekalinin/gopuml/releases">release</a> has an archive of the command line for linux, macOS and windows on amd64 and arm64 (<code>.zip</code> on windows), an archive of the WebAssembly module, and <code>checksums.txt</code> with the SHA-256 of every archive. Download the archive of your system and <code>checksums.txt</code> from the <a href="https://github.com/ekalinin/gopuml/releases/tag/v0.1.0">page of v0.1.0</a>, or with the GitHub CLI, then check and unpack it:</p>
+  <pre><code>gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
+shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
+tar xzf gopuml_0.1.0_darwin_arm64.tar.gz plantuml
+./plantuml --version</code></pre>
+  <aside class="note">The macOS binaries are not signed. When a browser downloaded the archive, macOS blocks the binary until its quarantine attribute is removed: <code>xattr -d com.apple.quarantine plantuml</code></aside>
+  <p>With Go 1.26 or later, the command line can also be installed from source:</p>
+  <pre><code>go install github.com/ekalinin/gopuml/cmd/plantuml@v0.1.0</code></pre>
+</section>
+
+<section id="comparison" aria-labelledby="comparison-title">
+  <h2 id="comparison-title">Compared with PlantUML on Java</h2>
+  <p><code>make bench</code> runs the command line of v0.1.0 and the upstream jar on the same machine, with the same <code>dot</code> for both. The start time is the median time of separate processes that each render a small sequence diagram with <code>-tsvg -pipe</code>. The rendering time of a diagram type is the median time of one process that renders the curated conformance cases of that type with <code>-tsvg -o &lt;dir&gt;</code>; both use their default of one thread per processor.</p>
+  <div class="scroll">
+    <table class="lifelines" style="--max: 959">
+      <thead>
+        <tr><td></td><th scope="col" class="java"><span>PlantUML 1.2026.8 (Java)</span></th><th scope="col" class="go"><span>gopuml</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Start time (one small sequence diagram)</th><td class="java" style="--t: 721">721 ms</td><td class="go" style="--t: 18">18 ms</td></tr>
+        <tr><th scope="row">Rendering: sequence (53 cases)</th><td class="java" style="--t: 897">897 ms (17 ms per case)</td><td class="go" style="--t: 86">86 ms (1.6 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: class (19 cases)</th><td class="java" style="--t: 959">959 ms (50 ms per case)</td><td class="go" style="--t: 110">110 ms (5.8 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: description (12 cases)</th><td class="java" style="--t: 869">869 ms (72 ms per case)</td><td class="go" style="--t: 105">105 ms (8.8 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: state (19 cases)</th><td class="java" style="--t: 934">934 ms (49 ms per case)</td><td class="go" style="--t: 147">147 ms (7.8 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: activity (24 cases)</th><td class="java" style="--t: 895">895 ms (37 ms per case)</td><td class="go" style="--t: 107">107 ms (4.5 ms per case)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="env">
+    <li>Machine: darwin/arm64, Apple M3 Pro, 12 CPUs</li>
+    <li>Java: openjdk version "25.0.4.1" 2026-08-18 LTS</li>
+    <li>Go: go1.27.1</li>
+    <li>Graphviz: dot - graphviz version 15.0.0 (20260523.1842)</li>
+    <li>Runs: median of 10 start runs and of 5 rendering runs per type</li>
+  </ul>
+  <p>The numbers depend on the machine. <code>make bench</code> measures them again on yours.</p>
+</section>
+
+<section id="conformance" aria-labelledby="conformance-title">
+  <h2 id="conformance-title">Conformance</h2>
+  <p><code>make conformance REQUIRE=all</code> compares v0.1.0 with upstream PlantUML 1.2026.8 on 502 cases (upstream's Vega test corpus plus curated cases):</p>
+  <ul class="tally">
+    <li><strong>372</strong> cases pass</li>
+    <li><strong>25</strong> cases are documented known differences (<code>testdata/conformance/known-differences.yaml</code>)</li>
+    <li><strong>105</strong> cases are diagram types that are not supported yet</li>
+    <li><strong>0</strong> cases fail</li>
+  </ul>
+  <p>Most SVG outputs are byte-identical to upstream's, except the encoded source in <code>&lt;?plantuml-src ...?&gt;</code>, which uses a different deflate implementation and decodes to the same text.</p>
+</section>
+
+</main>
+
+<footer id="license" class="bottom" aria-labelledby="license-title">
+  <h2 id="license-title">License</h2>
+  <p>MIT, see <a href="https://github.com/ekalinin/gopuml/blob/main/LICENSE">LICENSE</a>. gopuml translates the MIT-licensed variant of PlantUML 1.2026.8, (C) Copyright 2009-2024, Arnaud Roques. <a href="https://github.com/ekalinin/gopuml/blob/main/NOTICE">NOTICE</a> lists the bundled assets with their licenses.</p>
+  <ul class="links">
+    <li><a href="https://github.com/ekalinin/gopuml">Repository</a></li>
+    <li><a href="https://github.com/ekalinin/gopuml/releases">Releases</a></li>
+    <li><a href="https://pkg.go.dev/github.com/ekalinin/gopuml">Go package documentation</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
