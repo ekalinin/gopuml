@@ -4,7 +4,7 @@
 
 ## 1. Release archive
 
-- [ ] 1.1 List `LICENSE` and `NOTICE` in the `wasm` archive of `.goreleaser.yaml` (D1), make `TestReleaseConfig` require them with two mutations (the WASM archive without `LICENSE`, without `NOTICE`), and add "release: License files of the WASM archive" to the case `release/release-artifacts.go.yaml`. Verify that the test passes and fails for each mutation, that `goreleaser check` passes, and that the WASM archive of `goreleaser release --snapshot --clean` lists exactly `plantuml.wasm`, `wasm_exec.js`, `plantuml.mjs`, `LICENSE` and `NOTICE` at its root
+- [x] 1.1 List `LICENSE` and `NOTICE` in the `wasm` archive of `.goreleaser.yaml` (D1), make `TestReleaseConfig` require them with two mutations (the WASM archive without `LICENSE`, without `NOTICE`), and add "release: License files of the WASM archive" to the case `release/release-artifacts.go.yaml`. Verify that the test passes and fails for each mutation, that `goreleaser check` passes, and that the WASM archive of `goreleaser release --snapshot --clean` lists exactly `plantuml.wasm`, `wasm_exec.js`, `plantuml.mjs`, `LICENSE` and `NOTICE` at its root
 
 ## 2. Site
 

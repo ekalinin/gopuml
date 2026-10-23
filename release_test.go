@@ -155,8 +155,8 @@ func checkReleaseConfig(data []byte) error {
 		}
 		got := files(a.Files)
 		staged := slices.IndexFunc(got, func(src string) bool { return strings.HasSuffix(src, "/wasm_exec.js") })
-		if staged < 0 || !slices.Contains(got, "cmd/plantuml-wasm/plantuml.mjs") || len(got) != 2 {
-			errs = append(errs, fmt.Errorf("the WASM archive contains %v besides plantuml.wasm, not wasm_exec.js and plantuml.mjs", got))
+		if staged < 0 || !slices.Contains(got, "cmd/plantuml-wasm/plantuml.mjs") || !slices.Contains(got, "LICENSE") || !slices.Contains(got, "NOTICE") || len(got) != 4 {
+			errs = append(errs, fmt.Errorf("the WASM archive contains %v besides plantuml.wasm, not wasm_exec.js, plantuml.mjs, LICENSE and NOTICE", got))
 		} else if !slices.ContainsFunc(c.Before.Hooks, func(h string) bool {
 			return strings.Contains(h, `"$(go env GOROOT)/lib/wasm/wasm_exec.js" `+got[staged])
 		}) {
@@ -193,6 +193,8 @@ func TestReleaseConfig(t *testing.T) {
 		{"no LICENSE", "      - LICENSE\n", ""},
 		{"no zip on windows", "          - zip\n", "          - tar.gz\n"},
 		{"no plantuml.mjs", "      - src: cmd/plantuml-wasm/plantuml.mjs\n        strip_parent: true\n", ""},
+		{"no LICENSE in the WASM archive", "        strip_parent: true\n      - LICENSE\n", "        strip_parent: true\n"},
+		{"no NOTICE in the WASM archive", "      - LICENSE\n      - NOTICE\n\nchecksum:", "      - LICENSE\n\nchecksum:"},
 		{"wasm_exec.js not staged", "/lib/wasm/wasm_exec.js\" .cache", "/misc/wasm/wasm_exec.js\" .cache"},
 		{"no WASM build", "  - id: wasm\n    main: ./cmd/plantuml-wasm\n", "  - id: wasm\n    main: ./cmd/other\n"},
 		{"checksums with SHA-1", "algorithm: sha256", "algorithm: sha1"},
