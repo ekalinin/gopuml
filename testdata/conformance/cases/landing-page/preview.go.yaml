@@ -1,0 +1,6 @@
+id: landing-page/preview
+scenarios:
+  - "landing-page: Preview"
+package: tools/site
+test: TestLocalBuild
+why: Site assembly tool of this implementation with a local build of the module; serving the preview in a browser is checked by hand.

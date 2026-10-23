@@ -9,7 +9,7 @@
 
 ## 2. Site assembly
 
-- [ ] 2.1 Add `tools/site` with the `-wasm` mode (D4) and the `site` target of the Makefile (`make wasm`, then the tool with `-wasm dist/wasm` into `dist/site`). Add `TestLocalBuild` and the case `landing-page/preview.go.yaml` for "landing-page: Preview". Verify that the test passes, and that `make site` writes `dist/site/index.html` and `dist/site/wasm/` with `plantuml.wasm`, `wasm_exec.js` and `plantuml.mjs`
+- [x] 2.1 Add `tools/site` with the `-wasm` mode (D4) and the `site` target of the Makefile (`make wasm`, then the tool with `-wasm dist/wasm` into `dist/site`). Add `TestLocalBuild` and the case `landing-page/preview.go.yaml` for "landing-page: Preview". Verify that the test passes, and that `make site` writes `dist/site/index.html` and `dist/site/wasm/` with `plantuml.wasm`, `wasm_exec.js` and `plantuml.mjs`
 - [ ] 2.2 Add the `-download` mode (D4): `checksums.txt` and the WASM archive of the release named by the page, the SHA-256 check, the unpacking into `wasm/`, the notice and `deploy=false` on a 404, `deploy=true` otherwise. Add `TestDownloadRelease`, `TestDownloadMismatch` and `TestDownloadUnpublished` with `httptest` servers, and the cases `landing-page/checksum.go.yaml` for "landing-page: Checksum mismatch" and `landing-page/unpublished.go.yaml` for "landing-page: Release not published yet". Verify that the tests pass, that a mismatch and a 404 leave no output, and that a run against `https://github.com/ekalinin/gopuml/releases/download` prints the notice while the repository is private
 
 ## 3. Playground
