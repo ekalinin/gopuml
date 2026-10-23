@@ -82,6 +82,7 @@ for (const [i, e] of examples.entries()) {
 }
 source.value = examples[0].source;
 panel.hidden = false;
+document.getElementById('pg-start').hidden = true;
 
 let timer;
 source.addEventListener('input', () => {
