@@ -18,5 +18,5 @@
 ## 4. Checks and publication
 
 - [x] 4.1 Run `make lint`, `make test`, `make provenance` and `openspec validate add-wasm-license-files --strict`. Verify that all pass
-- [ ] 4.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
+- [x] 4.2 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass
 - [ ] 4.3 After the merge, verify that the `pages` workflow deploys the site again and that `https://ekalinin.github.io/gopuml/wasm/LICENSE` and `https://ekalinin.github.io/gopuml/wasm/NOTICE` equal the files on `main`
