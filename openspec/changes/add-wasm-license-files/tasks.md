@@ -8,7 +8,7 @@
 
 ## 2. Site
 
-- [ ] 2.1 Add the `-root` flag to `tools/site` and copy `LICENSE` and `NOTICE` from it into `<out>/wasm/` in both modes, reading them before anything is written (D2). Add `TestLicenseFiles` and the case `landing-page/license-files.go.yaml` for "landing-page: License files on the site". Verify that the tests of `tools/site` pass, that a root without `NOTICE` writes nothing, and that `make site` writes `dist/site/wasm/LICENSE` and `dist/site/wasm/NOTICE` equal to the files of the repository
+- [x] 2.1 Add the `-root` flag to `tools/site` and copy `LICENSE` and `NOTICE` from it into `<out>/wasm/` in both modes, reading them before anything is written (D2). Add `TestLicenseFiles` and the case `landing-page/license-files.go.yaml` for "landing-page: License files on the site". Verify that the tests of `tools/site` pass, that a root without `NOTICE` writes nothing, and that `make site` writes `dist/site/wasm/LICENSE` and `dist/site/wasm/NOTICE` equal to the files of the repository
 - [ ] 2.2 Add `LICENSE` and `NOTICE` to the push paths of `.github/workflows/pages.yml` (D3), make `TestPagesWorkflow` require them with a mutation that removes `NOTICE`, and add "landing-page: Change of the notices" to the case `landing-page/deployment.go.yaml`. Verify that the test passes and fails for the mutation, that `actionlint` reports nothing, and that `TestScenarioCoverage` passes
 
 ## 3. Documentation

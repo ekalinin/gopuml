@@ -9,14 +9,15 @@
 // from its gopuml-release meta tag. The module comes either from a local
 // build (-wasm, the output of make wasm) or from the WASM archive of that
 // release (-download, the base URL of the release downloads), checked
-// against the checksums file of the release. When the release is not
+// against the checksums file of the release. The LICENSE and NOTICE of the
+// repository (-root) go next to the module. When the release is not
 // published yet (its checksums file answers 404), it prints a notice, writes
 // nothing and succeeds. Nothing is written when a check fails.
 //
 // When GITHUB_OUTPUT is set, it appends deploy=true, or deploy=false when it
 // wrote nothing, to the file it names.
 //
-// Usage: go run ./tools/site -out dir (-wasm dir | -download url) [-src dir]
+// Usage: go run ./tools/site -out dir (-wasm dir | -download url) [-src dir] [-root dir]
 package main
 
 import (
@@ -31,6 +32,7 @@ import (
 	"io"
 	"io/fs"
 	"log"
+	"maps"
 	"net/http"
 	"os"
 	"path"
@@ -42,6 +44,10 @@ import (
 
 // wasmFiles are the files of the module, in the wasm directory of the site.
 var wasmFiles = []string{"plantuml.wasm", "wasm_exec.js", "plantuml.mjs"}
+
+// licenseFiles are the files of the repository root that go next to the
+// module.
+var licenseFiles = []string{"LICENSE", "NOTICE"}
 
 var releaseMeta = regexp.MustCompile(`<meta name="gopuml-release" content="(v\d+\.\d+\.\d+)">`)
 
@@ -55,6 +61,7 @@ func main() {
 func run(args []string, stdout io.Writer) error {
 	fl := flag.NewFlagSet("site", flag.ContinueOnError)
 	src := fl.String("src", "site", "directory of the page")
+	root := fl.String("root", ".", "repository root, whose LICENSE and NOTICE go next to the module")
 	out := fl.String("out", "", "output directory, replaced by the site")
 	local := fl.String("wasm", "", "directory of a local build of the module")
 	download := fl.String("download", "", "base URL of the release downloads")
@@ -62,16 +69,20 @@ func run(args []string, stdout io.Writer) error {
 		return err
 	}
 	if *out == "" || (*local == "") == (*download == "") {
-		return errors.New("usage: site -out dir (-wasm dir | -download url) [-src dir]")
+		return errors.New("usage: site -out dir (-wasm dir | -download url) [-src dir] [-root dir]")
 	}
 
 	tag, err := release(*src)
 	if err != nil {
 		return err
 	}
+	notices, err := readFiles(*root, licenseFiles)
+	if err != nil {
+		return err
+	}
 	var module map[string][]byte
 	if *local != "" {
-		module, err = readModule(*local)
+		module, err = readFiles(*local, wasmFiles)
 	} else {
 		module, err = downloadModule(strings.TrimSuffix(*download, "/"), tag)
 	}
@@ -82,6 +93,7 @@ func run(args []string, stdout io.Writer) error {
 	if err != nil {
 		return err
 	}
+	maps.Copy(module, notices)
 	if err := write(*src, *out, module); err != nil {
 		os.RemoveAll(*out)
 		return err
@@ -103,17 +115,18 @@ func release(src string) (string, error) {
 	return string(m[0][1]), nil
 }
 
-// readModule reads the files of the module from a local build.
-func readModule(dir string) (map[string][]byte, error) {
-	module := map[string][]byte{}
-	for _, name := range wasmFiles {
+// readFiles reads the named files of dir: the module of a local build, or
+// the license files of the repository.
+func readFiles(dir string, names []string) (map[string][]byte, error) {
+	files := map[string][]byte{}
+	for _, name := range names {
 		data, err := os.ReadFile(filepath.Join(dir, name))
 		if err != nil {
 			return nil, err
 		}
-		module[name] = data
+		files[name] = data
 	}
-	return module, nil
+	return files, nil
 }
 
 var errUnpublished = errors.New("not published")
@@ -199,7 +212,8 @@ func unpack(name string, data []byte) (map[string][]byte, error) {
 	return module, nil
 }
 
-// write replaces out with the files of src and the module in out/wasm.
+// write replaces out with the files of src and the module, with its license
+// files, in out/wasm.
 func write(src, out string, module map[string][]byte) error {
 	if err := os.RemoveAll(out); err != nil {
 		return err

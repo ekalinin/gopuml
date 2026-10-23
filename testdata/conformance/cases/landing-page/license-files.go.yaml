@@ -1,0 +1,6 @@
+id: landing-page/license-files
+scenarios:
+  - "landing-page: License files on the site"
+package: tools/site
+test: TestLicenseFiles
+why: Site assembly tool of this implementation, with a local build and with a fake release server, from a temporary repository root.
