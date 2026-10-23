@@ -22,7 +22,7 @@ The project SHALL publish a landing page at `https://ekalinin.github.io/gopuml/`
 
 ### Requirement: Project presentation
 
-The page SHALL describe the four forms of gopuml (a command line that replaces `java -jar plantuml.jar`, a Go library, an HTTP server, a WebAssembly module), the supported diagram types with their output formats and Graphviz requirement, the installation of the release it names (the release archives with their checksums, and `go install`), the conformance results, and the license. It SHALL link to the repository, the releases and the Go package documentation.
+The page SHALL describe the four forms of gopuml (a command line that replaces `java -jar plantuml.jar`, a Go library, an HTTP server, a WebAssembly module), the supported diagram types with their output formats and Graphviz requirement, the installation of the release it names (the release archives with their checksums, downloaded with the GitHub CLI or with `curl`, and `go install`), the conformance results, and the license. It SHALL link to the repository, the releases and the Go package documentation.
 
 #### Scenario: Supported diagram types
 
@@ -32,7 +32,7 @@ The page SHALL describe the four forms of gopuml (a command line that replaces `
 #### Scenario: Installation
 
 - **WHEN** a visitor reads the installation section
-- **THEN** it names the release the page names, and shows how to download an archive with its checksums file and how to install the command line with `go install`
+- **THEN** it names the release the page names, and shows how to download an archive with its checksums file with the GitHub CLI and with `curl`, and how to install the command line with `go install`
 
 ### Requirement: Comparison with upstream on the page
 

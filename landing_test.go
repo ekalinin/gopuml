@@ -215,6 +215,8 @@ func checkLandingPage(page, readme, notes string) error {
 	for _, want := range []string{
 		"gh release download " + tag + " ",
 		"-p checksums.txt",
+		"curl -fLO https://github.com/ekalinin/gopuml/releases/download/" + tag + "/gopuml_" + tag[1:] + "_",
+		"curl -fLO https://github.com/ekalinin/gopuml/releases/download/" + tag + "/checksums.txt",
 		"shasum -a 256 --ignore-missing -c checksums.txt",
 		"gopuml_" + tag[1:] + "_",
 		"go install github.com/ekalinin/gopuml/cmd/plantuml@" + tag,
@@ -291,6 +293,7 @@ func TestLandingPage(t *testing.T) {
 		{"other formats", `<tr><th scope="row">Sequence</th><td>yes</td><td>yes</td><td>yes</td></tr>`, `<tr><th scope="row">Sequence</th><td>yes</td><td>yes</td><td>no</td></tr>`},
 		{"no go install", `go install github.com/ekalinin/gopuml/cmd/plantuml@`, `go get github.com/ekalinin/gopuml/cmd/plantuml@`},
 		{"no checksums", `-p checksums.txt`, ``},
+		{"no curl", `curl -fLO `, `wget `},
 		{"other conformance result", `<strong>372</strong>`, `<strong>371</strong>`},
 		{"no NOTICE link", `blob/main/NOTICE`, `blob/main/README.md`},
 	} {

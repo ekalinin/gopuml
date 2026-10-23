@@ -126,9 +126,13 @@ Alice &lt;-- Bob: Another authentication Response
 
 <section id="install" aria-labelledby="install-title">
   <h2 id="install-title">Install</h2>
-  <p>Each <a href="https://github.com/ekalinin/gopuml/releases">release</a> has an archive of the command line for linux, macOS and windows on amd64 and arm64 (<code>.zip</code> on windows), an archive of the WebAssembly module, and <code>checksums.txt</code> with the SHA-256 of every archive. Download the archive of your system and <code>checksums.txt</code> from the <a href="https://github.com/ekalinin/gopuml/releases/tag/v0.1.0">page of v0.1.0</a>, or with the GitHub CLI, then check and unpack it:</p>
-  <pre><code>gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
-shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
+  <p>Each <a href="https://github.com/ekalinin/gopuml/releases">release</a> has an archive of the command line for linux, macOS and windows on amd64 and arm64 (<code>.zip</code> on windows), an archive of the WebAssembly module, and <code>checksums.txt</code> with the SHA-256 of every archive. Download the archive of your system and <code>checksums.txt</code> from the <a href="https://github.com/ekalinin/gopuml/releases/tag/v0.1.0">page of v0.1.0</a>, or with the GitHub CLI:</p>
+  <pre><code>gh release download v0.1.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt</code></pre>
+  <p>or with <code>curl</code>:</p>
+  <pre><code>curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.1.0/gopuml_0.1.0_darwin_arm64.tar.gz
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.1.0/checksums.txt</code></pre>
+  <p>then check and unpack it:</p>
+  <pre><code>shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
 tar xzf gopuml_0.1.0_darwin_arm64.tar.gz plantuml
 ./plantuml --version</code></pre>
   <aside class="note">The macOS binaries are not signed. When a browser downloaded the archive, macOS blocks the binary until its quarantine attribute is removed: <code>xattr -d com.apple.quarantine plantuml</code></aside>
