@@ -1,0 +1,6 @@
+id: landing-page/deployment
+scenarios:
+  - "landing-page: Change of the page"
+package: .
+test: TestPagesWorkflow
+why: Pages workflow of this implementation, checked by parsing .github/workflows/pages.yml with mutations; the first deployment is checked by hand once GitHub Pages is enabled.

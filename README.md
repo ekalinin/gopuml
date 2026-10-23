@@ -13,6 +13,10 @@ and text output, and it works as:
 No JVM is needed. Graphviz `dot` is needed only for class, description
 (use case, component, deployment), state and legacy activity diagrams.
 
+The [landing page](https://ekalinin.github.io/gopuml/) has a
+[playground](https://ekalinin.github.io/gopuml/#playground) that renders
+sequence and activity diagrams in the browser with the WebAssembly module.
+
 ## Supported diagrams and formats
 
 | Diagram type | SVG | PNG | TXT / UTXT |
