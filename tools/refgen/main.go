@@ -439,6 +439,10 @@ func (g *generator) recordHTTP(cases []*conformance.HTTPCase) error {
 		srv := builtin
 		if c.Server == "plantuml-server" {
 			srv = pserver
+			if wait := undecoratedWait(time.Now(), plantumlServerRequest); g.impl != "go" && wait > 0 {
+				log.Printf("%s: waiting %s for a minute without plantuml-server's time-based error decorations", c.ID, wait.Round(time.Second))
+				time.Sleep(wait)
+			}
 		}
 		rec := conformance.HTTPRecord{Server: c.Server, Method: c.Method, Path: c.RequestPath}
 		if g.impl == "go" && strings.Contains(c.RequestPath, "{encoded}") {
@@ -492,6 +496,29 @@ func (g *generator) recordHTTP(cases []*conformance.HTTPCase) error {
 		}
 	}
 	return nil
+}
+
+// decoratedMinutes are the minutes of the hour in which upstream's
+// PSystemError adds a message (Patreon, Liberapay or a dedication) to error
+// images. RunCli and ReferenceRender turn it off with
+// PSystemError.disableTimeBasedErrorDecorations, which plantuml-server does
+// not call.
+var decoratedMinutes = []int64{1, 8, 13, 15, 30, 39, 48, 55}
+
+// plantumlServerRequest is the time a request to plantuml-server is given
+// to stay out of the decorated minutes.
+const plantumlServerRequest = 20 * time.Second
+
+// undecoratedWait returns how long to wait from now until a window of the
+// given length, at most a minute, starts and ends in minutes without
+// decorations. Upstream counts minutes from the Unix time.
+func undecoratedWait(now time.Time, window time.Duration) time.Duration {
+	decorated := func(t time.Time) bool { return slices.Contains(decoratedMinutes, t.UnixMilli()/60000%60) }
+	start := now
+	for decorated(start) || decorated(start.Add(window)) {
+		start = start.Truncate(time.Minute).Add(time.Minute)
+	}
+	return start.Sub(now)
 }
 
 func bodyExtension(contentType string) string {
