@@ -214,5 +214,5 @@ MIT, see `LICENSE`. This project translates the MIT-licensed variant of
 PlantUML v1.2026.8 (`net.sourceforge.plantuml:plantuml-mit`), (C) Copyright
 2009-2024, Arnaud Roques. Every Go file names the upstream file it comes from
 in its header. `NOTICE` lists the bundled assets (DejaVu fonts, themes) with
-their licenses, the parts of fdlibm the math functions come from, and the
-upstream components that are not included.
+their licenses, the parts of fdlibm the math functions come from, the Go code
+that the binaries link, and the upstream components that are not included.
