@@ -12,6 +12,7 @@ import (
 	"slices"
 	"strings"
 	"testing"
+	"time"
 )
 
 // TestCheckGraphvizMatchesUpstreamReference compares the check with a fake
@@ -41,6 +42,12 @@ func TestCheckGraphvizMatchesUpstreamReference(t *testing.T) {
 	}
 }
 
+// statusTimeout is the timeout of the AddDotStatus cases. They need an
+// answer from the fake dot -V within it, which can take more than
+// testTimeout while the whole suite loads the machine; the hanging layout
+// waits for all of it.
+const statusTimeout = 2 * time.Second
+
 func TestAddDotStatus(t *testing.T) {
 	for _, tc := range []struct {
 		name   string
@@ -64,7 +71,7 @@ exec sleep 30`, 14,
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			exe := writeScript(t, tc.script)
-			lines, code := AddDotStatus(context.Background(), Config{DotPath: exe, Timeout: testTimeout}, false, false)
+			lines, code := AddDotStatus(context.Background(), Config{DotPath: exe, Timeout: statusTimeout}, false, false)
 			if code != tc.code || !slices.Equal(lines, tc.lines) {
 				t.Errorf("AddDotStatus = %d %q, want %d %q", code, lines, tc.code, tc.lines)
 			}
