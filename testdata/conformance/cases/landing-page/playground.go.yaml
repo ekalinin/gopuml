@@ -1,0 +1,10 @@
+id: landing-page/playground
+scenarios:
+  - "landing-page: Sequence diagram"
+  - "landing-page: Syntax error"
+  - "landing-page: Graph-based diagram"
+  - "landing-page: Example diagram"
+  - "landing-page: Download"
+package: cmd/plantuml-wasm
+test: TestPlayground
+why: Playground logic of the landing page, run in Node.js with the WebAssembly module of this build; the editor, the image and the download link in a browser are checked by hand.

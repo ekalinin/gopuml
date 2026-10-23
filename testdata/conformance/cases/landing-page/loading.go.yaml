@@ -1,0 +1,7 @@
+id: landing-page/loading
+scenarios:
+  - "landing-page: Reading the top of the page"
+  - "landing-page: Module not available"
+package: cmd/plantuml-wasm
+test: TestPlaygroundLoading
+why: Loading of the playground of the landing page, run in Node.js with fake loaders; the activation when the playground is reached is checked by hand in a browser.
