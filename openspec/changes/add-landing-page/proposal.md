@@ -2,7 +2,7 @@
 
 ## Why
 
-gopuml has a release (v0.1.0), but the project has no page of its own: the only entry points are the README and the release page on GitHub. `.TODO.md` lists a landing page and the comparison of the start and rendering time with Java PlantUML. The WebAssembly module can render diagrams in a browser, so the page can also let visitors try gopuml without installing anything.
+gopuml has a release (v0.1.0), but the project has no page of its own: the only entry points are the README and the release page on GitHub. The comparison of the start and rendering time with Java PlantUML is only in the release notes. The WebAssembly module can render diagrams in a browser, so the page can also let visitors try gopuml without installing anything.
 
 ## What Changes
 
