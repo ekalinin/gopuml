@@ -23,7 +23,7 @@
 
 ## 5. Documentation
 
-- [ ] 5.1 Add a link to the page and its playground near the top of `README.md`. Verify that `TestReleaseNotes`, `TestLandingPage` and `TestLandingRelease` pass
+- [x] 5.1 Add a link to the page and its playground near the top of `README.md`. Verify that `TestReleaseNotes`, `TestLandingPage` and `TestLandingRelease` pass
 
 ## 6. Checks and publication
 
