@@ -118,16 +118,16 @@ func signatureOf(spec string) StyleSignatureBasic {
 
 func canonical(sig StyleSignatureBasic) string {
 	var names []string
-	for _, n := range sig.Key().SNames() {
+	for _, n := range sig.SNames() {
 		names = append(names, n.String())
 	}
 	st := sig.Stereotypes()
-	slices.Sort(st)
+	slices.SortFunc(st, javaStringCompare)
 	s := strings.Join(names, ".") + javaList(st)
-	if sig.Key().Level() != -1 {
-		s += "#" + itoa(sig.Key().Level())
+	if sig.Level() != -1 {
+		s += "#" + itoa(sig.Level())
 	}
-	if sig.Key().IsStared() {
+	if sig.IsStarred() {
 		s += "*"
 	}
 	return s
@@ -248,7 +248,7 @@ func TestGoldenStyleUser(t *testing.T) {
 		t.Fatal(err)
 	}
 	lines := loadBlocLines(string(data), nil).Lines()
-	parsed, err := NewStyleParserCounter(user).Parse(command.NewBlocLines(lines[1 : len(lines)-1]))
+	parsed, err := StyleLoaderParseStyleText(command.NewBlocLines(lines[1:len(lines)-1]), user)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -264,11 +264,13 @@ func TestGoldenStyleSingleLine(t *testing.T) {
 	var out []string
 	for _, s := range []string{"BackGroundColor:red;", "FontSize: 12; LineColor: blue;",
 		"BackgroundColor:#FF0000;LineThickness:2;", "FontColor : #ABC ; FontStyle : italic ;"} {
-		st, err := NewStyleParser().ParseSingleLine(s)
+		// As Stereogroup.getInnerColors parses a bare property list.
+		styles, err := StyleLoaderParseStyleText(command.SingleString("inlineStereogroupColors {"+s+"}"),
+			&AutomaticCounterBasic{})
 		if err != nil {
 			t.Fatal(err)
 		}
-		out = append(out, esc(s)+"\t"+styleValuesString(st))
+		out = append(out, esc(s)+"\t"+styleValuesString(styles[0]))
 	}
 	compareGolden(t, "style_singleline.golden", out)
 }

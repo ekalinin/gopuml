@@ -65,7 +65,7 @@ func setup(t *testing.T, name string) *klimt.SkinParam {
 		for _, l := range all[1 : len(all)-1] {
 			lines = append(lines, text.NewStringLocated(l, nil))
 		}
-		styles, err := klimt.NewStyleParserCounter(sp.CurrentStyleBuilder()).Parse(command.NewBlocLines(lines))
+		styles, err := klimt.StyleLoaderParseStyleText(command.NewBlocLines(lines), sp.CurrentStyleBuilder())
 		if err != nil {
 			t.Fatal(err)
 		}

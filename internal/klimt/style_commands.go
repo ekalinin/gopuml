@@ -41,7 +41,7 @@ func applyPendingStyleMigration(skinParam ISkinParam) {
 // the styles into it.
 func muteStyles(skinParam ISkinParam, lines command.BlocLines) error {
 	styleBuilder := skinParam.CurrentStyleBuilder()
-	styles, err := NewStyleParserCounter(styleBuilder).Parse(lines)
+	styles, err := StyleLoaderParseStyleText(lines, styleBuilder)
 	if err != nil {
 		return err
 	}

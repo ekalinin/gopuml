@@ -158,7 +158,7 @@ func (s *SkinParam) SetParam(key, value string) {
 		styleBuilder := s.CurrentStyleBuilder()
 		lines, err := embeddedSkinLines("strictuml.skin")
 		if err == nil {
-			if styles, err := NewStyleParserCounter(styleBuilder).Parse(lines); err == nil {
+			if styles, err := StyleLoaderParseStyleText(lines, styleBuilder); err == nil {
 				s.MuteStyle(styles)
 			}
 		}

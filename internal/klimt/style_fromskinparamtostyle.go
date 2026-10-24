@@ -386,8 +386,9 @@ func (c *FromSkinparamToStyle) addStyle(propertyName PName, value Value, styleNa
 	values[propertyName] = value
 	sig := StyleSignatureBasicOf(styleNames...)
 	if c.hasStereo {
-		values = addPriorityForStereotype(values)
-		for _, s := range javaSplit(c.stereo, "&") {
+		names := javaSplit(c.stereo, "&")
+		values = addStereotypeCount(values, len(names))
+		for _, s := range names {
 			sig = sig.AddStereotype(s)
 		}
 	}

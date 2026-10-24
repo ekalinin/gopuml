@@ -442,25 +442,34 @@ func TestColorsHelpers(t *testing.T) {
 }
 
 func TestStyleParserErrors(t *testing.T) {
-	if _, err := NewStyleParser().Parse(command.SingleString("root { FontSize 12 } {")); err == nil {
-		t.Error("an open bracket without selector is an error")
-	} else {
+	for _, tc := range []struct{ text, message string }{
+		{"root { FontSize 12 } {", "Unexpected character '{'"},
+		{"FontSize 12", "Property 'FontSize' declared outside of any block"},
+		{"a, b c {", "Expected '{' after selector [a, b]"},
+		{"@media dark }", "Unterminated @ rule: '@media dark '"},
+	} {
+		_, err := StyleLoaderParseStyleText(command.SingleString(tc.text), &AutomaticCounterBasic{})
 		var pe *StyleParsingError
-		if !errors.As(err, &pe) || pe.Message != "Invalid open bracket" {
-			t.Errorf("error %v", err)
+		if !errors.As(err, &pe) || pe.Message != tc.message {
+			t.Errorf("%q: error %v, want %q", tc.text, err, tc.message)
 		}
 	}
-	if _, err := NewStyleParser().Parse(command.SingleString("root { FontSize : : }")); err == nil {
-		t.Error("bad definition")
+	// A stray "}" is ignored, a block open at the end is closed, and an
+	// unknown property is skipped.
+	styles, err := StyleLoaderParseStyleText(command.SingleString("} root { FontSize 12 ; Foo 1"),
+		&AutomaticCounterBasic{})
+	if err != nil || len(styles) != 1 || styles[0].String() != "[root]  {FontSize=12/null (1)}" {
+		t.Errorf("styles %v, err %v", styles, err)
 	}
-	// A key at the end of the text makes upstream throw NullPointerException.
-	class, _ := expectPanic(t, func() { NewStyleParser().ParseSingleLine("foo") })
-	if class != nullPointer {
-		t.Error(class)
-	}
-	styles, err := NewStyleParser().Parse(command.NewBlocLines(nil))
+	styles, err = StyleLoaderParseStyleText(command.NewBlocLines(nil), &AutomaticCounterBasic{})
 	if err != nil || styles != nil {
 		t.Error("empty sheet")
+	}
+	// A depth out of 0..63 panics, as upstream throws.
+	if class, _ := expectPanic(t, func() {
+		_, _ = StyleLoaderParseStyleText(command.SingleString("depth(64) { FontSize 12 }"), &AutomaticCounterBasic{})
+	}); class != illegalArgument {
+		t.Error(class)
 	}
 }
 
@@ -557,7 +566,7 @@ func TestStyleCommands(t *testing.T) {
 	for _, l := range []string{"<style>", "{", "</style>"} {
 		bad = bad.Add(command.SingleString(l).At(0))
 	}
-	if r := multi.Execute(d, bad, command.One); r.IsOK() || r.Err() != "Error in style definition: Invalid open bracket" {
+	if r := multi.Execute(d, bad, command.One); r.IsOK() || r.Err() != "Error in style definition: Unexpected character '{'" {
 		t.Errorf("bad sheet %q", r.Err())
 	}
 
@@ -885,7 +894,7 @@ func TestReviewFixes(t *testing.T) {
 
 	// Dark-only values have no regular text.
 	b := mustLoadSkin(t, "plantuml.skin")
-	styles, err := NewStyleParserCounter(b).Parse(command.SingleString("@media dark { root { LineStyle 2-2 } }"))
+	styles, err := StyleLoaderParseStyleText(command.SingleString("@media dark { root { LineStyle 2-2 } }"), b)
 	if err != nil {
 		t.Fatal(err)
 	}

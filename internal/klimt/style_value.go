@@ -37,7 +37,7 @@ type Value interface {
 	// AsHorizontalAlignment returns the alignment, HorizontalAlignmentNull
 	// when the value is not one.
 	AsHorizontalAlignment() geom.HorizontalAlignment
-	Priority() int
+	Specificity() Specificity
 	String() string
 }
 
@@ -105,23 +105,23 @@ func (v valueAbstract) AsHorizontalAlignment() geom.HorizontalAlignment {
 	return 0
 }
 
-func (v valueAbstract) Priority() int {
+func (v valueAbstract) Specificity() Specificity {
 	v.unsupported()
-	return 0
+	return Specificity{}
 }
 
 // ValueColor is a color value set from a command (for example "#red" on an
-// element), with the priority of the value it replaces.
+// element), with the specificity of the value it replaces.
 type ValueColor struct {
 	valueAbstract
-	color    color.HColor
-	priority int
+	color       color.HColor
+	specificity Specificity
 }
 
 // NewValueColor returns a color value.
-func NewValueColor(c color.HColor, priority int) *ValueColor {
-	return &ValueColor{valueAbstract: valueAbstract{name: "net.sourceforge.plantuml.style.ValueColor"}, color: c,
-		priority: priority}
+func NewValueColor(c color.HColor, specificity Specificity) *ValueColor {
+	return &ValueColor{valueAbstract: valueAbstract{name: "net.sourceforge.plantuml.style.value.ValueColor"},
+		color: c, specificity: specificity}
 }
 
 // String is upstream's toString, the color.
@@ -130,15 +130,15 @@ func (v *ValueColor) String() string { return v.color.String() }
 // AsColor returns the color.
 func (v *ValueColor) AsColor(*color.HColorSet) color.HColor { return v.color }
 
-// Priority returns the priority.
-func (v *ValueColor) Priority() int { return v.priority }
+// Specificity returns the specificity.
+func (v *ValueColor) Specificity() Specificity { return v.specificity }
 
 // ValueNull is the value of a property that is not set.
 type ValueNull struct {
 	valueAbstract
 }
 
-var valueNull = &ValueNull{valueAbstract: valueAbstract{name: "net.sourceforge.plantuml.style.ValueNull"}}
+var valueNull = &ValueNull{valueAbstract: valueAbstract{name: "net.sourceforge.plantuml.style.value.ValueNull"}}
 
 // ValueNullValue returns upstream's ValueNull.NULL.
 func ValueNullValue() Value { return valueNull }
@@ -173,20 +173,105 @@ func (v *ValueNull) AsHorizontalAlignment() geom.HorizontalAlignment {
 }
 
 // String stands for Java's Object.toString.
-func (v *ValueNull) String() string { return "net.sourceforge.plantuml.style.ValueNull" }
+func (v *ValueNull) String() string { return "net.sourceforge.plantuml.style.value.ValueNull" }
+
+// Specificity is how specific a style declaration is, compared tier by tier
+// from the most significant: a forced override, the ancestor cascade, the
+// ancestor rank (0 for the element's own level, more negative farther up),
+// the number of stereotypes of the selector, and the order of the
+// declaration. It is a comparable value.
+type Specificity struct {
+	forced          bool
+	ancestorCascade bool
+	ancestorRank    int
+	stereotypeCount int
+	order           int
+}
+
+// SpecificityAtOrder returns the specificity of a plain declaration at its
+// position.
+func SpecificityAtOrder(order int) Specificity { return Specificity{order: order} }
+
+// SpecificityForcedOverride returns the specificity of an explicit override,
+// which wins over anything.
+func SpecificityForcedOverride() Specificity { return Specificity{forced: true} }
+
+// WithStereotypeCount returns the specificity of a selector with count
+// stereotypes.
+func (s Specificity) WithStereotypeCount(count int) Specificity {
+	s.stereotypeCount = count
+	return s
+}
+
+// WithAncestorRank returns the specificity applied through the ancestor
+// cascade at rank.
+func (s Specificity) WithAncestorRank(rank int) Specificity {
+	s.ancestorCascade = true
+	s.ancestorRank = rank
+	return s
+}
+
+// HasStereotype reports whether the selector requires a stereotype.
+func (s Specificity) HasStereotype() bool { return s.stereotypeCount > 0 }
+
+// Compare compares the tiers in order: -1, 0 or 1.
+func (s Specificity) Compare(other Specificity) int {
+	if c := compareBool(s.forced, other.forced); c != 0 {
+		return c
+	}
+	if c := compareBool(s.ancestorCascade, other.ancestorCascade); c != 0 {
+		return c
+	}
+	for _, c := range [...][2]int{{s.ancestorRank, other.ancestorRank},
+		{s.stereotypeCount, other.stereotypeCount}, {s.order, other.order}} {
+		if c[0] != c[1] {
+			if c[0] < c[1] {
+				return -1
+			}
+			return 1
+		}
+	}
+	return 0
+}
+
+func compareBool(a, b bool) int {
+	switch {
+	case a == b:
+		return 0
+	case a:
+		return 1
+	}
+	return -1
+}
+
+// IsBiggerThan reports whether s is more specific than other.
+func (s Specificity) IsBiggerThan(other Specificity) bool { return s.Compare(other) > 0 }
+
+// String is upstream's toString, for example "3" or "3,stereo=1".
+func (s Specificity) String() string {
+	switch {
+	case s.forced:
+		return "override"
+	case s.ancestorCascade:
+		return itoa(s.order) + ",stereo=" + itoa(s.stereotypeCount) + ",ancestor=" + itoa(s.ancestorRank)
+	case s.stereotypeCount != 0:
+		return itoa(s.order) + ",stereo=" + itoa(s.stereotypeCount)
+	}
+	return itoa(s.order)
+}
 
 // DarkString is the regular and dark mode texts of a value, with the
-// priority that decides merges (later declarations have higher
-// priorities). A missing text is "" with its flag false (null upstream).
+// specificity that decides merges. A missing text is "" with its flag false
+// (null upstream).
 type DarkString struct {
 	value1, value2 string
 	has1, has2     bool
-	priority       int
+	specificity    Specificity
 }
 
 // NewDarkString returns the texts; a nil pointer is a missing text.
-func NewDarkString(value1, value2 *string, priority int) DarkString {
-	d := DarkString{priority: priority}
+func NewDarkString(value1, value2 *string, specificity Specificity) DarkString {
+	d := DarkString{specificity: specificity}
 	if value1 != nil {
 		d.value1, d.has1 = *value1, true
 	}
@@ -196,34 +281,43 @@ func NewDarkString(value1, value2 *string, priority int) DarkString {
 	return d
 }
 
-// MergeWith returns the merge of two values: the higher priority wins,
-// except that a regular-only and a dark-only value combine.
+// MergeWith returns the merge of two values: the more specific wins, except
+// that a regular-only and a dark-only value combine.
 func (d DarkString) MergeWith(other *DarkString) DarkString {
 	if other == nil {
 		return d
 	}
 	if (!d.has2 && !other.has2) || !d.has1 && !other.has1 {
-		if d.priority > other.priority {
+		if d.specificity.IsBiggerThan(other.specificity) {
 			return d
 		}
 		return *other
 	}
 	if !d.has2 && !other.has1 {
-		return DarkString{value1: d.value1, has1: d.has1, value2: other.value2, has2: other.has2, priority: d.priority}
+		return DarkString{value1: d.value1, has1: d.has1, value2: other.value2, has2: other.has2,
+			specificity: d.specificity}
 	}
 	if !other.has2 && !d.has1 {
 		return DarkString{value1: other.value1, has1: other.has1, value2: d.value2, has2: d.has2,
-			priority: other.priority}
+			specificity: other.specificity}
 	}
-	if d.priority > other.priority {
+	if d.specificity.IsBiggerThan(other.specificity) {
 		return d
 	}
 	return *other
 }
 
-// AddPriority returns the value with its priority increased by delta.
-func (d DarkString) AddPriority(delta int) DarkString {
-	d.priority += delta
+// WithAncestorRank returns the value applied through the ancestor cascade at
+// rank.
+func (d DarkString) WithAncestorRank(rank int) DarkString {
+	d.specificity = d.specificity.WithAncestorRank(rank)
+	return d
+}
+
+// WithStereotypeCount returns the value of a selector with count
+// stereotypes.
+func (d DarkString) WithStereotypeCount(count int) DarkString {
+	d.specificity = d.specificity.WithStereotypeCount(count)
 	return d
 }
 
@@ -236,7 +330,7 @@ func (d DarkString) String() string {
 	if d.has2 {
 		v2 = d.value2
 	}
-	return v1 + "/" + v2 + " (" + itoa(d.priority) + ")"
+	return v1 + "/" + v2 + " (" + d.specificity.String() + ")"
 }
 
 // Value1 returns the regular text; ok is false when it is missing.
@@ -245,8 +339,8 @@ func (d DarkString) Value1() (string, bool) { return d.value1, d.has1 }
 // Value2 returns the dark mode text; ok is false when it is missing.
 func (d DarkString) Value2() (string, bool) { return d.value2, d.has2 }
 
-// Priority returns the priority.
-func (d DarkString) Priority() int { return d.priority }
+// Specificity returns the specificity.
+func (d DarkString) Specificity() Specificity { return d.specificity }
 
 // AutomaticCounter gives increasing priorities to the declared values.
 type AutomaticCounter interface {
@@ -274,23 +368,29 @@ type ValueImpl struct {
 	value DarkString
 }
 
-// ValueImplDark returns a dark mode value with the next priority.
+// ValueImplDark returns a dark mode value at the next order.
 func ValueImplDark(value string, counter AutomaticCounter) *ValueImpl {
-	return &ValueImpl{value: DarkString{value2: value, has2: true, priority: counter.NextInt()}}
+	return &ValueImpl{value: DarkString{value2: value, has2: true, specificity: SpecificityAtOrder(counter.NextInt())}}
 }
 
-// ValueImplRegular returns a regular value with the next priority.
+// ValueImplRegular returns a regular value at the next order.
 func ValueImplRegular(value string, counter AutomaticCounter) *ValueImpl {
-	return &ValueImpl{value: DarkString{value1: value, has1: true, priority: counter.NextInt()}}
+	return &ValueImpl{value: DarkString{value1: value, has1: true, specificity: SpecificityAtOrder(counter.NextInt())}}
 }
 
-// ValueImplRegularPriority returns a regular value with a priority.
-func ValueImplRegularPriority(value string, priority int) *ValueImpl {
-	return &ValueImpl{value: DarkString{value1: value, has1: true, priority: priority}}
+// ValueImplRegularSpecificity returns a regular value with a specificity.
+func ValueImplRegularSpecificity(value string, specificity Specificity) *ValueImpl {
+	return &ValueImpl{value: DarkString{value1: value, has1: true, specificity: specificity}}
+}
+
+// ValueImplOf returns a value with its regular and dark texts (one of them
+// may be nil) and a specificity.
+func ValueImplOf(light, dark *string, specificity Specificity) *ValueImpl {
+	return &ValueImpl{value: NewDarkString(light, dark, specificity)}
 }
 
 // MergeWith returns the merge with other (which may be nil): DarkString
-// merging with another ValueImpl, the higher priority with a ValueColor.
+// merging with another ValueImpl, the more specific with a ValueColor.
 func (v *ValueImpl) MergeWith(other Value) Value {
 	if other == nil {
 		return v
@@ -299,7 +399,7 @@ func (v *ValueImpl) MergeWith(other Value) Value {
 	case *ValueImpl:
 		return &ValueImpl{value: v.value.MergeWith(&o.value)}
 	case *ValueColor:
-		if o.Priority() > v.Priority() {
+		if o.Specificity().IsBiggerThan(v.Specificity()) {
 			return o
 		}
 		return v
@@ -308,9 +408,16 @@ func (v *ValueImpl) MergeWith(other Value) Value {
 	return nil
 }
 
-// AddPriority returns the value with its priority increased by delta.
-func (v *ValueImpl) AddPriority(delta int) *ValueImpl {
-	return &ValueImpl{value: v.value.AddPriority(delta)}
+// WithAncestorRank returns the value applied through the ancestor cascade
+// at rank.
+func (v *ValueImpl) WithAncestorRank(rank int) *ValueImpl {
+	return &ValueImpl{value: v.value.WithAncestorRank(rank)}
+}
+
+// WithStereotypeCount returns the value of a selector with count
+// stereotypes.
+func (v *ValueImpl) WithStereotypeCount(count int) *ValueImpl {
+	return &ValueImpl{value: v.value.WithStereotypeCount(count)}
 }
 
 // String is upstream's toString.
@@ -459,5 +566,5 @@ func (v *ValueImpl) AsHorizontalAlignment() geom.HorizontalAlignment {
 	return horizontalAlignmentFromString(v.AsString())
 }
 
-// Priority returns the priority.
-func (v *ValueImpl) Priority() int { return v.value.Priority() }
+// Specificity returns the specificity.
+func (v *ValueImpl) Specificity() Specificity { return v.value.Specificity() }

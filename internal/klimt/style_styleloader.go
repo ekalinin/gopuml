@@ -115,7 +115,7 @@ func StyleLoaderLoadSkin(ctx *core.RenderContext, filename string) (*StyleBuilde
 func loadSkinSlow(filename, data string) (*StyleBuilder, error) {
 	styleBuilder := NewStyleBuilder()
 	lines2 := loadBlocLines(data, text.NewLineLocation(filename, nil))
-	styles, err := NewStyleParserCounter(styleBuilder).Parse(lines2)
+	styles, err := StyleLoaderParseStyleText(lines2, styleBuilder)
 	if err != nil {
 		return nil, err
 	}
@@ -129,6 +129,36 @@ func loadSkinSlow(filename, data string) (*StyleBuilder, error) {
 		styleBuilder.LoadInternal(newStyle.Signature(), newStyle)
 	}
 	return styleBuilder, nil
+}
+
+// StyleLoaderParseStyleText parses the text of a style sheet into styles,
+// numbering their values with counter (usually the style builder they are
+// for, so that they win over its styles): the blocks are parsed, merged by
+// selector (a dark value with its regular one), then flattened into one
+// style per selector.
+func StyleLoaderParseStyleText(lines command.BlocLines, counter AutomaticCounter) ([]*Style, error) {
+	if lines.Size() == 0 {
+		return nil, nil
+	}
+	rules, err := parseRawStyleSheet(lines)
+	if err != nil {
+		return nil, err
+	}
+	root := newMergedStyleNode(false)
+	root.mergeAll(rules, counter)
+	return flattenStyles(root), nil
+}
+
+// addStereotypeCount is upstream's StyleLoader.addStereotypeCount: the
+// values of a selector with count stereotypes.
+func addStereotypeCount(tmp styleValues, count int) styleValues {
+	var result styleValues
+	for k, v := range tmp {
+		if v != nil {
+			result[k] = asValueImpl(v).WithStereotypeCount(count)
+		}
+	}
+	return result
 }
 
 // mandatoryRootProperties are the properties that any complete style sheet
