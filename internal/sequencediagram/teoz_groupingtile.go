@@ -295,12 +295,12 @@ func (g *GroupingTile) ensureFollowingParticipantClearsFrame() {
 		return
 	}
 
-	nextPosA := next.PosA(g.StringBounder())
+	nextPosC := next.PosC(g.StringBounder())
 	frameMargin := float64(groupingMarginX + groupingExternalMarginX2)
 
-	nextPosA.EnsureBiggerThan(rightmost.PosC(g.StringBounder()).AddFixed(frameMargin))
+	nextPosC.EnsureBiggerThan(rightmost.PosC(g.StringBounder()).AddFixed(frameMargin))
 
-	g.ensureClearsFrameOf(g, nextPosA, frameMargin, livingSpaces)
+	g.ensureClearsFrameOf(g, nextPosC, frameMargin, livingSpaces)
 }
 
 // ensurePrecedingParticipantClearsFrame is the mirror for the left edge:
@@ -367,28 +367,28 @@ func stableMinX(tile Tile) []Real {
 	return nil
 }
 
-// ensureClearsFrameOf pushes nextPosA past every right edge the frame of
+// ensureClearsFrameOf pushes nextPosC past every right edge the frame of
 // group is built on, margin beyond each.
-func (g *GroupingTile) ensureClearsFrameOf(group *GroupingTile, nextPosA Real, margin float64,
+func (g *GroupingTile) ensureClearsFrameOf(group *GroupingTile, nextPosC Real, margin float64,
 	livingSpaces *LivingSpaces) {
-	g.ensureClearsTitleOf(group, nextPosA, margin, livingSpaces)
+	g.ensureClearsTitleOf(group, nextPosC, margin, livingSpaces)
 
 	for _, tile := range group.tiles {
 		if nested, ok := tile.(groupingTileLike); ok {
 			notes := nested.grouping().notesWidth(g.StringBounder(), NoteRight)
-			g.ensureClearsFrameOf(nested.grouping(), nextPosA, margin+groupingMarginX+groupingExternalMarginX2+notes,
+			g.ensureClearsFrameOf(nested.grouping(), nextPosC, margin+groupingMarginX+groupingExternalMarginX2+notes,
 				livingSpaces)
 			continue
 		}
 		for _, maxX := range stableMaxX(tile) {
-			nextPosA.EnsureBiggerThan(maxX.AddFixed(margin))
+			nextPosC.EnsureBiggerThan(maxX.AddFixed(margin))
 		}
 	}
 }
 
-// ensureClearsTitleOf pushes nextPosA past the right of a frame stretched
+// ensureClearsTitleOf pushes nextPosC past the right of a frame stretched
 // by its title, re-derived from the leftmost touched participant.
-func (g *GroupingTile) ensureClearsTitleOf(group *GroupingTile, nextPosA Real, margin float64,
+func (g *GroupingTile) ensureClearsTitleOf(group *GroupingTile, nextPosC Real, margin float64,
 	livingSpaces *LivingSpaces) {
 	touched := map[*LivingSpace]bool{}
 	collectTouchedLivingSpaces(group.tiles, livingSpaces, touched)
@@ -412,7 +412,7 @@ func (g *GroupingTile) ensureClearsTitleOf(group *GroupingTile, nextPosA Real, m
 	}
 
 	width := group.preferredDimensionIfEmpty(g.StringBounder()).Width()
-	nextPosA.EnsureBiggerThan(leftmost.PosC(g.StringBounder()).AddFixed(
+	nextPosC.EnsureBiggerThan(leftmost.PosC(g.StringBounder()).AddFixed(
 		width + 16 - groupingMarginX - groupingMarginX - overhang + margin))
 }
 
