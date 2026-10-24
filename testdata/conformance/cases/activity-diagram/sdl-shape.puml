@@ -7,7 +7,7 @@ scenarios:
   - "activity-diagram: SDL shape"
 ---
 @startuml
-' Upstream v1.2026.8 rejects the ":Receive order<" form with a syntax error
+' Upstream v1.2026.9 rejects the ":Receive order<" form with a syntax error
 ' and selects SDL shapes through stereotypes; <<input>> is the receive signal.
 :Receive order; <<input>>
 @enduml

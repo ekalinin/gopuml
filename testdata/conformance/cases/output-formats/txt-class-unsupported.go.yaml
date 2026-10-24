@@ -3,4 +3,4 @@ scenarios:
   - "output-formats: TXT for a class diagram"
 package: "."
 test: TestRenderClassDiagramAsTXTIsUnsupported
-why: Upstream v1.2026.8 renders a class diagram as TXT (rough ASCII boxes, exit 0, a .atxt file), while the spec requires an unsupported-format error and no output file.
+why: Upstream v1.2026.9 renders a class diagram as TXT (rough ASCII boxes, exit 0, a .atxt file), while the spec requires an unsupported-format error and no output file.
