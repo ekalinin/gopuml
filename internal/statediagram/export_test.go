@@ -112,3 +112,84 @@ func TestTransitionLabelNode(t *testing.T) {
 		}
 	}
 }
+
+// labelNodes returns the label nodes of the transitions, by label.
+func labelNodes(d *statediagram.StateDiagram) map[string]*abel.Entity {
+	result := map[string]*abel.Entity{}
+	for _, leaf := range d.Leafs() {
+		if leaf.LeafType() == abel.LeafTypeStateTransitionLabel {
+			result[leaf.Display().Get(0).String()] = leaf
+		}
+	}
+	return result
+}
+
+// TestOrphanedTransitionLabel checks that the label node of a transition is
+// hidden or removed with a state at either end, and only then.
+func TestOrphanedTransitionLabel(t *testing.T) {
+	const states = "state Idle $idle\nstate Charging $charging\nstate Faulted $fault\n" +
+		"Idle --> Charging : start\nCharging --> Faulted : fault\n"
+	cases := []struct {
+		rule            string
+		removed, hidden []string
+		visible         []string
+	}{
+		{"remove $fault", []string{"fault"}, []string{"fault"}, []string{"start"}},
+		{"hide $fault", []string{"fault"}, []string{"fault"}, []string{"start"}},
+		{"remove $idle", []string{"start"}, []string{"start"}, []string{"fault"}},
+		{"remove $charging", []string{"start", "fault"}, []string{"start", "fault"}, nil},
+		{"remove $fault\nrestore $fault", nil, nil, []string{"start", "fault"}},
+	}
+	for _, c := range cases {
+		src := "@startuml\nskinparam stateDiagramEdgeLabelStyle node\n" + states + c.rule + "\n@enduml\n"
+		nodes := labelNodes(parseBlock(t, core.NewRenderContext(), src).Diagram.(*statediagram.StateDiagram))
+		for _, label := range c.removed {
+			if !nodes[label].IsRemoved() {
+				t.Errorf("%q: label %q is not removed", c.rule, label)
+			}
+		}
+		for _, label := range c.hidden {
+			if !nodes[label].IsHidden() {
+				t.Errorf("%q: label %q is not hidden", c.rule, label)
+			}
+		}
+		for _, label := range c.visible {
+			if nodes[label].IsRemoved() || nodes[label].IsHidden() {
+				t.Errorf("%q: label %q is removed or hidden", c.rule, label)
+			}
+		}
+	}
+}
+
+// TestRemovedStateWithLabelNode checks the state-diagram scenario "Removed
+// state with a label node": the label node of a transition to a removed
+// state is not drawn.
+func TestRemovedStateWithLabelNode(t *testing.T) {
+	src := "@startuml\nskinparam stateDiagramEdgeLabelStyle node\nstate Idle\nstate Charging\n" +
+		"state Faulted $fault\nIdle --> Charging : start\nCharging --> Faulted : fault\nremove $fault\n@enduml\n"
+	nodes := labelNodes(parseBlock(t, core.NewRenderContext(), src).Diagram.(*statediagram.StateDiagram))
+	if !nodes["fault"].IsRemoved() || nodes["start"].IsRemoved() {
+		t.Fatalf("fault removed %v, start removed %v", nodes["fault"].IsRemoved(), nodes["start"].IsRemoved())
+	}
+	if _, err := exec.LookPath("dot"); err != nil {
+		t.Skip("dot is not installed: the render is not checked")
+	}
+	var buf bytes.Buffer
+	block := parseBlock(t, core.NewRenderContext(), src)
+	if _, err := block.Render(context.Background(), &buf, 0, engine.Options{Format: font.FormatSVG}); err != nil {
+		t.Fatal(err)
+	}
+	svg := buf.String()
+	for _, absent := range []string{">Faulted</text>", ">fault</text>"} {
+		if strings.Contains(svg, absent) {
+			t.Errorf("the SVG has %q", absent)
+		}
+	}
+	for _, want := range []string{">Idle</text>", ">Charging</text>", ">start</text>",
+		"<!--link Idle to transition_Idle_Charging__start__1-->",
+		"<!--link transition_Idle_Charging__start__1 to Charging-->"} {
+		if !strings.Contains(svg, want) {
+			t.Errorf("the SVG has no %q", want)
+		}
+	}
+}
