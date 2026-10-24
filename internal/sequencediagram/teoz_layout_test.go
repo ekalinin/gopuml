@@ -200,3 +200,33 @@ func TestSegmentCut(t *testing.T) {
 		}
 	}
 }
+
+// A participant name sits in the room that MinimumWidth adds according to
+// the HorizontalAlignment of the style: left, centered (also without an
+// alignment) or right.
+func TestParticipantMinimumWidthAlignment(t *testing.T) {
+	nameX := func(alignment string) float64 {
+		t.Helper()
+		src := "@startuml\n<style>\nsequenceDiagram {\n  participant {\n    MinimumWidth 100\n" + alignment +
+			"  }\n}\n</style>\nparticipant \"A\" as A\nA -> B : Message\n@enduml\n"
+		svg, err := renderSVG(t, src, 0)
+		if err != nil {
+			t.Fatal(err)
+		}
+		m := regexp.MustCompile(`<text x="([-\d.]+)"[^>]*>A</text>`).FindStringSubmatch(svg)
+		if m == nil {
+			t.Fatalf("no name A in %s", svg)
+		}
+		x, _ := strconv.ParseFloat(m[1], 64)
+		return x
+	}
+	left := nameX("    HorizontalAlignment left\n")
+	center := nameX("    HorizontalAlignment center\n")
+	right := nameX("    HorizontalAlignment right\n")
+	if def := nameX(""); def != center {
+		t.Errorf("default %v, center %v", def, center)
+	}
+	if !(left < center && center < right) || math.Abs((right-left)-2*(center-left)) > 0.002 {
+		t.Errorf("left %v, center %v, right %v", left, center, right)
+	}
+}

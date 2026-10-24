@@ -80,9 +80,17 @@ func (c *ComponentRoseParticipant) DrawInternalU(ug klimt.UGraphic, _ *klimt.Are
 	ug.Draw(rect)
 	ug = ug.Apply(klimt.UStrokeSimple())
 
-	// Text: centered inside the box, offset by padding
+	// Text: offset by padding, and placed according to HorizontalAlignment
+	// inside the extra room created by MinimumWidth (if any). The text block
+	// itself is only as wide as its own content, so it cannot align itself.
 	textBlock := c.TextBlock()
-	textBlock.DrawU(ug.Apply(c.padding.Translate()))
+	textWidth := textBlock.CalculateDimension(stringBounder).Width()
+	extra := c.PureTextWidth(stringBounder) - textWidth
+	dx := 0.0
+	if extra > 0 {
+		dx = c.HorizontalAlignment().Position(textWidth, textWidth+extra)
+	}
+	textBlock.DrawU(ug.Apply(c.padding.Translate()).Apply(klimt.UTranslateDx(dx)))
 }
 
 func (c *ComponentRoseParticipant) deltaCollection() float64 {
