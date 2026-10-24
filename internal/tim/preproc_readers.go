@@ -67,11 +67,41 @@ func extractFromData(data []byte, description string, suf *string) core.ReadLine
 	return newDiagramExtractor(uncommentAndMerge(core.NewLineReader(string(data), description, nil)), suf)
 }
 
+// includeKey is an included local file: its canonical path and its
+// selector, hasSuf false for none.
+type includeKey struct {
+	path   string
+	suf    string
+	hasSuf bool
+}
+
+// extractSelected is extractFromData for an included local file, with the
+// errors of a selector: unusable is true for an index that does not parse,
+// an id that is not a pattern, and a selector that selects no diagram.
+func extractSelected(data []byte, suf *string) (reader core.ReadLine, unusable bool) {
+	defer func() {
+		if r := recover(); r != nil {
+			e, ok := r.(*javaRuntimeException)
+			if !ok || e.Name != "NumberFormatException" && e.Name != "PatternSyntaxException" {
+				panic(r)
+			}
+			reader, unusable = nil, true
+		}
+	}()
+	reader = extractFromData(data, "desc2", suf)
+	if d, ok := reader.(*diagramExtractor); ok && !d.found {
+		return nil, true
+	}
+	return reader, false
+}
+
 // diagramExtractor reads the lines of one diagram of a source, without its
-// start and end lines.
+// start and end lines; found is false when the selected diagram is not
+// there.
 type diagramExtractor struct {
 	raw      core.ReadLine
 	finished bool
+	found    bool
 }
 
 var digits = regexp.MustCompile(`^[0-9]+$`)
@@ -99,6 +129,7 @@ func newDiagramExtractor(raw core.ReadLine, suf *string) *diagramExtractor {
 		}
 		if core.IsStartDirective(s.S) && checkUID(uid, s) {
 			if block == 0 {
+				d.found = true
 				return d
 			}
 			block--
