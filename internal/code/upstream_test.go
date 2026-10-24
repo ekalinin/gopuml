@@ -66,3 +66,27 @@ func TestEncodeDecodedByUpstream(t *testing.T) {
 	}
 	t.Logf("%d encodings decoded by upstream", len(want))
 }
+
+// TestEncodeCaseVariantDecodedByUpstream checks that a source whose start
+// and end lines are not in lower case keeps them through an encoding by this
+// system and upstream's --decode-url.
+//
+//	go test -tags conformance -run TestEncodeCaseVariantDecodedByUpstream ./internal/code
+func TestEncodeCaseVariantDecodedByUpstream(t *testing.T) {
+	if exec.Command("docker", "image", "inspect", "plantuml-go-reference").Run() != nil {
+		t.Skip("reference image plantuml-go-reference not built")
+	}
+	code := Encode("@startUML\nAlice -> Bob : hi\n@endUML\n")
+	cmd := exec.Command("docker", "run", "--rm", "--platform", "linux/amd64", "plantuml-go-reference",
+		"java", "-cp", "/opt/plantuml.jar:/opt/tools", "RunCli", "--decode-url", code)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	out, err := cmd.Output()
+	if err != nil {
+		t.Fatalf("docker: %v\n%s", err, stderr.String())
+	}
+	// --decode-url wraps the decoded source in one more @startuml/@enduml.
+	if want := "@startuml\n@startUML\nAlice -> Bob : hi\n@endUML\n@enduml\n"; string(out) != want {
+		t.Errorf("upstream decoded %q, want %q", out, want)
+	}
+}
