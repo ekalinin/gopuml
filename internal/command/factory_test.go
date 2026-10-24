@@ -125,7 +125,7 @@ func TestFactoryExecutionError(t *testing.T) {
 
 func TestFactoryPanicIsReported(t *testing.T) {
 	e := errorOf(t, create(t, "@startuml\na = boom\n@enduml\n"))
-	if !strings.HasPrefix(e.Error.Error, "You should send a mail to plantuml@gmail.com with this log (V1.2026.8) exploded") {
+	if !strings.HasPrefix(e.Error.Error, "You should send a mail to plantuml@gmail.com with this log (V1.2026.9) exploded") {
 		t.Errorf("message %q", e.Error.Error)
 	}
 }

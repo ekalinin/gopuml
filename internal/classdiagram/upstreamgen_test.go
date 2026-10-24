@@ -20,7 +20,7 @@ import (
 //
 //	go test -tags upstreamgen -run TestGenerateUpstream ./internal/classdiagram
 func TestGenerateUpstream(t *testing.T) {
-	jar, err := filepath.Abs("../../.cache/upstream/plantuml-mit-1.2026.8.jar")
+	jar, err := filepath.Abs("../../.cache/upstream/plantuml-mit-1.2026.9.jar")
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -96,7 +96,7 @@ func TestComparisonTable(t *testing.T) {
 	}
 
 	want := []string{
-		"| | PlantUML 1.2026.8 (Java) | gopuml |\n|---|---:|---:|\n",
+		"| | PlantUML 1.2026.9 (Java) | gopuml |\n|---|---:|---:|\n",
 		"| Start time (one small sequence diagram) | 110 ms | 2.0 ms |\n",
 		"| Rendering: sequence (2 cases) | 2.00 s (1.00 s per case) | 20 ms (10 ms per case) |\n",
 		"| Rendering: class (1 case) | 500 ms (500 ms per case) | 50 ms (50 ms per case) |\n",
@@ -105,7 +105,7 @@ func TestComparisonTable(t *testing.T) {
 		"- Go: " + runtime.Version() + "\n",
 		"- Graphviz: dot - graphviz version 2.43.0 (0)\n",
 		"- Runs: median of 3 start runs and of 2 rendering runs per type\n",
-		"- Exit status of PlantUML 1.2026.8 (Java), class: exit status 200; messages about class-diagram/c\n",
+		"- Exit status of PlantUML 1.2026.9 (Java), class: exit status 200; messages about class-diagram/c\n",
 		"- Exit status of gopuml, class: exit status 200; messages about class-diagram/c\n",
 	}
 	for _, w := range want {

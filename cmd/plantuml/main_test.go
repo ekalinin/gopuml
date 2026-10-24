@@ -167,7 +167,7 @@ func TestExtractSourceFromOwnPNG(t *testing.T) {
 		t.Fatalf("PNG run: exit %d, stderr %q", code, stderr)
 	}
 	code, stdout, stderr := run(t, dir, "", "--extract-source", "diagram.png")
-	want := "------------------------\ndiagram.png\n\n" + src + "\n1.2026.8\n------------------------\n"
+	want := "------------------------\ndiagram.png\n\n" + src + "\n1.2026.9\n------------------------\n"
 	if code != 0 || stdout != want {
 		t.Errorf("exit %d, stdout %q, want %q, stderr %q", code, stdout, want, stderr)
 	}
@@ -226,7 +226,7 @@ func TestReleaseVersion(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got, want := strings.TrimSpace(string(out)), "gopuml v0.1.0 (PlantUML 1.2026.8 compatible)"; got != want {
+	if got, want := strings.TrimSpace(string(out)), "gopuml v0.1.0 (PlantUML 1.2026.9 compatible)"; got != want {
 		t.Errorf("--version prints %q, want %q", got, want)
 	}
 }

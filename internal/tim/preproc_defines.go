@@ -15,7 +15,7 @@ import (
 )
 
 // Version is the upstream version this preprocessor targets.
-const Version = "1.2026.8"
+const Version = "1.2026.9"
 
 // Defines holds the definitions given outside the source (-D) and the
 // environment of the source file (%filename, %dirpath, ...).

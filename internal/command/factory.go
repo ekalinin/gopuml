@@ -17,7 +17,7 @@ import (
 )
 
 // UpstreamVersion appears in crash messages, as upstream's version does.
-const UpstreamVersion = "1.2026.8"
+const UpstreamVersion = "1.2026.9"
 
 // EmptyDescription is upstream's error message for a diagram without content.
 const EmptyDescription = "Empty description"
