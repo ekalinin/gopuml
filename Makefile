@@ -1,7 +1,7 @@
 GO ?= go
 WASM_OUT ?= dist/wasm
 
-.PHONY: build test lint provenance wasm site bench reference reference-check conformance
+.PHONY: build test lint provenance stdlib wasm site bench reference reference-check conformance
 
 build:
 	$(GO) build ./...
@@ -15,6 +15,12 @@ lint:
 
 provenance:
 	$(GO) run ./tools/provenance $(if $(wildcard .cache/upstream/src/.complete),-src .cache/upstream/src)
+
+# Imports the standard library of the upstream jar into internal/stdlib
+# (tools/stdlib), without the libraries that stdlib.Excluded lists.
+stdlib:
+	tools/upstream/fetch.sh
+	$(GO) run ./tools/stdlib -src .cache/upstream/src
 
 wasm:
 	mkdir -p $(WASM_OUT)
