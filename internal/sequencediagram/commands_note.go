@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOverSeveralCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteAcrossCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOnArrowCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/color/Colors.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOverSeveralCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteAcrossCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOnArrowCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/color/Colors.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram

@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/Value.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ValueAbstract.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ValueColor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ValueImpl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ValueNull.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/DarkString.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/AutomaticCounter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/AutomaticCounterBasic.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/Value.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/ValueAbstract.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/ValueColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/ValueImpl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/ValueNull.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/DarkString.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/value/Specificity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/AutomaticCounter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/AutomaticCounterBasic.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

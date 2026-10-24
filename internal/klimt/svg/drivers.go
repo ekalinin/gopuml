@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverRectangleSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverLineSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverEllipseSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverPolygonSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverPathSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverDotPathSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverPixelSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverImagePng.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/DriverImageSvgSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverRectangleSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverLineSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverEllipseSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverPolygonSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverPathSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverDotPathSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverPixelSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverImagePng.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/DriverImageSvgSvg.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svg

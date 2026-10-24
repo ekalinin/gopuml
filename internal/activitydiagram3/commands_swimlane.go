@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandPartition3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroup3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroupLegacy3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandPartition3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroup3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroupLegacy3.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram3

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/SvekEdge.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cruise/XAbstractEdge.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cruise/XEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/SvekEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cruise/XAbstractEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cruise/XEdge.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek

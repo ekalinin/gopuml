@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/png/MetadataTag.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/png/MetadataTag.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 // Package png reads and writes the PNG features upstream uses: the text

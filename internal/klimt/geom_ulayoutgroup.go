@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/ULayoutGroup.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategy.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/AbstractPlacementStrategy.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategyVisibility.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Center.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Left.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Right.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/ULayoutGroup.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/AbstractPlacementStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategyVisibility.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Center.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Left.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/PlacementStrategyY1Y2Right.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

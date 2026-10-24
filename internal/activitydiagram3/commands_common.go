@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilines3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandDecoratorMultine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/BlocLines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilines3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandDecoratorMultine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/BlocLines.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram3

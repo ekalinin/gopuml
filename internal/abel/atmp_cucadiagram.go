@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/atmp/CucaDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityPortion.java
+// Provenance: plantuml-mit 1.2026.9 net/atmp/CucaDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityPortion.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

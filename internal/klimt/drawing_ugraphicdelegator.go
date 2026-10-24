@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicDelegator.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicFilter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicDispatchDrawable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/AbstractUGraphicHorizontalLine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicStencil.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicDelegator.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicFilter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicDispatchDrawable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/AbstractUGraphicHorizontalLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicStencil.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Event.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/AbstractEvent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/EventWithDeactivate.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/EventWithNote.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/LifeEvent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/LifeEventType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Divider.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Delay.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/HSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Newpage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Reference.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/LinkAnchor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Event.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/AbstractEvent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/EventWithDeactivate.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/EventWithNote.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/LifeEvent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/LifeEventType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Divider.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Delay.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/HSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Newpage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Reference.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/LinkAnchor.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram

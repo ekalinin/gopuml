@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeEndOfText.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeLazzyOneOrMore.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/LookAround.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeLookAhead.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeLookBehind.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeOneOrMore.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeOneOrMoreUpToOldVersion.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeOptional.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/Repetition.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeRepetition.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeSingleChar.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeUpTo.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeZeroOrMore.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeEndOfText.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeLazzyOneOrMore.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/LookAround.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeLookAhead.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeLookBehind.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeOneOrMore.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeOneOrMoreUpToOldVersion.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeOptional.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/Repetition.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeRepetition.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeSingleChar.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeUpTo.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeZeroOrMore.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

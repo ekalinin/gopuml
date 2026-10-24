@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/EvalBoolean.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/Truth.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/EvalBoolean.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/Truth.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

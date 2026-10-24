@@ -24,8 +24,8 @@ func TestCheckFile(t *testing.T) {
 		{
 			name: "translated with notice",
 			content: "// SPDX-License-Identifier: MIT\n" +
-				"// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java\n" +
-				"// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/Base64Coder.java\n" +
+				"// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java\n" +
+				"// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/Base64Coder.java\n" +
 				notice + "\npackage x\n",
 		},
 		{
@@ -49,27 +49,27 @@ func TestCheckFile(t *testing.T) {
 		},
 		{
 			name:    "translated without notice",
-			content: "// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java\npackage x\n",
+			content: "// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java\npackage x\n",
 			wantErr: "lacks the upstream copyright notice",
 		},
 		{
 			name:    "excluded ditaa",
-			content: "// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ditaa/PSystemDitaa.java\n" + notice + "package x\n",
+			content: "// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ditaa/PSystemDitaa.java\n" + notice + "package x\n",
 			wantErr: "excluded component (ditaa)",
 		},
 		{
 			name:    "excluded ditaa library",
-			content: "// Provenance: plantuml-mit 1.2026.8 org/stathissideris/ascii2image/core/Shape.java\n" + notice + "package x\n",
+			content: "// Provenance: plantuml-mit 1.2026.9 org/stathissideris/ascii2image/core/Shape.java\n" + notice + "package x\n",
 			wantErr: "excluded component",
 		},
 		{
 			name:    "excluded jcckit",
-			content: "// Provenance: plantuml-mit 1.2026.8 jcckit/plot/Plot.java\n" + notice + "package x\n",
+			content: "// Provenance: plantuml-mit 1.2026.9 jcckit/plot/Plot.java\n" + notice + "package x\n",
 			wantErr: "excluded component (jcckit)",
 		},
 		{
 			name:    "both original and upstream",
-			content: "// Provenance: original\n// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java\n" + notice + "package x\n",
+			content: "// Provenance: original\n// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java\n" + notice + "package x\n",
 			wantErr: "both original and upstream",
 		},
 		{
@@ -79,7 +79,7 @@ func TestCheckFile(t *testing.T) {
 		},
 		{
 			name:    "not a java path",
-			content: "// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code\n" + notice + "package x\n",
+			content: "// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code\n" + notice + "package x\n",
 			wantErr: "not a Java source file",
 		},
 	}
@@ -111,11 +111,11 @@ func TestCheckFileUpstreamPathMustExist(t *testing.T) {
 	if err := os.WriteFile(filepath.Join(existing, "AsciiEncoder.java"), nil, 0o644); err != nil {
 		t.Fatal(err)
 	}
-	ok := "// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java\n" + derivedNotice + "\n"
+	ok := "// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java\n" + derivedNotice + "\n"
 	if problems := checkFile("x.go", ok, src); len(problems) != 0 {
 		t.Fatalf("unexpected problems: %v", problems)
 	}
-	missing := "// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/Missing.java\n" + derivedNotice + "\n"
+	missing := "// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/Missing.java\n" + derivedNotice + "\n"
 	problems := checkFile("x.go", missing, src)
 	if len(problems) != 1 || !strings.Contains(problems[0].Message, "does not exist") {
 		t.Fatalf("expected a does-not-exist problem, got %v", problems)

@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandRankDir.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandNewpage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandHideShow2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandRemoveRestore.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandUrl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/CommandConstraintOnLinks.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/UBrexCommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/UBrexCommandRankDir.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/UBrexCommandHideShow2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandRankDir.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandNewpage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandHideShow2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandRemoveRestore.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandUrl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/CommandConstraintOnLinks.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/UBrexCommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/UBrexCommandRankDir.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/UBrexCommandHideShow2.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

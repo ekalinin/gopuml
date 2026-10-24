@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeAlternative.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeCharClass.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeCharSet.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CaseMode.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CharClass.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CharClassRaw.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CharClassType.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CharSet.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeAlternative.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeCharClass.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeCharSet.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CaseMode.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CharClass.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CharClassRaw.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CharClassType.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CharSet.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

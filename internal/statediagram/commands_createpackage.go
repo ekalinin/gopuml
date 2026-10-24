@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/statediagram/command/CommandCreatePackageState.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/statediagram/command/CommandCreatePackage2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/statediagram/command/CommandCreatePackageState.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/statediagram/command/CommandCreatePackage2.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package statediagram

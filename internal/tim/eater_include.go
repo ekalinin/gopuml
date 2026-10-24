@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterInclude.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterIncludeDef.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterIncludesub.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterImport.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterInclude.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterIncludeDef.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterIncludesub.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterImport.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

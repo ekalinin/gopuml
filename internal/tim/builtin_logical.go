@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalAnd.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalNand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalNor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalNxor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalOr.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LogicalXor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalAnd.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalNand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalNor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalNxor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalOr.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LogicalXor.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

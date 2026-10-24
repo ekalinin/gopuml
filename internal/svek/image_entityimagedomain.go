@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/BoxedCharacter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/EntityImageDomain.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/EntityImageDesignedDomain.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/EntityImageMachine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/EntityImageRequirement.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/BoxedCharacter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/EntityImageDomain.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/EntityImageDesignedDomain.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/EntityImageMachine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/EntityImageRequirement.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/UgDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/AbstractDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/UmlSource.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/FileImageData.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/UgDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/AbstractDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/UmlSource.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/FileImageData.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package errdiagram

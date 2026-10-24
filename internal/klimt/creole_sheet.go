@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Sheet.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/SheetBuilder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Stripe.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/StripeStyle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/StripeStyleType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/CreoleContext.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Position.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Neutron.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/NeutronType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/Atom.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AbstractAtom.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Sheet.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/SheetBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Stripe.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/StripeStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/StripeStyleType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/CreoleContext.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Position.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Neutron.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/NeutronType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/Atom.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AbstractAtom.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

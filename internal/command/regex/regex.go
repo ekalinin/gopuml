@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/Pattern2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/Pattern2.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 // Package regex compiles upstream's command patterns for Go's RE2 engine.

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/DiagramChromeFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/DecorateEntityImage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/ftile/EntityImageLegend.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/DisplayPositioned.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/DiagramChromeFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/DecorateEntityImage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/ftile/EntityImageLegend.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/DisplayPositioned.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

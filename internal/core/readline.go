@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/ReadLineReader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/UncommentReadLine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/ReadLineList.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc2/ReadFilterAddConfig.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc2/ReadFilterMergeLines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc2/ReadFilterQuoteComment.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/ReadLineReader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/UncommentReadLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/ReadLineList.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc2/ReadFilterAddConfig.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc2/ReadFilterMergeLines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc2/ReadFilterQuoteComment.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package core

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoderHex.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/CompressionZlib.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/CompressionHuffman.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/CompressionGZip.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/CompressionZip.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/deflate/OutputStreamProtected.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoderHex.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/CompressionZlib.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/CompressionHuffman.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/CompressionGZip.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/CompressionZip.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/deflate/OutputStreamProtected.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package code

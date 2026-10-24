@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandArrow.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowAny.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowLeft.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowRight.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandArrow.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowAny.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowLeft.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandExoArrowRight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram

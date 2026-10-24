@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseActor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseBoundary.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseControl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseEntity.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseDatabase.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/rose/ComponentRoseQueue.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseActor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseBoundary.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseControl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseEntity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseDatabase.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/rose/ComponentRoseQueue.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package rose

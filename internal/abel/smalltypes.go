@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityPosition.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/LinkArrow.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/NoteLinkStrategy.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Bag.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Together.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/CucaNote.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Tip.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Removeable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/Position.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityPosition.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/LinkArrow.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/NoteLinkStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Bag.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Together.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/CucaNote.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Tip.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Removeable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/Position.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

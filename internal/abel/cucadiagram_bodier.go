@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/Bodier.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodierAbstract.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodierLikeClassOrObject.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodierMap.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodierJSon.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodierSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodyFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/Bodier.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodierAbstract.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodierLikeClassOrObject.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodierMap.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodierJSon.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodierSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodyFactory.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

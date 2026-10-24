@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/StyleParser.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/StyleToken.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/StyleTokenType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/StyleParsingException.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/Context.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/parser/CssVariables.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/CharInspector.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/CharInspectorImpl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/RawStyleParser.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/RawStyleSheet.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/RawStyleRule.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/RawSelector.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/MergedStyleNode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/PrioritizedValue.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/LegacyStyleFlattener.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/parser/StyleParsingException.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/CharInspector.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/CharInspectorImpl.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

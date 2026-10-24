@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandCreateClass.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandCreateClassMultilines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/GenericRegexProducer.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/NameAndCodeParser.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandCreateClass.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandCreateClassMultilines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/GenericRegexProducer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/NameAndCodeParser.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package classdiagram

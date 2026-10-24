@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexPart.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexConcat.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexLeaf.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexNamed.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexOptional.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/builder/UBrexOr.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/UMatcher.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexPart.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexConcat.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexLeaf.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexNamed.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexOptional.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexOr.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/UMatcher.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/GetJsonKey.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/GetJsonType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/JsonAdd.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/JsonKeyExists.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/JsonMerge.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/JsonRemove.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/JsonSet.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Str2Json.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/GetJsonKey.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/GetJsonType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/JsonAdd.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/JsonKeyExists.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/JsonMerge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/JsonRemove.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/JsonSet.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Str2Json.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

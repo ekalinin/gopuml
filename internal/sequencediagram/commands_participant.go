@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipant.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA4.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantMultilines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandBoxStart.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandBoxEnd.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandUrl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipant.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantA4.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandParticipantMultilines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandBoxStart.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandBoxEnd.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandUrl.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram

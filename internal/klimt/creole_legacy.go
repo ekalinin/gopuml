@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/CreoleParser.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/CreoleStripeSimpleParser.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeTable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeTree.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeCode.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeLatex.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/legacy/StripeRaw.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/EmbeddedDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/CreoleParser.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/CreoleStripeSimpleParser.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeTable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeTree.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeCode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeLatex.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/legacy/StripeRaw.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/EmbeddedDiagram.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

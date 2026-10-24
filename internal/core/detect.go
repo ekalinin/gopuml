@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandRobustConcise.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandClock.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandBinary.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandAnalog.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/timingdiagram/command/CommandAtTime.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandRobustConcise.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandClock.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandBinary.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandAnalog.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandAtTime.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package core

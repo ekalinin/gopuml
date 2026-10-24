@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/Trie.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/TrieImpl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/Trie.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/TrieImpl.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

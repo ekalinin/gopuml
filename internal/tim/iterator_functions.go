@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/iterator/CodeIteratorReturnFunction.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/iterator/CodeIteratorProcedure.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/iterator/CodeIteratorLegacyDefine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/iterator/CodeIteratorReturnFunction.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/iterator/CodeIteratorProcedure.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/iterator/CodeIteratorLegacyDefine.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

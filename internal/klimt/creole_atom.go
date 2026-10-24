@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomHorizontalTexts.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomVerticalTexts.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomWithMargin.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/Bullet.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomTable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomTree.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomSprite.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomImg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/atom/AtomImgSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/CreoleHorizontalLine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/salt/element/Skeleton2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/Base64Coder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomHorizontalTexts.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomVerticalTexts.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomWithMargin.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/Bullet.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomTable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomTree.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomSprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomImg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/atom/AtomImgSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/CreoleHorizontalLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/salt/element/Skeleton2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/Base64Coder.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/DiagramDetector.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/DiagramExtractor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/ReadLineWithYamlHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/ReadLineSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/ReadLineList.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc2/PreprocessorUtils.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc2/PreprocessorIncludeStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/DiagramDetector.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/DiagramExtractor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/ReadLineWithYamlHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/ReadLineSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/ReadLineList.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc2/PreprocessorUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc2/PreprocessorIncludeStrategy.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

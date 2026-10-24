@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleBuilder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleStorage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StringTrie.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/StyleBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/StyleIndex.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/StyleAtomTrie.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/StringTrie.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

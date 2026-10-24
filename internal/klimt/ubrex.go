@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/UnicodeBracketedExpression.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/UMatcher.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CaptureLookup.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/TextNavigator.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/Challenge.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/ChallengeResult.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/Capture.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CaptureEntry.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/SafeList.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CompositeList.java
-// Provenance: plantuml-mit 1.2026.8 com/plantuml/ubrex/CompositeNamed.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/UnicodeBracketedExpression.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/UMatcher.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CaptureLookup.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/TextNavigator.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/Challenge.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/ChallengeResult.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/Capture.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CaptureEntry.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/SafeList.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CompositeList.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/CompositeNamed.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

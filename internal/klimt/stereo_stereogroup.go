@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereogroup.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereostyles.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereotag.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/StereotypePattern.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereogroup.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereostyles.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereotag.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/StereotypePattern.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

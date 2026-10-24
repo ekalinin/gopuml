@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolSimpleAbstract.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolActor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolActorBusiness.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolBoundary.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolControl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolEntityDomain.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolInterface.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolSimpleAbstract.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolActor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolActorBusiness.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolBoundary.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolControl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolEntityDomain.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolInterface.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package symbol

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/SingleLine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TileText.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockRaw.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TileImage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TileImageSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/SingleLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TileText.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockRaw.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TileImage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TileImageSvg.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

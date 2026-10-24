@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandTitle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesTitle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandCaption.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesCaption.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandLegend.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesLegend.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFooter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesFooter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMainframe.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandNamespaceSeparator.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandTitle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesTitle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandCaption.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesCaption.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandLegend.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesLegend.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFooter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesFooter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMainframe.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandNamespaceSeparator.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/ClusterHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Entity.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageStateCommon.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/PortionShower.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/ClusterHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Entity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageStateCommon.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/PortionShower.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek

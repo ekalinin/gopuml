@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UEmpty.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UComment.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UCenteredCharacter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UHidden.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UPixel.java
-// Provenance: plantuml-mit 1.2026.8 net/atmp/SpecialText.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/ftile/CenteredText.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UComment.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UCenteredCharacter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UHidden.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UPixel.java
+// Provenance: plantuml-mit 1.2026.9 net/atmp/SpecialText.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/ftile/CenteredText.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

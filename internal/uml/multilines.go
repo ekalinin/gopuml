@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilines2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesBracket.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/MultilinesStrategy.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/Trim.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/SingleLineCommand2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexConcat.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/BlocLines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilines2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesBracket.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/MultilinesStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/Trim.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/SingleLineCommand2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexConcat.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/BlocLines.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

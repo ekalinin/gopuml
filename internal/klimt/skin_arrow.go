@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowConfiguration.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowBody.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowDecoration.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowDressing.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowHead.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowPart.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowConfiguration.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowBody.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowDecoration.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowDressing.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowHead.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowPart.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

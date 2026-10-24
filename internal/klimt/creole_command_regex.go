@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSizeChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleColorChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleColorAndSizeChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleFontFamilyChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleMonospaced.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSvgAttributeChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleUrl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleImg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleQrcode.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleOpenIcon.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleEmoji.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSizeChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleColorChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleColorAndSizeChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleFontFamilyChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleMonospaced.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSvgAttributeChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleUrl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleImg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleQrcode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleOpenIcon.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleEmoji.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/command/CommandCreoleSprite.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

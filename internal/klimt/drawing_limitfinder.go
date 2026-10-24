@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicNo.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/LimitFinder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/TextLimitFinder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/UGraphicNull.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicNo.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/LimitFinder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/TextLimitFinder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/UGraphicNull.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

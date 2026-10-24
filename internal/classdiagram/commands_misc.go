@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandAddMethod.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandStereotype.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandAllowMixing.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandLayoutNewLine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandDiamondAssociation.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandNamespace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandNamespace2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandNamespaceEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandAddMethod.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandStereotype.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandAllowMixing.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandLayoutNewLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandDiamondAssociation.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandNamespace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandNamespace2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandNamespaceEmpty.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package classdiagram

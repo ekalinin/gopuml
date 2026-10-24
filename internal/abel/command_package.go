@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPackage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandEndPackage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPackageEmpty.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandPackageWithUSymbol.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandTogether.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPackage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandEndPackage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPackageEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandPackageWithUSymbol.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandTogether.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

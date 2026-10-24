@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommonCommands.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandNope.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPragma.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandAssumeTransparent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandSkin.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMinwidth.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandRotate.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommonCommands.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandNope.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPragma.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandAssumeTransparent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandSkin.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMinwidth.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandRotate.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

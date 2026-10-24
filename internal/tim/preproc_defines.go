@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/Defines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/Define.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/DefinitionsContainer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/Defines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/Environment.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/DefinitionsContainer.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

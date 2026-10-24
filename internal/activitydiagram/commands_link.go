@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/CommandLinkActivity.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/CommandLinkLongActivity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/CommandLinkActivity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/CommandLinkLongActivity.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram

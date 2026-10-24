@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/json/package-info.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/json/package-info.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 // Package json manages JSON data with the semantics of PlantUML's fork of

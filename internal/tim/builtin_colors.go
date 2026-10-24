@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Darken.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/HslColor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/IsDark.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/IsLight.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Lighten.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/ReverseColor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/ReverseHsluvColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Darken.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/HslColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/IsDark.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/IsLight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Lighten.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/ReverseColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/ReverseHsluvColor.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim
