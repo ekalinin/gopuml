@@ -123,6 +123,17 @@ func (b *graphvizImageBuilder) buildImage(stringBounder font.StringBounder, dotS
 	b.printGroups(stringBounder, b.dotData.rootGroup())
 	b.printEntities(stringBounder, b.unpackagedEntities())
 
+	for _, link := range b.dotData.links {
+		if link.IsRemoved() {
+			continue
+		}
+		if link.Role1().OK || link.Role2().OK {
+			reserveRoomForRoles(link, b.dotData.skinParam(), stringBounder,
+				b.styleArrowCardinality(link.Stereotype()).MergedStyle(link.StyleBuilder()).
+					FontConfiguration(b.dotData.skinParam().IHtmlColorSet(), nil))
+		}
+	}
+
 	bibliotekon := b.dotStringFactory.bibliotekon
 	for _, link := range b.dotData.links {
 		if link.IsRemoved() {
