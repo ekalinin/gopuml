@@ -57,6 +57,10 @@ type MessageBase struct {
 	posYstartLevel           float64
 	anchor, anchor1, anchor2 string
 	hasAnchor                [3]bool
+
+	// uid identifies the message in the SVG: msg1, msg2, ... in the order
+	// the messages appear in the diagram.
+	uid string
 }
 
 func newMessageBase(self AbstractMessage, styleBuilder *klimt.StyleBuilder, label *klimt.Display,
@@ -282,6 +286,23 @@ func (m *MessageBase) StyleBuilder() *klimt.StyleBuilder { return m.styleBuilder
 
 // LineLocation returns the source line of the message.
 func (m *MessageBase) LineLocation() *text.LineLocation { return m.location }
+
+// UID returns the identifier of the message in the SVG.
+func (m *MessageBase) UID() string { return m.uid }
+
+// SetUID sets the identifier of the message in the SVG.
+func (m *MessageBase) SetUID(uid string) { m.uid = uid }
+
+// groupTypeMessage is the SVG group wrapping the drawing of the message: its
+// class, source line, the uids of both participants and its own.
+func (m *MessageBase) groupTypeMessage() *klimt.UGroup {
+	group := klimt.NewUGroupAt(m.location)
+	group.Put(klimt.UGroupClass, "message")
+	group.Put(klimt.UGroupDataParticipant1, m.self.Participant1().UID())
+	group.Put(klimt.UGroupDataParticipant2, m.self.Participant2().UID())
+	group.Put(klimt.UGroupDataUID, m.uid)
+	return group
+}
 
 // Message is a message between two participants.
 type Message struct {

@@ -12,6 +12,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 	"testing"
@@ -277,6 +278,9 @@ func TestURLTheme(t *testing.T) {
 	}
 }
 
+// sourceLine matches the source line attribute of a group.
+var sourceLine = regexp.MustCompile(` data-source-line="\d+"`)
+
 // TestLibraryTheme checks gopuml.Options.Theme: it acts as a !theme line
 // placed before the Config lines, as upstream's --theme comes before
 // --config, -P and -S.
@@ -288,7 +292,8 @@ func TestLibraryTheme(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		return res.Data
+		// The !theme and skinparam lines shift the source lines of the groups.
+		return sourceLine.ReplaceAll(res.Data, nil)
 	}
 	const body = "Alice -> Bob : hello\n@enduml\n"
 	want := render("@startuml\n!theme cerulean\nskinparam backgroundColor red\n"+body, gopuml.Options{})

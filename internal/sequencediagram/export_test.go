@@ -238,12 +238,17 @@ func TestExportPages(t *testing.T) {
 	}
 }
 
+// sourceLine matches the source line attribute of a group.
+var sourceLine = regexp.MustCompile(` data-source-line="\d+"`)
+
 func TestExportTeozPragmaHasNoEffect(t *testing.T) {
 	render := func(body string) string {
 		got, err := renderSVG(t, "@startuml\n"+body+"Alice -> Bob : a\n& Bob -> Carol : b\n@enduml\n", 0)
 		if err != nil {
 			t.Fatal(err)
 		}
+		// The pragma line shifts the source lines of the groups.
+		got = sourceLine.ReplaceAllString(got, "")
 		return strings.Join(strings.Split(plantumlSrc.ReplaceAllString(got, ""), "\n"), "")
 	}
 	base := render("")
@@ -289,5 +294,41 @@ func TestExportConcurrent(t *testing.T) {
 		if r != want {
 			t.Errorf("export %d differs", i)
 		}
+	}
+}
+
+// TestSVGElementGroups checks the groups of the lifelines, heads, tails and
+// messages: the start tags of the groups of each page are those of the
+// reference written by upstream, for sequence-diagram/svg-element-groups and
+// every other committed sequence reference but the exceptions (scenario
+// "Groups of a message").
+func TestSVGElementGroups(t *testing.T) {
+	refs := sequenceReferences(t, curatedReferenceRoot, conformanceRoot, "")
+	groups := regexp.MustCompile(`<g[ >][^>]*>`)
+	seen := false
+	for _, ref := range refs {
+		if _, known := exportExceptions[fmt.Sprintf("%s/%d", ref.name, ref.page)]; known {
+			continue
+		}
+		d, err := parseFile(ref.file, ref.source)
+		if err != nil {
+			t.Errorf("%s: %v", ref.name, err)
+			continue
+		}
+		got, err := exportSVG(d, ref.page)
+		if err != nil {
+			t.Errorf("%s/%d: %v", ref.name, ref.page, err)
+			continue
+		}
+		want := groups.FindAllString(ref.svg, -1)
+		if g := groups.FindAllString(got, -1); !slices.Equal(g, want) {
+			t.Errorf("%s/%d: groups\n got  %q\n want %q", ref.name, ref.page, g, want)
+		}
+		if strings.HasSuffix(ref.name, "svg-element-groups") {
+			seen = true
+		}
+	}
+	if !seen {
+		t.Error("no reference for sequence-diagram/svg-element-groups")
 	}
 }

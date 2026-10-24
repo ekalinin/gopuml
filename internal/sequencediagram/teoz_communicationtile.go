@@ -179,7 +179,9 @@ func (t *CommunicationTile) DrawU(ug klimt.UGraphic) {
 				geom.VerticalAlignmentTop, geom.HorizontalAlignmentLeft)
 		}
 	}
+	ug.StartGroup(t.message.groupTypeMessage())
 	comp.DrawU(ug, area, context2D(ug))
+	ug.CloseGroup()
 }
 
 func (t *CommunicationTile) drawMulticast(ug klimt.UGraphic) {

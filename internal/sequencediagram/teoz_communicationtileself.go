@@ -97,7 +97,9 @@ func (t *CommunicationTileSelf) DrawU(ug klimt.UGraphic) {
 	area.SetLevel(levelIgnore)
 	area.SetLiveDeltaSize(LiveDeltaSize)
 	ug = ug.Apply(klimt.UTranslateDx(x1))
+	ug.StartGroup(t.message.groupTypeMessage())
 	comp.DrawU(ug, area, context2D(ug))
+	ug.CloseGroup()
 }
 
 // PreferredHeight implements Tile.

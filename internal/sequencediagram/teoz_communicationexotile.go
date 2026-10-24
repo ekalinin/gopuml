@@ -103,7 +103,9 @@ func (t *CommunicationExoTile) DrawU(ug klimt.UGraphic) {
 	area := klimt.AreaCreate(x2-x1, dim.Height())
 	area.SetTextDeltaX(textDeltaX)
 	ug = ug.Apply(klimt.UTranslateDx(x1))
+	ug.StartGroup(t.message.groupTypeMessage())
 	comp.DrawU(ug, area, context2D(ug))
+	ug.CloseGroup()
 }
 
 func (t *CommunicationExoTile) isShortArrow() bool { return t.message.IsShortArrow() }
