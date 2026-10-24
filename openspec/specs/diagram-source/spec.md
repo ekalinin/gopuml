@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Defines how diagram sources are found in input text, split into diagram blocks, assigned a diagram type and reported when invalid, matching PlantUML v1.2026.8.
+Defines how diagram sources are found in input text, split into diagram blocks, assigned a diagram type and reported when invalid, matching PlantUML v1.2026.9.
 
 ## Requirements
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provides a `plantuml` command that can replace `java -jar plantuml.jar` v1.2026.8 for the diagram types and formats this implementation supports: the same flags, input selection, output naming, pipe mode and exit codes.
+Provides a `plantuml` command that can replace `java -jar plantuml.jar` v1.2026.9 for the diagram types and formats this implementation supports: the same flags, input selection, output naming, pipe mode and exit codes.
 
 ## Requirements
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Supports PlantUML v1.2026.8 sequence diagrams under `@startuml`, with the same syntax and the layout of upstream's Teoz engine, its only sequence engine.
+Supports PlantUML v1.2026.9 sequence diagrams under `@startuml`, with the same syntax and the layout of upstream's Teoz engine, its only sequence engine.
 
 ## Requirements
 

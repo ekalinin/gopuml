@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Supports PlantUML v1.2026.8 activity diagrams in the new (v3) syntax under `@startuml`, with the same syntax and layout as upstream, which lays out activity diagrams without Graphviz.
+Supports PlantUML v1.2026.9 activity diagrams in the new (v3) syntax under `@startuml`, with the same syntax and layout as upstream, which lays out activity diagrams without Graphviz.
 
 ## Requirements
 
