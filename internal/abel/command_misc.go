@@ -111,7 +111,7 @@ func CommandHideShow2[D Diagram]() command.Command[D] {
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			tmp := arg.Str("COMMAND", 0)[0]
 			show := tmp == 's' || tmp == 'S'
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().HideOrShow2(what, show)
 			return command.Ok()
 		})
@@ -128,7 +128,7 @@ func UBrexCommandHideShow2[D Diagram]() command.Command[D] {
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			tmp := arg.Str("COMMAND", 0)[0]
 			show := tmp == 's' || tmp == 'S'
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().HideOrShow2(what, show)
 			return command.Ok()
 		})
@@ -142,7 +142,7 @@ func CommandRemoveRestore[D Diagram]() command.Command[D] {
 		uml.Leaf(1, "WHAT", "(.+)"), regex.End()),
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			show := uml.EqualsIgnoreCase(arg.Str("COMMAND", 0), "restore")
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().RemoveOrRestore(what, show)
 			return command.Ok()
 		})

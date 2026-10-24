@@ -643,5 +643,5 @@ func (c *TContext) getXargs() (string, bool) {
 	if idx == -1 {
 		return "", false
 	}
-	return text.Trin(first[idx+1:]), true
+	return text.JavaTrim(first[idx+1:]), true
 }

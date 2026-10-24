@@ -397,12 +397,12 @@ func (b *BodierMap) put(key, value string) {
 // other lines are refused.
 func (b *BodierMap) AddFieldOrMethod(s string) bool {
 	if x := strings.Index(s, "=>"); x != -1 {
-		b.put(text.Trin(s[:x]), text.Trin(s[x+2:]))
+		b.put(text.JavaTrim(s[:x]), text.JavaTrim(s[x+2:]))
 		return true
 	}
 	if link, ok := BodierMapLinkedEntry(s); ok {
 		pos := strings.Index(s, link)
-		b.put(text.Trin(s[:pos]), "\x00")
+		b.put(text.JavaTrim(s[:pos]), "\x00")
 		return true
 	}
 	return false

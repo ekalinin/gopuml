@@ -34,8 +34,8 @@ func TestTrinAndBackslash(t *testing.T) {
 	if got := Trin(" \t\x01 a b \r\n"); got != "a b" {
 		t.Errorf("Trin = %q", got)
 	}
-	if got := Trin(" a "); got != " a " {
-		t.Errorf("Trin must keep no-break spaces, got %q", got)
+	if got := Trin(" a "); got != "a" {
+		t.Errorf("Trin must remove no-break spaces, got %q", got)
 	}
 	for s, want := range map[string]bool{`a\`: true, `a\\`: false, `a`: false, `\`: true} {
 		if got := EndsWithBackslash(s); got != want {
@@ -65,5 +65,22 @@ func TestLineLocation(t *testing.T) {
 	}
 	if n := l.OneLineRead().OneLineRead(); n.Position != 1 || l.Position != -1 {
 		t.Fatalf("OneLineRead must not mutate: %+v %+v", n, l)
+	}
+}
+
+// Trin is upstream's StringUtils.trin, which also trims U+00A0; JavaTrim is
+// Java's String.trim, which keeps it.
+func TestTrinAndJavaTrim(t *testing.T) {
+	if got := Trin("  x\t "); got != "x" {
+		t.Errorf("Trin %q", got)
+	}
+	if got := JavaTrim("  x\t "); got != "  x\t " {
+		t.Errorf("JavaTrim %q", got)
+	}
+	if got := JavaTrim("  x "); got != " x" {
+		t.Errorf("JavaTrim %q", got)
+	}
+	if got := NewStringLocated(" Alice -> Bob ", nil).Trimmed().S; got != "Alice -> Bob" {
+		t.Errorf("Trimmed %q", got)
 	}
 }

@@ -99,7 +99,7 @@ func (d DriverTextSvg) Draw(shape *klimt.UText, x, y float64, mapper *color.Colo
 			txt = txt[1:]
 		}
 	}
-	txt = text.Trin(txt)
+	txt = text.JavaTrim(txt)
 	dim := d.stringBounder.CalculateDimension(f, txt)
 	width := dim.Width
 	height := dim.Height
@@ -130,7 +130,7 @@ func (d DriverTextSvg) Draw(shape *klimt.UText, x, y float64, mapper *color.Colo
 		decorations.WriteString("wavy underline ")
 	}
 
-	textDecoration := text.Trin(decorations.String())
+	textDecoration := text.JavaTrim(decorations.String())
 
 	backColor := ""
 	if fc.ContainsStyle(font.FontStyleBackcolor) {

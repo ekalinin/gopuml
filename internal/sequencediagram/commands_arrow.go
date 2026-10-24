@@ -315,7 +315,7 @@ func multicasts(d *SequenceDiagram, location *text.LineLocation, arg *regex.Resu
 	}
 	var result []*Participant
 	for _, s := range uml.JavaSplit(multicast, "&") {
-		s = text.Trin(s)
+		s = text.JavaTrim(s)
 		if s == "" {
 			continue
 		}

@@ -230,3 +230,20 @@ func TestParticipantMinimumWidthAlignment(t *testing.T) {
 		t.Errorf("left %v, center %v, right %v", left, center, right)
 	}
 }
+
+// A line that starts and ends with U+00A0 is parsed as the same line without
+// them, as upstream trims U+00A0 with the other blanks.
+func TestNonBreakingSpaceTrimmed(t *testing.T) {
+	plain, err := renderSVG(t, "@startuml\nAlice -> Bob : hi\n@enduml\n", 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	nbsp, err := renderSVG(t, "@startuml\n Alice -> Bob : hi \n@enduml\n", 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	strip := regexp.MustCompile(`<\?plantuml-src [^?]*\?>`)
+	if strip.ReplaceAllString(plain, "") != strip.ReplaceAllString(nbsp, "") {
+		t.Errorf("the lines with U+00A0 render differently:\n%s\n%s", plain, nbsp)
+	}
+}

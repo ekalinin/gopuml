@@ -57,7 +57,7 @@ func CommandSkinParamJaws[D Diagram]() command.Command[D] {
 			var lines command.BlocLines
 			for _, line := range JavaSplit(arg.Str("FULL", 0), newline) {
 				lines = lines.Add(text.NewStringLocated(line, nil))
-				if text.Trin(line) == "}" {
+				if text.JavaTrim(line) == "}" {
 					if res := multi.Execute(d, lines, pass); !res.IsOK() {
 						return res
 					}

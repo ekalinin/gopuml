@@ -99,9 +99,17 @@ func (sl StringLocated) RemoveInnerComment() StringLocated {
 // isJavaTrimSpace matches the characters removed by Java's String.trim.
 func isJavaTrimSpace(r rune) bool { return r <= ' ' }
 
-// Trin removes leading and trailing characters <= ' ', like upstream's
-// StringUtils.trin and Java's String.trim.
-func Trin(s string) string { return strings.TrimFunc(s, isJavaTrimSpace) }
+// isTrimmable is upstream's StringUtils.isTrimmable: a character up to the
+// space, or U+00A0.
+func isTrimmable(r rune) bool { return r <= ' ' || r == '\u00A0' }
+
+// Trin removes the leading and trailing characters up to the space, and
+// U+00A0, like upstream's StringUtils.trin.
+func Trin(s string) string { return strings.TrimFunc(s, isTrimmable) }
+
+// JavaTrim removes the leading and trailing characters up to the space,
+// like Java's String.trim (U+00A0 is kept).
+func JavaTrim(s string) string { return strings.TrimFunc(s, isJavaTrimSpace) }
 
 // EndsWithBackslash reports whether s ends with a single backslash.
 func EndsWithBackslash(s string) bool {

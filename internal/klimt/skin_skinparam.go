@@ -14,6 +14,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // SkinParamDefaultPreserveAspectRatio is the default SVG
@@ -1230,5 +1231,5 @@ func (s *SkinParam) FromMd5(md5 string) (string, bool) {
 	return v, ok
 }
 
-// trin is upstream's StringUtils.trin, Java's trim.
-func trin(s string) string { return strings.TrimFunc(s, func(r rune) bool { return r <= ' ' }) }
+// trin is upstream's StringUtils.trin.
+func trin(s string) string { return text.Trin(s) }

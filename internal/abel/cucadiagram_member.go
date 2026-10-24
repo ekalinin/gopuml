@@ -84,7 +84,7 @@ func newMember(manageModifier bool, tmpDisplay string, isMethod bool) *Member {
 	}
 	m.staticModifier = strings.Contains(lower, "{static}") || strings.Contains(lower, "{classifier}")
 	m.abstractModifier = strings.Contains(lower, "{abstract}")
-	displayClean := text.Trin(memberRemoveStaticClassifierAbstract.ReplaceAllString(tmpDisplay, ""))
+	displayClean := text.JavaTrim(memberRemoveStaticClassifierAbstract.ReplaceAllString(tmpDisplay, ""))
 	if displayClean == "" {
 		displayClean = " "
 	}

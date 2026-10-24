@@ -174,7 +174,7 @@ func (r *quoteCommentReader) ReadLine() (text.StringLocated, bool) {
 		if !ok {
 			return result, false
 		}
-		trim := text.Trin(strings.ReplaceAll(result.S, "\t", " "))
+		trim := text.JavaTrim(strings.ReplaceAll(result.S, "\t", " "))
 		switch {
 		case longComment && strings.HasSuffix(trim, "'/"):
 			longComment = false

@@ -132,8 +132,8 @@ func CommandCreateMap[D Diagram]() command.Command[D] {
 				continue
 			}
 			x := strings.Index(line, linkStr)
-			key := text.Trin(line[:x])
-			dest := text.Trin(line[x+len(linkStr):])
+			key := text.JavaTrim(line[:x])
+			dest := text.JavaTrim(line[x+len(linkStr):])
 			ident2 := c.QuarkInContext(true, dest)
 			entity2 := ident2.Data()
 			if entity2 == nil {

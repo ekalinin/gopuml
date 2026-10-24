@@ -759,7 +759,7 @@ func (s *SvgGraphics) SvgPath(x, y float64, path *klimt.UPath, deltaShadow float
 	}
 	if !s.hidden {
 		elt := s.document.CreateElement("path")
-		elt.SetAttribute("d", text.Trin(sb.String()))
+		elt.SetAttribute("d", text.JavaTrim(sb.String()))
 		s.styleMe(elt, "")
 		s.fillMe(elt)
 		if id := path.Comment(); id != "" {

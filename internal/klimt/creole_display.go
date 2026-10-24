@@ -381,7 +381,7 @@ func (d *Display) ManageGuillemet(manageVisibilityModifier bool) *Display {
 		lineString := line.String()
 		if manageVisibilityModifier && first && VisibilityIsVisibilityCharacter(lineString) {
 			u := utf16.Encode([]rune(lineString))
-			lineString = trin(string(utf16.Decode(u[1:])))
+			lineString = text.JavaTrim(string(utf16.Decode(u[1:])))
 		}
 		result = append(result, Text(GuillemetGuillemet().ManageGuillemet(lineString)))
 		first = false

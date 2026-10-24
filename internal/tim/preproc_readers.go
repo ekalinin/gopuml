@@ -164,7 +164,7 @@ func (r *readLineWithYamlHeader) ReadLine() (text.StringLocated, bool) {
 				tmp := line.S
 				r.yamlHeader = append(r.yamlHeader, tmp)
 				if idx := strings.Index(tmp, ":"); idx > 0 {
-					r.putMetadata(text.Trin(tmp[:idx]), text.Trin(tmp[idx+1:]))
+					r.putMetadata(text.JavaTrim(tmp[:idx]), text.JavaTrim(tmp[idx+1:]))
 				}
 			}
 			// Skip the second separator

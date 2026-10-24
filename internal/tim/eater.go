@@ -126,7 +126,7 @@ func (e *Eater) eatAndGetOptionalQuotedString() (string, error) {
 			return "", newEaterException("until001", e.sl)
 		}
 		if level == 0 && (ch == ',' || ch == ')') {
-			return text.Trin(fromUTF16(value)), nil
+			return text.JavaTrim(fromUTF16(value)), nil
 		}
 		ch = e.eatOneChar()
 		switch ch {

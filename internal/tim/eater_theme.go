@@ -32,7 +32,7 @@ func (e *EaterTheme) analyze(context *TContext, memory TMemory) error {
 	e.skipSpaces()
 	e.name = e.eatAllToEnd()
 	if x := strings.Index(lowerASCII(e.name), " from "); x != -1 {
-		fromTmp := text.Trin(e.name[x+len(" from "):])
+		fromTmp := text.JavaTrim(e.name[x+len(" from "):])
 		from, err := context.applyFunctionsAndVariables(memory, text.NewStringLocated(fromTmp, e.getLineLocation()))
 		if err != nil {
 			return err
@@ -41,7 +41,7 @@ func (e *EaterTheme) analyze(context *TContext, memory TMemory) error {
 			throwRuntime("NullPointerException", "")
 		}
 		e.from = from
-		e.name = text.Trin(e.name[:x])
+		e.name = text.JavaTrim(e.name[:x])
 	}
 	realName, err := context.applyFunctionsAndVariables(memory, text.NewStringLocated(e.name, e.getLineLocation()))
 	if err != nil {

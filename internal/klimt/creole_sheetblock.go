@@ -14,6 +14,7 @@ import (
 
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // SheetBlock1 lays out a sheet: it breaks the stripes at the maximum width,
@@ -560,7 +561,7 @@ func (s *sea) translateMinYto(newValue float64) {
 func (s *sea) findFirstAtomText() *AtomText {
 	for _, atom := range s.atoms {
 		if atomText, ok := atom.(*AtomText); ok {
-			if trin(atomText.Text()) == "" {
+			if text.JavaTrim(atomText.Text()) == "" {
 				continue
 			}
 			return atomText
