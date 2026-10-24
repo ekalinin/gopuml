@@ -1,0 +1,13 @@
+---
+id: packet-diagram/auto-position
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Fields placed after the previous one"
+  - "packet-diagram: Narrow first row"
+---
+@startpacketdiag
+* A [len = 4]
+* B
+@endpacketdiag

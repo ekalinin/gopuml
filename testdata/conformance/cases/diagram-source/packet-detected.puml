@@ -1,0 +1,11 @@
+---
+id: diagram-source/packet-detected
+family: packetdiag
+type: packet
+formats: [svg]
+scenarios:
+  - "diagram-source: Packet family"
+---
+@startpacketdiag
+0-7: Source Port
+@endpacketdiag

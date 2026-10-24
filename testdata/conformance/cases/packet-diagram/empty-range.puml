@@ -1,0 +1,11 @@
+---
+id: packet-diagram/empty-range
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Empty range"
+---
+@startpacketdiag
+4-3: x
+@endpacketdiag

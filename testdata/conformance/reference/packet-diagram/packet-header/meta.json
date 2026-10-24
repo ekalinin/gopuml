@@ -1,0 +1,6 @@
+{
+  "id": "packet-diagram/packet-header",
+  "blocks": [
+    {"index": 0, "name": null, "type": "PACKET", "description": "Packet Diagram", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 734, "height": 140, "status": 0}, {"file": "block0-page0.png", "width": 734, "height": 140, "status": 0}]}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "id": "packet-diagram/node-height",
+  "blocks": [
+    {"index": 0, "name": null, "type": "PACKET", "description": "Packet Diagram", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 734, "height": 148, "status": 0}, {"file": "block0-page0.png", "width": 734, "height": 148, "status": 0}]}
+  ]
+}

@@ -25791,6 +25791,8 @@ not activity3
 not activity3
 === allconf/output-formats/svg-metadata.puml
 not activity3
+=== allconf/packet-diagram/embedded-in-note.puml
+not activity3
 === allconf/preprocessor/conditional-assignment.puml
 not activity3
 === allconf/preprocessor/dec2hex.puml

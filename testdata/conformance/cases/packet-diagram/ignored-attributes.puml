@@ -1,0 +1,12 @@
+---
+id: packet-diagram/ignored-attributes
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Ignored attributes"
+---
+@startpacketdiag
+1-10: server [color="palegreen", textcolor="blue", linecolor="red"]
+11-20: database [rotate = 270]
+@endpacketdiag

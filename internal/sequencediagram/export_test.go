@@ -58,6 +58,7 @@ type sequenceReference struct {
 
 // exportExceptions are the reference pages that differ, with the reason.
 var exportExceptions = map[string]string{
+	"packet-diagram/embedded-in-note/0":      "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"styling/embedded-use-case-in-note/0":    "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"styling/theme-cerulean/0":               "themes are not bundled yet (tim.Options.Themes is never set)",
 	"vega/svg/option/sequence_desc/0":        "!option svgDesc does not reach the diagram (core.Factory has no preprocessing artifact)",

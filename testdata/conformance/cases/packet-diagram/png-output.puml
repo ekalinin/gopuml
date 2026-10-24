@@ -1,0 +1,12 @@
+---
+id: packet-diagram/png-output
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: PNG packet diagram"
+---
+@startpacketdiag
+0-7: Source Port
+8-15: Destination Port
+@endpacketdiag

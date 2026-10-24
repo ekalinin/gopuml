@@ -1,0 +1,6 @@
+id: packet-diagram/txt-unsupported
+scenarios:
+  - "packet-diagram: TXT for a packet diagram"
+package: internal/packetdiag
+test: TestPacketTxtUnsupported
+why: Upstream draws packet diagrams as TXT, while this change rejects that format, as it does for the other diagram types except sequence.

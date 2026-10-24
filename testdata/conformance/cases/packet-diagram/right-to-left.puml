@@ -1,0 +1,13 @@
+---
+id: packet-diagram/right-to-left
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Right to left"
+---
+@startpacketdiag
+scale_direction = rtl
+0-7: A
+8-15: B
+@endpacketdiag

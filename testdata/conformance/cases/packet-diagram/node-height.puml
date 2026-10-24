@@ -1,0 +1,13 @@
+---
+id: packet-diagram/node-height
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Node height"
+---
+@startpacketdiag
+node_height = 80
+0-7: A
+8-15: B
+@endpacketdiag

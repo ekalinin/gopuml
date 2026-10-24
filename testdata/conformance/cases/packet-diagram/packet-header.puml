@@ -1,0 +1,15 @@
+---
+id: packet-diagram/packet-header
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Packet header"
+---
+@startpacketdiag
+packetdiag {
+   0-7: Source Port
+   8-15: Destination Port
+   16-31: Sequence Number
+}
+@endpacketdiag

@@ -1,0 +1,12 @@
+---
+id: packet-diagram/sparse-bits
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Sparse bit numbers"
+---
+@startpacketdiag
+2: A
+5: B
+@endpacketdiag

@@ -221,3 +221,20 @@ func TestWasmLegacyActivityDiagram(t *testing.T) {
 		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
 	}
 }
+
+func TestWasmPacketDiagram(t *testing.T) {
+	// Spec scenario "Packet diagram in WASM": packet diagrams have a
+	// built-in layout, so the WASM build draws them as the native build.
+	src := "@startpacketdiag\n0-7: Source Port\n8-15: Destination Port\n@endpacketdiag\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if errors.Is(err, gopuml.ErrUnsupportedDiagram) {
+		t.Skip("packet diagrams are not registered yet (task 3.1)")
+	}
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
+}

@@ -1,0 +1,6 @@
+{
+  "id": "packet-diagram/embedded-in-note",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 883, "height": 225, "status": 0}, {"file": "block0-page0.png", "width": 882, "height": 224, "status": 0}]}
+  ]
+}

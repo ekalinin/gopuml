@@ -1,0 +1,14 @@
+---
+id: packet-diagram/skin-and-title
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Skin and title"
+---
+@startpacketdiag
+skin rose
+title TCP header
+0-7: Source Port
+8-15: Destination Port
+@endpacketdiag
