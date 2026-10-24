@@ -1,0 +1,10 @@
+---
+id: sequence-diagram/svg-element-groups
+family: uml
+type: sequence
+formats: [svg]
+scenarios: []
+---
+@startuml
+Alice -> Bob : hi
+@enduml

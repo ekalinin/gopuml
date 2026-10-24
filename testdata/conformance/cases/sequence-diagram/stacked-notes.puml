@@ -1,0 +1,14 @@
+---
+id: sequence-diagram/stacked-notes
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Stacked notes of one participant"
+---
+@startuml
+A -> B : hello
+note over A : first note
+& note over A : second note
+& note over A : third note
+@enduml

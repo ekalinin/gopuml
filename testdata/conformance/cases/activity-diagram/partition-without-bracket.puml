@@ -1,0 +1,13 @@
+---
+id: activity-diagram/partition-without-bracket
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Partition without a bracket"
+---
+@startuml
+partition "My part"
+:A;
+}
+@enduml

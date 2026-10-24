@@ -139,12 +139,16 @@ func (c *Case) validate() error {
 }
 
 // LoadCases reads every .puml case below root in fsys, sorted by id. Ids are
-// unique because each id must match its file location.
+// unique because each id must match its file location. The fixtures of a
+// case, in <name>.files next to it, are not cases.
 func LoadCases(fsys fs.FS, root string) ([]*Case, error) {
 	var cases []*Case
 	err := fs.WalkDir(fsys, root, func(p string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
+		}
+		if d.IsDir() && path.Ext(p) == ".files" {
+			return fs.SkipDir
 		}
 		if d.IsDir() || path.Ext(p) != ".puml" {
 			return nil

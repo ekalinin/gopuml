@@ -1,0 +1,18 @@
+---
+id: sequence-diagram/group-right-margin
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Right margin of a fragment"
+---
+@startuml
+x -> a : start
+group test
+a <- a
+a -> b : 1
+b -> c
+c -> c
+end
+c -> d : next
+@enduml

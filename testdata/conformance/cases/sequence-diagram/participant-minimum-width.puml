@@ -1,0 +1,20 @@
+---
+id: sequence-diagram/participant-minimum-width
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Name aligned in a widened box"
+---
+@startuml
+<style>
+sequenceDiagram {
+  participant {
+    MinimumWidth 100
+    HorizontalAlignment right
+  }
+}
+</style>
+participant "A" as A
+A -> B : Message
+@enduml

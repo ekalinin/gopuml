@@ -1,0 +1,14 @@
+---
+id: sequence-diagram/note-after-group
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Note position after a fragment"
+---
+@startuml
+group g
+A -> B
+end
+note top : y
+@enduml

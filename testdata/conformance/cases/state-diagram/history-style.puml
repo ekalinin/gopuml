@@ -1,0 +1,25 @@
+---
+id: state-diagram/history-style
+family: uml
+type: state
+formats: [svg]
+scenarios:
+  - "state-diagram: Styled history states"
+---
+@startuml
+<style>
+stateDiagram {
+  .history {
+    BackGroundColor palegreen
+  }
+}
+</style>
+state A
+state B
+state hh <<history>>
+state hd <<history*>>
+[H] --> A
+[H*] --> B
+hh --> A
+hd --> B
+@enduml

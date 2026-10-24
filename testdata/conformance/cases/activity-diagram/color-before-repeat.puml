@@ -1,0 +1,13 @@
+---
+id: activity-diagram/color-before-repeat
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Color before repeat"
+---
+@startuml
+#red:repeat
+  :A;
+repeat while (more?)
+@enduml

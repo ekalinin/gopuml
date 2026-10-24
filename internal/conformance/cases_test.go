@@ -94,9 +94,10 @@ func TestLoadCases(t *testing.T) {
 		"type: sequence", "type: none",
 	).Replace(validCase)
 	fsys := fstest.MapFS{
-		"cases/sequence-diagram/self-message.puml": {Data: []byte(validCase)},
-		"cases/cli/missing-file.puml":              {Data: []byte(second)},
-		"cases/README.md":                          {Data: []byte("ignored")},
+		"cases/sequence-diagram/self-message.puml":    {Data: []byte(validCase)},
+		"cases/cli/missing-file.puml":                 {Data: []byte(second)},
+		"cases/README.md":                             {Data: []byte("ignored")},
+		"cases/styling/theme.files/puml-theme-x.puml": {Data: []byte("skinparam backgroundColor red")},
 	}
 	cases, err := LoadCases(fsys, "cases")
 	if err != nil {

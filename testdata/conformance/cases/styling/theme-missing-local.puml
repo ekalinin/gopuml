@@ -1,0 +1,12 @@
+---
+id: styling/theme-missing-local
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "styling: Missing local theme"
+---
+@startuml
+!theme mine from themes
+A -> B
+@enduml
