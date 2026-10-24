@@ -27,8 +27,9 @@ var formats = map[string]gopuml.Format{"svg": gopuml.SVG, "png": gopuml.PNG, "tx
 
 // options reads the render options of the JavaScript API: format, diagram,
 // page, darkMode, metadata (true by default) and files, an object mapping
-// include file names to their text. The profile is SANDBOX: includes are
-// read only from those files.
+// include file names to their text, or to their bytes as a Uint8Array (a zip
+// archive for !import). The profile is SANDBOX: includes are read only from
+// those files.
 func options(o js.Value) (*gopuml.Options, error) {
 	opts := &gopuml.Options{SecurityProfile: "SANDBOX", FS: fstest.MapFS{}, Dir: "/"}
 	if o.Type() != js.TypeObject {
@@ -54,9 +55,18 @@ func options(o js.Value) (*gopuml.Options, error) {
 	if files := o.Get("files"); files.Type() == js.TypeObject {
 		fsys := fstest.MapFS{}
 		keys := js.Global().Get("Object").Call("keys", files)
+		uint8Array := js.Global().Get("Uint8Array")
 		for i := range keys.Length() {
 			name := keys.Index(i).String()
-			fsys[name] = &fstest.MapFile{Data: []byte(files.Get(name).String())}
+			v := files.Get(name)
+			var data []byte
+			if v.InstanceOf(uint8Array) {
+				data = make([]byte, v.Length())
+				js.CopyBytesToGo(data, v)
+			} else {
+				data = []byte(v.String())
+			}
+			fsys[name] = &fstest.MapFile{Data: data}
 		}
 		opts.FS = fsys
 	}
