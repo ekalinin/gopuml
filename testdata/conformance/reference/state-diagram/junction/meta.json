@@ -1,0 +1,6 @@
+{
+  "id": "state-diagram/junction",
+  "blocks": [
+    {"index": 0, "name": null, "type": "STATE", "description": "(4 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 167, "height": 239, "status": 0}]}
+  ]
+}

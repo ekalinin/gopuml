@@ -1,0 +1,13 @@
+---
+id: class-diagram/package-code-as-display
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Package code before its display name"
+---
+@startuml
++package uid as "Hello" <<Frame>> {
+  class World
+}
+@enduml

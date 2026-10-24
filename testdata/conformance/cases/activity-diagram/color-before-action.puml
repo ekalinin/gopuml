@@ -1,0 +1,12 @@
+---
+id: activity-diagram/color-before-action
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Color before an action"
+---
+@startuml
+#red:X;
+:Y;
+@enduml

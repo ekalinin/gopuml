@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandPartition.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandEndPartition.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandPartition.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandEndPartition.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram
@@ -19,7 +19,7 @@ import (
 // #color <<stereo>> {" opens a partition.
 func commandPartition() cmd {
 	partitionColor := klimt.UBrexSimpleColor(color.TypeBack)
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"partition"}, klimt.UBrexConcat(
 		klimt.UBrexLeaf("partition"),
 		klimt.UBrexSpaceOneOrMore(),
 		klimt.UBrexLeaf("【 〃 〶$NAME=〇+「〤〃」 〃 ┇ 〶$NAME=〇+〴S   】"),
@@ -57,7 +57,7 @@ func commandPartition() cmd {
 // partition" or "}" closes the current partition. As upstream's pattern,
 // the end of the text is a third alternative.
 func commandEndPartition() cmd {
-	return uml.UBrex(klimt.UBrexConcat(klimt.UBrexOr(
+	return uml.UBrexTokens([]string{"end", "endpartition", "}"}, klimt.UBrexConcat(klimt.UBrexOr(
 		klimt.UBrexConcat(klimt.UBrexLeaf("end"), klimt.UBrexSpaceZeroOrMore(), klimt.UBrexLeaf("partition")),
 		klimt.UBrexLeaf("}"),
 		klimt.UBrexEnd())),

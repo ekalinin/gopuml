@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandRankDir.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandNewpage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandHideShow2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandRemoveRestore.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandUrl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/CommandConstraintOnLinks.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/UBrexCommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/UBrexCommandRankDir.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/UBrexCommandHideShow2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandRankDir.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandNewpage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandHideShow2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandRemoveRestore.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandUrl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/CommandConstraintOnLinks.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/UBrexCommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/UBrexCommandRankDir.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/UBrexCommandHideShow2.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -58,7 +58,7 @@ func CommandRankDir[D uml.Diagram]() command.Command[D] {
 // UBrexCommandFootboxIgnored is CommandFootboxIgnored written with UBrex:
 // "hide footbox" or "show footbox", accepted and ignored.
 func UBrexCommandFootboxIgnored[D uml.Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"hide", "hidefootbox", "show", "showfootbox"}, klimt.UBrexConcat(
 		klimt.UBrexLeaf("【 hide┇show 】"),
 		klimt.UBrexSpaceZeroOrMore(),
 		klimt.UBrexLeaf("footbox"),
@@ -69,7 +69,7 @@ func UBrexCommandFootboxIgnored[D uml.Diagram]() command.Command[D] {
 // UBrexCommandRankDir is CommandRankDir written with UBrex: "left to right
 // direction" and "top to bottom direction".
 func UBrexCommandRankDir[D uml.Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"left", "top"}, klimt.UBrexConcat(
 		klimt.UBrexNamed("DIRECTION", klimt.UBrexLeaf("【 left∙to∙right ┇ top∙to∙bottom 】")),
 		klimt.UBrexSpaceOneOrMore(),
 		klimt.UBrexLeaf("direction"),
@@ -111,7 +111,7 @@ func CommandHideShow2[D Diagram]() command.Command[D] {
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			tmp := arg.Str("COMMAND", 0)[0]
 			show := tmp == 's' || tmp == 'S'
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().HideOrShow2(what, show)
 			return command.Ok()
 		})
@@ -120,7 +120,7 @@ func CommandHideShow2[D Diagram]() command.Command[D] {
 // UBrexCommandHideShow2 is CommandHideShow2 written with UBrex: "hide|show
 // [-class] what", what being a "<<stereotype>>" or a word.
 func UBrexCommandHideShow2[D Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"hide", "show"}, klimt.UBrexConcat(
 		klimt.UBrexNamed("COMMAND", klimt.UBrexLeaf("【hide-class┇hide┇show-class┇show】")),
 		klimt.UBrexSpaceOneOrMore(),
 		klimt.UBrexNamed("WHAT", klimt.UBrexLeaf("【 << 〇*「〤<>」>> ┇ 〇+〴S 】 ")),
@@ -128,7 +128,7 @@ func UBrexCommandHideShow2[D Diagram]() command.Command[D] {
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			tmp := arg.Str("COMMAND", 0)[0]
 			show := tmp == 's' || tmp == 'S'
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().HideOrShow2(what, show)
 			return command.Ok()
 		})
@@ -142,7 +142,7 @@ func CommandRemoveRestore[D Diagram]() command.Command[D] {
 		uml.Leaf(1, "WHAT", "(.+)"), regex.End()),
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			show := uml.EqualsIgnoreCase(arg.Str("COMMAND", 0), "restore")
-			what := text.Trin(arg.Str("WHAT", 0))
+			what := text.JavaTrim(arg.Str("WHAT", 0))
 			d.Cuca().RemoveOrRestore(what, show)
 			return command.Ok()
 		})

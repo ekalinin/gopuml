@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/SkinParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/SkinParam.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -14,6 +14,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // SkinParamDefaultPreserveAspectRatio is the default SVG
@@ -158,7 +159,7 @@ func (s *SkinParam) SetParam(key, value string) {
 		styleBuilder := s.CurrentStyleBuilder()
 		lines, err := embeddedSkinLines("strictuml.skin")
 		if err == nil {
-			if styles, err := NewStyleParserCounter(styleBuilder).Parse(lines); err == nil {
+			if styles, err := StyleLoaderParseStyleText(lines, styleBuilder); err == nil {
 				s.MuteStyle(styles)
 			}
 		}
@@ -1230,5 +1231,5 @@ func (s *SkinParam) FromMd5(md5 string) (string, bool) {
 	return v, ok
 }
 
-// trin is upstream's StringUtils.trin, Java's trim.
-func trin(s string) string { return strings.TrimFunc(s, func(r rune) bool { return r <= ' ' }) }
+// trin is upstream's StringUtils.trin.
+func trin(s string) string { return text.Trin(s) }

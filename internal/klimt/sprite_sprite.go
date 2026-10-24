@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/Sprite.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteContainer.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteContainerEmpty.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteUtils.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/Sprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteContainer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteContainerEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

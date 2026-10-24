@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/ImageData.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/api/ImageDataAbstract.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/api/ImageDataSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/api/ImageDataComplex.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/ImageData.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/api/ImageDataAbstract.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/api/ImageDataSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/api/ImageDataComplex.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package export

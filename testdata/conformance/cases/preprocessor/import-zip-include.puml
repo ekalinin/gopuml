@@ -1,0 +1,12 @@
+---
+id: preprocessor/import-zip-include
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Include from an imported archive"
+---
+@startuml
+!import archive.zip
+!include lib/part.iuml
+@enduml

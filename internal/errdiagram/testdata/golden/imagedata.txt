@@ -17,8 +17,8 @@ error-raw-differs 591 340 400
 error-continuation 591 372 400
 preprocerror-dark 591 324 400
 preprocerror-long 451 167 400
-unsupported-dark 587 219 400
-unsupported-nometadata 587 219 400
+unsupported-dark 586 219 400
+unsupported-nometadata 586 219 400
 unsupported-special 590 219 400
 welcome-dark 591 261 0
 welcome-nometadata 591 261 0

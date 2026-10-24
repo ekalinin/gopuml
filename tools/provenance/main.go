@@ -11,7 +11,7 @@
 // or one or more lines naming the upstream MIT source it was translated from,
 // followed by the upstream copyright notice:
 //
-//	// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java
+//	// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java
 //	// Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 //
 // Code translated from fdlibm (the C library behind Java's StrictMath)
@@ -37,7 +37,7 @@ import (
 
 const (
 	provenancePrefix = "// Provenance: "
-	upstreamPrefix   = "plantuml-mit 1.2026.8 "
+	upstreamPrefix   = "plantuml-mit 1.2026.9 "
 	derivedNotice    = "// Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License."
 	fdlibmPrefix     = "fdlibm 5.3 "
 	fdlibmNotice     = "// Derived from fdlibm, Copyright (C) 1993 by Sun Microsystems, Inc. Permission to use, copy, modify, and distribute this software is freely granted, provided that this notice is preserved."

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/statediagram/command/CommandCreateState.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereogroup.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/statediagram/command/CommandCreateState.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereogroup.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package statediagram
@@ -145,6 +145,8 @@ func stereogroupLeafType(g *klimt.Stereogroup) abel.LeafType {
 		return abel.LeafTypeStateForkJoin
 	case "start":
 		return abel.LeafTypeCircleStart
+	case "junction":
+		return abel.LeafTypeJunction
 	case "end":
 		return abel.LeafTypeCircleEnd
 	case "history":

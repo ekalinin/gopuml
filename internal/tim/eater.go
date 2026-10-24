@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/Eater.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/StringEater.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/Eater.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/StringEater.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim
@@ -126,7 +126,7 @@ func (e *Eater) eatAndGetOptionalQuotedString() (string, error) {
 			return "", newEaterException("until001", e.sl)
 		}
 		if level == 0 && (ch == ',' || ch == ')') {
-			return text.Trin(fromUTF16(value)), nil
+			return text.JavaTrim(fromUTF16(value)), nil
 		}
 		ch = e.eatOneChar()
 		switch ch {

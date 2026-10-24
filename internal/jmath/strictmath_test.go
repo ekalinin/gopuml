@@ -53,6 +53,7 @@ var unaryFuncs = map[string]func(uint64) uint64{
 var binaryFuncs = map[string]func(a, b uint64) uint64{
 	"atan2": func(y, x uint64) uint64 { return canon(Atan2(f64(y), f64(x))) },
 	"pow":   func(x, y uint64) uint64 { return canon(Pow(f64(x), f64(y))) },
+	"hypot": func(x, y uint64) uint64 { return canon(Hypot(f64(x), f64(y))) },
 	"max":   func(a, b uint64) uint64 { return canon(Max(f64(a), f64(b))) },
 	"min":   func(a, b uint64) uint64 { return canon(Min(f64(a), f64(b))) },
 }

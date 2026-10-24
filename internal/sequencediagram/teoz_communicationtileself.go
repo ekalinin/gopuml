@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/CommunicationTileSelf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/CommunicationTileSelf.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -97,7 +97,9 @@ func (t *CommunicationTileSelf) DrawU(ug klimt.UGraphic) {
 	area.SetLevel(levelIgnore)
 	area.SetLiveDeltaSize(LiveDeltaSize)
 	ug = ug.Apply(klimt.UTranslateDx(x1))
+	ug.StartGroup(t.message.groupTypeMessage())
 	comp.DrawU(ug, area, context2D(ug))
+	ug.CloseGroup()
 }
 
 // PreferredHeight implements Tile.

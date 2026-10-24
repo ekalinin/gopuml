@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Provenance: original
 //
-// Harness runs the preprocessor of the reference PlantUML jar (v1.2026.8, MIT
+// Harness runs the preprocessor of the reference PlantUML jar (v1.2026.9, MIT
 // variant) on the case files of this directory and writes the results as JSON.
 // The Go tests compare the Go preprocessor with those results.
 //
@@ -35,7 +35,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -206,7 +205,7 @@ public class Harness {
 		FileSystem.getInstance().setCurrentDir(new SFile(cwd.toString()));
 		final Defines defines = Defines.createEmpty();
 		for (Map.Entry<String, String> ent : c.defines.entrySet())
-			defines.define(ent.getKey(), Arrays.asList(ent.getValue()), false);
+			defines.define(ent.getKey(), ent.getValue());
 
 		final ByteArrayOutputStream err = new ByteArrayOutputStream();
 		final PrintStream oldErr = System.err;

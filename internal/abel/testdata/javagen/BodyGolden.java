@@ -12,7 +12,7 @@
 // needs the font set of the reference image, which internal/klimt/font
 // reproduces, so the file is generated there. From the repository root:
 //
-//   mkdir -p ~/scratch-body && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-body && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-body internal/abel/testdata/javagen/BodyGolden.java
 //   docker run --rm -v "$PWD:/repo" -v "$HOME/scratch-body:/classes" plantuml-go-reference \
 //     java -Djava.awt.headless=true -XX:+UnlockDiagnosticVMOptions -XX:-InlineMathNatives \
@@ -78,7 +78,7 @@ import net.sourceforge.plantuml.klimt.shape.UText;
 import net.sourceforge.plantuml.style.ISkinParam;
 import net.sourceforge.plantuml.style.SName;
 import net.sourceforge.plantuml.style.Style;
-import net.sourceforge.plantuml.style.StyleSignatureBasic;
+import net.sourceforge.plantuml.style.StyleQuery;
 import net.sourceforge.plantuml.svek.WithPorts;
 import net.sourceforge.plantuml.url.Url;
 
@@ -128,26 +128,28 @@ public class BodyGolden {
 			final boolean sm, sf;
 			FontConfiguration fc = null;
 			if (t.isLikeClass()) {
-				style = StyleSignatureBasic.of(SName.root, SName.element, SName.classDiagram, SName.class_)
-						.withTOBECHANGED(leaf.getStereotype()).with(leaf.getStereostyles())
-						.getMergedStyle(leaf.getCurrentStyleBuilder());
+				style = leaf.getCurrentStyleBuilder()
+						.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.classDiagram, SName.class_)
+								.withStereotype(leaf.getStereotype()).withStereostyles(leaf.getStereostyles()));
 				sm = cd.showPortion(EntityPortion.METHOD, leaf);
 				sf = cd.showPortion(EntityPortion.FIELD, leaf);
 			} else if (t == LeafType.OBJECT) {
-				style = StyleSignatureBasic.of(SName.root, SName.element, SName.objectDiagram, SName.object)
-						.withTOBECHANGED(leaf.getStereotype()).getMergedStyle(sp.getCurrentStyleBuilder());
+				style = sp.getCurrentStyleBuilder()
+						.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.objectDiagram, SName.object)
+								.withStereotype(leaf.getStereotype()));
 				sm = false;
 				sf = cd.showPortion(EntityPortion.FIELD, leaf);
 			} else if (t == LeafType.MAP || t == LeafType.JSON) {
-				style = StyleSignatureBasic
-						.of(SName.root, SName.element, SName.objectDiagram, t == LeafType.MAP ? SName.map : SName.json)
-						.withTOBECHANGED(leaf.getStereotype()).getMergedStyle(sp.getCurrentStyleBuilder());
+				style = sp.getCurrentStyleBuilder().getMergedStyle(StyleQuery
+						.of3(SName.root, SName.element, SName.objectDiagram, t == LeafType.MAP ? SName.map : SName.json)
+						.withStereotype(leaf.getStereotype()));
 				fc = style.getFontConfiguration(sp.getIHtmlColorSet());
 				sm = false;
 				sf = false;
 			} else {
-				style = StyleSignatureBasic.of(SName.root, SName.element, SName.classDiagram, SName.class_)
-						.withTOBECHANGED(leaf.getStereotype()).getMergedStyle(leaf.getCurrentStyleBuilder());
+				style = leaf.getCurrentStyleBuilder()
+						.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.classDiagram, SName.class_)
+								.withStereotype(leaf.getStereotype()));
 				sm = true;
 				sf = true;
 			}
@@ -288,6 +290,10 @@ public class BodyGolden {
 		@Override
 		public UParam getParam() {
 			return new UParam() {
+				public net.sourceforge.plantuml.klimt.UClip getClip() {
+					return null;
+				}
+
 				public HColor getColor() {
 					return color;
 				}

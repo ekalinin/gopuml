@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Controls the appearance of rendered diagrams the same way PlantUML v1.2026.8 does: `skinparam`, the `<style>` system, built-in themes, colors, creole text markup and common diagram annotations.
+Controls the appearance of rendered diagrams the same way PlantUML v1.2026.9 does: `skinparam`, the `<style>` system, built-in themes, colors, creole text markup and common diagram annotations.
 
 ## Requirements
 

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/AbstractMessage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Message.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/MessageExo.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/MessageExoType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/MessageNumber.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/AbstractMessage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Message.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/MessageExo.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/MessageExoType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/MessageNumber.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -57,6 +57,10 @@ type MessageBase struct {
 	posYstartLevel           float64
 	anchor, anchor1, anchor2 string
 	hasAnchor                [3]bool
+
+	// uid identifies the message in the SVG: msg1, msg2, ... in the order
+	// the messages appear in the diagram.
+	uid string
 }
 
 func newMessageBase(self AbstractMessage, styleBuilder *klimt.StyleBuilder, label *klimt.Display,
@@ -237,7 +241,8 @@ func (m *MessageBase) AddNote(note *Note) *klimt.Warning {
 	switch note.Position() {
 	case NoteLeft, NoteRight, NoteBottom, NoteTop:
 	default:
-		return klimt.NewWarning("This position is ignored: " + note.Position().String())
+		return klimt.NewWarning("'note " + uml.LowerCase(note.Position().String()) +
+			"' is not supported on a message: this note is ignored. Use left, right, top or bottom")
 	}
 	note = note.WithPosition(m.self.overrideNotePosition(note.Position()))
 	m.noteOnMessages = append(m.noteOnMessages, note)
@@ -282,6 +287,23 @@ func (m *MessageBase) StyleBuilder() *klimt.StyleBuilder { return m.styleBuilder
 
 // LineLocation returns the source line of the message.
 func (m *MessageBase) LineLocation() *text.LineLocation { return m.location }
+
+// UID returns the identifier of the message in the SVG.
+func (m *MessageBase) UID() string { return m.uid }
+
+// SetUID sets the identifier of the message in the SVG.
+func (m *MessageBase) SetUID(uid string) { m.uid = uid }
+
+// groupTypeMessage is the SVG group wrapping the drawing of the message: its
+// class, source line, the uids of both participants and its own.
+func (m *MessageBase) groupTypeMessage() *klimt.UGroup {
+	group := klimt.NewUGroupAt(m.location)
+	group.Put(klimt.UGroupClass, "message")
+	group.Put(klimt.UGroupDataParticipant1, m.self.Participant1().UID())
+	group.Put(klimt.UGroupDataParticipant2, m.self.Participant2().UID())
+	group.Put(klimt.UGroupDataUID, m.uid)
+	return group
+}
 
 // Message is a message between two participants.
 type Message struct {

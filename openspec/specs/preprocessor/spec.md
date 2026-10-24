@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provides PlantUML v1.2026.8 compatible preprocessing of each diagram block before parsing: variables, macros, control flow, functions, builtins, JSON data, file inclusion and access control.
+Provides PlantUML v1.2026.9 compatible preprocessing of each diagram block before parsing: variables, macros, control flow, functions, builtins, JSON data, file inclusion and access control.
 
 ## Requirements
 

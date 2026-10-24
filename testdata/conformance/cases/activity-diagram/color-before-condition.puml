@@ -1,0 +1,15 @@
+---
+id: activity-diagram/color-before-condition
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "activity-diagram: Color before a condition"
+---
+@startuml
+#red:if (c?) then (yes)
+  :A;
+else (no)
+  :B;
+endif
+@enduml

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/Member.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/Member.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -84,7 +84,7 @@ func newMember(manageModifier bool, tmpDisplay string, isMethod bool) *Member {
 	}
 	m.staticModifier = strings.Contains(lower, "{static}") || strings.Contains(lower, "{classifier}")
 	m.abstractModifier = strings.Contains(lower, "{abstract}")
-	displayClean := text.Trin(memberRemoveStaticClassifierAbstract.ReplaceAllString(tmpDisplay, ""))
+	displayClean := text.JavaTrim(memberRemoveStaticClassifierAbstract.ReplaceAllString(tmpDisplay, ""))
 	if displayClean == "" {
 		displayClean = " "
 	}

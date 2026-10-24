@@ -12,6 +12,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 	"testing"
@@ -29,7 +30,7 @@ var (
 	_ tim.ThemeLister = themes.Bundled
 )
 
-// bundled lists the themes of upstream v1.2026.8 that are bundled, in
+// bundled lists the themes of upstream v1.2026.9 that are bundled, in
 // Java's sort order.
 var bundled = []string{
 	"aws-orange", "black-knight", "bluegray", "cerulean", "cerulean-outline", "cloudscape-design",
@@ -40,7 +41,7 @@ var bundled = []string{
 	"superhero-outline", "toy", "united", "vibrant",
 }
 
-// excluded lists the themes of upstream v1.2026.8 that are not bundled,
+// excluded lists the themes of upstream v1.2026.9 that are not bundled,
 // for the license reasons given in NOTICE.
 var excluded = []string{
 	"_none_", "amiga", "blueprint", "carbon-gray", "crt-amber", "crt-green", "mimeograph", "mono",
@@ -220,12 +221,17 @@ func TestLocalTheme(t *testing.T) {
 	if lines := res.PreprocLines(); slices.Contains(lines, "skinparam backgroundColor local") {
 		t.Errorf("local file used instead of the bundled theme: %q", lines)
 	}
-	// A theme that is missing in a "from" location fails as upstream does
-	// (its recorded output is a runtime error in both cases), even when a
-	// bundled theme has the name.
-	for _, src := range []string{"!theme cerulean from <lib>", "!theme cerulean from nowhere", "!theme other from dir"} {
-		_, err = preprocess(t, "@startuml\n"+src+"\n@enduml\n", memAccess(files))
-		wantError(t, err, "Fatal parsing error", 1)
+	// A theme that is missing in a "from" location fails as upstream does,
+	// even when a bundled theme has the name: a library reports a runtime
+	// error, a directory names the theme.
+	_, err = preprocess(t, "@startuml\n!theme cerulean from <lib>\n@enduml\n", memAccess(files))
+	wantError(t, err, "Fatal parsing error", 1)
+	for _, c := range []struct{ src, want string }{
+		{"!theme cerulean from nowhere", "Cannot load theme cerulean in nowhere"},
+		{"!theme other from dir", "Cannot load theme other in dir"},
+	} {
+		_, err = preprocess(t, "@startuml\n"+c.src+"\n@enduml\n", memAccess(files))
+		wantError(t, err, c.want, 1)
 	}
 }
 
@@ -277,6 +283,9 @@ func TestURLTheme(t *testing.T) {
 	}
 }
 
+// sourceLine matches the source line attribute of a group.
+var sourceLine = regexp.MustCompile(` data-source-line="\d+"`)
+
 // TestLibraryTheme checks gopuml.Options.Theme: it acts as a !theme line
 // placed before the Config lines, as upstream's --theme comes before
 // --config, -P and -S.
@@ -288,7 +297,8 @@ func TestLibraryTheme(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		return res.Data
+		// The !theme and skinparam lines shift the source lines of the groups.
+		return sourceLine.ReplaceAll(res.Data, nil)
 	}
 	const body = "Alice -> Bob : hello\n@enduml\n"
 	want := render("@startuml\n!theme cerulean\nskinparam backgroundColor red\n"+body, gopuml.Options{})

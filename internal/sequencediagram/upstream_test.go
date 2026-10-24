@@ -88,10 +88,6 @@ var knownDifferences = map[string]string{
 	// Java's \s accepts) makes the command reject the line. The command
 	// framework (internal/command/regex) does not emulate this prefilter.
 	"whitespace/vertical tab participant (escaped)": "RegexConcat fox signature prefilter",
-	// Java's CASE_INSENSITIVE folds ASCII letters only, RE2's (?i) uses
-	// Unicode simple folding: "ſkinparam" (U+017F) matches "skinparam" in
-	// Go only.
-	"whitespace/long s keyword (escaped)": "RE2 Unicode case folding",
 	// The preprocessor does not bundle themes yet (task 7.3).
 	"conformance/styling/theme-cerulean.puml": "themes not bundled",
 }

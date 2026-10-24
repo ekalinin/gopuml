@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/CommunicationTile.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/CommunicationTile.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -179,7 +179,9 @@ func (t *CommunicationTile) DrawU(ug klimt.UGraphic) {
 				geom.VerticalAlignmentTop, geom.HorizontalAlignmentLeft)
 		}
 	}
+	ug.StartGroup(t.message.groupTypeMessage())
 	comp.DrawU(ug, area, context2D(ug))
+	ug.CloseGroup()
 }
 
 func (t *CommunicationTile) drawMulticast(ug klimt.UGraphic) {

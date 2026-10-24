@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSkinParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSkinParamJaws.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSkinParamMultilines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesComment.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/SkinLoader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSkinParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSkinParamJaws.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSkinParamMultilines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/SkinLoader.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml
@@ -29,13 +28,12 @@ func CommandSkinParam[D Diagram]() command.Command[D] {
 			b := d.Titled()
 			name := arg.Str("NAME", 0)
 			if EqualsIgnoreCase("handwritten", name) {
-				b.AddWarning(klimt.NewWarning("Please use '!option handwritten true' to enable handwritten "))
+				b.AddWarning(klimt.NewWarning("'skinparam handwritten' is deprecated: write '!option handwritten " +
+					arg.Str("VALUE", 0) + "' instead"))
 			}
 			if EqualsIgnoreCase("ParticipantPadding", name) {
-				b.AddWarning(klimt.NewWarning("Please use CSS style instead of skinparam ParticipantPadding"))
-			}
-			if EqualsIgnoreCase("padding", name) {
-				b.AddWarning(klimt.NewWarning("Please use CSS style instead of skinparam padding"))
+				b.AddWarning(klimt.NewWarning("'skinparam ParticipantPadding' is ignored: use a style instead",
+					"<style>", "participant {", "  Padding "+arg.Str("VALUE", 0), "}", "</style>"))
 			}
 			b.SetParam(name, arg.Str("VALUE", 0))
 			b.SetSkinParamUsed(true)
@@ -58,7 +56,7 @@ func CommandSkinParamJaws[D Diagram]() command.Command[D] {
 			var lines command.BlocLines
 			for _, line := range JavaSplit(arg.Str("FULL", 0), newline) {
 				lines = lines.Add(text.NewStringLocated(line, nil))
-				if text.Trin(line) == "}" {
+				if text.JavaTrim(line) == "}" {
 					if res := multi.Execute(d, lines, pass); !res.IsOK() {
 						return res
 					}
@@ -96,9 +94,11 @@ func CommandSkinParamMultilines[D Diagram]() command.Command[D] {
 }
 
 func commandSkinParamMultilines[D Diagram]() *MultilinesBracket[D] {
-	start := Compile(`^skinparam[%s]*(?:[%s]+([\w.]*(?:\<\<.*\>\>)?[\w.]*))?[%s]*\{$`)
+	pattern := `^skinparam[%s]*(?:[%s]+([\w.]*(?:\<\<.*\>\>)?[\w.]*))?[%s]*\{$`
+	start := Compile(pattern)
 	return &MultilinesBracket[D]{
-		Start: start,
+		Pattern: pattern,
+		Start:   start,
 		Consistent: func(line string, _ int) bool {
 			line = text.Trin(line)
 			if commentSingleLine.MatchString(line) {

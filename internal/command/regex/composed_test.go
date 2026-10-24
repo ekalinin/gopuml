@@ -141,3 +141,34 @@ func TestResultFromCaptures(t *testing.T) {
 		t.Errorf("Str = %q", got)
 	}
 }
+
+// The groups are in the order the pattern fills them, the group of an
+// alternative after the groups inside it, and Lazy takes the first matching
+// group in that order, as upstream's RegexResult does.
+func TestResultOrder(t *testing.T) {
+	c := NewConcat(Start(),
+		NewNamedLeaf(1, "TAGS1", "(a)?"),
+		Or("CODE",
+			NewNamedLeaf(1, "CODE1", "(b)"),
+			NewNamedLeaf(1, "CODE2", "(c)"),
+		),
+		NewNamedLeaf(1, "TAGS2", "(d)?"),
+		End())
+	r := c.Matcher("abd")
+	if r == nil {
+		t.Fatal("no match")
+	}
+	if got := strings.Join(r.order, ","); got != "TAGS1,CODE1,CODE2,CODE,TAGS2" {
+		t.Errorf("order %s", got)
+	}
+	if got, _ := r.Lazy("TAGS", 0); got != "a" {
+		t.Errorf("Lazy TAGS = %q, want the first matching group", got)
+	}
+	r = c.Matcher("cd")
+	if got, _ := r.Lazy("TAGS", 0); got != "d" {
+		t.Errorf("Lazy TAGS = %q, want d", got)
+	}
+	if got, _ := r.Lazy("CODE", 0); got != "c" {
+		t.Errorf("Lazy CODE = %q, want c, the first matching CODE group", got)
+	}
+}

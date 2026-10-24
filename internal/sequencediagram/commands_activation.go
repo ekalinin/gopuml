@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandActivate.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandActivate2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandDeactivateShort.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandAutoactivate.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandReturn.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandActivate.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandActivate2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandDeactivateShort.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandAutoactivate.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandReturn.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -111,9 +111,11 @@ func commandAutoactivate() cmd {
 }
 
 // commandReturn is "return label": a dotted message back from the last
-// activation.
+// activation. Its first tokens are declared, as upstream declares them:
+// the pattern accepts any line ("(.*)" follows "return"), but only the
+// lines that start with "&" or the word "return" are tried.
 func commandReturn() cmd {
-	return uml.Single(regex.NewConcat(regex.Start(),
+	c := uml.Single(regex.NewConcat(regex.Start(),
 		uml.Leaf(1, "PARALLEL", "(&[%s]*)?"),
 		regex.SpaceZeroOrMore(),
 		uml.Lit("return"),
@@ -164,4 +166,6 @@ func commandReturn() cmd {
 			}
 			return command.Ok()
 		})
+	c.FirstTokens = []string{"&", "return"}
+	return c
 }

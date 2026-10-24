@@ -1,25 +1,22 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/DiagramSourceCompressor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/TranscoderImpl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/TranscoderSmart.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/TranscoderSmartProtected.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/DiagramSourceCompressor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/TranscoderImpl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/TranscoderSmart.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/TranscoderSmartProtected.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package code
 
 import (
-	"regexp"
 	"strings"
 
-	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
-var (
-	sourcePattern = regex.MustCompile(`(?s)^[%s]*(@startuml[^\n\r]*)?[%s]*(.*?)[%s]*(@enduml)?[%s]*$`)
-	endumlLine    = regexp.MustCompile(`@enduml[^\n\r]*`)
-	startumlLine  = regexp.MustCompile(`@startuml[^\n\r]*`)
+const (
+	startUml = "@startuml"
+	endUml   = "@enduml"
 )
 
 // compressSource keeps the lines between @startuml and @enduml, as
@@ -45,22 +42,84 @@ func compressSource(data string) string {
 		}
 	}
 	if !startDone {
-		if m := sourcePattern.FindStringSubmatch(full.String()); m != nil {
-			return cleanSource(m[2])
-		}
-		return ""
+		return cleanSource(stripStartEnd(full.String(), true))
 	}
 	return sb.String()
 }
 
 func cleanSource(s string) string {
 	s = text.Trin(s)
-	if m := sourcePattern.FindStringSubmatch(s); m != nil {
-		s = m[2]
-	}
-	s = endumlLine.ReplaceAllString(s, "")
-	s = startumlLine.ReplaceAllString(s, "")
+	s = stripStartEnd(s, false)
+	s = removeFromToken(s, endUml)
+	s = removeFromToken(s, startUml)
 	return text.Trin(s)
+}
+
+// removeFromToken removes each token with the rest of its line.
+func removeFromToken(s, token string) string {
+	pos := strings.Index(s, token)
+	if pos == -1 {
+		return s
+	}
+	var sb strings.Builder
+	from := 0
+	for pos != -1 {
+		sb.WriteString(s[from:pos])
+		from = pos + len(token)
+		for from < len(s) && s[from] != '\n' && s[from] != '\r' {
+			from++
+		}
+		pos = strings.Index(s[from:], token)
+		if pos != -1 {
+			pos += from
+		}
+	}
+	sb.WriteString(s[from:])
+	return sb.String()
+}
+
+func isSourceBlank(c rune) bool {
+	return c == ' ' || c == '\t' || c == '\n' || c == '\u000B' || c == '\f' || c == '\r' || c == '\u00A0'
+}
+
+func isOtherLineTerminator(c rune) bool { return c == '\u0085' || c == '\u2028' || c == '\u2029' }
+
+// stripStartEnd removes the blanks around s, a leading "@startuml" line and
+// a trailing "@enduml" (in lower case only). With
+// dollarBeforeFinalTerminator, one U+0085, U+2028 or U+2029 at the end is
+// dropped first, as the "$" of the regex upstream used to apply.
+func stripStartEnd(s string, dollarBeforeFinalTerminator bool) string {
+	r := []rune(s)
+	hasAt := func(i int, token string) bool {
+		return i >= 0 && i+len(token) <= len(r) && string(r[i:i+len(token)]) == token
+	}
+	start := 0
+	for start < len(r) && isSourceBlank(r[start]) {
+		start++
+	}
+	if hasAt(start, startUml) {
+		start += len(startUml)
+		for start < len(r) && r[start] != '\n' && r[start] != '\r' {
+			start++
+		}
+		for start < len(r) && isSourceBlank(r[start]) {
+			start++
+		}
+	}
+	end := len(r)
+	if dollarBeforeFinalTerminator && end > start && isOtherLineTerminator(r[end-1]) {
+		end--
+	}
+	for end > start && isSourceBlank(r[end-1]) {
+		end--
+	}
+	if e := end - len(endUml); e >= start && hasAt(e, endUml) {
+		end = e
+		for end > start && isSourceBlank(r[end-1]) {
+			end--
+		}
+	}
+	return string(r[start:end])
 }
 
 // decompressSource adds @startuml/@enduml around decoded text that does not

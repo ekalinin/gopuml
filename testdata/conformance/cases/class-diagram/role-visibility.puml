@@ -1,0 +1,13 @@
+---
+id: class-diagram/role-visibility
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Roles with visibility"
+---
+@startuml
+class A
+class B
+A "1"/"-owner" --> "*"/"+items" B
+@enduml

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/g2d/DriverTextG2d.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/g2d/DriverTextAsPathG2d.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/text/StyledString.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/g2d/DriverTextG2d.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/g2d/DriverTextAsPathG2d.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/text/StyledString.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package g2d

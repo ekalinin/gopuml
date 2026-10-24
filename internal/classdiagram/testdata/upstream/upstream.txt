@@ -1487,8 +1487,8 @@ error.score 20
 error.last 1
 === errors/weight parse error
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
 error.score 20
 error.last 1
 === hide/hide empty members
@@ -2461,11 +2461,11 @@ quark [n1] name=[n1] parent=[] data=ent0001 children=0
 quark [n2] name=[n2] parent=[] data=ent0002 children=0
 quark [n3] name=[n3] parent=[] data=ent0003 children=0
 entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
-entity ent0001 quark=[n1] group=PACKAGE display=[Display] mode=FULL stereo=<<s2>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0001 quark=[n1] group=PACKAGE display=[Display] mode=FULL stereo=<<s1>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0001 BodierSimple raw=[]
-entity ent0002 quark=[n2] group=PACKAGE display=[Display] mode=FULL stereo=<<s4>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0002 quark=[n2] group=PACKAGE display=[Display] mode=FULL stereo=<<s3>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierSimple raw=[]
-entity ent0003 quark=[n3] group=PACKAGE display=[d3] mode=FULL stereo=<<s6>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=5 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0003 quark=[n3] group=PACKAGE display=[d3] mode=FULL stereo=<<s5>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=5 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0003 BodierSimple raw=[]
 === lazy/container tags twice
 result ClassDiagram
@@ -2558,7 +2558,7 @@ quark [] name=[] parent=null data=entroot children=2
 quark [I4] name=[I4] parent=[] data=ent0001 children=0
 quark [I5] name=[I5] parent=[] data=ent0002 children=0
 entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
-entity ent0001 quark=[I4] leaf=DESCRIPTION display=[I4] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=0,g=0,b=255,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0001 quark=[I4] leaf=DESCRIPTION display=[I4] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=255,g=0,b=0,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0001 BodierSimple raw=[]
 entity ent0002 quark=[I5] leaf=DESCRIPTION display=[I5] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=0,g=128,b=0,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierSimple raw=[]
@@ -6732,7 +6732,7 @@ body ent0001 BodierSimple raw=[]
 entity ent0002 quark=[LN.A] leaf=CLASS display=[A] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
-entity ent0003 quark=[Short] group=PACKAGE display=[LN2] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=4 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0003 quark=[Short] group=PACKAGE display=[LN2] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=PACKAGE static=false packed=false rawlayout=0 together=null at=4 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0003 BodierSimple raw=[]
 === packages/package styles
 result ClassDiagram
@@ -10834,8 +10834,8 @@ result ClassDiagram
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=2 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.5 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 === linkcombos/890 @1.2.3 A --> B
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
 error.score 20
 error.last 1
 === linkcombos/891 A --> B #red
@@ -16023,6 +16023,30 @@ body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 entity ent0003 quark=[GMN2] leaf=NOTE display=[multi] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=255,g=192,b=203,a=255] α=255} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0003 BodierSimple raw=[]
 link lnk4 e1=ent0001 e2=ent0003 type=NONE-DASHED(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=null la=null length=2 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=null at=3 hidden=false removed=false
+=== conformance/activity-diagram/color-before-action.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/color-before-condition.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/color-before-repeat.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/condition-stereotype-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/activity-diagram/fork.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
@@ -16036,6 +16060,12 @@ error.message Syntax Error? (Assumed diagram type: class)
 error.score 20
 error.last 1
 === conformance/activity-diagram/labeled-arrow.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/partition-without-bracket.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: class)
@@ -16066,6 +16096,12 @@ error.message Syntax Error? (Assumed diagram type: class)
 error.score 20
 error.last 1
 === conformance/activity-diagram/while-loop.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/class-diagram/backslash-separator.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: class)
@@ -16408,6 +16444,72 @@ entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] ta
 entity ent0001 quark=[Alice] leaf=OBJECT display=[Alice] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0001 BodierLikeClassOrObject raw=[age = 30;] type=OBJECT fields=[{null||age = 30|null|age = 30}] methods=[]
 portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+=== conformance/class-diagram/package-code-as-display.puml
+result ClassDiagram
+description (1 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=1
+quark [uid] name=[uid] parent=[] data=ent0001 children=1
+quark [uid.World] name=[World] parent=[uid] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[uid] group=PACKAGE display=[Hello] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=PUBLIC_METHOD colors={{} null shadowing=null} url=null symbol=FRAME static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierSimple raw=[]
+entity ent0002 quark=[uid.World] leaf=CLASS display=[World] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+=== conformance/class-diagram/role-visibility.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [A] name=[A] parent=[] data=ent0001 children=0
+quark [B] name=[B] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[A] leaf=CLASS display=[A] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[B] leaf=CLASS display=[B] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=1 q2=* r1=-owner r2=+items kal1=null kal2=null ld=1.7 la=25 length=2 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=3 at=3 hidden=false removed=false
 === conformance/class-diagram/visibility-static.puml
 result ClassDiagram
 description (1 entities)
@@ -17197,9 +17299,19 @@ entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] 
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[many] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=3 at=3 hidden=false removed=false
+=== conformance/preprocessor/import-zip-include.puml
+preprocessor error
+=== conformance/preprocessor/include-many.puml
+preprocessor error
 === conformance/preprocessor/include-once.puml
 preprocessor error
 === conformance/preprocessor/include-relative-nested.puml
+preprocessor error
+=== conformance/preprocessor/include-selected-block.puml
+preprocessor error
+=== conformance/preprocessor/include-twice.puml
+preprocessor error
+=== conformance/preprocessor/include-unusable-selector.puml
 preprocessor error
 === conformance/preprocessor/json-member-access.puml
 result ClassDiagram
@@ -17305,6 +17417,40 @@ portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STERE
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
 === conformance/preprocessor/missing-include.puml
 preprocessor error
+=== conformance/preprocessor/option-unknown.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [A] name=[A] parent=[] data=ent0001 children=0
+quark [B] name=[B] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[A] leaf=CLASS display=[A] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
 === conformance/preprocessor/procedure-default-argument.puml
 result ClassDiagram
 description (2 entities)
@@ -17560,6 +17706,12 @@ body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[request] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 link lnk4 e1=ent0002 e2=ent0001 type=ARROW-NORMAL(null)-NONE middle=NONE label=[response] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sequence-diagram/group-right-margin.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
 === conformance/sequence-diagram/implicit-participant.puml
 result ClassDiagram
 description (2 entities)
@@ -17594,12 +17746,30 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/sequence-diagram/note-after-group.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/sequence-diagram/note-merge-deprecated.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
 === conformance/sequence-diagram/note-over-two.puml
 result error
 error SYNTAX_ERROR 2 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: class)
 error.score 30
 error.last 2
+=== conformance/sequence-diagram/participant-minimum-width.puml
+result error
+error SYNTAX_ERROR 9 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 100
+error.last 9
 === conformance/sequence-diagram/puma-requested.puml
 result error
 error SYNTAX_ERROR 3 Syntax Error?
@@ -17636,6 +17806,46 @@ entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null st
 body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk2 e1=ent0001 e2=ent0001 type=ARROW-NORMAL(null)-NONE middle=NONE label=[think] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/sequence-diagram/stacked-notes.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/sequence-diagram/svg-element-groups.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 === conformance/sequence-diagram/two-pages.puml
 result error
 error SYNTAX_ERROR 2 Syntax Error?
@@ -17722,6 +17932,18 @@ error.last 2
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/state-diagram/history-style.puml
+result error
+error EXECUTION_ERROR 8 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 90
+error.last 8
+=== conformance/state-diagram/junction.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
 error.score 20
 error.last 1
 === conformance/state-diagram/left-to-right.puml
@@ -17819,6 +18041,35 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/styling/class-stereotype-style.puml
+result ClassDiagram
+description (1 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0001
+stack entroot
+quark [] name=[] parent=null data=entroot children=1
+quark [HelloService] name=[HelloService] parent=[] data=ent0001 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[HelloService] leaf=CLASS display=[HelloService] mode=SIMPLE_LINE stereo=<<Service>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=6 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=[<<Service>>]
 === conformance/styling/creole-bold-color.puml
 result ClassDiagram
 description (3 entities)
@@ -18071,6 +18322,77 @@ body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
 link lnk4 e1=ent0002 e2=ent0001 type=ARROW-NORMAL(null)-NONE middle=NONE label=[ok] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=3 at=3 hidden=false removed=false
+=== conformance/styling/skinparam-padding.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused true
+smetana false elk false
+skinparam padding=5
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [A] name=[A] parent=[] data=ent0001 children=0
+quark [B] name=[B] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[A] leaf=CLASS display=[A] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/styling/skinparam-participantpadding.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused true
+smetana false elk false
+warning 'skinparam ParticipantPadding' is ignored: use a style instead\n<style>\nparticipant {\n  Padding 40\n}\n</style>
+skinparam participantpadding=40
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [A] name=[A] parent=[] data=ent0001 children=0
+quark [B] name=[B] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[A] leaf=CLASS display=[A] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
 === conformance/styling/stereotype-selector.puml
 result ClassDiagram
 description (2 entities)
@@ -18311,6 +18633,8 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/styling/theme-missing-local.puml
+preprocessor error
 === conformance/styling/title-and-footer.puml
 result ClassDiagram
 description (2 entities)

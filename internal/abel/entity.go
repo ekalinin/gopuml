@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/Entity.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityUtils.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/SpecificBackcolorable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/LineConfigurable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/Entity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/SpecificBackcolorable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/LineConfigurable.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

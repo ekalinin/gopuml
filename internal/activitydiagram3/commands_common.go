@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilines3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandDecoratorMultine.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/BlocLines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilines3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandDecoratorMultine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFootboxIgnored.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandLinkElement.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/BlocLines.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram3
@@ -229,3 +229,16 @@ func (c *decoratorMultine) EligibleFor(pass command.ParserPass) bool { return c.
 
 // MaxLines implements command.MaxLinesCommand.
 func (c *decoratorMultine) MaxLines() int { return c.nbMaxLines }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *multilines3) MandatoryFirstTokens() []string { return regex.FirstTokens(c.start.Pattern()) }
+
+// StartPattern implements command.StartPatternCommand.
+func (c *multilines3) StartPattern() string { return c.start.Pattern() }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand with the
+// tokens of the decorated command.
+func (c *decoratorMultine) MandatoryFirstTokens() []string { return c.cmd.MandatoryFirstTokens() }
+
+// StartPattern implements command.StartPatternCommand.
+func (c *decoratorMultine) StartPattern() string { return c.cmd.StartPattern() }

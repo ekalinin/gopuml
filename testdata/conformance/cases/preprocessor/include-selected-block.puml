@@ -1,0 +1,11 @@
+---
+id: preprocessor/include-selected-block
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Selected block"
+---
+@startuml
+!include multi.iuml!1
+@enduml

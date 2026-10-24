@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UShape.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UChange.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UBackground.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UShapeSized.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/Shadowable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/AbstractShadowable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/CopyForegroundColorToBackgroundColor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UPattern.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/UAntiAliasing.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/AffineTransformType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/ClipContainer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UShape.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UChange.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UBackground.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UShapeSized.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/Shadowable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/AbstractShadowable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/CopyForegroundColorToBackgroundColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UPattern.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/UAntiAliasing.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/AffineTransformType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/ClipContainer.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -157,6 +157,11 @@ func TestDiagramReferences(t *testing.T) {
 		var blocks []*engine.Block
 		rc := core.NewRenderContext()
 		rc.CurrentDir = filepath.Join(repoRoot, "testdata/conformance/cases", filepath.Dir(c.Path))
+		// The fixtures of a case are staged next to it by refgen
+		fixtures := filepath.Join(repoRoot, "testdata/conformance/cases", filepath.FromSlash(c.ID)+".files")
+		if st, err := os.Stat(fixtures); err == nil && st.IsDir() {
+			rc.CurrentDir = fixtures
+		}
 		for _, bm := range meta.Blocks {
 			if !handled(bm) {
 				continue
@@ -305,6 +310,8 @@ func TestVegaReferences(t *testing.T) {
 				continue
 			}
 			rc := core.NewRenderContext()
+			// The includes of a case are relative to its directory
+			rc.CurrentDir = filepath.Join(vegaRoot, filepath.Dir(id))
 			blocks := parse(t, rc, engine.Source{Text: c.Source})
 			b := blocks[bm.Index]
 			var trace []text.StringLocated
@@ -317,6 +324,11 @@ func TestVegaReferences(t *testing.T) {
 			last := trace[len(trace)-1]
 			d := &core.ErrorDiagram{Source: b.Data, Trace: trace,
 				Error: core.ErrorUml{Type: core.SyntaxError, Error: bm.Error.Messages[0], Line: &last}}
+			// An error of the preprocessor is drawn from its own trace,
+			// which keeps the directive lines that Data drops.
+			if e, ok := b.Diagram.(*core.ErrorDiagram); ok && e.Error.Error == bm.Error.Messages[0] {
+				d = e
+			}
 			for _, rm := range bm.Renders {
 				if rm.File == nil {
 					continue

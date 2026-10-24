@@ -286,10 +286,10 @@ func TestCommonCommandErrors(t *testing.T) {
 		{[]string{"page 0x1"}, "Argument must be positive", 1},
 		{[]string{"skin nosuch"}, "Cannot find style nosuch", 1},
 		{[]string{"skin strictuml"}, "Incomplete style strictuml: root does not define [FontName, FontSize, FontStyle, FontColor, LineColor, LineThickness, BackGroundColor, HorizontalAlignment]", 1},
-		{[]string{"!pragma layout"}, `You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null`, 1},
+		{[]string{"!pragma layout"}, `You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null`, 1},
 		{[]string{"sprite $s [2x2/3] {", "00", "}"}, "Only 4, 8 or 16 graylevel are allowed.", 1},
 		{[]string{"sprite $s {", "}"}, "No sprite defined.", 1},
-		{[]string{"scale 1.2.3"}, "You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points", 1},
+		{[]string{"scale 1.2.3"}, "You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points", 1},
 	}
 	for _, tt := range tests {
 		e, ok := parse(t, f, tt.lines...).(*core.ErrorDiagram)

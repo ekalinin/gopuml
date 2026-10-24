@@ -10,7 +10,7 @@
 // Build it on the host and run it in the reference image, whose fonts
 // (DejaVu) are those of the Go font metrics. From the repository root:
 //
-//   mkdir -p ~/scratch-svg/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-svg/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-svg/classes internal/klimt/svg/testdata/javagen/SvgGolden.java
 //   docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" -v "$PWD:/work" \
 //     -v ~/scratch-svg/classes:/gen plantuml-go-reference \

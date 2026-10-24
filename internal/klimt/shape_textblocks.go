@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockEmpty.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockMarged.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockMinWidth.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockHorizontal.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockVertical.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/SimpleTextBlockBordered.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockGeneric.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockSprited.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlockWithUrl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockMarged.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockMinWidth.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockHorizontal.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockVertical.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/SimpleTextBlockBordered.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockGeneric.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockSprited.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockWithUrl.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

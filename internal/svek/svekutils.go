@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/SvekUtils.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/ArithmeticStrategy.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/ArithmeticStrategySum.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/DotMode.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/Point2DFunction.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/YDelta.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/ColorSequence.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/EmptySvgException.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/SvekUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/ArithmeticStrategy.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/ArithmeticStrategySum.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/DotMode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/Point2DFunction.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/YDelta.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/ColorSequence.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/EmptySvgException.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek

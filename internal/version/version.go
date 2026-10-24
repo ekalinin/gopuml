@@ -9,7 +9,7 @@ import "runtime/debug"
 
 // Upstream is the PlantUML release this implementation reproduces;
 // %version() returns it.
-const Upstream = "1.2026.8"
+const Upstream = "1.2026.9"
 
 // Version is the version of this implementation. It can be set at build
 // time with -ldflags "-X github.com/ekalinin/gopuml/internal/version.Version=v1.0.0";

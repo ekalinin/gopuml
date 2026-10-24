@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/SequenceDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/SequenceDiagram.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -27,6 +27,8 @@ type SequenceDiagram struct {
 	englobers        map[*Participant]*ParticipantEnglober
 
 	cpt int
+	// messageCount numbers the messages for their SVG ids.
+	messageCount int
 
 	lastEventWithDeactivate EventWithDeactivate
 	lastDelay               *Delay
@@ -187,6 +189,8 @@ func (d *SequenceDiagram) AddMessage(m AbstractMessage) command.Result {
 			m.Base().SetParallelBrother(nil)
 		}
 	}
+	d.messageCount++
+	m.Base().SetUID("msg" + strconv.Itoa(d.messageCount))
 	d.lastEventWithDeactivate = m
 	d.lastDelay = nil
 	d.events = append(d.events, m)

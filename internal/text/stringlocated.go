@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/text/StringLocated.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/LineLocationImpl.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/StringUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/text/StringLocated.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/LineLocationImpl.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/StringUtils.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package text
@@ -9,6 +9,7 @@ package text
 import (
 	"regexp"
 	"strings"
+	"unicode/utf8"
 )
 
 // LineLocation is the position of a line in its source.
@@ -96,12 +97,40 @@ func (sl StringLocated) RemoveInnerComment() StringLocated {
 	return sl
 }
 
+// FirstToken is the token the command index files the line under,
+// upstream's getFirstToken: once the leading blanks are skipped (those of
+// StringUtils.isTrimmable), the run of ASCII letters the line starts with,
+// lower-cased, or its first character alone, or "" for a blank line.
+func (sl StringLocated) FirstToken() string {
+	s := strings.TrimLeftFunc(sl.S, isTrimmable)
+	if s == "" {
+		return ""
+	}
+	end := 0
+	for end < len(s) && (s[end] >= 'a' && s[end] <= 'z' || s[end] >= 'A' && s[end] <= 'Z') {
+		end++
+	}
+	if end > 0 {
+		return strings.ToLower(s[:end])
+	}
+	_, size := utf8.DecodeRuneInString(s)
+	return s[:size]
+}
+
 // isJavaTrimSpace matches the characters removed by Java's String.trim.
 func isJavaTrimSpace(r rune) bool { return r <= ' ' }
 
-// Trin removes leading and trailing characters <= ' ', like upstream's
-// StringUtils.trin and Java's String.trim.
-func Trin(s string) string { return strings.TrimFunc(s, isJavaTrimSpace) }
+// isTrimmable is upstream's StringUtils.isTrimmable: a character up to the
+// space, or U+00A0.
+func isTrimmable(r rune) bool { return r <= ' ' || r == '\u00A0' }
+
+// Trin removes the leading and trailing characters up to the space, and
+// U+00A0, like upstream's StringUtils.trin.
+func Trin(s string) string { return strings.TrimFunc(s, isTrimmable) }
+
+// JavaTrim removes the leading and trailing characters up to the space,
+// like Java's String.trim (U+00A0 is kept).
+func JavaTrim(s string) string { return strings.TrimFunc(s, isJavaTrimSpace) }
 
 // EndsWithBackslash reports whether s ends with a single backslash.
 func EndsWithBackslash(s string) bool {

@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterOption.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterOption.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim
 
-import "github.com/ekalinin/gopuml/internal/text"
+import (
+	"strings"
+
+	"github.com/ekalinin/gopuml/internal/text"
+)
 
 // EaterOption is "!option name [value]".
 type EaterOption struct{ Eater }
@@ -32,9 +36,15 @@ func (e *EaterOption) analyze(context *TContext, memory TMemory) error {
 	optionKey, ok := lazyFromOptionKey(key)
 	switch {
 	case !ok:
-		artifact.addWarning("No such !option " + key)
+		// A warning of two lines
+		var known []string
+		for _, k := range optionKeys {
+			known = append(known, strings.ToLower(k.Name))
+		}
+		artifact.addWarning("Unknown '!option " + key + "': this line is ignored\nKnown options are: " +
+			strings.Join(known, ", "))
 	case value == nil && optionKey.defaultValue == nil:
-		artifact.addWarning("No default value for " + key)
+		artifact.addWarning("'!option " + key + "' needs a value: write '!option " + key + " <value>'")
 	case value == nil:
 		artifact.option.define(optionKey, *optionKey.defaultValue)
 	default:

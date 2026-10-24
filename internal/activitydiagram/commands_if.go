@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandIf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandElse.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandEndif.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandIf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandElse.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram/command/UBrexCommandEndif.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram
@@ -94,7 +94,7 @@ func commandIf() cmd {
 // commandElse is upstream's UBrexCommandElse: the next transitions start
 // from the branch of the current "if".
 func commandElse() cmd {
-	return uml.UBrex(klimt.UBrexConcat(klimt.UBrexLeaf("else"), klimt.UBrexEnd()),
+	return uml.UBrexTokens([]string{"else"}, klimt.UBrexConcat(klimt.UBrexLeaf("else"), klimt.UBrexEnd()),
 		func(d *ActivityDiagram, _ *text.LineLocation, _ *regex.Result, _ command.ParserPass) command.Result {
 			if d.lastEntity() == nil || d.currentContext == nil {
 				return command.Error("No if for this else")
@@ -107,7 +107,7 @@ func commandElse() cmd {
 // commandEndif is upstream's UBrexCommandEndif: "endif" closes the current
 // "if".
 func commandEndif() cmd {
-	return uml.UBrex(klimt.UBrexConcat(klimt.UBrexLeaf("end"), klimt.UBrexSpaceZeroOrMore(), klimt.UBrexLeaf("if"),
+	return uml.UBrexTokens([]string{"end", "endif"}, klimt.UBrexConcat(klimt.UBrexLeaf("end"), klimt.UBrexSpaceZeroOrMore(), klimt.UBrexLeaf("if"),
 		klimt.UBrexEnd()),
 		func(d *ActivityDiagram, _ *text.LineLocation, _ *regex.Result, _ command.ParserPass) command.Result {
 			if d.lastEntity() == nil || d.currentContext == nil {

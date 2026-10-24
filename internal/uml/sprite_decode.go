@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/Sprite.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteGrayLevel.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteMonochrome.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteColor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteColorBuilder4096.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/ColorPalette4096.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/AsciiEncoder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/code/CompressionZlib.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/utils/Base64Coder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/security/SImageIO.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/Sprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteGrayLevel.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteMonochrome.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteColor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteColorBuilder4096.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/ColorPalette4096.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/AsciiEncoder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/code/CompressionZlib.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/utils/Base64Coder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/security/SImageIO.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

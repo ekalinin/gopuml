@@ -200,3 +200,80 @@ func TestSegmentCut(t *testing.T) {
 		}
 	}
 }
+
+// A participant name sits in the room that MinimumWidth adds according to
+// the HorizontalAlignment of the style: left, centered (also without an
+// alignment) or right.
+func TestParticipantMinimumWidthAlignment(t *testing.T) {
+	nameX := func(alignment string) float64 {
+		t.Helper()
+		src := "@startuml\n<style>\nsequenceDiagram {\n  participant {\n    MinimumWidth 100\n" + alignment +
+			"  }\n}\n</style>\nparticipant \"A\" as A\nA -> B : Message\n@enduml\n"
+		svg, err := renderSVG(t, src, 0)
+		if err != nil {
+			t.Fatal(err)
+		}
+		m := regexp.MustCompile(`<text x="([-\d.]+)"[^>]*>A</text>`).FindStringSubmatch(svg)
+		if m == nil {
+			t.Fatalf("no name A in %s", svg)
+		}
+		x, _ := strconv.ParseFloat(m[1], 64)
+		return x
+	}
+	left := nameX("    HorizontalAlignment left\n")
+	center := nameX("    HorizontalAlignment center\n")
+	right := nameX("    HorizontalAlignment right\n")
+	if def := nameX(""); def != center {
+		t.Errorf("default %v, center %v", def, center)
+	}
+	if !(left < center && center < right) || math.Abs((right-left)-2*(center-left)) > 0.002 {
+		t.Errorf("left %v, center %v, right %v", left, center, right)
+	}
+}
+
+// A line that starts and ends with U+00A0 is parsed as the same line without
+// them, as upstream trims U+00A0 with the other blanks.
+func TestNonBreakingSpaceTrimmed(t *testing.T) {
+	plain, err := renderSVG(t, "@startuml\nAlice -> Bob : hi\n@enduml\n", 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	nbsp, err := renderSVG(t, "@startuml\n Alice -> Bob : hi \n@enduml\n", 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	strip := regexp.MustCompile(`<\?plantuml-src [^?]*\?>`)
+	if strip.ReplaceAllString(plain, "") != strip.ReplaceAllString(nbsp, "") {
+		t.Errorf("the lines with U+00A0 render differently:\n%s\n%s", plain, nbsp)
+	}
+}
+
+// Notes published with "&" over the same participant are stacked: each one
+// starts below the previous one (upstream's issue #2883).
+func TestStackedNotesOfOneParticipant(t *testing.T) {
+	parsed, _, err := parseCase("@startuml\nA -> B : hello\nnote over A : first note\n" +
+		"& note over A : second note\n& note over A : third note\n@enduml\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	d := parsed.(*SequenceDiagram)
+	stringBounder := font.NewStringBounderSvg(d.Skin())
+	maker := NewSequenceDiagramFileMakerTeoz(d, rose.NewRose(), stringBounder)
+	maker.TextBlock(0).CalculateDimension(stringBounder)
+	var notes []*NoteTile
+	for _, tile := range maker.body.playingSpace.Tiles() {
+		if nt, ok := tile.(*NoteTile); ok {
+			notes = append(notes, nt)
+		}
+	}
+	if len(notes) != 3 {
+		t.Fatalf("%d note tiles, want 3", len(notes))
+	}
+	for i := 1; i < len(notes); i++ {
+		previous, note := notes[i-1].YGauge(), notes[i].YGauge()
+		if note.Min().CurrentValue() < previous.Max().CurrentValue() {
+			t.Errorf("note %d: top %v above the bottom %v of note %d", i, note.Min().CurrentValue(),
+				previous.Max().CurrentValue(), i-1)
+		}
+	}
+}

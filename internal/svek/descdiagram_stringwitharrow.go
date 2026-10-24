@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/StringWithArrow.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/LinkArrow.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/StringWithArrow.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/LinkArrow.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -12,6 +12,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/abel"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // stringWithArrow is upstream's StringWithArrow: a link label line with an
@@ -61,7 +62,7 @@ func isDoubleQuote(c rune) bool {
 }
 
 // trin is StringUtils.trin.
-func trin(s string) string { return strings.TrimFunc(s, func(r rune) bool { return r <= ' ' }) }
+func trin(s string) string { return text.Trin(s) }
 
 func (s stringWithArrow) display(pragma *klimt.Pragma) *klimt.Display {
 	return klimt.DisplayWithNewlinesString(pragma, s.label, s.hasLabel)

@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/IElement.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/PortableSvgDocument.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/XmlContent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/XmlDocument.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/XmlLeaf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/XmlNode.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/XmlWriter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/IElement.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/PortableSvgDocument.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/XmlContent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/XmlDocument.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/XmlLeaf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/XmlNode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/XmlWriter.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svg

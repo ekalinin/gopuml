@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Supports PlantUML v1.2026.8 description diagrams (use case, component and deployment diagrams) under `@startuml`, with the same syntax and Graphviz-based layout.
+Supports PlantUML v1.2026.9 description diagrams (use case, component and deployment diagrams) under `@startuml`, with the same syntax and Graphviz-based layout.
 
 ## Requirements
 

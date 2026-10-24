@@ -1,0 +1,11 @@
+---
+id: preprocessor/include-unusable-selector
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Unusable selector"
+---
+@startuml
+!include multi.iuml!5
+@enduml

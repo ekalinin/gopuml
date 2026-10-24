@@ -4,8 +4,11 @@
 package tim
 
 import (
+	"archive/zip"
+	"bytes"
 	"context"
 	"errors"
+	"maps"
 	"net"
 	"net/http"
 	"net/http/httptest"
@@ -184,8 +187,8 @@ func TestIncludeFromFiles(t *testing.T) {
 	})
 	t.Run("include once twice", func(t *testing.T) {
 		access := &security.Access{Config: security.Config{Profile: security.Legacy}}
-		res, err := preprocessBlock(t, "@startuml\n!include_once a.iuml\n!include_once a.iuml\n@enduml\n", access, dir)
-		wantLines(t, res, err, "@startuml", "Alice -> Bob : from a.iuml", "Alice -> Bob : from a.iuml", "@enduml")
+		_, err := preprocessBlock(t, "@startuml\n!include_once a.iuml\n!include_once a.iuml\n@enduml\n", access, dir)
+		wantError(t, err, "This file has already been included", 2)
 	})
 	t.Run("sandbox blocks local files", func(t *testing.T) {
 		access := &security.Access{Config: security.Config{Profile: security.Sandbox}}
@@ -207,6 +210,136 @@ func TestIncludeFromFiles(t *testing.T) {
 		_, err = Preprocess(ctx, nil, blocks[0].Lines, nil)
 		wantError(t, err, "cannot include a.iuml", 1)
 	})
+}
+
+// TestIncludeRegistry checks that a local file included with a selector
+// is recorded: !include skips it, !include_once refuses it, !include_many
+// includes it again.
+func TestIncludeRegistry(t *testing.T) {
+	dir := t.TempDir()
+	write := func(name, content string) {
+		p := filepath.Join(dir, name)
+		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(p, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	write("a.iuml", "A -> B : a\n")
+	write("common.puml", "C -> D : common\n")
+	write("x/one.puml", "!include ../common.puml\nX -> Y : one\n")
+	write("y/two.puml", "!include ../common.puml\nX -> Y : two\n")
+	write("self.iuml", "S -> T : self\n!include self.iuml\n")
+	write("multi.puml", "@startuml\nfirst\n@enduml\n@startuml\nsecond\n@enduml\n")
+	access := &security.Access{Config: security.Config{Profile: security.Legacy}}
+	run := func(body string) (*Result, error) {
+		return preprocessBlock(t, "@startuml\n"+body+"@enduml\n", access, dir)
+	}
+
+	res, err := run("!include a.iuml\n!include a.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : a", "@enduml")
+	_, err = run("!include_once a.iuml\n!include_once a.iuml\n")
+	wantError(t, err, "This file has already been included", 2)
+	_, err = run("!include a.iuml\n!include_once a.iuml\n")
+	wantError(t, err, "This file has already been included", 2)
+	res, err = run("!include_many a.iuml\n!include_many a.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : a", "A -> B : a", "@enduml")
+	res, err = run("!include x/one.puml\n!include y/two.puml\n")
+	wantLines(t, res, err, "@startuml", "C -> D : common", "X -> Y : one", "X -> Y : two", "@enduml")
+	res, err = run("!include self.iuml\n")
+	wantLines(t, res, err, "@startuml", "S -> T : self", "@enduml")
+	res, err = run("!include multi.puml!0\n!include multi.puml!1\n!include multi.puml!0\n")
+	wantLines(t, res, err, "@startuml", "first", "second", "@enduml")
+}
+
+// TestIncludeSelector checks the selector of a local include: the index or
+// the id of a diagram of the file.
+func TestIncludeSelector(t *testing.T) {
+	dir := t.TempDir()
+	write := func(name, content string) {
+		if err := os.WriteFile(filepath.Join(dir, name), []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	write("multi.puml", "@startuml(id=one)\nfirst\n@enduml\n@startuml(id=two)\nsecond\n@enduml\n")
+	write("plain.iuml", "plain line\n")
+	access := &security.Access{Config: security.Config{Profile: security.Legacy}}
+	run := func(include string) (*Result, error) {
+		return preprocessBlock(t, "@startuml\n!include "+include+"\n@enduml\n", access, dir)
+	}
+
+	res, err := run("multi.puml!1")
+	wantLines(t, res, err, "@startuml", "second", "@enduml")
+	res, err = run("multi.puml!two")
+	wantLines(t, res, err, "@startuml", "second", "@enduml")
+	res, err = run("multi.puml")
+	wantLines(t, res, err, "@startuml", "first", "@enduml")
+	res, err = run("plain.iuml!1")
+	wantLines(t, res, err, "@startuml", "plain line", "@enduml")
+	for _, selector := range []string{"5", "99999999999", "a(b", ""} {
+		_, err = run("multi.puml!" + selector)
+		wantError(t, err, "cannot include multi.puml!"+selector, 1)
+	}
+}
+
+// zipArchive returns a zip archive of files.
+func zipArchive(t *testing.T, files map[string]string) []byte {
+	t.Helper()
+	var buf bytes.Buffer
+	w := zip.NewWriter(&buf)
+	for _, name := range slices.Sorted(maps.Keys(files)) {
+		f, err := w.Create(name)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, err := f.Write([]byte(files[name])); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := w.Close(); err != nil {
+		t.Fatal(err)
+	}
+	return buf.Bytes()
+}
+
+// TestZipImport checks that the entries of an archive given to !import can
+// be included, from the root of the archive.
+func TestZipImport(t *testing.T) {
+	dir := t.TempDir()
+	archive := zipArchive(t, map[string]string{
+		"lib/part.iuml":   "A -> B : part\n",
+		"lib/nested.iuml": "!include part.iuml\n!include top.iuml\n",
+		"top.iuml":        "C -> D : top\n",
+		"lib/subs.iuml":   "!startsub X\nE -> F : sub\n!endsub\n",
+	})
+	if err := os.WriteFile(filepath.Join(dir, "archive.zip"), archive, 0o644); err != nil {
+		t.Fatal(err)
+	}
+	legacy := &security.Access{Config: security.Config{Profile: security.Legacy}}
+	run := func(access *security.Access, body string) (*Result, error) {
+		return preprocessBlock(t, "@startuml\n"+body+"@enduml\n", access, dir)
+	}
+
+	res, err := run(legacy, "!import archive.zip\n!include lib/part.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "@enduml")
+	// relative to the entry, then from the root of the archive
+	res, err = run(legacy, "!import archive.zip\n!include lib/nested.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "C -> D : top", "@enduml")
+	res, err = run(legacy, "!import archive.zip\n!includesub lib/subs.iuml!X\n")
+	wantLines(t, res, err, "@startuml", "E -> F : sub", "@enduml")
+	_, err = run(legacy, "!import archive.zip\n!include lib/missing.iuml\n")
+	wantError(t, err, "cannot include lib/missing.iuml", 2)
+	_, err = run(legacy, "!include lib/part.iuml\n!import archive.zip\n")
+	wantError(t, err, "cannot include lib/part.iuml", 1)
+	_, err = run(&security.Access{Config: security.Config{Profile: security.Sandbox}}, "!import archive.zip\n")
+	wantError(t, err, "Cannot import", 1)
+
+	// The files of the caller, as the WebAssembly build gives them
+	fsys := memAccess(security.Sandbox, map[string]string{"archive.zip": string(archive)})
+	fsys.Config.HostFiles = true
+	res, err = preprocessBlock(t, "@startuml\n!import archive.zip\n!include lib/part.iuml\n@enduml\n", fsys, "/")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "@enduml")
 }
 
 // fakeResolver makes every host resolve to a public address, so that the

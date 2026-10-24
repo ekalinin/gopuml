@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ActorStickMan.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ActorAwesome.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ActorHollow.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/CircleInterface.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ActorStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ActorStickMan.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ActorAwesome.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ActorHollow.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/CircleInterface.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ActorStyle.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

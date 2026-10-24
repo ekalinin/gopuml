@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/Scale.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleProtected.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleWidth.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleHeight.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleMaxWidth.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleMaxHeight.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleWidthAndHeight.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/ScaleMaxWidthAndHeight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/Scale.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleProtected.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleWidth.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleHeight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleMaxWidth.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleMaxHeight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleWidthAndHeight.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/ScaleMaxWidthAndHeight.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

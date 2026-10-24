@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/SvgGraphics.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/SvgGraphics.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svg
@@ -759,7 +759,7 @@ func (s *SvgGraphics) SvgPath(x, y float64, path *klimt.UPath, deltaShadow float
 	}
 	if !s.hidden {
 		elt := s.document.CreateElement("path")
-		elt.SetAttribute("d", text.Trin(sb.String()))
+		elt.SetAttribute("d", text.JavaTrim(sb.String()))
 		s.styleMe(elt, "")
 		s.fillMe(elt)
 		if id := path.Comment(); id != "" {

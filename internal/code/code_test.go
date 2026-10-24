@@ -17,7 +17,7 @@ const (
 	hiSource    = "@startuml\nAlice -> Bob : hi\n@enduml"
 )
 
-// Strings encoded by upstream v1.2026.8, from the conformance references.
+// Strings encoded by upstream v1.2026.9, from the conformance references.
 func TestDecodeUpstreamEncoded(t *testing.T) {
 	tests := map[string]string{
 		"Syp9J4vLqBLJSCfFKh1Io4ZDoSa70000": helloSource,
@@ -66,6 +66,36 @@ func TestEncodeStripsStartAndEnd(t *testing.T) {
 	}
 	if Encode("") != "" {
 		t.Error("an empty source encodes to an empty string")
+	}
+}
+
+// Only the lower-case start and end lines are removed, as upstream's
+// DiagramSourceCompressor does since 1.2026.9.
+func TestCompressSourceTags(t *testing.T) {
+	for _, c := range []struct{ source, want string }{
+		{"@startuml\nAlice -> Bob : hi\n@enduml", "Alice -> Bob : hi"},
+		{"@startUML\nAlice -> Bob : hi\n@endUML", "@startUML\nAlice -> Bob : hi\n@endUML"},
+		// No line starts with @startuml: the whole text, without a final
+		// lower-case @enduml, U+00A0 counting as a blank.
+		{"\u00a0 Alice -> Bob : hi @enduml \u00a0", "Alice -> Bob : hi"},
+		// A line that starts with @enduml before any @startuml ends the text.
+		{"Alice -> Bob : hi\n@enduml", ""},
+		{" @startuml x\n\u00a0Alice -> Bob\n\u2028", "Alice -> Bob"},
+	} {
+		if got := compressSource(c.source); got != c.want {
+			t.Errorf("%q: %q, want %q", c.source, got, c.want)
+		}
+	}
+	// One U+2028 at the end is dropped before the blanks, as the "$" of the
+	// former regex, and only one.
+	if got := stripStartEnd("a @enduml\u2028", true); got != "a" {
+		t.Errorf("%q", got)
+	}
+	if got := stripStartEnd("a @enduml\u2028\u2028", true); got != "a @enduml\u2028" {
+		t.Errorf("%q", got)
+	}
+	if got := removeFromToken("x @enduml y\nz\n@enduml", "@enduml"); got != "x \nz\n" {
+		t.Errorf("%q", got)
 	}
 }
 

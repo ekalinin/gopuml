@@ -1,0 +1,13 @@
+---
+id: sequence-diagram/note-merge-deprecated
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sequence-diagram: Deprecated note merge"
+---
+@startuml
+Alice -> Bob : hi
+note over Alice : first
+/ note over Bob : second
+@enduml

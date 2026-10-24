@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/UBrexSingleLineCommand2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/UBrexSingleLineCommand2.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml
@@ -22,6 +22,9 @@ type UBrexSingle[D command.Diagram] struct {
 	Exec func(d D, location *text.LineLocation, arg *regex.Result, pass command.ParserPass) command.Result
 	// Passes are the passes the command runs in; One by default.
 	Passes []command.ParserPass
+	// Tokens are the first tokens the command declares, as upstream writes
+	// them by hand for a UBrex pattern; nil for any line.
+	Tokens []string
 }
 
 // UBrex returns a UBrex command of one line.
@@ -29,6 +32,18 @@ func UBrex[D command.Diagram](pattern klimt.UBrexPart,
 	exec func(d D, location *text.LineLocation, arg *regex.Result, pass command.ParserPass) command.Result) *UBrexSingle[D] {
 	return &UBrexSingle[D]{Pattern: pattern, Exec: exec}
 }
+
+// UBrexTokens returns a UBrex command of one line that declares the first
+// tokens of the lines it accepts.
+func UBrexTokens[D command.Diagram](tokens []string, pattern klimt.UBrexPart,
+	exec func(d D, location *text.LineLocation, arg *regex.Result, pass command.ParserPass) command.Result) *UBrexSingle[D] {
+	c := UBrex(pattern, exec)
+	c.Tokens = tokens
+	return c
+}
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *UBrexSingle[D]) MandatoryFirstTokens() []string { return c.Tokens }
 
 // IsValid implements command.Command.
 func (c *UBrexSingle[D]) IsValid(lines command.BlocLines) command.Control {

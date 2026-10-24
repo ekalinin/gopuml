@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/objectdiagram/command/CommandCreateMap.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/objectdiagram/command/CommandCreateJson.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/objectdiagram/command/CommandCreateJsonSingleLine.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/objectdiagram/command/CommandCreateMap.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/objectdiagram/command/CommandCreateJson.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/objectdiagram/command/CommandCreateJsonSingleLine.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -132,8 +132,8 @@ func CommandCreateMap[D Diagram]() command.Command[D] {
 				continue
 			}
 			x := strings.Index(line, linkStr)
-			key := text.Trin(line[:x])
-			dest := text.Trin(line[x+len(linkStr):])
+			key := text.JavaTrim(line[:x])
+			dest := text.JavaTrim(line[x+len(linkStr):])
 			ident2 := c.QuarkInContext(true, dest)
 			entity2 := ident2.Data()
 			if entity2 == nil {

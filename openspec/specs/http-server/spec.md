@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Serves rendered diagrams over HTTP using the URL schemes of PlantUML v1.2026.8's built-in server (`--http-server`) and plantuml-server, so that existing URLs, editors and integrations can point to this implementation.
+Serves rendered diagrams over HTTP using the URL schemes of PlantUML v1.2026.9's built-in server (`--http-server`) and plantuml-server, so that existing URLs, editors and integrations can point to this implementation.
 
 ## Requirements
 

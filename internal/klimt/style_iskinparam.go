@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ISkinParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/ISkinSimple.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/NoStyleAvailableException.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/ISkinParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/ISkinSimple.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/NoStyleAvailableException.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

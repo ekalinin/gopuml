@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/Style.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/color/Colors.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/LinkStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/Style.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/color/Colors.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/LinkStyle.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -48,17 +48,17 @@ func newStyleShared(signature StyleSignatureBasic, values *styleValues) *Style {
 	return &Style{signature: signature, values: values}
 }
 
-// DeltaPriority returns the starred style with the priority of its values
-// increased by delta. A style that is not starred panics, as upstream throws
-// UnsupportedOperationException.
-func (s *Style) DeltaPriority(delta int) *Style {
+// WithAncestorRank returns the starred style with its values applied
+// through the ancestor cascade at rank. A style that is not starred panics,
+// as upstream throws UnsupportedOperationException.
+func (s *Style) WithAncestorRank(rank int) *Style {
 	if !s.signature.IsStarred() {
 		throw(unsupportedOperation, "")
 	}
 	var cp styleValues
 	for k, v := range s.values {
 		if v != nil {
-			cp[k] = asValueImpl(v).AddPriority(delta)
+			cp[k] = asValueImpl(v).WithAncestorRank(rank)
 		}
 	}
 	return newStyleValues(s.signature, cp)
@@ -141,7 +141,7 @@ func (s *Style) MergeWith(other *Style, strategy MergeStrategy) *Style {
 			continue
 		}
 		previous := s.values[k]
-		if previous != nil && previous.Priority() > StyleLoaderDeltaPriorityForStereotype &&
+		if previous != nil && previous.Specificity().HasStereotype() &&
 			strategy == MergeKeepExistingValueOfStereotype {
 			continue
 		}
@@ -186,8 +186,8 @@ func (s *Style) MergeNestedChildOver(nested, nestedParent *Style, strategy Merge
 }
 
 // EventuallyOverrideColor returns the style with a color property replaced
-// by c, keeping the priority; a nil color gives s. Upstream reads the
-// priority of the old value, which must be set.
+// by c, keeping the specificity; a nil color gives s. Upstream reads the
+// specificity of the old value, which must be set.
 func (s *Style) EventuallyOverrideColor(param PName, c color.HColor) *Style {
 	if c == nil {
 		return s
@@ -197,21 +197,21 @@ func (s *Style) EventuallyOverrideColor(param PName, c color.HColor) *Style {
 	if old == nil {
 		throw(nullPointer, "")
 	}
-	result[param] = NewValueColor(c, old.Priority())
+	result[param] = NewValueColor(c, old.Specificity())
 	return newStyleValues(s.signature, result)
 }
 
 // EventuallyOverrideDouble returns the style with a property set to the
-// text of a double, with the highest priority.
+// text of a double, as a forced override.
 func (s *Style) EventuallyOverrideDouble(param PName, value float64) *Style {
 	return s.EventuallyOverrideString(param, jstr(value))
 }
 
 // EventuallyOverrideString returns the style with a property set to value,
-// with the highest priority.
+// as a forced override.
 func (s *Style) EventuallyOverrideString(param PName, value string) *Style {
 	result := *s.values
-	result[param] = ValueImplRegularPriority(value, maxInt32)
+	result[param] = ValueImplRegularSpecificity(value, SpecificityForcedOverride())
 	return newStyleValues(s.signature, result)
 }
 

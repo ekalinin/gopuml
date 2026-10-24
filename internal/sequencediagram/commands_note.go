@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOverSeveralCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteAcrossCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOnArrowCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/color/Colors.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOverSeveralCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteAcrossCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/note/sequence/FactorySequenceNoteOnArrowCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/color/Colors.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -137,6 +137,12 @@ func executeNote(d *SequenceDiagram, location *text.LineLocation, arg *regex.Res
 		}
 		if parallel {
 			note.GoParallel()
+		}
+		// '&' places notes on the same row, and stacks the notes of one
+		// participant: upstream deprecates the leading '/'.
+		if tryMerge {
+			d.AddWarning(klimt.NewWarning(
+				"The leading '/' note-merge syntax is deprecated; use '&' to place notes on the same row instead."))
 		}
 		d.AddNote(note, tryMerge)
 	}

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/GeneralImageBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/GeneralImageBuilder.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -49,7 +49,9 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 			}
 		}
 		return newEntityImageState(leaf)
-	case leafType == abel.LeafTypeCircleStart:
+	case leafType == abel.LeafTypeCircleStart || leafType == abel.LeafTypeJunction:
+		// A junction is drawn as an initial node, but keeps its own leaf type:
+		// CIRCLE_START also marks the entry point of the diagram.
 		return newEntityImageCircleStart(leaf)
 	case leafType == abel.LeafTypeCircleEnd:
 		return newEntityImageCircleEnd(leaf)
@@ -82,11 +84,11 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeAssociation:
 		return newEntityImageAssociation(leaf)
 	case leafType == abel.LeafTypePseudoState:
-		return newEntityImagePseudoState(leaf, "H")
+		return newEntityImagePseudoState(leaf, "H", "history")
 	case leafType == abel.LeafTypeStateTransitionLabel:
 		return newEntityImageTransitionLabel(leaf)
 	case leafType == abel.LeafTypeDeepHistory:
-		return newEntityImagePseudoState(leaf, "H*")
+		return newEntityImagePseudoState(leaf, "H*", "history", "deepHistory")
 	case leafType == abel.LeafTypeTips:
 		return newEntityImageTips(leaf, bibliotekon)
 	case leafType == abel.LeafTypeChenEntity, leafType == abel.LeafTypeChenRelationship,

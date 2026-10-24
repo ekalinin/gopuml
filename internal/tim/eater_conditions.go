@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterIf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterElseIf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterIfdef.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterIfndef.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/EaterWhile.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterIf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterElseIf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterIfdef.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterIfndef.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/EaterWhile.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

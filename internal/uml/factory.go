@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/UmlSource.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/PSystemBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/UmlSource.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/PSystemBuilder.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml
@@ -93,8 +93,9 @@ type Factory[D command.Diagram] struct {
 	commands   func() []command.Command[D]
 	newDiagram func(ctx *core.RenderContext, src *core.UmlSource, md5map map[string]string) D
 
-	once sync.Once
-	cmds []command.Command[D]
+	once   sync.Once
+	cmds   []command.Command[D]
+	tokens [][]string
 }
 
 // NewFactory returns the factory of diagrams of type typ, with the commands
@@ -109,16 +110,26 @@ func (f *Factory[D]) DiagramType() core.DiagramType { return f.typ }
 
 // Commands returns the command list.
 func (f *Factory[D]) Commands() []command.Command[D] {
-	f.once.Do(func() { f.cmds = f.commands() })
+	f.once.Do(func() {
+		f.cmds = f.commands()
+		for _, cmd := range f.cmds {
+			f.tokens = append(f.tokens, command.FirstTokensOf(cmd))
+		}
+	})
 	return f.cmds
 }
+
+// CommandInfos describes the commands, in order.
+func (f *Factory[D]) CommandInfos() []command.CommandInfo { return command.CommandInfos(f.Commands()) }
 
 // CreateSystem implements core.Factory.
 func (f *Factory[D]) CreateSystem(ctx *core.RenderContext, src *core.UmlSource) core.Diagram {
 	patched, md5map := PatchBase64(src)
+	cmds := f.Commands()
 	inner := &command.Factory[D]{
-		Type:     f.typ,
-		Commands: f.Commands,
+		Type:        f.typ,
+		Commands:    func() []command.Command[D] { return cmds },
+		FirstTokens: f.tokens,
 		NewDiagram: func(ctx *core.RenderContext, src *core.UmlSource) D {
 			return f.newDiagram(ctx, src, md5map)
 		},

@@ -14,7 +14,7 @@
 // after the start line; upstream writes svek.dot and svek.svg in the current
 // directory, which this program renames. From the repository root:
 //
-//   mkdir -p ~/scratch-svek && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-svek && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-svek internal/svek/testdata/javagen/SvekGolden.java
 //   mkdir -p .cache/svek-work && docker run --rm --platform linux/amd64 -u "$(id -u):$(id -g)" \
 //     -v "$PWD:/repo" -v "$HOME/scratch-svek:/classes" -w /repo/.cache/svek-work \

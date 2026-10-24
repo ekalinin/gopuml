@@ -6,7 +6,10 @@
 package main
 
 import (
+	"archive/zip"
+	"bytes"
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"os"
@@ -95,6 +98,9 @@ func renderInNode(t *testing.T, source string, options map[string]any) jsResult 
 	input, _ := json.Marshal(map[string]any{"source": source, "options": options})
 	script := `import { load } from './plantuml.mjs';
 const { source, options } = JSON.parse(process.argv[2]);
+// A file given as {"base64": ...} is passed as its bytes.
+for (const [name, value] of Object.entries(options?.files ?? {}))
+  if (typeof value === 'object') options.files[name] = new Uint8Array(Buffer.from(value.base64, 'base64'));
 const plantuml = await load();
 const r = await plantuml.render(source, options);
 r.data = r.data === null ? null : new TextDecoder().decode(r.data);
@@ -167,6 +173,32 @@ func TestWasmHostSuppliedInclude(t *testing.T) {
 	r = renderInNode(t, src, map[string]any{"format": "svg"})
 	if r.Error == nil || r.Error.Kind != "syntax" || !strings.Contains(r.Error.Message, "style.iuml") {
 		t.Errorf("without the file: %+v", r.Error)
+	}
+}
+
+func TestWasmHostSuppliedArchive(t *testing.T) {
+	// An archive given as a Uint8Array in the files of the options is
+	// imported, and its entries are included.
+	var buf bytes.Buffer
+	w := zip.NewWriter(&buf)
+	f, err := w.Create("lib/part.iuml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := f.Write([]byte("!$GREETING = \"hello\"\n")); err != nil {
+		t.Fatal(err)
+	}
+	if err := w.Close(); err != nil {
+		t.Fatal(err)
+	}
+	src := "@startuml\n!import archive.zip\n!include lib/part.iuml\nAlice -> Bob : $GREETING\n@enduml\n"
+	files := map[string]any{"archive.zip": map[string]any{"base64": base64.StdEncoding.EncodeToString(buf.Bytes())}}
+	r := renderInNode(t, src, map[string]any{"format": "svg", "files": files})
+	if r.Error != nil {
+		t.Fatalf("with the archive: %+v", r.Error)
+	}
+	if !strings.Contains(*r.Data, "hello") {
+		t.Errorf("the variable of the archive entry is not used: %s", *r.Data)
 	}
 }
 

@@ -1,0 +1,12 @@
+---
+id: styling/skinparam-padding
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "styling: Padding without warning"
+---
+@startuml
+skinparam padding 5
+A -> B
+@enduml

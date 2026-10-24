@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/TextBlock.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/UDrawable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/shape/Line.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/MagneticBorder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/geom/MagneticBorderNone.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlock.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/UDrawable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/Line.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/MagneticBorder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/geom/MagneticBorderNone.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

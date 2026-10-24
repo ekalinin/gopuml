@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Participant.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/ParticipantType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/ParticipantEnglober.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Participant.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/ParticipantType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/ParticipantEnglober.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -190,6 +190,33 @@ func (p *Participant) Location() *text.LineLocation { return p.location }
 
 // UID returns the identifier used in the SVG output, for example "part1".
 func (p *Participant) UID() string { return p.uid }
+
+// participantGroup is the SVG group of a part of the participant: its
+// class and id, with the participant's name, uid and source line.
+func (p *Participant) participantGroup(class, uidSuffix string) *klimt.UGroup {
+	group := klimt.NewUGroupAt(p.location)
+	group.Put(klimt.UGroupClass, class)
+	group.Put(klimt.UGroupDataQualifiedName, p.code)
+	group.Put(klimt.UGroupDataParticipant, p.code)
+	group.Put(klimt.UGroupDataEntityUID, p.uid)
+	group.Put(klimt.UGroupDataUID, p.uid+uidSuffix)
+	return group
+}
+
+// groupTypeHead is the SVG group of the head of the participant.
+func (p *Participant) groupTypeHead() *klimt.UGroup {
+	return p.participantGroup("participant participant-head", "-head")
+}
+
+// groupTypeTail is the SVG group of the tail of the participant.
+func (p *Participant) groupTypeTail() *klimt.UGroup {
+	return p.participantGroup("participant participant-tail", "-tail")
+}
+
+// groupTypeLifeline is the SVG group of the lifeline of the participant.
+func (p *Participant) groupTypeLifeline() *klimt.UGroup {
+	return p.participantGroup("participant-lifeline", "-lifeline")
+}
 
 // StyleBuilder returns the style sheet at the time of declaration.
 func (p *Participant) StyleBuilder() *klimt.StyleBuilder { return p.styleBuilder }

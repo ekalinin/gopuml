@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandPartition3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroup3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroupLegacy3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandSwimlane2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandPartition3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroup3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandCloseGroupLegacy3.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram3
 
 import (
+	"strings"
+
 	"github.com/ekalinin/gopuml/internal/command"
 	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/klimt"
@@ -117,7 +119,7 @@ func executePartition3(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Res
 		stereotype = klimt.StereotypeBuild(stereo)
 	}
 	if arg.Str("BRACKET", 0) == "" {
-		d.AddWarning(klimt.NewWarning("You should use a bracket ({) when defining your container '" + typ + "' " + name))
+		d.AddWarning(klimt.NewWarning("Missing '{': write '" + rebuildWithBracket(arg) + "' and close it with '}'"))
 	}
 	stylePartition := groupStyleSignature(symbol).WithTOBECHANGED(stereotype).MergedStyle(d.CurrentStyleBuilder())
 	backColor := colors.Color(color.TypeBack)
@@ -126,6 +128,24 @@ func executePartition3(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Res
 	}
 	d.StartGroup(klimt.DisplayWithNewlines(d.Pragma(), name), backColor, symbol, stylePartition)
 	return command.Ok()
+}
+
+// rebuildWithBracket writes the line of a partition with its bracket.
+func rebuildWithBracket(arg *regex.Result) string {
+	var sb strings.Builder
+	sb.WriteString(arg.Str("TYPE", 0))
+	if back1, ok := arg.Get("BACK1", 0); ok {
+		sb.WriteString(" " + back1)
+	}
+	sb.WriteString(" " + arg.Str("NAME", 0))
+	if back2, ok := arg.Get("BACK2", 0); ok {
+		sb.WriteString(" " + back2)
+	}
+	if stereo, ok := arg.Get("STEREO", 0); ok {
+		sb.WriteString(" " + stereo)
+	}
+	sb.WriteString(" {")
+	return sb.String()
 }
 
 // commandCloseGroup3 is "}".
@@ -138,7 +158,7 @@ func commandCloseGroup3() cmd {
 // commandCloseGroupLegacy3 is "end group".
 func commandCloseGroupLegacy3() cmd {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
-		d.AddWarning(klimt.NewWarning("You should use a bracket (}) instead of '" + arg.Str("CMD", 0) + "'"))
+		d.AddWarning(klimt.NewWarning("'" + arg.Str("CMD", 0) + "' is deprecated: close the group with '}' instead"))
 		return d.CloseGroup()
 	},
 		regex.Start(),

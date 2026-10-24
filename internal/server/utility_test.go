@@ -121,9 +121,9 @@ func TestServerInfo(t *testing.T) {
 		checkHeaders(t, r.header, map[string]string{
 			"Content-Type":  "application/json",
 			"Cache-Control": "no-cache",
-			"Server":        "PlantUML PicoWebServer 1.2026.8",
+			"Server":        "PlantUML PicoWebServer 1.2026.9",
 		})
-		want := `{"version":"1.2026.8","PicoWebServer":true,"formats":["png","svg","txt"]}` + "\r\n"
+		want := `{"version":"1.2026.9","PicoWebServer":true,"formats":["png","svg","txt"]}` + "\r\n"
 		if r.body != want {
 			t.Errorf("body %q, want %q", r.body, want)
 		}
@@ -137,7 +137,7 @@ func TestLanguage(t *testing.T) {
 	checkHeaders(t, r.header, map[string]string{
 		"Content-Type":  "text/text",
 		"Cache-Control": "no-cache",
-		"Server":        "PlantUML PicoWebServer 1.2026.8",
+		"Server":        "PlantUML PicoWebServer 1.2026.9",
 	})
 	for _, want := range []string{
 		";type\n;53\nabstract\naction\n",

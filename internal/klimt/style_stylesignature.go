@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleKey.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleSignature.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleSignatureBasic.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/StyleSignatures.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/Styleable.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/WithStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/StyleQuery.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/AtomArray.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/StyleAtom.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/LevelConstraint.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/Styleable.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/WithStyle.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -63,86 +63,54 @@ func (s snameSet) String() string {
 	return "[" + strings.Join(parts, ", ") + "]"
 }
 
-// StyleKey is the selector part of a style signature: the names, the depth
-// level (-1 for none) and the star. It is a comparable value.
-type StyleKey struct {
-	snames   snameSet
-	isStared bool
-	level    int
-}
+// levelNone is LevelConstraint.NO_LEVEL: no depth constraint.
+const levelNone = -1
 
-// StyleKeyEmpty returns the key without names, level or star.
-func StyleKeyEmpty() StyleKey { return StyleKey{level: -1} }
-
-// String is upstream's toString.
-func (k StyleKey) String() string {
-	var sb strings.Builder
-	sb.WriteString(k.snames.String() + " ")
-	if k.level != -1 {
-		sb.WriteString(" " + itoa(k.level))
+// checkLevel is LevelConstraint.of: a level outside 0..63 panics, as
+// upstream throws IllegalArgumentException.
+func checkLevel(level int) {
+	if level != levelNone && (level < 0 || level >= 64) {
+		throw(illegalArgument, "depth level out of range (must be 0..63): "+itoa(level))
 	}
-	if k.isStared {
-		sb.WriteString(" (*)")
+}
+
+// levelConstraintMatches is LevelConstraint.matches: whether a stored
+// declaration (declLevel, declStar) applies to the element of a query
+// (queryLevel, queryStar). A declaration level is an exact match, or a
+// minimum for a starred declaration; a starred query (an ancestor lookup)
+// only matches starred declarations.
+func levelConstraintMatches(declLevel int, declStar bool, queryLevel int, queryStar bool) bool {
+	if declLevel != levelNone {
+		if queryLevel == levelNone {
+			return false
+		}
+		if declStar {
+			if queryLevel < declLevel {
+				return false
+			}
+		} else if queryLevel != declLevel {
+			return false
+		}
 	}
-	return sb.String()
+	return !queryStar || declStar
 }
 
-// AddClickable adds the "clickable" name when url is not nil.
-func (k StyleKey) AddClickable(url *URL) StyleKey {
-	if url == nil {
-		return k
+// levelConstraintString is LevelConstraint.toString.
+func levelConstraintString(level int, star bool) string {
+	result := ""
+	if level != levelNone {
+		result = "depth(" + itoa(level) + ")"
 	}
-	return k.AddSName(SNameClickable)
-}
-
-// AddLevel returns the key with a depth level.
-func (k StyleKey) AddLevel(level int) StyleKey {
-	k.level = level
-	return k
-}
-
-// AddSName returns the key with one more name.
-func (k StyleKey) AddSName(name SName) StyleKey {
-	k.snames = k.snames.with(name)
-	return k
-}
-
-// AddStar returns the starred key.
-func (k StyleKey) AddStar() StyleKey {
-	k.isStared = true
-	return k
-}
-
-// StyleKeyOf returns the key of names.
-func StyleKeyOf(names ...SName) StyleKey {
-	k := StyleKeyEmpty()
-	for _, n := range names {
-		k.snames = k.snames.with(n)
+	if star {
+		result += "*"
 	}
-	return k
+	return result
 }
-
-// MergeWith returns the union of the names, the larger level and either
-// star.
-func (k StyleKey) MergeWith(other StyleKey) StyleKey {
-	return StyleKey{snames: k.snames.union(other.snames), level: max(k.level, other.level),
-		isStared: k.isStared || other.isStared}
-}
-
-// SNames returns the names in enum order.
-func (k StyleKey) SNames() []SName { return k.snames.names() }
-
-// IsStared reports whether the key is starred.
-func (k StyleKey) IsStared() bool { return k.isStared }
-
-// Level returns the depth level, -1 for none.
-func (k StyleKey) Level() int { return k.level }
 
 // StyleSignatureStar is the star of a selector ("element*").
 const StyleSignatureStar = "*"
 
-// StyleSignature selects the style of an element: a single signature or the
-// union of several (one per stereotype).
+// StyleSignature selects the style of an element.
 type StyleSignature interface {
 	MergedStyle(styleBuilder *StyleBuilder) *Style
 	WithTOBECHANGED(stereotype *Stereotype) StyleSignature
@@ -159,18 +127,22 @@ func StyleSignatureWithStereogroup(s StyleSignature, stereogroup *Stereogroup) S
 	return s.WithTOBECHANGED(stereogroup.BuildStereotype())
 }
 
-// StyleSignatureBasic is a style selector: style names, depth level, star
-// and stereotypes. It is an immutable, comparable value; the stereotypes are
-// kept sorted (upstream's HashSet only shows its order in toString).
+// StyleSignatureBasic is upstream's StyleQuery: the tags of an element (its
+// style names and stereotypes, the atoms of a sorted AtomArray) and its
+// LevelConstraint (depth level and star). It is an immutable, comparable
+// value. The atoms are the names in enum order, then the stereotypes in
+// Java's string order.
 type StyleSignatureBasic struct {
-	key         StyleKey
+	snames      snameSet
 	stereotypes string // sorted names, each preceded by "\x00"
+	level       int
+	star        bool
 }
 
 var _ StyleSignature = StyleSignatureBasic{}
 
 func joinStereotypes(names []string) string {
-	slices.Sort(names)
+	slices.SortFunc(names, javaStringCompare)
 	names = slices.Compact(names)
 	var sb strings.Builder
 	for _, n := range names {
@@ -180,68 +152,64 @@ func joinStereotypes(names []string) string {
 	return sb.String()
 }
 
-// StyleSignatureBasicCreateStereotype returns the signature of a stereotype
-// style.
-func StyleSignatureBasicCreateStereotype(s string) StyleSignatureBasic {
-	return StyleSignatureBasicEmpty().AddStereotype(s)
-}
-
-// String is upstream's toString, the stereotypes sorted.
+// String is upstream's toString: the atoms, then the level constraint.
 func (s StyleSignatureBasic) String() string {
-	return s.key.String() + " [" + strings.Join(s.Stereotypes(), ", ") + "]"
+	var parts []string
+	for _, n := range s.snames.names() {
+		parts = append(parts, n.String())
+	}
+	for _, st := range s.Stereotypes() {
+		parts = append(parts, "."+st)
+	}
+	return "[" + strings.Join(parts, ", ") + "] " + levelConstraintString(s.level, s.star)
 }
 
-// StyleSignatureBasicEmpty returns the empty signature.
-func StyleSignatureBasicEmpty() StyleSignatureBasic { return StyleSignatureBasic{key: StyleKeyEmpty()} }
+// StyleSignatureBasicEmpty returns the query without tag or level.
+func StyleSignatureBasicEmpty() StyleSignatureBasic { return StyleSignatureBasic{level: levelNone} }
 
 // AddClickable adds "clickable" when url is not nil.
 func (s StyleSignatureBasic) AddClickable(url *URL) StyleSignatureBasic {
 	if url == nil {
 		return s
 	}
-	return StyleSignatureBasic{key: s.key.AddClickable(url), stereotypes: s.stereotypes}
+	return s.AddSName(SNameClickable)
 }
 
-// AddLevel returns the signature with a depth level.
+// AddLevel returns the query at a depth level, keeping its star. A level
+// outside 0..63 panics, as upstream throws IllegalArgumentException.
 func (s StyleSignatureBasic) AddLevel(level int) StyleSignatureBasic {
-	return StyleSignatureBasic{key: s.key.AddLevel(level), stereotypes: s.stereotypes}
+	checkLevel(level)
+	s.level = level
+	return s
 }
 
 func (s StyleSignatureBasic) withStereotypes(more ...string) StyleSignatureBasic {
-	names := append(s.Stereotypes(), more...)
-	return StyleSignatureBasic{key: s.key, stereotypes: joinStereotypes(names)}
+	s.stereotypes = joinStereotypes(append(s.Stereotypes(), more...))
+	return s
 }
 
-// AddStereotype returns the signature with a stereotype, cleaned: lower
-// case, without "_" and ".".
+// AddStereotype returns the query with a stereotype, cleaned as
+// StyleAtom.ofStereotype does: lower case, without "_" and ".".
 func (s StyleSignatureBasic) AddStereotype(stereo string) StyleSignatureBasic {
 	return s.withStereotypes(cleanStereotypeName(stereo))
 }
 
-// With returns the signature with the style names of stereostyles.
+// With returns the query with the style names of stereostyles.
 func (s StyleSignatureBasic) With(stereostyles *Stereostyles) StyleSignature {
 	if stereostyles.IsEmpty() {
 		return s
 	}
-	return s.withStereotypes(stereostyles.StyleNames()...)
-}
-
-// AddStereotypeOf returns the signature with the labels of stereo, cleaned;
-// the signature itself for a nil stereotype.
-func (s StyleSignatureBasic) AddStereotypeOf(stereo *Stereotype) StyleSignatureBasic {
-	if stereo == nil {
-		return s
-	}
 	var names []string
-	for _, l := range stereo.Labels(GuillemetNone()) {
-		names = append(names, cleanStereotypeName(l))
+	for _, name := range stereostyles.StyleNames() {
+		names = append(names, cleanStereotypeName(name))
 	}
 	return s.withStereotypes(names...)
 }
 
-// WithTOBECHANGED returns, for a stereotype with style names, the union of
-// the signature with each of its labels.
-func (s StyleSignatureBasic) WithTOBECHANGED(stereo *Stereotype) StyleSignature {
+// AddStereotypeOf is upstream's withStereotype(Stereotype): the query with
+// every label of a stereotype that has style names; the query itself
+// otherwise.
+func (s StyleSignatureBasic) AddStereotypeOf(stereo *Stereotype) StyleSignatureBasic {
 	if stereo == nil || len(stereo.StyleNames()) == 0 {
 		return s
 	}
@@ -249,15 +217,20 @@ func (s StyleSignatureBasic) WithTOBECHANGED(stereo *Stereotype) StyleSignature 
 	if len(labels) == 0 {
 		return s
 	}
-	result := &StyleSignatures{}
-	for _, name := range labels {
-		result.Add(s.AddStereotype(name))
+	var names []string
+	for _, l := range labels {
+		names = append(names, cleanStereotypeName(l))
 	}
-	return result
+	return s.withStereotypes(names...)
 }
 
-// ForStereotypeItself returns, for a stereotype with style names, the union
-// of the stereotype styles of each label.
+// WithTOBECHANGED returns AddStereotypeOf: one query with all the labels.
+func (s StyleSignatureBasic) WithTOBECHANGED(stereo *Stereotype) StyleSignature {
+	return s.AddStereotypeOf(stereo)
+}
+
+// ForStereotypeItself returns, for a stereotype with style names, the query
+// of the stereotype itself: the "stereotype" name and every label.
 func (s StyleSignatureBasic) ForStereotypeItself(stereo *Stereotype) StyleSignature {
 	if stereo == nil || len(stereo.StyleNames()) == 0 {
 		return s
@@ -266,69 +239,38 @@ func (s StyleSignatureBasic) ForStereotypeItself(stereo *Stereotype) StyleSignat
 	if len(labels) == 0 {
 		return s
 	}
-	result := &StyleSignatures{}
-	for _, name := range labels {
-		result.Add(s.AddStereotype(name).AddSName(SNameStereotype))
+	var names []string
+	for _, l := range labels {
+		names = append(names, cleanStereotypeName(l))
+	}
+	return s.AddSName(SNameStereotype).withStereotypes(names...)
+}
+
+// AddSName returns the query with one more name.
+func (s StyleSignatureBasic) AddSName(name SName) StyleSignatureBasic {
+	s.snames = s.snames.with(name)
+	return s
+}
+
+// AddStar returns the starred query, keeping its level.
+func (s StyleSignatureBasic) AddStar() StyleSignatureBasic {
+	s.star = true
+	return s
+}
+
+// IsStarred reports whether the query is starred.
+func (s StyleSignatureBasic) IsStarred() bool { return s.star }
+
+// Level returns the depth level, -1 for none.
+func (s StyleSignatureBasic) Level() int { return s.level }
+
+// StyleSignatureBasicOf returns the query of names.
+func StyleSignatureBasicOf(names ...SName) StyleSignatureBasic {
+	result := StyleSignatureBasicEmpty()
+	for _, n := range names {
+		result.snames = result.snames.with(n)
 	}
 	return result
-}
-
-// AddSName returns the signature with one more name.
-func (s StyleSignatureBasic) AddSName(name SName) StyleSignatureBasic {
-	return StyleSignatureBasic{key: s.key.AddSName(name), stereotypes: s.stereotypes}
-}
-
-// AddStar returns the starred signature.
-func (s StyleSignatureBasic) AddStar() StyleSignatureBasic {
-	return StyleSignatureBasic{key: s.key.AddStar(), stereotypes: s.stereotypes}
-}
-
-// IsStarred reports whether the signature is starred.
-func (s StyleSignatureBasic) IsStarred() bool { return s.key.isStared }
-
-// MatchAll reports whether the declaration s applies to the element: its
-// level matches (exactly, or at least for a starred declaration), its
-// names and stereotypes are all in the element's, and the element is not
-// starred unless the declaration is.
-func (s StyleSignatureBasic) MatchAll(element StyleSignatureBasic) bool {
-	declaration := s
-	if declaration.key.level != -1 {
-		if declaration.key.isStared {
-			if element.key.level == -1 {
-				return false
-			}
-			if element.key.level < declaration.key.level {
-				return false
-			}
-		} else {
-			if element.key.level == -1 {
-				return false
-			}
-			if element.key.level != declaration.key.level {
-				return false
-			}
-		}
-	}
-	if element.IsStarred() && !declaration.IsStarred() {
-		return false
-	}
-	if !element.key.snames.containsAll(declaration.key.snames) {
-		return false
-	}
-	if declaration.stereotypes != "" {
-		elementStereotypes := element.Stereotypes()
-		for _, st := range declaration.Stereotypes() {
-			if !slices.Contains(elementStereotypes, st) {
-				return false
-			}
-		}
-	}
-	return true
-}
-
-// StyleSignatureBasicOf returns the signature of names.
-func StyleSignatureBasicOf(names ...SName) StyleSignatureBasic {
-	return StyleSignatureBasic{key: StyleKeyOf(names...)}
 }
 
 func cleanStereotypeName(name string) string {
@@ -341,8 +283,7 @@ func cleanStereotypeName(name string) string {
 	return sb.String()
 }
 
-// MergeWithStyles returns the signature merged with the signatures of
-// others.
+// MergeWithStyles returns the query merged with the queries of others.
 func (s StyleSignatureBasic) MergeWithStyles(others []*Style) StyleSignatureBasic {
 	result := s
 	for _, other := range others {
@@ -351,14 +292,15 @@ func (s StyleSignatureBasic) MergeWithStyles(others []*Style) StyleSignatureBasi
 	return result
 }
 
-// MergeWith returns the union of the two signatures.
+// MergeWith returns the union of the two queries: every atom, the deeper
+// level and either star.
 func (s StyleSignatureBasic) MergeWith(other StyleSignatureBasic) StyleSignatureBasic {
-	names := append(s.Stereotypes(), other.Stereotypes()...)
-	return StyleSignatureBasic{key: s.key.MergeWith(other.key), stereotypes: joinStereotypes(names)}
+	return StyleSignatureBasic{snames: s.snames.union(other.snames),
+		stereotypes: joinStereotypes(append(s.Stereotypes(), other.Stereotypes()...)),
+		level:       max(s.level, other.level), star: s.star || other.star}
 }
 
-// MergedStyle returns the merged style of the signature, nil for a nil
-// builder.
+// MergedStyle returns the merged style of the query, nil for a nil builder.
 func (s StyleSignatureBasic) MergedStyle(styleBuilder *StyleBuilder) *Style {
 	if styleBuilder == nil {
 		return nil
@@ -366,22 +308,21 @@ func (s StyleSignatureBasic) MergedStyle(styleBuilder *StyleBuilder) *Style {
 	return styleBuilder.MergedStyle(s)
 }
 
-// IsWithDot reports whether the signature has stereotypes.
-func (s StyleSignatureBasic) IsWithDot() bool { return s.stereotypes != "" }
+// HasStereotype reports whether the query requires a stereotype.
+func (s StyleSignatureBasic) HasStereotype() bool { return s.stereotypes != "" }
 
 // StyleSignatureBasicActivity returns root.element.activityDiagram.activity.
 func StyleSignatureBasicActivity() StyleSignatureBasic {
 	return StyleSignatureBasicOf(SNameRoot, SNameElement, SNameActivityDiagram, SNameActivity)
 }
 
-// StyleSignatureBasicActivityDiamond returns the signature of activity
+// StyleSignatureBasicActivityDiamond returns the query of activity
 // diamonds.
 func StyleSignatureBasicActivityDiamond() StyleSignatureBasic {
 	return StyleSignatureBasicOf(SNameRoot, SNameElement, SNameActivityDiagram, SNameActivity, SNameDiamond)
 }
 
-// StyleSignatureBasicActivityArrow returns the signature of activity
-// arrows.
+// StyleSignatureBasicActivityArrow returns the query of activity arrows.
 func StyleSignatureBasicActivityArrow() StyleSignatureBasic {
 	return StyleSignatureBasicOf(SNameRoot, SNameElement, SNameActivityDiagram, SNameActivity, SNameArrow)
 }
@@ -407,13 +348,10 @@ func StyleSignatureBasicOf3(name0, name1, name2 SName, sNames []SName, other ...
 	return StyleSignatureBasicOf(concat...)
 }
 
-// IsEmpty reports whether the signature has no names and no stereotypes.
-func (s StyleSignatureBasic) IsEmpty() bool { return s.key.snames.isEmpty() && s.stereotypes == "" }
+// SNames returns the names in enum order.
+func (s StyleSignatureBasic) SNames() []SName { return s.snames.names() }
 
-// Key returns the selector key.
-func (s StyleSignatureBasic) Key() StyleKey { return s.key }
-
-// Stereotypes returns the stereotypes, sorted.
+// Stereotypes returns the stereotypes, in Java's string order.
 func (s StyleSignatureBasic) Stereotypes() []string {
 	if s.stereotypes == "" {
 		return nil
@@ -421,60 +359,22 @@ func (s StyleSignatureBasic) Stereotypes() []string {
 	return strings.Split(s.stereotypes[1:], "\x00")
 }
 
-// StyleSignatures is the union of several signatures; its merged style
-// merges theirs, keeping the stereotype values of the first.
-type StyleSignatures struct {
-	all []StyleSignature
+// styleAtom is upstream's StyleAtom: a style name, or a stereotype when
+// isStereotype is set. It is comparable.
+type styleAtom struct {
+	sname        SName
+	stereotype   string
+	isStereotype bool
 }
 
-var _ StyleSignature = (*StyleSignatures)(nil)
-
-// Add adds a signature.
-func (s *StyleSignatures) Add(signature StyleSignature) { s.all = append(s.all, signature) }
-
-// String is upstream's toString.
-func (s *StyleSignatures) String() string {
-	parts := make([]string, len(s.all))
-	for i, sig := range s.all {
-		if st, ok := sig.(interface{ String() string }); ok {
-			parts[i] = st.String()
-		}
+// atoms returns the atoms of the query in upstream's AtomArray order.
+func (s StyleSignatureBasic) atoms() []styleAtom {
+	var result []styleAtom
+	for _, n := range s.snames.names() {
+		result = append(result, styleAtom{sname: n})
 	}
-	return "[" + strings.Join(parts, ", ") + "]"
-}
-
-// MergedStyle merges the styles of the signatures. An empty union panics,
-// as upstream throws UnsupportedOperationException.
-func (s *StyleSignatures) MergedStyle(currentStyleBuilder *StyleBuilder) *Style {
-	if len(s.all) == 0 {
-		throw(unsupportedOperation, "")
-	}
-	var result *Style
-	for _, basic := range s.all {
-		tmp := basic.MergedStyle(currentStyleBuilder)
-		if result == nil {
-			result = tmp
-		} else {
-			result = result.MergeWith(tmp, MergeKeepExistingValueOfStereotype)
-		}
-	}
-	return result
-}
-
-// WithTOBECHANGED panics, as upstream throws UnsupportedOperationException.
-func (s *StyleSignatures) WithTOBECHANGED(*Stereotype) StyleSignature {
-	throw(unsupportedOperation, "")
-	return nil
-}
-
-// With returns the union of each signature with the style names.
-func (s *StyleSignatures) With(stereostyles *Stereostyles) StyleSignature {
-	if len(s.all) == 0 {
-		throw(unsupportedOperation, "")
-	}
-	result := &StyleSignatures{}
-	for _, basic := range s.all {
-		result.Add(basic.With(stereostyles))
+	for _, st := range s.Stereotypes() {
+		result = append(result, styleAtom{stereotype: st, isStereotype: true})
 	}
 	return result
 }

@@ -85,9 +85,7 @@ import net.sourceforge.plantuml.style.SName;
 import net.sourceforge.plantuml.style.Style;
 import net.sourceforge.plantuml.style.StyleBuilder;
 import net.sourceforge.plantuml.style.StyleLoader;
-import net.sourceforge.plantuml.style.StyleSignature;
-import net.sourceforge.plantuml.style.StyleSignatureBasic;
-import net.sourceforge.plantuml.style.parser.StyleParser;
+import net.sourceforge.plantuml.style.StyleQuery;
 import net.sourceforge.plantuml.klimt.LineBreakStrategy;
 import net.sourceforge.plantuml.svek.GuideLine;
 import net.sourceforge.plantuml.svek.PackageStyle;
@@ -199,6 +197,10 @@ public class KlimtGolden2 {
 		@Override
 		public UParam getParam() {
 			return new UParam() {
+				public net.sourceforge.plantuml.klimt.UClip getClip() {
+					return null;
+				}
+
 				public HColor getColor() {
 					return color;
 				}
@@ -425,7 +427,7 @@ public class KlimtGolden2 {
 				.withUrl(raw(12, "link"), new Url("http://x.org", null, null)).drawU(ug));
 		drawing(out, "style", ug -> {
 			final StyleBuilder b = StyleLoader.loadSkin("plantuml.skin");
-			final Style s = StyleSignatureBasic.of(SName.root, SName.document, SName.legend).getMergedStyle(b);
+			final Style s = b.getMergedStyle(StyleQuery.of3(SName.root, SName.document, SName.legend));
 			s.applyStrokeAndLineColor(ug, HColorSet.instance()).draw(new ULine(10, 0));
 			s.getSymbolContext(HColorSet.instance()).apply(ug).draw(UEllipse.build(4, 4));
 		});
@@ -589,7 +591,7 @@ public class KlimtGolden2 {
 	static void strokes() throws Exception {
 		final List<String> out = new ArrayList<>();
 		final StyleBuilder b = StyleLoader.loadSkin("plantuml.skin");
-		final Style root = StyleSignatureBasic.of(SName.root).getMergedStyle(b);
+		final Style root = b.getMergedStyle(StyleQuery.of3(SName.root));
 		for (String ls : new String[] { "", "7;7", "1-3", "x", "5", "-", "2,8", " 3 - 4 ", "1.5;2.5;9", ";;", "1e2-3" }) {
 			String r;
 			try {
@@ -611,7 +613,7 @@ public class KlimtGolden2 {
 				"bolder", "true", "TRUE", "center", "1.2.3");
 		for (String v : vals) {
 			final Style s = root.eventuallyOverride(PName.FontSize, v);
-			final net.sourceforge.plantuml.style.Value val = s.value(PName.FontSize);
+			final net.sourceforge.plantuml.style.value.Value val = s.value(PName.FontSize);
 			out.add("value\t" + v + "\t" + item(() -> val.asInt()) + "," + item(() -> val.asIntButMinusOneIfError())
 					+ "," + item(() -> val.asDouble()) + "," + item(() -> val.asBoolean()) + ","
 					+ item(() -> val.asFontFace()) + "," + item(() -> val.asHorizontalAlignment()) + ","
@@ -749,13 +751,28 @@ public class KlimtGolden2 {
 		return sb.toString();
 	}
 
-	static String canonical(StyleSignatureBasic sig) {
-		final net.sourceforge.plantuml.style.StyleKey key = sig.getKey();
-		final List<String> names = new ArrayList<>();
-		for (SName s : key.snames)
-			names.add(s.name());
-		final java.util.TreeSet<String> st = new java.util.TreeSet<>(sig.getStereotypes());
-		return String.join(".", names) + st + (key.level == -1 ? "" : "#" + key.level) + (key.isStared ? "*" : "");
+	// As KlimtGolden.canonical: the atoms and the level constraint of a query
+	// are package-private.
+	static String canonical(StyleQuery sig) {
+		try {
+			final java.lang.reflect.Method atoms = StyleQuery.class.getDeclaredMethod("getAtoms");
+			final java.lang.reflect.Method level = StyleQuery.class.getDeclaredMethod("getLevelConstraint");
+			atoms.setAccessible(true);
+			level.setAccessible(true);
+			final List<String> names = new ArrayList<>();
+			final java.util.TreeSet<String> st = new java.util.TreeSet<>();
+			for (net.sourceforge.plantuml.style.StyleAtom atom : (Iterable<net.sourceforge.plantuml.style.StyleAtom>) atoms
+					.invoke(sig))
+				if (atom.isName())
+					names.add(atom.getSName().name());
+				else
+					st.add(atom.getStereotype());
+			final net.sourceforge.plantuml.style.LevelConstraint lc = (net.sourceforge.plantuml.style.LevelConstraint) level
+					.invoke(sig);
+			return String.join(".", names) + st + (lc.hasLevel() ? "#" + lc.getLevel() : "") + (lc.isStar() ? "*" : "");
+		} catch (ReflectiveOperationException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	static void parserCases() throws Exception {
@@ -765,8 +782,9 @@ public class KlimtGolden2 {
 			try {
 				final BlocLines lines = BlocLines.fromArray(unesc(line).split("\n"));
 				final List<String> parts = new ArrayList<>();
-				for (Style st : new StyleParser().parse(lines))
-					parts.add(canonical(st.getSignature()) + " " + styleValues(st));
+				for (Style st : StyleLoader.parseStyleText(lines,
+						new net.sourceforge.plantuml.style.AutomaticCounterBasic()))
+					parts.add(canonical(st.getQuery()) + " " + styleValues(st));
 				r = String.join(" | ", parts);
 			} catch (Exception e) {
 				r = "ERR " + e.getClass().getSimpleName();
@@ -796,14 +814,14 @@ public class KlimtGolden2 {
 		final List<String> out = new ArrayList<>();
 		final StyleBuilder b = StyleLoader.loadSkin("plantuml.skin");
 		final BlocLines lines = BlocLines.load(Files.newInputStream(dir.resolve("user_style.css")), null);
-		final StyleBuilder user = b.muteStyle(new StyleParser(b).parse(lines.subExtract(1, 1)));
-		final StyleSignatureBasic part = StyleSignatureBasic.of(SName.root, SName.element, SName.sequenceDiagram,
+		final StyleBuilder user = b.muteStyle(StyleLoader.parseStyleText(lines.subExtract(1, 1), b));
+		final StyleQuery part = StyleQuery.of3(SName.root, SName.element, SName.sequenceDiagram,
 				SName.participant);
 		for (String st : new String[] { "<<foo>>", "<<bar>>", "<<foo>><<bar>>", "<<other>>", "<<(C,red)>>" }) {
 			final Stereotype stereo = Stereotype.build(st);
-			final StyleSignature sig = part.withTOBECHANGED(stereo);
-			out.add("with\t" + st + "\t" + styleValues(sig.getMergedStyle(user)));
-			out.add("itself\t" + st + "\t" + styleValues(part.forStereotypeItself(stereo).getMergedStyle(user)));
+			final StyleQuery sig = part.withStereotype(stereo);
+			out.add("with\t" + st + "\t" + styleValues(user.getMergedStyle(sig)));
+			out.add("itself\t" + st + "\t" + styleValues(user.getMergedStyle(part.forStereotypeItself(stereo))));
 			final List<String> sts = new ArrayList<>();
 			for (Style s : stereo.getStyles(user))
 				sts.add(styleValues(s));
@@ -815,7 +833,7 @@ public class KlimtGolden2 {
 				"<<##[bold]>>" }) {
 			final Stereogroup group = Stereogroup.build(g);
 			final net.sourceforge.plantuml.klimt.color.Colors colors = group.getInnerColors(HColorSet.instance());
-			final Style muted = group.mute(part.getMergedStyle(user), HColorSet.instance());
+			final Style muted = group.mute(user.getMergedStyle(part), HColorSet.instance());
 			out.add("group\t" + g + "\t" + group.getLabels() + " " + hc(colors.getColor(
 					net.sourceforge.plantuml.klimt.color.ColorType.BACK)) + "," + hc(colors.getColor(
 							net.sourceforge.plantuml.klimt.color.ColorType.LINE)) + "," + hc(colors.getColor(

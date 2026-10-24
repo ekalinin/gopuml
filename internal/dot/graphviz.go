@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/Graphviz.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/AbstractGraphviz.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/GraphvizVersionFinder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/DotStringFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/GraphvizImageBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/Graphviz.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/AbstractGraphviz.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/GraphvizVersionFinder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/DotStringFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/GraphvizImageBuilder.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package dot

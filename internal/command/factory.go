@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/PSystemCommandFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/PSystemAbstractFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/ProtectedCommand.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/EmbeddedDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/PSystemCommandFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/PSystemAbstractFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/ProtectedCommand.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/EmbeddedDiagram.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package command
@@ -17,7 +17,7 @@ import (
 )
 
 // UpstreamVersion appears in crash messages, as upstream's version does.
-const UpstreamVersion = "1.2026.8"
+const UpstreamVersion = "1.2026.9"
 
 // EmptyDescription is upstream's error message for a diagram without content.
 const EmptyDescription = "Empty description"
@@ -30,16 +30,31 @@ type Factory[D Diagram] struct {
 	Commands func() []Command[D]
 	// NewDiagram creates the empty diagram that commands fill.
 	NewDiagram func(ctx *core.RenderContext, src *core.UmlSource) D
+	// FirstTokens, when set, are the first tokens of the commands
+	// (FirstTokensOf), computed by the caller once for all its factories.
+	FirstTokens [][]string
 
-	once sync.Once
-	cmds []Command[D]
+	once   sync.Once
+	cmds   []Command[D]
+	tokens []commandTokens
 }
 
 // DiagramType implements core.Factory.
 func (f *Factory[D]) DiagramType() core.DiagramType { return f.Type }
 
 func (f *Factory[D]) commands() []Command[D] {
-	f.once.Do(func() { f.cmds = f.Commands() })
+	f.once.Do(func() {
+		f.cmds = f.Commands()
+		// What each command declared, asked once rather than once per line.
+		f.tokens = make([]commandTokens, len(f.cmds))
+		for i, cmd := range f.cmds {
+			if f.FirstTokens != nil {
+				f.tokens[i] = commandTokens{tokens: f.FirstTokens[i]}
+			} else {
+				f.tokens[i] = commandTokens{tokens: FirstTokensOf(cmd)}
+			}
+		}
+	})
 	return f.cmds
 }
 
@@ -152,10 +167,16 @@ func execute[D Diagram](cmd Command[D], d D, lines BlocLines, pass ParserPass) (
 }
 
 // candidate finds the first command that accepts the next line, or the
-// next lines for a multi-line command, and advances past them.
+// next lines for a multi-line command, and advances past them. Only the
+// commands that declared the first token of the line, or declared none, are
+// tried, in order.
 func (f *Factory[D]) candidate(it *iterator) (Command[D], BlocLines, bool) {
 	single := Single(it.peek())
-	for _, cmd := range f.commands() {
+	token := it.peek().FirstToken()
+	for i, cmd := range f.commands() {
+		if !f.tokens[i].accepts(token) {
+			continue
+		}
 		switch cmd.IsValid(single) {
 		case OK:
 			it.next()

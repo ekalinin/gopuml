@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFactorySprite.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteBase64.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteMd5.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteSvgMultiline.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteStdlib.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteStdlibSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandSpriteFile.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFactorySprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteBase64.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteMd5.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteSvgMultiline.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteStdlib.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteStdlibSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandSpriteFile.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

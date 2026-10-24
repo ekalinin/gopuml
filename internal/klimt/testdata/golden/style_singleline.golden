@@ -1,4 +1,4 @@
-BackGroundColor:red;	BackGroundColor=red/null (1)
-FontSize: 12; LineColor: blue;	FontSize=12/null (1);LineColor=blue/null (2)
-BackgroundColor:#FF0000;LineThickness:2;	BackGroundColor=#FF0000/null (1);LineThickness=2/null (2)
-FontColor : #ABC ; FontStyle : italic ;	FontColor=#ABC/null (1);FontStyle=italic/null (2)
+BackGroundColor:red;	BackGroundColor=red/null (1,stereo=1)
+FontSize: 12; LineColor: blue;	FontSize=12/null (1,stereo=1);LineColor=blue/null (2,stereo=1)
+BackgroundColor:#FF0000;LineThickness:2;	BackGroundColor=#FF0000/null (1,stereo=1);LineThickness=2/null (2,stereo=1)
+FontColor : #ABC ; FontStyle : italic ;	FontColor=#ABC/null (1,stereo=1);FontStyle=italic/null (2,stereo=1)

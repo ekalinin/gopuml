@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/SheetBlock1.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/SheetBlock2.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Fission.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Sea.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/SheetBlock1.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/SheetBlock2.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Fission.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Sea.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -14,6 +14,7 @@ import (
 
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/text"
 )
 
 // SheetBlock1 lays out a sheet: it breaks the stripes at the maximum width,
@@ -560,7 +561,7 @@ func (s *sea) translateMinYto(newValue float64) {
 func (s *sea) findFirstAtomText() *AtomText {
 	for _, atom := range s.atoms {
 		if atomText, ok := atom.(*AtomText); ok {
-			if trin(atomText.Text()) == "" {
+			if text.JavaTrim(atomText.Text()) == "" {
 				continue
 			}
 			return atomText

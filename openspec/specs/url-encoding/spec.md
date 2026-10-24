@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Encodes diagram source into PlantUML's URL text format and decodes it back, so that URLs and encoded strings work interchangeably with PlantUML v1.2026.8 and plantuml-server.
+Encodes diagram source into PlantUML's URL text format and decodes it back, so that URLs and encoded strings work interchangeably with PlantUML v1.2026.9 and plantuml-server.
 
 ## Requirements
 

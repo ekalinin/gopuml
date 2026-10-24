@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/AbstractDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/UgDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/TitledDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/WithSprite.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/core/DiagramDescription.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/AbstractDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/UgDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/TitledDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/WithSprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/core/DiagramDescription.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml

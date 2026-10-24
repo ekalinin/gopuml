@@ -109,7 +109,7 @@ A : %feature("ſtyle") %feature("style ")
 --- main
 A : %version()
 !$v = %version()
-!if $v == "1.2026.8"
+!if $v == "1.2026.9"
 A : same
 !endif
 === bi-chars

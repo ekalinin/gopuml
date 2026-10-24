@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandTitle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesTitle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandCaption.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesCaption.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandLegend.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesLegend.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesHeader.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandFooter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMultilinesFooter.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandMainframe.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/classdiagram/command/CommandNamespaceSeparator.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandTitle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesTitle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandCaption.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesCaption.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandLegend.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesLegend.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandFooter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMultilinesFooter.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandMainframe.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/classdiagram/command/CommandNamespaceSeparator.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package uml
@@ -102,8 +102,9 @@ func bodyDisplay(lines command.BlocLines) *klimt.Display {
 // CommandMultilinesTitle is "title" ... "end title".
 func CommandMultilinesTitle[D Diagram]() command.Command[D] {
 	return &Multilines[D]{
-		Start: Compile("^title$"),
-		End:   Compile("^end[%s]?title$"),
+		Pattern: "^title$",
+		Start:   Compile("^title$"),
+		End:     Compile("^end[%s]?title$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			location := Location(lines)
 			strings := bodyDisplay(lines)
@@ -120,8 +121,9 @@ func CommandMultilinesTitle[D Diagram]() command.Command[D] {
 // CommandMultilinesCaption is "caption" ... "end caption".
 func CommandMultilinesCaption[D Diagram]() command.Command[D] {
 	return &Multilines[D]{
-		Start: Compile("^caption$"),
-		End:   Compile("^end[%s]?caption$"),
+		Pattern: "^caption$",
+		Start:   Compile("^caption$"),
+		End:     Compile("^end[%s]?caption$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			location := Location(lines)
 			strings := bodyDisplay(lines)
@@ -227,10 +229,12 @@ func CommandFooter[D Diagram]() command.Command[D] {
 func multilinesHeaderFooter[D Diagram](keyword, empty string, param klimt.FontParam,
 	defaultValue geom.HorizontalAlignment, update func(b *Base, location *text.LineLocation,
 		display *klimt.Display, ha geom.HorizontalAlignment)) command.Command[D] {
-	start := Compile("^(?:(left|right|center)?[%s]*)" + keyword + "$")
+	pattern := "^(?:(left|right|center)?[%s]*)" + keyword + "$"
+	start := Compile(pattern)
 	return &Multilines[D]{
-		Start: start,
-		End:   Compile("^end[%s]?" + keyword + "$"),
+		Pattern: pattern,
+		Start:   start,
+		End:     Compile("^end[%s]?" + keyword + "$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			b := d.Titled()
 			location := Location(lines)
@@ -294,7 +298,9 @@ const separatorCharDouble = `[\\]{2}|::`
 // CommandNamespaceSeparator is "set separator x" (or "set
 // namespaceseparator x"): "none" or "null" disable namespaces.
 func CommandNamespaceSeparator[D Diagram]() command.Command[D] {
-	separator := `((?:none|null)|` + separatorCharDouble + `|[^%pLN%s_$#\\{}<>%g])`
+	// A single backslash is allowed (PHP namespaces, upstream's issue
+	// #2938), as CommandLinkClass allows it.
+	separator := `((?:none|null)|` + separatorCharDouble + `|[^%pLN%s_$#{}<>%g])`
 	return Single(regex.NewConcat(regex.Start(),
 		Lit("set"),
 		regex.SpaceOneOrMore(),

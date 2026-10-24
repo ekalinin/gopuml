@@ -12,7 +12,7 @@
 // reference image, which internal/klimt/font reproduces, so the files are
 // generated there. From the repository root:
 //
-//   mkdir -p ~/scratch-rose && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-rose && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-rose internal/klimt/rose/testdata/javagen/RoseGolden.java
 //   docker run --rm -v "$PWD:/repo" -v "$HOME/scratch-rose:/classes" plantuml-go-reference \
 //     java -Djava.awt.headless=true -XX:+UnlockDiagnosticVMOptions -XX:-InlineMathNatives \
@@ -105,8 +105,8 @@ import net.sourceforge.plantuml.skin.rose.Rose;
 import net.sourceforge.plantuml.stereo.Stereotype;
 import net.sourceforge.plantuml.style.SName;
 import net.sourceforge.plantuml.style.Style;
-import net.sourceforge.plantuml.style.StyleSignatureBasic;
-import net.sourceforge.plantuml.style.parser.StyleParser;
+import net.sourceforge.plantuml.style.StyleLoader;
+import net.sourceforge.plantuml.style.StyleQuery;
 import net.sourceforge.plantuml.url.Url;
 import net.sourceforge.plantuml.utils.BlocLines;
 
@@ -209,6 +209,10 @@ public class RoseGolden {
 		@Override
 		public UParam getParam() {
 			return new UParam() {
+				public net.sourceforge.plantuml.klimt.UClip getClip() {
+					return null;
+				}
+
 				public HColor getColor() {
 					return color;
 				}
@@ -399,7 +403,7 @@ public class RoseGolden {
 		} else if (name.equals("style") || name.equals("style2")) {
 			final String file = name.equals("style") ? "rose_style.css" : "rose_style2.css";
 			final BlocLines lines = BlocLines.load(Files.newInputStream(dir.resolve(file)), null);
-			sp.muteStyle(new StyleParser(sp.getCurrentStyleBuilder()).parse(lines.subExtract(1, 1)));
+			sp.muteStyle(StyleLoader.parseStyleText(lines.subExtract(1, 1), sp.getCurrentStyleBuilder()));
 			sp.applyPendingStyleMigration();
 		} else if (name.equals("strict")) {
 			sp.setParam("style", "strictuml");
@@ -411,7 +415,7 @@ public class RoseGolden {
 	}
 
 	static Style style(SkinParam sp, SName... names) {
-		return StyleSignatureBasic.of(names).getMergedStyle(sp.getCurrentStyleBuilder());
+		return sp.getCurrentStyleBuilder().getMergedStyle(StyleQuery.of3(names));
 	}
 
 	static Style seq(SkinParam sp, SName... names) {
@@ -770,7 +774,7 @@ public class RoseGolden {
 			final SkinParam sp = setup(setupName);
 			return ROSE.createComponent(
 					new Style[] {
-							ComponentType.DESTROY.getStyleSignature().getMergedStyle(sp.getCurrentStyleBuilder()) },
+							sp.getCurrentStyleBuilder().getMergedStyle(ComponentType.DESTROY.getStyleQuery()) },
 					ComponentType.DESTROY, null, sp, null);
 		}, AREA_WIDE);
 		comp(out, setupName + "/NEWPAGE", () -> {

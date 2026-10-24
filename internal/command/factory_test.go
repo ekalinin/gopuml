@@ -125,7 +125,7 @@ func TestFactoryExecutionError(t *testing.T) {
 
 func TestFactoryPanicIsReported(t *testing.T) {
 	e := errorOf(t, create(t, "@startuml\na = boom\n@enduml\n"))
-	if !strings.HasPrefix(e.Error.Error, "You should send a mail to plantuml@gmail.com with this log (V1.2026.8) exploded") {
+	if !strings.HasPrefix(e.Error.Error, "You should send a mail to plantuml@gmail.com with this log (V1.2026.9) exploded") {
 		t.Errorf("message %q", e.Error.Error)
 	}
 }
@@ -176,5 +176,36 @@ func TestBlocLinesHelpers(t *testing.T) {
 	added := b.Add(text.NewStringLocated("c", nil))
 	if b.Size() != 3 || added.Size() != 4 {
 		t.Error("Add must not modify the original")
+	}
+}
+
+// A command is only tried on the lines whose first token it declares: a
+// pattern that matches more than its tokens does not take the other lines,
+// which go to the next command, as with upstream's index of commands. The
+// token is lower-cased, as the patterns ignore case.
+func TestFactoryTriesCommandsByFirstToken(t *testing.T) {
+	var got []string
+	record := func(name string) func(*kvDiagram, *text.LineLocation, *regex.Result, ParserPass) Result {
+		return func(_ *kvDiagram, _ *text.LineLocation, arg *regex.Result, _ ParserPass) Result {
+			got = append(got, name+":"+arg.Str("ALL", 0))
+			return Ok()
+		}
+	}
+	f := &Factory[*kvDiagram]{
+		Type: core.Sequence,
+		Commands: func() []Command[*kvDiagram] {
+			return []Command[*kvDiagram]{
+				&SingleLine[*kvDiagram]{Pattern: regex.NewConcat(regex.Start(), regex.NewNamedLeaf(1, "ALL", `(kill.*)`),
+					regex.End()), Exec: record("kill"), FirstTokens: []string{"kill"}},
+				&SingleLine[*kvDiagram]{Pattern: regex.NewConcat(regex.Start(), regex.NewNamedLeaf(1, "ALL", `(.*)`),
+					regex.End()), Exec: record("any")},
+			}
+		},
+		NewDiagram: func(*core.RenderContext, *core.UmlSource) *kvDiagram { return &kvDiagram{values: map[string]string{}} },
+	}
+	lines := core.BuildBlocks("@startuml\nkill it\nkiller whale\n  KILL x\n@enduml\n", "string", nil)[0].Lines
+	f.CreateSystem(core.NewRenderContext(), core.NewUmlSource(lines, lines, false))
+	if want := "kill:kill it|any:killer whale|kill:KILL x"; strings.Join(got, "|") != want {
+		t.Errorf("got %v, want %s", got, want)
 	}
 }

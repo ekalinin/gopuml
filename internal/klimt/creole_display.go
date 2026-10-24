@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/creole/Display.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/creole/Display.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -381,7 +381,7 @@ func (d *Display) ManageGuillemet(manageVisibilityModifier bool) *Display {
 		lineString := line.String()
 		if manageVisibilityModifier && first && VisibilityIsVisibilityCharacter(lineString) {
 			u := utf16.Encode([]rune(lineString))
-			lineString = trin(string(utf16.Decode(u[1:])))
+			lineString = text.JavaTrim(string(utf16.Decode(u[1:])))
 		}
 		result = append(result, Text(GuillemetGuillemet().ManageGuillemet(lineString)))
 		first = false

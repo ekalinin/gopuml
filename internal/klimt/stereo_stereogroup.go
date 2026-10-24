@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereogroup.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereostyles.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/Stereotag.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/stereo/StereotypePattern.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereogroup.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereostyles.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/Stereotag.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/stereo/StereotypePattern.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/ekalinin/gopuml/internal/command"
 	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
@@ -129,9 +130,11 @@ func (g *Stereogroup) InnerColors(colorSet *color.HColorSet) (*color.Colors, err
 			}
 			colors = colors.MergeWith(c)
 		case strings.Contains(label, ":") && strings.Contains(label, ";"):
-			style, err := NewStyleParser().ParseSingleLine(label)
-			if err == nil {
-				colors = ColorsApplyStyle(colors, style, colorSet)
+			// A bare "Prop:value;" list is parsed in a throwaway selector.
+			styles, err := StyleLoaderParseStyleText(command.SingleString("inlineStereogroupColors {"+label+"}"),
+				&AutomaticCounterBasic{})
+			if err == nil && len(styles) > 0 {
+				colors = ColorsApplyStyle(colors, styles[0], colorSet)
 			}
 		}
 	}

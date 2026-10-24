@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeat3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeatWhile3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeatWhile3Multilines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandBackward3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandBackwardLong3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandWhile3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandWhileEnd3.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/activitydiagram3/command/CommandBreak.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeat3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeatWhile3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandRepeatWhile3Multilines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandBackward3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandBackwardLong3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandWhile3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandWhileEnd3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/activitydiagram3/command/CommandBreak.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package activitydiagram3
@@ -27,7 +27,12 @@ func commandRepeat3() cmd {
 		stereogroup := klimt.StereogroupBuildFrom(arg)
 		boxStyle := boxStyleOf(stereogroup)
 		if c, ok := arg.Get("COLOR", 0); ok {
-			d.AddWarning(deprecatedColorWarning(c))
+			repeat := "repeat"
+			if rawLabel, ok := arg.Get("LABEL", 0); ok {
+				repeat = "repeat :" + rawLabel + ";"
+			}
+			d.AddWarning(klimt.NewWarning("This syntax is deprecated and the color is ignored: write '" + repeat +
+				" <<" + c + ">>' instead of '" + c + ":" + repeat + "'"))
 		}
 		colors, err := innerColors(d, stereogroup)
 		if err != nil {
@@ -236,6 +241,7 @@ func commandBackwardLong3() cmd {
 // commandWhile3 is "while (test) is (yes)".
 func commandWhile3() cmd {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
+		warnLeadingColor(d, arg)
 		colors, err := innerColors(d, klimt.StereogroupBuildFrom(arg))
 		if err != nil {
 			return colorResult(err)

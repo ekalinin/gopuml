@@ -319,6 +319,9 @@ func TestReleaseWorkflow(t *testing.T) {
 	}
 }
 
+// comparisonHeader is the header row of the comparison table of the notes.
+var comparisonHeader = regexp.MustCompile(`(?m)^\| \| PlantUML \d+\.\d+\.\d+ \(Java\) \| gopuml \|$`)
+
 // checkReleaseNotes checks the notes of a release (release: Release notes)
 // against the README: every row of their table of supported diagrams is
 // still a row of the README's table, which may have gained rows since the
@@ -356,8 +359,12 @@ func checkReleaseNotes(notes, readme string) error {
 	if rows == 0 {
 		errs = append(errs, errors.New("no table of supported diagrams in the notes"))
 	}
+	// The comparison names the upstream version the release was measured
+	// against.
+	if !comparisonHeader.MatchString(notes) {
+		errs = append(errs, fmt.Errorf("no %q row", "| | PlantUML <version> (Java) | gopuml |"))
+	}
 	for _, want := range []string{
-		"| | PlantUML 1.2026.8 (Java) | gopuml |",
 		"| Start time (one small sequence diagram) |",
 		"- Runs: median of ",
 		"xattr -d com.apple.quarantine plantuml",

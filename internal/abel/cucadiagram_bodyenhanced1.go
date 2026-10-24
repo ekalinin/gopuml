@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodyEnhanced1.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodyEnhancedAbstract.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/BodyFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cucadiagram/Body3.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodyEnhanced1.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodyEnhancedAbstract.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/BodyFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cucadiagram/Body3.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel

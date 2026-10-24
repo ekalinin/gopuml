@@ -1,0 +1,12 @@
+---
+id: class-diagram/backslash-separator
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "class-diagram: Backslash separator"
+---
+@startuml
+set separator \
+class App\Entity\A
+@enduml

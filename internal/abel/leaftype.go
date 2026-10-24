@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/LeafType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/GroupType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/LeafType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/GroupType.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -58,6 +58,7 @@ const (
 	LeafTypeStateChoice
 	LeafTypeStateForkJoin
 	LeafTypeStateTransitionLabel
+	LeafTypeJunction
 	LeafTypeBlock
 	LeafTypeEntity
 	LeafTypeDomain
@@ -77,7 +78,7 @@ var leafTypeNames = [...]string{
 	"ASSOCIATION", "ENUM", "CIRCLE", "DATACLASS", "RECORD", "USECASE", "USECASE_BUSINESS", "DESCRIPTION",
 	"ARC_CIRCLE", "ACTIVITY", "BRANCH", "SYNCHRO_BAR", "CIRCLE_START", "CIRCLE_END", "POINT_FOR_ASSOCIATION",
 	"ACTIVITY_CONCURRENT", "STATE", "STATE_CONCURRENT", "PSEUDO_STATE", "DEEP_HISTORY", "STATE_CHOICE",
-	"STATE_FORK_JOIN", "STATE_TRANSITION_LABEL", "BLOCK", "ENTITY", "DOMAIN", "REQUIREMENT", "PORTIN", "PORTOUT",
+	"STATE_FORK_JOIN", "STATE_TRANSITION_LABEL", "JUNCTION", "BLOCK", "ENTITY", "DOMAIN", "REQUIREMENT", "PORTIN", "PORTOUT",
 	"CHEN_ENTITY", "CHEN_RELATIONSHIP", "CHEN_ATTRIBUTE", "CHEN_CIRCLE", "STILL_UNKNOWN",
 }
 

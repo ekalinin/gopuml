@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/IRegex.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexComposed.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexConcat.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexLeaf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexOptional.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexOr.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexRepeatedOneOrMore.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexRepeatedZeroOrMore.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexResult.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/regex/RegexPartialMatch.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/IRegex.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexComposed.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexConcat.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexLeaf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexOptional.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexOr.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexRepeatedOneOrMore.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexRepeatedZeroOrMore.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexResult.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/regex/RegexPartialMatch.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package regex
@@ -191,16 +191,6 @@ type Concat struct {
 	composed
 	once sync.Once
 	re   *regexp.Regexp
-
-	namesOnce sync.Once
-	names     []string
-}
-
-// javaOrder returns the names of the pattern in upstream's HashMap order
-// (see javaorder.go), computed once.
-func (c *Concat) javaOrder() []string {
-	c.namesOnce.Do(func() { c.names = javaNames(c) })
-	return c.names
 }
 
 // NewConcat concatenates parts; upstream's commands start with Start() and
@@ -241,18 +231,17 @@ func (c *Concat) Matcher(s string) *Result {
 			groups = append(groups, Group{S: s[idx[i]:idx[i+1]], OK: true})
 		}
 	}
-	r := &Result{data: map[string][]Group{}, javaOrder: c.javaOrder()}
+	r := &Result{data: map[string][]Group{}}
 	c.collect(&groups, r)
 	return r
 }
 
-// Result holds the groups of a match by name.
+// Result holds the groups of a match by name, in the order the pattern
+// fills them: the parts in sequence, and the group of an alternative or a
+// repetition after the groups inside it.
 type Result struct {
 	data  map[string][]Group
 	order []string
-	// javaOrder holds the names in the iteration order of upstream's
-	// HashMap of groups, which getLazzy follows.
-	javaOrder []string
 	// captures, when set, back the result instead of data: the result of
 	// a UBrex command (upstream's RegexResult(UMatcher)).
 	captures Captures
@@ -271,10 +260,13 @@ type Captures interface {
 // upstream's List.get.
 func NewResultFromCaptures(captures Captures) *Result { return &Result{captures: captures} }
 
+// put adds the groups of a name; a name given twice keeps its first groups,
+// as upstream's lookup finds the first entry.
 func (r *Result) put(name string, groups []Group) {
-	if _, ok := r.data[name]; !ok {
-		r.order = append(r.order, name)
+	if _, ok := r.data[name]; ok {
+		return
 	}
+	r.order = append(r.order, name)
 	r.data[name] = groups
 }
 
@@ -297,17 +289,13 @@ func (r *Result) Str(name string, num int) string {
 }
 
 // Lazy returns group num of the first name starting with prefix whose group
-// matched, trying the names in the iteration order of upstream's HashMap
-// of groups (which matters when several such groups match at once).
+// matched, in the order the pattern fills the groups (which matters when
+// several such groups match at once).
 func (r *Result) Lazy(prefix string, num int) (string, bool) {
 	if r.captures != nil {
 		return capturedValue(r.captures.FindFirstValuesByKeyPrefix(prefix), num)
 	}
-	order := r.javaOrder
-	if order == nil {
-		order = r.order
-	}
-	for _, name := range order {
+	for _, name := range r.order {
 		if !strings.HasPrefix(name, prefix) {
 			continue
 		}

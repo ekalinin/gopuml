@@ -534,7 +534,7 @@ func TestGoldenStereoStyles(t *testing.T) {
 		t.Fatal(err)
 	}
 	lines := loadBlocLines(string(data), nil).Lines()
-	parsed, err := NewStyleParserCounter(b).Parse(command.NewBlocLines(lines[1 : len(lines)-1]))
+	parsed, err := StyleLoaderParseStyleText(command.NewBlocLines(lines[1:len(lines)-1]), b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -604,7 +604,7 @@ func TestGoldenParser(t *testing.T) {
 			for _, l := range strings.Split(unescParserInput(line), "\n") {
 				lines = append(lines, text.NewStringLocated(l, nil))
 			}
-			styles, err := NewStyleParser().Parse(command.NewBlocLines(lines))
+			styles, err := StyleLoaderParseStyleText(command.NewBlocLines(lines), &AutomaticCounterBasic{})
 			if err != nil {
 				return "ERR StyleParsingException"
 			}
@@ -671,7 +671,7 @@ func TestSmallHelpers(t *testing.T) {
 		t.Error(at)
 	}
 	d := DisplayCreateSeq([]CharSequence{Text("a"), StereotypeBuild("<<s>>")})
-	style := NewStyle(StyleSignatureBasicEmpty(), map[PName]Value{PNameShowStereotype: ValueImplRegularPriority("false", 1)})
+	style := NewStyle(StyleSignatureBasicEmpty(), map[PName]Value{PNameShowStereotype: ValueImplRegularSpecificity("false", SpecificityAtOrder(1))})
 	if d.WithoutStereotypeIfNeeded(style).ShowStereotype() || !d.ShowStereotype() || d.StereotypeIfAny() == nil {
 		t.Error("show stereotype")
 	}

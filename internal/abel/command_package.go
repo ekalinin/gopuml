@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPackage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandEndPackage.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/command/CommandPackageEmpty.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandPackageWithUSymbol.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/descdiagram/command/CommandTogether.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPackage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandEndPackage.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/command/CommandPackageEmpty.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandPackageWithUSymbol.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandTogether.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -24,20 +24,39 @@ func skinUSymbol(c *CucaDiagram, s string, ok bool) USymbol {
 	return USymbolFromStyles(s, ok, skin.ActorStyle(), skin.ComponentStyle(), skin.PackageStyle())
 }
 
-// CommandPackage is `package name [as code] <<stereotype>> #color {`; a
-// stereotype naming a symbol ("<<Node>>") selects the shape of the package.
+// packageCodeBareword is an unquoted code: letters, digits, '_', '.' and
+// '$'. It may be empty, so that "package {" matches with an empty code.
+const packageCodeBareword = "[%pLN_.$]*"
+
+// packageQuotedDisplay is a quoted display, "Hello World".
+const packageQuotedDisplay = "[%g][^%g]+[%g]"
+
+// CommandPackage is `package code [as "display"] <<stereotype>> #color {`
+// or `package "display" as code ... {`; a stereotype naming a symbol
+// ("<<Node>>") selects the shape of the package.
 func CommandPackage[D Diagram]() command.Command[D] {
 	c := uml.Single(regex.NewConcat(regex.Start(),
 		uml.Leaf(1, "VISIBILITY", "("+klimt.VisibilityRegexForVisibilityCharacter()+")?"),
 		regex.SpaceZeroOrMore(),
 		uml.Leaf(1, "TYPE", "(package)"),
 		regex.SpaceOneOrMore(),
-		uml.Leaf(1, "NAME", "([%g][^%g]+[%g]|[^#%s{}]*)"),
-		regex.Optional(regex.NewConcat(
-			regex.SpaceOneOrMore(),
-			uml.Lit("as"),
-			regex.SpaceOneOrMore(),
-			uml.Leaf(1, "AS", "([%pLN_.]+)"))),
+		// Either the code then an optional display (CODE1, DISPLAY1), or the
+		// display then the code (DISPLAY2, CODE2): only one branch matches a
+		// line, so CODE and DISPLAY are read with Lazy.
+		regex.Or("",
+			regex.NewConcat(
+				uml.Leaf(1, "CODE1", "("+packageCodeBareword+"|"+packageQuotedDisplay+")"),
+				regex.Optional(regex.NewConcat(
+					regex.SpaceOneOrMore(),
+					uml.Lit("as"),
+					regex.SpaceOneOrMore(),
+					uml.Leaf(1, "DISPLAY1", "("+packageQuotedDisplay+")")))),
+			regex.NewConcat(
+				uml.Leaf(1, "DISPLAY2", "("+packageQuotedDisplay+")"),
+				regex.SpaceOneOrMore(),
+				uml.Lit("as"),
+				regex.SpaceOneOrMore(),
+				uml.Leaf(1, "CODE2", "([%pLN_.]+)"))),
 		regex.SpaceZeroOrMore(),
 		TagsLeaf("TAGS1"),
 		klimt.StereotypePatternOptional("STEREOTYPE"),
@@ -49,20 +68,16 @@ func CommandPackage[D Diagram]() command.Command[D] {
 		regex.SpaceZeroOrMore(), uml.Lit(`\{`), regex.End()),
 		func(d D, location *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			c := d.Cuca()
-			name := uml.RemoveQuotes(arg.Str("NAME", 0))
-			as, hasAs := arg.Get("AS", 0)
-			if !hasAs && name == "" {
-				c.UniqueSequence("##")
+			code, _ := arg.Lazy("CODE", 0)
+			idRaw := uml.RemoveQuotes(code)
+			display, hasDisplay := arg.Lazy("DISPLAY", 0)
+			display = uml.RemoveQuotes(display)
+			if idRaw == "" {
 				return command.Error("Error in name")
 			}
-			var quark *Quark
-			var display string
-			if !hasAs {
-				quark = c.QuarkInContext(false, c.CleanID(name))
+			quark := c.QuarkInContext(false, c.CleanID(idRaw))
+			if !hasDisplay {
 				display = quark.Name()
-			} else {
-				quark = c.QuarkInContext(false, c.CleanID(as))
-				display = name
 			}
 			stereotype, hasStereotype := arg.Get("STEREOTYPE", 0)
 			usymbol := skinUSymbol(c, stereotype, hasStereotype)

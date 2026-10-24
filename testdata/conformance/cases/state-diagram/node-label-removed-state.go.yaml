@@ -1,0 +1,6 @@
+id: state-diagram/node-label-removed-state
+scenarios:
+  - "state-diagram: Removed state with a label node"
+package: internal/statediagram
+test: TestRemovedStateWithLabelNode
+why: Upstream names the label node with the current time, so its output changes from one run to the next and cannot be compared.

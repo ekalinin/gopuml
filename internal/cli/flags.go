@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cli/CliFlag.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cli/Arity.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cli/CliFlag.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cli/Arity.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 // Package cli is upstream's command line interface: flags, parsing and

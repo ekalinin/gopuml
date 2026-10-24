@@ -1,0 +1,12 @@
+---
+id: preprocessor/include-twice
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Include twice"
+---
+@startuml
+!include a.iuml
+!include a.iuml
+@enduml

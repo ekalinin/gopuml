@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageCircleStart.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageCircleEnd.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageCircleStart.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageCircleEnd.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -39,7 +39,10 @@ var _ klimt.IEntityImage = (*EntityImageCircleStart)(nil)
 
 func newEntityImageCircleStart(entity *abel.Entity) *EntityImageCircleStart {
 	e := &EntityImageCircleStart{abstractEntityImage: newAbstractEntityImage(entity)}
-	e.circle = klimt.NewCircleStart(e.skinParam, circleStyle(e.skinParam, klimt.SNameStart), entity.Colors())
+	// A junction pseudostate is the smaller circle of the initial node.
+	junction := entity.LeafType() == abel.LeafTypeJunction
+	e.circle = klimt.NewCircleStartJunction(e.skinParam, circleStyle(e.skinParam, klimt.SNameStart), entity.Colors(),
+		junction)
 	return e
 }
 

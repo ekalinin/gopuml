@@ -1,0 +1,12 @@
+---
+id: styling/skinparam-participantpadding
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "styling: Ignored participant padding"
+---
+@startuml
+skinparam ParticipantPadding 40
+A -> B
+@enduml

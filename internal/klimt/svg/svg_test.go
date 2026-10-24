@@ -139,7 +139,7 @@ func TestMetadataDecodes(t *testing.T) {
 	source := "@startuml\nAlice -> Bob : héllo & <bye>\n@enduml"
 	g := newGraphic(font.FormatSVG)
 	g.Apply(color.Black).Draw(klimt.URectangleBuild(5, 5))
-	out := write(t, g, source+"\n1.2026.8")
+	out := write(t, g, source+"\n1.2026.9")
 	start := strings.Index(out, "<?plantuml-src ")
 	if start < 0 {
 		t.Fatalf("no metadata in %s", out)
@@ -200,7 +200,8 @@ func TestJavaHelpers(t *testing.T) {
 	if shortenColor("#AABBCC") != "#ABC" || shortenColor("#AABBCD") != "#AABBCD" || shortenColor("none") != "none" {
 		t.Error("shortenColor")
 	}
-	if trimZeros("1.500") != "1.5" || trimZeros("2.000") != "2" || trimZeros("-0.000") != "-0" || trimZeros("30") != "30" {
+	if trimZeros("1.500") != "1.5" || trimZeros("2.000") != "2" || trimZeros("-0.000") != "0" || trimZeros("-0") != "0" ||
+		trimZeros("-0.50") != "-0.5" || trimZeros("30") != "30" {
 		t.Error("trimZeros")
 	}
 }

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/GraphvizRuntimeEnvironment.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/AbstractGraphviz.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/GraphvizLinux.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/dot/GraphvizWindowsOld.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/StringUtils.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/GraphvizRuntimeEnvironment.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/AbstractGraphviz.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/GraphvizLinux.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/dot/GraphvizWindowsOld.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/StringUtils.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package dot
@@ -160,7 +160,7 @@ func (c Config) DotVersion(ctx context.Context) string {
 func GetenvGraphvizDot(explicit string, h Host) string {
 	// Run.java removes the quotes of --dot-path, then setDotExecutable trims
 	// the value, then the quotes are removed once more below.
-	if v := trin(eventuallyRemoveStartingAndEndingDoubleQuote(explicit)); isNotEmpty(v) {
+	if v := strings.TrimFunc(eventuallyRemoveStartingAndEndingDoubleQuote(explicit), func(r rune) bool { return r <= ' ' }); isNotEmpty(v) {
 		return eventuallyRemoveStartingAndEndingDoubleQuote(v)
 	}
 	if v := h.getenv("GRAPHVIZ_DOT"); isNotEmpty(v) {
@@ -283,9 +283,9 @@ func higherVersion(dots []string) string {
 }
 
 // trin is StringUtils.trin: it removes leading and trailing characters up to
-// and including the space.
+// and including the space, and U+00A0.
 func trin(s string) string {
-	return strings.TrimFunc(s, func(r rune) bool { return r <= ' ' })
+	return strings.TrimFunc(s, func(r rune) bool { return r <= ' ' || r == '\u00A0' })
 }
 
 // isNotEmpty is StringUtils.isNotEmpty: s has a character other than space,

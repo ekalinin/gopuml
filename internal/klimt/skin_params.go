@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ColorParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/LineParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/AlignmentParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/CornerParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/PaddingParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/SplitParam.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ComponentStyle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ActorStyle.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowDirection.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ColorParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/LineParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/AlignmentParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/CornerParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/PaddingParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/SplitParam.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ComponentStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ActorStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowDirection.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

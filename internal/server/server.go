@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/picoweb/PicoWebServer.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/picoweb/BadRequest400.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/FileFormat.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/picoweb/PicoWebServer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/picoweb/BadRequest400.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/FileFormat.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package server
@@ -37,7 +37,7 @@ const (
 	// UpstreamVersion is the PlantUML version this server follows. It
 	// appears in the Server header and in /serverinfo, as upstream's
 	// Version.versionString() does.
-	UpstreamVersion = "1.2026.8"
+	UpstreamVersion = "1.2026.9"
 )
 
 // RenderFunc renders a source; it has the signature of gopuml.Render.

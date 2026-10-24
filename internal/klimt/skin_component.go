@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/Component.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/AbstractComponent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/AbstractTextualComponent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ArrowComponent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/Area.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/Context2D.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/SimpleContext2D.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/skin/ComponentType.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/LifeEventType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/Component.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/AbstractComponent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/AbstractTextualComponent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ArrowComponent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/Area.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/Context2D.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/SimpleContext2D.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/skin/ComponentType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/LifeEventType.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/style/FromSkinparamToStyle.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/style/FromSkinparamToStyle.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -181,6 +181,10 @@ func buildSkinparamKnowledge() map[string][]skinparamData {
 	addConvert("classFontStyle", PNameFontStyle, SNameElement, SNameClass, SNameHeader)
 	addConvert("classFontColor", PNameFontColor, SNameElement, SNameClass, SNameHeader)
 	addConvert("classFontName", PNameFontName, SNameElement, SNameClass, SNameHeader)
+	addConvert("classStereotypeFontSize", PNameFontSize, SNameElement, SNameClass, SNameStereotype)
+	addConvert("classStereotypeFontStyle", PNameFontStyle, SNameElement, SNameClass, SNameStereotype)
+	addConvert("classStereotypeFontColor", PNameFontColor, SNameElement, SNameClass, SNameStereotype)
+	addConvert("classStereotypeFontName", PNameFontName, SNameElement, SNameClass, SNameStereotype)
 	addConvert("classAttributeFontSize", PNameFontSize, SNameElement, SNameClass)
 	addConvert("classAttributeFontStyle", PNameFontStyle, SNameElement, SNameClass)
 	addConvert("classAttributeFontColor", PNameFontColor, SNameElement, SNameClass)
@@ -386,8 +390,9 @@ func (c *FromSkinparamToStyle) addStyle(propertyName PName, value Value, styleNa
 	values[propertyName] = value
 	sig := StyleSignatureBasicOf(styleNames...)
 	if c.hasStereo {
-		values = addPriorityForStereotype(values)
-		for _, s := range javaSplit(c.stereo, "&") {
+		names := javaSplit(c.stereo, "&")
+		values = addStereotypeCount(values, len(names))
+		for _, s := range names {
 			sig = sig.AddStereotype(s)
 		}
 	}

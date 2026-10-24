@@ -9,7 +9,7 @@
 // internal/klimt/font reproduces, so the file is generated there. From the
 // repository root:
 //
-//   mkdir -p ~/scratch-klimt && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-klimt && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-klimt internal/klimt/testdata/javagen/CreoleGolden.java
 //   docker run --rm -v "$PWD:/repo" -v "$HOME/scratch-klimt:/classes" plantuml-go-reference \
 //     java -Djava.awt.headless=true -XX:+UnlockDiagnosticVMOptions -XX:-InlineMathNatives \
@@ -89,7 +89,7 @@ import net.sourceforge.plantuml.style.SName;
 import net.sourceforge.plantuml.style.Style;
 import net.sourceforge.plantuml.style.StyleBuilder;
 import net.sourceforge.plantuml.style.StyleLoader;
-import net.sourceforge.plantuml.style.StyleSignatureBasic;
+import net.sourceforge.plantuml.style.StyleQuery;
 import net.sourceforge.plantuml.klimt.shape.TextBlockTitle;
 import net.sourceforge.plantuml.url.Url;
 
@@ -204,6 +204,10 @@ public class CreoleGolden {
 		@Override
 		public UParam getParam() {
 			return new UParam() {
+				public net.sourceforge.plantuml.klimt.UClip getClip() {
+					return null;
+				}
+
 				public HColor getColor() {
 					return color;
 				}
@@ -425,9 +429,8 @@ public class CreoleGolden {
 		}
 		// Style.createTextBlockBordered and TextBlockTitle with the default skin.
 		final StyleBuilder builder = StyleLoader.loadSkin("plantuml.skin");
-		final Style note = StyleSignatureBasic.of(SName.root, SName.element, SName.sequenceDiagram, SName.note)
-				.getMergedStyle(builder);
-		final Style title = StyleSignatureBasic.of(SName.root, SName.document, SName.title).getMergedStyle(builder);
+		final Style note = builder.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.sequenceDiagram, SName.note));
+		final Style title = builder.getMergedStyle(StyleQuery.of3(SName.root, SName.document, SName.title));
 		final Display noteText = Display.create("**Note** with //style//", "----", "second line");
 		final Display titleText = Display.create("The <color:red>title</color>", "line 2");
 		for (StringBounder bounder : Arrays.asList(FAKE, SVG)) {
@@ -552,10 +555,8 @@ public class CreoleGolden {
 			out.add("arrow\t" + arrow(a));
 
 		final StyleBuilder builder = StyleLoader.loadSkin("plantuml.skin");
-		final Style arrowStyle = StyleSignatureBasic.of(SName.root, SName.element, SName.sequenceDiagram, SName.arrow)
-				.getMergedStyle(builder);
-		final Style noteStyle = StyleSignatureBasic.of(SName.root, SName.element, SName.sequenceDiagram, SName.note)
-				.getMergedStyle(builder);
+		final Style arrowStyle = builder.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.sequenceDiagram, SName.arrow));
+		final Style noteStyle = builder.getMergedStyle(StyleQuery.of3(SName.root, SName.element, SName.sequenceDiagram, SName.note));
 		int n = 0;
 		for (ArrowConfiguration a : Arrays.asList(normal, normal.withBody(ArrowBody.DOTTED),
 				normal.withThickness(2.5), normal.withBody(ArrowBody.DOTTED).withThickness(1.5))) {
@@ -610,7 +611,7 @@ public class CreoleGolden {
 		for (ComponentType t : ComponentType.values()) {
 			String v;
 			try {
-				final Style st = t.getStyleSignature().getMergedStyle(builder);
+				final Style st = builder.getMergedStyle(t.getStyleQuery());
 				v = st.value(net.sourceforge.plantuml.style.PName.BackGroundColor).asString() + " "
 						+ st.value(net.sourceforge.plantuml.style.PName.LineColor).asString() + " "
 						+ st.value(net.sourceforge.plantuml.style.PName.FontSize).asString() + " "

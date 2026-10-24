@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/LivingSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/LivingSpaces.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/LivingSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/LivingSpaces.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -127,8 +127,15 @@ func NewLivingSpace(p *Participant, englober *ParticipantEnglober, skin *rose.Ro
 }
 
 // DrawLineAndLiveboxes draws the lifeline over its alive segments, then
-// the activation boxes.
+// the activation boxes. Only the line is in the lifeline group.
 func (s *LivingSpace) DrawLineAndLiveboxes(ug klimt.UGraphic, height float64, context klimt.Context2D) {
+	ug.StartGroup(s.p.groupTypeLifeline())
+	s.drawLine(ug, height, context)
+	ug.CloseGroup()
+	s.liveboxes.DrawBoxes(ug, context, s.firstCreateY(), height)
+}
+
+func (s *LivingSpace) drawLine(ug klimt.UGraphic, height float64, context klimt.Context2D) {
 	// The line is drawn only over the alive segments: a participant may be
 	// created and destroyed several times
 	alive := !s.create
@@ -145,7 +152,6 @@ func (s *LivingSpace) DrawLineAndLiveboxes(ug klimt.UGraphic, height float64, co
 	if alive {
 		s.mutingLine.DrawLine(ug, context, aliveSince, height)
 	}
-	s.liveboxes.DrawBoxes(ug, context, s.firstCreateY(), height)
 }
 
 func (s *LivingSpace) firstCreateY() float64 {
@@ -185,6 +191,11 @@ func (s *LivingSpace) drawHeadOrTail(ug klimt.UGraphic, context klimt.Context2D,
 	}
 	area := klimt.NewArea(dim)
 	url := s.p.URL()
+	if typ == s.headType {
+		ug.StartGroup(s.p.groupTypeHead())
+	} else {
+		ug.StartGroup(s.p.groupTypeTail())
+	}
 	if url != nil {
 		ug.StartURL(url)
 	}
@@ -192,6 +203,7 @@ func (s *LivingSpace) drawHeadOrTail(ug klimt.UGraphic, context klimt.Context2D,
 	if url != nil {
 		ug.CloseURL()
 	}
+	ug.CloseGroup()
 }
 
 // HeadPreferredDimension returns the size of the head.

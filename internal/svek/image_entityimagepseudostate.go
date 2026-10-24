@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImagePseudoState.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageDeepHistory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageTransitionLabel.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImagePseudoState.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageDeepHistory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageTransitionLabel.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -9,6 +9,7 @@ package svek
 import (
 	"github.com/ekalinin/gopuml/internal/abel"
 	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
@@ -20,17 +21,29 @@ const pseudoStateSize = 22
 // of a history state with "H" (EntityImageDeepHistory: "H*").
 type EntityImagePseudoState struct {
 	abstractEntityImage
-	desc  klimt.TextBlock
-	style *klimt.Style
+	desc   klimt.TextBlock
+	style  *klimt.Style
+	colors *color.Colors
 }
 
 var _ klimt.IEntityImage = (*EntityImagePseudoState)(nil)
 
-func newEntityImagePseudoState(entity *abel.Entity, historyText string) *EntityImagePseudoState {
+// newEntityImagePseudoState returns the image of a history state.
+// implicitStereotypes are the stereotypes every such state answers to,
+// however it is written ("[H]", "state h <<history>>"), so that a
+// ".history" style reaches all of them: "history", and "deepHistory" for a
+// deep history, whose label "history*" cannot be a style name.
+func newEntityImagePseudoState(entity *abel.Entity, historyText string,
+	implicitStereotypes ...string) *EntityImagePseudoState {
 	e := &EntityImagePseudoState{abstractEntityImage: newAbstractEntityImage(entity)}
-	e.style = klimt.StyleSignatureBasicOf(klimt.SNameRoot, klimt.SNameElement, e.styleName(), klimt.SNameDiamond).
-		WithTOBECHANGED(entity.Stereotype()).MergedStyle(e.skinParam.CurrentStyleBuilder())
-	fontConfiguration := e.style.FontConfiguration(e.skinParam.IHtmlColorSet(), nil)
+	query := klimt.StyleSignatureBasicOf(klimt.SNameRoot, klimt.SNameElement, e.styleName(), klimt.SNameDiamond).
+		AddStereotypeOf(entity.Stereotype())
+	for _, implicit := range implicitStereotypes {
+		query = query.AddStereotype(implicit)
+	}
+	e.style = query.MergedStyle(e.skinParam.CurrentStyleBuilder())
+	e.colors = entity.Colors()
+	fontConfiguration := e.style.FontConfiguration(e.skinParam.IHtmlColorSet(), e.colors)
 	e.desc = klimt.DisplayCreate(historyText).Create(fontConfiguration, geom.HorizontalAlignmentCenter, e.skinParam)
 	return e
 }
@@ -44,10 +57,10 @@ func (e *EntityImagePseudoState) CalculateDimension(font.StringBounder) geom.XDi
 func (e *EntityImagePseudoState) DrawU(ug klimt.UGraphic) {
 	circle := klimt.UEllipseBuild(pseudoStateSize, pseudoStateSize)
 	colorSet := e.skinParam.IHtmlColorSet()
-	borderColor := e.style.Value(klimt.PNameLineColor).AsColor(colorSet)
-	backgroundColor := e.style.Value(klimt.PNameBackGroundColor).AsColor(colorSet)
+	borderColor := klimt.ColorsColorOf(e.colors, e.style, klimt.PNameLineColor, colorSet)
+	backgroundColor := klimt.ColorsColorOf(e.colors, e.style, klimt.PNameBackGroundColor, colorSet)
 	circle.SetDeltaShadow(e.style.Shadowing())
-	ug = ug.Apply(e.style.Stroke())
+	ug = ug.Apply(e.style.StrokeOf(e.colors))
 	ug = ug.Apply(klimt.Bg(backgroundColor)).Apply(borderColor)
 	ug.Draw(circle)
 	dimDesc := e.desc.CalculateDimension(ug.StringBounder())

@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Backslash.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Breakline.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Dollar.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/LeftAlign.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Newline.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/NewlineShort.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Percent.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/RightAlign.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/Tabulation.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/jaws/Jaws.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/jaws/JawsFlags.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Backslash.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Breakline.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Dollar.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/LeftAlign.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Newline.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/NewlineShort.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Percent.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/RightAlign.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/Tabulation.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/jaws/Jaws.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/jaws/JawsFlags.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

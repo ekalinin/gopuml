@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandDelay.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandDivider.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandFootbox.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandFootboxOld.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandGrouping.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandHideUnlinked.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandHSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandLinkAnchor.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandReferenceOverSeveral.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/command/CommandReferenceMultilinesOverSeveral.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandDelay.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandDivider.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandFootbox.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandFootboxOld.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandGrouping.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandHideUnlinked.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandHSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandLinkAnchor.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandReferenceOverSeveral.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/command/CommandReferenceMultilinesOverSeveral.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -249,8 +249,9 @@ var referenceMultilinesStart = regex.NewConcat(regex.Start(),
 // commandReferenceMultilinesOverSeveral is "ref over A, B" ... "end ref".
 func commandReferenceMultilinesOverSeveral() cmd {
 	return &uml.Multilines[*SequenceDiagram]{
-		Start: uml.Compile(referenceMultilinesStart.Pattern()),
-		End:   uml.Compile("^end[%s]?(ref)?$"),
+		Pattern: referenceMultilinesStart.Pattern(),
+		Start:   uml.Compile(referenceMultilinesStart.Pattern()),
+		End:     uml.Compile("^end[%s]?(ref)?$"),
 		Exec: func(d *SequenceDiagram, lines command.BlocLines, _ command.ParserPass) command.Result {
 			firstLine := lines.At(0).Trimmed().S
 			arg := referenceMultilinesStart.Matcher(firstLine)

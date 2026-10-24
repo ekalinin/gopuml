@@ -3,4 +3,4 @@ scenarios:
   - "graph-layout: Timeout exceeded"
 package: internal/dot
 test: TestRunDotStopsProcessAfterTimeout
-why: Needs a fake slow dot executable, and upstream v1.2026.8 did not stop a slow dot with --graphviz-timeout 1 or after the 30 second default.
+why: Needs a fake slow dot executable, and upstream v1.2026.9 does not stop a slow dot with --graphviz-timeout 1 or after the 30 second default.

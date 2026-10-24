@@ -1,0 +1,6 @@
+{
+  "id": "preprocessor/include-twice",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 163, "height": 129, "status": 0}]}
+  ]
+}

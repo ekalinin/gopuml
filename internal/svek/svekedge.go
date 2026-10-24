@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/SvekEdge.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cruise/XAbstractEdge.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/cruise/XEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/SvekEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cruise/XAbstractEdge.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/cruise/XEdge.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -249,8 +249,12 @@ func newSvekEdge(link *abel.Link, skinParam klimt.ISkinParam, stringBounder font
 	}
 	e.startTailText = cardinality(link.Quantifier1())
 	e.endHeadText = cardinality(link.Quantifier2())
-	e.startTailRoleText = cardinality(link.Role1())
-	e.endHeadRoleText = cardinality(link.Role2())
+	if r := link.Role1(); r.OK {
+		e.startTailRoleText = roleLabelsCreate(r.S, skinParam.Pragma(), cardinalityFont, skinParam)
+	}
+	if r := link.Role2(); r.OK {
+		e.endHeadRoleText = roleLabelsCreate(r.S, skinParam.Pragma(), cardinalityFont, skinParam)
+	}
 
 	if link.Type().MiddleDecor() == decoration.LinkMiddleDecorNone {
 		e.labelShield = 0
@@ -258,6 +262,29 @@ func newSvekEdge(link *abel.Link, skinParam klimt.ISkinParam, stringBounder font
 		e.labelShield = 7
 	}
 	return e
+}
+
+// reserveRoomForRoles makes room for the roles of link around its
+// entities: Graphviz only knows the size of the quantifier (appendLine), but
+// the role is drawn on the other side of the line, so without room it lands
+// on the neighbouring nodes and labels. It must run for all the links before
+// the first SvekEdge is built: building an edge computes (and caches) the
+// shield of its two nodes.
+func reserveRoomForRoles(link *abel.Link, skinParam klimt.ISkinParam, stringBounder font.StringBounder,
+	cardinalityFont *klimt.FontConfiguration) {
+	if r := link.Role1(); r.OK {
+		link.Entity1().EnsureMargins(marginsForRole(r.S, skinParam, stringBounder, cardinalityFont))
+	}
+	if r := link.Role2(); r.OK {
+		link.Entity2().EnsureMargins(marginsForRole(r.S, skinParam, stringBounder, cardinalityFont))
+	}
+}
+
+func marginsForRole(role string, skinParam klimt.ISkinParam, stringBounder font.StringBounder,
+	cardinalityFont *klimt.FontConfiguration) klimt.Margins {
+	block := roleLabelsCreate(role, skinParam.Pragma(), cardinalityFont, skinParam)
+	width := math.Ceil(block.CalculateDimension(stringBounder).Width()) + 2
+	return klimt.NewMargins(width, width, 0, 0)
 }
 
 func (e *SvekEdge) addVisibilityModifier(block klimt.TextBlock, link *abel.Link,
@@ -749,7 +776,7 @@ func (e *SvekEdge) DrawU(ug klimt.UGraphic) {
 			e.startTailText.DrawU(ug.Apply(klimt.NewUTranslate(labelX, labelY)))
 			if e.startTailRoleText != nil {
 				e.drawRoleLabel(ug, e.startTailRoleText, e.startTailText, pos, e.dotPath.StartPoint(),
-					e.dotPath.EndPoint(), x, y)
+					e.dotPath.EndPoint(), e.dotPath.Sample(), x, y)
 			}
 		} else if e.startTailRoleText != nil {
 			e.startTailRoleText.DrawU(ug.Apply(klimt.NewUTranslate(labelX, labelY)))
@@ -763,7 +790,7 @@ func (e *SvekEdge) DrawU(ug klimt.UGraphic) {
 			e.endHeadText.DrawU(ug.Apply(klimt.NewUTranslate(labelX, labelY)))
 			if e.endHeadRoleText != nil {
 				e.drawRoleLabel(ug, e.endHeadRoleText, e.endHeadText, pos, e.dotPath.EndPoint(),
-					e.dotPath.StartPoint(), x, y)
+					e.dotPath.StartPoint(), e.dotPath.Sample(), x, y)
 			}
 		} else if e.endHeadRoleText != nil {
 			e.endHeadRoleText.DrawU(ug.Apply(klimt.NewUTranslate(labelX, labelY)))
@@ -813,39 +840,25 @@ func (e *SvekEdge) DrawU(ug klimt.UGraphic) {
 }
 
 // drawRoleLabel draws a role on the other side of the line than the
-// quantifier.
+// quantifier, out of the line and of the areas of the two nodes.
 func (e *SvekEdge) drawRoleLabel(ug klimt.UGraphic, role, quantifier klimt.TextBlock, quantifierPos,
-	thisEndpoint, otherEndpoint geom.XPoint2D, x, y float64) {
-	qDim := quantifier.CalculateDimension(e.stringBounder)
-	rDim := role.CalculateDimension(e.stringBounder)
-	dirX := otherEndpoint.X - thisEndpoint.X
-	dirY := otherEndpoint.Y - thisEndpoint.Y
-	if math.Abs(dirX)+math.Abs(dirY) < 0.001 {
-		role.DrawU(ug.Apply(klimt.NewUTranslate(x+quantifierPos.X, y+quantifierPos.Y+qDim.Height())))
-		return
-	}
-	const gap = 2
-	var roleX, roleY float64
-	if math.Abs(dirY) >= math.Abs(dirX) {
-		qCenterX := quantifierPos.X + qDim.Width()/2
-		lineX := thisEndpoint.X
-		if qCenterX < lineX {
-			roleX = lineX + gap
-		} else {
-			roleX = lineX - rDim.Width() - gap
+	thisEndpoint, otherEndpoint geom.XPoint2D, pathSamples []geom.XPoint2D, x, y float64) {
+	pos := roleLabelsPosition(quantifier.CalculateDimension(e.stringBounder),
+		role.CalculateDimension(e.stringBounder), quantifierPos, thisEndpoint, otherEndpoint, pathSamples,
+		e.nodeAreas())
+	role.DrawU(ug.Apply(klimt.NewUTranslate(x+pos.X, y+pos.Y)))
+}
+
+// nodeAreas returns the areas of the two nodes of the link, in the
+// coordinates of the path.
+func (e *SvekEdge) nodeAreas() []geom.RectangleArea {
+	var result []geom.RectangleArea
+	for _, node := range []*SvekNode{e.svekNode1(), e.svekNode2()} {
+		if node != nil {
+			result = append(result, node.rectangleArea().Move(-e.dx, -e.dy))
 		}
-		roleY = quantifierPos.Y
-	} else {
-		qCenterY := quantifierPos.Y + qDim.Height()/2
-		lineY := thisEndpoint.Y
-		if qCenterY < lineY {
-			roleY = lineY + gap
-		} else {
-			roleY = lineY - rDim.Height() - gap
-		}
-		roleX = quantifierPos.X
 	}
-	role.DrawU(ug.Apply(klimt.NewUTranslate(x+roleX, y+roleY)))
+	return result
 }
 
 func (e *SvekEdge) computeKal() {

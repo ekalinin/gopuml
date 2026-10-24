@@ -1,0 +1,12 @@
+---
+id: preprocessor/option-unknown
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "preprocessor: Unknown option"
+---
+@startuml
+!option foo bar
+A -> B
+@enduml

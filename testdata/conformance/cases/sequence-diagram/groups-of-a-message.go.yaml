@@ -1,0 +1,6 @@
+id: sequence-diagram/groups-of-a-message
+scenarios:
+  - "sequence-diagram: Groups of a message"
+package: internal/sequencediagram
+test: TestSVGElementGroups
+why: The conformance comparison checks texts, size and similarity, not the SVG structure, so the test compares the start tags of the groups with those of the committed upstream reference of sequence-diagram/svg-element-groups.

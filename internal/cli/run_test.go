@@ -640,7 +640,7 @@ func TestRunStdlib(t *testing.T) {
 
 func TestRunVersionAndLicense(t *testing.T) {
 	r := runCLI(t, "", "--version")
-	if r.code != ExitOK || !strings.HasPrefix(r.stdout, "gopuml ") || !strings.HasSuffix(r.stdout, " (PlantUML 1.2026.8 compatible)\n") {
+	if r.code != ExitOK || !strings.HasPrefix(r.stdout, "gopuml ") || !strings.HasSuffix(r.stdout, " (PlantUML 1.2026.9 compatible)\n") {
 		t.Errorf("--version: exit %d, stdout %q", r.code, r.stdout)
 	}
 	r = runCLI(t, "", "-license")

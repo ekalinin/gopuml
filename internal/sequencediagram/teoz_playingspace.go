@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/PlayingSpace.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/teoz/PlayingSpaceWithParticipants.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/PlayingSpace.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/teoz/PlayingSpaceWithParticipants.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -176,6 +176,14 @@ func (s *PlayingSpace) findAnchorLivingSpace(tile Tile) *LivingSpace {
 		return s.livingSpaces.Get(event.Participant1())
 	case *MessageExo:
 		return s.livingSpaces.Get(event.Participant())
+	case *Note:
+		// Parallel notes on different participants are kept apart as
+		// parallel messages are (upstream's issue #2883).
+		return s.livingSpaces.Get(event.Participant())
+	case *Notes:
+		if len(event.List()) > 0 {
+			return s.livingSpaces.Get(event.List()[0].Participant())
+		}
 	}
 	if g, ok := tile.(groupingTileLike); ok {
 		for _, child := range g.grouping().tiles {

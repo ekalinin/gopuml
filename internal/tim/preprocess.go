@@ -107,7 +107,8 @@ func PreprocessWith(ctx *core.RenderContext, access *security.Access, lines []te
 	}
 	fa := &fileAccess{access: access}
 	currentDir := currentDirectory(ctx.CurrentDir, access)
-	pathSystem := &PathSystem{fa: fa, stdlib: stdlib, currentFolder: &nFolderRegular{fa: fa, dir: currentDir}}
+	pathSystem := &PathSystem{fa: fa, stdlib: stdlib, currentFolder: &nFolderRegular{fa: fa, dir: currentDir},
+		importedFolders: &[]*nFolderZip{}}
 
 	var location text.StringLocated
 	if len(lines) > 0 {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/svek/image/EntityImageClassHeader.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/svek/image/EntityImageClassHeader.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svek
@@ -24,6 +24,14 @@ type EntityImageClassHeader struct {
 func classStyleSignature(names ...klimt.SName) klimt.StyleSignatureBasic {
 	return klimt.StyleSignatureBasicOf(append([]klimt.SName{klimt.SNameRoot, klimt.SNameElement,
 		klimt.SNameClassDiagram, klimt.SNameClass}, names...)...)
+}
+
+// stereotypeFontConfiguration is the font of the stereotype and of the
+// generic parameters: the style of the stereotype of the class.
+func stereotypeFontConfiguration(skinParam klimt.ISkinParam, stereotype *klimt.Stereotype) *klimt.FontConfiguration {
+	styleStereo := classStyleSignature(klimt.SNameStereotype).ForStereotypeItself(stereotype).
+		MergedStyle(skinParam.CurrentStyleBuilder())
+	return styleStereo.FontConfiguration(skinParam.IHtmlColorSet(), nil)
 }
 
 func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower) *EntityImageClassHeader {
@@ -68,8 +76,7 @@ func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower)
 	if stereotype != nil {
 		if _, ok := stereotype.Label(klimt.GuillemetDoubleComparator()); ok && len(stereotypeLabels) > 0 {
 			stereo = klimt.TextBlockUtilsWithMargin(klimt.DisplayCreate(stereotypeLabels...).Create(
-				klimt.FontConfigurationFromSkinParam(skinParam, klimt.FontParamClassStereotype, stereotype),
-				geom.HorizontalAlignmentCenter, skinParam), 1, 0)
+				stereotypeFontConfiguration(skinParam, stereotype), geom.HorizontalAlignmentCenter, skinParam), 1, 0)
 		}
 	}
 
@@ -78,8 +85,7 @@ func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower)
 		styleGeneric := classStyleSignature(klimt.SNameGeneric).WithTOBECHANGED(stereotype).
 			With(entity.Stereostyles()).MergedStyle(skinParam.CurrentStyleBuilder())
 		genericBlock = klimt.DisplayWithNewlines(skinParam.Pragma(), generic.S).Create(
-			klimt.FontConfigurationFromSkinParam(skinParam, klimt.FontParamClassStereotype, stereotype),
-			geom.HorizontalAlignmentCenter, skinParam)
+			stereotypeFontConfiguration(skinParam, stereotype), geom.HorizontalAlignmentCenter, skinParam)
 		genericBlock = klimt.TextBlockUtilsWithMargin(genericBlock, 1, 1)
 		classBackground := styleGeneric.Value(klimt.PNameBackGroundColor).AsColor(skinParam.IHtmlColorSet())
 		classBorder := styleGeneric.Value(klimt.PNameLineColor).AsColor(skinParam.IHtmlColorSet())

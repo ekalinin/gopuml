@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/drawing/svg/SvgGraphics.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/drawing/svg/SvgGraphics.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package svg
@@ -10,11 +10,11 @@ import (
 	"github.com/ekalinin/gopuml/internal/jfmt"
 )
 
-// The number formatting of SvgGraphics. Upstream formats with
-// String.format(Locale.US, "%.<decimal>f", x), which on JDK 21 rounds the
-// shortest decimal representation of x half up (jfmt.FormatFixed), then
-// trims trailing zeros. A negative value that rounds to zero keeps its sign
-// ("-0"), only an exact zero (either sign) gives "0".
+// The number formatting of SvgGraphics, upstream's StringUtils.formatDecimal:
+// the result of String.format(Locale.US, "%.<decimal>f", x), which on JDK 21
+// rounds the shortest decimal representation of x half up
+// (jfmt.FormatFixed), with trailing zeros trimmed. A negative value that
+// rounds to zero gives "0", not "-0".
 
 // Format formats a coordinate: the value times the scale, with the option's
 // decimals, trailing zeros removed.
@@ -71,18 +71,20 @@ func formatOpacity(value float64, decimal int) string {
 }
 
 // trimZeros removes trailing zeros after the decimal point, and the point
-// when nothing is left after it.
+// when nothing is left after it; "-0" becomes "0".
 func trimZeros(s string) string {
-	dot := strings.IndexByte(s, '.')
-	if dot < 0 {
-		return s
+	if dot := strings.IndexByte(s, '.'); dot >= 0 {
+		end := len(s) - 1
+		for end > dot && s[end] == '0' {
+			end--
+		}
+		if end == dot {
+			end--
+		}
+		s = s[:end+1]
 	}
-	end := len(s) - 1
-	for end > dot && s[end] == '0' {
-		end--
+	if s == "-0" {
+		return "0"
 	}
-	if end == dot {
-		end--
-	}
-	return s[:end+1]
+	return s
 }

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/GetAllStdlib.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/builtin/GetStdlib.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/GetAllStdlib.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/builtin/GetStdlib.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim

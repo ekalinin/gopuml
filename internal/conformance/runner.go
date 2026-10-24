@@ -669,7 +669,7 @@ func WriteReport(w io.Writer, implementation string, results []CaseResult) error
 	groups, formats := Summarize(results)
 	var b strings.Builder
 	fmt.Fprintf(&b, "# Conformance report\n\n")
-	fmt.Fprintf(&b, "- Implementation under test: %s\n- Reference: PlantUML 1.2026.8 (MIT variant)\n- Cases: %d\n\n", implementation, len(results))
+	fmt.Fprintf(&b, "- Implementation under test: %s\n- Reference: PlantUML 1.2026.9 (MIT variant)\n- Cases: %d\n\n", implementation, len(results))
 	table := func(title string, rows []Summary) {
 		fmt.Fprintf(&b, "## %s\n\n| Name | Cases | Passed | Known differences | Failed | Not supported yet | Pass rate |\n|---|---|---|---|---|---|---|\n", title)
 		for _, s := range rows {

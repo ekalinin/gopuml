@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/tim/TContext.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/tim/TContext.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim
@@ -32,9 +32,12 @@ type TContext struct {
 	subs                 map[string]*Sub
 	definitionsContainer DefinitionsContainer
 
-	// filesUsedCurrent is never filled, as in upstream v1.2026.8: the
-	// "already included" checks of !include and !include_once never match.
+	// filesUsedCurrent are the canonical paths of the included local files.
 	filesUsedCurrent map[string]bool
+	// includedCurrent are the included local files with their selector,
+	// which !include skips and !include_once refuses: two diagrams of one
+	// file ("file!0", "file!1") are two includes.
+	includedCurrent map[includeKey]bool
 
 	preprocessingArtifact *PreprocessingArtifact
 	pathSystem            *PathSystem
@@ -68,6 +71,7 @@ func newTContext(pathSystem *PathSystem, defines *Defines, definitionsContainer 
 		subs:                  map[string]*Sub{},
 		definitionsContainer:  definitionsContainer,
 		filesUsedCurrent:      map[string]bool{},
+		includedCurrent:       map[includeKey]bool{},
 		preprocessingArtifact: &PreprocessingArtifact{},
 		pathSystem:            pathSystem,
 		themeMetadata:         json.NewObject(),
@@ -382,10 +386,24 @@ func (c *TContext) executeImport(memory TMemory, s text.StringLocated) error {
 	if what == nil {
 		throwRuntime("NullPointerException", "")
 	}
-	// The file is only checked: PathSystem.addImportFile does nothing in
-	// upstream v1.2026.8, so the files of an imported archive cannot be
-	// included.
-	if file := c.fa.fileSystemGetFile(c.currentDir, *what); c.fa.isFile(file) {
+	// Same lookup as !include (relative to the directory of the current
+	// file), and only then from the directory of the source.
+	var file string
+	if !strings.HasPrefix(*what, "<") && !strings.HasPrefix(*what, "http://") &&
+		!strings.HasPrefix(*what, "https://") {
+		found, err := c.pathSystem.getInputFile(*what)
+		if err != nil {
+			return newEaterException("Cannot import "+err.Error(), s)
+		}
+		if sf, ok := found.(*sFile); ok {
+			file = sf.path
+		}
+	}
+	if file == "" {
+		file = c.fa.fileSystemGetFile(c.currentDir, *what)
+	}
+	if c.fa.isFile(file) {
+		c.pathSystem.addImportFile(file)
 		return nil
 	}
 	return newEaterException("Cannot import", s)
@@ -541,11 +559,24 @@ func (c *TContext) executeInclude(memory TMemory, s text.StringLocated) error {
 			return newEaterException("cannot include "+err.Error(), s)
 		}
 		if f2 != nil {
-			if strategy == includeDefault && c.filesUsedCurrent[f2.String()] {
+			// Only the files of the file system are recorded, by their
+			// canonical path.
+			var included *includeKey
+			if sf, ok := f2.(*sFile); ok {
+				included = &includeKey{path: c.fa.canonical(sf.path)}
+				if suf != nil {
+					included.suf, included.hasSuf = *suf, true
+				}
+			}
+			seen := included != nil && c.includedCurrent[*included]
+			if strategy == includeDefault && seen {
 				return nil
 			}
-			if strategy == includeOnce && c.filesUsedCurrent[f2.String()] {
+			if strategy == includeOnce && seen {
 				return newEaterException("This file has already been included", s)
+			}
+			if included != nil {
+				c.filesUsedCurrent[included.path] = true
 			}
 			data, err := f2.newInputStream()
 			if err != nil {
@@ -554,7 +585,11 @@ func (c *TContext) executeInclude(memory TMemory, s text.StringLocated) error {
 			if data == nil {
 				throwRuntime("NullPointerException", "")
 			}
-			reader = extractFromData(data, "desc2", nil)
+			var unusable bool
+			if reader, unusable = extractSelected(data, suf); unusable {
+				// A nil selector always selects the first diagram.
+				return newEaterException("cannot include "+what+"!"+*suf, s)
+			}
 			if reader == nil {
 				reader = core.NewLineReader(string(data), what, s.Location)
 			}
@@ -565,6 +600,9 @@ func (c *TContext) executeInclude(memory TMemory, s text.StringLocated) error {
 			}
 			c.pathSystem = c.pathSystem.withCurrentDir(parent)
 			c.addIncluded(f2.String())
+			if included != nil {
+				c.includedCurrent[*included] = true
+			}
 		}
 	}
 	if reader != nil {
@@ -643,5 +681,5 @@ func (c *TContext) getXargs() (string, bool) {
 	if idx == -1 {
 		return "", false
 	}
-	return text.Trin(first[idx+1:]), true
+	return text.JavaTrim(first[idx+1:]), true
 }

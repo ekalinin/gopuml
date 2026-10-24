@@ -1,0 +1,6 @@
+id: url-encoding/encode-case-variant-tags
+scenarios:
+  - "url-encoding: Start and end lines in another case"
+package: internal/code
+test: TestEncodeCaseVariantDecodedByUpstream
+why: Encoded strings need not be byte-identical to upstream's, so the test encodes with this system and checks that the upstream jar decodes the result back to the source with its start and end lines.

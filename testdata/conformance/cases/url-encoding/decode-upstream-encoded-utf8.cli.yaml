@@ -1,7 +1,7 @@
 id: url-encoding/decode-upstream-encoded-utf8
 scenarios:
   - "url-encoding: Decode an upstream-encoded string"
-# Encoded by upstream v1.2026.8 (java -jar plantuml.jar -p --encode-url) from:
+# Encoded by upstream v1.2026.9 (java -jar plantuml.jar -p --encode-url) from:
 # @startuml / title Привет / Alice -> Bob : héllo / Bob --> Alice : ok / @enduml
 args: ["--decode-url", "AyaioKbLk33_OiE57HSsNTXwiOdBCISpELL1rqx1AJz9mKeXu_3Ad9nyBX175oW8aRLIoCy60000"]
 compare: [exit, stdout]

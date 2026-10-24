@@ -261,7 +261,7 @@ func TestStyled(t *testing.T) {
 func TestStyledDocumentMargin(t *testing.T) {
 	sp := klimt.SkinParamCreate(map[string]string{}, nil, core.Class, klimt.PragmaCreateEmpty(),
 		klimt.NewConfigurationStore[klimt.OptionKey]())
-	styles, err := klimt.NewStyleParser().Parse(command.SingleString("document { Margin 3 }"))
+	styles, err := klimt.StyleLoaderParseStyleText(command.SingleString("document { Margin 3 }"), &klimt.AutomaticCounterBasic{})
 	if err != nil {
 		t.Fatal(err)
 	}

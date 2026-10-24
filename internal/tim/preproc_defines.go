@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/Defines.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/preproc/Define.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/DefinitionsContainer.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/Defines.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/Environment.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/DefinitionsContainer.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package tim
@@ -15,7 +15,7 @@ import (
 )
 
 // Version is the upstream version this preprocessor targets.
-const Version = "1.2026.8"
+const Version = "1.2026.9"
 
 // Defines holds the definitions given outside the source (-D) and the
 // environment of the source file (%filename, %dirpath, ...).

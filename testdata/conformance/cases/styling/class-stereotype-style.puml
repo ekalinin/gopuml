@@ -1,0 +1,16 @@
+---
+id: styling/class-stereotype-style
+family: uml
+type: class
+formats: [svg]
+scenarios:
+  - "styling: Class stereotype label"
+---
+@startuml
+<style>
+root {
+  FontColor white
+}
+</style>
+class HelloService <<Service>>
+@enduml

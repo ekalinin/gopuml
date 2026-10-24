@@ -21,7 +21,7 @@ import (
 const helloSource = "@startuml\nAlice -> Bob : hello\n@enduml\n"
 
 func TestGETRoutes(t *testing.T) {
-	builtin := map[string]string{"Cache-Control": "no-cache", "Server": "PlantUML PicoWebServer 1.2026.8"}
+	builtin := map[string]string{"Cache-Control": "no-cache", "Server": "PlantUML PicoWebServer 1.2026.9"}
 	pserver := map[string]string{"Cache-Control": "public, max-age=432000", "Server": ""}
 	tests := []struct {
 		route  string
@@ -410,7 +410,7 @@ func TestJSONRenderRequest(t *testing.T) {
 		"Access-Control-Allow-Origin":    "*",
 		"Cache-Control":                  "no-cache",
 		"Content-Type":                   "image/svg+xml",
-		"Server":                         "PlantUML PicoWebServer 1.2026.8",
+		"Server":                         "PlantUML PicoWebServer 1.2026.9",
 		"X-PlantUML-Diagram-Description": "(2 participants)",
 		"X-PlantUML-Diagram-Height":      "114",
 		"X-PlantUML-Diagram-Width":       "118",

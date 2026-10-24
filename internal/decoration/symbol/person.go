@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolPerson.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolLabel.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/decoration/symbol/USymbolCollections.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolPerson.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolLabel.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/decoration/symbol/USymbolCollections.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package symbol

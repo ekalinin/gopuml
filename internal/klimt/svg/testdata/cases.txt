@@ -604,7 +604,7 @@ write
 case metadata
 color #181818
 rect 5 5
-write @startuml\nAlice\s->\sBob\s:\shello\n@enduml\n1.2026.8
+write @startuml\nAlice\s->\sBob\s:\shello\n@enduml\n1.2026.9
 
 case metadata-group
 group CLASS=g

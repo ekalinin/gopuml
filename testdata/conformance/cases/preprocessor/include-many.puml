@@ -1,0 +1,12 @@
+---
+id: preprocessor/include-many
+family: uml
+type: sequence
+formats: [preproc, svg]
+scenarios:
+  - "preprocessor: Include many"
+---
+@startuml
+!include_many a.iuml
+!include_many a.iuml
+@enduml

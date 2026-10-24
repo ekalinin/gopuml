@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/font/StringBounder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/StringBounderSvg.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/StringBounderAwt.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/text/SvgCharSizeHack.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/text/RichText.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/text/StyledString.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/font/StringBounder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/StringBounderSvg.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/StringBounderAwt.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/text/SvgCharSizeHack.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/text/RichText.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/text/StyledString.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package font

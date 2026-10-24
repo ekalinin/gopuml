@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/url/Url.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/url/UrlMode.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/url/Check.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/url/CMapData.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/url/Url.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/url/UrlMode.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/url/Check.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/url/CMapData.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/atmp/CucaDiagram.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityFactory.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/abel/EntityPortion.java
+// Provenance: plantuml-mit 1.2026.9 net/atmp/CucaDiagram.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityFactory.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/abel/EntityPortion.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package abel
@@ -657,6 +657,9 @@ func (d *CucaDiagram) IsHidden(leaf *Entity) bool {
 	for _, hide := range d.hides2 {
 		hidden = hide.Apply(hidden, leaf)
 	}
+	if !hidden && d.isOrphanedTransitionLabel(leaf) {
+		hidden = true
+	}
 	return hidden
 }
 
@@ -676,7 +679,30 @@ func (d *CucaDiagram) IsRemoved(leaf *Entity) bool {
 	for _, hide := range d.removed {
 		result = hide.Apply(result, leaf)
 	}
+	if !result && d.isOrphanedTransitionLabel(leaf) {
+		result = true
+	}
 	return result
+}
+
+// isOrphanedTransitionLabel reports whether leaf is the node of a
+// transition label ("stateDiagramEdgeLabelStyle node") whose source or
+// target is removed or hidden. The node carries none of their tags, so a
+// "remove" or "hide" of one end would leave it with an arrow to nowhere.
+func (d *CucaDiagram) isOrphanedTransitionLabel(leaf *Entity) bool {
+	if leaf.LeafType() != LeafTypeStateTransitionLabel {
+		return false
+	}
+	for _, link := range d.links {
+		if !link.Contains(leaf) {
+			continue
+		}
+		other := link.Other(leaf)
+		if other != leaf && (other.IsRemoved() || other.IsHidden()) {
+			return true
+		}
+	}
+	return false
 }
 
 func (d *CucaDiagram) isNoteWithSingleLinkAttachedTo(note *Entity) *Entity {

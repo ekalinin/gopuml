@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/Grouping.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/GroupingLeaf.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/GroupingStart.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/sequencediagram/GroupingType.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/Grouping.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/GroupingLeaf.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/GroupingStart.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/sequencediagram/GroupingType.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package sequencediagram
@@ -258,7 +258,8 @@ func (*GroupingLeaf) AddLifeEvent(*LifeEvent) bool { return true }
 func (g *GroupingLeaf) AddNote(note *Note) *klimt.Warning {
 	g.noteOnMessages = append(g.noteOnMessages, note)
 	if note.Position() != NoteLeft && note.Position() != NoteRight {
-		return klimt.NewWarning("This position is ignored: " + note.Position().String())
+		return klimt.NewWarning("'note " + uml.LowerCase(note.Position().String()) +
+			"' is not supported after 'end': use 'note left' or 'note right'")
 	}
 	return nil
 }

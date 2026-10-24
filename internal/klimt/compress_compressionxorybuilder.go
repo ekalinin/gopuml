@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/CompressionXorYBuilder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/UGraphicCompressOnXorY.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/SlotFinder.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/SlotSet.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/Slot.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/CompressionTransform.java
-// Provenance: plantuml-mit 1.2026.8 net/sourceforge/plantuml/klimt/compress/PiecewiseAffineTransform.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/CompressionXorYBuilder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/UGraphicCompressOnXorY.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/SlotFinder.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/SlotSet.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/Slot.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/CompressionTransform.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/compress/PiecewiseAffineTransform.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
