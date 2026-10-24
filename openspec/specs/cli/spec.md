@@ -8,7 +8,7 @@ Provides a `plantuml` command that can replace `java -jar plantuml.jar` v1.2026.
 
 ### Requirement: Flag compatibility
 
-The CLI SHALL accept the upstream v1.2026.8 flag names, their short aliases and their deprecated single-dash aliases (for example `--svg`, `-tsvg` and `-svg`), matched case-insensitively as upstream does. This change SHALL support:
+The CLI SHALL accept the upstream v1.2026.9 flag names, their short aliases and their deprecated single-dash aliases (for example `--svg`, `-tsvg` and `-svg`), matched case-insensitively as upstream does. This change SHALL support:
 
 - formats: `--svg`, `--png`, `--txt`, `--utxt`, `--preproc`, `-f`/`--format`
 - pipe mode: `-p`/`--pipe`, `-pipedelimitor`, `-pipenostderr`, `--pipe-image-index`
@@ -217,7 +217,7 @@ The CLI SHALL support the following utility commands:
 - `--list-keywords`: prints the language keywords
 - `-stdlib`: lists the bundled standard libraries
 - `--http-server[:port]`: starts the HTTP server
-- `--version`: prints a version string that includes the targeted upstream version `1.2026.8`
+- `--version`: prints a version string that includes the targeted upstream version `1.2026.9`
 
 #### Scenario: Extract source from PNG
 
