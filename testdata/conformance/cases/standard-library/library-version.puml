@@ -1,0 +1,11 @@
+---
+id: standard-library/library-version
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "standard-library: Version of a library"
+---
+@startuml
+Alice -> Bob : %get_stdlib("c4", "version")
+@enduml

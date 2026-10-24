@@ -1,0 +1,12 @@
+---
+id: preprocessor/stdlib-missing-file
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "preprocessor: Missing file in a library"
+---
+@startuml
+Alice -> Bob : hi
+!include <C4/Nope>
+@enduml

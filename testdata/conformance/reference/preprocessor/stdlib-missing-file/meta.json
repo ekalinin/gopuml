@@ -1,0 +1,6 @@
+{
+  "id": "preprocessor/stdlib-missing-file",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 3, "messages": ["cannot include <C4/Nope>"]}, "renders": [{"file": "block0-page0.svg", "width": 591, "height": 340, "status": 400}]}
+  ]
+}

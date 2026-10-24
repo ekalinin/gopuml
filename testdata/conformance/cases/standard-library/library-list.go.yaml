@@ -1,0 +1,6 @@
+id: standard-library/library-list
+scenarios:
+  - "standard-library: Library list"
+package: internal/cli
+test: TestStdlibList
+why: Upstream's -stdlib lists every library of its jar, among them adaml, which this build excludes for its license (see NOTICE).

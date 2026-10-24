@@ -1,0 +1,11 @@
+---
+id: sprites/library-image
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Image of a library"
+---
+@startuml
+Alice -> Bob : <img data:image/png;spm awslib14/0> hi
+@enduml

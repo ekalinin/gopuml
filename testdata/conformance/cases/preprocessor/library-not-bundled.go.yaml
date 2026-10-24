@@ -3,4 +3,4 @@ scenarios:
   - "preprocessor: Library not bundled"
 package: internal/tim
 test: TestStdlibIncludeNotBundledError
-why: Upstream bundles the C4 library and renders the diagram, while the spec requires a "not bundled" error for libraries this build does not embed.
+why: Upstream bundles the adaml library and includes it, while this build excludes it for its GPL-3.0 license (see NOTICE) and the spec requires a "not bundled" error.

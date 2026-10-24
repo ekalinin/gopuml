@@ -1,0 +1,12 @@
+---
+id: sprites/svg-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: SVG sprite"
+---
+@startuml
+sprite foo <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#FF0000"/></svg>
+Alice -> Bob : <$foo> hi
+@enduml

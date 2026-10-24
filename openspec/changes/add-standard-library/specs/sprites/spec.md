@@ -17,7 +17,7 @@ The system SHALL draw a sprite defined with `sprite` (monochrome sprites with 4,
 
 #### Scenario: Color sprite
 
-- **WHEN** a sequence diagram defines a sprite with `[16x16/color]` and the data that upstream's `-encodesprite color` writes for a 16 by 16 image, and a message label references it
+- **WHEN** a sequence diagram defines a sprite with `[16x16/color]` and 16 rows of 16 colors, each written as two characters of upstream's 4096-color palette, and a message label references it
 - **THEN** the message label draws the sprite in its colors, as upstream does
 
 #### Scenario: SVG sprite

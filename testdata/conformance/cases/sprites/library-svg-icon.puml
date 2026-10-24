@@ -1,0 +1,12 @@
+---
+id: sprites/library-svg-icon
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: SVG icon of a library"
+---
+@startuml
+!include <material7/AccountUser/account>
+Alice -> Bob : <$mdiAccount> hi
+@enduml

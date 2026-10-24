@@ -96,7 +96,7 @@ The module embeds the same files (user decision), so `cmd/plantuml-wasm` needs n
 - A curated `.puml` case for each scenario that matches upstream, rendered by `make reference`: the library include, the case-insensitive name, the missing file and the missing library, the alias include and version, `%get_stdlib("c4", "version")`, the JSON resource, the library theme, the sprite kinds, both SVG parsers, the undefined sprite, the stdlib sprites, the stdlib image, the sprite of a missing library, and the sprite in a note.
 - A `.cli.yaml` case for the include in the sandbox.
 - `.go.yaml` cases where gopuml differs from upstream on purpose or the scenario is not a render: the excluded library (`preprocessor/library-not-bundled`, moved from C4 to `adaml`), `%get_all_stdlib()` and `-stdlib` (no excluded names), the modified-file check of `TestUpstreamStdlib`, and the WASM standard library include (as `render-matches-native`).
-- The color sprite data comes from upstream's `-encodesprite color` of a 16 by 16 PNG, committed with the case.
+- The color sprite data encodes a 16 by 16 PNG, committed with the case, with upstream's `ColorPalette4096` (two characters per pixel). Upstream's `-encodesprite` has no color mode in 1.2026.9 (it accepts `4`, `8` or `16`, with or without `z`).
 
 ## Risks / Trade-offs
 

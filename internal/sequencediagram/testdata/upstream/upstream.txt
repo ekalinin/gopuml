@@ -11516,6 +11516,16 @@ defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=A p2=B multicast=[] label=[ping] numbered=[ping] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/preprocessor/stdlib-include.puml
+result error
+error SYNTAX_ERROR 181 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 10630
+error.last 181
+=== conformance/preprocessor/stdlib-missing-file.puml
+preprocessor error
+=== conformance/preprocessor/stdlib-missing-library.puml
+preprocessor error
 === conformance/preprocessor/string-builtins.puml
 result SequenceDiagram
 description (2 participants)
@@ -12118,6 +12128,302 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/sprites/color-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite quadrants SpriteColor 16x16 ffffff,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,229944,229944,229944,229944,229944,229944,229944,ffffff,dd2222,ffffff,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,229944,229944,229944,229944,229944,229944,ffffff,229944,dd2222,dd2222,ffffff,dd2222,dd2222,dd2222,dd2222,dd2222,229944,229944,229944,229944,229944,ffffff,229944,229944,dd2222,dd2222,dd2222,ffffff,dd2222,dd2222,dd2222,dd2222,229944,229944,229944,229944,ffffff,229944,229944,229944,dd2222,dd2222,dd2222,dd2222,ffffff,dd2222,dd2222,dd2222,229944,229944,229944,ffffff,229944,229944,229944,229944,dd2222,dd2222,dd2222,dd2222,dd2222,ffffff,dd2222,dd2222,229944,229944,ffffff,229944,229944,229944,229944,229944,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,ffffff,dd2222,229944,ffffff,229944,229944,229944,229944,229944,229944,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,dd2222,ffffff,ffffff,229944,229944,229944,229944,229944,229944,229944,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,ffffff,ffffff,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,ffffff,2255cc,eebb22,ffffff,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,2255cc,2255cc,2255cc,2255cc,2255cc,ffffff,2255cc,2255cc,eebb22,eebb22,ffffff,eebb22,eebb22,eebb22,eebb22,eebb22,2255cc,2255cc,2255cc,2255cc,ffffff,2255cc,2255cc,2255cc,eebb22,eebb22,eebb22,ffffff,eebb22,eebb22,eebb22,eebb22,2255cc,2255cc,2255cc,ffffff,2255cc,2255cc,2255cc,2255cc,eebb22,eebb22,eebb22,eebb22,ffffff,eebb22,eebb22,eebb22,2255cc,2255cc,ffffff,2255cc,2255cc,2255cc,2255cc,2255cc,eebb22,eebb22,eebb22,eebb22,eebb22,ffffff,eebb22,eebb22,2255cc,ffffff,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,ffffff,eebb22,ffffff,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,2255cc,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,eebb22,ffffff,
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=20
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=20
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$quadrants> hi] numbered=[<$quadrants> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=20
+=== conformance/sprites/library-icon.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused true
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+skinparam folderbackgroundcolor<<fa server>>=White
+sprite server svg
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$server> hi] numbered=[<$server> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/library-image.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<img data:image/png;spm awslib14/0> hi] numbered=[<img data:image/png;spm awslib14/0> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/sprites/library-svg-icon.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite mdiAccount svg
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$mdiAccount> hi] numbered=[<$mdiAccount> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/missing-library-sprite.puml
+result error
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory)
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory) (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/sprites/monochrome-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite foo SpriteMonochrome 4x4/16 fffff00ff00fffff
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=7
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=7
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$foo> hi] numbered=[<$foo> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=7
+=== conformance/sprites/sax-parser.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+pragma SVG_PARSER=sax
+sprite foo svg
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=3
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=3
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$foo> hi] numbered=[<$foo> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=3
+=== conformance/sprites/svg-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite foo svg
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$foo> hi] numbered=[<$foo> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/undefined-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$nope> hi] numbered=[<$nope> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/standard-library/alias-include.puml
+result error
+error SYNTAX_ERROR 3 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 440
+error.last 3
+=== conformance/standard-library/alias-version.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[14.0.0] numbered=[14.0.0] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/standard-library/json-resource.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[10] numbered=[10] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/standard-library/library-name-case.puml
+result error
+error SYNTAX_ERROR 71 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 10630
+error.last 71
+=== conformance/standard-library/library-theme.puml
+result error
+error SYNTAX_ERROR 71 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 11040
+error.last 71
+=== conformance/standard-library/library-version.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[2.14.0] numbered=[2.14.0] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 === conformance/state-diagram/choice-fork-join.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
@@ -12460,6 +12766,31 @@ defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/styling/sprite-in-note.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite foo SpriteMonochrome 4x4/16 fffff00ff00fffff
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=7
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=7
+event 0 Message p1=Alice p2=Bob multicast=[] label=[hi] numbered=[hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[{Note p=null p2=null pos=RIGHT style=NORMAL display=[<$foo> done] colors={} null shadowing=null url=null stereo=null parallel=false}] url=null hasurl=false stereo=null anchors=null/null/null at=7
 === conformance/styling/stereotype-selector.puml
 result error
 error SYNTAX_ERROR 4 Syntax Error?

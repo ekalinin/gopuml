@@ -1,0 +1,12 @@
+---
+id: preprocessor/stdlib-missing-library
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "preprocessor: Missing library"
+---
+@startuml
+Alice -> Bob : hi
+!include <foo/bar>
+@enduml

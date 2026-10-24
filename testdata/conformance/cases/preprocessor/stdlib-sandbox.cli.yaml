@@ -1,0 +1,13 @@
+id: preprocessor/stdlib-sandbox
+scenarios:
+  - "preprocessor: Library include in the sandbox"
+args: ["--svg", "main.puml"]
+files:
+  main.puml: |
+    @startuml
+    !include <C4/C4_Context>
+    System(sys, "System")
+    @enduml
+env:
+  PLANTUML_SECURITY_PROFILE: SANDBOX
+compare: [exit, files, stderr]
