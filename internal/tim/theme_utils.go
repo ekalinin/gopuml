@@ -124,7 +124,7 @@ func (c *TContext) loadFileTheme(pathSystem *PathSystem, name, from string) (*th
 		return nil, err
 	}
 	if file == nil {
-		throwRuntime("NullPointerException", "")
+		return nil, nil
 	}
 	data, err := file.newInputStream()
 	if err != nil {

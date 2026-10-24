@@ -221,12 +221,17 @@ func TestLocalTheme(t *testing.T) {
 	if lines := res.PreprocLines(); slices.Contains(lines, "skinparam backgroundColor local") {
 		t.Errorf("local file used instead of the bundled theme: %q", lines)
 	}
-	// A theme that is missing in a "from" location fails as upstream does
-	// (its recorded output is a runtime error in both cases), even when a
-	// bundled theme has the name.
-	for _, src := range []string{"!theme cerulean from <lib>", "!theme cerulean from nowhere", "!theme other from dir"} {
-		_, err = preprocess(t, "@startuml\n"+src+"\n@enduml\n", memAccess(files))
-		wantError(t, err, "Fatal parsing error", 1)
+	// A theme that is missing in a "from" location fails as upstream does,
+	// even when a bundled theme has the name: a library reports a runtime
+	// error, a directory names the theme.
+	_, err = preprocess(t, "@startuml\n!theme cerulean from <lib>\n@enduml\n", memAccess(files))
+	wantError(t, err, "Fatal parsing error", 1)
+	for _, c := range []struct{ src, want string }{
+		{"!theme cerulean from nowhere", "Cannot load theme cerulean in nowhere"},
+		{"!theme other from dir", "Cannot load theme other in dir"},
+	} {
+		_, err = preprocess(t, "@startuml\n"+c.src+"\n@enduml\n", memAccess(files))
+		wantError(t, err, c.want, 1)
 	}
 }
 
