@@ -1,4 +1,3 @@
 @startuml
 Alice -> Bob : from a.iuml
-Alice -> Bob : from a.iuml
-@enduml
+!include_once a.iuml

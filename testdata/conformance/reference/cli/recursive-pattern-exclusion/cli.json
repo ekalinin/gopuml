@@ -11,25 +11,25 @@
     {
       "path": "top.png",
       "size": 1585,
-      "sha256": "3520df3fc6c55ec997ab5aef634b0d0a904bf61c5ff1439b45de0ce5cdeadd98",
+      "sha256": "4bfbc65b3e4748204965b9046e2ff7cc921996aeafcb1e80cd645c46a56bc3f8",
       "stored": false
     },
     {
       "path": "x/a.png",
       "size": 1468,
-      "sha256": "89ae7ce05b7c0e9c86ea05d5a7f5187e7ea553a40bacf6bf256cc7be39a8e43d",
+      "sha256": "fbf07b9afe72fca68079380440673fc21555eb9f13e9e9ff51ce9d587be71d11",
       "stored": false
     },
     {
       "path": "x/drafty/e.png",
       "size": 1472,
-      "sha256": "50122cbdefcc2a0e88933786224c8ace03a5fec44430f6d7f8c52de114a712c3",
+      "sha256": "20fd0b2dcc9e6d6e29a11dc7317b2b655786446312907f4289c3a204de609ced",
       "stored": false
     },
     {
       "path": "x/y/z/c.png",
       "size": 1458,
-      "sha256": "74b6585432e3a901956ffadaa7f90f479fcfcb2fe1538dece3df126f39841e9e",
+      "sha256": "77c05c2207e97e1f832b367c59c6f358ac1bb0157d8248b039c0bdc88dae98f9",
       "stored": false
     }
   ]

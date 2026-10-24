@@ -25677,6 +25677,96 @@ ins 3 3 item InstructionGroup lanes=[L2] break=false inlink={NULL []/0} parent=1
 ins 4 4 body InstructionList lanes=[L2] break=false inlink={NULL []/0} default=L2 outlink=null empty=false onlystop=false notes=[]
 ins 5 5 item InstructionSimple lanes=[L2] break=false inlink={NULL []/0} in=L2 out=L2 label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
 current 0
+=== conformance/color-before-action.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+warning This syntax is deprecated and the color is ignored: write ':X; <<#red>>' instead of '#red:X;'
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[X] colors={} null box=null url=null stereo=null killed=false notes=[]
+ins 2 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[Y] colors={} null box=null url=null stereo=null killed=false notes=[]
+current 0
+=== conformance/color-before-condition.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+warning This syntax is deprecated, you must add <<#red>> at the end of the line
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionIf lanes=[] break=false inlink={NULL []/0} parent=0 lane=null url=null stereo=null outcolor={NULL []/0} endif=true current=else notes=[]
+branch 2 then0 test=[c?] positive={[yes] []/0} inlink={NULL []/0} inlabel={NULL []/0} special={NULL []/0} color=null specialcolors=null getcolor=null
+ins 2 3 body InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 3 4 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
+branch 2 else test=NULL positive={[no] []/0} inlink={NULL []/0} inlabel={NULL []/0} special={NULL []/0} color=null specialcolors={} null getcolor=null
+ins 4 3 body InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 5 4 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[B] colors={} null box=null url=null stereo=null killed=false notes=[]
+current 0
+=== conformance/color-before-repeat.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+warning This syntax is deprecated and the color is ignored: write 'repeat <<#red>>' instead of '#red:repeat'
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionRepeat lanes=[] break=false inlink={NULL []/0} parent=0 lane=null laneout=null lanebackward=null start=NULL boxin=null sgloop=null test=[more?] yes=NULL out=NULL sg2=null testcalled=true killed=false endlink={NULL []/0} backward=NULL hasbackward=false box=nil stereoback=null in1={NULL []/0} in2={NULL []/0} backnotes=[]
+ins 2 2 loop InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 3 3 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
+current 0
+=== conformance/condition-stereotype-color.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionIf lanes=[] break=false inlink={NULL []/0} parent=0 lane=null url=null stereo=<<#palegreen>> outcolor={NULL []/0} endif=true current=else notes=[]
+branch 2 then0 test=[c?] positive={[v] []/0} inlink={NULL []/0} inlabel={NULL []/0} special={NULL []/0} color=[r=152,g=251,b=152,a=255] α=255 specialcolors=null getcolor=[r=152,g=251,b=152,a=255] α=255
+ins 2 3 body InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 3 4 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
+branch 2 else test=NULL positive={[no] []/0} inlink={NULL []/0} inlabel={NULL []/0} special={NULL []/0} color=null specialcolors={} null getcolor=null
+ins 4 3 body InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 5 4 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[B] colors={} null box=null url=null stereo=null killed=false notes=[]
+current 0
 === conformance/fork.puml
 result ActivityDiagram3
 description activity3
@@ -25741,6 +25831,27 @@ nextlink {NULL []/0}
 ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
 ins 1 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
 ins 2 1 item InstructionSimple lanes=[] break=false inlink={[next] []/0} in=null out=null label=[B] colors={} null box=null url=null stereo=null killed=false notes=[]
+current 0
+=== conformance/partition-without-bracket.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+warning Missing '{': write 'partition "My part" {' and close it with '}'
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionGroup lanes=[] break=false inlink={NULL []/0} parent=0 title=[My part] type=PARTITION back=[r=0,g=0,b=0,a=0] α=0 transparent styleline=WITHDARK [r=0,g=0,b=0,a=255] α=255 styleback=[r=0,g=0,b=0,a=0] α=0 transparent note=null
+ins 2 2 body InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 3 3 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[A] colors={} null box=null url=null stereo=null killed=false notes=[]
 current 0
 === conformance/sdl-shape.puml
 result ActivityDiagram3
@@ -25849,6 +25960,8 @@ ins 1 1 item InstructionWhile lanes=[] break=false inlink={NULL []/0} parent=0 l
 ins 2 2 loop InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
 ins 3 3 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[Read] colors={} null box=null url=null stereo=null killed=false notes=[]
 current 0
+=== allconf/class-diagram/backslash-separator.puml
+not activity3
 === allconf/class-diagram/composition-cardinalities.puml
 not activity3
 === allconf/class-diagram/direction-hint.puml
@@ -25868,6 +25981,10 @@ not activity3
 === allconf/class-diagram/note-attached.puml
 not activity3
 === allconf/class-diagram/object-element.puml
+not activity3
+=== allconf/class-diagram/package-code-as-display.puml
+not activity3
+=== allconf/class-diagram/role-visibility.puml
 not activity3
 === allconf/class-diagram/visibility-static.puml
 not activity3
@@ -25985,9 +26102,19 @@ not activity3
 not activity3
 === allconf/preprocessor/if-else.puml
 not activity3
+=== allconf/preprocessor/import-zip-include.puml
+not activity3
+=== allconf/preprocessor/include-many.puml
+not activity3
 === allconf/preprocessor/include-once.puml
 not activity3
 === allconf/preprocessor/include-relative-nested.puml
+not activity3
+=== allconf/preprocessor/include-selected-block.puml
+not activity3
+=== allconf/preprocessor/include-twice.puml
+not activity3
+=== allconf/preprocessor/include-unusable-selector.puml
 not activity3
 === allconf/preprocessor/json-member-access.puml
 not activity3
@@ -25996,6 +26123,8 @@ not activity3
 === allconf/preprocessor/legacy-define.puml
 not activity3
 === allconf/preprocessor/missing-include.puml
+not activity3
+=== allconf/preprocessor/option-unknown.puml
 not activity3
 === allconf/preprocessor/procedure-default-argument.puml
 not activity3
@@ -26023,13 +26152,25 @@ not activity3
 not activity3
 === allconf/sequence-diagram/dotted-reply.puml
 not activity3
+=== allconf/sequence-diagram/group-right-margin.puml
+not activity3
 === allconf/sequence-diagram/implicit-participant.puml
 not activity3
+=== allconf/sequence-diagram/note-after-group.puml
+not activity3
+=== allconf/sequence-diagram/note-merge-deprecated.puml
+not activity3
 === allconf/sequence-diagram/note-over-two.puml
+not activity3
+=== allconf/sequence-diagram/participant-minimum-width.puml
 not activity3
 === allconf/sequence-diagram/puma-requested.puml
 not activity3
 === allconf/sequence-diagram/self-message.puml
+not activity3
+=== allconf/sequence-diagram/stacked-notes.puml
+not activity3
+=== allconf/sequence-diagram/svg-element-groups.puml
 not activity3
 === allconf/sequence-diagram/two-pages.puml
 not activity3
@@ -26050,6 +26191,10 @@ not activity3
 === allconf/state-diagram/hide-empty-description.puml
 not activity3
 === allconf/state-diagram/history-state.puml
+not activity3
+=== allconf/state-diagram/history-style.puml
+not activity3
+=== allconf/state-diagram/junction.puml
 not activity3
 === allconf/state-diagram/left-to-right.puml
 not activity3
@@ -26072,6 +26217,8 @@ not activity3
 === allconf/state-diagram/transition-out-of-region.puml
 not activity3
 === allconf/styling/background-color.puml
+not activity3
+=== allconf/styling/class-stereotype-style.puml
 not activity3
 === allconf/styling/creole-bold-color.puml
 not activity3
@@ -26107,9 +26254,15 @@ not activity3
 not activity3
 === allconf/styling/sequence-arrow-color.puml
 not activity3
+=== allconf/styling/skinparam-padding.puml
+not activity3
+=== allconf/styling/skinparam-participantpadding.puml
+not activity3
 === allconf/styling/stereotype-selector.puml
 not activity3
 === allconf/styling/theme-cerulean.puml
+not activity3
+=== allconf/styling/theme-missing-local.puml
 not activity3
 === allconf/styling/title-and-footer.puml
 not activity3

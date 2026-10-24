@@ -106,9 +106,10 @@ The specs list the behavior. The design points that are not visible in them:
 ### D8. Conformance
 
 - `make reference` renders the references with the new image. The committed curated references change.
-- A curated case is added for each new scenario. Two scenarios are not compared with Java:
+- A curated case is added for each new scenario. Three scenarios are not compared with Java:
   - "sequence-diagram: Groups of a message": the comparison does not see SVG structure. `TestSVGElementGroups` compares the `<g>` start tags of gopuml's output with those of the committed reference of `sequence-diagram/svg-element-groups`.
   - "url-encoding: Start and end lines in another case": encoded strings are not byte-identical. `TestEncodeCaseVariantDecodedByUpstream` checks the round trip through the upstream jar, as `TestEncodeDecodedByUpstream` does.
+  - "state-diagram: Removed state with a label node": upstream names a label node with the current time, so its render changes from one run to the next, as for the existing "Transition label as a node". `TestRemovedStateWithLabelNode` checks the drawing in Go.
 - `known-differences.yaml` gets the 15 Vega cases that set `!pragma layout smetana` (`nonreg/group2903`, `group2904`, `group2917`), with the existing Smetana reason, unless they pass, and `vega/nonreg/warnings/skinparam_handwritten`, because the handwritten drawing is not ported. The reasons and the `why` of the `.go.yaml` cases that cite v1.2026.8 behavior are checked against 1.2026.9 and reworded.
 - The new cases of unsupported types (salt, gantt, wbs, json, yaml) are reported as not supported yet.
 

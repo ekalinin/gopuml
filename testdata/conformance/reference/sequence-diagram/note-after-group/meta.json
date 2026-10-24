@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/note-after-group",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 463, "height": 181, "status": 0}]}
+  ]
+}

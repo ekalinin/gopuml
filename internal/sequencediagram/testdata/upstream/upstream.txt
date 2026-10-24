@@ -10717,6 +10717,30 @@ error SYNTAX_ERROR 2 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 30
 error.last 2
+=== conformance/activity-diagram/color-before-action.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/color-before-condition.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/color-before-repeat.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/activity-diagram/condition-stereotype-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/activity-diagram/fork.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
@@ -10735,6 +10759,12 @@ error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
+=== conformance/activity-diagram/partition-without-bracket.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
 === conformance/activity-diagram/sdl-shape.puml
 result error
 error SYNTAX_ERROR 3 Syntax Error?
@@ -10760,6 +10790,12 @@ error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === conformance/activity-diagram/while-loop.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/class-diagram/backslash-separator.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
@@ -10820,6 +10856,18 @@ error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === conformance/class-diagram/object-element.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/class-diagram/package-code-as-display.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/class-diagram/role-visibility.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
@@ -11350,9 +11398,19 @@ defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=3
 participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=3
 event 0 Message p1=A p2=B multicast=[] label=[many] numbered=[many] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=3
+=== conformance/preprocessor/import-zip-include.puml
+preprocessor error
+=== conformance/preprocessor/include-many.puml
+preprocessor error
 === conformance/preprocessor/include-once.puml
 preprocessor error
 === conformance/preprocessor/include-relative-nested.puml
+preprocessor error
+=== conformance/preprocessor/include-selected-block.puml
+preprocessor error
+=== conformance/preprocessor/include-twice.puml
+preprocessor error
+=== conformance/preprocessor/include-unusable-selector.puml
 preprocessor error
 === conformance/preprocessor/json-member-access.puml
 result SequenceDiagram
@@ -11410,6 +11468,30 @@ participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>
 event 0 Message p1=Alice p2=Bob multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 === conformance/preprocessor/missing-include.puml
 preprocessor error
+=== conformance/preprocessor/option-unknown.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 === conformance/preprocessor/procedure-default-argument.puml
 result SequenceDiagram
 description (2 participants)
@@ -11724,6 +11806,40 @@ participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[request] numbered=[request] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 event 1 Message p1=Bob p2=Alice multicast=[] label=[response] numbered=[response] number=null arrow=DOTTED(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sequence-diagram/group-right-margin.puml
+result SequenceDiagram
+description (5 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant x uid=part1 type=PARTICIPANT order=0 display=[x] underlined=[<u>x] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant a uid=part2 type=PARTICIPANT order=0 display=[a] underlined=[<u>a] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant b uid=part3 type=PARTICIPANT order=0 display=[b] underlined=[<u>b] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=4
+participant c uid=part4 type=PARTICIPANT order=0 display=[c] underlined=[<u>c] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=5
+participant d uid=part5 type=PARTICIPANT order=0 display=[d] underlined=[<u>d] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=8
+event 0 Message p1=x p2=a multicast=[] label=[start] numbered=[start] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+event 1 GroupingStart type=START title=group comment=test general=null element=null level=0 parallel=false parent=-1
+event 2 Message p1=a p2=a multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=true inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=3
+event 3 Message p1=a p2=b multicast=[] label=[1] numbered=[1] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=4
+event 4 Message p1=b p2=c multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=5
+event 5 Message p1=c p2=c multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=6
+event 6 GroupingLeaf type=END title=end comment=null general=null element=null level=0 parallel=false start=1 notes=[]
+event 7 Message p1=c p2=d multicast=[] label=[next] numbered=[next] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=8
 === conformance/sequence-diagram/implicit-participant.puml
 result SequenceDiagram
 description (2 participants)
@@ -11748,6 +11864,59 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hi] numbered=[hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/sequence-diagram/note-after-group.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+warning 'note top' is not supported after 'end': use 'note left' or 'note right'
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 GroupingStart type=START title=group comment=g general=null element=null level=0 parallel=false parent=-1
+event 1 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+event 2 GroupingLeaf type=END title=end comment=null general=null element=null level=0 parallel=false start=0 notes=[{Note p=null p2=null pos=TOP style=NORMAL display=[y] colors={} null shadowing=null url=null stereo=null parallel=false}]
+=== conformance/sequence-diagram/note-merge-deprecated.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+warning The leading '/' note-merge syntax is deprecated; use '&' to place notes on the same row instead.
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[hi] numbered=[hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+event 1 Notes [{Note p=Alice p2=null pos=OVER style=NORMAL display=[first] colors={} null shadowing=null url=null stereo=null parallel=false}{Note p=Bob p2=null pos=OVER style=NORMAL display=[second] colors={} null shadowing=null url=null stereo=null parallel=false}]
 === conformance/sequence-diagram/note-over-two.puml
 result SequenceDiagram
 description (2 participants)
@@ -11773,6 +11942,30 @@ participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 event 1 Note Note p=Alice p2=Bob pos=OVER_SEVERAL style=NORMAL display=[shared] colors={} null shadowing=null url=null stereo=null parallel=false
+=== conformance/sequence-diagram/participant-minimum-width.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=9
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=10
+event 0 Message p1=A p2=B multicast=[] label=[Message] numbered=[Message] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=10
 === conformance/sequence-diagram/puma-requested.puml
 result SequenceDiagram
 description (3 participants)
@@ -11823,6 +12016,57 @@ autonumber running=false current=null increment=0 last=
 defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Alice multicast=[] label=[think] numbered=[think] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/sequence-diagram/stacked-notes.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=A p2=B multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+event 1 Note Note p=A p2=null pos=OVER style=NORMAL display=[first note] colors={} null shadowing=null url=null stereo=null parallel=false
+event 2 Note Note p=A p2=null pos=OVER style=NORMAL display=[second note] colors={} null shadowing=null url=null stereo=null parallel=true
+event 3 Note Note p=A p2=null pos=OVER style=NORMAL display=[third note] colors={} null shadowing=null url=null stereo=null parallel=true
+=== conformance/sequence-diagram/svg-element-groups.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[hi] numbered=[hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 === conformance/sequence-diagram/two-pages.puml
 result SequenceDiagram
 description (2 participants)
@@ -11922,6 +12166,18 @@ error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
+=== conformance/state-diagram/history-style.puml
+result error
+error SYNTAX_ERROR 8 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 90
+error.last 8
+=== conformance/state-diagram/junction.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/state-diagram/left-to-right.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
@@ -12007,6 +12263,12 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/styling/class-stereotype-style.puml
+result error
+error SYNTAX_ERROR 6 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 70
+error.last 6
 === conformance/styling/creole-bold-color.puml
 result SequenceDiagram
 description (2 participants)
@@ -12147,6 +12409,57 @@ participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 event 1 Message p1=Bob p2=Alice multicast=[] label=[ok] numbered=[ok] number=null arrow=DOTTED(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=3
+=== conformance/styling/skinparam-padding.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused true
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+skinparam padding=5
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/styling/skinparam-participantpadding.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused true
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+warning 'skinparam ParticipantPadding' is ignored: use a style instead\n<style>\nparticipant {\n  Padding 40\n}\n</style>
+skinparam participantpadding=40
+defaultskin plantuml.skin
+participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 === conformance/styling/stereotype-selector.puml
 result error
 error SYNTAX_ERROR 4 Syntax Error?
@@ -12350,6 +12663,8 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/styling/theme-missing-local.puml
+preprocessor error
 === conformance/styling/title-and-footer.puml
 result SequenceDiagram
 description (2 participants)

@@ -9,20 +9,20 @@
   "files": [
     {
       "path": "flows.svg",
-      "size": 2099,
-      "sha256": "82ebdebec95a21afa159283172e2ef6e2e45291015a6e504b4a0638e6d168948",
+      "size": 2981,
+      "sha256": "52089fb5111a574acf4b5580aedffa7ae8263be6806f7ce220b46f89a7f30a0f",
       "stored": true
     },
     {
       "path": "flows_001.svg",
-      "size": 2099,
-      "sha256": "7ddbdda6c26f5f0e480853eb6894f613f671c562dde5f4f955bfcadf37e1e4d7",
+      "size": 2981,
+      "sha256": "f1bf2d18645332fe197a2072519632f3cfc725659d4e1857b633ebcd2b2ef8c2",
       "stored": true
     },
     {
       "path": "login.svg",
-      "size": 2099,
-      "sha256": "87a2ae81b69fcfd70e5ccbed4387c45754d7eba20c4835f31821007ff70b9e23",
+      "size": 2981,
+      "sha256": "95d90f82501878fdd8dcd17e3c23193e23ac3f4d0552e66e6845fe7a3030819d",
       "stored": true
     }
   ]

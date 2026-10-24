@@ -9,20 +9,20 @@
   "files": [
     {
       "path": "docs/e.svg",
-      "size": 2067,
-      "sha256": "673ef2a07986d95b39815d13d7b3a18f790a1f3be8ba07e8216c74dfa9af601b",
+      "size": 2949,
+      "sha256": "5d32390a63cbf74cfaf344dae90225ca63b8a653ca40f138b85eab7dc5798bb9",
       "stored": true
     },
     {
       "path": "docs/i.svg",
-      "size": 2067,
-      "sha256": "2d291ba91b4f6e7d177d3e7697c9027241deb31ccc4dc441191cd2bfaf928aeb",
+      "size": 2949,
+      "sha256": "0256ccbf4b45f9a265a77ea2f9507dc3d93eb2f2bbbe01460436ef6093922f43",
       "stored": true
     },
     {
       "path": "docs/j.svg",
-      "size": 2067,
-      "sha256": "372ff034f9220ac4d67f74e914ca0cd2b25a286392d52e85530b39d95fcf2aad",
+      "size": 2949,
+      "sha256": "7986ba279fed1a83c4ee69accc3affb4eca2dd5c813cd92adf40d2d0bb17458b",
       "stored": true
     }
   ]

@@ -1,0 +1,6 @@
+{
+  "id": "state-diagram/history-style",
+  "blocks": [
+    {"index": 0, "name": null, "type": "STATE", "description": "(6 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 226, "height": 151, "status": 0}]}
+  ]
+}

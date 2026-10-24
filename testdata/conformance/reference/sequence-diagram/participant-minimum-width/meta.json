@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/participant-minimum-width",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 258, "height": 129, "status": 0}]}
+  ]
+}

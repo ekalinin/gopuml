@@ -1,0 +1,6 @@
+{
+  "id": "sequence-diagram/group-right-margin",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(5 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 241, "height": 301, "status": 0}]}
+  ]
+}
