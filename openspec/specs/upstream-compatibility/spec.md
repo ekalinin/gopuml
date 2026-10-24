@@ -8,7 +8,7 @@ Defines what "compatible with PlantUML" means for this implementation: the pinne
 
 ### Requirement: Pinned upstream reference
 
-Compatibility SHALL be measured against PlantUML v1.2026.8 in its MIT variant, run in a pinned container image with a pinned Java runtime, Graphviz version and font set. References SHALL be generated with upstream's time-based error-image decorations disabled, and SHALL be regenerated only when the pinned versions change.
+Compatibility SHALL be measured against PlantUML v1.2026.9 in its MIT variant, run in a pinned container image with a pinned Java runtime, Graphviz version and font set. References SHALL be generated with upstream's time-based error-image decorations disabled, and SHALL be regenerated only when the pinned versions change.
 
 #### Scenario: Reproducible references
 
@@ -17,7 +17,7 @@ Compatibility SHALL be measured against PlantUML v1.2026.8 in its MIT variant, r
 
 ### Requirement: Conformance corpus
 
-The conformance corpus SHALL contain the `.puml` inputs from upstream's Vega test suite at v1.2026.8, plus curated cases for every requirement scenario of the diagram type, preprocessor, styling and output-format capabilities. Each case SHALL record its diagram family and type.
+The conformance corpus SHALL contain the `.puml` inputs from upstream's Vega test suite at v1.2026.9, with the zip archives these inputs import, plus curated cases for every requirement scenario of the diagram type, preprocessor, styling and output-format capabilities. Each case SHALL record its diagram family and type.
 
 #### Scenario: Corpus coverage
 
