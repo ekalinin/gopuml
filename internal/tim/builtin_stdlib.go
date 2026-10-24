@@ -10,10 +10,10 @@ import (
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
-// The standard library builtins read the Stdlib index of the render. The
-// embedded index is empty (design D14), so by default they list nothing,
-// and naming a library throws UncheckedIOException, as upstream does for a
-// library that does not exist.
+// The standard library builtins read the Stdlib index of the render, by
+// default the bundled libraries. Naming a library that the index does not
+// have throws UncheckedIOException, as upstream does for a library that does
+// not exist.
 
 // getAllStdlib is %get_all_stdlib() (the library names) and
 // %get_all_stdlib(any) (the name, version and source of each library).

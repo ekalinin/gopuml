@@ -19,6 +19,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/svg/svgtest"
 	"github.com/ekalinin/gopuml/internal/security"
 	"github.com/ekalinin/gopuml/internal/tim"
 )
@@ -189,7 +190,10 @@ func checkReferences(t *testing.T, refs []sequenceReference) {
 			got, err = exportSVG(d, ref.page)
 		}
 		reason, known := exportExceptions[key]
-		same := err == nil && plantumlSrc.ReplaceAllString(got, "") == plantumlSrc.ReplaceAllString(ref.svg, "")
+		// PNG data URLs compare by their pixels: Go's PNG encoder differs
+		// from Java's ImageIO (internal/klimt/svg).
+		same := err == nil && svgtest.Normalize(plantumlSrc.ReplaceAllString(got, "")) ==
+			svgtest.Normalize(plantumlSrc.ReplaceAllString(ref.svg, ""))
 		switch {
 		case same:
 			identical++

@@ -19,14 +19,16 @@ import (
 	_ "image/jpeg" // sprite files
 	_ "image/png"  // sprite files and base64 sprites
 	"io"
-	"io/fs"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/ekalinin/gopuml/internal/command"
 	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/klimt"
+	"github.com/ekalinin/gopuml/internal/security"
+	"github.com/ekalinin/gopuml/internal/stdlib"
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
@@ -197,11 +199,24 @@ func CommandSpriteSvgMultiline[D Diagram]() command.Command[D] {
 	return c
 }
 
-// stdlibNotBundled is the error of a stdlib sprite: the stdlib is not
-// bundled, so every library is missing, as an unknown library is upstream.
+// stdlibNotBundled is the error of a stdlib sprite of a library that is
+// not bundled: Stdlib.retrieve throws UncheckedIOException, as upstream
+// does for a library that does not exist.
 func stdlibNotBundled(lib string) {
 	Throw("java.io.UncheckedIOException", "java.io.FileNotFoundException: stdlib/"+lib+
 		"/info.spm (No such file or directory)")
+}
+
+// retrieveStdlib is Stdlib.retrieve for the sprite commands.
+func retrieveStdlib(name string) *stdlib.Library {
+	lib, err := stdlib.Retrieve(name)
+	if err != nil {
+		if _, ok := err.(*stdlib.FileNotFoundError); ok {
+			stdlibNotBundled(name)
+		}
+		Throw("java.io.UncheckedIOException", stdlib.IOExceptionString(err))
+	}
+	return lib
 }
 
 // CommandSpriteStdlib is "sprite $name #lib#sprite".
@@ -214,8 +229,18 @@ func CommandSpriteStdlib[D Diagram]() command.Command[D] {
 		regex.SpaceZeroOrMore(),
 		Leaf(2, "STDLIB", "#([^#]+)#([^%s]+)"),
 		regex.End()),
-		func(_ D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
-			stdlibNotBundled(arg.Str("STDLIB", 0))
+		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
+			lib := retrieveStdlib(arg.Str("STDLIB", 0))
+			sprite, err := lib.Sprite(arg.Str("STDLIB", 1))
+			if err != nil {
+				return command.Error("Cannot read sprite " + stdlib.IOExceptionString(err))
+			}
+			// An unknown sprite is added as null, as upstream does.
+			var s klimt.Sprite
+			if sprite != nil {
+				s = klimt.NewStdlibSprite(sprite.Width, sprite.Height, sprite.Data)
+			}
+			d.Titled().AddSprite(arg.Str("NAME", 0), s)
 			return command.Ok()
 		})
 }
@@ -284,16 +309,40 @@ func CommandSpriteFile[D Diagram]() command.Command[D] {
 }
 
 // readSpriteFile reads a file relative to the current directory of the
-// render context; ok is false when it does not exist or cannot be read.
+// render context (upstream's FileSystem.getFile), through its security
+// profile, from the host files when the render has them and from the
+// operating system otherwise; ok is false when it does not exist, cannot be
+// read or is denied.
 func readSpriteFile(ctx *core.RenderContext, name string) ([]byte, bool) {
-	if ctx == nil || ctx.FS == nil {
+	if ctx == nil {
 		return nil, false
 	}
-	p := path.Join(ctx.CurrentDir, name)
-	if !fs.ValidPath(p) {
-		return nil, false
+	access := &security.Access{FS: ctx.FS}
+	if ctx.Security != nil {
+		access.Config = *ctx.Security
+	} else {
+		access.Config.Profile, _ = security.ParseProfile(ctx.SecurityProfile)
 	}
-	data, err := fs.ReadFile(ctx.FS, p)
+	dir := ctx.CurrentDir
+	if dir == "" {
+		dir = "."
+	}
+	var p string
+	if ctx.FS != nil {
+		p = path.Clean("/" + path.Join(filepath.ToSlash(dir), name))
+		if path.IsAbs(name) {
+			p = path.Clean(name)
+		}
+	} else {
+		p = name
+		if !filepath.IsAbs(name) {
+			p = filepath.Join(dir, name)
+		}
+		if abs, err := filepath.Abs(p); err == nil {
+			p = abs
+		}
+	}
+	data, err := access.ReadFile(p)
 	if err != nil {
 		return nil, false
 	}

@@ -113,4 +113,4 @@ No migration: libraries that failed now render. Diagrams that relied on the "not
 
 ## Open Questions
 
-- Which of `classy`, `classy-c4`, `cloudogu`, `edgy`, `elastic`, `gcp`, `osa` and `osa2` have a verifiable license (D2). The answer changes the excluded list and NOTICE, not the specs or the tasks.
+None. Task 1.1 found no license for the PlantUML files of `classy`, `classy-c4`, `cloudogu`, `edgy`, `elastic`, `gcp`, `osa` and `osa2`, which are excluded with `adaml` (D2).

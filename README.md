@@ -34,6 +34,13 @@ themes, skin parameters, styles and creole are supported, including diagrams
 embedded in text with `{{` ... `}}`, and so is the PREPROC output
 (`--preproc`).
 
+The standard library of upstream v1.2026.9 is bundled (`!include
+<C4/C4_Container>`, `!include <awslib/AWSCommon>` and the other libraries that
+`plantuml -stdlib` lists), apart from nine libraries whose license could not
+be verified or does not allow bundling them (see `NOTICE`). Sprites are drawn:
+monochrome, color, image and SVG sprites defined in a diagram, and the sprites
+and images of the standard library.
+
 Other diagram types (archimate, timing, gantt, mindmap, and so on) are
 reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
@@ -227,6 +234,7 @@ results there are indicative only.
 MIT, see `LICENSE`. This project translates the MIT-licensed variant of
 PlantUML v1.2026.9 (`net.sourceforge.plantuml:plantuml-mit`), (C) Copyright
 2009-2024, Arnaud Roques. Every Go file names the upstream file it comes from
-in its header. `NOTICE` lists the bundled assets (DejaVu fonts, themes) with
-their licenses, the parts of fdlibm the math functions come from, the Go code
-that the binaries link, and the upstream components that are not included.
+in its header. `NOTICE` lists the bundled assets (DejaVu fonts, themes, the
+standard library) with their licenses, the parts of fdlibm the math functions
+come from, the Go code that the binaries link, and the upstream components
+that are not included.

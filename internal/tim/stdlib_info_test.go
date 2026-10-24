@@ -9,8 +9,8 @@ import (
 )
 
 func TestStdlibInfoVersion(t *testing.T) {
-	if got := PrintStdLib(); len(got) != 0 {
-		t.Errorf("embedded index is not empty: %q", got)
+	if got := PrintStdLib(); len(got) == 0 || slices.Contains(got, "adaml") {
+		t.Errorf("embedded index: %q", got)
 	}
 	s := NewStdlib(map[string]map[string][]byte{
 		"awslib": {"info.spm": []byte("VERSION=1.2\nSOURCE=https://example.org\n")},

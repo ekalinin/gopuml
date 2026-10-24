@@ -16,8 +16,7 @@ func javaNullString(s string, ok bool) string {
 
 // StdlibInfoVersion is Stdlib.addInfoVersion for the embedded standard
 // library: with details, the name, version and source of each library;
-// otherwise one "* name (Version v)" line each. The embedded index is
-// empty in this release (design D14).
+// otherwise one "* name (Version v)" line each.
 func StdlibInfoVersion(details bool) []string {
 	return embeddedStdlib.infoVersion(details)
 }

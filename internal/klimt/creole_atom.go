@@ -24,11 +24,13 @@ import (
 	_ "image/jpeg" // JPEG decoding for <img>, as Java's ImageIO
 	_ "image/png"  // PNG decoding for <img>, as Java's ImageIO
 	"math"
+	"strconv"
 	"strings"
 
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/stdlib"
 )
 
 // AtomSpace is an empty space of a given width ("<space:n>").
@@ -621,10 +623,10 @@ type AtomImg struct {
 }
 
 // AtomImgCreate returns the atom of an image source: a data URL (PNG or
-// SVG in base64), or the MD5 of a base64 image the preprocessor set aside.
-// Undecodable data gives the error text upstream draws. Files, URLs and the
-// standard library images ("data:image/png;spm") are not ported yet: they
-// panic.
+// SVG in base64), the MD5 of a base64 image the preprocessor set aside, or
+// an image of the standard library ("data:image/png;spm library/N").
+// Undecodable data gives the error text upstream draws. Files and URLs are
+// not ported yet: they panic.
 func AtomImgCreate(skinParam ISkinSimple, src string, valign geom.ImgValign, vspace int, scale float64,
 	url *URL) Atom {
 	fc := FontConfigurationBlackBlueTrue(font.Monospace(14))
@@ -647,8 +649,16 @@ func AtomImgCreate(skinParam ISkinSimple, src string, valign geom.ImgValign, vsp
 		}
 		return atomImgFromRasterData(src, fc, bytes, scale, url)
 	}
-	if strings.HasPrefix(src, AtomImgDataImagePngSpm) {
-		notPorted("klimt/creole/atom/AtomImg", "image of the standard library "+src)
+	if data, ok := strings.CutPrefix(src, AtomImgDataImagePngSpm); ok {
+		x := strings.IndexByte(data, '/')
+		if x == -1 {
+			return AtomTextUtilsCreateLegacy("ERROR DATA IMAGE", fc)
+		}
+		image, err := stdlibImage(data[:x], data[x+1:])
+		if err != nil {
+			return AtomTextUtilsCreateLegacy("ERROR "+err.Error(), fc)
+		}
+		return &AtomImg{image: image, scale: scale, url: url}
 	}
 	if data, ok := strings.CutPrefix(src, atomImgDataImageSvgBase64); ok {
 		bytes, err := base64Decode(data)
@@ -659,6 +669,40 @@ func AtomImgCreate(skinParam ISkinSimple, src string, valign geom.ImgValign, vsp
 	}
 	notPorted("klimt/creole/atom/AtomImg", "image file or URL "+src)
 	return nil
+}
+
+// stdlibImage is the image num of a standard library (Stdlib.retrieve,
+// Integer.parseInt and readDataImagePng). The error is the text of the
+// Java exception that upstream catches.
+func stdlibImage(library, num string) (PortableImage, error) {
+	lib, err := stdlib.Retrieve(library)
+	if err != nil {
+		return nil, errors.New("java.io.UncheckedIOException: " + stdlib.IOExceptionString(err))
+	}
+	n, err := strconv.ParseInt(num, 10, 32)
+	if err != nil || num == "+" || num == "-" {
+		return nil, errors.New("java.lang.NumberFormatException: For input string: \"" + num + "\"")
+	}
+	images, err := lib.Images()
+	if err != nil {
+		return nil, errors.New(stdlib.IOExceptionString(err))
+	}
+	if n < 0 || int(n) >= len(images) {
+		return nil, errors.New("java.lang.IndexOutOfBoundsException: " +
+			(&stdlib.IndexError{Index: int(n), Length: len(images)}).Error())
+	}
+	im := images[n]
+	pixels, err := im.ARGB()
+	if err != nil {
+		return nil, errors.New("java.lang.IndexOutOfBoundsException: " + err.Error())
+	}
+	result := NewPortableImageARGB(im.Width, im.Height)
+	for y := 0; y < im.Height; y++ {
+		for x := 0; x < im.Width; x++ {
+			result.SetRGB(x, y, int32(pixels[y*im.Width+x]))
+		}
+	}
+	return result, nil
 }
 
 // atomImgFromRasterData is upstream's buildRasterFromData.

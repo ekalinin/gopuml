@@ -592,11 +592,35 @@ func TestStyleCommands(t *testing.T) {
 	}
 }
 
+// TestStdlibImages checks the images of the standard library and the error
+// texts of AtomImg, recorded from the upstream jar.
+func TestStdlibImages(t *testing.T) {
+	sp := newTestSkinParam()
+	for ref, want := range map[string]string{
+		"awslib14":       "ERROR DATA IMAGE",
+		"foo/0":          "ERROR java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory)",
+		"c4/0":           "ERROR java.io.FileNotFoundException: stdlib/c4/image.spm (No such file or directory)",
+		"awslib14/x":     `ERROR java.lang.NumberFormatException: For input string: "x"`,
+		"awslib14/99999": "ERROR java.lang.IndexOutOfBoundsException: Index 99999 out of bounds for length 1706",
+		"awslib14/-1":    "ERROR java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 1706",
+	} {
+		atom := AtomImgCreate(sp, AtomImgDataImagePngSpm+ref, geom.ImgValignTop, 0, 1, nil)
+		if a, ok := atom.(*AtomText); !ok || a.Text() != want {
+			t.Errorf("%s: %T %+v, want the text %q", ref, atom, atom, want)
+		}
+	}
+	for _, ref := range []string{"awslib14/0", "awslib/+1"} {
+		atom, ok := AtomImgCreate(sp, AtomImgDataImagePngSpm+ref, geom.ImgValignTop, 0, 1, nil).(*AtomImg)
+		if !ok || atom.image.Width() != 64 || atom.image.Height() != 64 {
+			t.Errorf("%s: %+v", ref, atom)
+		}
+	}
+}
+
 func TestNotPortedPathsPanic(t *testing.T) {
 	sp := newTestSkinParam()
 	for text, class := range map[string]string{"<math>x</math>": "AtomMath", "<latex>x</latex>": "AtomMath",
-		"<qrcode:x>": "createQrcode", "<img:file.png>": "AtomImg", "<img:http://x/y.png>": "AtomImg",
-		"<img:data:image/png;spm lib/1>": "AtomImg"} {
+		"<qrcode:x>": "createQrcode", "<img:file.png>": "AtomImg", "<img:http://x/y.png>": "AtomImg"} {
 		_, msg := expectPanic(t, func() { DisplayCreate(text).Create(testFC(12), geom.HorizontalAlignmentLeft, sp) })
 		if !strings.Contains(msg, class) {
 			t.Errorf("%s: message %q", text, msg)
