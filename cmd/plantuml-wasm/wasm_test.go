@@ -99,7 +99,7 @@ func renderInNode(t *testing.T, source string, options map[string]any) jsResult 
 	script := `import { load } from './plantuml.mjs';
 const { source, options } = JSON.parse(process.argv[2]);
 // A file given as {"base64": ...} is passed as its bytes.
-for (const [name, value] of Object.entries(options.files ?? {}))
+for (const [name, value] of Object.entries(options?.files ?? {}))
   if (typeof value === 'object') options.files[name] = new Uint8Array(Buffer.from(value.base64, 'base64'));
 const plantuml = await load();
 const r = await plantuml.render(source, options);
