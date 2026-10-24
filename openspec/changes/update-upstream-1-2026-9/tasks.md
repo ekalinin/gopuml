@@ -77,7 +77,7 @@ The pins, versions, headers, goldens, references and new cases come first (desig
 ## 9. Conformance
 
 - [ ] 9.1 Run `make conformance REQUIRE=all` with `GO_IN_IMAGE=1` on linux/amd64 (or in CI). List in `testdata/conformance/known-differences.yaml` the Smetana cases of `nonreg/group2903`, `group2904` and `group2917` that fail, with the existing Smetana reason, and `vega/nonreg/warnings/skinparam_handwritten`, because the handwritten drawing is not ported. Check against 1.2026.9 the reasons of `known-differences.yaml` and the `why` and comments of the cases that cite v1.2026.8 behavior (`graph-layout/class-without-dot`, `graph-layout/dot-timeout`, `output-formats/txt-class-unsupported`, `url-encoding/decode-upstream-encoded*`, `activity-diagram/sdl-shape`), and reword them. Verify that the report has 0 failures and no known difference that passes, that every case of an unsupported type is reported as not supported yet, and that every drift recorded in task 1.4 is ported or explained
-- [ ] 9.2 Verify that every test named in a `.go.yaml` case exists in its package (`GoCase.TestExists`), and that `make test` and `make lint` pass
+- [x] 9.2 Verify that every test named in a `.go.yaml` case exists in its package (`GoCase.TestExists`), and that `make test` and `make lint` pass
 
 ## 10. Documentation and delivery
 
