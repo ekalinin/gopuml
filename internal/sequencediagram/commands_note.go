@@ -138,6 +138,12 @@ func executeNote(d *SequenceDiagram, location *text.LineLocation, arg *regex.Res
 		if parallel {
 			note.GoParallel()
 		}
+		// '&' places notes on the same row, and stacks the notes of one
+		// participant: upstream deprecates the leading '/'.
+		if tryMerge {
+			d.AddWarning(klimt.NewWarning(
+				"The leading '/' note-merge syntax is deprecated; use '&' to place notes on the same row instead."))
+		}
 		d.AddNote(note, tryMerge)
 	}
 	return command.Ok()

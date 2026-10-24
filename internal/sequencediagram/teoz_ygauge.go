@@ -19,6 +19,18 @@ import (
 type YGauge struct {
 	min, max        Real
 	contact, origin Real
+	// noteAnchorsInRun are the footprints already taken by the notes of
+	// the current run of parallel (&) tiles, nil for the other tiles: a
+	// later note on one of them is stacked below instead of aligned on the
+	// contact line (NoteTile).
+	noteAnchorsInRun map[noteAnchor]bool
+}
+
+// noteAnchor is the footprint of a note: its first participant and its
+// position.
+type noteAnchor struct {
+	livingSpace *LivingSpace
+	position    NotePosition
 }
 
 // NewYGauge returns a gauge without contact line.
@@ -81,6 +93,12 @@ func YGaugeCreatePropagating(currentY *YGauge, height float64) *YGauge {
 	}
 	min := currentY.Max()
 	return newYGaugeContact(min, min.AddAtLeast(height), currentY.Contact(), currentY.Origin())
+}
+
+// withNoteAnchorsInRun returns the same gauge with the footprints of the
+// notes of the run.
+func (g *YGauge) withNoteAnchorsInRun(noteAnchorsInRun map[noteAnchor]bool) *YGauge {
+	return &YGauge{min: g.min, max: g.max, contact: g.contact, origin: g.origin, noteAnchorsInRun: noteAnchorsInRun}
 }
 
 // Min returns the top of the tile.

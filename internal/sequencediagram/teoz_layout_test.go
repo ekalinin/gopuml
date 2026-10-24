@@ -247,3 +247,33 @@ func TestNonBreakingSpaceTrimmed(t *testing.T) {
 		t.Errorf("the lines with U+00A0 render differently:\n%s\n%s", plain, nbsp)
 	}
 }
+
+// Notes published with "&" over the same participant are stacked: each one
+// starts below the previous one (upstream's issue #2883).
+func TestStackedNotesOfOneParticipant(t *testing.T) {
+	parsed, _, err := parseCase("@startuml\nA -> B : hello\nnote over A : first note\n" +
+		"& note over A : second note\n& note over A : third note\n@enduml\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	d := parsed.(*SequenceDiagram)
+	stringBounder := font.NewStringBounderSvg(d.Skin())
+	maker := NewSequenceDiagramFileMakerTeoz(d, rose.NewRose(), stringBounder)
+	maker.TextBlock(0).CalculateDimension(stringBounder)
+	var notes []*NoteTile
+	for _, tile := range maker.body.playingSpace.Tiles() {
+		if nt, ok := tile.(*NoteTile); ok {
+			notes = append(notes, nt)
+		}
+	}
+	if len(notes) != 3 {
+		t.Fatalf("%d note tiles, want 3", len(notes))
+	}
+	for i := 1; i < len(notes); i++ {
+		previous, note := notes[i-1].YGauge(), notes[i].YGauge()
+		if note.Min().CurrentValue() < previous.Max().CurrentValue() {
+			t.Errorf("note %d: top %v above the bottom %v of note %d", i, note.Min().CurrentValue(),
+				previous.Max().CurrentValue(), i-1)
+		}
+	}
+}

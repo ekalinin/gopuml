@@ -6,6 +6,8 @@
 package sequencediagram
 
 import (
+	"maps"
+
 	"github.com/ekalinin/gopuml/internal/jmath"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
@@ -39,13 +41,27 @@ func newNoteTile(stringBounder font.StringBounder, livingSpace1, livingSpace2 *L
 		skinParam: skinParam}
 	t.initTile(t, stringBounder)
 	// Same chaining as CommunicationTile: a note published with "& note"
-	// shares the contact line of the previous tile
+	// shares the contact line of the previous tile, unless an earlier note
+	// of the same run has the same participant and position. That note is
+	// stacked below the run, which keeps its contact line for the later
+	// members.
 	contactRelative := t.ContactPointRelative()
 	height := t.PreferredHeight()
-	if note.IsParallel() {
-		t.yGauge = YGaugeCreateParallel(currentY, contactRelative, height)
-	} else {
-		t.yGauge = YGaugeCreateWithContact(currentY, contactRelative, height)
+	footprint := noteAnchor{livingSpace1, note.Position()}
+	anchorsInRun := currentY.noteAnchorsInRun
+	switch {
+	case note.IsParallel() && anchorsInRun[footprint]:
+		t.yGauge = YGaugeCreatePropagating(currentY, height).withNoteAnchorsInRun(anchorsInRun)
+	case note.IsParallel():
+		grown := maps.Clone(anchorsInRun)
+		if grown == nil {
+			grown = map[noteAnchor]bool{}
+		}
+		grown[footprint] = true
+		t.yGauge = YGaugeCreateParallel(currentY, contactRelative, height).withNoteAnchorsInRun(grown)
+	default:
+		t.yGauge = YGaugeCreateWithContact(currentY, contactRelative, height).withNoteAnchorsInRun(
+			map[noteAnchor]bool{footprint: true})
 	}
 	return t
 }
