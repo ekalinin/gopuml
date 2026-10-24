@@ -241,10 +241,26 @@ type PathSystem struct {
 	fa            *fileAccess
 	stdlib        *Stdlib
 	currentFolder nFolder
+	// importedFolders are the archives given to !import, shared by the path
+	// systems derived from the same root, so that an import stays effective
+	// for the rest of the diagram, whatever the include depth.
+	importedFolders *[]*nFolderZip
 }
 
 func (p *PathSystem) withCurrentDir(parentFile nFolder) *PathSystem {
-	return &PathSystem{fa: p.fa, stdlib: p.stdlib, currentFolder: parentFile}
+	return &PathSystem{fa: p.fa, stdlib: p.stdlib, currentFolder: parentFile, importedFolders: p.importedFolders}
+}
+
+// addImportFile adds an archive given to !import, unless one with the same
+// name was already added.
+func (p *PathSystem) addImportFile(file string) {
+	zip := newNFolderZip(p.fa, file)
+	for _, already := range *p.importedFolders {
+		if already.String() == zip.String() {
+			return
+		}
+	}
+	*p.importedFolders = append(*p.importedFolders, zip)
 }
 
 func (p *PathSystem) getFile(filename string) (inputFile, error) { return p.getInputFile(filename) }
@@ -290,7 +306,30 @@ func (p *PathSystem) getInputFile(pth string) (inputFile, error) {
 		}
 		return nil, nil
 	}
-	return p.currentFolder.getInputFile(pth)
+	result, err := p.currentFolder.getInputFile(pth)
+	if err != nil {
+		return nil, err
+	}
+	// An nFolderZip never returns nil: check that the entry exists
+	z, inArchive := p.currentFolder.(*nFolderZip)
+	missingInCurrentArchive := inArchive && !z.contains(pth)
+	if result != nil && !missingInCurrentArchive {
+		return result, nil
+	}
+	// Not found from the current directory: look inside the archives given
+	// to !import, with the path relative to the root of each archive.
+	for _, imported := range *p.importedFolders {
+		if imported.contains(pth) {
+			return imported.getInputFile(pth)
+		}
+	}
+	if missingInCurrentArchive {
+		// Upstream returns the entry, whose reading fails with a message
+		// that holds the absolute path of the archive: a missing entry is
+		// a missing file here.
+		return nil, nil
+	}
+	return result, nil
 }
 
 // fileSystemGetFile is FileSystem.getFile, used by !import: the file

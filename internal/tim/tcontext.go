@@ -386,10 +386,24 @@ func (c *TContext) executeImport(memory TMemory, s text.StringLocated) error {
 	if what == nil {
 		throwRuntime("NullPointerException", "")
 	}
-	// The file is only checked: PathSystem.addImportFile does nothing in
-	// upstream v1.2026.8, so the files of an imported archive cannot be
-	// included.
-	if file := c.fa.fileSystemGetFile(c.currentDir, *what); c.fa.isFile(file) {
+	// Same lookup as !include (relative to the directory of the current
+	// file), and only then from the directory of the source.
+	var file string
+	if !strings.HasPrefix(*what, "<") && !strings.HasPrefix(*what, "http://") &&
+		!strings.HasPrefix(*what, "https://") {
+		found, err := c.pathSystem.getInputFile(*what)
+		if err != nil {
+			return newEaterException("Cannot import "+err.Error(), s)
+		}
+		if sf, ok := found.(*sFile); ok {
+			file = sf.path
+		}
+	}
+	if file == "" {
+		file = c.fa.fileSystemGetFile(c.currentDir, *what)
+	}
+	if c.fa.isFile(file) {
+		c.pathSystem.addImportFile(file)
 		return nil
 	}
 	return newEaterException("Cannot import", s)

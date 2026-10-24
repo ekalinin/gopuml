@@ -4,8 +4,11 @@
 package tim
 
 import (
+	"archive/zip"
+	"bytes"
 	"context"
 	"errors"
+	"maps"
 	"net"
 	"net/http"
 	"net/http/httptest"
@@ -278,6 +281,65 @@ func TestIncludeSelector(t *testing.T) {
 		_, err = run("multi.puml!" + selector)
 		wantError(t, err, "cannot include multi.puml!"+selector, 1)
 	}
+}
+
+// zipArchive returns a zip archive of files.
+func zipArchive(t *testing.T, files map[string]string) []byte {
+	t.Helper()
+	var buf bytes.Buffer
+	w := zip.NewWriter(&buf)
+	for _, name := range slices.Sorted(maps.Keys(files)) {
+		f, err := w.Create(name)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, err := f.Write([]byte(files[name])); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := w.Close(); err != nil {
+		t.Fatal(err)
+	}
+	return buf.Bytes()
+}
+
+// TestZipImport checks that the entries of an archive given to !import can
+// be included, from the root of the archive.
+func TestZipImport(t *testing.T) {
+	dir := t.TempDir()
+	archive := zipArchive(t, map[string]string{
+		"lib/part.iuml":   "A -> B : part\n",
+		"lib/nested.iuml": "!include part.iuml\n!include top.iuml\n",
+		"top.iuml":        "C -> D : top\n",
+		"lib/subs.iuml":   "!startsub X\nE -> F : sub\n!endsub\n",
+	})
+	if err := os.WriteFile(filepath.Join(dir, "archive.zip"), archive, 0o644); err != nil {
+		t.Fatal(err)
+	}
+	legacy := &security.Access{Config: security.Config{Profile: security.Legacy}}
+	run := func(access *security.Access, body string) (*Result, error) {
+		return preprocessBlock(t, "@startuml\n"+body+"@enduml\n", access, dir)
+	}
+
+	res, err := run(legacy, "!import archive.zip\n!include lib/part.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "@enduml")
+	// relative to the entry, then from the root of the archive
+	res, err = run(legacy, "!import archive.zip\n!include lib/nested.iuml\n")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "C -> D : top", "@enduml")
+	res, err = run(legacy, "!import archive.zip\n!includesub lib/subs.iuml!X\n")
+	wantLines(t, res, err, "@startuml", "E -> F : sub", "@enduml")
+	_, err = run(legacy, "!import archive.zip\n!include lib/missing.iuml\n")
+	wantError(t, err, "cannot include lib/missing.iuml", 2)
+	_, err = run(legacy, "!include lib/part.iuml\n!import archive.zip\n")
+	wantError(t, err, "cannot include lib/part.iuml", 1)
+	_, err = run(&security.Access{Config: security.Config{Profile: security.Sandbox}}, "!import archive.zip\n")
+	wantError(t, err, "Cannot import", 1)
+
+	// The files of the caller, as the WebAssembly build gives them
+	fsys := memAccess(security.Sandbox, map[string]string{"archive.zip": string(archive)})
+	fsys.Config.HostFiles = true
+	res, err = preprocessBlock(t, "@startuml\n!import archive.zip\n!include lib/part.iuml\n@enduml\n", fsys, "/")
+	wantLines(t, res, err, "@startuml", "A -> B : part", "@enduml")
 }
 
 // fakeResolver makes every host resolve to a public address, so that the
