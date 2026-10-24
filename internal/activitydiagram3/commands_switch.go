@@ -22,6 +22,7 @@ func commandSwitch() cmd {
 		if err != nil {
 			return colorResult(err)
 		}
+		warnLeadingColor(d, arg)
 		d.StartSwitch(testDisplay(d, arg, "TEST"), colors)
 		return command.Ok()
 	},

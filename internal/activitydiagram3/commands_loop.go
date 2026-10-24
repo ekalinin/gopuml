@@ -241,6 +241,7 @@ func commandBackwardLong3() cmd {
 // commandWhile3 is "while (test) is (yes)".
 func commandWhile3() cmd {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
+		warnLeadingColor(d, arg)
 		colors, err := innerColors(d, klimt.StereogroupBuildFrom(arg))
 		if err != nil {
 			return colorResult(err)

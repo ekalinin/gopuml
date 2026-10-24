@@ -30,19 +30,30 @@ func optionalColor(d *ActivityDiagram3, arg *regex.Result) (color.HColor, error)
 	return getColor(d, s)
 }
 
+// warnLeadingColor adds the warning of a color written before a condition,
+// which is ignored.
+func warnLeadingColor(d *ActivityDiagram3, arg *regex.Result) {
+	if c, ok := arg.Get("COLOR", 0); ok {
+		d.AddWarning(klimt.NewWarning("This syntax is deprecated, you must add <<" + c + ">> at the end of the line"))
+	}
+}
+
 // isOrEquals is the unnamed "(is|equals?)" group of the if and loop
 // commands.
 func isOrEquals() *regex.Leaf { return uml.Leaf(1, "", "(is|equals?)") }
 
-// commandIf4 is "if (test) is (value) then".
+// commandIf4 is "if (test) is (value) then <<stereo>>".
 func commandIf4() cmd {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
-		c, err := optionalColor(d, arg)
+		warnLeadingColor(d, arg)
+		stereogroup := klimt.StereogroupBuildFrom(arg)
+		colors, err := innerColors(d, stereogroup)
 		if err != nil {
 			return colorResult(err)
 		}
+		c := colors.Color(color.TypeBack)
 		test := testDisplay(d, arg, "TEST")
-		d.StartIf(test, withNewlines(d, arg, "WHEN"), c, nil, nil)
+		d.StartIf(test, withNewlines(d, arg, "WHEN"), c, nil, stereogroup.BuildStereotype())
 		return command.Ok()
 	},
 		regex.Start(),
@@ -70,6 +81,7 @@ func commandIf4() cmd {
 // commandIf2 is "if (test) then (label)".
 func commandIf2() *command.SingleLine[*ActivityDiagram3] {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
+		warnLeadingColor(d, arg)
 		test := testDisplay(d, arg, "TEST")
 		stereogroup := klimt.StereogroupBuildFrom(arg)
 		colors, err := innerColors(d, stereogroup)
@@ -157,14 +169,15 @@ func executeElseIf(d *ActivityDiagram3, arg *regex.Result, c color.HColor) comma
 	return d.ElseIf(incoming, testDisplay(d, arg, "TEST"), when, c)
 }
 
-// commandElseIf3 is "elseif (test) is (value) then".
+// commandElseIf3 is "elseif (test) is (value) then <<stereo>>".
 func commandElseIf3() cmd {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
-		c, err := optionalColor(d, arg)
+		warnLeadingColor(d, arg)
+		colors, err := innerColors(d, klimt.StereogroupBuildFrom(arg))
 		if err != nil {
 			return colorResult(err)
 		}
-		return executeElseIf(d, arg, c)
+		return executeElseIf(d, arg, colors.Color(color.TypeBack))
 	},
 		regex.Start(),
 		color.Exp4(),
@@ -193,12 +206,15 @@ func commandElseIf3() cmd {
 				whenArrowColor(),
 				uml.Lit(`\)`))))),
 		uml.Lit(";?"),
+		regex.SpaceZeroOrMore(),
+		klimt.StereogroupOptional(),
 		regex.End())
 }
 
 // commandElseIf2 is "elseif (test) then (label)".
 func commandElseIf2() *command.SingleLine[*ActivityDiagram3] {
 	return single(func(d *ActivityDiagram3, _ *text.LineLocation, arg *regex.Result) command.Result {
+		warnLeadingColor(d, arg)
 		stereogroup := klimt.StereogroupBuildFrom(arg)
 		colors, err := innerColors(d, stereogroup)
 		if err != nil {
