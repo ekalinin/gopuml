@@ -317,7 +317,8 @@ func (r *Reference) UsedStyles() []*klimt.Style {
 // AddNote implements EventWithNote.
 func (r *Reference) AddNote(note *Note) *klimt.Warning {
 	if note.Position() != NoteLeft && note.Position() != NoteRight {
-		return klimt.NewWarning("This position is ignored: " + note.Position().String())
+		return klimt.NewWarning("'note " + uml.LowerCase(note.Position().String()) +
+			"' is not supported on a 'ref': this note is ignored. Use 'note left' or 'note right'")
 	}
 	r.noteOnMessages = append(r.noteOnMessages, note)
 	return nil

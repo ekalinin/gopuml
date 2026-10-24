@@ -241,7 +241,8 @@ func (m *MessageBase) AddNote(note *Note) *klimt.Warning {
 	switch note.Position() {
 	case NoteLeft, NoteRight, NoteBottom, NoteTop:
 	default:
-		return klimt.NewWarning("This position is ignored: " + note.Position().String())
+		return klimt.NewWarning("'note " + uml.LowerCase(note.Position().String()) +
+			"' is not supported on a message: this note is ignored. Use left, right, top or bottom")
 	}
 	note = note.WithPosition(m.self.overrideNotePosition(note.Position()))
 	m.noteOnMessages = append(m.noteOnMessages, note)

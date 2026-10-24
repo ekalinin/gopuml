@@ -258,7 +258,8 @@ func (*GroupingLeaf) AddLifeEvent(*LifeEvent) bool { return true }
 func (g *GroupingLeaf) AddNote(note *Note) *klimt.Warning {
 	g.noteOnMessages = append(g.noteOnMessages, note)
 	if note.Position() != NoteLeft && note.Position() != NoteRight {
-		return klimt.NewWarning("This position is ignored: " + note.Position().String())
+		return klimt.NewWarning("'note " + uml.LowerCase(note.Position().String()) +
+			"' is not supported after 'end': use 'note left' or 'note right'")
 	}
 	return nil
 }
