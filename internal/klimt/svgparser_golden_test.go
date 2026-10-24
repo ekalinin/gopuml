@@ -4,6 +4,7 @@
 package klimt
 
 import (
+	"slices"
 	"strings"
 	"testing"
 
@@ -134,5 +135,49 @@ func TestGoldenSvgSprite(t *testing.T) {
 		out = append(out, "spriteimage\tnull\tok")
 	}
 
-	compareGolden(t, "svgsprite.golden", out)
+	compareGoldenLines(t, "svgsprite.golden", withoutSvgSpriteDifferences(out),
+		withoutSvgSpriteDifferences(readLines(t, "svgsprite.golden")))
+}
+
+// svgSpriteDifferences are the drawings where this port differs from
+// upstream (design D16), by the prefix of their golden lines. The lines are
+// skipped, and TestSvgSpriteDifferences checks the behavior.
+var svgSpriteDifferences = map[string]string{
+	"image-unknown\tsax\t": "upstream throws NullPointerException for image data in an unknown format, " +
+		"which fails the sprite; the image is skipped, as data that does not decode",
+}
+
+func withoutSvgSpriteDifferences(lines []string) []string {
+	return slices.DeleteFunc(lines, func(l string) bool {
+		for prefix := range svgSpriteDifferences {
+			if strings.HasPrefix(l, prefix) {
+				return true
+			}
+		}
+		return false
+	})
+}
+
+// TestSvgSpriteDifferences checks the cases of svgSpriteDifferences: the
+// SAX parser skips an image in an unknown format and draws the shapes
+// around it.
+func TestSvgSpriteDifferences(t *testing.T) {
+	svg := `<svg viewBox="0 0 10 10"><rect width="1" height="1"/><image href="data:image/png;base64,AAAA"/>` +
+		`<rect width="2" height="2"/></svg>`
+	var out []string
+	spriteDrawing(&out, "image-unknown", false, color.IdentityMapper, func(ug *spriteRec) {
+		NewSvgSaxParser(svg).AsTextBlock(nil, nil, 1, nil).DrawU(ug)
+	})
+	paths := 0
+	for _, l := range out {
+		if strings.Contains(l, "ERR") {
+			t.Errorf("error drawn: %s", l)
+		}
+		if strings.Contains(l, " path ") {
+			paths++
+		}
+	}
+	if paths != 2 {
+		t.Errorf("%d paths, want the two rectangles: %q", paths, out)
+	}
 }

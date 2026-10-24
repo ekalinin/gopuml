@@ -6,7 +6,9 @@
 // (openiconic_svgpath_test.go), the emoji helpers ColorResolver and
 // UGraphicWithScale (emoji_test.go), the parser factory and the drawings of
 // SvgNanoParser, SvgSaxParser and SpriteSvgNanoParser
-// (svgparser_golden_test.go). From the repository root:
+// (svgparser_golden_test.go), and the drawings of the sprite classes
+// SpriteMonochrome, SpriteColor, SpriteImage, SpriteSvg and StdlibSprite
+// (sprite_draw_test.go). From the repository root:
 //
 //   mkdir -p ~/scratch-sprite && javac -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-sprite internal/klimt/testdata/javagen/SpriteGolden.java
@@ -19,8 +21,8 @@
 // (design D17).
 //
 // It reads svgpath_inputs.txt and svgsprite_inputs.txt of the golden
-// directory and writes svgpath.golden, emoji.golden and svgsprite.golden
-// next to them. Each drawing is recorded with a UGraphic that logs the
+// directory and writes svgpath.golden, emoji.golden, svgsprite.golden and
+// spritedraw.golden next to them. Each drawing is recorded with a UGraphic that logs the
 // shapes, their position, colors and stroke, as KlimtGolden2 does.
 
 import java.io.IOException;
@@ -72,6 +74,11 @@ import net.sourceforge.plantuml.klimt.shape.UImageSvg;
 import net.sourceforge.plantuml.klimt.shape.URectangle;
 import net.sourceforge.plantuml.klimt.shape.UText;
 import net.sourceforge.plantuml.klimt.sprite.Sprite;
+import net.sourceforge.plantuml.klimt.sprite.SpriteColor;
+import net.sourceforge.plantuml.klimt.sprite.SpriteImage;
+import net.sourceforge.plantuml.klimt.sprite.SpriteMonochrome;
+import net.sourceforge.plantuml.klimt.sprite.SpriteSvg;
+import net.sourceforge.plantuml.preproc.StdlibSprite;
 import net.sourceforge.plantuml.openiconic.Movement;
 import net.sourceforge.plantuml.openiconic.SvgCommand;
 import net.sourceforge.plantuml.openiconic.SvgPath;
@@ -98,6 +105,7 @@ public class SpriteGolden {
 		svgPaths();
 		emoji();
 		sprites();
+		spriteDrawings();
 	}
 
 	static void write(String name, List<String> lines) throws IOException {
@@ -646,5 +654,89 @@ public class SpriteGolden {
 			((Rec) ug).log.add("dim " + d.getWidth() + "," + d.getHeight());
 			tb.drawU(ug);
 		});
+	}
+
+	// ------------------------------------------------------------------
+	// The sprite classes
+
+	// The sprites of spriteDrawings, by name; the "uniform" ones have one
+	// color, so that their scaled images do not depend on the interpolation.
+	static Map<String, Sprite> drawnSprites() throws Exception {
+		final Map<String, Sprite> result = new java.util.LinkedHashMap<>();
+		final SpriteMonochrome m2 = new SpriteMonochrome(3, 1, 2);
+		m2.setGray(1, 0, 1);
+		result.put("mono2", m2);
+		final SpriteMonochrome m4 = new SpriteMonochrome(4, 4, 4);
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 4; j++)
+				m4.setGray(i, j, (i + j) % 4);
+		result.put("mono4", m4);
+		final SpriteMonochrome m8 = new SpriteMonochrome(4, 2, 8);
+		for (int i = 0; i < 4; i++) {
+			m8.setGray(i, 0, i * 2);
+			m8.setGray(i, 1, 7 - i);
+		}
+		result.put("mono8", m8);
+		final SpriteMonochrome m16 = new SpriteMonochrome(4, 4, 16);
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 4; j++)
+				m16.setGray(i, j, i * 4 + j);
+		result.put("mono16", m16);
+		result.put("mono-zero", new SpriteMonochrome(2, 2, 16));
+		final SpriteMonochrome full = new SpriteMonochrome(2, 2, 16);
+		for (int i = 0; i < 2; i++)
+			for (int j = 0; j < 2; j++)
+				full.setGray(i, j, 15);
+		result.put("mono-uniform", full);
+		final SpriteColor c = new SpriteColor(3, 2);
+		c.setColor(0, 0, 0xFF0000);
+		c.setColor(1, 0, 0x00FF00);
+		c.setGray(2, 0, 8);
+		c.setGray(0, 1, 15);
+		c.setColor(1, 1, 0x123456);
+		result.put("color", c);
+		final SpriteColor cu = new SpriteColor(2, 2);
+		for (int i = 0; i < 2; i++)
+			for (int j = 0; j < 2; j++)
+				cu.setColor(i, j, 0x336699);
+		result.put("color-uniform", cu);
+		result.put("image", new SpriteImage(SImageIO.read(Base64Coder.decode(FOUR))));
+		result.put("image-uniform", new SpriteImage(SImageIO.read(Base64Coder.decode(UNIFORM))));
+		result.put("svgfile", new SpriteSvg(
+				"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"6\"><rect width=\"10\" height=\"6\" fill=\"#00F\"/></svg>"));
+		result.put("stdlib", new StdlibSprite(3, 3,
+				new byte[] { (byte) 0x0F, (byte) 0xF0, (byte) 0x88, (byte) 0x1E, (byte) 0x2D, (byte) 0x3C }));
+		return result;
+	}
+
+	static void spriteDrawings() throws Exception {
+		final List<String> out = new ArrayList<>();
+		for (Map.Entry<String, Sprite> ent : drawnSprites().entrySet()) {
+			final String name = ent.getKey();
+			final Sprite sprite = ent.getValue();
+			// configuration: font color, forced color, back color of the graphic, mapper, scale
+			final Object[][] cfgs = { { "plain", null, null, null, ColorMapper.IDENTITY, 1.0 },
+					{ "font", color("#FF0000"), null, null, ColorMapper.IDENTITY, 1.0 },
+					{ "forced", color("#FF0000"), color("#0000FF"), null, ColorMapper.IDENTITY, 1.0 },
+					{ "back", color("#00FF00"), null, color("#FFEEDD"), ColorMapper.IDENTITY, 1.0 },
+					{ "mono", color("#FF8000"), null, null, ColorMapper.MONOCHROME, 1.0 },
+					{ "s2", color("#FF0000"), null, null, ColorMapper.IDENTITY, 2.0 } };
+			for (Object[] cfg : cfgs) {
+				final boolean uniform = name.endsWith("-uniform") || name.equals("svgfile");
+				final double scale = (Double) cfg[5];
+				drawing(out, name + "\t" + cfg[0], false, (ColorMapper) cfg[4], ug -> {
+					if (cfg[3] != null)
+						ug = ug.apply(((HColor) cfg[3]).bg());
+					final TextBlock tb = sprite.asTextBlock((HColor) cfg[1], (HColor) cfg[2], scale, null);
+					final XDimension2D d = tb.calculateDimension(BOUNDER);
+					((Rec) ug).log.add("dim " + d.getWidth() + "," + d.getHeight());
+					// A scaled image depends on the interpolation, which differs
+					// slightly in Go: only uniform sprites are drawn scaled.
+					if (scale == 1 || uniform)
+						tb.drawU(ug);
+				});
+			}
+		}
+		write("spritedraw.golden", out);
 	}
 }

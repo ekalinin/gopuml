@@ -582,9 +582,11 @@ func (r *svgSaxRenderHandler) handleImage(attrs saxAttributes) {
 	_, hasWidthAttr := attrs.value("width")
 	_, hasHeightAttr := attrs.value("height")
 	if unknownFormat {
-		// upstream's SImageIO.read wraps the null image of ImageIO, whose width
-		// it then reads
-		throw(nullPointer, "")
+		// Upstream reads the width of the null image that ImageIO returns
+		// for an unknown format and throws NullPointerException, which fails
+		// the whole sprite; the image is skipped instead, as data that does
+		// not decode is (design D16).
+		return
 	}
 	width := svgSaxDoubleAttr(attrs, "width", float64(image.Width()))
 	height := svgSaxDoubleAttr(attrs, "height", float64(image.Height()))

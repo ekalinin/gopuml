@@ -4,6 +4,7 @@
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteSvg.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/StdlibSprite.java
+// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/preproc/StdlibSpriteSvg.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
@@ -17,6 +18,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
+	"github.com/ekalinin/gopuml/internal/stdlib"
 )
 
 // SpriteMonochrome draws upstream's SpriteMonochrome: Gray holds the level
@@ -192,6 +194,43 @@ func (s *StdlibSprite) AsTextBlock(fontColor, forcedColor color.HColor, scale fl
 		}
 		s.sprite, s.data = sprite, nil // free memory, as upstream does
 	})
+	return s.sprite.AsTextBlock(fontColor, forcedColor, scale, backColor)
+}
+
+// StdlibSpriteSvg draws upstream's StdlibSpriteSvg, an SVG sprite of the
+// standard library, read and parsed with the default parser on first use.
+// A library without SVG sprites throws UncheckedIOException, and a name
+// the library does not have draws nothing.
+type StdlibSpriteSvg struct {
+	lib    *stdlib.Library
+	name   string
+	once   sync.Once
+	sprite Sprite
+	err    error
+}
+
+// NewStdlibSpriteSvg returns the SVG sprite of a library name.
+func NewStdlibSpriteSvg(lib *stdlib.Library, name string) *StdlibSpriteSvg {
+	return &StdlibSpriteSvg{lib: lib, name: name}
+}
+
+// AsTextBlock draws the parsed sprite.
+func (s *StdlibSpriteSvg) AsTextBlock(fontColor, forcedColor color.HColor, scale float64, backColor color.HColor) TextBlock {
+	s.once.Do(func() {
+		svg, ok, err := s.lib.SvgSprite(s.name)
+		switch {
+		case err != nil:
+			s.err = err
+		case ok:
+			s.sprite = SvgSpriteParserFactoryCreateDefault(svg)
+		}
+	})
+	if s.err != nil {
+		throw("java.io.UncheckedIOException", stdlib.IOExceptionString(s.err))
+	}
+	if s.sprite == nil {
+		return TextBlockUtilsEmptyTextBlock()
+	}
 	return s.sprite.AsTextBlock(fontColor, forcedColor, scale, backColor)
 }
 

@@ -40,7 +40,12 @@ func readLines(t *testing.T, name string) []string {
 
 func compareGolden(t *testing.T, name string, got []string) {
 	t.Helper()
-	want := readLines(t, name)
+	compareGoldenLines(t, name, got, readLines(t, name))
+}
+
+// compareGoldenLines compares the lines of a golden file, read as want.
+func compareGoldenLines(t *testing.T, name string, got, want []string) {
+	t.Helper()
 	if len(got) != len(want) {
 		t.Errorf("%s: %d lines, want %d", name, len(got), len(want))
 	}

@@ -169,7 +169,9 @@ func CommandSpriteSvg[D Diagram]() command.Command[D] {
 		regex.SpaceOneOrMore(),
 		Leaf(1, "SVG", `(\<svg\b.*\</svg\>)`), regex.End()),
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
-			d.Titled().AddSprite(arg.Str("NAME", 0), &SpriteDef{Kind: SpriteKindSvg, SVG: []string{arg.Str("SVG", 0)}})
+			parser := klimt.SvgSpriteParserFactoryCreate([]string{arg.Str("SVG", 0)}, d.Titled().Pragma(),
+				d.Titled().MD5Map())
+			d.Titled().AddSprite(arg.Str("NAME", 0), parser)
 			return command.Ok()
 		})
 }
@@ -193,7 +195,8 @@ func CommandSpriteSvgMultiline[D Diagram]() command.Command[D] {
 		line0 := c.StartArg(lines)
 		svg := []string{line0.Str("SVGSTART", 0)}
 		svg = append(svg, SubExtract(lines, 1, 0).Strings()...)
-		d.Titled().AddSprite(line0.Str("NAME", 0), &SpriteDef{Kind: SpriteKindSvg, SVG: svg})
+		parser := klimt.SvgSpriteParserFactoryCreate(svg, d.Titled().Pragma(), d.Titled().MD5Map())
+		d.Titled().AddSprite(line0.Str("NAME", 0), parser)
 		return command.Ok()
 	}
 	return c
@@ -255,8 +258,9 @@ func CommandSpriteStdlibSvg[D Diagram]() command.Command[D] {
 		regex.SpaceZeroOrMore(),
 		Leaf(2, "STDLIB", ":([^:]+):([^%s]+)"),
 		regex.End()),
-		func(_ D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
-			stdlibNotBundled(arg.Str("STDLIB", 0))
+		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
+			lib := retrieveStdlib(arg.Str("STDLIB", 0))
+			d.Titled().AddSprite(arg.Str("NAME", 0), klimt.NewStdlibSpriteSvg(lib, arg.Str("STDLIB", 1)))
 			return command.Ok()
 		})
 }
