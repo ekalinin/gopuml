@@ -298,7 +298,9 @@ const separatorCharDouble = `[\\]{2}|::`
 // CommandNamespaceSeparator is "set separator x" (or "set
 // namespaceseparator x"): "none" or "null" disable namespaces.
 func CommandNamespaceSeparator[D Diagram]() command.Command[D] {
-	separator := `((?:none|null)|` + separatorCharDouble + `|[^%pLN%s_$#\\{}<>%g])`
+	// A single backslash is allowed (PHP namespaces, upstream's issue
+	// #2938), as CommandLinkClass allows it.
+	separator := `((?:none|null)|` + separatorCharDouble + `|[^%pLN%s_$#{}<>%g])`
 	return Single(regex.NewConcat(regex.Start(),
 		Lit("set"),
 		regex.SpaceOneOrMore(),
