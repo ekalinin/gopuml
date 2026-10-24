@@ -20,6 +20,55 @@
 - id: vega/nonreg/group2712/right_direction
   reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
   resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2903/left_to_right
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2903/nodesep_ranksep
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2903/reported_case
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2903/two_association_classes
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2903/without_association_class
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/all_visibilities
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/diamond_at_tail
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/icon_size_zero
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/left_to_right
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/reported_case
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/role_tail_only
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2904/role_without_visibility
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2917/smetana_hide_class
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2917/smetana_hide_state_node_label
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/group2917/smetana_hide_state_plain_edges
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  resolvedBy: add-smetana-layout
+- id: vega/nonreg/warnings/skinparam_handwritten
+  reason: the handwritten drawing (upstream's UGraphicHandwritten) is not ported, so the diagram is not drawn
+- id: vega/nonreg/yaml/theme-with-empty-style-block
+  reason: the theme amiga is not bundled, for the license reasons given in NOTICE, so the preprocessor reports it before the diagram type
 - id: vega/state/composite-autarkic-simple
   reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
   resolvedBy: add-smetana-layout
