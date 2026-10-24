@@ -294,7 +294,7 @@ func TestLandingPage(t *testing.T) {
 		{"no go install", `go install github.com/ekalinin/gopuml/cmd/plantuml@`, `go get github.com/ekalinin/gopuml/cmd/plantuml@`},
 		{"no checksums", `-p checksums.txt`, ``},
 		{"no curl", `curl -fLO `, `wget `},
-		{"other conformance result", `<strong>372</strong>`, `<strong>371</strong>`},
+		{"other conformance result", `<strong>594</strong>`, `<strong>593</strong>`},
 		{"no NOTICE link", `blob/main/NOTICE`, `blob/main/README.md`},
 	} {
 		mutated := strings.ReplaceAll(page, m.old, m.new)
@@ -384,7 +384,12 @@ func checkLandingRelease(page, readme string, notes func(tag string) (string, er
 		var ms int
 		fmt.Sscan(b[1], &ms)
 		longest = max(longest, ms)
-		if text := htmlText(b[2]); !strings.HasPrefix(text, b[1]+" ms") {
+		label := b[1] + " ms"
+		if ms >= 1000 {
+			// tools/bench writes the times from 1 s on in seconds.
+			label = fmt.Sprintf("%.2f s", float64(ms)/1000)
+		}
+		if text := htmlText(b[2]); !strings.HasPrefix(text, label) {
 			errs = append(errs, fmt.Errorf("the bar of %q is %s ms long", text, b[1]))
 		}
 	}
@@ -412,10 +417,10 @@ func TestLandingRelease(t *testing.T) {
 		{"another release in the meta tag", "page", `content="` + tag + `"`, `content="v9.9.9"`},
 		{"page behind the README", "readme", tag, "v9.9.9"},
 		{"another archive", "page", "gopuml_" + tag[1:] + "_darwin", "gopuml_9.9.9_darwin"},
-		{"changed cell", "page", "897 ms (17 ms per case)", "897 ms (18 ms per case)"},
-		{"comparison out of date", "notes", "| 18 ms |", "| 17 ms |"},
-		{"bar of another time", "page", `style="--t: 86"`, `style="--t: 68"`},
-		{"other scale", "page", `style="--max: 959"`, `style="--max: 1000"`},
+		{"changed cell", "page", "936 ms (11 ms per case)", "936 ms (12 ms per case)"},
+		{"comparison out of date", "notes", "| 15 ms |", "| 14 ms |"},
+		{"bar of another time", "page", `style="--t: 120"`, `style="--t: 102"`},
+		{"other scale", "page", `style="--max: 1020"`, `style="--max: 1000"`},
 		{"no environment", "page", "<li>Runs: ", "<li>Run: "},
 	} {
 		p, r, n := page, readme, notes
