@@ -94,8 +94,9 @@ The system SHALL render creole markup in every text that upstream renders with c
 - bulleted `*` and numbered `#` lists, tables with `|=` header cells, horizontal rules
 - the HTML-like tags `<b>`, `<i>`, `<u>`, `<s>`, `<color>`, `<back>`, `<size>`, `<font>`
 - links `[[url label]]`, the `~` escape, and Unicode escapes such as `<U+00E9>` and `&#233;`
+- sprite references (`<$name>`), drawn as the sprites capability specifies
 
-OpenIconic (`<&name>`), emoji (`<:name:>`) and sprite (`<$name>`) references SHALL render as their literal text until the follow-up change that adds them.
+OpenIconic (`<&name>`) and emoji (`<:name:>`) references SHALL render as their literal text until the follow-up change that adds them.
 
 #### Scenario: Bold and colored text
 
@@ -111,6 +112,11 @@ OpenIconic (`<&name>`), emoji (`<:name:>`) and sprite (`<$name>`) references SHA
 
 - **WHEN** a note contains `<&check> done`
 - **THEN** the note renders the literal text `<&check> done`
+
+#### Scenario: Sprite reference in a note
+
+- **WHEN** a sequence diagram defines `sprite $foo [4x4/16]` with the rows `FFFF`, `F00F`, `F00F` and `FFFF`, and a note contains `<$foo> done`
+- **THEN** the note draws the sprite followed by `done`, as upstream does
 
 ### Requirement: Common diagram annotations
 
