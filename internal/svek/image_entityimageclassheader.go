@@ -26,6 +26,14 @@ func classStyleSignature(names ...klimt.SName) klimt.StyleSignatureBasic {
 		klimt.SNameClassDiagram, klimt.SNameClass}, names...)...)
 }
 
+// stereotypeFontConfiguration is the font of the stereotype and of the
+// generic parameters: the style of the stereotype of the class.
+func stereotypeFontConfiguration(skinParam klimt.ISkinParam, stereotype *klimt.Stereotype) *klimt.FontConfiguration {
+	styleStereo := classStyleSignature(klimt.SNameStereotype).ForStereotypeItself(stereotype).
+		MergedStyle(skinParam.CurrentStyleBuilder())
+	return styleStereo.FontConfiguration(skinParam.IHtmlColorSet(), nil)
+}
+
 func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower) *EntityImageClassHeader {
 	h := &EntityImageClassHeader{abstractEntityImage: newAbstractEntityImage(entity)}
 	skinParam := h.skinParam
@@ -68,8 +76,7 @@ func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower)
 	if stereotype != nil {
 		if _, ok := stereotype.Label(klimt.GuillemetDoubleComparator()); ok && len(stereotypeLabels) > 0 {
 			stereo = klimt.TextBlockUtilsWithMargin(klimt.DisplayCreate(stereotypeLabels...).Create(
-				klimt.FontConfigurationFromSkinParam(skinParam, klimt.FontParamClassStereotype, stereotype),
-				geom.HorizontalAlignmentCenter, skinParam), 1, 0)
+				stereotypeFontConfiguration(skinParam, stereotype), geom.HorizontalAlignmentCenter, skinParam), 1, 0)
 		}
 	}
 
@@ -78,8 +85,7 @@ func newEntityImageClassHeader(entity *abel.Entity, portionShower PortionShower)
 		styleGeneric := classStyleSignature(klimt.SNameGeneric).WithTOBECHANGED(stereotype).
 			With(entity.Stereostyles()).MergedStyle(skinParam.CurrentStyleBuilder())
 		genericBlock = klimt.DisplayWithNewlines(skinParam.Pragma(), generic.S).Create(
-			klimt.FontConfigurationFromSkinParam(skinParam, klimt.FontParamClassStereotype, stereotype),
-			geom.HorizontalAlignmentCenter, skinParam)
+			stereotypeFontConfiguration(skinParam, stereotype), geom.HorizontalAlignmentCenter, skinParam)
 		genericBlock = klimt.TextBlockUtilsWithMargin(genericBlock, 1, 1)
 		classBackground := styleGeneric.Value(klimt.PNameBackGroundColor).AsColor(skinParam.IHtmlColorSet())
 		classBorder := styleGeneric.Value(klimt.PNameLineColor).AsColor(skinParam.IHtmlColorSet())
