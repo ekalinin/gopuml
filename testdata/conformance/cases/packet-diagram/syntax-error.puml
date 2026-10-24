@@ -1,0 +1,13 @@
+---
+id: packet-diagram/syntax-error
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Syntax error"
+---
+@startpacketdiag
+packetdiag {
+   foo: Source Port
+}
+@endpacketdiag

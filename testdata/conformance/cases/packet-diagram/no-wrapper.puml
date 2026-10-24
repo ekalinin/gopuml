@@ -1,0 +1,13 @@
+---
+id: packet-diagram/no-wrapper
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Fields without a wrapper"
+---
+@startpacketdiag
+0-7: Source Port
+8-15: Destination Port
+16-31: Sequence Number
+@endpacketdiag

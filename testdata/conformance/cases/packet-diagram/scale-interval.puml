@@ -1,0 +1,12 @@
+---
+id: packet-diagram/scale-interval
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Scale interval"
+---
+@startpacketdiag
+scale_interval = 4
+0-15: A
+@endpacketdiag

@@ -1,0 +1,6 @@
+id: packet-diagram/reversed-range
+scenarios:
+  - "packet-diagram: Reversed range"
+package: internal/packetdiag
+test: TestPacketReversedRange
+why: Upstream writes a crash report with the date, the machine and the Java version, so its output cannot be a committed reference.

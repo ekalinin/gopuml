@@ -1,0 +1,14 @@
+---
+id: packet-diagram/same-height
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Same height"
+---
+@startpacketdiag
+same_height = true
+0-3: A [height = 3]
+4-7: B
+8-15: C
+@endpacketdiag

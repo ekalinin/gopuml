@@ -1,0 +1,6 @@
+id: wasm-build/packet-diagram
+scenarios:
+  - "wasm-build: Packet diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmPacketDiagram
+why: Upstream has no Graphviz-free WASM build; the scenario compares the WASM build with the native build of this implementation.

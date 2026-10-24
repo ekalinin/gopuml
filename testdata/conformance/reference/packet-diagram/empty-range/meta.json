@@ -1,0 +1,6 @@
+{
+  "id": "packet-diagram/empty-range",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 3, "messages": ["Fatal crash error, you should send a mail to plantuml@gmail.com with: java.lang.ArithmeticException: / by zero"]}, "renders": [{"file": "block0-page0.svg", "width": 897, "height": 340, "status": 400}, {"file": "block0-page0.png", "width": 897, "height": 340, "status": 400}]}
+  ]
+}

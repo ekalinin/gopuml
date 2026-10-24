@@ -1,0 +1,6 @@
+id: packet-diagram/without-dot
+scenarios:
+  - "packet-diagram: Packet diagram without Graphviz"
+package: internal/packetdiag
+test: TestPacketWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

@@ -320,7 +320,9 @@ func TestReleaseWorkflow(t *testing.T) {
 }
 
 // checkReleaseNotes checks the notes of a release (release: Release notes)
-// against the README, whose table of supported diagrams they repeat.
+// against the README: every row of their table of supported diagrams is
+// still a row of the README's table, which may have gained rows since the
+// release.
 func checkReleaseNotes(notes, readme string) error {
 	var errs []error
 	for _, section := range []string{
@@ -337,17 +339,22 @@ func checkReleaseNotes(notes, readme string) error {
 	}
 	_, table, _ := strings.Cut(readme, "\n## Supported diagrams and formats\n")
 	table, _, _ = strings.Cut(table, "\n\n## ")
+	if !strings.Contains(table, "\n|") {
+		errs = append(errs, errors.New("no table of supported diagrams in the README"))
+	}
+	_, notesTable, _ := strings.Cut(notes, "\n## Supported diagrams and formats\n")
+	notesTable, _, _ = strings.Cut(notesTable, "\n\n## ")
 	var rows int
-	for line := range strings.SplitSeq(table, "\n") {
+	for line := range strings.SplitSeq(notesTable, "\n") {
 		if strings.HasPrefix(line, "|") {
 			rows++
-			if !strings.Contains(notes, "\n"+line+"\n") {
-				errs = append(errs, fmt.Errorf("no row %q of the table of the README", line))
+			if !strings.Contains("\n"+table+"\n", "\n"+line+"\n") {
+				errs = append(errs, fmt.Errorf("row %q is not in the table of the README", line))
 			}
 		}
 	}
 	if rows == 0 {
-		errs = append(errs, errors.New("no table of supported diagrams in the README"))
+		errs = append(errs, errors.New("no table of supported diagrams in the notes"))
 	}
 	for _, want := range []string{
 		"| | PlantUML 1.2026.8 (Java) | gopuml |",

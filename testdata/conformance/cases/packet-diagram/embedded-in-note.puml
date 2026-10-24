@@ -1,0 +1,17 @@
+---
+id: packet-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Packet diagram in a note"
+---
+@startuml
+Alice -> Bob : request
+note right
+{{packetdiag
+0-7: Source Port
+8-15: Destination Port
+}}
+end note
+@enduml

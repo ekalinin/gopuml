@@ -1,0 +1,12 @@
+---
+id: packet-diagram/shortened-text
+family: packetdiag
+type: packet
+formats: [svg, png]
+scenarios:
+  - "packet-diagram: Shortened text"
+---
+@startpacketdiag
+0: Checksum
+1: B
+@endpacketdiag

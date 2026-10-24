@@ -1,0 +1,6 @@
+{
+  "id": "packet-diagram/syntax-error",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 3, "messages": ["Syntax Error? (Assumed diagram type: packet)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 134, "status": 400}, {"file": "block0-page0.png", "width": 451, "height": 134, "status": 400}]}
+  ]
+}

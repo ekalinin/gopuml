@@ -117,10 +117,11 @@ Alice &lt;-- Bob: Another authentication Response
         <tr><th scope="row">State</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
         <tr><th scope="row">Activity (new syntax)</th><td>yes</td><td>yes</td><td>no</td></tr>
         <tr><th scope="row">Activity (legacy syntax)</th><td>yes (needs <code>dot</code>)</td><td>yes (needs <code>dot</code>)</td><td>no</td></tr>
+        <tr><th scope="row">Packet</th><td>yes</td><td>yes</td><td>no</td></tr>
       </tbody>
     </table>
   </div>
-  <aside class="note">Graphviz <code>dot</code> is needed only for class, object, description (use case, component, deployment), state and legacy activity diagrams, which it lays out as upstream does. Sequence diagrams and activity diagrams in the new syntax do not need it.</aside>
+  <aside class="note">Graphviz <code>dot</code> is needed only for class, object, description (use case, component, deployment), state and legacy activity diagrams, which it lays out as upstream does. Sequence diagrams, activity diagrams in the new syntax and packet diagrams do not need it.</aside>
   <p>The preprocessor (<code>!include</code>, <code>!define</code>, functions, all 74 builtins, JSON), themes, skin parameters, styles and creole are supported, including diagrams embedded in text with <code>{{</code> ... <code>}}</code>, and so is the PREPROC output (<code>--preproc</code>).</p>
   <p>Other diagram types (archimate, timing, gantt, mindmap, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
 </section>
