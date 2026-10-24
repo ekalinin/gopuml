@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Provenance: original
 
-// Command refgen renders conformance references with Java PlantUML v1.2026.8
+// Command refgen renders conformance references with Java PlantUML v1.2026.9
 // in the reference image (tools/reference/Dockerfile).
 //
 // Curated diagram, CLI and HTTP cases from testdata/conformance/cases are
@@ -59,7 +59,7 @@ const (
 	// time-based decorations of error images.
 	cliClasspath = jar + ":/opt/tools"
 
-	plantumlServerImage = "plantuml/plantuml-server:v1.2026.8@sha256:5f6f99ec2fc11c8236e80630d622b0ba22b8d9301b39b18db4bb2b95cae87781"
+	plantumlServerImage = "plantuml/plantuml-server:v1.2026.9@sha256:065c66adc6728ba6dd353a29d4ada73f8358b68549a0f710c4bf46b43c103618"
 )
 
 type generator struct {

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 #
-# Reference image for conformance testing: Java PlantUML v1.2026.8 (MIT
+# Reference image for conformance testing: Java PlantUML v1.2026.9 (MIT
 # variant) with a pinned Java runtime, font set, Graphviz version and SVG
 # rasterizer. Every download and base image is pinned by checksum or digest.
 #
@@ -13,15 +13,17 @@ ARG BASE_IMAGE=eclipse-temurin:21-jre-jammy@sha256:f04fb34e053148344e83317976114
 # Graphviz 14.0.1 as built by upstream's own image (plantuml/plantuml:1.2026.8),
 # which compiles it from source on the same base image. Compiling it here would
 # need amd64 emulation on arm64 hosts, where the compiler crashes at random.
-# Only the Graphviz files are taken from that image.
+# Only the Graphviz files are taken from that image. The image of 1.2026.9
+# builds the same Graphviz 14.0.1; keeping this one keeps the references free
+# of changes from a rebuilt Graphviz.
 ARG GRAPHVIZ_IMAGE=plantuml/plantuml:1.2026.8@sha256:d08610df482510844382caa4e016ba2bf7e3231f630f02ee12f250f3416c62b1
 
 FROM ${GRAPHVIZ_IMAGE} AS graphviz
 
 # Tools compiled once on the build platform: class files are portable.
 FROM --platform=$BUILDPLATFORM eclipse-temurin:21-jdk-jammy@sha256:e0c60c487345d1dc9d0fc7b6f0496f3cc941e5132e09296cc17a6decc71b902b AS tools
-ADD --chmod=644 --checksum=sha256:8a171e8941d1f68f4ec28f5c180a4bf8d54a2cd679348370d4ba59fc9fb910e3 \
-    https://repo1.maven.org/maven2/net/sourceforge/plantuml/plantuml-mit/1.2026.8/plantuml-mit-1.2026.8.jar \
+ADD --chmod=644 --checksum=sha256:e84e45b37ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd \
+    https://repo1.maven.org/maven2/net/sourceforge/plantuml/plantuml-mit/1.2026.9/plantuml-mit-1.2026.9.jar \
     /opt/plantuml.jar
 COPY FontMetricsDump.java ReferenceRender.java RunCli.java /src/
 RUN javac --release 21 -cp /opt/plantuml.jar -d /opt/tools /src/FontMetricsDump.java /src/ReferenceRender.java /src/RunCli.java
@@ -49,8 +51,8 @@ ADD --checksum=sha256:fa8c26495a187e592c501db15bf9e8a9fdc051d4b2b336b39703d5b59f
     /tmp/resvg.tar.gz
 RUN tar -xzf /tmp/resvg.tar.gz -C /usr/local/bin resvg && rm /tmp/resvg.tar.gz
 
-ADD --chmod=644 --checksum=sha256:8a171e8941d1f68f4ec28f5c180a4bf8d54a2cd679348370d4ba59fc9fb910e3 \
-    https://repo1.maven.org/maven2/net/sourceforge/plantuml/plantuml-mit/1.2026.8/plantuml-mit-1.2026.8.jar \
+ADD --chmod=644 --checksum=sha256:e84e45b37ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd \
+    https://repo1.maven.org/maven2/net/sourceforge/plantuml/plantuml-mit/1.2026.9/plantuml-mit-1.2026.9.jar \
     /opt/plantuml.jar
 ENV PLANTUML_JAR=/opt/plantuml.jar
 

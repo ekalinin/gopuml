@@ -31,8 +31,8 @@ See proposal.md for the motivation. The current state that shapes the approach:
 
 ### D1. Pins
 
-- `tools/reference/Dockerfile` takes `plantuml-mit-1.2026.9.jar` (SHA-256 `e84e45b3ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd`) in both stages. The Graphviz stage keeps its current pin, `plantuml/plantuml:1.2026.8`, and its comment says why: 1.2026.9's image builds the same Graphviz 14.0.1, and rebuilt binaries could move references for reasons unrelated to the jar.
-- `tools/upstream/fetch.sh` and `checksums.sha256` take the 1.2026.9 jars (sources `88e30e43639555a6963c270bc6245906b81e8cc65140645f416795d0e0bc71c3`, binary `e84e45b3ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd`).
+- `tools/reference/Dockerfile` takes `plantuml-mit-1.2026.9.jar` (SHA-256 `e84e45b37ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd`) in both stages. The Graphviz stage keeps its current pin, `plantuml/plantuml:1.2026.8`, and its comment says why: 1.2026.9's image builds the same Graphviz 14.0.1, and rebuilt binaries could move references for reasons unrelated to the jar.
+- `tools/upstream/fetch.sh` and `checksums.sha256` take the 1.2026.9 jars (sources `88e30e43639555a6963c270bc6245906b81e8cc65140645f416795d0e0bc71c3`, binary `e84e45b37ad3030cf802e7be18a687d209eca55733a5679b1f1f1a515f7f70dd`).
 - `tools/corpus/fetch-vega.sh` takes `v1.2026.9`, expects at least 425 cases, and also copies `*.zip` (only `nonreg/group2896/archive.zip`). `refgen` already copies the whole corpus tree to a scratch directory and renders each case from its file, so relative imports resolve. The CI cache key follows the script's hash.
 - `tools/refgen` takes `plantuml/plantuml-server:v1.2026.9@sha256:065c66adc6728ba6dd353a29d4ada73f8358b68549a0f710c4bf46b43c103618`.
 - `version.Upstream`, `tim.Version` and `server.UpstreamVersion` become `1.2026.9`, with the tests that spell the version.
