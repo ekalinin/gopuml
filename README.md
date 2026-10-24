@@ -1,6 +1,6 @@
 # gopuml
 
-A Go reimplementation of [PlantUML](https://plantuml.com) v1.2026.8 (MIT
+A Go reimplementation of [PlantUML](https://plantuml.com) v1.2026.9 (MIT
 variant). It reads the same diagram language and produces the same SVG, PNG
 and text output, and it works as:
 
@@ -38,10 +38,10 @@ Other diagram types (archimate, timing, gantt, mindmap, and so on) are
 reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
-Compatibility is measured against upstream PlantUML v1.2026.8 with a
-conformance suite of 520 cases (upstream's Vega test corpus plus curated
-cases): every case passes, apart from 25 documented known differences
-(`testdata/conformance/known-differences.yaml`) and 43 cases of diagram types
+Compatibility is measured against upstream PlantUML v1.2026.9 with a
+conformance suite of 666 cases (upstream's Vega test corpus plus curated
+cases): every case passes, apart from 42 documented known differences
+(`testdata/conformance/known-differences.yaml`) and 50 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
@@ -225,7 +225,7 @@ results there are indicative only.
 ## License
 
 MIT, see `LICENSE`. This project translates the MIT-licensed variant of
-PlantUML v1.2026.8 (`net.sourceforge.plantuml:plantuml-mit`), (C) Copyright
+PlantUML v1.2026.9 (`net.sourceforge.plantuml:plantuml-mit`), (C) Copyright
 2009-2024, Arnaud Roques. Every Go file names the upstream file it comes from
 in its header. `NOTICE` lists the bundled assets (DejaVu fonts, themes) with
 their licenses, the parts of fdlibm the math functions come from, the Go code

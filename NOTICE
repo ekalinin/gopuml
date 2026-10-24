@@ -7,11 +7,11 @@ https://github.com/plantuml/plantuml).
 Upstream origin
 ---------------
 
-Source files that carry a "Provenance: plantuml-mit 1.2026.8 <path>" header
-are translations of the MIT-licensed variant of PlantUML v1.2026.8, as
+Source files that carry a "Provenance: plantuml-mit 1.2026.9 <path>" header
+are translations of the MIT-licensed variant of PlantUML v1.2026.9, as
 published on Maven Central:
 
-    net.sourceforge.plantuml:plantuml-mit:1.2026.8:sources
+    net.sourceforge.plantuml:plantuml-mit:1.2026.9:sources
 
     (C) Copyright 2009-2024, Arnaud Roques
     Licensed under the MIT License.
@@ -62,7 +62,7 @@ internal/klimt/g2d/dejavu/fonts/LICENSE-DejaVu.txt.
 Bundled themes
 --------------
 
-internal/themes/ holds 34 of the 44 theme files of PlantUML v1.2026.8 (the
+internal/themes/ holds 34 of the 44 theme files of PlantUML v1.2026.9 (the
 themes/ folder of the plantuml-mit jar), as PlantUML distributes them, without
 further changes. "!theme <name>" and "--theme <name>" load them.
 
@@ -101,7 +101,7 @@ mars, toy and vibrant come from puml-themes by Future Corporation
 A copy of the License is in internal/themes/LICENSE-Apache-2.0.txt. The
 source repository has no NOTICE file. PlantUML modified these files (it
 replaced their comment header with a YAML metadata header); this project
-ships them as PlantUML v1.2026.8 does.
+ships them as PlantUML v1.2026.9 does.
 
 The following upstream themes are not bundled:
 

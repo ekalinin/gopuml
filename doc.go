@@ -3,5 +3,5 @@
 
 // Package gopuml renders PlantUML diagram source to SVG, PNG and text.
 //
-// It is a Go reimplementation of PlantUML v1.2026.8 (MIT variant).
+// It is a Go reimplementation of PlantUML v1.2026.9 (MIT variant).
 package gopuml

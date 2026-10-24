@@ -14,7 +14,7 @@
 // SequenceDiagramFileMakerTeoz lays out the diagram (living spaces, tiles,
 // X and Y lines solved once), and uml.ExportTitled adds the annotations and
 // writes the page with internal/export. "!pragma teoz" with any value keeps
-// the Teoz layout, the only one of upstream 1.2026.8.
+// the Teoz layout, the only one of upstream 1.2026.9.
 //
 // The text formats (ATXT, UTXT) go through SequenceDiagram.exportTxt, as
 // upstream: a Teoz layout measured with asciiart.TextStringBounder, then

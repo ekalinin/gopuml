@@ -41,7 +41,7 @@ var bundled = []string{
 	"superhero-outline", "toy", "united", "vibrant",
 }
 
-// excluded lists the themes of upstream v1.2026.8 that are not bundled,
+// excluded lists the themes of upstream v1.2026.9 that are not bundled,
 // for the license reasons given in NOTICE.
 var excluded = []string{
 	"_none_", "amiga", "blueprint", "carbon-gray", "crt-amber", "crt-green", "mimeograph", "mono",
