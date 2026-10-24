@@ -9,7 +9,7 @@
 // Build it on the host and run it in the reference image, whose fonts
 // (DejaVu) are those of the Go font metrics. From the repository root:
 //
-//   mkdir -p ~/scratch-err/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-err/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-err/classes internal/errdiagram/testdata/javagen/ErrGolden.java
 //   docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" -v "$PWD:/work" \
 //     -v ~/scratch-err/classes:/gen plantuml-go-reference \

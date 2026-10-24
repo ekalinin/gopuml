@@ -1487,8 +1487,8 @@ error.score 20
 error.last 1
 === errors/weight parse error
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
 error.score 20
 error.last 1
 === hide/hide empty members
@@ -2461,11 +2461,11 @@ quark [n1] name=[n1] parent=[] data=ent0001 children=0
 quark [n2] name=[n2] parent=[] data=ent0002 children=0
 quark [n3] name=[n3] parent=[] data=ent0003 children=0
 entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
-entity ent0001 quark=[n1] group=PACKAGE display=[Display] mode=FULL stereo=<<s2>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0001 quark=[n1] group=PACKAGE display=[Display] mode=FULL stereo=<<s1>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0001 BodierSimple raw=[]
-entity ent0002 quark=[n2] group=PACKAGE display=[Display] mode=FULL stereo=<<s4>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0002 quark=[n2] group=PACKAGE display=[Display] mode=FULL stereo=<<s3>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierSimple raw=[]
-entity ent0003 quark=[n3] group=PACKAGE display=[d3] mode=FULL stereo=<<s6>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=5 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0003 quark=[n3] group=PACKAGE display=[d3] mode=FULL stereo=<<s5>> styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=NODE static=false packed=false rawlayout=0 together=null at=5 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0003 BodierSimple raw=[]
 === lazy/container tags twice
 result ClassDiagram
@@ -2558,7 +2558,7 @@ quark [] name=[] parent=null data=entroot children=2
 quark [I4] name=[I4] parent=[] data=ent0001 children=0
 quark [I5] name=[I5] parent=[] data=ent0002 children=0
 entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
-entity ent0001 quark=[I4] leaf=DESCRIPTION display=[I4] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=0,g=0,b=255,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0001 quark=[I4] leaf=DESCRIPTION display=[I4] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=255,g=0,b=0,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0001 BodierSimple raw=[]
 entity ent0002 quark=[I5] leaf=DESCRIPTION display=[I5] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{BACK=[r=0,g=128,b=0,a=255] α=255} null shadowing=null} url=null symbol=INTERFACE static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierSimple raw=[]
@@ -6732,7 +6732,7 @@ body ent0001 BodierSimple raw=[]
 entity ent0002 quark=[LN.A] leaf=CLASS display=[A] mode=SIMPLE_LINE stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
-entity ent0003 quark=[Short] group=PACKAGE display=[LN2] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=4 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+entity ent0003 quark=[Short] group=PACKAGE display=[LN2] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=PACKAGE static=false packed=false rawlayout=0 together=null at=4 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
 body ent0003 BodierSimple raw=[]
 === packages/package styles
 result ClassDiagram
@@ -10834,8 +10834,8 @@ result ClassDiagram
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=2 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.5 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 === linkcombos/890 @1.2.3 A --> B
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points (Assumed diagram type: class)
 error.score 20
 error.last 1
 === linkcombos/891 A --> B #red

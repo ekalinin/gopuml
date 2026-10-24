@@ -445,19 +445,19 @@
     {"s": "A : %feature(\"\u017ftyle\") %feature(\"style \")", "loc": "string:2"},
     {"s": "@enduml", "loc": "string:3"}]}]},
 {"name": "bi-version",
- "main": "@startuml\nA : %version()\n!$v = %version()\n!if $v == \"1.2026.8\"\nA : same\n!endif\n@enduml\n",
+ "main": "@startuml\nA : %version()\n!$v = %version()\n!if $v == \"1.2026.9\"\nA : same\n!endif\n@enduml\n",
  "blocks": [
   {"error": false,
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
-    {"s": "A : 1.2026.8", "loc": "string:1"},
+    {"s": "A : 1.2026.9", "loc": "string:1"},
     {"s": "A : same", "loc": "string:4"},
     {"s": "@enduml", "loc": "string:6"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "A : %version()", "loc": "string:1"},
     {"s": "!$v = %version()", "loc": "string:2"},
-    {"s": "!if $v == \"1.2026.8\"", "loc": "string:3"},
+    {"s": "!if $v == \"1.2026.9\"", "loc": "string:3"},
     {"s": "A : same", "loc": "string:4"},
     {"s": "!endif", "loc": "string:5"},
     {"s": "@enduml", "loc": "string:6"}]}]},
@@ -13265,7 +13265,6 @@
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "B : included in procedure one", "loc": "body.iuml:0 < string:2"},
-    {"s": "B : included in procedure two", "loc": "body.iuml:0 < string:2"},
     {"s": "@enduml", "loc": "string:6"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
@@ -13277,7 +13276,6 @@
     {"s": "B : included in procedure $arg", "loc": "body.iuml:0 < string:2"},
     {"s": "$p(\"two\")", "loc": "string:5"},
     {"s": "!include body.iuml", "loc": "string:2"},
-    {"s": "B : included in procedure $arg", "loc": "body.iuml:0 < string:2"},
     {"s": "@enduml", "loc": "string:6"}]}]},
 {"name": "edge-include-in-function",
  "files": {"lib.iuml": "!$r = \"R\"\n"},
@@ -16730,19 +16728,16 @@
  "files": {"a.iuml": "Alice -> Bob : from a.iuml\n"},
  "main": "@startuml\n!include_once a.iuml\n!include_once a.iuml\n@enduml\n",
  "blocks": [
-  {"error": false,
+  {"error": true,
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "Alice -> Bob : from a.iuml", "loc": "a.iuml:0 < string:1"},
-    {"s": "Alice -> Bob : from a.iuml", "loc": "a.iuml:0 < string:2"},
-    {"s": "@enduml", "loc": "string:3"}],
+    {"s": "!include_once a.iuml", "loc": "string:2", "err": "This file has already been included"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "!include_once a.iuml", "loc": "string:1"},
     {"s": "Alice -> Bob : from a.iuml", "loc": "a.iuml:0 < string:1"},
-    {"s": "!include_once a.iuml", "loc": "string:2"},
-    {"s": "Alice -> Bob : from a.iuml", "loc": "a.iuml:0 < string:2"},
-    {"s": "@enduml", "loc": "string:3"}]}]},
+    {"s": "!include_once a.iuml", "loc": "string:2", "err": "This file has already been included"}]}]},
 {"name": "include-many",
  "files": {"a.iuml": "A : a\n"},
  "main": "@startuml\n!include_many a.iuml\n!include_many a.iuml\n!include a.iuml\n@enduml\n",
@@ -16752,7 +16747,6 @@
     {"s": "@startuml", "loc": "string:0"},
     {"s": "A : a", "loc": "a.iuml:0 < string:1"},
     {"s": "A : a", "loc": "a.iuml:0 < string:2"},
-    {"s": "A : a", "loc": "a.iuml:0 < string:3"},
     {"s": "@enduml", "loc": "string:4"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
@@ -16761,7 +16755,6 @@
     {"s": "!include_many a.iuml", "loc": "string:2"},
     {"s": "A : a", "loc": "a.iuml:0 < string:2"},
     {"s": "!include a.iuml", "loc": "string:3"},
-    {"s": "A : a", "loc": "a.iuml:0 < string:3"},
     {"s": "@enduml", "loc": "string:4"}]}]},
 {"name": "include-missing",
  "main": "@startuml\nAlice -> Bob : hi\n!include missing.iuml\n@enduml\n",
@@ -16845,13 +16838,13 @@
   {"error": false,
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
-    {"s": "first block", "loc": "desc2:1"},
+    {"s": "second block", "loc": "desc2:4"},
     {"s": "first block", "loc": "desc2:1"},
     {"s": "@enduml", "loc": "string:3"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "!include multi.puml!1", "loc": "string:1"},
-    {"s": "first block", "loc": "desc2:1"},
+    {"s": "second block", "loc": "desc2:4"},
     {"s": "!include multi.puml!0", "loc": "string:2"},
     {"s": "first block", "loc": "desc2:1"},
     {"s": "@enduml", "loc": "string:3"}]}]},
@@ -16862,12 +16855,12 @@
   {"error": false,
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
-    {"s": "first block", "loc": "desc2:1"},
+    {"s": "second block", "loc": "desc2:4"},
     {"s": "@enduml", "loc": "string:2"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
     {"s": "!include multi.puml!two", "loc": "string:1"},
-    {"s": "first block", "loc": "desc2:1"},
+    {"s": "second block", "loc": "desc2:4"},
     {"s": "@enduml", "loc": "string:2"}]}]},
 {"name": "include-with-variable",
  "files": {"inc/x.iuml": "X : included\n"},
@@ -17310,10 +17303,10 @@
   {"error": true,
    "lines": [
     {"s": "@startuml", "loc": "string:0"},
-    {"s": "!theme mine from nowhere", "loc": "string:1", "err": "Fatal parsing error"}],
+    {"s": "!theme mine from nowhere", "loc": "string:1", "err": "Cannot load theme mine in nowhere"}],
    "debug": [
     {"s": "@startuml", "loc": "string:0"},
-    {"s": "!theme mine from nowhere", "loc": "string:1", "err": "Fatal parsing error"}]}]},
+    {"s": "!theme mine from nowhere", "loc": "string:1", "err": "Cannot load theme mine in nowhere"}]}]},
 {"name": "include-theme-from-stdlib",
  "main": "@startuml\n!theme mine from <nolib>\n@enduml\n",
  "blocks": [
@@ -17914,7 +17907,7 @@
     {"s": "@startuml", "loc": "string:0"},
     {"s": "!option language", "loc": "string:1"},
     {"s": "@enduml", "loc": "string:2"}],
-   "warnings": ["No default value for language"]}]},
+   "warnings": ["'!option language' needs a value: write '!option language <value>'"]}]},
 {"name": "option-unknown",
  "main": "@startuml\n!option nosuchoption 1\n!option nosuchoption 2\n@enduml\n",
  "blocks": [
@@ -17927,7 +17920,7 @@
     {"s": "!option nosuchoption 1", "loc": "string:1"},
     {"s": "!option nosuchoption 2", "loc": "string:2"},
     {"s": "@enduml", "loc": "string:3"}],
-   "warnings": ["No such !option nosuchoption"]}]},
+   "warnings": ["Unknown '!option nosuchoption': this line is ignored\nKnown options are: language, use_descriptive_names, handwritten, debug, svg_desc, svg_title"]}]},
 {"name": "option-value-expression",
  "main": "@startuml\n!$l = \"fr\"\n!option language $l\n!option svg_title \"Title \" + \"here\"\n!option Use_Descriptive_Names 1\n@enduml\n",
  "blocks": [

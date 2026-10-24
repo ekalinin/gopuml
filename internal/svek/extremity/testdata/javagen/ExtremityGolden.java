@@ -10,7 +10,7 @@
 // of the extremities to reach their package-private classes. From the
 // repository root:
 //
-//   mkdir -p ~/scratch-extremity && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-extremity && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-extremity internal/svek/extremity/testdata/javagen/ExtremityGolden.java
 //   docker run --rm -v "$PWD:/repo" -v "$HOME/scratch-extremity:/classes" plantuml-go-reference \
 //     java -Djava.awt.headless=true -XX:+UnlockDiagnosticVMOptions -XX:-InlineMathNatives \
@@ -316,6 +316,10 @@ public class ExtremityGolden {
 		@Override
 		public UParam getParam() {
 			return new UParam() {
+				public net.sourceforge.plantuml.klimt.UClip getClip() {
+					return null;
+				}
+
 				public HColor getColor() {
 					return color;
 				}

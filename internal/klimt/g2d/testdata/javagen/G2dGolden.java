@@ -11,7 +11,7 @@
 // Build it on the host and run it in the reference image, whose fonts
 // (DejaVu) are those embedded by the Go driver. From the repository root:
 //
-//   mkdir -p ~/scratch-g2d/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-g2d/classes && javac --release 21 -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-g2d/classes internal/klimt/g2d/testdata/javagen/G2dGolden.java
 //   docker run --rm --platform linux/amd64 --user "$(id -u):$(id -g)" -v "$PWD:/work" \
 //     -v ~/scratch-g2d/classes:/gen plantuml-go-reference \

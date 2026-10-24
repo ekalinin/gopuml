@@ -2,7 +2,7 @@
 // Provenance: original
 //
 // Harness parses activity diagram sources with the reference PlantUML jar
-// (v1.2026.8, MIT variant) and dumps the instruction tree that upstream's
+// (v1.2026.9, MIT variant) and dumps the instruction tree that upstream's
 // ActivityDiagramFactory3 builds, or its error, in the text form that
 // dump_test.go writes for the Go port. The Go tests compare both dumps.
 //

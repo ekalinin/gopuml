@@ -3989,14 +3989,14 @@ participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] s
 event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=4
 === common/scale bad number
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: multiple points (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: multiple points (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/scale dot
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "."
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "." (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "."
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "." (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/skinparam
@@ -4019,9 +4019,8 @@ hideunlinked false
 autoactivate false
 hidden []
 autonumber running=false current=null increment=0 last=
-warning Please use '!option handwritten true' to enable handwritten 
-warning Please use CSS style instead of skinparam ParticipantPadding
-warning Please use CSS style instead of skinparam padding
+warning 'skinparam handwritten' is deprecated: write '!option handwritten true' instead
+warning 'skinparam ParticipantPadding' is ignored: use a style instead\n<style>\nparticipant {\n  Padding 20\n}\n</style>
 skinparam actorbordercolor=DeepSkyBlue
 skinparam arrowcolor=DeepSkyBlue
 skinparam backgroundcolor=#EEEBDC
@@ -4186,8 +4185,8 @@ participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] s
 event 0 Message p1=A p2=B multicast=[] label=[] numbered=[] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 === common/pragma layout null
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "value" is null (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/pragma graphviz_dot
@@ -4204,8 +4203,8 @@ error.score 20
 error.last 1
 === common/pragma svgsize null
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because "value" is null
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because "value" is null (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because "value" is null
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because "value" is null (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/assume
@@ -4264,8 +4263,8 @@ error.score 20
 error.last 1
 === common/minwidth too big
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999"
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999"
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/namespace separator
@@ -4499,8 +4498,8 @@ error.score 110
 error.last 10
 === common/sprite gray bad level
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.IllegalArgumentException: level=-1 grayLevel=16
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.IllegalArgumentException: level=-1 grayLevel=16 (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.IllegalArgumentException: level=-1 grayLevel=16
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.IllegalArgumentException: level=-1 grayLevel=16 (Assumed diagram type: sequence)
 error.score 40
 error.last 3
 === common/sprite empty
@@ -4605,14 +4604,14 @@ error.score 20
 error.last 1
 === common/sprite stdlib
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory)
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory) (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory)
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory) (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/sprite stdlib svg
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory)
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory) (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory)
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/nolib/info.spm (No such file or directory) (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === common/sprite color bad
@@ -7600,7 +7599,7 @@ hideunlinked false
 autoactivate false
 hidden []
 autonumber running=false current=null increment=0 last=
-warning This position is ignored: TOP
+warning 'note top' is not supported after 'end': use 'note left' or 'note right'
 defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
@@ -8680,20 +8679,20 @@ error.score 30
 error.last 2
 === misc/autonumber inc before start
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "net.sourceforge.plantuml.sequencediagram.DottedNumber.incrementIntermediate()" because "this.current" is null
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NullPointerException: Cannot invoke "net.sourceforge.plantuml.sequencediagram.DottedNumber.incrementIntermediate()" because "this.current" is null (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "net.sourceforge.plantuml.sequencediagram.DottedNumber.incrementIntermediate()" because "this.current" is null
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NullPointerException: Cannot invoke "net.sourceforge.plantuml.sequencediagram.DottedNumber.incrementIntermediate()" because "this.current" is null (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === misc/autonumber inc out of range
 result error
-error EXECUTION_ERROR 2 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2 (Assumed diagram type: sequence)
+error EXECUTION_ERROR 2 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2 (Assumed diagram type: sequence)
 error.score 30
 error.last 2
 === misc/autonumber too big
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999"
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999"
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === misc/autonumber separators
@@ -8723,8 +8722,8 @@ event 0 Message p1=A p2=B multicast=[] label=[] numbered=[N:<b>1-2_3</b>|] numbe
 event 1 Message p1=A p2=B multicast=[] label=[] numbered=[N:<b>1-2_4</b>|] number=<b>1-2_4</b> arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=3
 === misc/autonumber step too big
 result error
-error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999"
-error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.8) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999"
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.lang.NumberFormatException: For input string: "99999999999" (Assumed diagram type: sequence)
 error.score 20
 error.last 1
 === misc/skin rose
@@ -9738,7 +9737,7 @@ hideunlinked false
 autoactivate false
 hidden []
 autonumber running=false current=null increment=0 last=
-warning This position is ignored: TOP
+warning 'note top' is not supported on a 'ref': this note is ignored. Use 'note left' or 'note right'
 defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Reference participants=[A;] strings=[r] url=null general=null element=null notes=[{Note p=null p2=null pos=LEFT style=NORMAL display=[on ref] colors={} null shadowing=null url=null stereo=null parallel=false}]
@@ -9824,6 +9823,7 @@ hideunlinked false
 autoactivate false
 hidden []
 autonumber running=false current=null increment=0 last=
+warning The leading '/' note-merge syntax is deprecated; use '&' to place notes on the same row instead.
 defaultskin plantuml.skin
 participant A uid=part1 type=PARTICIPANT order=0 display=[A] underlined=[<u>A] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant B uid=part2 type=PARTICIPANT order=0 display=[B] underlined=[<u>B] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1

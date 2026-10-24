@@ -4,10 +4,10 @@
 // KlimtGolden dumps the golden values of the internal/klimt tests from the
 // upstream jar. From the repository root:
 //
-//   mkdir -p ~/scratch-klimt && javac -cp .cache/upstream/plantuml-mit-1.2026.8.jar \
+//   mkdir -p ~/scratch-klimt && javac -cp .cache/upstream/plantuml-mit-1.2026.9.jar \
 //     -d ~/scratch-klimt internal/klimt/testdata/javagen/KlimtGolden.java
 //   java -Djava.awt.headless=true -XX:+UnlockDiagnosticVMOptions -XX:-InlineMathNatives \
-//     -cp .cache/upstream/plantuml-mit-1.2026.8.jar:$HOME/scratch-klimt \
+//     -cp .cache/upstream/plantuml-mit-1.2026.9.jar:$HOME/scratch-klimt \
 //     KlimtGolden internal/klimt/testdata/golden
 //
 // -XX:-InlineMathNatives makes Math.sin, Math.cos and the other elementary
@@ -85,16 +85,14 @@ import net.sourceforge.plantuml.skin.VisibilityModifier;
 import net.sourceforge.plantuml.stereo.Stereotype;
 import net.sourceforge.plantuml.style.ClockwiseTopRightBottomLeft;
 import net.sourceforge.plantuml.style.FromSkinparamToStyle;
+import net.sourceforge.plantuml.style.LevelConstraint;
 import net.sourceforge.plantuml.style.PName;
 import net.sourceforge.plantuml.style.SName;
 import net.sourceforge.plantuml.style.Style;
+import net.sourceforge.plantuml.style.StyleAtom;
 import net.sourceforge.plantuml.style.StyleBuilder;
-import net.sourceforge.plantuml.style.StyleKey;
 import net.sourceforge.plantuml.style.StyleLoader;
-import net.sourceforge.plantuml.style.StyleSignatureBasic;
-import net.sourceforge.plantuml.style.Value;
-import net.sourceforge.plantuml.style.ValueNull;
-import net.sourceforge.plantuml.style.parser.StyleParser;
+import net.sourceforge.plantuml.style.StyleQuery;
 import net.sourceforge.plantuml.text.Guillemet;
 import net.sourceforge.plantuml.url.Url;
 import net.sourceforge.plantuml.url.UrlBuilder;
@@ -147,30 +145,45 @@ public class KlimtGolden {
 	// ------------------------------------------------------------------
 	// Styles
 
-	static StyleSignatureBasic signature(String spec) {
-		StyleSignatureBasic sig = StyleSignatureBasic.empty();
+	static StyleQuery signature(String spec) {
+		StyleQuery sig = StyleQuery.empty();
 		for (String tok : spec.trim().split(" +")) {
 			if (tok.isEmpty())
 				continue;
 			if (tok.startsWith("@"))
-				sig = sig.addStereotype(tok.substring(1));
+				sig = sig.withStereotype(tok.substring(1));
 			else if (tok.startsWith("#"))
 				sig = sig.addLevel(Integer.parseInt(tok.substring(1)));
 			else if (tok.equals("*"))
 				sig = sig.addStar();
 			else
-				sig = sig.addSName(SName.valueOf(tok));
+				sig = sig.add(SName.valueOf(tok));
 		}
 		return sig;
 	}
 
-	static String canonical(StyleSignatureBasic sig) {
-		final StyleKey key = sig.getKey();
+	// The atoms and the level constraint of a query are package-private.
+	static Object invoke(Object target, String method) {
+		try {
+			final Method m = target.getClass().getDeclaredMethod(method);
+			m.setAccessible(true);
+			return m.invoke(target);
+		} catch (ReflectiveOperationException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+
+	static String canonical(StyleQuery sig) {
 		final List<String> names = new ArrayList<>();
-		for (SName s : key.snames)
-			names.add(s.name());
-		final TreeSet<String> st = new TreeSet<>(sig.getStereotypes());
-		return String.join(".", names) + st + (key.level == -1 ? "" : "#" + key.level) + (key.isStared ? "*" : "");
+		final TreeSet<String> st = new TreeSet<>();
+		for (StyleAtom atom : (Iterable<StyleAtom>) invoke(sig, "getAtoms"))
+			if (atom.isName())
+				names.add(atom.getSName().name());
+			else
+				st.add(atom.getStereotype());
+		final LevelConstraint level = (LevelConstraint) invoke(sig, "getLevelConstraint");
+		return String.join(".", names) + st + (level.hasLevel() ? "#" + level.getLevel() : "")
+				+ (level.isStar() ? "*" : "");
 	}
 
 	static String styleValues(Style style) {
@@ -230,7 +243,7 @@ public class KlimtGolden {
 		final List<String> out = new ArrayList<>();
 		final List<String> out2 = new ArrayList<>();
 		for (String spec : read("signatures.txt")) {
-			final StyleSignatureBasic sig = signature(spec);
+			final StyleQuery sig = signature(spec);
 			final Style style = builder.getMergedStyle(sig);
 			out.add(spec + "\t" + canonical(sig) + "\t" + styleValues(style));
 			out2.add(spec + "\t" + derived(style, set));
@@ -245,10 +258,10 @@ public class KlimtGolden {
 
 		final StyleBuilder user = StyleLoader.loadSkin("plantuml.skin");
 		final BlocLines lines = BlocLines.load(Files.newInputStream(dir.resolve("user_style.css")), null);
-		final Collection<Style> parsed = new StyleParser(user).parse(lines.subExtract(1, 1));
+		final Collection<Style> parsed = StyleLoader.parseStyleText(lines.subExtract(1, 1), user);
 		final List<String> out = new ArrayList<>();
 		for (Style s : parsed)
-			out.add(canonical(s.getSignature()) + "\t" + styleValues(s));
+			out.add(canonical(s.getQuery()) + "\t" + styleValues(s));
 		write("style_user_parsed.golden", out);
 		dumpStyles("style_user", user.muteStyle(parsed));
 
@@ -258,7 +271,11 @@ public class KlimtGolden {
 		final List<String> single = new ArrayList<>();
 		for (String s : new String[] { "BackGroundColor:red;", "FontSize: 12; LineColor: blue;",
 				"BackgroundColor:#FF0000;LineThickness:2;", "FontColor : #ABC ; FontStyle : italic ;" }) {
-			final Style st = new StyleParser().parseSingleLine(s);
+			// As Stereogroup.getInnerColors parses a bare property list.
+			final Style st = StyleLoader
+					.parseStyleText(BlocLines.singleString("inlineStereogroupColors {" + s + "}"),
+							new net.sourceforge.plantuml.style.AutomaticCounterBasic())
+					.iterator().next();
 			single.add(esc(s) + "\t" + styleValues(st));
 		}
 		write("style_singleline.golden", single);
@@ -283,7 +300,7 @@ public class KlimtGolden {
 				for (Style s : conv.getStyles()) {
 					if (sb.length() > 0)
 						sb.append(" | ");
-					sb.append(canonical(s.getSignature()) + " " + styleValues(s));
+					sb.append(canonical(s.getQuery()) + " " + styleValues(s));
 				}
 				out.add(esc(line) + "\t" + key + "\t" + sb);
 			}
@@ -394,7 +411,7 @@ public class KlimtGolden {
 					+ simple.getLabel(Guillemet.DOUBLE_COMPARATOR) + "\t" + simple.getLabels(Guillemet.NONE) + "\t"
 					+ simple.getMultipleLabels() + "\t" + simple.getStyleNames() + "\t" + simple.getPackageStyle()
 					+ "\t" + simple.isWithOOSymbol() + "\t" + simple.isSpotted() + "\t" + complex + "\t"
-					+ canonical(StyleSignatureBasic.of(SName.root, SName.element).addStereotype(simple)));
+					+ canonical(StyleQuery.of3(SName.root, SName.element).withStereotype(simple)));
 		}
 		write("stereotypes.golden", out);
 	}
