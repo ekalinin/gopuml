@@ -56,12 +56,17 @@ The system SHALL expose the text that follows the start tag on the start line as
 
 ### Requirement: Diagram family detection
 
-The system SHALL select the diagram family from the start tag. In this change the only supported family SHALL be `uml`. Every other start tag that PlantUML v1.2026.8 recognizes (for example `@startmindmap`, `@startgantt`, `@startjson`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
+The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml` and `packetdiag`. Every other start tag that PlantUML v1.2026.8 recognizes (for example `@startmindmap`, `@startgantt`, `@startjson`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
 
 #### Scenario: Supported family
 
 - **WHEN** a block starts with `@startuml`
 - **THEN** the system detects the diagram type within the `uml` family
+
+#### Scenario: Packet family
+
+- **WHEN** a block starts with `@startpacketdiag` and contains `0-7: Source Port`
+- **THEN** the system does not report that packet diagrams are not supported yet, and the diagram type is packet
 
 #### Scenario: Recognized but unsupported family
 
