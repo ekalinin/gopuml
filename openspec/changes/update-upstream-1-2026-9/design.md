@@ -72,7 +72,13 @@ The style files are ported to the 1.2026.9 engine. The Go names and methods that
 
 ### D5. Refactors not ported
 
-`StyleQueries` call sites, the first-token command index (`mandatoryFirstTokens*`, `FirstTokens`, `StringLocated.getFirstToken`), `MyCollections`, precompiled split patterns, `formatDecimal`, the per-diagram allocation changes and the shared standard-function registry of the preprocessor. Any output drift they cause shows in the regenerated goldens or the conformance run. A drift found there is ported, with its file, or explained in the task.
+`StyleQueries` call sites, `MyCollections`, precompiled split patterns, the per-diagram allocation changes and the shared standard-function registry of the preprocessor. Any output drift they cause shows in the regenerated goldens or the conformance run. A drift found there is ported, with its file, or explained in the task.
+
+The goldens of task 1.4 showed three refactors that change output, which are ported (tasks 3.3 to 3.5):
+
+- `RegexResult` keeps the groups in the order the regex fills them, so `getLazzy` returns the first matching group in that order, where it followed Java's `HashMap` order.
+- `formatDecimal` writes `0` for a negative number that rounds to zero, where `String.format` wrote `-0`.
+- The first-token command index (decided with the user): `PSystemCommandFactory` tries a command only on the lines whose first token (`StringLocated.getFirstToken`) is one the command declares (`mandatoryFirstTokensFast`), or on every line when it declares none. A command whose pattern matches more than its tokens no longer matches the other lines: `killer whale` is no longer a `kill`, and `note right: we detach` is no longer a `detach`. Each ported command takes upstream's declared tokens. `FirstTokens.from`, which reads them from a pattern for upstream's assertions only, is not ported.
 
 ### D6. Behavior ports
 

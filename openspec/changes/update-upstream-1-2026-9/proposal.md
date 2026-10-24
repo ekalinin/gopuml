@@ -18,7 +18,7 @@ gopuml targets upstream PlantUML v1.2026.8 (MIT variant). [v1.2026.9](https://gi
   - source compression: only lowercase `@startuml` and `@enduml` lines are removed from the encoded source
   - line trimming: `StringUtils.trin` also trims the non-breaking space
 - Port the replacements of the upstream files that v1.2026.9 removed and that gopuml translates: the style engine (`StyleQuery`, `StyleIndex`, the new style parser, `Specificity`), `Defines` without `Define`, and `CommandSkinParamMultilines` without `CommandMultilinesComment`. The Go names used across the diagram packages stay.
-- Every provenance header names `plantuml-mit 1.2026.9`. Upstream changes that do not change output (`StyleQueries` at every call site, the first-token command index, `MyCollections`, precompiled patterns, `formatDecimal`) are not ported.
+- Every provenance header names `plantuml-mit 1.2026.9`. Upstream changes that do not change output (`StyleQueries` at every call site, `MyCollections`, precompiled patterns) are not ported. Three refactors that turned out to change output are ported: the order of the groups of a regex result, `formatDecimal` (no `-0`), and the first-token command index, which tries a command only on lines that start with a token it declares.
 - Regenerate every reference and golden file recorded from the upstream jar, and update the Java harnesses that use removed upstream classes.
 - Update the version in `README.md`, `NOTICE`, `doc.go`, the specs and the known-difference reasons that cite upstream behavior.
 
