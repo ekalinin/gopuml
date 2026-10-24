@@ -200,7 +200,8 @@ func TestJavaHelpers(t *testing.T) {
 	if shortenColor("#AABBCC") != "#ABC" || shortenColor("#AABBCD") != "#AABBCD" || shortenColor("none") != "none" {
 		t.Error("shortenColor")
 	}
-	if trimZeros("1.500") != "1.5" || trimZeros("2.000") != "2" || trimZeros("-0.000") != "-0" || trimZeros("30") != "30" {
+	if trimZeros("1.500") != "1.5" || trimZeros("2.000") != "2" || trimZeros("-0.000") != "0" || trimZeros("-0") != "0" ||
+		trimZeros("-0.50") != "-0.5" || trimZeros("30") != "30" {
 		t.Error("trimZeros")
 	}
 }
