@@ -249,8 +249,9 @@ var referenceMultilinesStart = regex.NewConcat(regex.Start(),
 // commandReferenceMultilinesOverSeveral is "ref over A, B" ... "end ref".
 func commandReferenceMultilinesOverSeveral() cmd {
 	return &uml.Multilines[*SequenceDiagram]{
-		Start: uml.Compile(referenceMultilinesStart.Pattern()),
-		End:   uml.Compile("^end[%s]?(ref)?$"),
+		Pattern: referenceMultilinesStart.Pattern(),
+		Start:   uml.Compile(referenceMultilinesStart.Pattern()),
+		End:     uml.Compile("^end[%s]?(ref)?$"),
 		Exec: func(d *SequenceDiagram, lines command.BlocLines, _ command.ParserPass) command.Result {
 			firstLine := lines.At(0).Trimmed().S
 			arg := referenceMultilinesStart.Matcher(firstLine)

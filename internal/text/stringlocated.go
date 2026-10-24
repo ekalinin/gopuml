@@ -9,6 +9,7 @@ package text
 import (
 	"regexp"
 	"strings"
+	"unicode/utf8"
 )
 
 // LineLocation is the position of a line in its source.
@@ -94,6 +95,26 @@ func (sl StringLocated) RemoveInnerComment() StringLocated {
 		return StringLocated{S: removeSpecialInnerComment(sl.S), Location: sl.Location, PreprocessorError: sl.PreprocessorError}
 	}
 	return sl
+}
+
+// FirstToken is the token the command index files the line under,
+// upstream's getFirstToken: once the leading blanks are skipped (those of
+// StringUtils.isTrimmable), the run of ASCII letters the line starts with,
+// lower-cased, or its first character alone, or "" for a blank line.
+func (sl StringLocated) FirstToken() string {
+	s := strings.TrimLeftFunc(sl.S, isTrimmable)
+	if s == "" {
+		return ""
+	}
+	end := 0
+	for end < len(s) && (s[end] >= 'a' && s[end] <= 'z' || s[end] >= 'A' && s[end] <= 'Z') {
+		end++
+	}
+	if end > 0 {
+		return strings.ToLower(s[:end])
+	}
+	_, size := utf8.DecodeRuneInString(s)
+	return s[:size]
 }
 
 // isJavaTrimSpace matches the characters removed by Java's String.trim.

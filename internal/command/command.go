@@ -111,6 +111,10 @@ type SingleLine[D Diagram] struct {
 	Forbidden func(line string) bool
 	// Passes are the passes the command runs in; One by default.
 	Passes []ParserPass
+	// FirstTokens, when set, are the first tokens the command declares in
+	// place of those read from the pattern, as upstream writes them by hand
+	// for a few commands.
+	FirstTokens []string
 }
 
 func (c *SingleLine[D]) trim(l text.StringLocated) text.StringLocated {

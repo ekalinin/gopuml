@@ -146,6 +146,9 @@ func EventuallyMoveBracket(lines command.BlocLines) command.BlocLines {
 // last line End. Both patterns are upstream patterns compiled with
 // regex.Compile, anchored with ^ and $.
 type Multilines[D command.Diagram] struct {
+	// Pattern is the starting pattern in upstream's syntax, from which the
+	// first tokens are read; Start is its compiled form.
+	Pattern    string
 	Start, End *regexp.Regexp
 	Exec       func(d D, lines command.BlocLines, pass command.ParserPass) command.Result
 }
@@ -240,6 +243,9 @@ func (c *Multilines2[D]) StartArg(lines command.BlocLines) *regex.Result {
 // the following lines up to the balancing "}", upstream's
 // CommandMultilinesBracket. Each inner line must satisfy Consistent.
 type MultilinesBracket[D command.Diagram] struct {
+	// Pattern is the starting pattern in upstream's syntax, from which the
+	// first tokens are read; Start is its compiled form.
+	Pattern    string
 	Start      *regexp.Regexp
 	Consistent func(line string, level int) bool
 	Exec       func(d D, lines command.BlocLines, pass command.ParserPass) command.Result
@@ -333,3 +339,21 @@ func itoa(i int) string {
 	}
 	return itoa(i/10) + string(rune('0'+i%10))
 }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *Multilines[D]) MandatoryFirstTokens() []string { return regex.FirstTokens(c.Pattern) }
+
+// StartPattern implements command.StartPatternCommand.
+func (c *Multilines[D]) StartPattern() string { return c.Pattern }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *Multilines2[D]) MandatoryFirstTokens() []string { return regex.FirstTokens(c.Start.Pattern()) }
+
+// StartPattern implements command.StartPatternCommand.
+func (c *Multilines2[D]) StartPattern() string { return c.Start.Pattern() }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *MultilinesBracket[D]) MandatoryFirstTokens() []string { return regex.FirstTokens(c.Pattern) }
+
+// StartPattern implements command.StartPatternCommand.
+func (c *MultilinesBracket[D]) StartPattern() string { return c.Pattern }

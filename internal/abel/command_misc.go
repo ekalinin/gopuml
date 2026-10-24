@@ -58,7 +58,7 @@ func CommandRankDir[D uml.Diagram]() command.Command[D] {
 // UBrexCommandFootboxIgnored is CommandFootboxIgnored written with UBrex:
 // "hide footbox" or "show footbox", accepted and ignored.
 func UBrexCommandFootboxIgnored[D uml.Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"hide", "hidefootbox", "show", "showfootbox"}, klimt.UBrexConcat(
 		klimt.UBrexLeaf("【 hide┇show 】"),
 		klimt.UBrexSpaceZeroOrMore(),
 		klimt.UBrexLeaf("footbox"),
@@ -69,7 +69,7 @@ func UBrexCommandFootboxIgnored[D uml.Diagram]() command.Command[D] {
 // UBrexCommandRankDir is CommandRankDir written with UBrex: "left to right
 // direction" and "top to bottom direction".
 func UBrexCommandRankDir[D uml.Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"left", "top"}, klimt.UBrexConcat(
 		klimt.UBrexNamed("DIRECTION", klimt.UBrexLeaf("【 left∙to∙right ┇ top∙to∙bottom 】")),
 		klimt.UBrexSpaceOneOrMore(),
 		klimt.UBrexLeaf("direction"),
@@ -120,7 +120,7 @@ func CommandHideShow2[D Diagram]() command.Command[D] {
 // UBrexCommandHideShow2 is CommandHideShow2 written with UBrex: "hide|show
 // [-class] what", what being a "<<stereotype>>" or a word.
 func UBrexCommandHideShow2[D Diagram]() command.Command[D] {
-	return uml.UBrex(klimt.UBrexConcat(
+	return uml.UBrexTokens([]string{"hide", "show"}, klimt.UBrexConcat(
 		klimt.UBrexNamed("COMMAND", klimt.UBrexLeaf("【hide-class┇hide┇show-class┇show】")),
 		klimt.UBrexSpaceOneOrMore(),
 		klimt.UBrexNamed("WHAT", klimt.UBrexLeaf("【 << 〇*「〤<>」>> ┇ 〇+〴S 】 ")),

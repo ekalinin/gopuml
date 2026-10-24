@@ -84,3 +84,15 @@ func TestTrinAndJavaTrim(t *testing.T) {
 		t.Errorf("Trimmed %q", got)
 	}
 }
+
+// FirstToken is upstream's StringLocated.getFirstToken.
+func TestFirstToken(t *testing.T) {
+	for s, want := range map[string]string{
+		"Title foo": "title", "endif": "endif", "note2": "note", "}": "}", "-> B": "-", "@0": "@",
+		"12:00": "1", "éa": "é", "": "", " \t ": "", "  Alice -> Bob": "alice", " Note": "note",
+	} {
+		if got := NewStringLocated(s, nil).FirstToken(); got != want {
+			t.Errorf("FirstToken(%q) = %q, want %q", s, got, want)
+		}
+	}
+}

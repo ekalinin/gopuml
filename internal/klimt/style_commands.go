@@ -204,3 +204,11 @@ func readStyleFile(skinParam ISkinParam, p string, location *text.LineLocation) 
 	}
 	return loadBlocLines(string(data), location), true, nil
 }
+
+// MandatoryFirstTokens implements command.FirstTokensCommand.
+func (c *commandStyleMultilinesCSS[D]) MandatoryFirstTokens() []string {
+	return regex.FirstTokens(c.starting.Pattern())
+}
+
+// StartPattern implements command.StartPatternCommand.
+func (c *commandStyleMultilinesCSS[D]) StartPattern() string { return c.starting.Pattern() }

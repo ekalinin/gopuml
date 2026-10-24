@@ -102,8 +102,9 @@ func bodyDisplay(lines command.BlocLines) *klimt.Display {
 // CommandMultilinesTitle is "title" ... "end title".
 func CommandMultilinesTitle[D Diagram]() command.Command[D] {
 	return &Multilines[D]{
-		Start: Compile("^title$"),
-		End:   Compile("^end[%s]?title$"),
+		Pattern: "^title$",
+		Start:   Compile("^title$"),
+		End:     Compile("^end[%s]?title$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			location := Location(lines)
 			strings := bodyDisplay(lines)
@@ -120,8 +121,9 @@ func CommandMultilinesTitle[D Diagram]() command.Command[D] {
 // CommandMultilinesCaption is "caption" ... "end caption".
 func CommandMultilinesCaption[D Diagram]() command.Command[D] {
 	return &Multilines[D]{
-		Start: Compile("^caption$"),
-		End:   Compile("^end[%s]?caption$"),
+		Pattern: "^caption$",
+		Start:   Compile("^caption$"),
+		End:     Compile("^end[%s]?caption$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			location := Location(lines)
 			strings := bodyDisplay(lines)
@@ -227,10 +229,12 @@ func CommandFooter[D Diagram]() command.Command[D] {
 func multilinesHeaderFooter[D Diagram](keyword, empty string, param klimt.FontParam,
 	defaultValue geom.HorizontalAlignment, update func(b *Base, location *text.LineLocation,
 		display *klimt.Display, ha geom.HorizontalAlignment)) command.Command[D] {
-	start := Compile("^(?:(left|right|center)?[%s]*)" + keyword + "$")
+	pattern := "^(?:(left|right|center)?[%s]*)" + keyword + "$"
+	start := Compile(pattern)
 	return &Multilines[D]{
-		Start: start,
-		End:   Compile("^end[%s]?" + keyword + "$"),
+		Pattern: pattern,
+		Start:   start,
+		End:     Compile("^end[%s]?" + keyword + "$"),
 		Exec: func(d D, lines command.BlocLines, _ command.ParserPass) command.Result {
 			b := d.Titled()
 			location := Location(lines)

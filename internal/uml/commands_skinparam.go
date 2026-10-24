@@ -95,9 +95,11 @@ func CommandSkinParamMultilines[D Diagram]() command.Command[D] {
 }
 
 func commandSkinParamMultilines[D Diagram]() *MultilinesBracket[D] {
-	start := Compile(`^skinparam[%s]*(?:[%s]+([\w.]*(?:\<\<.*\>\>)?[\w.]*))?[%s]*\{$`)
+	pattern := `^skinparam[%s]*(?:[%s]+([\w.]*(?:\<\<.*\>\>)?[\w.]*))?[%s]*\{$`
+	start := Compile(pattern)
 	return &MultilinesBracket[D]{
-		Start: start,
+		Pattern: pattern,
+		Start:   start,
 		Consistent: func(line string, _ int) bool {
 			line = text.Trin(line)
 			if commentSingleLine.MatchString(line) {

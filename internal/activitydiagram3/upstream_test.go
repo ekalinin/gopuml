@@ -102,11 +102,6 @@ var knownDifferences = map[string]string{
 	// Java's \s accepts) makes the command reject the line. The command
 	// framework (internal/command/regex) does not emulate this prefilter.
 	"misc/vertical tab swimlane keyword (escaped)": "RegexConcat fox signature prefilter",
-	// Java's CASE_INSENSITIVE folds ASCII letters only, RE2's (?i) uses
-	// Unicode simple folding: the Kelvin sign (U+212A) matches "k" and the
-	// long s (U+017F) matches "s" in Go only.
-	"misc/kelvin kill (escaped)": "RE2 Unicode case folding",
-	"misc/long s (escaped)":      "RE2 Unicode case folding",
 }
 
 func compareDumps(t *testing.T, cases []testCase, golden map[string][]string) {
