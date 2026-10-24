@@ -27,7 +27,12 @@ func commandRepeat3() cmd {
 		stereogroup := klimt.StereogroupBuildFrom(arg)
 		boxStyle := boxStyleOf(stereogroup)
 		if c, ok := arg.Get("COLOR", 0); ok {
-			d.AddWarning(deprecatedColorWarning(c))
+			repeat := "repeat"
+			if rawLabel, ok := arg.Get("LABEL", 0); ok {
+				repeat = "repeat :" + rawLabel + ";"
+			}
+			d.AddWarning(klimt.NewWarning("This syntax is deprecated and the color is ignored: write '" + repeat +
+				" <<" + c + ">>' instead of '" + c + ":" + repeat + "'"))
 		}
 		colors, err := innerColors(d, stereogroup)
 		if err != nil {
