@@ -158,6 +158,24 @@ func TestWasmRenderMatchesNative(t *testing.T) {
 	}
 }
 
+func TestWasmStdlibInclude(t *testing.T) {
+	// Spec scenario "Standard library include": the include resolves from
+	// the embedded standard library, without host files, in the SANDBOX
+	// profile.
+	src := "@startuml\n!include <tupadr3/font-awesome/server>\nAlice -> Bob : <$server> hi\n@enduml\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(native.Data), "<image ") {
+		t.Fatalf("native render draws no sprite: %s", native.Data)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
+}
+
 func TestWasmHostSuppliedInclude(t *testing.T) {
 	// Spec scenario "Include supplied by the host": the include resolves from
 	// the files of the options, in the SANDBOX profile.

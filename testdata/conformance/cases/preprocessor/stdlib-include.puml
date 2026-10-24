@@ -1,0 +1,14 @@
+---
+id: preprocessor/stdlib-include
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "preprocessor: Library include"
+---
+@startuml
+!include <C4/C4_Container>
+Person(user, "User")
+Container(api, "API", "Go")
+Rel(user, api, "Uses")
+@enduml

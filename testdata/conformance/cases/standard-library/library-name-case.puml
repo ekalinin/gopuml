@@ -1,0 +1,12 @@
+---
+id: standard-library/library-name-case
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "standard-library: Library name in another case"
+---
+@startuml
+!include <c4/C4_Container>
+Container(api, "API", "Go")
+@enduml

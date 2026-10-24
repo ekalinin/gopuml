@@ -1,0 +1,30 @@
+---
+id: sprites/color-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Color sprite"
+---
+@startuml
+' The sprite is quadrants.png, encoded with upstream's ColorPalette4096.
+sprite $quadrants [16x16/color] {
+zzoWoWoWoWoWoWoW<I<I<I<I<I<I<Izz
+oWzzoWoWoWoWoWoW<I<I<I<I<I<Izz<I
+oWoWzzoWoWoWoWoW<I<I<I<I<Izz<I<I
+oWoWoWzzoWoWoWoW<I<I<I<Izz<I<I<I
+oWoWoWoWzzoWoWoW<I<I<Izz<I<I<I<I
+oWoWoWoWoWzzoWoW<I<Izz<I<I<I<I<I
+oWoWoWoWoWoWzzoW<Izz<I<I<I<I<I<I
+oWoWoWoWoWoWoWzzzz<I<I<I<I<I<I<I
+;Q;Q;Q;Q;Q;Q;Qzzzzumumumumumumum
+;Q;Q;Q;Q;Q;Qzz;Qumzzumumumumumum
+;Q;Q;Q;Q;Qzz;Q;Qumumzzumumumumum
+;Q;Q;Q;Qzz;Q;Q;Qumumumzzumumumum
+;Q;Q;Qzz;Q;Q;Q;Qumumumumzzumumum
+;Q;Qzz;Q;Q;Q;Q;Qumumumumumzzumum
+;Qzz;Q;Q;Q;Q;Q;Qumumumumumumzzum
+zz;Q;Q;Q;Q;Q;Q;Qumumumumumumumzz
+}
+Alice -> Bob : <$quadrants> hi
+@enduml

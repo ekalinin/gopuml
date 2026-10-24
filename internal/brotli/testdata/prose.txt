@@ -1,0 +1,41 @@
+The History of a Small Diagram
+
+In the beginning there was only a sketch on the back of an envelope. The team
+had been working on the new payment system for several months, and nobody
+could remember which service talked to which. One morning, the architect took
+a pencil and drew three boxes, a few arrows and a question mark. "This is what
+we have," she said, "and this is what we need to understand before the next
+release." The developers looked at the drawing for a long time. Some of them
+nodded; others were not convinced at all.
+
+During the following weeks the envelope travelled from desk to desk. Every
+person who received it added something: a database here, a queue there, a
+comment in the margin about the security of the connection between the web
+server and the internal network. By the end of the month the drawing was
+almost impossible to read. The arrows crossed each other, the boxes overlapped,
+and the original question mark had disappeared under a cloud of corrections.
+
+That is when somebody suggested writing the diagram as text. "If the picture
+is generated from a description," he explained, "then everyone can change it,
+review it and keep it in the repository with the rest of the code." The idea
+was simple, but it changed the way the team worked. Instead of arguing about
+the position of a box, people discussed the relationships between components.
+Instead of redrawing everything after each change, they edited a single line
+and generated a new image in less than a second.
+
+IMPORTANT: The description must remain readable. A diagram that nobody can
+maintain is worse than no diagram at all. Keep the names short, group related
+elements in packages, and add a title that explains the purpose of the view.
+
+Today the payment system has grown into a large platform with dozens of
+services. The original envelope is framed on the wall of the meeting room,
+next to a printed copy of the current architecture. Visitors often ask which
+one is more useful. The answer is always the same: the first one started the
+conversation, and the second one keeps it going. Both of them are important,
+because a good diagram is not only a picture of a system; it is also a record
+of the decisions that shaped it, the questions that were asked, and the people
+who took the time to answer them.
+
+Questions? Comments? Please contact the Documentation Team. We are happy to
+help you with your first diagram, your hundredth diagram, or anything else
+related to the documentation of our software.

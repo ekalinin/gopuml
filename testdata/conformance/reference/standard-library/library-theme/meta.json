@@ -1,0 +1,6 @@
+{
+  "id": "standard-library/library-theme",
+  "blocks": [
+    {"index": 0, "name": null, "type": "DESCRIPTION", "description": "(1 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 112, "height": 85, "status": 0}, {"file": "block0-page0.png", "width": 112, "height": 85, "status": 0}]}
+  ]
+}

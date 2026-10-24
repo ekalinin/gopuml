@@ -632,9 +632,21 @@ func TestRunQuotedOutputDir(t *testing.T) {
 }
 
 func TestRunStdlib(t *testing.T) {
-	// No standard library is bundled (design D14): the list is empty.
-	if r := runCLI(t, "", "-stdlib"); r.code != ExitOK || r.stdout != "" {
-		t.Errorf("exit %d, stdout %q", r.code, r.stdout)
+	// Spec scenario "Library list": the bundled libraries, in name order,
+	// without the excluded ones.
+	r := runCLI(t, "", "-stdlib")
+	if r.code != ExitOK {
+		t.Fatalf("exit %d, stderr %q", r.code, r.stderr)
+	}
+	lines := strings.Split(r.stdout, "\n")
+	if want := []string{"archimate", "Version 3.2.2", "Delivered by https://github.com/plantuml-stdlib/Archimate-PlantUML", " "}; len(lines) < 4 || !slices.Equal(lines[:4], want) {
+		t.Errorf("first lines %q, want %q", lines[:min(4, len(lines))], want)
+	}
+	if i := slices.Index(lines, "c4"); i < 0 || i+1 >= len(lines) || lines[i+1] != "Version 2.14.0" {
+		t.Errorf("no c4 with version 2.14.0 in %q", r.stdout)
+	}
+	if slices.Contains(lines, "adaml") {
+		t.Errorf("the excluded adaml is listed")
 	}
 }
 

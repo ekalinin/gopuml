@@ -17485,6 +17485,16 @@ entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] 
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[ping] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/preprocessor/stdlib-include.puml
+result error
+error EXECUTION_ERROR 181 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 10630
+error.last 181
+=== conformance/preprocessor/stdlib-missing-file.puml
+preprocessor error
+=== conformance/preprocessor/stdlib-missing-library.puml
+preprocessor error
 === conformance/preprocessor/string-builtins.puml
 result ClassDiagram
 description (2 entities)
@@ -17886,6 +17896,412 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/sprites/color-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite quadrants
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=20 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=20 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$quadrants> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=20 at=20 hidden=false removed=false
+=== conformance/sprites/library-icon.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused true
+smetana false elk false
+skinparam folderbackgroundcolor<<fa server>>=White
+sprite server
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$server> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/library-image.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<img data:image/png;spm awslib14/0> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/sprites/library-svg-icon.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite mdiAccount
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$mdiAccount> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/missing-library-sprite.puml
+result error
+error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory)
+error.message You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory) (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/sprites/monochrome-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite foo
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=7 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=7 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$foo> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=7 at=7 hidden=false removed=false
+=== conformance/sprites/sax-parser.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+pragma SVG_PARSER=sax
+sprite foo
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$foo> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=3 at=3 hidden=false removed=false
+=== conformance/sprites/svg-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite foo
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$foo> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/undefined-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$nope> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/standard-library/alias-include.puml
+result error
+error EXECUTION_ERROR 3 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 440
+error.last 3
+=== conformance/standard-library/alias-version.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[14.0.0] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/standard-library/json-resource.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[10] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/standard-library/library-name-case.puml
+result error
+error EXECUTION_ERROR 71 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 10630
+error.last 71
+=== conformance/standard-library/library-theme.puml
+result error
+error EXECUTION_ERROR 71 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 11040
+error.last 71
+=== conformance/standard-library/library-version.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[2.14.0] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 === conformance/state-diagram/choice-fork-join.puml
 result error
 error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
@@ -18393,6 +18809,45 @@ entity ent0002 quark=[B] leaf=CLASS display=[B] mode=FULL stereo=null styles=[] 
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/styling/sprite-in-note.puml
+result ClassDiagram
+description (3 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite foo
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0005
+stack entroot
+quark [] name=[] parent=null data=entroot children=3
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+quark [GMN4] name=[GMN4] parent=[] data=ent0005 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=7 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=7 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0005 quark=[GMN4] leaf=NOTE display=[<$foo> done] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=8 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0005 BodierSimple raw=[]
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=7 at=7 hidden=false removed=false
+link lnk6 e1=ent0002 e2=ent0005 type=NONE-DASHED(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=null la=null length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=true opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=null at=8 hidden=false removed=false
 === conformance/styling/stereotype-selector.puml
 result ClassDiagram
 description (2 entities)

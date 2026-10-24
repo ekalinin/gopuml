@@ -1,0 +1,6 @@
+id: standard-library/excluded-not-listed
+scenarios:
+  - "standard-library: Excluded library not listed"
+package: internal/tim
+test: TestGetAllStdlibBundled
+why: Upstream lists every library of its jar, among them adaml, which this build excludes for its license (see NOTICE).

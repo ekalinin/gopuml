@@ -1,0 +1,12 @@
+---
+id: sprites/missing-library-sprite
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sprites: Sprite of a missing library"
+---
+@startuml
+sprite $x #foo#bar
+Alice -> Bob : hi
+@enduml

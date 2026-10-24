@@ -1,0 +1,430 @@
+resolver	null	null	0,255	default	#000000
+resolver	null	null	0,255	red	#FF0000
+resolver	null	null	0,255	#123456	#123456
+resolver	null	null	0,255	123456	#123456
+resolver	null	null	0,255	#FFF	#FFFFFF
+resolver	null	null	0,255	currentColor	#FFFFFF
+resolver	null	null	0,255	none	transparent
+resolver	null	null	0,255	NONE	transparent
+resolver	null	null	0,255	transparent	transparent
+resolver	null	null	0,255	foo	#FFFFFF
+resolver	null	null	0,255	#80FF8000	transparent
+resolver	null	null	0,255	black	#000000
+resolver	null	null	0,255	white	#FFFFFF
+resolver	null	null	0,255	#FF0000	#FF0000
+resolver	null	null	0,255	red-blue	ERR ClassCastException
+resolver	null	null	0,255	automatic	ERR ClassCastException
+resolver	null	null	0,255	?red:blue	ERR ClassCastException
+resolver	null	null	50,200	default	#000000
+resolver	null	null	50,200	red	#FF0000
+resolver	null	null	50,200	#123456	#123456
+resolver	null	null	50,200	123456	#123456
+resolver	null	null	50,200	#FFF	#FFFFFF
+resolver	null	null	50,200	currentColor	#FFFFFF
+resolver	null	null	50,200	none	transparent
+resolver	null	null	50,200	NONE	transparent
+resolver	null	null	50,200	transparent	transparent
+resolver	null	null	50,200	foo	#FFFFFF
+resolver	null	null	50,200	#80FF8000	transparent
+resolver	null	null	50,200	black	#000000
+resolver	null	null	50,200	white	#FFFFFF
+resolver	null	null	50,200	#FF0000	#FF0000
+resolver	null	null	50,200	red-blue	ERR ClassCastException
+resolver	null	null	50,200	automatic	ERR ClassCastException
+resolver	null	null	50,200	?red:blue	ERR ClassCastException
+resolver	null	null	999,-1	default	#000000
+resolver	null	null	999,-1	red	#FF0000
+resolver	null	null	999,-1	#123456	#123456
+resolver	null	null	999,-1	123456	#123456
+resolver	null	null	999,-1	#FFF	#FFFFFF
+resolver	null	null	999,-1	currentColor	#FFFFFF
+resolver	null	null	999,-1	none	transparent
+resolver	null	null	999,-1	NONE	transparent
+resolver	null	null	999,-1	transparent	transparent
+resolver	null	null	999,-1	foo	#FFFFFF
+resolver	null	null	999,-1	#80FF8000	transparent
+resolver	null	null	999,-1	black	#000000
+resolver	null	null	999,-1	white	#FFFFFF
+resolver	null	null	999,-1	#FF0000	#FF0000
+resolver	null	null	999,-1	red-blue	ERR ClassCastException
+resolver	null	null	999,-1	automatic	ERR ClassCastException
+resolver	null	null	999,-1	?red:blue	ERR ClassCastException
+resolver	null	#808080	0,255	default	#808080
+resolver	null	#808080	0,255	red	#4C4C4C
+resolver	null	#808080	0,255	#123456	#2D2D2D
+resolver	null	#808080	0,255	123456	#2D2D2D
+resolver	null	#808080	0,255	#FFF	#FFFFFF
+resolver	null	#808080	0,255	currentColor	#FFFFFF
+resolver	null	#808080	0,255	none	transparent
+resolver	null	#808080	0,255	NONE	transparent
+resolver	null	#808080	0,255	transparent	#000000
+resolver	null	#808080	0,255	foo	#FFFFFF
+resolver	null	#808080	0,255	#80FF8000	#CACACA
+resolver	null	#808080	0,255	black	#000000
+resolver	null	#808080	0,255	white	#FFFFFF
+resolver	null	#808080	0,255	#FF0000	#4C4C4C
+resolver	null	#808080	0,255	red-blue	ERR ClassCastException
+resolver	null	#808080	0,255	automatic	ERR ClassCastException
+resolver	null	#808080	0,255	?red:blue	ERR ClassCastException
+resolver	null	#808080	50,200	default	#808080
+resolver	null	#808080	50,200	red	#4C4C4C
+resolver	null	#808080	50,200	#123456	#2D2D2D
+resolver	null	#808080	50,200	123456	#2D2D2D
+resolver	null	#808080	50,200	#FFF	#FFFFFF
+resolver	null	#808080	50,200	currentColor	#FFFFFF
+resolver	null	#808080	50,200	none	transparent
+resolver	null	#808080	50,200	NONE	transparent
+resolver	null	#808080	50,200	transparent	#000000
+resolver	null	#808080	50,200	foo	#FFFFFF
+resolver	null	#808080	50,200	#80FF8000	#CACACA
+resolver	null	#808080	50,200	black	#000000
+resolver	null	#808080	50,200	white	#FFFFFF
+resolver	null	#808080	50,200	#FF0000	#4C4C4C
+resolver	null	#808080	50,200	red-blue	ERR ClassCastException
+resolver	null	#808080	50,200	automatic	ERR ClassCastException
+resolver	null	#808080	50,200	?red:blue	ERR ClassCastException
+resolver	null	#808080	999,-1	default	#808080
+resolver	null	#808080	999,-1	red	#4C4C4C
+resolver	null	#808080	999,-1	#123456	#2D2D2D
+resolver	null	#808080	999,-1	123456	#2D2D2D
+resolver	null	#808080	999,-1	#FFF	#FFFFFF
+resolver	null	#808080	999,-1	currentColor	#FFFFFF
+resolver	null	#808080	999,-1	none	transparent
+resolver	null	#808080	999,-1	NONE	transparent
+resolver	null	#808080	999,-1	transparent	#000000
+resolver	null	#808080	999,-1	foo	#FFFFFF
+resolver	null	#808080	999,-1	#80FF8000	#CACACA
+resolver	null	#808080	999,-1	black	#000000
+resolver	null	#808080	999,-1	white	#FFFFFF
+resolver	null	#808080	999,-1	#FF0000	#4C4C4C
+resolver	null	#808080	999,-1	red-blue	ERR ClassCastException
+resolver	null	#808080	999,-1	automatic	ERR ClassCastException
+resolver	null	#808080	999,-1	?red:blue	ERR ClassCastException
+resolver	null	#FF8000	0,255	default	#FF8000
+resolver	null	#FF8000	0,255	red	#FEA882
+resolver	null	#FF8000	0,255	#123456	#FE9863
+resolver	null	#FF8000	0,255	123456	#FE9863
+resolver	null	#FF8000	0,255	#FFF	#FEFEFE
+resolver	null	#FF8000	0,255	currentColor	#FEFEFE
+resolver	null	#FF8000	0,255	none	transparent
+resolver	null	#FF8000	0,255	NONE	transparent
+resolver	null	#FF8000	0,255	transparent	#FE7F00
+resolver	null	#FF8000	0,255	foo	#FEFEFE
+resolver	null	#FF8000	0,255	#80FF8000	#FEE5DE
+resolver	null	#FF8000	0,255	black	#FE7F00
+resolver	null	#FF8000	0,255	white	#FEFEFE
+resolver	null	#FF8000	0,255	#FF0000	#FEA882
+resolver	null	#FF8000	0,255	red-blue	ERR ClassCastException
+resolver	null	#FF8000	0,255	automatic	ERR ClassCastException
+resolver	null	#FF8000	0,255	?red:blue	ERR ClassCastException
+resolver	null	#FF8000	50,200	default	#FF8000
+resolver	null	#FF8000	50,200	red	#FE8D49
+resolver	null	#FF8000	50,200	#123456	#FB7E00
+resolver	null	#FF8000	50,200	123456	#FB7E00
+resolver	null	#FF8000	50,200	#FFF	#FEE7DF
+resolver	null	#FF8000	50,200	currentColor	#FEE7DF
+resolver	null	#FF8000	50,200	none	transparent
+resolver	null	#FF8000	50,200	NONE	transparent
+resolver	null	#FF8000	50,200	transparent	#E47100
+resolver	null	#FF8000	50,200	foo	#FEE7DF
+resolver	null	#FF8000	50,200	#80FF8000	#FECDBD
+resolver	null	#FF8000	50,200	black	#E47100
+resolver	null	#FF8000	50,200	white	#FEE7DF
+resolver	null	#FF8000	50,200	#FF0000	#FE8D49
+resolver	null	#FF8000	50,200	red-blue	ERR ClassCastException
+resolver	null	#FF8000	50,200	automatic	ERR ClassCastException
+resolver	null	#FF8000	50,200	?red:blue	ERR ClassCastException
+resolver	null	#FF8000	999,-1	default	#FF8000
+resolver	null	#FF8000	999,-1	red	#000000
+resolver	null	#FF8000	999,-1	#123456	#000000
+resolver	null	#FF8000	999,-1	123456	#000000
+resolver	null	#FF8000	999,-1	#FFF	#000000
+resolver	null	#FF8000	999,-1	currentColor	#000000
+resolver	null	#FF8000	999,-1	none	transparent
+resolver	null	#FF8000	999,-1	NONE	transparent
+resolver	null	#FF8000	999,-1	transparent	#000000
+resolver	null	#FF8000	999,-1	foo	#000000
+resolver	null	#FF8000	999,-1	#80FF8000	#000000
+resolver	null	#FF8000	999,-1	black	#000000
+resolver	null	#FF8000	999,-1	white	#000000
+resolver	null	#FF8000	999,-1	#FF0000	#000000
+resolver	null	#FF8000	999,-1	red-blue	ERR ClassCastException
+resolver	null	#FF8000	999,-1	automatic	ERR ClassCastException
+resolver	null	#FF8000	999,-1	?red:blue	ERR ClassCastException
+resolver	null	#0000FF	0,255	default	#0000FF
+resolver	null	#0000FF	0,255	red	#6969FF
+resolver	null	#0000FF	0,255	#123456	#4B4BFF
+resolver	null	#0000FF	0,255	123456	#4B4BFF
+resolver	null	#0000FF	0,255	#FFF	#FEFEFF
+resolver	null	#0000FF	0,255	currentColor	#FEFEFF
+resolver	null	#0000FF	0,255	none	transparent
+resolver	null	#0000FF	0,255	NONE	transparent
+resolver	null	#0000FF	0,255	transparent	#0000FE
+resolver	null	#0000FF	0,255	foo	#FEFEFF
+resolver	null	#0000FF	0,255	#80FF8000	#D2D2FF
+resolver	null	#0000FF	0,255	black	#0000FE
+resolver	null	#0000FF	0,255	white	#FEFEFF
+resolver	null	#0000FF	0,255	#FF0000	#6969FF
+resolver	null	#0000FF	0,255	red-blue	ERR ClassCastException
+resolver	null	#0000FF	0,255	automatic	ERR ClassCastException
+resolver	null	#0000FF	0,255	?red:blue	ERR ClassCastException
+resolver	null	#0000FF	50,200	default	#0000FF
+resolver	null	#0000FF	50,200	red	#3636FF
+resolver	null	#0000FF	50,200	#123456	#0000F4
+resolver	null	#0000FF	50,200	123456	#0000F4
+resolver	null	#0000FF	50,200	#FFF	#D5D5FF
+resolver	null	#0000FF	50,200	currentColor	#D5D5FF
+resolver	null	#0000FF	50,200	none	transparent
+resolver	null	#0000FF	50,200	NONE	transparent
+resolver	null	#0000FF	50,200	transparent	#0000A5
+resolver	null	#0000FF	50,200	foo	#D5D5FF
+resolver	null	#0000FF	50,200	#80FF8000	#A9A9FF
+resolver	null	#0000FF	50,200	black	#0000A5
+resolver	null	#0000FF	50,200	white	#D5D5FF
+resolver	null	#0000FF	50,200	#FF0000	#3636FF
+resolver	null	#0000FF	50,200	red-blue	ERR ClassCastException
+resolver	null	#0000FF	50,200	automatic	ERR ClassCastException
+resolver	null	#0000FF	50,200	?red:blue	ERR ClassCastException
+resolver	null	#0000FF	999,-1	default	#0000FF
+resolver	null	#0000FF	999,-1	red	#000000
+resolver	null	#0000FF	999,-1	#123456	#000000
+resolver	null	#0000FF	999,-1	123456	#000000
+resolver	null	#0000FF	999,-1	#FFF	#000000
+resolver	null	#0000FF	999,-1	currentColor	#000000
+resolver	null	#0000FF	999,-1	none	transparent
+resolver	null	#0000FF	999,-1	NONE	transparent
+resolver	null	#0000FF	999,-1	transparent	#000000
+resolver	null	#0000FF	999,-1	foo	#000000
+resolver	null	#0000FF	999,-1	#80FF8000	#000000
+resolver	null	#0000FF	999,-1	black	#000000
+resolver	null	#0000FF	999,-1	white	#000000
+resolver	null	#0000FF	999,-1	#FF0000	#000000
+resolver	null	#0000FF	999,-1	red-blue	ERR ClassCastException
+resolver	null	#0000FF	999,-1	automatic	ERR ClassCastException
+resolver	null	#0000FF	999,-1	?red:blue	ERR ClassCastException
+resolver	#3366CC	null	0,255	default	#3366CC
+resolver	#3366CC	null	0,255	red	#FF0000
+resolver	#3366CC	null	0,255	#123456	#123456
+resolver	#3366CC	null	0,255	123456	#123456
+resolver	#3366CC	null	0,255	#FFF	#FFFFFF
+resolver	#3366CC	null	0,255	currentColor	#FFFFFF
+resolver	#3366CC	null	0,255	none	transparent
+resolver	#3366CC	null	0,255	NONE	transparent
+resolver	#3366CC	null	0,255	transparent	transparent
+resolver	#3366CC	null	0,255	foo	#FFFFFF
+resolver	#3366CC	null	0,255	#80FF8000	transparent
+resolver	#3366CC	null	0,255	black	#000000
+resolver	#3366CC	null	0,255	white	#FFFFFF
+resolver	#3366CC	null	0,255	#FF0000	#FF0000
+resolver	#3366CC	null	0,255	red-blue	ERR ClassCastException
+resolver	#3366CC	null	0,255	automatic	ERR ClassCastException
+resolver	#3366CC	null	0,255	?red:blue	ERR ClassCastException
+resolver	#3366CC	null	50,200	default	#3366CC
+resolver	#3366CC	null	50,200	red	#FF0000
+resolver	#3366CC	null	50,200	#123456	#123456
+resolver	#3366CC	null	50,200	123456	#123456
+resolver	#3366CC	null	50,200	#FFF	#FFFFFF
+resolver	#3366CC	null	50,200	currentColor	#FFFFFF
+resolver	#3366CC	null	50,200	none	transparent
+resolver	#3366CC	null	50,200	NONE	transparent
+resolver	#3366CC	null	50,200	transparent	transparent
+resolver	#3366CC	null	50,200	foo	#FFFFFF
+resolver	#3366CC	null	50,200	#80FF8000	transparent
+resolver	#3366CC	null	50,200	black	#000000
+resolver	#3366CC	null	50,200	white	#FFFFFF
+resolver	#3366CC	null	50,200	#FF0000	#FF0000
+resolver	#3366CC	null	50,200	red-blue	ERR ClassCastException
+resolver	#3366CC	null	50,200	automatic	ERR ClassCastException
+resolver	#3366CC	null	50,200	?red:blue	ERR ClassCastException
+resolver	#3366CC	null	999,-1	default	#3366CC
+resolver	#3366CC	null	999,-1	red	#FF0000
+resolver	#3366CC	null	999,-1	#123456	#123456
+resolver	#3366CC	null	999,-1	123456	#123456
+resolver	#3366CC	null	999,-1	#FFF	#FFFFFF
+resolver	#3366CC	null	999,-1	currentColor	#FFFFFF
+resolver	#3366CC	null	999,-1	none	transparent
+resolver	#3366CC	null	999,-1	NONE	transparent
+resolver	#3366CC	null	999,-1	transparent	transparent
+resolver	#3366CC	null	999,-1	foo	#FFFFFF
+resolver	#3366CC	null	999,-1	#80FF8000	transparent
+resolver	#3366CC	null	999,-1	black	#000000
+resolver	#3366CC	null	999,-1	white	#FFFFFF
+resolver	#3366CC	null	999,-1	#FF0000	#FF0000
+resolver	#3366CC	null	999,-1	red-blue	ERR ClassCastException
+resolver	#3366CC	null	999,-1	automatic	ERR ClassCastException
+resolver	#3366CC	null	999,-1	?red:blue	ERR ClassCastException
+resolver	#3366CC	#808080	0,255	default	#808080
+resolver	#3366CC	#808080	0,255	red	#4C4C4C
+resolver	#3366CC	#808080	0,255	#123456	#2D2D2D
+resolver	#3366CC	#808080	0,255	123456	#2D2D2D
+resolver	#3366CC	#808080	0,255	#FFF	#FFFFFF
+resolver	#3366CC	#808080	0,255	currentColor	#FFFFFF
+resolver	#3366CC	#808080	0,255	none	transparent
+resolver	#3366CC	#808080	0,255	NONE	transparent
+resolver	#3366CC	#808080	0,255	transparent	#000000
+resolver	#3366CC	#808080	0,255	foo	#FFFFFF
+resolver	#3366CC	#808080	0,255	#80FF8000	#CACACA
+resolver	#3366CC	#808080	0,255	black	#000000
+resolver	#3366CC	#808080	0,255	white	#FFFFFF
+resolver	#3366CC	#808080	0,255	#FF0000	#4C4C4C
+resolver	#3366CC	#808080	0,255	red-blue	ERR ClassCastException
+resolver	#3366CC	#808080	0,255	automatic	ERR ClassCastException
+resolver	#3366CC	#808080	0,255	?red:blue	ERR ClassCastException
+resolver	#3366CC	#808080	50,200	default	#808080
+resolver	#3366CC	#808080	50,200	red	#4C4C4C
+resolver	#3366CC	#808080	50,200	#123456	#2D2D2D
+resolver	#3366CC	#808080	50,200	123456	#2D2D2D
+resolver	#3366CC	#808080	50,200	#FFF	#FFFFFF
+resolver	#3366CC	#808080	50,200	currentColor	#FFFFFF
+resolver	#3366CC	#808080	50,200	none	transparent
+resolver	#3366CC	#808080	50,200	NONE	transparent
+resolver	#3366CC	#808080	50,200	transparent	#000000
+resolver	#3366CC	#808080	50,200	foo	#FFFFFF
+resolver	#3366CC	#808080	50,200	#80FF8000	#CACACA
+resolver	#3366CC	#808080	50,200	black	#000000
+resolver	#3366CC	#808080	50,200	white	#FFFFFF
+resolver	#3366CC	#808080	50,200	#FF0000	#4C4C4C
+resolver	#3366CC	#808080	50,200	red-blue	ERR ClassCastException
+resolver	#3366CC	#808080	50,200	automatic	ERR ClassCastException
+resolver	#3366CC	#808080	50,200	?red:blue	ERR ClassCastException
+resolver	#3366CC	#808080	999,-1	default	#808080
+resolver	#3366CC	#808080	999,-1	red	#4C4C4C
+resolver	#3366CC	#808080	999,-1	#123456	#2D2D2D
+resolver	#3366CC	#808080	999,-1	123456	#2D2D2D
+resolver	#3366CC	#808080	999,-1	#FFF	#FFFFFF
+resolver	#3366CC	#808080	999,-1	currentColor	#FFFFFF
+resolver	#3366CC	#808080	999,-1	none	transparent
+resolver	#3366CC	#808080	999,-1	NONE	transparent
+resolver	#3366CC	#808080	999,-1	transparent	#000000
+resolver	#3366CC	#808080	999,-1	foo	#FFFFFF
+resolver	#3366CC	#808080	999,-1	#80FF8000	#CACACA
+resolver	#3366CC	#808080	999,-1	black	#000000
+resolver	#3366CC	#808080	999,-1	white	#FFFFFF
+resolver	#3366CC	#808080	999,-1	#FF0000	#4C4C4C
+resolver	#3366CC	#808080	999,-1	red-blue	ERR ClassCastException
+resolver	#3366CC	#808080	999,-1	automatic	ERR ClassCastException
+resolver	#3366CC	#808080	999,-1	?red:blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	0,255	default	#FF8000
+resolver	#3366CC	#FF8000	0,255	red	#FEA882
+resolver	#3366CC	#FF8000	0,255	#123456	#FE9863
+resolver	#3366CC	#FF8000	0,255	123456	#FE9863
+resolver	#3366CC	#FF8000	0,255	#FFF	#FEFEFE
+resolver	#3366CC	#FF8000	0,255	currentColor	#FEFEFE
+resolver	#3366CC	#FF8000	0,255	none	transparent
+resolver	#3366CC	#FF8000	0,255	NONE	transparent
+resolver	#3366CC	#FF8000	0,255	transparent	#FE7F00
+resolver	#3366CC	#FF8000	0,255	foo	#FEFEFE
+resolver	#3366CC	#FF8000	0,255	#80FF8000	#FEE5DE
+resolver	#3366CC	#FF8000	0,255	black	#FE7F00
+resolver	#3366CC	#FF8000	0,255	white	#FEFEFE
+resolver	#3366CC	#FF8000	0,255	#FF0000	#FEA882
+resolver	#3366CC	#FF8000	0,255	red-blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	0,255	automatic	ERR ClassCastException
+resolver	#3366CC	#FF8000	0,255	?red:blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	50,200	default	#FF8000
+resolver	#3366CC	#FF8000	50,200	red	#FE8D49
+resolver	#3366CC	#FF8000	50,200	#123456	#FB7E00
+resolver	#3366CC	#FF8000	50,200	123456	#FB7E00
+resolver	#3366CC	#FF8000	50,200	#FFF	#FEE7DF
+resolver	#3366CC	#FF8000	50,200	currentColor	#FEE7DF
+resolver	#3366CC	#FF8000	50,200	none	transparent
+resolver	#3366CC	#FF8000	50,200	NONE	transparent
+resolver	#3366CC	#FF8000	50,200	transparent	#E47100
+resolver	#3366CC	#FF8000	50,200	foo	#FEE7DF
+resolver	#3366CC	#FF8000	50,200	#80FF8000	#FECDBD
+resolver	#3366CC	#FF8000	50,200	black	#E47100
+resolver	#3366CC	#FF8000	50,200	white	#FEE7DF
+resolver	#3366CC	#FF8000	50,200	#FF0000	#FE8D49
+resolver	#3366CC	#FF8000	50,200	red-blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	50,200	automatic	ERR ClassCastException
+resolver	#3366CC	#FF8000	50,200	?red:blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	999,-1	default	#FF8000
+resolver	#3366CC	#FF8000	999,-1	red	#000000
+resolver	#3366CC	#FF8000	999,-1	#123456	#000000
+resolver	#3366CC	#FF8000	999,-1	123456	#000000
+resolver	#3366CC	#FF8000	999,-1	#FFF	#000000
+resolver	#3366CC	#FF8000	999,-1	currentColor	#000000
+resolver	#3366CC	#FF8000	999,-1	none	transparent
+resolver	#3366CC	#FF8000	999,-1	NONE	transparent
+resolver	#3366CC	#FF8000	999,-1	transparent	#000000
+resolver	#3366CC	#FF8000	999,-1	foo	#000000
+resolver	#3366CC	#FF8000	999,-1	#80FF8000	#000000
+resolver	#3366CC	#FF8000	999,-1	black	#000000
+resolver	#3366CC	#FF8000	999,-1	white	#000000
+resolver	#3366CC	#FF8000	999,-1	#FF0000	#000000
+resolver	#3366CC	#FF8000	999,-1	red-blue	ERR ClassCastException
+resolver	#3366CC	#FF8000	999,-1	automatic	ERR ClassCastException
+resolver	#3366CC	#FF8000	999,-1	?red:blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	0,255	default	#0000FF
+resolver	#3366CC	#0000FF	0,255	red	#6969FF
+resolver	#3366CC	#0000FF	0,255	#123456	#4B4BFF
+resolver	#3366CC	#0000FF	0,255	123456	#4B4BFF
+resolver	#3366CC	#0000FF	0,255	#FFF	#FEFEFF
+resolver	#3366CC	#0000FF	0,255	currentColor	#FEFEFF
+resolver	#3366CC	#0000FF	0,255	none	transparent
+resolver	#3366CC	#0000FF	0,255	NONE	transparent
+resolver	#3366CC	#0000FF	0,255	transparent	#0000FE
+resolver	#3366CC	#0000FF	0,255	foo	#FEFEFF
+resolver	#3366CC	#0000FF	0,255	#80FF8000	#D2D2FF
+resolver	#3366CC	#0000FF	0,255	black	#0000FE
+resolver	#3366CC	#0000FF	0,255	white	#FEFEFF
+resolver	#3366CC	#0000FF	0,255	#FF0000	#6969FF
+resolver	#3366CC	#0000FF	0,255	red-blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	0,255	automatic	ERR ClassCastException
+resolver	#3366CC	#0000FF	0,255	?red:blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	50,200	default	#0000FF
+resolver	#3366CC	#0000FF	50,200	red	#3636FF
+resolver	#3366CC	#0000FF	50,200	#123456	#0000F4
+resolver	#3366CC	#0000FF	50,200	123456	#0000F4
+resolver	#3366CC	#0000FF	50,200	#FFF	#D5D5FF
+resolver	#3366CC	#0000FF	50,200	currentColor	#D5D5FF
+resolver	#3366CC	#0000FF	50,200	none	transparent
+resolver	#3366CC	#0000FF	50,200	NONE	transparent
+resolver	#3366CC	#0000FF	50,200	transparent	#0000A5
+resolver	#3366CC	#0000FF	50,200	foo	#D5D5FF
+resolver	#3366CC	#0000FF	50,200	#80FF8000	#A9A9FF
+resolver	#3366CC	#0000FF	50,200	black	#0000A5
+resolver	#3366CC	#0000FF	50,200	white	#D5D5FF
+resolver	#3366CC	#0000FF	50,200	#FF0000	#3636FF
+resolver	#3366CC	#0000FF	50,200	red-blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	50,200	automatic	ERR ClassCastException
+resolver	#3366CC	#0000FF	50,200	?red:blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	999,-1	default	#0000FF
+resolver	#3366CC	#0000FF	999,-1	red	#000000
+resolver	#3366CC	#0000FF	999,-1	#123456	#000000
+resolver	#3366CC	#0000FF	999,-1	123456	#000000
+resolver	#3366CC	#0000FF	999,-1	#FFF	#000000
+resolver	#3366CC	#0000FF	999,-1	currentColor	#000000
+resolver	#3366CC	#0000FF	999,-1	none	transparent
+resolver	#3366CC	#0000FF	999,-1	NONE	transparent
+resolver	#3366CC	#0000FF	999,-1	transparent	#000000
+resolver	#3366CC	#0000FF	999,-1	foo	#000000
+resolver	#3366CC	#0000FF	999,-1	#80FF8000	#000000
+resolver	#3366CC	#0000FF	999,-1	black	#000000
+resolver	#3366CC	#0000FF	999,-1	white	#000000
+resolver	#3366CC	#0000FF	999,-1	#FF0000	#000000
+resolver	#3366CC	#0000FF	999,-1	red-blue	ERR ClassCastException
+resolver	#3366CC	#0000FF	999,-1	automatic	ERR ClassCastException
+resolver	#3366CC	#0000FF	999,-1	?red:blue	ERR ClassCastException
+resolver-font	red-blue	ERR ClassCastException
+resolver-forced	red-blue	ERR ClassCastException
+resolver-font	?red:blue	ERR ClassCastException
+resolver-forced	?red:blue	ERR ClassCastException
+resolver-font	automatic	ERR ClassCastException
+resolver-forced	automatic	ERR ClassCastException
+ugs	init	XAffineTransform[[1.5, 0.0, 0.0], [0.0, 1.5, 0.0]] angle=0.0 scale=1.5
+ugs	translate	XAffineTransform[[1.5, 0.0, 4.5], [0.0, 1.5, -6.0]] angle=0.0 scale=1.5
+ugs	scale	XAffineTransform[[3.0, 0.0, 9.0], [0.0, 3.0, -12.0]] angle=0.0 scale=2.0
+ugs	rotate	XAffineTransform[[2.598076211353316, -1.4999999999999998, 20.00961894323342], [1.4999999999999998, 2.598076211353316, -17.088457268119896]] angle=30.0 scale=2.0
+ugs	matrix	XAffineTransform[[1.848076211353316, -2.799038105676658, 15.990381056766584], [2.799038105676658, 1.848076211353316, 49.873066958946424]] angle=30.0 scale=2.0
+ugs	rotate0	XAffineTransform[[3.286006046520986, -0.6724316041260403, 15.990381056766584], [0.6724316041260403, 3.286006046520986, 49.873066958946424]] angle=-15.0 scale=2.0
+ugs	scale-half	XAffineTransform[[1.643003023260493, -0.33621580206302015, 7.995190528383292], [0.33621580206302015, 1.643003023260493, 24.936533479473212]] angle=-15.0 scale=0.5
+ugs	scale-xy	ERR IllegalArgumentException
+ugs	truecolor	#FF0000 #3366CC
+ugs	draw	@0.0,0.0 c=#3366CC b=#3366CC s=0.0-0.0-1.0 ellipse 3.0,4.0 0.0,0.0
+ugs	draw	@1.0,2.0 c=#3366CC b=#3366CC s=0.0-0.0-2.0 rect 5.0,6.0 r=0.0,0.0
+ugs	draw	@0.0,0.0 c=#FF0000 b=#0000FF s=0.0-0.0-1.0 rect 1.0,1.0 r=0.0,0.0
+ugs	forced-init	XAffineTransform[[2.0, 0.0, 0.0], [0.0, 2.0, 0.0]] angle=0.0 scale=2.0
+ugs	forced-truecolor	#FEA379 #FEF9F8
+ugs	forced	@0.0,0.0 c=#FF8000 b=#FF8000 s=0.0-0.0-1.0 ellipse 1.0,1.0 0.0,0.0
+ugs	none	@0.0,0.0 c=#000000 b=#000000 s=0.0-0.0-1.0 ellipse 1.0,1.0 0.0,0.0

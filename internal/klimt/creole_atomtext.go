@@ -395,8 +395,6 @@ func createAtomTextForURL(text string, url *URL, fontConfiguration *FontConfigur
 				scaleGroup, ok := group(6)
 				scale := ParserScale(scaleGroup, ok, 1)
 				result = append(result, NewAtomSprite(fontConfiguration.Color(), nil, scale, sprite, url, nil))
-			} else {
-				result = append(result, literal())
 			}
 		case isImg:
 			scaleGroup, ok := group(8)

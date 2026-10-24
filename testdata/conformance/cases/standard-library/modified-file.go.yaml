@@ -1,0 +1,6 @@
+id: standard-library/modified-file
+scenarios:
+  - "standard-library: Modified library file"
+package: internal/stdlib
+test: TestCheckStdlibChangedFile
+why: A check of the bundled files against the unpacked sources jar, not a render.

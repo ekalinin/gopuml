@@ -1,0 +1,18 @@
+---
+id: styling/sprite-in-note
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: Sprite reference in a note"
+---
+@startuml
+sprite $foo [4x4/16] {
+FFFF
+F00F
+F00F
+FFFF
+}
+Alice -> Bob : hi
+note right : <$foo> done
+@enduml

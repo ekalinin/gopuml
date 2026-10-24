@@ -1,0 +1,6 @@
+{
+  "id": "sprites/library-image",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 168, "height": 178, "status": 0}, {"file": "block0-page0.png", "width": 168, "height": 178, "status": 0}]}
+  ]
+}

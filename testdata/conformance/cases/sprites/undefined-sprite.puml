@@ -1,0 +1,11 @@
+---
+id: sprites/undefined-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Undefined sprite"
+---
+@startuml
+Alice -> Bob : <$nope> hi
+@enduml

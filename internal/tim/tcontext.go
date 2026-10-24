@@ -12,6 +12,7 @@ import (
 
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/json"
+	bundled "github.com/ekalinin/gopuml/internal/stdlib"
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
@@ -527,7 +528,7 @@ func (c *TContext) executeInclude(memory TMemory, s text.StringLocated) error {
 	switch {
 	case strings.HasPrefix(what, "<") && strings.HasSuffix(what, ">") && len(what) >= 2:
 		stdlibPath := what[1 : len(what)-1]
-		if slash := strings.IndexByte(stdlibPath, '/'); slash >= 0 && !c.stdlib.hasLibrary(strings.ToLower(stdlibPath[:slash])) {
+		if slash := strings.IndexByte(stdlibPath, '/'); slash >= 0 && bundled.IsExcluded(strings.ToLower(stdlibPath[:slash])) {
 			return newEaterException(notBundledMessage(what, stdlibPath[:slash]), s)
 		}
 		saveImportedFiles = c.pathSystem

@@ -1,0 +1,13 @@
+---
+id: standard-library/alias-include
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "standard-library: Include through an alias"
+---
+@startuml
+!include <awslib/AWSCommon>
+!include <awslib/Compute/EC2>
+EC2(web, "Web", "x")
+@enduml

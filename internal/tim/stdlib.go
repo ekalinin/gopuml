@@ -7,8 +7,10 @@ package tim
 import (
 	"slices"
 	"strings"
+	"sync"
 
 	"github.com/ekalinin/gopuml/internal/json"
+	bundled "github.com/ekalinin/gopuml/internal/stdlib"
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
@@ -18,6 +20,10 @@ import (
 // once built.
 type Stdlib struct {
 	libraries map[string]*stdlibLibrary
+	// embedded is set for the bundled index, which reads its libraries
+	// from internal/stdlib on first use; mu guards libraries then.
+	embedded bool
+	mu       sync.Mutex
 }
 
 type stdlibLibrary struct {
@@ -27,11 +33,14 @@ type stdlibLibrary struct {
 	// ("key=value" lines), in HashMap order; json holds its .json files.
 	info []metadataEntry
 	json map[string][]byte
+	// lib is the library of the bundled index, whose files and JSON
+	// resources it reads.
+	lib *bundled.Library
 }
 
-// embeddedStdlib is the index bundled with this build. It is empty: no
-// standard library is bundled yet.
-var embeddedStdlib = &Stdlib{}
+// embeddedStdlib is the index of the standard library bundled with this
+// build (internal/stdlib).
+var embeddedStdlib = &Stdlib{libraries: map[string]*stdlibLibrary{}, embedded: true}
 
 // NewStdlib returns an index of the given libraries: library name, then
 // file path (with or without .puml) to content. A file named info.spm holds
@@ -95,6 +104,11 @@ func parseStdlibInfo(data []byte) []metadataEntry {
 
 // getAllFolderNames is Stdlib.getAllFolderNames: the library names, sorted.
 func (s *Stdlib) getAllFolderNames() []string {
+	if s.embedded {
+		names := bundled.FolderNames()
+		slices.SortFunc(names, javaCompare)
+		return names
+	}
 	names := make([]string, 0, len(s.libraries))
 	for name := range s.libraries {
 		names = append(names, name)
@@ -138,28 +152,39 @@ func (s *Stdlib) getJSONResource(fullname string) (json.Value, error) {
 	if last == -1 {
 		return nil, nil
 	}
-	lib := s.libraries[fullname[:last]]
-	if lib == nil {
-		throwRuntime("UncheckedIOException", "stdlib/"+fullname[:last]+"/info.spm")
+	lib := s.retrieve(fullname[:last])
+	if len(lib.info) == 0 {
+		return nil, nil
 	}
-	data, ok := lib.json[fullname[last+1:]]
+	data, ok, err := lib.loadJSONResource(fullname[last+1:])
+	if err != nil {
+		// Upstream logs the IOException and returns null.
+		return nil, nil
+	}
 	if !ok {
 		throwRuntime("NullPointerException", "")
 	}
 	return json.Parse(text.DecodeUTF8(data))
 }
 
-// hasLibrary reports whether the library with the lower-case name is
-// bundled.
-func (s *Stdlib) hasLibrary(name string) bool {
-	_, ok := s.libraries[name]
-	return ok
+// loadJSONResource is loadJsonResource: the JSON file of a name, and
+// whether the library has it.
+func (l *stdlibLibrary) loadJSONResource(name string) ([]byte, bool, error) {
+	if l.lib != nil {
+		data, err := l.lib.JSON(name)
+		return data, data != nil, err
+	}
+	data, ok := l.json[name]
+	return data, ok, nil
 }
 
 // retrieve returns the library with the lower-case name. Like upstream,
 // which fails to read the library's index, it throws
 // UncheckedIOException when the library does not exist.
 func (s *Stdlib) retrieve(name string) *stdlibLibrary {
+	if s.embedded {
+		return s.retrieveEmbedded(name)
+	}
 	lib := s.libraries[name]
 	if lib == nil {
 		throwRuntime("UncheckedIOException", "stdlib/"+name+"/info.spm")
@@ -167,8 +192,28 @@ func (s *Stdlib) retrieve(name string) *stdlibLibrary {
 	return lib
 }
 
+// retrieveEmbedded reads a library of the bundled index on first use,
+// following its link, as Stdlib.retrieve does.
+func (s *Stdlib) retrieveEmbedded(name string) *stdlibLibrary {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if lib := s.libraries[name]; lib != nil {
+		return lib
+	}
+	lib, err := bundled.Retrieve(name)
+	if err != nil {
+		if nf, ok := err.(*bundled.FileNotFoundError); ok {
+			throwRuntime("UncheckedIOException", nf.Path)
+		}
+		throwRuntime("UncheckedIOException", err.Error())
+	}
+	l := &stdlibLibrary{name: lib.Name(), info: parseStdlibInfo(lib.Info()), lib: lib}
+	s.libraries[name] = l
+	return l
+}
+
 // getPumlResource is Stdlib.getPumlResource: the file "library/path", or
-// nil.
+// nil, also for a library without metadata.
 func (s *Stdlib) getPumlResource(fullname string) []byte {
 	fullname = strings.ReplaceAll(strings.ToLower(fullname), ".puml", "")
 	last := strings.IndexByte(fullname, '/')
@@ -176,16 +221,25 @@ func (s *Stdlib) getPumlResource(fullname string) []byte {
 		return nil
 	}
 	folder := s.retrieve(fullname[:last])
-	if folder == nil {
+	if folder == nil || len(folder.info) == 0 {
 		return nil
 	}
 	return folder.loadPumlResource(fullname[last+1:])
 }
 
-func (l *stdlibLibrary) loadPumlResource(name string) []byte { return l.files[name] }
+// loadPumlResource returns the file of a lower-case path without
+// extension, nil when there is none. For a bundled library, a channel that
+// cannot be read gives nil, as upstream logs the IOException.
+func (l *stdlibLibrary) loadPumlResource(name string) []byte {
+	if l.lib != nil {
+		data, _ := l.lib.Puml(name)
+		return data
+	}
+	return l.files[name]
+}
 
 // notBundledMessage is the error of an include from a library that this
-// build does not bundle (upstream bundles the libraries and includes them).
+// build excludes for its license (upstream bundles it and includes it).
 func notBundledMessage(what, library string) string {
 	return "cannot include " + what + " (library " + library + " is not bundled)"
 }

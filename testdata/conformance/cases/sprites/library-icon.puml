@@ -1,0 +1,12 @@
+---
+id: sprites/library-icon
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Icon of a library"
+---
+@startuml
+!include <tupadr3/font-awesome/server>
+Alice -> Bob : <$server> hi
+@enduml

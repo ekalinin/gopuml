@@ -1,0 +1,6 @@
+id: wasm-build/stdlib-include
+scenarios:
+  - "wasm-build: Standard library include"
+package: cmd/plantuml-wasm
+test: TestWasmStdlibInclude
+why: WebAssembly build behavior, checked with Node.js against the native build.

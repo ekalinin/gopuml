@@ -24,6 +24,12 @@ fdlibm, the C math library behind Java's StrictMath:
     Permission to use, copy, modify, and distribute this software is freely
     granted, provided that this notice is preserved.
 
+internal/brotli translates upstream's net/sourceforge/plantuml/brotli, the
+Brotli decoder that PlantUML ships, from https://github.com/google/brotli:
+
+    Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors.
+    Licensed under the MIT License.
+
 Files with a "Provenance: original" header are original work of this project.
 
 Excluded upstream components
@@ -35,6 +41,9 @@ webp decoder.
 
 Ten of upstream's themes, among them "sunlust" (GPL-3.0-or-later), are not
 bundled; see "Bundled themes" below.
+
+Nine libraries of upstream's standard library, among them "adaml"
+(GPL-3.0), are not bundled; see "Bundled standard library" below.
 
 Bundled assets
 --------------
@@ -118,6 +127,114 @@ The following upstream themes are not bundled:
 For these names, "!theme <name>" reports upstream's error for an unknown
 theme ("Cannot load theme <name>"), unless a local file
 puml-theme-<name>.puml is found, and %get_all_theme() does not list them.
+
+Bundled standard library
+------------------------
+
+internal/stdlib/ holds 25 of the 34 libraries of the standard library of
+PlantUML v1.2026.9 (the stdlib/ folder of the plantuml-mit jar), in the
+compressed form that PlantUML distributes them in (the .spm files), without
+further changes; home.spm lists the bundled libraries only.
+"!include <library/file>" and the standard library sprites and images read
+them. awslib, bootstrap, material, material2 and material7 are upstream's
+aliases of awslib14, bootstrap1.13.1, material2.1.19, material2.1.19 and
+material7.4.47.
+
+The following libraries are licensed under the MIT License, reproduced
+below, by their copyright holders:
+
+- archimate 3.2.2 (https://github.com/plantuml-stdlib/Archimate-PlantUML):
+  Copyright (c) 2019 Ebby Peter
+- aws 18.02.22 (https://github.com/milo-minderbinder/AWS-PlantUML):
+  Copyright (c) 2015 Chris Passarello; its sprites are drawn from the AWS
+  Simple Icons
+- azure 2.2.0 (https://github.com/plantuml-stdlib/Azure-PlantUML):
+  Copyright (c) 2018-2019 Ricardo Niepel, 2021-2022 Ricardo Niepel and
+  contributors; its sprites are drawn from the Microsoft Azure architecture
+  icons, which Microsoft allows to copy and distribute for architecture
+  diagrams, training materials and documentation
+- bootstrap1.12.1 and bootstrap1.13.1 (https://github.com/twbs/icons):
+  Copyright (c) 2019-2024 The Bootstrap Authors
+- c4 2.14.0 (https://github.com/plantuml-stdlib/C4-PlantUML): (c) 2018-2020
+  Ricardo Niepel, 2021-2026 Ricardo Niepel, kirchsth and contributors
+- cloudinsight 1.0.0 (https://github.com/plantuml-stdlib/cicon-plantuml-sprites):
+  Copyright (c) 2017 rabelenda
+- domainstory 0.4.0 (https://github.com/johthor/DomainStory-PlantUML):
+  Copyright (c) 2021 Johannes Thorn
+- eip 1.0.0 (https://github.com/plantuml-stdlib/EIP-PlantUML): Copyright (c)
+  2018 Andreas Heil
+- k8s 1.0.0 (https://github.com/dcasati/kubernetes-PlantUML): Copyright (c)
+  2020 Diego Casati, Copyright (c) 2018 Ricardo Niepel; its sprites are drawn
+  from the Kubernetes community icons (Apache-2.0 or CC BY 4.0)
+- logos 1.1.0 (https://github.com/plantuml-stdlib/gilbarbara-plantuml-sprites):
+  Copyright (c) 2020 rabelenda; its sprites are drawn from gilbarbara/logos
+  (CC0 1.0)
+- office 1.0.0 (https://github.com/Roemer/plantuml-office): Copyright (c)
+  2018 Roman; its sprites are drawn from the Microsoft Office icons
+- tupadr3 3.0.0 (https://github.com/tupadr3/plantuml-icon-font-sprites):
+  Copyright (c) 2017 tupadr3; its sprites are drawn from icon fonts, among
+  them Font Awesome (the icons of Font Awesome 5 and 6 are licensed under
+  CC BY 4.0, https://creativecommons.org/licenses/by/4.0/, by Fonticons,
+  Inc.), Google's Material Design icons (Apache-2.0), devicon and devicons
+  (MIT), govicons and Weather Icons (SIL Open Font License 1.1)
+
+awslib10 10.0.0, awslib14 14.0.0 and awslib20 20.0
+(https://github.com/awslabs/aws-icons-for-plantuml) hold icons licensed under
+the Creative Commons Attribution-NoDerivs 2.0 license
+(https://creativecommons.org/licenses/by-nd/2.0/) and code licensed under the
+MIT License, Copyright 2019 Amazon.com, Inc. or its affiliates.
+ibm 1.0.1 (https://github.com/XReyRobert/ibm-icons-for-plantuml, by Xavier
+Rey-Robert, derived from awslabs/aws-icons-for-plantuml) is licensed under
+the Creative Commons Attribution-NoDerivs 2.0 license; its files state
+"Copyright 2019 Amazon.com, Inc. or its affiliates". These libraries are
+shipped unmodified, in the form PlantUML distributes them in.
+
+kubernetes 5.3.45 (https://github.com/plantuml-stdlib/plantuml-kubernetes-sprites),
+whose images come from octo-technology/kubernetes-icons, is licensed under
+the Apache License, Version 2.0; a copy of the License is in
+internal/stdlib/LICENSE-Apache-2.0.txt. Neither repository has a NOTICE file.
+
+material2.1.19 (https://github.com/Templarian/MaterialDesign) and
+material7.4.47 (https://github.com/Templarian/MaterialDesign-SVG) are
+published by the Pictogrammers icon group, by Austin Andrews and
+contributors, under the Pictogrammers Free License: the icons under the
+Apache License, Version 2.0 (internal/stdlib/LICENSE-Apache-2.0.txt), the
+code under the MIT License.
+
+The MIT License that applies to the libraries above:
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+Brand icons and logos are trademarks of their respective owners.
+
+The following upstream libraries are not bundled:
+
+- adaml (Francesc Rocher): its source repository and its info.spm declare
+  the GPL (GPL-3.0), which cannot be distributed under this project's MIT
+  License.
+- classy, classy-c4, cloudogu, edgy, elastic, gcp, osa and osa2: neither
+  their source repositories, nor their files, nor the upstream commits that
+  added them state a license for the PlantUML files, so their license could
+  not be verified.
+
+For these names, "!include <name/...>" reports that the library is not
+bundled, and %get_all_stdlib(), %get_stdlib() and -stdlib do not list them.
 
 Linked Go code
 --------------

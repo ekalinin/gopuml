@@ -1,0 +1,13 @@
+---
+id: standard-library/library-theme
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "standard-library: Theme of a library"
+---
+@startuml
+!include <C4/C4_Container>
+!theme C4_blue from <C4/themes>
+Container(api, "API", "Go")
+@enduml

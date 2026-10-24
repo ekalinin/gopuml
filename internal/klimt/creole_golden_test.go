@@ -229,14 +229,12 @@ var creoleDifferences = map[string]string{
 	"listnolinemax": "upstream throws NullPointerException for a list item without text and a maximum width",
 	"imgnotpng":     "upstream throws NullPointerException when ImageIO cannot read the image data",
 	"unicodebad":    "upstream throws IllegalArgumentException for a code point above U+10FFFF",
-	// The specification asks for the literal text of icons, emoji and
-	// sprites until they are ported; upstream draws them (or nothing for an
-	// unknown sprite).
-	"icon1":   "OpenIconic icons render as literal text",
-	"icon2":   "OpenIconic icons render as literal text",
-	"emoji1":  "emoji render as literal text",
-	"sprite1": "unknown sprites render as literal text",
-	"url5":    "icons, emoji and sprites in link labels render as literal text",
+	// The specification asks for the literal text of icons and emoji until
+	// they are ported; upstream draws them.
+	"icon1":  "OpenIconic icons render as literal text",
+	"icon2":  "OpenIconic icons render as literal text",
+	"emoji1": "emoji render as literal text",
+	"url5":   "icons and emoji in link labels render as literal text",
 }
 
 func creoleGoldenLines(t *testing.T) []string {
@@ -345,7 +343,6 @@ func TestCreoleDifferences(t *testing.T) {
 	check("icon1", "<&check>", " done")
 	check("icon2", "<&check{scale=2}>", " ", "<#red&star>", " ", "<&x,color=blue>")
 	check("emoji1", "<:smile:>", " emoji ", "<#red:smile:>")
-	check("sprite1", "<$sprite>", " sprite ", "<$foo{scale=2}>", " ", "<#blue$foo>")
-	check("url5", "<&check>", " label", " ", "<:smile:>", " x", " ", "<$foo>", " s")
+	check("url5", "<&check>", " label", " ", "<:smile:>", " x", " ", " s")
 	contains("url5", "startUrl http://a.com tooltip=http://a.com label=<&check> label")
 }

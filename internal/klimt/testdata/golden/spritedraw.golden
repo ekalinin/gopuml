@@ -1,0 +1,136 @@
+mono2	plain	dim 3.0,1.0
+mono2	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,0 3x1:ffffff,ff000000,ffffff
+mono2	font	dim 3.0,1.0
+mono2	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,0 3x1:ffffff,ffff0000,ffffff
+mono2	forced	dim 3.0,1.0
+mono2	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,0 3x1:ffffff,ff0000ff,ffffff
+mono2	back	dim 3.0,1.0
+mono2	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 2,0 3x1:ffeedd,ff00ff00,ffeedd
+mono2	mono	dim 3.0,1.0
+mono2	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,0 3x1:ffffff,ff979797,ffffff
+mono2	s2	dim 6.0,2.0
+mono4	plain	dim 4.0,4.0
+mono4	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffaaaaaa,ff555555,ff000000,ffaaaaaa,ff555555,ff000000,ffffff,ff555555,ff000000,ffffff,ffaaaaaa,ff000000,ffffff,ffaaaaaa,ff555555
+mono4	font	dim 4.0,4.0
+mono4	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffffaaaa,ffff5555,ffff0000,ffffaaaa,ffff5555,ffff0000,ffffff,ffff5555,ffff0000,ffffff,ffffaaaa,ffff0000,ffffff,ffffaaaa,ffff5555
+mono4	forced	dim 4.0,4.0
+mono4	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffaaaaff,ff5555ff,ff0000ff,ffaaaaff,ff5555ff,ff0000ff,ffffff,ff5555ff,ff0000ff,ffffff,ffaaaaff,ff0000ff,ffffff,ffaaaaff,ff5555ff
+mono4	back	dim 4.0,4.0
+mono4	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 3,3 4x4:ffeedd,ffaaf394,ff55f94a,ff00ff00,ffaaf394,ff55f94a,ff00ff00,ffeedd,ff55f94a,ff00ff00,ffeedd,ffaaf394,ff00ff00,ffeedd,ffaaf394,ff55f94a
+mono4	mono	dim 4.0,4.0
+mono4	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffdddddd,ffbababa,ff979797,ffdddddd,ffbababa,ff979797,ffffff,ffbababa,ff979797,ffffff,ffdddddd,ff979797,ffffff,ffdddddd,ffbababa
+mono4	s2	dim 8.0,8.0
+mono8	plain	dim 4.0,2.0
+mono8	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,1 4x2:ffffff,ffb7b7b7,ff6e6e6e,ff252525,ff000000,ff252525,ff494949,ff6e6e6e
+mono8	font	dim 4.0,2.0
+mono8	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,1 4x2:ffffff,ffffb7b7,ffff6e6e,ffff2525,ffff0000,ffff2525,ffff4949,ffff6e6e
+mono8	forced	dim 4.0,2.0
+mono8	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,1 4x2:ffffff,ffb7b7ff,ff6e6eff,ff2525ff,ff0000ff,ff2525ff,ff4949ff,ff6e6eff
+mono8	back	dim 4.0,2.0
+mono8	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 3,1 4x2:ffeedd,ffb7f29e,ff6ef75f,ff25fc20,ff00ff00,ff25fc20,ff49fa40,ff6ef75f
+mono8	mono	dim 4.0,2.0
+mono8	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,1 4x2:ffffff,ffe2e2e2,ffc4c4c4,ffa6a6a6,ff979797,ffa6a6a6,ffb5b5b5,ffc4c4c4
+mono8	s2	dim 8.0,4.0
+mono16	plain	dim 4.0,4.0
+mono16	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffbbbbbb,ff777777,ff333333,44eeeeee,ffaaaaaa,ff666666,ff222222,88dddddd,ff999999,ff555555,ff111111,cccccccc,ff888888,ff444444,ff000000
+mono16	font	dim 4.0,4.0
+mono16	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffffbbbb,ffff7777,ffff3333,44ffeeee,ffffaaaa,ffff6666,ffff2222,88ffdddd,ffff9999,ffff5555,ffff1111,ccffcccc,ffff8888,ffff4444,ffff0000
+mono16	forced	dim 4.0,4.0
+mono16	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffbbbbff,ff7777ff,ff3333ff,44eeeeff,ffaaaaff,ff6666ff,ff2222ff,88ddddff,ff9999ff,ff5555ff,ff1111ff,ccccccff,ff8888ff,ff4444ff,ff0000ff
+mono16	back	dim 4.0,4.0
+mono16	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 3,3 4x4:ffeedd,ffbbf2a3,ff77f768,ff33fb2d,44eeefcf,ffaaf394,ff66f859,ff22fc1e,88ddf0c0,ff99f485,ff55f94a,ff11fd0f,ccccf1b1,ff88f576,ff44fa3b,ff00ff00
+mono16	mono	dim 4.0,4.0
+mono16	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffffff,ffe4e4e4,ffc8c8c8,ffacacac,44f9f9f9,ffdddddd,ffc1c1c1,ffa5a5a5,88f2f2f2,ffd6d6d6,ffbababa,ff9e9e9e,ccebebeb,ffcfcfcf,ffb3b3b3,ff979797
+mono16	s2	dim 8.0,8.0
+mono-zero	plain	dim 2.0,2.0
+mono-zero	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffffff,ffffff,ffffff,ffffff
+mono-zero	font	dim 2.0,2.0
+mono-zero	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffffff,ffffff,ffffff,ffffff
+mono-zero	forced	dim 2.0,2.0
+mono-zero	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffffff,ffffff,ffffff,ffffff
+mono-zero	back	dim 2.0,2.0
+mono-zero	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 1,1 2x2:ffeedd,ffeedd,ffeedd,ffeedd
+mono-zero	mono	dim 2.0,2.0
+mono-zero	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffffff,ffffff,ffffff,ffffff
+mono-zero	s2	dim 4.0,4.0
+mono-uniform	plain	dim 2.0,2.0
+mono-uniform	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff000000,ff000000,ff000000,ff000000
+mono-uniform	font	dim 2.0,2.0
+mono-uniform	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffff0000,ffff0000,ffff0000,ffff0000
+mono-uniform	forced	dim 2.0,2.0
+mono-uniform	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff0000ff,ff0000ff,ff0000ff,ff0000ff
+mono-uniform	back	dim 2.0,2.0
+mono-uniform	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 1,1 2x2:ff00ff00,ff00ff00,ff00ff00,ff00ff00
+mono-uniform	mono	dim 2.0,2.0
+mono-uniform	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff979797,ff979797,ff979797,ff979797
+mono-uniform	s2	dim 4.0,4.0
+mono-uniform	s2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000,ffff0000
+color	plain	dim 3.0,2.0
+color	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,1 3x2:ffff0000,ff00ff00,ff000000,ff000000,ff123456,ff000000
+color	font	dim 3.0,2.0
+color	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,1 3x2:ffff0000,ff00ff00,ff880000,ffff0000,ff123456,ff000000
+color	forced	dim 3.0,2.0
+color	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,1 3x2:ffff0000,ff00ff00,ff880000,ffff0000,ff123456,ff000000
+color	back	dim 3.0,2.0
+color	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 2,1 3x2:ffff0000,ff00ff00,ff77f768,ff00ff00,ff123456,ff000000
+color	mono	dim 3.0,2.0
+color	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,1 3x2:ffff0000,ff00ff00,ff505050,ff979797,ff123456,ff000000
+color	s2	dim 6.0,4.0
+color-uniform	plain	dim 2.0,2.0
+color-uniform	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff336699,ff336699,ff336699,ff336699
+color-uniform	font	dim 2.0,2.0
+color-uniform	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff336699,ff336699,ff336699,ff336699
+color-uniform	forced	dim 2.0,2.0
+color-uniform	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff336699,ff336699,ff336699,ff336699
+color-uniform	back	dim 2.0,2.0
+color-uniform	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 1,1 2x2:ff336699,ff336699,ff336699,ff336699
+color-uniform	mono	dim 2.0,2.0
+color-uniform	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff336699,ff336699,ff336699,ff336699
+color-uniform	s2	dim 4.0,4.0
+color-uniform	s2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699,ff336699
+image	plain	dim 1.0,1.0
+image	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffff0000,ff00ff00,ff0000ff,80ffff00
+image	font	dim 1.0,1.0
+image	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffff0000,ff00ff00,feff0000,80ffff00
+image	forced	dim 1.0,1.0
+image	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ffff0000,ff00ff00,fe0000ff,80ffff00
+image	back	dim 1.0,1.0
+image	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 1,1 2x2:ffff0000,ff00ff00,fe00ff00,80ffff00
+image	mono	dim 1.0,1.0
+image	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff000000,ff000000,6400000,4000000
+image	s2	dim 2.0,2.0
+image-uniform	plain	dim 1.0,1.0
+image-uniform	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:ff102030,ff102030,ff102030,ff102030
+image-uniform	font	dim 1.0,1.0
+image-uniform	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:feff0000,feff0000,feff0000,feff0000
+image-uniform	forced	dim 1.0,1.0
+image-uniform	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:fe0000ff,fe0000ff,fe0000ff,fe0000ff
+image-uniform	back	dim 1.0,1.0
+image-uniform	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 1,1 2x2:fe00ff00,fe00ff00,fe00ff00,fe00ff00
+image-uniform	mono	dim 1.0,1.0
+image-uniform	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 1,1 2x2:6400000,6400000,6400000,6400000
+image-uniform	s2	dim 2.0,2.0
+image-uniform	s2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 3,3 4x4:feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000,feff0000
+svgfile	plain	dim 10.0,6.0
+svgfile	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 imagesvg 10.0,6.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+svgfile	font	dim 10.0,6.0
+svgfile	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 imagesvg 10.0,6.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+svgfile	forced	dim 10.0,6.0
+svgfile	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 imagesvg 10.0,6.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+svgfile	back	dim 10.0,6.0
+svgfile	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 imagesvg 10.0,6.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+svgfile	mono	dim 10.0,6.0
+svgfile	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 imagesvg 10.0,6.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+svgfile	s2	dim 40.0,24.0
+svgfile	s2	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 imagesvg 20.0,12.0 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><rect width="10" height="6" fill="#00F"/></svg>
+stdlib	plain	dim 3.0,3.0
+stdlib	plain	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,2 3x3:ffffff,ff000000,ff777777,ff000000,ffffff,ff777777,44eeeeee,88dddddd,cccccccc
+stdlib	font	dim 3.0,3.0
+stdlib	font	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,2 3x3:ffffff,ffff0000,ffff7777,ffff0000,ffffff,ffff7777,44ffeeee,88ffdddd,ccffcccc
+stdlib	forced	dim 3.0,3.0
+stdlib	forced	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,2 3x3:ffffff,ff0000ff,ff7777ff,ff0000ff,ffffff,ff7777ff,44eeeeff,88ddddff,ccccccff
+stdlib	back	dim 3.0,3.0
+stdlib	back	@0.0,0.0 c=#000000 b=#FFEEDD s=0.0-0.0-1.0 image 2,2 3x3:ffeedd,ff00ff00,ff77f768,ff00ff00,ffeedd,ff77f768,44eeefcf,88ddf0c0,ccccf1b1
+stdlib	mono	dim 3.0,3.0
+stdlib	mono	@0.0,0.0 c=#000000 b=transparent s=0.0-0.0-1.0 image 2,2 3x3:ffffff,ff979797,ffc8c8c8,ff979797,ffffff,ffc8c8c8,44f9f9f9,88f2f2f2,ccebebeb
+stdlib	s2	dim 6.0,6.0

@@ -1,0 +1,17 @@
+---
+id: sprites/monochrome-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Monochrome sprite"
+---
+@startuml
+sprite $foo [4x4/16] {
+FFFF
+F00F
+F00F
+FFFF
+}
+Alice -> Bob : <$foo> hi
+@enduml

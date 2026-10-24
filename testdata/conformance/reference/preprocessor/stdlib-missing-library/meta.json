@@ -1,0 +1,6 @@
+{
+  "id": "preprocessor/stdlib-missing-library",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 3, "messages": ["Fatal parsing error"]}, "renders": [{"file": "block0-page0.svg", "width": 591, "height": 340, "status": 400}]}
+  ]
+}

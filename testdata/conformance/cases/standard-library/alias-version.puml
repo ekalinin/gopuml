@@ -1,0 +1,11 @@
+---
+id: standard-library/alias-version
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "standard-library: Version of an alias"
+---
+@startuml
+Alice -> Bob : %get_stdlib("awslib", "version")
+@enduml

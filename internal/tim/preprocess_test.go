@@ -139,18 +139,19 @@ func TestSpecErrors(t *testing.T) {
 }
 
 // TestStdlibIncludeNotBundledError checks the spec scenario "Library not
-// bundled": upstream bundles C4, this build bundles no library.
+// bundled": upstream bundles adaml, this build excludes it for its license.
 func TestStdlibIncludeNotBundledError(t *testing.T) {
-	src := "@startuml\nAlice -> Bob : hi\n!include <C4/C4_Container>\n@enduml\n"
+	src := "@startuml\nAlice -> Bob : hi\n!include <adaml/AdaML>\n@enduml\n"
 	res, err := preprocessBlock(t, src, memAccess(security.Legacy, nil), "")
-	wantError(t, err, "cannot include <C4/C4_Container> (library C4 is not bundled)", 2)
-	if got := res.PreprocLines(); !slices.Equal(got, []string{"@startuml", "Alice -> Bob : hi", "!include <C4/C4_Container>"}) {
+	wantError(t, err, "cannot include <adaml/AdaML> (library adaml is not bundled)", 2)
+	if got := res.PreprocLines(); !slices.Equal(got, []string{"@startuml", "Alice -> Bob : hi", "!include <adaml/AdaML>"}) {
 		t.Errorf("lines %q", got)
 	}
 
-	// A bundled library is included, relative to its own folder.
+	// A library is included, relative to its own folder. Upstream reads
+	// nothing from a library without metadata.
 	stdlib := NewStdlib(map[string]map[string][]byte{
-		"mylib": {"sub/part.puml": []byte("A -> B : from mylib\n")},
+		"mylib": {"info.spm": []byte("name=mylib\n"), "sub/part.puml": []byte("A -> B : from mylib\n")},
 	})
 	ctx := core.NewRenderContext()
 	blocks := core.BuildBlocks("@startuml\n!include <MyLib/sub/part>\n@enduml\n", "string", nil)

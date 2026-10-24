@@ -1,0 +1,12 @@
+---
+id: standard-library/json-resource
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "standard-library: JSON resource of a library"
+---
+@startuml
+!$o = %load_json("<office/all.json>")
+Alice -> Bob : %size($o)
+@enduml
