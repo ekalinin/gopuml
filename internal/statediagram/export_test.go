@@ -193,3 +193,26 @@ func TestRemovedStateWithLabelNode(t *testing.T) {
 		}
 	}
 }
+
+// TestStyledHistoryStates checks the state-diagram scenario "Styled history
+// states": a ".history" style reaches the four forms of history states,
+// which the conformance comparison does not tell apart by color.
+func TestStyledHistoryStates(t *testing.T) {
+	if _, err := exec.LookPath("dot"); err != nil {
+		t.Skip("dot is not installed")
+	}
+	src := "@startuml\n<style>\nstateDiagram {\n  .history {\n    BackGroundColor palegreen\n  }\n}\n</style>\n" +
+		"state A\nstate B\nstate hh <<history>>\nstate hd <<history*>>\n[H] --> A\n[H*] --> B\nhh --> A\n" +
+		"hd --> B\n@enduml\n"
+	var buf bytes.Buffer
+	block := parseBlock(t, core.NewRenderContext(), src)
+	if _, err := block.Render(context.Background(), &buf, 0, engine.Options{Format: font.FormatSVG}); err != nil {
+		t.Fatal(err)
+	}
+	if n := strings.Count(buf.String(), `<ellipse cx=`); n != 4 {
+		t.Fatalf("%d circles, want 4", n)
+	}
+	if n := strings.Count(buf.String(), `fill="#98FB98"`); n != 4 {
+		t.Errorf("%d palegreen circles, want 4", n)
+	}
+}

@@ -57,7 +57,7 @@ The pins, versions, headers, goldens, references and new cases come first (desig
 
 - [x] 6.1 Add the junction pseudostate (design D6, Junction): `LeafType.JUNCTION`, the `junction` stereotype in `commands_createstate.go`, `generalimagebuilder.go`, and a size of 12 in `svek_circlestartend.go` and `image_entityimagecircle.go`. Verify that the curated case "Junction" and the Vega cases `state/junction-pseudostate` and `scxml/junction-pseudostate` pass
 - [x] 6.2 Hide and remove the label node of a transition whose other end is hidden or removed (`isOrphanedTransitionLabel` in `internal/abel/atmp_cucadiagram.go`). Verify with unit tests for `hide`, `remove`, both ends removed and remove then restore, among them `TestRemovedStateWithLabelNode`, and that the six Vega cases `state/node-style-transition-label*` pass
-- [ ] 6.3 Style history pseudo-states (`image_entityimagepseudostate.go`): the `history` and `deepHistory` stereotypes and the state's colors. Verify that the curated case "Styled history states" and the Vega cases of `nonreg/group2681` pass
+- [x] 6.3 Style history pseudo-states (`image_entityimagepseudostate.go`): the `history` and `deepHistory` stereotypes and the state's colors. Verify that the curated case "Styled history states" and the Vega cases of `nonreg/group2681` pass
 
 ## 7. Activity diagrams
 

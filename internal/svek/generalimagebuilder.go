@@ -84,11 +84,11 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 	case leafType == abel.LeafTypeAssociation:
 		return newEntityImageAssociation(leaf)
 	case leafType == abel.LeafTypePseudoState:
-		return newEntityImagePseudoState(leaf, "H")
+		return newEntityImagePseudoState(leaf, "H", "history")
 	case leafType == abel.LeafTypeStateTransitionLabel:
 		return newEntityImageTransitionLabel(leaf)
 	case leafType == abel.LeafTypeDeepHistory:
-		return newEntityImagePseudoState(leaf, "H*")
+		return newEntityImagePseudoState(leaf, "H*", "history", "deepHistory")
 	case leafType == abel.LeafTypeTips:
 		return newEntityImageTips(leaf, bibliotekon)
 	case leafType == abel.LeafTypeChenEntity, leafType == abel.LeafTypeChenRelationship,
