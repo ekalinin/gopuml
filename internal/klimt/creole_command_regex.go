@@ -244,7 +244,7 @@ func commandCreoleSprite() creoleCommand {
 			if ok {
 				c = stripe.SkinParam().IHtmlColorSet().GetColorOrWhite(colorName)
 			}
-			stripe.AddSprite(src, scale, c, m.mustGroup(1))
+			stripe.AddSprite(src, scale, c)
 			return m.groupLen(1)
 		}}
 }

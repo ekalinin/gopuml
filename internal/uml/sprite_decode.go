@@ -25,6 +25,7 @@ import (
 	"io"
 	"strconv"
 	"strings"
+	"sync"
 	"unicode/utf16"
 
 	"github.com/ekalinin/gopuml/internal/klimt"
@@ -37,8 +38,8 @@ type SpriteKind int
 var spriteKindNames = [...]string{"SpriteMonochrome", "SpriteColor", "SpriteImage", "SpriteSvg", "StdlibSprite"}
 
 // SpriteDef is a sprite defined by a "sprite" command, decoded as upstream
-// decodes it when the command runs. Drawing sprites is part of the sprite
-// port of klimt, not done yet: AsTextBlock panics.
+// decodes it when the command runs. AsTextBlock draws it with the klimt
+// port of the upstream class of its kind.
 type SpriteDef struct {
 	Kind          SpriteKind
 	Width, Height int
@@ -54,6 +55,9 @@ type SpriteDef struct {
 	SVG []string
 	// Stdlib and Name name a stdlib sprite.
 	Stdlib, Name string
+
+	drawOnce sync.Once
+	drawn    klimt.Sprite
 }
 
 // newGrid allocates the pixels of a sprite. Java allocates int[height][width]
@@ -379,7 +383,29 @@ const (
 func (k SpriteKind) String() string { return spriteKindNames[k] }
 
 // AsTextBlock implements klimt.Sprite.
-func (s *SpriteDef) AsTextBlock(color.HColor, color.HColor, float64, color.HColor) klimt.TextBlock {
+func (s *SpriteDef) AsTextBlock(fontColor, forcedColor color.HColor, scale float64, backColor color.HColor) klimt.TextBlock {
+	s.drawOnce.Do(func() { s.drawn = s.klimtSprite() })
+	return s.drawn.AsTextBlock(fontColor, forcedColor, scale, backColor)
+}
+
+// klimtSprite returns the klimt sprite of the definition. SVG definitions
+// are SVG files (SpriteSvg): the commands of inline SVG add the sprite of
+// the SVG parser instead.
+func (s *SpriteDef) klimtSprite() klimt.Sprite {
+	switch s.Kind {
+	case SpriteKindMonochrome:
+		return &klimt.SpriteMonochrome{Width: s.Width, Height: s.Height, GrayLevel: s.GrayLevel, Gray: s.Gray}
+	case SpriteKindColor:
+		return &klimt.SpriteColor{Width: s.Width, Height: s.Height, Gray: s.Gray, Color: s.Color}
+	case SpriteKindImage:
+		// SpriteImage requires an image, as Objects.requireNonNull does.
+		if s.Image == nil {
+			Throw(NullPointerException, "")
+		}
+		return klimt.NewSpriteImage(klimt.PortableImageFromImage(s.Image))
+	case SpriteKindSvg:
+		return klimt.NewSpriteSvg(strings.Join(s.SVG, ""))
+	}
 	panic(&color.RuntimeError{Class: UnsupportedOperationException,
 		Message: "not ported yet: klimt/sprite/" + s.Kind.String() + " (drawing of sprites)"})
 }

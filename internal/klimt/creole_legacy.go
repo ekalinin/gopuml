@@ -475,14 +475,10 @@ func (s *StripeSimple) AddURL(url *URL) {
 	s.atoms = append(s.atoms, AtomTextUtilsCreateURL(url, s.fontConfiguration, s.skinParam))
 }
 
-// AddSprite adds a sprite, or its literal markup when the sprite is
-// unknown. Upstream adds nothing for an unknown sprite; until sprites are
-// ported (none can be defined yet), the specification asks for the literal
-// text.
-func (s *StripeSimple) AddSprite(src string, scale float64, forcedColor color.HColor, literal string) {
+// AddSprite adds a sprite; an unknown sprite adds nothing, as upstream.
+func (s *StripeSimple) AddSprite(src string, scale float64, forcedColor color.HColor) {
 	sprite := s.skinParam.Sprite(src)
 	if sprite == nil {
-		s.atoms = append(s.atoms, AtomTextUtilsCreateLegacy(literal, s.fontConfiguration))
 		return
 	}
 	var backColor color.HColor

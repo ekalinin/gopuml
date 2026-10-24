@@ -20,7 +20,6 @@ import (
 	"bytes"
 	"errors"
 	"image"
-	"image/draw"
 	_ "image/gif"  // GIF decoding for <img>, as Java's ImageIO
 	_ "image/jpeg" // JPEG decoding for <img>, as Java's ImageIO
 	_ "image/png"  // PNG decoding for <img>, as Java's ImageIO
@@ -685,18 +684,7 @@ func readRasterImage(data []byte) (PortableImage, error) {
 	if err != nil {
 		return nil, errors.New("javax.imageio.IIOException: " + err.Error())
 	}
-	b := img.Bounds()
-	nrgba := image.NewNRGBA(image.Rect(0, 0, b.Dx(), b.Dy()))
-	draw.Draw(nrgba, nrgba.Bounds(), img, b.Min, draw.Src)
-	result := NewPortableImageARGB(b.Dx(), b.Dy())
-	for y := 0; y < b.Dy(); y++ {
-		for x := 0; x < b.Dx(); x++ {
-			o := nrgba.PixOffset(x, y)
-			p := nrgba.Pix[o : o+4]
-			result.SetRGB(x, y, int32(uint32(p[3])<<24|uint32(p[0])<<16|uint32(p[1])<<8|uint32(p[2])))
-		}
-	}
-	return result, nil
+	return PortableImageFromImage(img), nil
 }
 
 // CalculateDimension returns the scaled size of the image.
