@@ -28,13 +28,12 @@ func CommandSkinParam[D Diagram]() command.Command[D] {
 			b := d.Titled()
 			name := arg.Str("NAME", 0)
 			if EqualsIgnoreCase("handwritten", name) {
-				b.AddWarning(klimt.NewWarning("Please use '!option handwritten true' to enable handwritten "))
+				b.AddWarning(klimt.NewWarning("'skinparam handwritten' is deprecated: write '!option handwritten " +
+					arg.Str("VALUE", 0) + "' instead"))
 			}
 			if EqualsIgnoreCase("ParticipantPadding", name) {
-				b.AddWarning(klimt.NewWarning("Please use CSS style instead of skinparam ParticipantPadding"))
-			}
-			if EqualsIgnoreCase("padding", name) {
-				b.AddWarning(klimt.NewWarning("Please use CSS style instead of skinparam padding"))
+				b.AddWarning(klimt.NewWarning("'skinparam ParticipantPadding' is ignored: use a style instead",
+					"<style>", "participant {", "  Padding "+arg.Str("VALUE", 0), "}", "</style>"))
 			}
 			b.SetParam(name, arg.Str("VALUE", 0))
 			b.SetSkinParamUsed(true)
