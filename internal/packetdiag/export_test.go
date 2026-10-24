@@ -13,6 +13,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/engine"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/packetdiag"
 )
 
 const fields = "@startpacketdiag\n0-7: Source Port\n8-15: Destination Port\n@endpacketdiag\n"
@@ -23,11 +24,8 @@ func parseBlock(t *testing.T, rc *core.RenderContext, src string) *engine.Block 
 	if err != nil || len(blocks) != 1 {
 		t.Fatalf("%d blocks, error %v", len(blocks), err)
 	}
-	if d, ok := blocks[0].Diagram.(*core.ErrorDiagram); ok && d.NotSupportedYet {
-		t.Skip("packet diagrams are not registered yet (task 3.1)")
-	}
-	if got := blocks[0].Diagram.Description(); got != "Packet Diagram" {
-		t.Fatalf("diagram %T, description %q", blocks[0].Diagram, got)
+	if _, ok := blocks[0].Diagram.(*packetdiag.PacketDiagram); !ok {
+		t.Fatalf("diagram %T", blocks[0].Diagram)
 	}
 	return blocks[0]
 }

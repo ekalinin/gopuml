@@ -227,9 +227,6 @@ func TestWasmPacketDiagram(t *testing.T) {
 	// built-in layout, so the WASM build draws them as the native build.
 	src := "@startpacketdiag\n0-7: Source Port\n8-15: Destination Port\n@endpacketdiag\n"
 	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
-	if errors.Is(err, gopuml.ErrUnsupportedDiagram) {
-		t.Skip("packet diagrams are not registered yet (task 3.1)")
-	}
 	if err != nil {
 		t.Fatal(err)
 	}
