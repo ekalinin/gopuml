@@ -1,0 +1,96 @@
+# SVG sprite inputs of SpriteGolden.java: name, tab, SVG text (\n, \t and \\ escaped).
+circle	<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#FF0000"/></svg>
+circle-stroke	<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="blue" stroke-width="2"/></svg>
+ellipse	<svg viewBox="0 0 30 20"><ellipse cx="15" cy="10" rx="12" ry="6" fill="green"/></svg>
+rect	<svg viewBox="0 0 20 10"><rect x="1" y="2" width="15" height="6" fill="#336699"/></svg>
+rect-round	<svg viewBox="0 0 20 10"><rect x="1" y="2" width="15" height="6" rx="2" ry="3" fill="orange" stroke="black"/><rect width="4" height="3"/></svg>
+line	<svg viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="8" stroke="red" stroke-width="1.5"/><line x2="3"/></svg>
+polyline	<svg viewBox="0 0 10 10"><polyline points="0,0 5,5 10,0" fill="none" stroke="black"/><polyline points="1 1 2"/></svg>
+polygon	<svg viewBox="0 0 10 10"><polygon points="5 0 10 10 0 10" fill="purple"/><polygon points="1,2,3 4 5e0,6 -.5+1.5" stroke="#00FF00"/><polygon points=""/></svg>
+path-abs	<svg viewBox="0 0 24 24"><path d="M2 2 L10 2 H20 V10 C20 15 15 20 10 20 S2 15 2 10 Q2 5 5 5 T10 2 A3 4 0 0 1 16 8 Z"/></svg>
+path-rel	<svg viewBox="0 0 24 24"><path d="m2 2 l8 0 h10 v8 c0 5 -5 10 -10 10 s-8 -5 -8 -10 q0 -5 3 -5 t5 -3 a3 4 30 1 0 6 6 z m1 1 2 2 3 1z" fill="#0A0B0C"/></svg>
+path-smooth	<svg viewBox="0 0 24 24"><path d="M1 1 S5 5 10 1 S15 5 20 1 C21 2 22 3 23 4 s1 1 2 0 Q 3 3 5 1 T 7 7 T 9 9" stroke="red"/></svg>
+path-implicit	<svg viewBox="0 0 40 40"><path d="M10,10 20,20 30,10z M1e1-5.5.5 1.5.5-.5 L+3-4"/></svg>
+style	<svg viewBox="0 0 20 20"><path d="M0 0 L20 20" style="fill:#FF00FF;stroke:#00FF00;stroke-width:3"/><circle cx="5" cy="5" r="3" style="fill: yellow ;" fill="blue" fill-opacity="0.5"/><ellipse cx="9" cy="9" rx="2" ry="1" style="Stroke:red"/></svg>
+opacity	<svg viewBox="0 0 20 20"><rect width="10" height="10" fill="red" opacity="0.5" fill-opacity="0.3" stroke-opacity="0.2"/></svg>
+currentcolor	<svg viewBox="0 0 10 10"><path d="M0 0 H10 V10 Z" fill="currentColor"/><circle cx="5" cy="5" r="2" fill="none" stroke="currentColor"/><rect width="2" height="2" fill="NONE" stroke="none"/></svg>
+stroke-only	<svg viewBox="0 0 10 10"><path d="M0 0L5 5" stroke="red"/><circle cx="5" cy="5" r="1" stroke="#0000FF" stroke-width="0.5"/></svg>
+gradient	<svg viewBox="0 0 20 20"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%" spreadMethod="reflect"><stop offset="0%" stop-color="#FF0000"/><stop offset="50%" style="stop-color:#00FF00;stop-opacity:0.5"/><stop offset="1" stop-color="blue" stop-opacity="2"/></linearGradient><radialGradient id="r1"><stop offset="0" stop-color="#123456"/><stop offset="1" stop-color="white"/></radialGradient></defs><rect width="20" height="10" fill="url(#g1)"/><rect y="10" width="20" height="10" fill="url(#r1)" stroke="black"/><circle cx="10" cy="10" r="3" fill="url(#missing)"/></svg>
+gradient-single	<svg viewBox="0 0 20 20"><linearGradient id="g2" gradientUnits="userSpaceOnUse" spreadMethod="REPEAT" x1="2" x2="bad"><stop offset="0.3" stop-color="orange"/></linearGradient><linearGradient id="g3"><stop offset="x" stop-color="red"/><stop offset="-1" stop-color="none"/><stop stop-color="blue"/><stop offset="2" stop-color="#00FF00" stop-opacity="-1"/></linearGradient><path d="M0 0 H10 V10" fill="url(#g2)"/><path d="M0 0 H5 V5" fill="url(#g3)" stroke="red"/></svg>
+translate	<svg viewBox="0 0 20 20"><g transform="translate(5,5)"><circle cx="2" cy="2" r="2"/><path d="M0 0 L1 1"/></g><path transform="translate(3)" d="M0 0 L1 1"/><ellipse transform="translate(1 2)" cx="3" cy="3" rx="2" ry="1"/></svg>
+scale	<svg viewBox="0 0 20 20"><g transform="scale(2)"><path d="M1 1 L2 2" stroke="red" stroke-width="1.5"/><circle cx="1" cy="1" r="1"/><ellipse cx="2" cy="2" rx="1" ry="0.5"/></g></svg>
+scale-xy	<svg viewBox="0 0 20 20"><g transform="scale(2 3)"><path d="M1 1 L2 2"/></g></svg>
+rotate	<svg viewBox="0 0 20 20"><g transform="rotate(30 5 5)"><path d="M0 0 L10 0 A2 2 0 0 1 12 2"/><ellipse cx="5" cy="5" rx="3" ry="2"/><circle cx="1" cy="1" r="1"/></g></svg>
+rotate-one	<svg viewBox="0 0 20 20"><g transform="rotate(45)"><path d="M0 0 L10 0"/></g></svg>
+matrix	<svg viewBox="0 0 20 20"><path transform="matrix(1 0.5 -0.5 1 2 3)" d="M0 0 L4 0 L4 4 Z A1 1 0 0 0 2 2"/><g transform="matrix(2,0,0,2,1,1)"><circle cx="1" cy="1" r="1"/></g></svg>
+transforms	<svg viewBox="0 0 20 20"><rect transform="translate(2 3) scale(2) rotate(10)" width="3" height="2"/><path transform="scale(0.5) translate(4,4)" d="M0 0 L4 4"/><g transform="translate(1,\n2)"><line x2="2" y2="2" stroke="red"/></g></svg>
+groups	<svg viewBox="0 0 30 30"><g fill="red"><g stroke="blue"><path d="M0 0 L10 10"/><circle cx="5" cy="5" r="2"/></g><g fill="#00FF00" transform="translate(10 10)"><path d="M0 0 H5"/><g><path d="M1 1 H2"/></g></g></g><path d="M20 20 h5"/><g style="fill:#0000FF"><path d="M1 2 L3 4"/></g></svg>
+size-attrs	<svg width="32" height="16"><circle cx="8" cy="8" r="4"/></svg>
+size-decimal	<svg viewBox="0 0 10.5 7.2" width="100"><circle cx="5" cy="3" r="2"/></svg>
+size-missing	<svg viewBox="-5 -5 10 10"><circle cx="0" cy="0" r="4"/></svg>
+image	<svg viewBox="0 0 10 10" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="1" y="2" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mP4z8DwHwyBNBAwNAAAR0sIecMlh+sAAAAASUVORK5CYII="/><image x="3" y="4" width="4" height="4" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVR42mMQUDD4D8IMMAYAK7QFfSBd8FwAAAAASUVORK5CYII="/><image width="6" height="2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVR42mMQUDD4D8IMMAYAK7QFfSBd8FwAAAAASUVORK5CYII="/><image height="1" href="DATA:IMAGE/PNG;BASE64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVR42mMQUDD4D8IMMAYAK7QFfSBd8FwAAAAASUVORK5CYII="/><image href="data:image/svg+xml;base64,AAAA"/><image href="http://example.com/a.png"/><image width="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mP4z8DwHwyBNBAwNAAAR0sIecMlh+sAAAAASUVORK5CYII="/><image href="data:image/png;base64,!!!!"/><image href="data:image/png;base64,iVBORw0KGgo="/><image x="9" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mP4z8DwHwyBNBAwNAAAR0sIecMlh+sAAAAASUVORK5CYII="/></svg>
+image-unknown	<svg viewBox="0 0 10 10"><rect width="1" height="1"/><image href="data:image/png;base64,AAAA"/><rect width="2" height="2"/></svg>
+image-unbound	<svg viewBox="0 0 10 10"><rect width="1" height="1"/><image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mP4z8DwHwyBNBAwNAAAR0sIecMlh+sAAAAASUVORK5CYII="/></svg>
+text	<svg viewBox="0 0 40 20"><text x="2" y="12" font-size="10px" fill="blue" font-family="Courier">Hi &amp; there</text><text x="20" y="18" fill="red" style="font-size:8pt;font-weight:bold;font-style:italic;text-decoration:underline line-through" text-anchor="middle">Mid</text><text x="38" y="5" fill="#00FF00" font-weight="600" font-style="oblique" text-anchor="end"> End </text><g font-family="Serif" fill="#333333"><text x="1" y="1" font-size="7">G</text></g></svg>
+text-nofill	<svg viewBox="0 0 20 20"><text x="1" y="10">A</text></svg>
+text-size	<svg viewBox="0 0 20 20"><text x="1" y="10" fill="red" font-size="12.5px">A</text><text x="1" y="10" fill="red" font-size="3em" font-weight="bolder" text-decoration="none">B</text></svg>
+text-cdata	<svg viewBox="0 0 20 20"><text x="1" y="9" fill="red"><![CDATA[a<b]]> &#65;</text><text fill="blue">\n  multi\n  line\n</text></svg>
+malformed	<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="red"></svg>
+malformed-unclosed	<svg viewBox="0 0 10 10"><rect width="5" height="5"/><path d="M0 0 L5 5"/>
+malformed-entity	<svg viewBox="0 0 10 10"><path d="M0 0 L5 5"/><text x="1" y="1" fill="red">a&nbsp;b</text></svg>
+malformed-trailing	<svg viewBox="0 0 10 10"><path d="M0 0 L5 5"/></svg><svg/>
+doctype	<?xml version="1.0"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xmldecl	<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><!-- comment --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>t</title><desc>d</desc><style>circle{fill:red}</style><metadata/><circle cx="5" cy="5" r="5"/></svg>
+xml-space-before-decl	 <?xml version="1.0"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-upper-decl	<?XML version="1.0"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-version-11	<?xml version="1.1"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-no-version	<?xml encoding="UTF-8"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-pi	<?foo bar?><svg viewBox="0 0 10 10"><?pi x?><circle cx="5" cy="5" r="5"/></svg>
+xml-bom	﻿<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-text-before	x<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-whitespace-around	 \n\t<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>\n 
+xml-comment-only	<!-- viewBox="0 0 1 1" -->
+xml-duplicate-attr	<svg viewBox="0 0 10 10"><circle cx="5" cx="6" cy="5" r="5"/></svg>
+xml-no-space-attrs	<svg viewBox="0 0 10 10"><circle cx="5"cy="5" r="5"/></svg>
+xml-amp-attr	<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" id="a&b"/></svg>
+xml-lt-attr	<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" id="a<b"/></svg>
+xml-gt-text	<svg viewBox="0 0 10 10"><text x="1" y="1" fill="red">a>b ]]> c</text></svg>
+xml-comment-dashes	<svg viewBox="0 0 10 10"><!-- a -- b --><circle cx="5" cy="5" r="5"/></svg>
+xml-bad-name	<svg viewBox="0 0 10 10"><1circle cx="5" cy="5" r="5"/></svg>
+xml-unbound-element	<svg viewBox="0 0 10 10"><x:circle cx="5" cy="5" r="5"/></svg>
+xml-control-char	<svg viewBox="0 0 10 10"><text x="1" y="1" fill="red">ab</text></svg>
+xml-charref-control	<svg viewBox="0 0 10 10"><text x="1" y="1" fill="red">a&#1;b</text></svg>
+xml-charref-bad	<svg viewBox="0 0 10 10"><text x="1" y="1" fill="red">a&#xD800;b</text></svg>
+xml-entities	<svg viewBox="0 0 10 10"><text x="1" y="1" fill="red">&lt;&gt;&amp;&quot;&apos;&#x41;&#66;</text></svg>
+xml-xmlns-attr-prefix	<svg viewBox="0 0 10 10" xml:space="preserve"><circle xml:lang="en" cx="5" cy="5" r="5"/></svg>
+xml-empty-attr	<svg viewBox="0 0 10 10"><circle cx="" cy="5" r="5" fill=""/><path d="" stroke=""/></svg>
+xml-single-quotes	<svg viewBox='0 0 10 10'><circle cx='5' cy='5' r='5' fill='red'/></svg>
+xml-cdata-outside	<![CDATA[x]]><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-end-space	<svg viewBox="0 0 10 10"><g ><circle cx="5" cy="5" r="5" / ></g ></svg >
+xml-decl-spaces	<?xml version = '1.0'  encoding='utf-8' standalone = "yes" ?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-decl-bad-standalone	<?xml version="1.0" standalone="maybe"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-decl-version-2	<?xml version="2.0"?><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+xml-ns-same-element	<svg viewBox="0 0 10 10"><image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mP4z8DwHwyBNBAwNAAAR0sIecMlh+sAAAAASUVORK5CYII=" xmlns:xlink="http://www.w3.org/1999/xlink"/><circle cx="5" cy="5" r="5"/></svg>
+xml-ns-empty	<svg viewBox="0 0 10 10" xmlns:a=""><circle cx="5" cy="5" r="5"/></svg>
+xml-ns-default-empty	<svg viewBox="0 0 10 10" xmlns=""><circle cx="5" cy="5" r="5"/></svg>
+xml-ns-scope	<svg viewBox="0 0 10 10"><g xmlns:a="u"><a:x/></g><a:y/><circle cx="5" cy="5" r="5"/></svg>
+prefixed	<svg xmlns:s="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><s:circle cx="5" cy="5" r="5"/><circle cx="1" cy="1" r="1"/></svg>
+use	<svg viewBox="0 0 30 30" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><g id="dot"><circle cx="0" cy="0" r="2" fill="red"/><text x="0" y="0" fill="red">a&amp;b</text></g></defs><symbol id="sym" viewBox="0 0 10 10"><rect width="10" height="10"/></symbol><use href="#dot" x="5" y="5"/><use xlink:href="#dot" transform="translate(10 10)" fill="blue"/><use href="#sym" x="15" y="15" width="10" height="10"/><use href="#nope"/><use href="dot"/></svg>
+use-nested-defs	<svg viewBox="0 0 30 30"><defs><symbol id="s2" viewBox="5 5 20 20"><g id="inner"><path d="M5 5 L10 10"/></g></symbol><path id="p" d="M0 0 H3"/></defs><use href="#s2" width="10"/><use href="#inner"/><use href="#p" x="2"/></svg>
+use-badscale	<svg viewBox="0 0 30 30"><symbol id="sym" viewBox="0 0 10 10"><rect width="10" height="10"/></symbol><circle cx="1" cy="1" r="1"/><use href="#sym" width="10" height="20"/><circle cx="2" cy="2" r="1"/></svg>
+use-cycle	<svg viewBox="0 0 10 10"><defs><g id="a"><use href="#a"/></g></defs><use href="#a"/></svg>
+use-xlink-fragment	<svg viewBox="0 0 10 10" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><g id="b"><rect width="1" height="1"/><use xlink:href="#c"/><rect width="2" height="2"/></g><path id="c" d="M0 0 L1 1"/></defs><use href="#b"/></svg>
+path-errors	<svg viewBox="0 0 10 10"><path d="M0 0 L5 5"/><path d="10 10 L 5 5"/></svg>
+path-missing-arg	<svg viewBox="0 0 10 10"><path d="M 10"/></svg>
+path-letter-arg	<svg viewBox="0 0 10 10"><path d="M 10 10 L z"/></svg>
+path-unknown-letter	<svg viewBox="0 0 10 10"><path d="M 1 1 X 2"/></svg>
+path-t-first	<svg viewBox="0 0 10 10"><path d="T 5 5"/></svg>
+path-t-after-l	<svg viewBox="0 0 10 10"><path d="M0 0 L5 5 T 7 7"/></svg>
+path-move-only	<svg viewBox="0 0 10 10"><path d="M1 1 M2 2"/><path d="" fill="red"/><path id="pid" d="M0 0 H1"/></svg>
+path-no-d	<svg viewBox="0 0 10 10"><path fill="red"/></svg>
+stroke-width-px	<svg viewBox="0 0 10 10"><path d="M0 0 H5" stroke="red" stroke-width="2px"/></svg>
+group-unbalanced	<svg viewBox="0 0 10 10"><g fill="red"><path d="M0 0 H5"/></g></g><path d="M0 0 V5"/></svg>
+colors	<svg viewBox="0 0 10 10"><path d="M0 0 H1" fill="#FFF"/><path d="M0 0 H2" fill="123456"/><path d="M0 0 H3" fill="unknowncolor"/><path d="M0 0 H4" fill="transparent"/><path d="M0 0 H5" fill="#80FF8000"/><path d="M0 0 H6" fill="DarkSlateGray"/></svg>
+colors-gradient	<svg viewBox="0 0 10 10"><path d="M0 0 H1" fill="red-blue"/></svg>
+archimate-application-component	<svg width="19.995mm" height="19.928mm" version="1.1" viewBox="0 0 19.995 19.928" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-120.11 -80.025)"><rect x="120.11" y="80.025" width="19.995" height="19.928" ry="0" fill="none"/><path d="m138.87 84.664-14.826 0.04702a0.50005 0.50005 0 0 0-0.49971 0.49971v1.4376l-2.4882-0.01964a0.50005 0.50005 0 0 0-0.50436 0.50023v1.9353a0.50005 0.50005 0 0 0 0.50022 0.50023h2.4805l-0.0238 1.0428-2.4996-0.01964a0.50005 0.50005 0 0 0-0.50384 0.50023v1.9353a0.50005 0.50005 0 0 0 0.49971 0.50023h2.4924v3.0019a0.50005 0.50005 0 0 0 0.50023 0.50023l14.873 0.04651a0.50005 0.50005 0 0 0 0.5018-0.4997v-11.408a0.50005 0.50005 0 0 0-0.50177-0.50023zm-0.49817 1.002v10.404l-13.875-0.04289v-2.5037h2.4944a0.50005 0.50005 0 0 0 0.49972-0.50023v-1.8883a0.50005 0.50005 0 0 0-0.4961-0.50023l-2.4862-0.01964 0.0238-1.0506h2.5053a0.50005 0.50005 0 0 0 0.50023-0.50023v-1.8888a0.50005 0.50005 0 0 0-0.49609-0.49971l-2.498-0.01964v-0.94722zm-16.82 1.9668 4.9863 0.03876v0.89297h-4.9863zm-0.047 3.9589 4.9863 0.03927v0.89245h-4.9863z" stop-color="#000000" stroke-linejoin="round"/></g></svg>
+material-account	<svg width="48" height="48"><g transform="scale(2)"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></g></svg>
