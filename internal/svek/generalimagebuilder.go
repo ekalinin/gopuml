@@ -49,7 +49,9 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 			}
 		}
 		return newEntityImageState(leaf)
-	case leafType == abel.LeafTypeCircleStart:
+	case leafType == abel.LeafTypeCircleStart || leafType == abel.LeafTypeJunction:
+		// A junction is drawn as an initial node, but keeps its own leaf type:
+		// CIRCLE_START also marks the entry point of the diagram.
 		return newEntityImageCircleStart(leaf)
 	case leafType == abel.LeafTypeCircleEnd:
 		return newEntityImageCircleEnd(leaf)

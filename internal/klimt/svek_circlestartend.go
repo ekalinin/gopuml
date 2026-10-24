@@ -12,28 +12,43 @@ import (
 )
 
 // CircleStart is the filled circle of an initial node (upstream's
-// svek.image.CircleStart): 20 x 20, the colors of the style unless colors
-// override them.
+// svek.image.CircleStart): 20 x 20, or 12 x 12 for a junction pseudostate,
+// the colors of the style unless colors override them.
 type CircleStart struct {
 	TextBlockDefaults
 	skinParam ISkinParam
 	style     *Style
 	colors    *color.Colors
+	size      float64
 }
+
+// junctionSize is the size of a junction pseudostate: UML 2.5.1 draws it
+// smaller than an initial node, without a ratio.
+const junctionSize = 12
 
 // NewCircleStart returns the start circle.
 func NewCircleStart(skinParam ISkinParam, style *Style, colors *color.Colors) *CircleStart {
-	return &CircleStart{skinParam: skinParam, style: style, colors: colors}
+	return NewCircleStartJunction(skinParam, style, colors, false)
+}
+
+// NewCircleStartJunction returns the start circle, or the circle of a
+// junction pseudostate.
+func NewCircleStartJunction(skinParam ISkinParam, style *Style, colors *color.Colors, junction bool) *CircleStart {
+	size := 20.0
+	if junction {
+		size = junctionSize
+	}
+	return &CircleStart{skinParam: skinParam, style: style, colors: colors, size: size}
 }
 
 // CalculateDimension implements TextBlock.
 func (c *CircleStart) CalculateDimension(font.StringBounder) geom.XDimension2D {
-	return geom.NewXDimension2D(20, 20)
+	return geom.NewXDimension2D(c.size, c.size)
 }
 
 // DrawU implements TextBlock.
 func (c *CircleStart) DrawU(ug UGraphic) {
-	circle := UEllipseBuild(20, 20)
+	circle := UEllipseBuild(c.size, c.size)
 	backColor := ColorsColorOf(c.colors, c.style, PNameBackGroundColor, c.skinParam.IHtmlColorSet())
 	lineColor := ColorsColorOf(c.colors, c.style, PNameLineColor, c.skinParam.IHtmlColorSet())
 	circle.SetDeltaShadow(c.style.Shadowing())

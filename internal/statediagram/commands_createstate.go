@@ -145,6 +145,8 @@ func stereogroupLeafType(g *klimt.Stereogroup) abel.LeafType {
 		return abel.LeafTypeStateForkJoin
 	case "start":
 		return abel.LeafTypeCircleStart
+	case "junction":
+		return abel.LeafTypeJunction
 	case "end":
 		return abel.LeafTypeCircleEnd
 	case "history":
