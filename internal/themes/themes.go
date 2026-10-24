@@ -2,7 +2,7 @@
 // Provenance: original
 
 // Package themes holds the themes bundled with the program: the theme files
-// of PlantUML v1.2026.8 whose license allows bundling them (see NOTICE for
+// of PlantUML v1.2026.9 whose license allows bundling them (see NOTICE for
 // the themes that are left out and why). Bundled implements
 // tim.ThemeSource and tim.ThemeLister, so that "!theme name" finds these
 // themes first, as upstream finds the files in its jar's /themes/ folder,

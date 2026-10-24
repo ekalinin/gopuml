@@ -147,7 +147,7 @@ write
 case metadata
 color #181818
 rect 20 10
-write @startuml\nBob\s->\sAlice\n@enduml\n1.2026.8
+write @startuml\nBob\s->\sAlice\n@enduml\n1.2026.9
 
 case null-format
 export format NULL

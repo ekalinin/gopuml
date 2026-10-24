@@ -30,7 +30,7 @@ var (
 	_ tim.ThemeLister = themes.Bundled
 )
 
-// bundled lists the themes of upstream v1.2026.8 that are bundled, in
+// bundled lists the themes of upstream v1.2026.9 that are bundled, in
 // Java's sort order.
 var bundled = []string{
 	"aws-orange", "black-knight", "bluegray", "cerulean", "cerulean-outline", "cloudscape-design",

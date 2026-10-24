@@ -17,7 +17,7 @@ const (
 	hiSource    = "@startuml\nAlice -> Bob : hi\n@enduml"
 )
 
-// Strings encoded by upstream v1.2026.8, from the conformance references.
+// Strings encoded by upstream v1.2026.9, from the conformance references.
 func TestDecodeUpstreamEncoded(t *testing.T) {
 	tests := map[string]string{
 		"Syp9J4vLqBLJSCfFKh1Io4ZDoSa70000": helloSource,

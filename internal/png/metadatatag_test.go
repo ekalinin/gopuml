@@ -60,7 +60,7 @@ func iTXt(key, text string, compressed bool) []byte {
 }
 
 func TestMetadataTag(t *testing.T) {
-	src := "@startuml\nAlice -> Bob : héllo\n@enduml\n\nPlantUML version 1.2026.8"
+	src := "@startuml\nAlice -> Bob : héllo\n@enduml\n\nPlantUML version 1.2026.9"
 	tests := []struct {
 		name   string
 		chunks [][]byte

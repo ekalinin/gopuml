@@ -82,7 +82,7 @@ func TestRoleLabelsPositionOffTheLine(t *testing.T) {
 	quantifier := geom.NewXPoint2D(80, 105)
 	end, other := geom.NewXPoint2D(100, 100), geom.NewXPoint2D(130, 160)
 	line := roleLabelsSampleSegment(end, other)
-	// The mirror image at the end of the line, as 1.2026.8 placed it
+	// The mirror image at the end of the line, where upstream placed it before RoleLabels
 	if old := geom.NewXPoint2D(102, 105); !covers(old, rDim, line) {
 		t.Fatalf("the old position does not cover the line")
 	}

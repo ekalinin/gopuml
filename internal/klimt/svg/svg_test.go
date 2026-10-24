@@ -139,7 +139,7 @@ func TestMetadataDecodes(t *testing.T) {
 	source := "@startuml\nAlice -> Bob : héllo & <bye>\n@enduml"
 	g := newGraphic(font.FormatSVG)
 	g.Apply(color.Black).Draw(klimt.URectangleBuild(5, 5))
-	out := write(t, g, source+"\n1.2026.8")
+	out := write(t, g, source+"\n1.2026.9")
 	start := strings.Index(out, "<?plantuml-src ")
 	if start < 0 {
 		t.Fatalf("no metadata in %s", out)
