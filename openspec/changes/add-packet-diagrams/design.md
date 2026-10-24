@@ -64,8 +64,9 @@ TXT and UTXT need no new code: the engine rejects them before the export, as for
 
 ### D7. Documentation
 
-- The README and `site/index.html` get the row `Packet | yes | yes | no` in the table of supported diagrams, and the Graphviz note of the page names packet diagrams among the diagrams that do not need `dot`. The README's Graphviz sentence lists only the diagrams that need `dot`, so it does not change. The README's conformance counts follow the report.
+- The README and `site/index.html` get the row `Packet | yes | yes | no` in the table of supported diagrams, and the Graphviz note of the page names packet diagrams among the diagrams that do not need `dot`. The README's opening sentence on Graphviz lists only the diagrams that need `dot`, so it does not change, and the last sentence of its Graphviz section names packet diagrams among the diagrams that do not need it. The README's conformance counts follow the report.
 - The playground note of the page and the README's sentence about the playground stay as they are, because the page runs the WASM module of v0.1.0, which has no packet diagrams. The release that ships packet diagrams updates them.
+- `TestReleaseNotes` required every row of the README's table to be in the notes of every release, so a row added to the README after a release failed it for the published notes of v0.1.0. Decided with the user during the implementation, the check is reversed: every row of the table of a release's notes must still be in the README's table, and the notes must have a table. The release spec does not tie the notes to the README, so it does not change, and `docs/releases/v0.1.0.md` stays as it was published.
 
 ### D8. Conformance
 

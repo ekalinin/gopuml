@@ -42,5 +42,5 @@ Out of scope:
 - **Code:** a new `internal/packetdiag` package (`PacketDiagram`, `PacketDiagramFactory`, `PacketBlock`, `PacketIndicator`, the 7 commands, and the two helpers it uses from `nwdiag`: `NwDiagram.toSet` and `VerticalLine`), the factory list in `internal/engine`, and the supported families in `internal/core`.
 - **Runtime dependency:** none. Packet diagrams do not need Graphviz.
 - **Conformance:** new curated cases and committed references under `testdata/conformance/`. The not-supported-yet count of the report drops from 105 to 43, unless some packet cases end up in `known-differences.yaml`.
-- **Documentation:** `README.md` and `site/index.html` (the table of supported diagrams, which `landing_test.go` keeps equal).
+- **Documentation:** `README.md` and `site/index.html` (the table of supported diagrams, which `landing_test.go` keeps equal), and the check of the release notes against the README in `release_test.go`.
 - **Compatibility:** inputs that failed with "packet diagrams are not supported yet" now render.

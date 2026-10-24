@@ -27,6 +27,7 @@ sequence and activity diagrams in the browser with the WebAssembly module.
 | State | yes (needs `dot`) | yes (needs `dot`) | no |
 | Activity (new syntax) | yes | yes | no |
 | Activity (legacy syntax) | yes (needs `dot`) | yes (needs `dot`) | no |
+| Packet | yes | yes | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
@@ -38,9 +39,9 @@ reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.8 with a
-conformance suite of 502 cases (upstream's Vega test corpus plus curated
+conformance suite of 520 cases (upstream's Vega test corpus plus curated
 cases): every case passes, apart from 25 documented known differences
-(`testdata/conformance/known-differences.yaml`) and 105 cases of diagram types
+(`testdata/conformance/known-differences.yaml`) and 43 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
@@ -195,8 +196,8 @@ by Graphviz `dot`, as upstream does.
 `dot` is looked up from `--dot-path` (or the library option), then the
 `GRAPHVIZ_DOT` environment variable, then `PATH` and the usual install
 locations. `./plantuml --check-graphviz` reports the version found. The
-references were made with Graphviz 14.0.1. Sequence diagrams and activity
-diagrams in the new syntax do not need Graphviz.
+references were made with Graphviz 14.0.1. Sequence diagrams, activity
+diagrams in the new syntax and packet diagrams do not need Graphviz.
 
 ## Conformance suite
 
