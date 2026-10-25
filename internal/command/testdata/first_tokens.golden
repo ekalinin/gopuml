@@ -505,3 +505,70 @@ PacketDiagramFactory	47	net.sourceforge.plantuml.packetdiag.command.CommandScale
 PacketDiagramFactory	48	net.sourceforge.plantuml.packetdiag.command.CommandSameHeight	^same_height[%s]*=[%s]*(true|false);?[%s]*$	same	same	same
 PacketDiagramFactory	49	net.sourceforge.plantuml.packetdiag.command.CommandNumRange	^[%s]*(?:(\u005Cd{1,7})(?::)?|(\u005Cd{1,7})(?:-(\u005Cd{1,7}))(?::)?|\u005C*)\u005Cs+(.*?)(?:\u005Cs*\u005C[(.*?)\u005C])?[%s]*$	* 0 1 2 3 4 5 6 7 8 9	* 0 1 2 3 4 5 6 7 8 9	* 0 1 2 3 4 5 6 7 8 9
 PacketDiagramFactory	50	net.sourceforge.plantuml.packetdiag.command.CommandPacketDiagEnd	^[%s]*\u005C}?[%s]*$	<empty> }	<empty> }	<empty> }
+GanttDiagramFactory	0	net.sourceforge.plantuml.command.CommandTitle	^title(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	title	title	title
+GanttDiagramFactory	1	net.sourceforge.plantuml.command.CommandMainframe	^mainframe(?:[%s]*:[%s]*|[%s]+)(.*[%pLN_.].*)$	mainframe	mainframe	mainframe
+GanttDiagramFactory	2	net.sourceforge.plantuml.command.CommandCaption	^caption(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	caption	caption	caption
+GanttDiagramFactory	3	net.sourceforge.plantuml.command.CommandMultilinesCaption	^caption$	caption	caption	caption
+GanttDiagramFactory	4	net.sourceforge.plantuml.command.CommandMultilinesTitle	^title$	title	title	title
+GanttDiagramFactory	5	net.sourceforge.plantuml.command.CommandMultilinesLegend	^legend(?:[%s]+(top|bottom))?(?:[%s]+(left|right|center))?$	legend	legend	legend
+GanttDiagramFactory	6	net.sourceforge.plantuml.command.CommandLegend	^legend(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	legend	legend	legend
+GanttDiagramFactory	7	net.sourceforge.plantuml.command.CommandFooter	^(?:(left|right|center))?[%s]*footer(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+GanttDiagramFactory	8	net.sourceforge.plantuml.command.CommandMultilinesFooter	^(?:(left|right|center)?[%s]*)footer$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+GanttDiagramFactory	9	net.sourceforge.plantuml.command.CommandHeader	^(?:(left|right|center))?[%s]*header(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+GanttDiagramFactory	10	net.sourceforge.plantuml.command.CommandMultilinesHeader	^(?:(left|right|center)?[%s]*)header$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+GanttDiagramFactory	11	net.sourceforge.plantuml.classdiagram.command.CommandNamespaceSeparator	^set[%s]+(?:separator|namespaceseparator)[%s]+((?:none|null)|[\u005C\u005C]{2}|::|[^%pLN%s_$#{}<>%g])$	set	set	set
+GanttDiagramFactory	12	net.sourceforge.plantuml.command.CommandNope	^[%s]*$	<empty>	<empty>	<empty>
+GanttDiagramFactory	13	net.sourceforge.plantuml.command.CommandPragma	^!pragma[%s]+([A-Za-z_][A-Za-z_0-9]*)(?:[%s]+(.*))?$	!	!	!
+GanttDiagramFactory	14	net.sourceforge.plantuml.command.CommandAssumeTransparent	^!assume[%s]+transparent[%s]+(dark|light)$	!	!	!
+GanttDiagramFactory	15	net.sourceforge.plantuml.command.CommandSkinParam	^(skinparam|skinparamlocked)[%s]+([\u005Cw.]*(?:\u005C<\u005C<[^<>]*\u005C>\u005C>)?[\u005Cw.]*)[%s]+([^{}]*)$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+GanttDiagramFactory	16	net.sourceforge.plantuml.command.CommandSkinParamJaws	^((skinparam|skinparamlocked)[%s]+.*\uE100.*)+$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+GanttDiagramFactory	17	net.sourceforge.plantuml.command.CommandSkinParamMultilines	^skinparam[%s]*(?:[%s]+([\u005Cw.]*(?:\u005C<\u005C<.*\u005C>\u005C>)?[\u005Cw.]*))?[%s]*\u005C{$	skinparam	skinparam	skinparam
+GanttDiagramFactory	18	net.sourceforge.plantuml.sequencediagram.command.CommandSkin	^skin[%s]+([\u005Cw.]+)$	skin	skin	skin
+GanttDiagramFactory	19	net.sourceforge.plantuml.command.CommandMinwidth	^minwidth[%s]+(\u005Cd+)$	minwidth	minwidth	minwidth
+GanttDiagramFactory	20	net.sourceforge.plantuml.command.CommandPage	^page[%s]+(\u005Cd+)[%s]*x*[%s]*(\u005Cd+)$	page	page	page
+GanttDiagramFactory	21	net.sourceforge.plantuml.command.CommandRotate	^rotate$	rotate	rotate	rotate
+GanttDiagramFactory	22	net.sourceforge.plantuml.command.CommandFactorySprite$1	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)?|(color))\u005C])?[%s]*\u005C{$	sprite	sprite	sprite
+GanttDiagramFactory	23	net.sourceforge.plantuml.command.CommandFactorySprite$2	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)|(color))\u005C])?[%s]+([-_A-Za-z0-9]+)$	sprite	sprite	sprite
+GanttDiagramFactory	24	net.sourceforge.plantuml.command.CommandSpriteBase64	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;base64,([A-Za-z0-9+/=]+)$	sprite	sprite	sprite
+GanttDiagramFactory	25	net.sourceforge.plantuml.command.CommandSpriteMd5	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;md5,([0-9a-f]+)$	sprite	sprite	sprite
+GanttDiagramFactory	26	net.sourceforge.plantuml.command.CommandSpriteSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*\u005C</svg\u005C>)$	sprite	sprite	sprite
+GanttDiagramFactory	27	net.sourceforge.plantuml.command.CommandSpriteStdlib	^sprite[%s]+\u005C$([-%pLN_]+)[%s]*#([^#]+)#([^%s]+)$	sprite	sprite	sprite
+GanttDiagramFactory	28	net.sourceforge.plantuml.command.CommandSpriteStdlibSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]*:([^:]+):([^%s]+)$	sprite	sprite	sprite
+GanttDiagramFactory	29	net.sourceforge.plantuml.command.CommandSpriteSvgMultiline	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*)$	sprite	sprite	sprite
+GanttDiagramFactory	30	net.sourceforge.plantuml.command.CommandSpriteFile	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+([^<>%g#]*)$	sprite	sprite	sprite
+GanttDiagramFactory	31	net.sourceforge.plantuml.command.CommandStyleSingleLineCSS	^\u005C<style\u005C>([-#.\u005Cw%s;:{}]+)\u005C</style\u005C>$	<	<	<
+GanttDiagramFactory	32	net.sourceforge.plantuml.command.CommandStyleMultilinesCSS	^\u005C<style\u005C>$	<	<	<
+GanttDiagramFactory	33	net.sourceforge.plantuml.command.CommandStyleImport	^\u005C<style[%s]*\u005Cw+[%s]*=[%s]*[%q%g]?([^%q%g]*)[%q%g]?\u005C>$	<	<	<
+GanttDiagramFactory	34	net.sourceforge.plantuml.command.CommandScale	^scale[%s]+([0-9.]+)(?:[%s]*/[%s]*([0-9.]+))?$	scale	scale	scale
+GanttDiagramFactory	35	net.sourceforge.plantuml.command.CommandScaleWidthAndHeight	^scale[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+GanttDiagramFactory	36	net.sourceforge.plantuml.command.CommandScaleWidthOrHeight	^scale[%s]+([0-9.]+)[%s]+(width|height)$	scale	scale	scale
+GanttDiagramFactory	37	net.sourceforge.plantuml.command.CommandScaleMaxWidth	^scale[%s]+max[%s]+([0-9.]+)[%s]+width$	scale	scale	scale
+GanttDiagramFactory	38	net.sourceforge.plantuml.command.CommandScaleMaxHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]+height$	scale	scale	scale
+GanttDiagramFactory	39	net.sourceforge.plantuml.command.CommandScaleMaxWidthAndHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+GanttDiagramFactory	40	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	41	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	42	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	43	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	44	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	45	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	46	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	47	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	48	net.sourceforge.plantuml.gantt.command.NaturalGanttCommand	-	ANYTHING	ANYTHING	-
+GanttDiagramFactory	49	net.sourceforge.plantuml.gantt.command.CommandGanttArrow	^([%pLN_.]+)[%s]*(-+)(?:\u005C[((?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*)\u005C])?(-*)\u005C>[%s]*([%pLN_.]+)[%s]*$	ANYTHING	ANYTHING	ANYTHING
+GanttDiagramFactory	50	net.sourceforge.plantuml.gantt.command.CommandGanttArrow2	^\u005C[([^\u005C[\u005C]]+?)\u005C][%s]*(-+)(?:\u005C[((?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*)\u005C])?(-*)\u005C>[%s]*\u005C[([^\u005C[\u005C]]+?)\u005C][%s]*$	[	[	[
+GanttDiagramFactory	51	net.sourceforge.plantuml.gantt.command.CommandColorTask	^\u005C[([%pLN_.]+)\u005C][%s]+#(\u005Cw+)(?:/(#?\u005Cw+))?[%s]*$	[	[	[
+GanttDiagramFactory	52	net.sourceforge.plantuml.gantt.command.CommandSeparator	^--[%s]*((.+?)[%s]*--)?$	-	-	-
+GanttDiagramFactory	53	net.sourceforge.plantuml.gantt.command.CommandWeekNumberStrategy	^weeks?[%s]+starts?[^0-9]*?[%s]+(MON[a-z]*|TUE[a-z]*|WED[a-z]*|THU[a-z]*|FRI[a-z]*|SAT[a-z]*|SUN[a-z]*)[%s]+[^0-9]*?([0-9]+)[^0-9]*?$	week weeks	week weeks	week weeks
+GanttDiagramFactory	54	net.sourceforge.plantuml.gantt.command.CommandGroupStart	^group[%s]+\u005C[([^\u005C[\u005C]]+)\u005C][%s]*$	group	group	group
+GanttDiagramFactory	55	net.sourceforge.plantuml.gantt.command.CommandGroupEnd	^[%s]*end[%s]*group[%s]*$	end endgroup	end endgroup	end endgroup
+GanttDiagramFactory	56	net.sourceforge.plantuml.gantt.command.CommandLanguage	^language[%s]+(\u005Cw+)$	language	language	language
+GanttDiagramFactory	57	net.sourceforge.plantuml.gantt.command.CommandPrintScale	^(?:projectscale|ganttscale|printscale)[%s]+(yearly|quarterly|monthly|daily|weekly)(?:[%s]+((with\u005Cs+calendar\u005Cs+date)|(?:with\u005Cs+week\u005Cs+numbering\u005Cs+from\u005Cs+(-?\u005Cd+))))?(?:[%s]+zoom[%s]+([.\u005Cd]+))?$	ganttscale printscale projectscale	ganttscale printscale projectscale	ganttscale printscale projectscale
+GanttDiagramFactory	58	net.sourceforge.plantuml.gantt.command.CommandPrintBetween	-	print	print	-
+GanttDiagramFactory	59	net.sourceforge.plantuml.gantt.command.CommandNoteBottom	^(note)[%s]*(bottom)[%s]*((\u005C$[^%s{}%g<>$]+)([%s]+(\u005C$[^%s{}%g<>$]+))*)?[%s]*(?:(\u005C<\u005C<.+?\u005C>\u005C>))?[%s]*$	note notebottom	note notebottom	note notebottom
+GanttDiagramFactory	60	net.sourceforge.plantuml.gantt.command.CommandFootboxGantt	^(hide|show)?[%s]*footbox$	footbox hide hidefootbox show showfootbox	footbox hide hidefootbox show showfootbox	footbox hide hidefootbox show showfootbox
+GanttDiagramFactory	61	net.sourceforge.plantuml.gantt.command.CommandLabelOnColumn	^labels?[%s]+on[%s]*(first|last)[%s]*column(?:[%s]*and[%s]*(left|right)[%s]*aligned)?$	label labels	label labels	label labels
+GanttDiagramFactory	62	net.sourceforge.plantuml.gantt.command.CommandHideResourceName	^hide[%s]+ress?ources?[%s]+names?$	hide	hide	hide
+GanttDiagramFactory	63	net.sourceforge.plantuml.gantt.command.CommandHideResourceFootbox	^hide[%s]+ress?ources?[%s]+footbox$	hide	hide	hide
+GanttDiagramFactory	64	net.sourceforge.plantuml.gantt.command.CommandHideShowColumns	-	hide show	hide show	-
+GanttDiagramFactory	65	net.sourceforge.plantuml.gantt.command.CommandHideClosed	^hide[%s]+closed$	hide	hide	hide
+GanttDiagramFactory	66	net.sourceforge.plantuml.gantt.command.CommandTaskCompleteDefault	^task[%s]+(?:default[%s]+completion|completion[%s]+default)[%s]+to[%s]+(\u005Cd+).*$	task	task	task

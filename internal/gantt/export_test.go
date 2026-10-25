@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
@@ -16,6 +17,13 @@ import (
 )
 
 const referencesDir = "../../testdata/conformance/reference"
+
+// SetNow sets the clock of the current day until the end of the test.
+func SetNow(t *testing.T, at time.Time) {
+	old := now
+	now = func() time.Time { return at }
+	t.Cleanup(func() { now = old })
+}
 
 func svgOf(t *testing.T, d *GanttDiagram) (string, error) {
 	t.Helper()
