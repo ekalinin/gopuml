@@ -260,6 +260,10 @@ type Captures interface {
 // upstream's List.get.
 func NewResultFromCaptures(captures Captures) *Result { return &Result{captures: captures} }
 
+// Captures returns the captures of a UBrex match, upstream's getUMatcher;
+// nil for a regex match.
+func (r *Result) Captures() Captures { return r.captures }
+
 // put adds the groups of a name; a name given twice keeps its first groups,
 // as upstream's lookup finds the first entry.
 func (r *Result) put(name string, groups []Group) {

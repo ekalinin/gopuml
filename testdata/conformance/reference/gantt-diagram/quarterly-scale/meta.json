@@ -1,0 +1,6 @@
+{
+  "id": "gantt-diagram/quarterly-scale",
+  "blocks": [
+    {"index": 0, "name": null, "type": "GANTT", "description": "(Gantt)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 228, "height": 78, "status": 0}]}
+  ]
+}

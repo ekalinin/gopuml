@@ -1,0 +1,14 @@
+---
+id: gantt-diagram/weekly-scale-dates
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Weekly scale with dates"
+---
+@startgantt
+Project starts 2020-01-06
+week starts on sunday and must have at least 1 day
+printscale weekly with calendar date
+[A] lasts 20 days
+@endgantt

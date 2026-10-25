@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/case-of-words
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Case of the words"
+---
+@startgantt
+PROJECT STARTS the 6th of january 2020
+[A] Lasts 2 Days
+@endgantt

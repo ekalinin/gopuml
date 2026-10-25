@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/times-of-day
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Times of day"
+---
+@startgantt
+Project starts 2024-09-22
+[Task 1] starts 2024-09-22 10:30:46
+[Task 1] ends 2024-09-24T16:30:47
+@endgantt

@@ -1,0 +1,14 @@
+---
+id: gantt-diagram/project-plan
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Project plan"
+---
+@startgantt
+Project starts 2020-01-06
+[Design] lasts 5 days
+[Build] starts at [Design]'s end
+[Build] lasts 3 days
+@endgantt

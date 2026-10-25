@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/table-french
+family: gantt
+type: gantt
+formats: [txt]
+scenarios:
+  - "gantt-diagram: Table in French"
+---
+@startgantt
+language fr
+Project starts 2020-01-06
+[A] lasts 9 days
+@endgantt

@@ -1,0 +1,11 @@
+---
+id: diagram-source/gantt-detected
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "diagram-source: Gantt family"
+---
+@startgantt
+[Build] lasts 3 days
+@endgantt

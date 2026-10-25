@@ -1,0 +1,6 @@
+id: gantt-diagram/without-dot
+scenarios:
+  - "gantt-diagram: Gantt diagram without Graphviz"
+package: internal/gantt
+test: TestGanttWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

@@ -8,6 +8,7 @@ package klimt
 import (
 	"regexp"
 	"strings"
+	"unicode/utf16"
 
 	"github.com/ekalinin/gopuml/internal/command/regex"
 )
@@ -146,13 +147,87 @@ func (b *URLBuilder) withTopURL(url string) string {
 	return url
 }
 
-// UbrexURLBuilder is upstream's link builder on its UBrex engine, which is
-// not ported: using it panics.
-type UbrexURLBuilder struct{}
+// The patterns of upstream's UbrexUrlBuilder, tried in order.
+var ubrexURLPatterns = func() []*ubrexExpression {
+	const start, end = "[[ 〇*〴s", "〇*〴s  ]]"
+	var result []*ubrexExpression
+	for _, s := range []string{
+		start + "〃  〶$URL=〇+「〤〃」 〃" + "〇?〘 〇*〴s { 〶$TOOLTIP=〇*「〤{}」 } 〙" +
+			"〇?〘 〴s 〶$LABEL=〘「〤〴s{}[]」  〇*「〤[]」〙  〙" + end,
+		start + "{  〶$TOOLTIP=〄>〘 }〇*〴s]]〙",
+		start + "{  〶$TOOLTIP=〇+「〤{}」 }" + "〇*〴s" + "〶$LABEL=〘「〤〴s[]{}」 〇*「〤[]」〙" + end,
+		start + "〶$URL=〇+「〤〴s〴g{}[]」" + "〇*〴s" + "{  〶$TOOLTIP=〄>〘 }〇*〴s]]〙",
+		start + "〶$URL=〇+「〤〴s〴g{}[]」" + "〇?〘  〇*〴s  {  〶$TOOLTIP=〇*「〤{}」  } 〙" +
+			"〇?〘  〴s 〶$LABEL=〘「〤〴s{}[]」 〇*「〤[]」〙  〙" + end,
+		start + "〶$URL=〇+「〤〴s〴g[]」" + "〇?〘  〴s 〶$LABEL=〘「〤〴s{}[]」 〇*「〤[]」〙  〙" + end,
+	} {
+		result = append(result, ubrexBuild(s))
+	}
+	return result
+}()
 
-// NewUbrexURLBuilder panics: the UBrex engine (com.plantuml.ubrex) is not
-// ported.
+// UbrexURLBuilder is upstream's UbrexUrlBuilder: the link builder of the
+// commands written with UBrex.
+type UbrexURLBuilder struct {
+	topurl string
+	mode   URLMode
+}
+
+// NewUbrexURLBuilder is new UbrexUrlBuilder(topurl, mode).
 func NewUbrexURLBuilder(topurl string, mode URLMode) *UbrexURLBuilder {
-	notPorted("url/UbrexUrlBuilder", "the com.plantuml.ubrex engine")
+	return &UbrexURLBuilder{topurl: topurl, mode: mode}
+}
+
+// URL is getUrl: the link of s, nil when there is none.
+func (b *UbrexURLBuilder) URL(s string) *URL {
+	for _, p := range ubrexURLPatterns {
+		if m, ok := b.matcher(p, s); ok && b.matchesOrFind(m) {
+			value := func(key string) (string, bool) {
+				values := m.findValuesByKey(key)
+				if len(values) == 0 {
+					return "", false
+				}
+				return values[0], true
+			}
+			url, urlOK := value("URL")
+			tooltip, tooltipOK := value("TOOLTIP")
+			label, labelOK := value("LABEL")
+			return NewURL(b.withTopURL(url, urlOK), tooltip, tooltipOK, label, labelOK)
+		}
+	}
 	return nil
+}
+
+func (b *UbrexURLBuilder) matcher(p *ubrexExpression, s string) (*ubrexMatcher, bool) {
+	u := utf16.Encode([]rune(s))
+	if b.mode == URLModeStrict {
+		return p.match(u, 0), true
+	}
+	for i := 0; i < len(u)-2; i++ {
+		if m := p.match(u, i); m.startMatch() {
+			return m, true
+		}
+	}
+	return nil, false
+}
+
+func (b *UbrexURLBuilder) matchesOrFind(m *ubrexMatcher) bool {
+	switch b.mode {
+	case URLModeStrict:
+		return m.exactMatch()
+	case URLModeAnywhere:
+		return m.startMatch()
+	}
+	throw(illegalState, "")
+	return false
+}
+
+func (b *UbrexURLBuilder) withTopURL(url string, ok bool) string {
+	if !ok {
+		return ""
+	}
+	if !strings.HasPrefix(url, "http:") && !strings.HasPrefix(url, "https:") && !strings.HasPrefix(url, "file:") {
+		return b.topurl + url
+	}
+	return url
 }

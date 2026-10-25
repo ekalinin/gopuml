@@ -26050,6 +26050,8 @@ not activity3
 not activity3
 === allconf/diagram-source/welcome-screen.puml
 not activity3
+=== allconf/gantt-diagram/embedded-in-note.puml
+not activity3
 === allconf/graph-layout/class-layout.puml
 not activity3
 === allconf/legacy-activity-diagram/activity-colors.puml

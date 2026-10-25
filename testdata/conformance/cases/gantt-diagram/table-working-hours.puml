@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/table-working-hours
+family: gantt
+type: gantt
+formats: [txt]
+scenarios:
+  - "gantt-diagram: Table with working hours"
+---
+@startgantt
+Project starts 2020-01-06
+from 9:00 to 17:00 are working hours
+[A] lasts 1 day
+@endgantt

@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/pauses
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Pauses"
+---
+@startgantt
+Project starts 2020-01-06
+[A] lasts 3 days
+[A] pauses on 2020-01-07
+@endgantt

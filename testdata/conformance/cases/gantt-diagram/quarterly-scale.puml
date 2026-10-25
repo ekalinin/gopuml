@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/quarterly-scale
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Quarterly scale"
+---
+@startgantt
+Project starts 2020-01-06
+printscale quarterly
+[A] lasts 200 days
+@endgantt
