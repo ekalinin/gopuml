@@ -30,6 +30,7 @@ type GanttDiagram struct {
 	weekConfig    *WeekConfigData
 	dayCalendar   *DayCalendarData
 	displayConfig *DisplayConfigData
+	drawRegistry  *TaskDrawRegistryData
 
 	today             *TimePoint
 	defaultCompletion int
@@ -58,6 +59,7 @@ func NewGanttDiagram(ctx *core.RenderContext, src *core.UmlSource, md5map map[st
 		weekConfig:        NewWeekConfigData(),
 		dayCalendar:       NewDayCalendarData(),
 		displayConfig:     &DisplayConfigData{showFootbox: true},
+		drawRegistry:      NewTaskDrawRegistryData(),
 		defaultCompletion: 100,
 		displayedColumn:   map[GanttTaskTableColumn]bool{ColumnStart: true, ColumnEnd: true, ColumnDuration: true},
 	}

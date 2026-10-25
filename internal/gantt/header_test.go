@@ -9,6 +9,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/jfmt"
 	"github.com/ekalinin/gopuml/internal/jtime"
 	"github.com/ekalinin/gopuml/internal/klimt"
@@ -48,6 +49,8 @@ func (r *rec) Draw(shape klimt.UShape) {
 		*r.log = append(*r.log, at+"line "+d2s(s.DX())+"x"+d2s(s.DY()))
 	case *klimt.URectangle:
 		*r.log = append(*r.log, at+"rect "+d2s(s.Width())+"x"+d2s(s.Height()))
+	case *klimt.UPath:
+		*r.log = append(*r.log, at+"path "+s.String())
 	case *klimt.UText:
 		*r.log = append(*r.log, at+"text "+s.Text())
 	}
@@ -141,4 +144,81 @@ func TestTimeHeaders(t *testing.T) {
 	if got := strings.Join(r.texts(), " "); got != "52 53 2 Dec Jan" {
 		t.Errorf("weekly labels %q", got)
 	}
+}
+
+// laidOut parses the lines and lays the diagram out, as its SVG export
+// does.
+func laidOut(t *testing.T, lines ...string) *GanttDiagram {
+	t.Helper()
+	d := mustParse(t, lines...)
+	d.TextBlock(0, svgFormat())
+	return d
+}
+
+func drawOf(d *GanttDiagram, id string) TaskDraw { return d.drawRegistry.TaskDraw(d.ExistingTask(id)) }
+
+// TestTaskDraws checks the drawing of the tasks of a diagram whose SVG is
+// the one of the reference image.
+func TestTaskDraws(t *testing.T) {
+	sb := font.NewStringBounderSvg(nil)
+	labels := LabelStrategy{LabelLegacy, 0}
+	d := laidOut(t, projectStart, "[A] lasts 5 days", "[Long name] as [B] lasts 1 day", "[M] happens 2020-01-08",
+		"[C] lasts 4 days and is 25% completed", "[P] lasts 3 days", "[P] pauses on 2020-01-07",
+		"[N] lasts 5 days", "note bottom", "Long very very very Long Long note", "end note", "[After] lasts 3 days",
+		"[R] on {Alice} lasts 2 days")
+	for _, tc := range []struct {
+		id, want string
+	}{
+		// inside the bar, 6 after its start, and after the end of a bar too short
+		{"A", "6.0,12.21044921875 text A"},
+		{"B", "18.0,12.21044921875 text Long name"},
+		// right of the diamond, whose height is the font size made even
+		{"M", "48.0,12.21044921875 text M"},
+	} {
+		r := newRec()
+		drawOf(d, tc.id).DrawTitle(r, labels, 0, 0)
+		if got := strings.Join(*r.log, "|"); got != tc.want {
+			t.Errorf("title of %s: %q, want %q", tc.id, got, tc.want)
+		}
+	}
+	if got := drawOf(d, "M").(*TaskDrawDiamond).diamondHeight(); got != 10 {
+		t.Errorf("diamond height %v", got)
+	}
+	// The note of N moves the next row down.
+	n, after := drawOf(d, "N"), drawOf(d, "After")
+	if got, min := after.RealY(sb).CurrentValue(), n.RealY(sb).CurrentValue()+n.HeightMax(sb); got < min {
+		t.Errorf("row after the note at %v, the note ends at %v", got, min)
+	}
+	for _, tc := range []struct {
+		id, want string
+	}{
+		// the done part in the color of the task, the rest in the undone color
+		{"C", "2.0,2.0 rect 15.0x12.8046875|17.0,2.0 rect 45.0x12.8046875|2.0,2.0 rect 60.0x12.8046875"},
+		// two pieces around the paused day, joined by dotted lines
+		{"P", "2.0,2.0 rect 15.0x12.8046875|2.0,2.0 path|32.0,2.0 rect 30.0x12.8046875|32.0,2.0 path|" +
+			"19.0,2.0 line 10.0x0.0|19.0,14.8046875 line 10.0x0.0"},
+	} {
+		r := newRec()
+		drawOf(d, tc.id).DrawU(r)
+		var got []string
+		for _, l := range *r.log {
+			if i := strings.Index(l, " path "); i >= 0 {
+				l = l[:i+5]
+			}
+			got = append(got, l)
+		}
+		if strings.Join(got, "|") != tc.want {
+			t.Errorf("bar of %s: %q, want %q", tc.id, strings.Join(got, "|"), tc.want)
+		}
+	}
+	r := newRec()
+	d.ExistingTask("R")
+	d.modelData.Resource("Alice").ResourceDraw().DrawU(r)
+	if got := strings.Join(r.texts(), " "); got != "Alice 100 100" {
+		t.Errorf("resource %q", got)
+	}
+}
+
+func svgFormat() export.FileFormatOption {
+	return export.NewFileFormatOptionMetadata(font.FormatSVG, true)
 }
