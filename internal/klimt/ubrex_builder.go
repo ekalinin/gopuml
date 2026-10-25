@@ -3,8 +3,11 @@
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexConcat.java
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexLeaf.java
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexNamed.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexOneOrMore.java
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexOptional.java
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexOr.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexUpto.java
+// Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/builder/UBrexZeroOrMore.java
 // Provenance: plantuml-mit 1.2026.9 com/plantuml/ubrex/UMatcher.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
@@ -59,6 +62,21 @@ func UBrexOr(parts ...UBrexPart) UBrexPart {
 
 // UBrexOptional is upstream's UBrexOptional: the part, or nothing.
 func UBrexOptional(part UBrexPart) UBrexPart { return UBrexPart{&ubrexOptional{part.challenge}} }
+
+// UBrexOneOrMore is upstream's UBrexOneOrMore: the part once or more,
+// without giving back what it matched.
+func UBrexOneOrMore(part UBrexPart) UBrexPart { return UBrexPart{&ubrexOneOrMore{part.challenge}} }
+
+// UBrexZeroOrMore is upstream's UBrexZeroOrMore: the part any number of
+// times, without giving back what it matched.
+func UBrexZeroOrMore(part UBrexPart) UBrexPart { return UBrexPart{&ubrexZeroOrMore{part.challenge}} }
+
+// UBrexUpto is upstream's UBrexUpto: what, once or more, up to the first
+// position where stop matches, then stop.
+func UBrexUpto(what, stop UBrexPart) UBrexPart {
+	return UBrexPart{&ubrexList{challenges: []ubrexChallenge{
+		&ubrexOneOrMoreUpTo{origin: what.challenge, end: stop.challenge}, stop.challenge}}}
+}
 
 // Match matches the part at the start of s.
 func (p UBrexPart) Match(s string) *UBrexMatcher {

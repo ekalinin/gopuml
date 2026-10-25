@@ -41,3 +41,43 @@ func TestUBrexBuilderMatchesString(t *testing.T) {
 		t.Errorf("prefix lookup %q", m.FindFirstValuesByKeyPrefix("QUO"))
 	}
 }
+
+// TestUBrexBuilderRepetitions checks the builders of gantt's words:
+// repetitions that do not give back what they matched, Upto, which needs
+// one character and stops at the first position where its end matches, and
+// the case folding of ASCII letters only.
+func TestUBrexBuilderRepetitions(t *testing.T) {
+	accepted := func(p UBrexPart, s string) (string, bool) {
+		m := p.Match(s)
+		return m.m.acceptedMatch(), m.m.startMatch()
+	}
+	for _, tc := range []struct {
+		name  string
+		part  UBrexPart
+		input string
+		want  string
+		ok    bool
+	}{
+		{"one or more", UBrexOneOrMore(UBrexLeaf("a")), "aaab", "aaa", true},
+		{"one or more needs one", UBrexOneOrMore(UBrexLeaf("a")), "b", "", false},
+		{"one or more keeps", UBrexConcat(UBrexOneOrMore(UBrexLeaf("a")), UBrexLeaf("a")), "aaa", "", false},
+		{"zero or more", UBrexZeroOrMore(UBrexLeaf("ab")), "ababa", "abab", true},
+		{"zero or more empty", UBrexZeroOrMore(UBrexLeaf("a")), "b", "", true},
+		{"zero or more keeps", UBrexConcat(UBrexZeroOrMore(UBrexLeaf("a")), UBrexLeaf("a")), "aa", "", false},
+		{"upto", UBrexUpto(UBrexLeaf("〴."), UBrexLeaf("jan")), "5th of jan 2020", "5th of jan", true},
+		{"upto first", UBrexUpto(UBrexLeaf("〴."), UBrexLeaf("jan")), "1 jan jan", "1 jan", true},
+		{"upto needs one", UBrexUpto(UBrexLeaf("〴."), UBrexLeaf("jan")), "jan", "", false},
+		{"upto no end", UBrexUpto(UBrexLeaf("〴."), UBrexLeaf("jan")), "1 feb", "", false},
+		{"ascii case", UBrexLeaf("dec"), "DECember", "DEC", true},
+		{"non ascii case", UBrexLeaf("é"), "É", "", false},
+	} {
+		got, ok := accepted(tc.part, tc.input)
+		if got != tc.want || ok != tc.ok {
+			t.Errorf("%s: %q: accepted %q (%v), want %q (%v)", tc.name, tc.input, got, ok, tc.want, tc.ok)
+		}
+	}
+	m := UBrexUpto(UBrexLeaf("〴D"), UBrexNamed("M", UBrexLeaf("〇+〴le"))).Match(" dec 18")
+	if !slices.Equal(m.FindValuesByKey("M"), []string{"dec"}) {
+		t.Errorf("upto capture %q", m.FindValuesByKey("M"))
+	}
+}
