@@ -100,3 +100,75 @@ func (m *UBrexMatcher) FindValuesByKey(key string) []string { return m.m.findVal
 func (m *UBrexMatcher) FindFirstValuesByKeyPrefix(keyPrefix string) []string {
 	return m.m.result.capture.findFirstValuesByKeyPrefix(keyPrefix)
 }
+
+// UBrexNavigator is upstream's TextNavigator as the gantt sentences use it:
+// a text whose start moves forward as the words are read.
+type UBrexNavigator struct {
+	text *ubrexText
+}
+
+// NewUBrexNavigator is TextNavigator.build.
+func NewUBrexNavigator(s string) *UBrexNavigator {
+	return &UBrexNavigator{newUbrexText(utf16.Encode([]rune(s)))}
+}
+
+// Copy is copy.
+func (n *UBrexNavigator) Copy() *UBrexNavigator {
+	t := *n.text
+	return &UBrexNavigator{&t}
+}
+
+// Jump is jump: the start moves by step UTF-16 units.
+func (n *UBrexNavigator) Jump(step int) { n.text.jump(step) }
+
+// MatchNavigator matches the part at the start of the navigator, as
+// UBrexPart.match(TextNavigator).
+func (p UBrexPart) MatchNavigator(n *UBrexNavigator) *UBrexMatcher {
+	result := p.challenge.run(n.text, 0)
+	accepted := ""
+	if result.length >= 0 {
+		accepted = n.text.subSequence(0, result.length).String()
+	}
+	return &UBrexMatcher{&ubrexMatcher{result: result, accepted: accepted, size: n.text.length()}}
+}
+
+// StartMatch reports whether the part matches the start of the text.
+func (m *UBrexMatcher) StartMatch() bool { return m.m.startMatch() }
+
+// AcceptedMatch is getAcceptedMatch: the text matched, "" for none.
+func (m *UBrexMatcher) AcceptedMatch() string { return m.m.acceptedMatch() }
+
+// AcceptedLength is the length of AcceptedMatch in UTF-16 units, as Java's
+// String.length.
+func (m *UBrexMatcher) AcceptedLength() int {
+	if m.m.result.length < 0 {
+		return 0
+	}
+	return m.m.result.length
+}
+
+// FindFirstValueByKey returns the first value captured under key; ok is
+// false when there is none (null upstream).
+func (m *UBrexMatcher) FindFirstValueByKey(key string) (string, bool) {
+	return m.m.findFirstValueByKey(key)
+}
+
+// ExtractByPrefix is extractByPrefix: the values captured under
+// keyPrefix/..., under the rest of their keys.
+func (m *UBrexMatcher) ExtractByPrefix(keyPrefix string) *UBrexCapture {
+	return &UBrexCapture{m.m.result.capture.extractByPrefix(keyPrefix)}
+}
+
+// UBrexCapture is upstream's Capture: named values.
+type UBrexCapture struct {
+	c ubrexCapture
+}
+
+// FindValuesByKey returns the values captured under key.
+func (c *UBrexCapture) FindValuesByKey(key string) []string { return c.c.findValuesByKey(key) }
+
+// FindFirstValueByKey returns the first value captured under key; ok is
+// false when there is none (null upstream).
+func (c *UBrexCapture) FindFirstValueByKey(key string) (string, bool) {
+	return c.c.findFirstValueByKey(key)
+}

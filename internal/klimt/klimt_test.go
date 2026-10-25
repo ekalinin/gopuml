@@ -650,10 +650,6 @@ func TestNotPortedPathsPanic(t *testing.T) {
 	if !strings.Contains(msg, "Footprint") {
 		t.Errorf("message %q", msg)
 	}
-	_, msg = expectPanic(t, func() { NewUbrexURLBuilder("", URLModeStrict) })
-	if !strings.Contains(msg, "UbrexUrlBuilder") {
-		t.Errorf("message %q", msg)
-	}
 }
 
 func TestJavaHelpers(t *testing.T) {

@@ -81,3 +81,60 @@ func TestUBrexBuilderRepetitions(t *testing.T) {
 		t.Errorf("upto capture %q", m.FindValuesByKey("M"))
 	}
 }
+
+// TestUbrexURLBuilder checks the links of upstream's UbrexUrlBuilder, as the
+// regex builder reads them. A link without a tooltip or a label uses the
+// link, as upstream's Url.
+func TestUbrexURLBuilder(t *testing.T) {
+	for _, tc := range []struct {
+		s, url, tooltip, label string
+	}{
+		{"[[https://example.com]]", "https://example.com", "https://example.com", "https://example.com"},
+		{"[[https://example.com label]]", "https://example.com", "https://example.com", "label"},
+		{"[[https://example.com{tip}]]", "https://example.com", "tip", "https://example.com"},
+		{"[[https://example.com{tip} label]]", "https://example.com", "tip", "label"},
+		{`[["https://example.com/a b"{tip} label]]`, "https://example.com/a b", "tip", "label"},
+		{"[[{only tip}]]", "", "only tip", ""},
+		{"[[page]]", "top/page", "top/page", "top/page"},
+	} {
+		u := NewUbrexURLBuilder("top/", URLModeStrict).URL(tc.s)
+		if u == nil {
+			t.Errorf("%q: no link", tc.s)
+			continue
+		}
+		if u.URL() != tc.url || u.Tooltip() != tc.tooltip || u.Label() != tc.label {
+			t.Errorf("%q: %q %q %q, want %q %q %q", tc.s, u.URL(), u.Tooltip(), u.Label(), tc.url, tc.tooltip, tc.label)
+		}
+	}
+	if NewUbrexURLBuilder("", URLModeStrict).URL("x [[a]]") != nil {
+		t.Error("strict mode finds a link after text")
+	}
+	if u := NewUbrexURLBuilder("", URLModeAnywhere).URL("x [[a]] y"); u == nil || u.URL() != "a" {
+		t.Errorf("anywhere: %v", u)
+	}
+}
+
+// TestUBrexNavigator checks the matching of the gantt sentences: at the
+// start of a navigator that moves forward.
+func TestUBrexNavigator(t *testing.T) {
+	n := NewUBrexNavigator("  [Ünïcode task] lasts 5 days")
+	spaces := UBrexLeaf("〇+〴s")
+	n.Jump(spaces.MatchNavigator(n).AcceptedLength())
+	m := UBrexConcat(UBrexLeaf("["), UBrexNamed("SUBJECT", UBrexLeaf("〇+「〤[]」")), UBrexLeaf("]")).MatchNavigator(n)
+	if v, ok := m.FindFirstValueByKey("SUBJECT"); !ok || v != "Ünïcode task" || m.AcceptedLength() != 14 {
+		t.Fatalf("subject %q %v, length %d", v, ok, m.AcceptedLength())
+	}
+	c := n.Copy()
+	c.Jump(m.AcceptedLength())
+	if got := UBrexLeaf("lasts").MatchNavigator(n).AcceptedMatch(); got != "" {
+		t.Errorf("the copy moved the navigator: %q", got)
+	}
+	c.Jump(spaces.MatchNavigator(c).AcceptedLength())
+	if got := UBrexLeaf("lasts").MatchNavigator(c); !got.StartMatch() || got.ExactMatch() || got.AcceptedMatch() != "lasts" {
+		t.Errorf("verb %q", got.AcceptedMatch())
+	}
+	e := UBrexNamed("A", UBrexConcat(UBrexNamed("X", UBrexLeaf("a")), UBrexNamed("Y", UBrexLeaf("b")))).Match("ab").ExtractByPrefix("A")
+	if x, _ := e.FindFirstValueByKey("X"); x != "a" || len(e.FindValuesByKey("Y")) != 1 {
+		t.Errorf("extract %q", x)
+	}
+}
