@@ -117,7 +117,7 @@ The system SHALL report upstream's errors for packet diagrams. A line that is ne
 
 ### Requirement: Packet output formats
 
-Packet diagrams SHALL render to SVG and PNG. TXT and UTXT output SHALL be rejected with the error that names the format and the diagram type, without output, as for the other diagram types except sequence.
+Packet diagrams SHALL render to SVG and PNG. TXT and UTXT output SHALL be rejected with the error that names the format and the diagram type, without output, as for the other diagram types that have no text output (every type except sequence and gantt).
 
 #### Scenario: PNG packet diagram
 
