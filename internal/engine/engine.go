@@ -250,9 +250,11 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		}
 		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
 	}
-	// Only sequence diagrams have the text formats in this release.
+	// Only sequence and gantt diagrams have the text formats in this
+	// release.
 	if opt.Format == font.FormatATXT || opt.Format == font.FormatUTXT {
-		if d, ok := b.Diagram.(core.TypedDiagram); ok && d.DiagramType() != core.Sequence {
+		if d, ok := b.Diagram.(core.TypedDiagram); ok && d.DiagramType() != core.Sequence &&
+			d.DiagramType() != core.Gantt {
 			return ImageData{}, &UnsupportedFormatError{Format: opt.Format, Type: d.DiagramType()}
 		}
 	}

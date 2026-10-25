@@ -26,7 +26,7 @@
 
 ## 5. TXT output
 
-- [ ] 5.1 Port `exportTxt` and its helpers into `txt.go`, and make the TXT check of `internal/engine` accept `core.Gantt` (design D9). Verify with unit tests on diagrams parsed by the gantt factory that the TXT and UTXT output of the inputs of "UTXT gantt table", "Table rows", "Table in French", "Table without a project start", "Table with working hours" and "output-formats: ASCII gantt table" equal their references of task 1.1, and that the dates of the other curated gantt cases match the jar's TXT output for the same inputs
+- [x] 5.1 Port `exportTxt` and its helpers into `txt.go`, and make the TXT check of `internal/engine` accept `core.Gantt` (design D9). Verify with unit tests on diagrams parsed by the gantt factory that the TXT and UTXT output of the inputs of "UTXT gantt table", "Table rows", "Table in French", "Table without a project start", "Table with working hours" and "output-formats: ASCII gantt table" equal their references of task 1.1, and that the dates of the other curated gantt cases match the jar's TXT output for the same inputs
 
 ## 6. Drawing
 
