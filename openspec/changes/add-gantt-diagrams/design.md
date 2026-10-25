@@ -47,7 +47,7 @@ A new package `internal/jtime` (`Provenance: original`, next to `jmath` and `jfm
 - `Duration` with Java's `getSeconds` (floor), `toMillis` (an `ArithmeticException` on overflow), `plus`, `multipliedBy`, `between`, `isNegative` and `toString` (`PT25H1M1S`, `PT-10H`)
 - `DayOfWeek` (Monday is 1) and `Month` with their enum names, `YearMonth`, and `ChronoUnit.DAYS.between`
 - `WeekFields.of(firstDayOfWeek, minimalDays).weekOfYear()`, with the JDK's formula, which gives week 0 and week 53 where ISO weeks differ
-- the validation of `LocalDate.of`, `LocalTime.of` and `LocalDateTime.of`, which panics with `uml.Throw` and the JDK's `DateTimeException` messages (`Invalid date 'FEBRUARY 30'`, `Invalid value for MonthOfYear (valid values 1 - 12): 13`, ...). `uml` gets the exception name `java.time.DateTimeException`
+- the validation of `LocalDate.of`, `LocalTime.of` and `LocalDateTime.of`, which panics, as `uml.Throw` does, with the JDK's `DateTimeException` messages (`Invalid date 'FEBRUARY 30'`, `Invalid value for MonthOfYear (valid values 1 - 12): 13`, ...). `jtime` holds the names of the exceptions it throws (`java.time.DateTimeException`, ...)
 
 Alternative: Go's `time.Time` in UTC. `time.Date` turns February 30 into March 1 instead of failing, `LocalDateTime.MIN` and `MAX` are outside its range, and its ISO weeks are not Java's week of year.
 
