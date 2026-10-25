@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/table-no-project-start
+family: gantt
+type: gantt
+formats: [txt]
+scenarios:
+  - "gantt-diagram: Table without a project start"
+---
+@startgantt
+[A] lasts 2 days
+[B] on {Bob:50%} lasts 2 days
+@endgantt

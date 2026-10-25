@@ -1,0 +1,11 @@
+---
+id: gantt-diagram/invalid-date
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Invalid date"
+---
+@startgantt
+Project starts 2020-02-30
+@endgantt

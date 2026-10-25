@@ -1,0 +1,6 @@
+{
+  "id": "gantt-diagram/labels-on-column",
+  "blocks": [
+    {"index": 0, "name": null, "type": "GANTT", "description": "(Gantt)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 435, "height": 70, "status": 0}]}
+  ]
+}

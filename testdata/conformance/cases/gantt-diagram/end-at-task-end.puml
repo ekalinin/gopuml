@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/end-at-task-end
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: End at another task's end"
+---
+@startgantt
+[A] lasts 3 days
+[B] starts at [A]'s end and lasts 4 days
+[C] lasts 3 days and ends at [B]'s end
+@endgantt

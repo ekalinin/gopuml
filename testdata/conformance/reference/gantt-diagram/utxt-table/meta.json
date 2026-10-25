@@ -1,0 +1,6 @@
+{
+  "id": "gantt-diagram/utxt-table",
+  "blocks": [
+    {"index": 0, "name": null, "type": "GANTT", "description": "(Gantt)", "pages": 1, "renders": [{"file": "block0-page0.utxt", "width": 0, "height": 0, "status": 0}]}
+  ]
+}

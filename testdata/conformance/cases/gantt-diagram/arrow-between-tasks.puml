@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/arrow-between-tasks
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Arrow between tasks"
+---
+@startgantt
+[A] lasts 3 days
+[B] lasts 2 days
+[A] -> [B]
+@endgantt

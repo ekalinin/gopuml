@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/twenty-years
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Twenty years"
+---
+@startgantt
+Project starts 2000-01-01
+[A] lasts 7302 days
+@endgantt

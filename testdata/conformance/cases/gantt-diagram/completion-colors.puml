@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/completion-colors
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Completion colors"
+---
+@startgantt
+[A] lasts 4 days and is 50% completed
+[A] is colored for completion from red to green
+@endgantt

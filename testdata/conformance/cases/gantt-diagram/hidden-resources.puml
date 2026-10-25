@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/hidden-resources
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Hidden resources"
+---
+@startgantt
+[A] on {Alice} lasts 2 days
+hide resources names
+hide resources footbox
+@endgantt

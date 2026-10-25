@@ -1,0 +1,14 @@
+---
+id: gantt-diagram/group
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Group"
+---
+@startgantt
+group [Phase 1]
+[A] lasts 2 days
+then [B] lasts 3 days
+end group
+@endgantt

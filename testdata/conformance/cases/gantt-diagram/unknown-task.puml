@@ -1,0 +1,11 @@
+---
+id: gantt-diagram/unknown-task
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Unknown task"
+---
+@startgantt
+[A] starts at [Nope]'s end
+@endgantt

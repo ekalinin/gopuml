@@ -1,0 +1,15 @@
+---
+id: gantt-diagram/arrow-styles
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Arrow styles"
+---
+@startgantt
+[A] as [A1] lasts 3 days
+[B] as [B1] starts at [A1]'s end with red dotted link
+[B1] lasts 2 days
+[C] as [C1] lasts 2 days
+B1 -[#blue,dashed]-> C1
+@endgantt

@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/display-name-and-link
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Display name and link"
+---
+@startgantt
+[C] lasts 2 days and links to [[https://example.com]]
+[D] lasts 2 days and is displayed as Build step
+@endgantt

@@ -285,3 +285,8 @@ func TestWasmPacketDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmGanttDiagram(t *testing.T) {
+	// Spec scenario "Gantt diagram in WASM".
+	t.Skip("gantt diagrams are registered by task 7.1 of add-gantt-diagrams")
+}

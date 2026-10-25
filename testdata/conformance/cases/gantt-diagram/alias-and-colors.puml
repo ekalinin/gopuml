@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/alias-and-colors
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Alias and colors"
+---
+@startgantt
+[Prototype design] as [P] lasts 5 days
+[P] is colored in Lavender/LightBlue
+[Prototype design] lasts 2 days
+@endgantt

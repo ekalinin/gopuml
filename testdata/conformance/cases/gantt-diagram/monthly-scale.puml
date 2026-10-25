@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/monthly-scale
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Monthly scale"
+---
+@startgantt
+Project starts 2020-01-06
+printscale monthly
+[A] lasts 90 days
+@endgantt

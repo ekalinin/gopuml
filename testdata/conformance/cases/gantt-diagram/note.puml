@@ -1,0 +1,15 @@
+---
+id: gantt-diagram/note
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Note"
+---
+@startgantt
+[A] lasts 5 days
+note bottom
+Long very very very Long Long note
+end note
+[B] lasts 3 days
+@endgantt

@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/no-project-start
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Calendar without a project start"
+---
+@startgantt
+[A] lasts 5 days
+[B] lasts 15 days
+@endgantt

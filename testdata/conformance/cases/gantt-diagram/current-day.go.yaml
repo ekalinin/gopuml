@@ -1,0 +1,6 @@
+id: gantt-diagram/current-day
+scenarios:
+  - "gantt-diagram: Current day"
+package: internal/gantt
+test: TestGanttCurrentDay
+why: Without a date, today is the date of the rendering, so a committed reference would change every day; the test sets the date.

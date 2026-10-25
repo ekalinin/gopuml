@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/labels-on-column
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Labels on a column"
+---
+@startgantt
+labels on first column and left aligned
+[T] lasts 3 days
+@endgantt

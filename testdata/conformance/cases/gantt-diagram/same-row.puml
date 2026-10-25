@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/same-row
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Same row"
+---
+@startgantt
+[T1] lasts 10 days
+[M1] happens at [T1]'s end
+[M1] displays on same row as [T1]
+@endgantt

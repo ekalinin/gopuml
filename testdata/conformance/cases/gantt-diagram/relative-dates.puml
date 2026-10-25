@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/relative-dates
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Relative dates"
+---
+@startgantt
+Project starts 2020-01-06
+[A] starts D+3 and lasts 2 days
+[B] starts 5 days after start and lasts 1 day
+@endgantt

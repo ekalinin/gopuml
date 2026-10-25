@@ -1,0 +1,16 @@
+---
+id: gantt-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Gantt diagram in a note"
+---
+@startuml
+Alice -> Bob : plan
+note right
+{{gantt
+[A] lasts 2 days
+}}
+end note
+@enduml

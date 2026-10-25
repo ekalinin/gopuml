@@ -1,0 +1,12 @@
+---
+id: gantt-diagram/deleted-task
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Deleted task"
+---
+@startgantt
+[A] lasts 2 days
+[A] is deleted
+@endgantt

@@ -286,7 +286,7 @@ The system SHALL support upstream's time scales: `printscale`, `projectscale` or
 #### Scenario: Yearly scale
 
 - **WHEN** a gantt diagram contains `Project starts 2020-01-06`, `printscale yearly` and `[A] lasts 490 days`
-- **THEN** the calendar has a row with the years `2020` and `2021`, as upstream draws it
+- **THEN** the calendar has a row with the year `2020`, and the label `2021` is left out because the part of 2021 that the task covers is too narrow for it, as upstream draws it
 
 #### Scenario: Zoom
 

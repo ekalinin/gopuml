@@ -1,0 +1,13 @@
+---
+id: gantt-diagram/weekly-scale
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Weekly scale"
+---
+@startgantt
+Project starts 2024-12-23
+printscale weekly
+[A] lasts 20 days
+@endgantt

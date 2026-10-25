@@ -1,0 +1,11 @@
+---
+id: gantt-diagram/completion
+family: gantt
+type: gantt
+formats: [svg]
+scenarios:
+  - "gantt-diagram: Completion"
+---
+@startgantt
+[A] lasts 4 days and is 25% completed
+@endgantt
