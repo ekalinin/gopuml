@@ -8,11 +8,15 @@ import (
 	"github.com/ekalinin/gopuml/internal/command"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
+	"github.com/ekalinin/gopuml/internal/klimt/font"
+	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
 // MindMap is one mindmap of a diagram: its right (regular) and left
 // (reverse) branches, which share the root.
 type MindMap struct {
+	klimt.TextBlockDefaults
+	memo      klimt.TextBlockMemoized
 	regular   *branch
 	reverse   *branch
 	skinParam klimt.ISkinParam
@@ -24,6 +28,65 @@ type MindMap struct {
 // NewMindMap returns an empty mindmap.
 func NewMindMap(skinParam klimt.ISkinParam) *MindMap {
 	return &MindMap{regular: &branch{}, reverse: &branch{}, skinParam: skinParam}
+}
+
+var _ klimt.TextBlock = (*MindMap)(nil)
+
+// computeFinger builds the fingers of the branches once: the left one when
+// it has nodes, the right one when it has nodes or the left one has none.
+// The root is drawn by the right finger only.
+func (m *MindMap) computeFinger() {
+	if !m.reverse.hasFinger() && !m.regular.hasFinger() {
+		if m.reverse.hasChildren() {
+			m.reverse.initFinger(m.skinParam, false)
+		}
+		if !m.reverse.hasFinger() || m.regular.hasChildren() {
+			m.regular.initFinger(m.skinParam, true)
+		}
+		if m.reverse.hasFinger() && m.regular.hasFinger() {
+			m.reverse.doNotDrawFirstPhalanx()
+		}
+	}
+}
+
+// CalculateDimension implements klimt.TextBlock: upstream's
+// calculateDimensionSlow, memoized.
+func (m *MindMap) CalculateDimension(stringBounder font.StringBounder) geom.XDimension2D {
+	return m.memo.Dimension(stringBounder, m.calculateDimensionSlow)
+}
+
+func (m *MindMap) calculateDimensionSlow(stringBounder font.StringBounder) geom.XDimension2D {
+	m.computeFinger()
+	y1 := m.regular.halfThickness(stringBounder)
+	y2 := m.reverse.halfThickness(stringBounder)
+	y := max(y1, y2)
+	width := m.reverse.x12(stringBounder) + m.regular.x12(stringBounder)
+	height := y + max(m.reverse.halfThickness(stringBounder), m.regular.halfThickness(stringBounder))
+	if m.skinParam.Rankdir() == geom.RankdirTopToBottom {
+		return geom.NewXDimension2D(height, width)
+	}
+	return geom.NewXDimension2D(width, height)
+}
+
+// DrawU implements klimt.TextBlock: both branches from the root, which is
+// placed after the left branch.
+func (m *MindMap) DrawU(ug klimt.UGraphic) {
+	if !m.reverse.hasRoot() && !m.regular.hasRoot() {
+		return
+	}
+	m.computeFinger()
+	stringBounder := ug.StringBounder()
+	y1 := m.regular.halfThickness(stringBounder)
+	y2 := m.reverse.halfThickness(stringBounder)
+	y := max(y1, y2)
+	x := m.reverse.x12(stringBounder)
+	if m.skinParam.Rankdir() == geom.RankdirTopToBottom {
+		ug = ug.Apply(klimt.NewUTranslate(y, x))
+	} else {
+		ug = ug.Apply(klimt.NewUTranslate(x, y))
+	}
+	m.regular.DrawU(ug)
+	m.reverse.DrawU(ug)
 }
 
 // addIdeaInternal adds a node: the root when there is none yet, otherwise a
