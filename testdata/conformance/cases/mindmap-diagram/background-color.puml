@@ -1,0 +1,12 @@
+---
+id: mindmap-diagram/background-color
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Background color"
+---
+@startmindmap
+* root
+**[#Orange] a
+@endmindmap

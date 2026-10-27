@@ -1,0 +1,20 @@
+---
+id: mindmap-diagram/depth-style
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Depth style"
+---
+@startmindmap
+<style>
+mindmapDiagram {
+  :depth(1) {
+    BackGroundColor pink
+  }
+}
+</style>
+* root
+** a
+*** b
+@endmindmap

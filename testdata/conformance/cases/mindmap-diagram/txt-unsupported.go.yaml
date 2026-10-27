@@ -1,0 +1,6 @@
+id: mindmap-diagram/txt-unsupported
+scenarios:
+  - "mindmap-diagram: TXT for a mindmap diagram"
+package: internal/mindmap
+test: TestMindMapTxtUnsupported
+why: Upstream draws mindmap diagrams as TXT, while this change rejects that format, as it does for the other diagram types except sequence and gantt.

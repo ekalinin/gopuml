@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/left-and-right
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Left and right branches"
+---
+@startmindmap
++ root
+++ right
+-- left
+@endmindmap

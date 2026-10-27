@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/indented-markers
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Indented markers"
+---
+@startmindmap
+* root
+ * a
+  * b
+@endmindmap

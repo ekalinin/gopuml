@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/hash-markers
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Hash markers"
+---
+@startmindmap
+# root
+## a
+### b
+@endmindmap

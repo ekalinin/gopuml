@@ -1,0 +1,6 @@
+id: mindmap-diagram/without-dot
+scenarios:
+  - "mindmap-diagram: Mindmap diagram without Graphviz"
+package: internal/mindmap
+test: TestMindMapWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

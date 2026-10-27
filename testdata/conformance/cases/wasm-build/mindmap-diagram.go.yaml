@@ -1,0 +1,6 @@
+id: wasm-build/mindmap-diagram
+scenarios:
+  - "wasm-build: Mindmap diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmMindMapDiagram
+why: Upstream has no Graphviz-free WASM build; the scenario compares the WASM build with the native build of this implementation.

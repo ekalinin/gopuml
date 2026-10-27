@@ -1,0 +1,29 @@
+---
+id: mindmap-diagram/nearest-ancestor
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Nearest ancestor"
+---
+@startmindmap
+<style>
+mindmapDiagram {
+  .outer * {
+    node {
+      FontColor blue
+    }
+  }
+  .inner * {
+    node {
+      FontColor red
+    }
+  }
+}
+</style>
+* root
+** a <<outer>>
+*** b <<inner>>
+**** c
+*** e
+@endmindmap

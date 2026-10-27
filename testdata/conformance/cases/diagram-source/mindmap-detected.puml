@@ -1,0 +1,11 @@
+---
+id: diagram-source/mindmap-detected
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "diagram-source: Mindmap family"
+---
+@startmindmap
+* root
+@endmindmap

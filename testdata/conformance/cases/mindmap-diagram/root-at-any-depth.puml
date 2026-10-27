@@ -1,0 +1,12 @@
+---
+id: mindmap-diagram/root-at-any-depth
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Root at any depth"
+---
+@startmindmap
+** root
+*** a
+@endmindmap

@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/bad-indentation
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Bad indentation"
+---
+@startmindmap
+** root
+*** a
+**** b
+@endmindmap

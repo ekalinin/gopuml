@@ -300,3 +300,8 @@ func TestWasmGanttDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmMindMapDiagram(t *testing.T) {
+	// Spec scenario "Mindmap diagram in WASM".
+	t.Skip("mindmap diagrams are registered by task 5.2 of add-mindmap-diagrams")
+}

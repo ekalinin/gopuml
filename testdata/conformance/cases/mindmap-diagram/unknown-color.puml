@@ -1,0 +1,12 @@
+---
+id: mindmap-diagram/unknown-color
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Unknown color"
+---
+@startmindmap
+* root
+**[#ZZZ] a
+@endmindmap

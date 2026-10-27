@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/org-mode",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 245, "height": 188, "status": 0}]}
+  ]
+}

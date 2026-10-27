@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/top-to-bottom",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 127, "height": 117, "status": 0}]}
+  ]
+}

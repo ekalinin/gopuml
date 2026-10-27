@@ -1,0 +1,12 @@
+---
+id: mindmap-diagram/line-break
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Line break in a label"
+---
+@startmindmap
+* root
+** first\nsecond
+@endmindmap

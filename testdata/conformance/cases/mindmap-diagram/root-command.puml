@@ -1,0 +1,12 @@
+---
+id: mindmap-diagram/root-command
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Root command"
+---
+@startmindmap
+0 Root
+** a
+@endmindmap

@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/line-break",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 198, "height": 92, "status": 0}]}
+  ]
+}

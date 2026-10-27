@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/boxless-node
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Boxless node"
+---
+@startmindmap
+* root
+**_ a
+*** b
+@endmindmap

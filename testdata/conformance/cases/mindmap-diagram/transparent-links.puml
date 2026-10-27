@@ -1,0 +1,19 @@
+---
+id: mindmap-diagram/transparent-links
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Transparent links"
+---
+@startmindmap
+<style>
+mindmapDiagram {
+  arrow {
+    LineColor transparent
+  }
+}
+</style>
+* root
+** a
+@endmindmap

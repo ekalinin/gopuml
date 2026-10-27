@@ -1,0 +1,14 @@
+---
+id: mindmap-diagram/left-side
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Left side command"
+---
+@startmindmap
+* root
+** a
+left side
+** b
+@endmindmap

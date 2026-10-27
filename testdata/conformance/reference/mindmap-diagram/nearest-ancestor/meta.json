@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/nearest-ancestor",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 322, "height": 132, "status": 0}]}
+  ]
+}
