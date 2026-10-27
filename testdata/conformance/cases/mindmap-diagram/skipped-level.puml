@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/skipped-level
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Skipped level"
+---
+@startmindmap
+* root
+** a
+**** b
+@endmindmap

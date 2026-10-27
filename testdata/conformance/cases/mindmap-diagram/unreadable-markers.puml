@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/unreadable-markers
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Unreadable markers"
+---
+@startmindmap
+* root
+** a
+  ## x
+@endmindmap

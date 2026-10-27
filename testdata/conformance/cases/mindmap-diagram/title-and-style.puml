@@ -1,0 +1,23 @@
+---
+id: mindmap-diagram/title-and-style
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Title and style"
+---
+@startmindmap
+title Ideas
+<style>
+mindmapDiagram {
+  node {
+    BackGroundColor #33b2e2
+  }
+  arrow {
+    LineColor red
+  }
+}
+</style>
+* root
+** a
+@endmindmap

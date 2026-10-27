@@ -1,0 +1,18 @@
+---
+id: mindmap-diagram/multiline-stereotype
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Multiline node with a stereotype"
+---
+@startmindmap
+<style>
+.blue {
+  BackGroundColor #33b2e2
+}
+</style>
+* root
+**:first line
+second line; <<blue>>
+@endmindmap

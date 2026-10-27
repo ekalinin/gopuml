@@ -1,0 +1,17 @@
+---
+id: mindmap-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Mindmap diagram in a note"
+---
+@startuml
+Alice -> Bob : idea
+note right
+{{mindmap
+* root
+** a
+}}
+end note
+@enduml

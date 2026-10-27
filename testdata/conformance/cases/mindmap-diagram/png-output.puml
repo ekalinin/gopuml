@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/png-output
+family: mindmap
+type: mindmap
+formats: [svg, png]
+scenarios:
+  - "mindmap-diagram: PNG mindmap diagram"
+---
+@startmindmap
+* root
+** a
+*** b
+@endmindmap

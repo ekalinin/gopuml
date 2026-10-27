@@ -1,0 +1,14 @@
+---
+id: mindmap-diagram/top-to-bottom
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Top to bottom direction"
+---
+@startmindmap
+top to bottom direction
+* root
+** a
+** b
+@endmindmap

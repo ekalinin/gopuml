@@ -1,0 +1,24 @@
+---
+id: mindmap-diagram/style-of-descendants
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Style of the descendants"
+---
+@startmindmap
+<style>
+mindmapDiagram {
+  .deep * {
+    node {
+      FontColor blue
+    }
+  }
+}
+</style>
+* root
+** a <<deep>>
+*** b
+**** c
+** d
+@endmindmap

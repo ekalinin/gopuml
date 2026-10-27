@@ -26080,6 +26080,8 @@ not activity3
 not activity3
 === allconf/legacy-activity-diagram/transitions-from-last.puml
 not activity3
+=== allconf/mindmap-diagram/embedded-in-note.puml
+not activity3
 === allconf/output-formats/ascii-sequence.puml
 not activity3
 === allconf/output-formats/dpi-scaling.puml

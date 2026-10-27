@@ -1,0 +1,30 @@
+---
+id: mindmap-diagram/root-leaf-boxless
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Root, leaf and boxless nodes"
+---
+@startmindmap
+<style>
+mindmapDiagram {
+  node {
+    BackGroundColor lightgray
+  }
+  rootNode {
+    BackGroundColor gold
+  }
+  leafNode {
+    BackGroundColor lightblue
+  }
+  boxless {
+    FontColor red
+  }
+}
+</style>
+* root
+** a
+*** b
+**_ c
+@endmindmap

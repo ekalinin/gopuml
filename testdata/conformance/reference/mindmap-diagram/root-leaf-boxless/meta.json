@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/root-leaf-boxless",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 235, "height": 94, "status": 0}]}
+  ]
+}

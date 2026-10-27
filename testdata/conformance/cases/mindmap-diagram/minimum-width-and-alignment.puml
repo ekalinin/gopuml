@@ -1,0 +1,24 @@
+---
+id: mindmap-diagram/minimum-width-and-alignment
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Minimum width and alignment"
+---
+@startmindmap
+<style>
+node {
+  MinimumWidth 100
+}
+.right {
+  HorizontalAlignment Right
+}
+.center {
+  HorizontalAlignment Center
+}
+</style>
+* Root
+ * Node 1 <<right>>
+ * Node 2 <<center>>
+@endmindmap

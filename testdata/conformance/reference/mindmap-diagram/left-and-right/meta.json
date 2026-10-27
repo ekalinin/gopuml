@@ -1,0 +1,6 @@
+{
+  "id": "mindmap-diagram/left-and-right",
+  "blocks": [
+    {"index": 0, "name": null, "type": "MINDMAP", "description": "MindMap", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 274, "height": 76, "status": 0}]}
+  ]
+}

@@ -1,0 +1,16 @@
+---
+id: mindmap-diagram/org-mode
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Org-mode mindmap"
+---
+@startmindmap
+* root
+** a
+*** a1
+*** a2
+** b
+*** b1
+@endmindmap

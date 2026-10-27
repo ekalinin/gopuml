@@ -1,0 +1,17 @@
+---
+id: mindmap-diagram/stereotype
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Stereotype at the end of a label"
+---
+@startmindmap
+<style>
+.blue {
+  BackGroundColor #33b2e2
+}
+</style>
+* root
+** a <<blue>>
+@endmindmap

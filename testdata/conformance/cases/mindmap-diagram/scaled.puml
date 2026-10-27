@@ -1,0 +1,14 @@
+---
+id: mindmap-diagram/scaled
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Scaled mindmap diagram"
+---
+@startmindmap
+scale 2
+* root
+** a
+** b
+@endmindmap

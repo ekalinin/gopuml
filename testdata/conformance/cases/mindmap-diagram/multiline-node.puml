@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/multiline-node
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Multiline node"
+---
+@startmindmap
+* root
+**:first line
+second line;
+@endmindmap

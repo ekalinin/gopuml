@@ -71,11 +71,14 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startgantt")); d != nil {
 		t.Fatalf("@startgantt: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@startmindmap")); d != nil {
+		t.Fatalf("@startmindmap: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
-	d, ok := CheckFamily(block("@startmindmap")).(*ErrorDiagram)
-	if !ok || d.Error.Message() != "mindmap diagrams are not supported yet" {
-		t.Fatalf("@startmindmap: got %#v", d)
+	d, ok := CheckFamily(block("@startwbs")).(*ErrorDiagram)
+	if !ok || d.Error.Message() != "wbs diagrams are not supported yet" {
+		t.Fatalf("@startwbs: got %#v", d)
 	}
 	if d.Description() != "(Error)" || d.Error.Position() != 0 {
 		t.Errorf("description %q position %d", d.Description(), d.Error.Position())

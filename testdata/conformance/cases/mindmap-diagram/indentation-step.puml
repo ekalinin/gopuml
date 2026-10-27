@@ -1,0 +1,13 @@
+---
+id: mindmap-diagram/indentation-step
+family: mindmap
+type: mindmap
+formats: [svg]
+scenarios:
+  - "mindmap-diagram: Indentation step"
+---
+@startmindmap
+* root
+*** a
+***** b
+@endmindmap
