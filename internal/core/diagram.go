@@ -125,7 +125,7 @@ func (d *UnsupportedDiagram) Lines(version, license string) []string {
 }
 
 // supportedTypes are the diagram types this implementation can parse.
-var supportedTypes = []DiagramType{Sequence, Class, Activity, Packet, Gantt}
+var supportedTypes = []DiagramType{Sequence, Class, Activity, Packet, Gantt, MindMap}
 
 // CheckFamily handles start directives whose family this implementation
 // cannot parse. It returns nil when the block's types include a supported

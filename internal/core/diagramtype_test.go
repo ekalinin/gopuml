@@ -71,6 +71,9 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startgantt")); d != nil {
 		t.Fatalf("@startgantt: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@startmindmap")); d != nil {
+		t.Fatalf("@startmindmap: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
 	d, ok := CheckFamily(block("@startwbs")).(*ErrorDiagram)
