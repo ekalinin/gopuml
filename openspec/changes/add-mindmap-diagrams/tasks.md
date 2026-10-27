@@ -9,7 +9,7 @@
 
 ## 2. Box and packing
 
-- [ ] 2.1 Port `FtileBoxOld` with `createMindMap` into `internal/activitydiagram3/ftile_vertical_ftileboxold.go` (design D2). Verify with unit tests: the size of a box from the padding of its style (and not of the skin parameters), a `MinimumWidth` larger than the text, the offset of the text for `HorizontalAlignment` `Right` and `Center` with a `MinimumWidth`, the background color of `SkinParamColors` over the style's, and the round corner of the style. Verify that `go test ./internal/activitydiagram3` passes with the golden dumps unchanged
+- [x] 2.1 Port `FtileBoxOld` with `createMindMap` into `internal/activitydiagram3/ftile_vertical_ftileboxold.go` (design D2). Verify with unit tests: the size of a box from the padding of its style (and not of the skin parameters), a `MinimumWidth` larger than the text, the offset of the text for `HorizontalAlignment` `Right` and `Center` with a `MinimumWidth`, the background color of `SkinParamColors` over the style's, and the round corner of the style. Verify that `go test ./internal/activitydiagram3` passes with the golden dumps unchanged
 - [ ] 2.2 Create `internal/mindmap` with its `doc.go`, and port `Stripe`, `StripeFrontier`, `SymetricalTee`, `SymetricalTeePositioned` and `Tetris` into `tetris.go` (design D1, D6). Verify with unit tests: an empty frontier, a segment split over several stripes, a segment below the frontier that changes nothing, `getContact` as the highest stripe under a range, the `IllegalArgumentException` of an empty segment, a second tee placed below the first one, the choice of the lower of the two placements, `balance` centering the tees on 0, the height and width of a `Tetris`, and the `IllegalStateException` of a second `balance`
 
 ## 3. Model
