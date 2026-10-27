@@ -302,6 +302,15 @@ func TestWasmGanttDiagram(t *testing.T) {
 }
 
 func TestWasmMindMapDiagram(t *testing.T) {
-	// Spec scenario "Mindmap diagram in WASM".
-	t.Skip("mindmap diagrams are registered by task 5.2 of add-mindmap-diagrams")
+	// Spec scenario "Mindmap diagram in WASM": mindmap diagrams have a
+	// built-in layout, so the WASM build draws them as the native build.
+	src := "@startmindmap\n* root\n** a\n*** a1\n** b\nleft side\n** c\n@endmindmap\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
 }
