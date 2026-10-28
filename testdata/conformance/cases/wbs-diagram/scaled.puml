@@ -1,0 +1,15 @@
+---
+id: wbs-diagram/scaled
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Scaled WBS diagram"
+---
+@startwbs
+scale 2
+* root
+**(x) a
+**(y) b
+x -> y
+@endwbs

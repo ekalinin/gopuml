@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/png-output
+family: wbs
+type: wbs
+formats: [svg, png]
+scenarios:
+  - "wbs-diagram: PNG WBS diagram"
+---
+@startwbs
+* root
+** a
+*** b
+@endwbs

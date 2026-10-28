@@ -76,9 +76,9 @@ func TestCheckFamily(t *testing.T) {
 	}
 
 	// Recognized but unsupported family: the error names the family.
-	d, ok := CheckFamily(block("@startwbs")).(*ErrorDiagram)
-	if !ok || d.Error.Message() != "wbs diagrams are not supported yet" {
-		t.Fatalf("@startwbs: got %#v", d)
+	d, ok := CheckFamily(block("@startjson")).(*ErrorDiagram)
+	if !ok || d.Error.Message() != "json diagrams are not supported yet" {
+		t.Fatalf("@startjson: got %#v", d)
 	}
 	if d.Description() != "(Error)" || d.Error.Position() != 0 {
 		t.Errorf("description %q position %d", d.Description(), d.Error.Position())

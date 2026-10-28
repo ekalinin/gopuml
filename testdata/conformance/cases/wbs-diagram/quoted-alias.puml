@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/quoted-alias
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Quoted label with an alias"
+---
+@startwbs
+* root
+** "First node" as f
+**(s) second
+f -> s
+@endwbs

@@ -1,0 +1,6 @@
+{
+  "id": "wbs-diagram/second-root",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 4, "messages": ["WBS diagram only accepts one root first declared. (Assumed diagram type: wbs)"]}, "renders": [{"file": "block0-page0.svg", "width": 654, "height": 151, "status": 400}]}
+  ]
+}

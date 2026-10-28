@@ -314,3 +314,8 @@ func TestWasmMindMapDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmWBSDiagram(t *testing.T) {
+	// Spec scenario "WBS diagram in WASM".
+	t.Skip("wbs diagrams are registered by task 6.1 of add-wbs-diagrams")
+}

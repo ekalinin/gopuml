@@ -87,7 +87,7 @@ func TestWelcomeFactory(t *testing.T) {
 // upstream's error image.
 func TestNotSupportedYet(t *testing.T) {
 	rc := core.NewRenderContext()
-	blocks, err := engine.Parse(context.Background(), rc, engine.Source{Text: "@startwbs\n* a\n** b\n@endwbs\n"})
+	blocks, err := engine.Parse(context.Background(), rc, engine.Source{Text: "@startjson\n{\n}\n@endjson\n"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -120,7 +120,7 @@ func TestNotSupportedYet(t *testing.T) {
 	for _, l := range d.Trace {
 		want += "|" + l.S
 	}
-	want += "|wbs diagrams are not supported yet"
+	want += "|json diagrams are not supported yet"
 	if !strings.HasSuffix(got, want) {
 		t.Errorf("texts %q do not end with %q", got, want)
 	}

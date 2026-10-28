@@ -1,0 +1,21 @@
+---
+id: wbs-diagram/link-stereotype
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Link stereotype"
+---
+@startwbs
+<style>
+wbsDiagram {
+  .hot {
+    LineColor red
+  }
+}
+</style>
+* root
+**(x) a
+**(y) b
+x -> y <<hot>>
+@endwbs

@@ -1,0 +1,29 @@
+---
+id: wbs-diagram/nearest-ancestor
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Nearest ancestor"
+---
+@startwbs
+<style>
+wbsDiagram {
+  .outer * {
+    node {
+      FontColor blue
+    }
+  }
+  .inner * {
+    node {
+      FontColor red
+    }
+  }
+}
+</style>
+* root
+** a <<outer>>
+*** b <<inner>>
+**** c
+*** e
+@endwbs

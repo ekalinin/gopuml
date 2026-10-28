@@ -1,0 +1,6 @@
+id: wbs-diagram/without-dot
+scenarios:
+  - "wbs-diagram: WBS diagram without Graphviz"
+package: internal/wbs
+test: TestWBSWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/plus-and-minus
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Plus and minus markers"
+---
+@startwbs
++ root
+++ a
++++ b
+++- c
+@endwbs

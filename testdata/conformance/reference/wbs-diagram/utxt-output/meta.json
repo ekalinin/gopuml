@@ -1,0 +1,6 @@
+{
+  "id": "wbs-diagram/utxt-output",
+  "blocks": [
+    {"index": 0, "name": null, "type": "WBS", "description": "Work Breakdown Structure", "pages": 1, "renders": [{"file": "block0-page0.utxt", "width": 0, "height": 0, "status": 0}]}
+  ]
+}

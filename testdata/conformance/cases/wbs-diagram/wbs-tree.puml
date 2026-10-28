@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/wbs-tree
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: WBS tree"
+---
+@startwbs
+* Project
+** Planning
+*** Scope
+** Build
+@endwbs

@@ -1,0 +1,20 @@
+---
+id: wbs-diagram/depth-style
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Depth style"
+---
+@startwbs
+<style>
+wbsDiagram {
+  :depth(1) {
+    BackGroundColor pink
+  }
+}
+</style>
+* root
+** a
+*** b
+@endwbs

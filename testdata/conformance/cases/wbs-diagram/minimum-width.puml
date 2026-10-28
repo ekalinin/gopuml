@@ -1,0 +1,19 @@
+---
+id: wbs-diagram/minimum-width
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Minimum width"
+---
+@startwbs
+<style>
+wbsDiagram {
+  node {
+    MinimumWidth 100
+  }
+}
+</style>
+* root
+** a
+@endwbs

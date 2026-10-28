@@ -26312,3 +26312,5 @@ not activity3
 not activity3
 === allconf/styling/unstyled-sequence.puml
 not activity3
+=== allconf/wbs-diagram/embedded-in-note.puml
+not activity3

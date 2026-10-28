@@ -1,0 +1,12 @@
+---
+id: wbs-diagram/root-with-several-markers
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Root with several markers"
+---
+@startwbs
+** root
+** a
+@endwbs

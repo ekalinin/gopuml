@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/utxt-output
+family: wbs
+type: wbs
+formats: [utxt]
+scenarios:
+  - "wbs-diagram: UTXT WBS diagram"
+---
+@startwbs
+* Project
+** Planning
+*** Scope
+** Build
+@endwbs

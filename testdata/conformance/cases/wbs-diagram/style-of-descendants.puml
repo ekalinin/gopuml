@@ -1,0 +1,24 @@
+---
+id: wbs-diagram/style-of-descendants
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Style of the descendants"
+---
+@startwbs
+<style>
+wbsDiagram {
+  .deep * {
+    node {
+      FontColor blue
+    }
+  }
+}
+</style>
+* root
+** a <<deep>>
+*** b
+**** c
+** d
+@endwbs

@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/boxless-node
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Boxless node"
+---
+@startwbs
+* root
+**_ a
+*** b
+@endwbs

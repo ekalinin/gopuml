@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/link-color
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Link color"
+---
+@startwbs
+* root
+**(x) a
+**(y) b
+x -> y #red
+@endwbs

@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/indented-markers
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Indented markers"
+---
+@startwbs
+* root
+ * a
+  * b
+@endwbs

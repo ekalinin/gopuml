@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/second-root
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Second root"
+---
+@startwbs
+* a
+** b
+* c
+@endwbs
