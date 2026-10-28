@@ -23,7 +23,7 @@
 
 ## 5. Text output
 
-- [ ] 5.1 Port `exportTxt` and the `asciiDraw` methods of `Fork`, `ITFComposed`, `ITFLeaf` and `WBSTextBlock` into `txt.go`, and render TXT and UTXT with it in `ExportDiagram` (design D7). Verify with unit tests that the TXT of the curated cases "Text of the root's children" and `output-formats/wbs-txt` and the UTXT of "UTXT WBS diagram" equal their references, and that the TXT of a diagram without nodes returns an error and writes nothing
+- [x] 5.1 Port `exportTxt` and the `asciiDraw` methods of `Fork`, `ITFComposed`, `ITFLeaf` and `WBSTextBlock` into `txt.go`, and render TXT and UTXT with it in `ExportDiagram` (design D7). Verify with unit tests that the TXT of the curated cases "Text of the root's children" and `output-formats/wbs-txt` and the UTXT of "UTXT WBS diagram" equal their references, and that the TXT of a diagram without nodes returns an error and writes nothing
 
 ## 6. Registration
 

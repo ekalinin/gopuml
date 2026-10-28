@@ -17,9 +17,14 @@ import (
 // ExportDiagram draws page index of the diagram in an output format, as
 // upstream's UgDiagram.exportDiagram: the tree and the links, with the
 // annotations around them (title, header, footer, caption, legend, main
-// frame). A panic while drawing is returned as an error.
+// frame), or the root and its children as text for ATXT and UTXT. A panic
+// while drawing is returned as an error.
 func (d *WBSDiagram) ExportDiagram(w io.Writer, index int,
 	fileFormatOption export.FileFormatOption) (export.ImageData, error) {
+	format := fileFormatOption.FileFormat()
+	if format == font.FormatATXT || format == font.FormatUTXT {
+		return d.exportTxt(w)
+	}
 	return uml.ExportTitled(w, d, d.Title(), func() klimt.TextBlock {
 		return d.TextBlock(index, fileFormatOption)
 	}, fileFormatOption)

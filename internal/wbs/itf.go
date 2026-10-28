@@ -8,6 +8,7 @@ package wbs
 
 import (
 	"github.com/ekalinin/gopuml/internal/activitydiagram3"
+	"github.com/ekalinin/gopuml/internal/asciiverse"
 	"github.com/ekalinin/gopuml/internal/klimt"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
@@ -28,6 +29,8 @@ type itf interface {
 	mainBoxWidth(stringBounder font.StringBounder) float64
 	// setForcedMinWidth widens the box of the node to at least width.
 	setForcedMinWidth(width float64)
+	// asciiDraw draws the node for the text output.
+	asciiDraw(plan *asciiverse.InfinitePlan)
 }
 
 // itfLeaf is the drawing of a node without children.
