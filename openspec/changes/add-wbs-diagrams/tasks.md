@@ -34,6 +34,6 @@
 
 - [x] 7.1 Add `TestWasmWBSDiagram`, which renders a WBS diagram as SVG in the WASM build and compares it with the native output. Verify that `go test ./cmd/plantuml-wasm` passes
 - [x] 7.2 Update `README.md` and `site/index.html` (design D9): the row `WBS | yes | yes | yes` in both tables of supported diagrams, WBS diagrams in the Graphviz note of the page and in the last sentence of the README's Graphviz section among the diagrams that do not need `dot`, and the README's case, known-difference and not-supported-yet counts. Leave the conformance tally and the playground note of the page and the README's sentence about the playground unchanged. Verify that `TestLandingPage` and `TestReleaseNotes` pass and that the README's counts match the conformance report of task 6.2
-- [ ] 7.3 Verify that every test named in the `.go.yaml` cases of task 1.2 exists in its package (`GoCase.TestExists`), and that `make lint` and `make provenance` pass
+- [x] 7.3 Verify that every test named in the `.go.yaml` cases of task 1.2 exists in its package (`GoCase.TestExists`), and that `make lint` and `make provenance` pass
 - [ ] 7.4 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
-- [ ] 7.5 Run `openspec validate add-wbs-diagrams --strict`. Verify that the change is reported as valid
+- [x] 7.5 Run `openspec validate add-wbs-diagrams --strict`. Verify that the change is reported as valid
