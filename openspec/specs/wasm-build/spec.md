@@ -26,7 +26,7 @@ The WASM build SHALL expose a JavaScript function that takes source text and opt
 
 ### Requirement: Diagram support without Graphviz
 
-In the WASM build, diagram types with a built-in layout (sequence, activity in the new syntax, packet and gantt) SHALL render fully. Graph-based diagrams (class, description, state and legacy activity) SHALL return the Graphviz-not-available error until the pure Go layout engine is added.
+In the WASM build, diagram types with a built-in layout (sequence, activity in the new syntax, packet, gantt and mindmap) SHALL render fully. Graph-based diagrams (class, description, state and legacy activity) SHALL return the Graphviz-not-available error until the pure Go layout engine is added.
 
 #### Scenario: Class diagram in WASM
 
@@ -56,6 +56,11 @@ In the WASM build, diagram types with a built-in layout (sequence, activity in t
 #### Scenario: Gantt diagram in WASM
 
 - **WHEN** the WASM render function is called with a gantt diagram and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
+
+#### Scenario: Mindmap diagram in WASM
+
+- **WHEN** the WASM render function is called with a mindmap diagram and format `svg`
 - **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 ### Requirement: Sandboxed resource access
