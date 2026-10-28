@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/left-child-of-root
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Left child of the root"
+---
+@startwbs
+* root
+** a
+**< b
+@endwbs

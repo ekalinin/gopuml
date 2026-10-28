@@ -3,4 +3,4 @@ scenarios:
   - "diagram-source: Recognized but unsupported family"
 package: internal/core
 test: TestCheckFamily
-why: Upstream renders @startwbs and the other non-uml families, while this change must produce a "not supported yet" error diagram for them.
+why: Upstream renders @startjson and the other non-uml families, while this change must produce a "not supported yet" error diagram for them.

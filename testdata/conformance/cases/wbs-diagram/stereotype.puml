@@ -1,0 +1,17 @@
+---
+id: wbs-diagram/stereotype
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Stereotype at the end of a label"
+---
+@startwbs
+<style>
+.blue {
+  BackGroundColor #33b2e2
+}
+</style>
+* root
+** a <<blue>>
+@endwbs

@@ -503,6 +503,56 @@ MindMapDiagramFactory	45	net.sourceforge.plantuml.mindmap.CommandMindMapOrgmode	
 MindMapDiagramFactory	46	net.sourceforge.plantuml.mindmap.CommandMindMapRoot	^(0)[%s]*(.*)$	0	0	0
 MindMapDiagramFactory	47	net.sourceforge.plantuml.mindmap.CommandMindMapPlus	^([+-]+)(?:\u005C[(#\u005Cw+)\u005C])?(_)?[%s]*(.*)$	+ -	+ -	+ -
 MindMapDiagramFactory	48	net.sourceforge.plantuml.mindmap.CommandMindMapDirection	^[^*#]*\u005Cb(left|right|top|bottom)\u005Cb[^*#]*(side|direction)[^*#]*$	ANYTHING	ANYTHING	ANYTHING
+WBSDiagramFactory	0	net.sourceforge.plantuml.command.CommandTitle	^title(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	title	title	title
+WBSDiagramFactory	1	net.sourceforge.plantuml.command.CommandMainframe	^mainframe(?:[%s]*:[%s]*|[%s]+)(.*[%pLN_.].*)$	mainframe	mainframe	mainframe
+WBSDiagramFactory	2	net.sourceforge.plantuml.command.CommandCaption	^caption(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	caption	caption	caption
+WBSDiagramFactory	3	net.sourceforge.plantuml.command.CommandMultilinesCaption	^caption$	caption	caption	caption
+WBSDiagramFactory	4	net.sourceforge.plantuml.command.CommandMultilinesTitle	^title$	title	title	title
+WBSDiagramFactory	5	net.sourceforge.plantuml.command.CommandMultilinesLegend	^legend(?:[%s]+(top|bottom))?(?:[%s]+(left|right|center))?$	legend	legend	legend
+WBSDiagramFactory	6	net.sourceforge.plantuml.command.CommandLegend	^legend(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	legend	legend	legend
+WBSDiagramFactory	7	net.sourceforge.plantuml.command.CommandFooter	^(?:(left|right|center))?[%s]*footer(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+WBSDiagramFactory	8	net.sourceforge.plantuml.command.CommandMultilinesFooter	^(?:(left|right|center)?[%s]*)footer$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+WBSDiagramFactory	9	net.sourceforge.plantuml.command.CommandHeader	^(?:(left|right|center))?[%s]*header(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+WBSDiagramFactory	10	net.sourceforge.plantuml.command.CommandMultilinesHeader	^(?:(left|right|center)?[%s]*)header$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+WBSDiagramFactory	11	net.sourceforge.plantuml.classdiagram.command.CommandNamespaceSeparator	^set[%s]+(?:separator|namespaceseparator)[%s]+((?:none|null)|[\u005C\u005C]{2}|::|[^%pLN%s_$#{}<>%g])$	set	set	set
+WBSDiagramFactory	12	net.sourceforge.plantuml.command.CommandNope	^[%s]*$	<empty>	<empty>	<empty>
+WBSDiagramFactory	13	net.sourceforge.plantuml.command.CommandPragma	^!pragma[%s]+([A-Za-z_][A-Za-z_0-9]*)(?:[%s]+(.*))?$	!	!	!
+WBSDiagramFactory	14	net.sourceforge.plantuml.command.CommandAssumeTransparent	^!assume[%s]+transparent[%s]+(dark|light)$	!	!	!
+WBSDiagramFactory	15	net.sourceforge.plantuml.command.CommandSkinParam	^(skinparam|skinparamlocked)[%s]+([\u005Cw.]*(?:\u005C<\u005C<[^<>]*\u005C>\u005C>)?[\u005Cw.]*)[%s]+([^{}]*)$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+WBSDiagramFactory	16	net.sourceforge.plantuml.command.CommandSkinParamJaws	^((skinparam|skinparamlocked)[%s]+.*\uE100.*)+$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+WBSDiagramFactory	17	net.sourceforge.plantuml.command.CommandSkinParamMultilines	^skinparam[%s]*(?:[%s]+([\u005Cw.]*(?:\u005C<\u005C<.*\u005C>\u005C>)?[\u005Cw.]*))?[%s]*\u005C{$	skinparam	skinparam	skinparam
+WBSDiagramFactory	18	net.sourceforge.plantuml.sequencediagram.command.CommandSkin	^skin[%s]+([\u005Cw.]+)$	skin	skin	skin
+WBSDiagramFactory	19	net.sourceforge.plantuml.command.CommandMinwidth	^minwidth[%s]+(\u005Cd+)$	minwidth	minwidth	minwidth
+WBSDiagramFactory	20	net.sourceforge.plantuml.command.CommandPage	^page[%s]+(\u005Cd+)[%s]*x*[%s]*(\u005Cd+)$	page	page	page
+WBSDiagramFactory	21	net.sourceforge.plantuml.command.CommandRotate	^rotate$	rotate	rotate	rotate
+WBSDiagramFactory	22	net.sourceforge.plantuml.command.CommandFactorySprite$1	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)?|(color))\u005C])?[%s]*\u005C{$	sprite	sprite	sprite
+WBSDiagramFactory	23	net.sourceforge.plantuml.command.CommandFactorySprite$2	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)|(color))\u005C])?[%s]+([-_A-Za-z0-9]+)$	sprite	sprite	sprite
+WBSDiagramFactory	24	net.sourceforge.plantuml.command.CommandSpriteBase64	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;base64,([A-Za-z0-9+/=]+)$	sprite	sprite	sprite
+WBSDiagramFactory	25	net.sourceforge.plantuml.command.CommandSpriteMd5	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;md5,([0-9a-f]+)$	sprite	sprite	sprite
+WBSDiagramFactory	26	net.sourceforge.plantuml.command.CommandSpriteSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*\u005C</svg\u005C>)$	sprite	sprite	sprite
+WBSDiagramFactory	27	net.sourceforge.plantuml.command.CommandSpriteStdlib	^sprite[%s]+\u005C$([-%pLN_]+)[%s]*#([^#]+)#([^%s]+)$	sprite	sprite	sprite
+WBSDiagramFactory	28	net.sourceforge.plantuml.command.CommandSpriteStdlibSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]*:([^:]+):([^%s]+)$	sprite	sprite	sprite
+WBSDiagramFactory	29	net.sourceforge.plantuml.command.CommandSpriteSvgMultiline	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*)$	sprite	sprite	sprite
+WBSDiagramFactory	30	net.sourceforge.plantuml.command.CommandSpriteFile	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+([^<>%g#]*)$	sprite	sprite	sprite
+WBSDiagramFactory	31	net.sourceforge.plantuml.command.CommandStyleSingleLineCSS	^\u005C<style\u005C>([-#.\u005Cw%s;:{}]+)\u005C</style\u005C>$	<	<	<
+WBSDiagramFactory	32	net.sourceforge.plantuml.command.CommandStyleMultilinesCSS	^\u005C<style\u005C>$	<	<	<
+WBSDiagramFactory	33	net.sourceforge.plantuml.command.CommandStyleImport	^\u005C<style[%s]*\u005Cw+[%s]*=[%s]*[%q%g]?([^%q%g]*)[%q%g]?\u005C>$	<	<	<
+WBSDiagramFactory	34	net.sourceforge.plantuml.command.CommandScale	^scale[%s]+([0-9.]+)(?:[%s]*/[%s]*([0-9.]+))?$	scale	scale	scale
+WBSDiagramFactory	35	net.sourceforge.plantuml.command.CommandScaleWidthAndHeight	^scale[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+WBSDiagramFactory	36	net.sourceforge.plantuml.command.CommandScaleWidthOrHeight	^scale[%s]+([0-9.]+)[%s]+(width|height)$	scale	scale	scale
+WBSDiagramFactory	37	net.sourceforge.plantuml.command.CommandScaleMaxWidth	^scale[%s]+max[%s]+([0-9.]+)[%s]+width$	scale	scale	scale
+WBSDiagramFactory	38	net.sourceforge.plantuml.command.CommandScaleMaxHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]+height$	scale	scale	scale
+WBSDiagramFactory	39	net.sourceforge.plantuml.command.CommandScaleMaxWidthAndHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+WBSDiagramFactory	40	net.sourceforge.plantuml.statediagram.command.CommandHideEmptyDescription	^(hide|show)[%s]+empty[%s]+description$	hide show	hide show	hide show
+WBSDiagramFactory	41	net.sourceforge.plantuml.classdiagram.command.CommandHideShowByVisibility	^(hide|show)[%s]+((?:public|private|protected|package)?(?:[,%s]+(?:public|private|protected|package))*)[%s]+(members?|attributes?|fields?|methods?)$	hide show	hide show	hide show
+WBSDiagramFactory	42	net.sourceforge.plantuml.classdiagram.command.CommandHideShowByGender	^(hide|show)[%s]+(?:(class|object|interface|enum|annotation|dataclass|record|abstract|[%pLN_.]+|[%g][^%g]+[%g]|\u005C<\u005C<.*\u005C>\u005C>)[%s]+)*?(?:(empty)[%s]+)?(members?|attributes?|fields?|methods?|circles?|circled?|stereotypes?)$	hide show	hide show	hide show
+WBSDiagramFactory	43	net.sourceforge.plantuml.wbs.CommandWBSItemNew	^([ \u0009]*[*+-]+)(?:(_)?([<>])?|([<>])?|(_)?)(?:\u005C[(#\u005Cw+)\u005C])?[%s]+[%g](.*)[%g][%s]+as[%s]+([%pLN_]+)$	* + -	* + -	* + -
+WBSDiagramFactory	44	net.sourceforge.plantuml.wbs.CommandWBSItemNew	^([ \u0009]*[*+-]+)(?:(_)?([<>])?|([<>])?|(_)?)(?:(?:\u005C[(#\u005Cw+)\u005C])?(?:\u005C(([%pLN_]+)\u005C))?|(?:\u005C(([%pLN_]+)\u005C))?(?:\u005C[(#\u005Cw+)\u005C])?)(?:[%s]+([^%s].*))?$	* + -	* + -	* + -
+WBSDiagramFactory	45	net.sourceforge.plantuml.wbs.CommandWBSItemMultilineNew	^([ \u0009]*[*+-]+)(?:(_)?([<>])?|([<>])?|(_)?)(?:(?:\u005C[(#\u005Cw+)\u005C])?(?:\u005C(([%pLN_]+)\u005C))?|(?:\u005C(([%pLN_]+)\u005C))?(?:\u005C[(#\u005Cw+)\u005C])?):(.*)$	* + -	* + -	* + -
+WBSDiagramFactory	46	net.sourceforge.plantuml.wbs.CommandWBSItemOld	^([ \u0009]*[*+-]+)(?:\u005C[(#\u005Cw+)\u005C])?(?:(_)?([<>])?|([<>])?|(_)?)[%s]+[%g](.*)[%g][%s]+as[%s]+([%pLN_]+)$	* + -	* + -	* + -
+WBSDiagramFactory	47	net.sourceforge.plantuml.wbs.CommandWBSItemOld	^([ \u0009]*[*+-]+)(?:(?:\u005C[(#\u005Cw+)\u005C])?(?:\u005C(([%pLN_]+)\u005C))?|(?:\u005C(([%pLN_]+)\u005C))?(?:\u005C[(#\u005Cw+)\u005C])?)(?:(_)?([<>])?|([<>])?|(_)?)(?:[%s]+([^%s].*))?$	* + -	* + -	* + -
+WBSDiagramFactory	48	net.sourceforge.plantuml.wbs.CommandWBSItemMultilineOld	^([ \u0009]*[*+-]+)(?:(?:\u005C[(#\u005Cw+)\u005C])?(?:\u005C(([%pLN_]+)\u005C))?|(?:\u005C(([%pLN_]+)\u005C))?(?:\u005C[(#\u005Cw+)\u005C])?)(?:(_)?([<>])?|([<>])?|(_)?):(.*)$	* + -	* + -	* + -
+WBSDiagramFactory	49	net.sourceforge.plantuml.wbs.CommandWBSLink	^([%pLN_]+)[%s]*[.-]+\u005C>[%s]*([%pLN_]+)[%s]*((?:#(?:\u005Cw+[-\u005C\u005C|/]?\u005Cw+;)?(?:(?:text|back|header|line|line\u005C.dashed|line\u005C.dotted|line\u005C.bold|shadowing)(?::\u005Cw+[-\u005C\u005C|/]?\u005Cw+)?(?:;|(?![\u005Cw;:.])))+)|(?:#\u005Cw+[-\u005C\u005C|/]?\u005Cw+))?[%s]*(?:(\u005C<\u005C<.+?\u005C>\u005C>))?[%s]*(?::[%s]*(.+))?$	ANYTHING	ANYTHING	ANYTHING
 PacketDiagramFactory	0	net.sourceforge.plantuml.command.CommandTitle	^title(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	title	title	title
 PacketDiagramFactory	1	net.sourceforge.plantuml.command.CommandMainframe	^mainframe(?:[%s]*:[%s]*|[%s]+)(.*[%pLN_.].*)$	mainframe	mainframe	mainframe
 PacketDiagramFactory	2	net.sourceforge.plantuml.command.CommandCaption	^caption(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	caption	caption	caption

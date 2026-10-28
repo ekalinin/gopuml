@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/unknown-alias
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Unknown alias"
+---
+@startwbs
+* root
+**(x) a
+x -> y
+@endwbs

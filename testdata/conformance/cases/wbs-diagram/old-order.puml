@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/old-order
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Old order"
+---
+@startwbs
+* root
+**[#red](x)_ a
+**(y) b
+x -> y
+@endwbs

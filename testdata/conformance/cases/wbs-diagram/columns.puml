@@ -1,0 +1,15 @@
+---
+id: wbs-diagram/columns
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Columns"
+---
+@startwbs
+* root
+** a
+*** b
+*** c
+**** d
+@endwbs

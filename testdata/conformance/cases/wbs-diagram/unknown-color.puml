@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/unknown-color
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Unknown color"
+---
+@startwbs
+* root
+** a
+**[#ZZZ] b
+@endwbs

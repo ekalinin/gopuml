@@ -1,0 +1,15 @@
+---
+id: wbs-diagram/txt-root-children
+family: wbs
+type: wbs
+formats: [txt]
+scenarios:
+  - "wbs-diagram: Text of the root's children"
+---
+@startwbs
+title T
+* root
+** a
+*** b
+** c
+@endwbs

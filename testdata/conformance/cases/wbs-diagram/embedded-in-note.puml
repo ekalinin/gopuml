@@ -1,0 +1,17 @@
+---
+id: wbs-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "wbs-diagram: WBS diagram in a note"
+---
+@startuml
+Alice -> Bob : plan
+note right
+{{wbs
+* root
+** a
+}}
+end note
+@enduml

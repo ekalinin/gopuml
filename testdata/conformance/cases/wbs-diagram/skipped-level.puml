@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/skipped-level
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Skipped level"
+---
+@startwbs
+* root
+** a
+**** b
+@endwbs

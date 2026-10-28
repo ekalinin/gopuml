@@ -1,0 +1,22 @@
+---
+id: wbs-diagram/auto-width
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Auto width"
+---
+@startwbs
+<style>
+wbsDiagram {
+  node {
+    Width auto
+  }
+}
+</style>
+* root
+** a
+** longer node
+*** b
+*** much longer node
+@endwbs

@@ -1,0 +1,30 @@
+---
+id: wbs-diagram/root-leaf-boxless
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Root, leaf and boxless nodes"
+---
+@startwbs
+<style>
+wbsDiagram {
+  node {
+    BackGroundColor lightgray
+  }
+  rootNode {
+    BackGroundColor gold
+  }
+  leafNode {
+    BackGroundColor lightblue
+  }
+  boxless {
+    FontColor red
+  }
+}
+</style>
+* root
+** a
+*** b
+**_ c
+@endwbs

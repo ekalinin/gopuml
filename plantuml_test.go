@@ -28,7 +28,7 @@ func TestEncodeDecodeRoundTrip(t *testing.T) {
 }
 
 func TestInspectNamesAndStatus(t *testing.T) {
-	src := "@startuml login\nAlice -> Bob\n@enduml\n@startwbs\n* root\n@endwbs\n"
+	src := "@startuml login\nAlice -> Bob\n@enduml\n@startjson\n{}\n@endjson\n"
 	blocks, err := Inspect(context.Background(), src, nil)
 	if err != nil {
 		t.Fatal(err)
@@ -39,10 +39,10 @@ func TestInspectNamesAndStatus(t *testing.T) {
 	if b := blocks[0]; b.Name != "login" || b.Family != "uml" {
 		t.Errorf("first block: name %q family %q", b.Name, b.Family)
 	}
-	if b := blocks[1]; b.Name != "" || b.Family != "wbs" || !errors.Is(b.Err, ErrUnsupportedDiagram) || b.Type != "" {
+	if b := blocks[1]; b.Name != "" || b.Family != "json" || !errors.Is(b.Err, ErrUnsupportedDiagram) || b.Type != "" {
 		t.Errorf("second block: name %q family %q type %q err %v", b.Name, b.Family, b.Type, b.Err)
 	}
-	if ue, ok := errors.AsType[*UnsupportedError](blocks[1].Err); !ok || ue.Line != 4 || ue.Message != "wbs diagrams are not supported yet" {
+	if ue, ok := errors.AsType[*UnsupportedError](blocks[1].Err); !ok || ue.Line != 4 || ue.Message != "json diagrams are not supported yet" {
 		t.Errorf("second block error: %#v", blocks[1].Err)
 	}
 	if got := blocks[0].Source(); len(got) != 3 || got[0] != "@startuml login" || got[2] != "@enduml" {

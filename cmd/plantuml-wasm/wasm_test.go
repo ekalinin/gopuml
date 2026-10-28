@@ -314,3 +314,17 @@ func TestWasmMindMapDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmWBSDiagram(t *testing.T) {
+	// Spec scenario "WBS diagram in WASM": WBS diagrams have a built-in
+	// layout, so the WASM build draws them as the native build.
+	src := "@startwbs\n* root\n**(x) a\n*** a1\n***< a2\n**(y) b\nx -> y\n@endwbs\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
+}

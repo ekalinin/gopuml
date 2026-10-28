@@ -1,0 +1,6 @@
+id: wasm-build/wbs-diagram
+scenarios:
+  - "wasm-build: WBS diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmWBSDiagram
+why: Upstream has no Graphviz-free WASM build; the scenario compares the WASM build with the native build of this implementation.

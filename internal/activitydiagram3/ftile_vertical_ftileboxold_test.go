@@ -5,6 +5,7 @@ package activitydiagram3
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/ekalinin/gopuml/internal/klimt"
@@ -109,5 +110,73 @@ func TestFtileBoxOld(t *testing.T) {
 		if fmt.Sprint(*r.log) != fmt.Sprint(tc.log) {
 			t.Errorf("%s: drawn %q, want %q", tc.name, *r.log, tc.log)
 		}
+	}
+}
+
+// wbsBox returns the box of label with the node style of a WBS diagram,
+// parsed from an activity diagram with the lines before; back, when set, is
+// the background color of the skin parameters.
+func wbsBox(t *testing.T, before, label, back string) *FtileBoxOld {
+	t.Helper()
+	d, _, err := parseCase("@startuml\n" + before + "start\n@enduml\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var skinParam klimt.ISkinParam = d.(*ActivityDiagram3).SkinParam()
+	style := klimt.StyleSignatureBasicOf(klimt.SNameRoot, klimt.SNameElement, klimt.SNameWbsDiagram,
+		klimt.SNameNode).MergedStyle(skinParam.CurrentStyleBuilder())
+	if back != "" {
+		c, err := skinParam.IHtmlColorSet().GetColor(back)
+		if err != nil {
+			t.Fatal(err)
+		}
+		skinParam = klimt.NewSkinParamColors(skinParam, color.EmptyColors().Add(color.TypeBack, c))
+	}
+	return FtileBoxOldCreateWbs(style, skinParam, klimt.DisplayCreate(label))
+}
+
+func TestFtileBoxOldWbs(t *testing.T) {
+	stringBounder := font.NewStringBounderSvg(nil)
+	width := func(box *FtileBoxOld) string {
+		return fmt.Sprintf("%.3f", box.CalculateDimension(stringBounder).Width())
+	}
+	minimumWidth := "<style>\nwbsDiagram {\n node {\n  MinimumWidth 100\n }\n}\n</style>\n"
+	for _, tc := range []struct {
+		name, before, back string
+		minimum            float64
+		want               string
+	}{
+		{"default style", "", "", 0, "27.354"},
+		// A width larger than the text widens the box.
+		{"wider", "", "", 60, "60.000"},
+		// A width smaller than the MinimumWidth of the style keeps the style's.
+		{"style minimum", minimumWidth, "", 50, "100.000"},
+	} {
+		box := wbsBox(t, tc.before, "a", tc.back)
+		if tc.minimum > 0 {
+			box.SetMinimumWidth(tc.minimum)
+		}
+		if got := width(box); got != tc.want {
+			t.Errorf("%s: width %s, want %s", tc.name, got, tc.want)
+		}
+	}
+
+	// A call after a first dimension changes the next one: the geometry
+	// cache is emptied.
+	box := wbsBox(t, "", "a", "")
+	if got := width(box); got != "27.354" {
+		t.Fatalf("first width %s", got)
+	}
+	box.SetMinimumWidth(60)
+	if got := width(box); got != "60.000" {
+		t.Errorf("width after SetMinimumWidth %s, want 60.000", got)
+	}
+
+	// The color of SkinParamColors goes over the style's.
+	box = wbsBox(t, "<style>\nwbsDiagram {\n node {\n  BackGroundColor lightgray\n }\n}\n</style>\n", "a", "#Orange")
+	r := &boxRec{UGraphic: klimt.NewUGraphicNull(), log: new([]string)}
+	box.DrawU(r)
+	if len(*r.log) == 0 || !strings.HasPrefix((*r.log)[0], "rect ") || !strings.HasSuffix((*r.log)[0], " #FFA500") {
+		t.Errorf("drawn %q, want a rectangle filled with #FFA500 first", *r.log)
 	}
 }

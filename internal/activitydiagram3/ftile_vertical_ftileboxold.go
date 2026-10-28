@@ -11,10 +11,9 @@ import (
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
-// FtileBoxOld is the box of a mindmap node. Unlike FtileBox, its text takes
-// the padding of its style, without the padding of the skin parameters, and
-// is at least MinimumWidth wide. createWbs and setMinimumWidth, which only
-// WBS diagrams use, are not ported.
+// FtileBoxOld is the box of a mindmap or WBS node. Unlike FtileBox, its text
+// takes the padding of its style, without the padding of the skin
+// parameters, and is at least MinimumWidth wide.
 type FtileBoxOld struct {
 	AbstractFtile
 	tb                  klimt.TextBlock
@@ -42,6 +41,20 @@ func (f *FtileBoxOld) SwimlaneIn() *Swimlane { return f.swimlane }
 
 // SwimlaneOut implements Swimable.
 func (f *FtileBoxOld) SwimlaneOut() *Swimlane { return f.swimlane }
+
+// SetMinimumWidth is upstream's setMinimumWidth: the box becomes at least
+// minimumWidth wide, and its geometry is computed again.
+func (f *FtileBoxOld) SetMinimumWidth(minimumWidth float64) {
+	f.minimumWidth = max(f.minimumWidth, minimumWidth)
+	f.invalidateGeometryCache()
+}
+
+// FtileBoxOldCreateWbs is upstream's createWbs: the plain box of a WBS node,
+// drawn with style. It is the box itself, so that WBS diagrams can widen it.
+func FtileBoxOldCreateWbs(style *klimt.Style, skinParam klimt.ISkinParam, label *klimt.Display) *FtileBoxOld {
+	styleArrow := style
+	return newFtileBoxOld(skinParam, label, nil, BoxStylePlain, style, styleArrow)
+}
 
 // FtileBoxOldCreateMindMap is upstream's createMindMap: the plain box of a
 // mindmap node, drawn with style.

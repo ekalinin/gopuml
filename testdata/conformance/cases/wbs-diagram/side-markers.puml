@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/side-markers
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Side markers"
+---
+@startwbs
+* root
+** a
+***< b
+***> c
+@endwbs

@@ -122,8 +122,8 @@ func TestCreateDiagramFamilies(t *testing.T) {
 	if _, ok := CreateDiagram(NewRenderContext(), srcLines("@startfoo\nx\n@endfoo\n"), nil, nil).(*UnsupportedDiagram); !ok {
 		t.Error("@startfoo must be upstream's unsupported diagram")
 	}
-	if d, ok := CreateDiagram(NewRenderContext(), srcLines("@startwbs\n* a\n@endwbs\n"), nil, nil).(*ErrorDiagram); !ok || d.Error.Error != "wbs diagrams are not supported yet" {
-		t.Errorf("@startwbs: got %#v", d)
+	if d, ok := CreateDiagram(NewRenderContext(), srcLines("@startjson\n{}\n@endjson\n"), nil, nil).(*ErrorDiagram); !ok || d.Error.Error != "json diagrams are not supported yet" {
+		t.Errorf("@startjson: got %#v", d)
 	}
 	if d, ok := CreateDiagram(NewRenderContext(), srcLines("@startexplainuml\nA -> B\n@enduml\n"), nil, nil).(*ErrorDiagram); !ok || !strings.Contains(d.Error.Error, "explain") {
 		t.Errorf("@startexplain: got %#v", d)

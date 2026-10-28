@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/link-label
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Link label"
+---
+@startwbs
+* root
+**(x) a
+**(y) b
+x -> y : hello
+@endwbs

@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/missing-label
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Missing label"
+---
+@startwbs
+* root
+** a
+**
+@endwbs

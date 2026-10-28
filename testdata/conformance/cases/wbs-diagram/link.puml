@@ -1,0 +1,14 @@
+---
+id: wbs-diagram/link
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Link between aliased nodes"
+---
+@startwbs
+* root
+**(x) a
+**(y) b
+x -> y
+@endwbs

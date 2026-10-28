@@ -1,0 +1,6 @@
+id: wbs-diagram/without-nodes
+scenarios:
+  - "wbs-diagram: WBS diagram without nodes"
+package: internal/wbs
+test: TestWBSWithoutNodes
+why: Upstream draws a crash report with a random quote, a random icon and a Java stack trace inside the diagram, which cannot be a committed reference, while this implementation returns an error.

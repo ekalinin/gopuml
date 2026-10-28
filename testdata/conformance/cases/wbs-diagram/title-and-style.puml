@@ -1,0 +1,23 @@
+---
+id: wbs-diagram/title-and-style
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Title and style"
+---
+@startwbs
+title Plan
+<style>
+wbsDiagram {
+  node {
+    BackGroundColor #33b2e2
+  }
+  arrow {
+    LineColor red
+  }
+}
+</style>
+* root
+** a
+@endwbs

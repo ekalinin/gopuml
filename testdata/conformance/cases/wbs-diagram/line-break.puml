@@ -1,0 +1,12 @@
+---
+id: wbs-diagram/line-break
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Line break in a label"
+---
+@startwbs
+* root
+** first\nsecond
+@endwbs

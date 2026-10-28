@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/unreadable-markers
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Unreadable markers"
+---
+@startwbs
+* root
+** a
+  ++ b
+@endwbs

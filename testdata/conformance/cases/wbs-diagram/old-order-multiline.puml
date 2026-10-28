@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/old-order-multiline
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Old order in a multiline node"
+---
+@startwbs
+* root
+**[#red]>:first
+second;
+@endwbs

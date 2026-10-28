@@ -1,0 +1,12 @@
+---
+id: wbs-diagram/background-color
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Background color"
+---
+@startwbs
+* root
+**[#Orange] a
+@endwbs

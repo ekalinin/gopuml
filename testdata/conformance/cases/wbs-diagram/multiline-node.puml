@@ -1,0 +1,13 @@
+---
+id: wbs-diagram/multiline-node
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Multiline node"
+---
+@startwbs
+* root
+**:first line
+second line;
+@endwbs

@@ -1,0 +1,11 @@
+---
+id: diagram-source/wbs-detected
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "diagram-source: WBS family"
+---
+@startwbs
+* root
+@endwbs

@@ -81,6 +81,7 @@ func TestFirstTokensMatchUpstream(t *testing.T) {
 	golden := readFirstTokensGolden(t)
 	names := []string{"SequenceDiagramFactory", "ClassDiagramFactory", "ActivityDiagramFactory",
 		"DescriptionDiagramFactory", "StateDiagramFactory", "ActivityDiagramFactory3", "MindMapDiagramFactory",
+		"WBSDiagramFactory",
 		"PacketDiagramFactory", "GanttDiagramFactory"}
 	factories := Factories[1:]
 	if len(factories) != len(names) {

@@ -1,0 +1,18 @@
+---
+id: wbs-diagram/multiline-stereotype
+family: wbs
+type: wbs
+formats: [svg]
+scenarios:
+  - "wbs-diagram: Multiline node with a stereotype"
+---
+@startwbs
+<style>
+.blue {
+  BackGroundColor #33b2e2
+}
+</style>
+* root
+**:first line
+second line; <<blue>>
+@endwbs

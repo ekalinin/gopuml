@@ -1,0 +1,6 @@
+{
+  "id": "wbs-diagram/root-leaf-boxless",
+  "blocks": [
+    {"index": 0, "name": null, "type": "WBS", "description": "Work Breakdown Structure", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 120, "height": 196, "status": 0}]}
+  ]
+}

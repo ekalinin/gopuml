@@ -1,0 +1,14 @@
+---
+id: output-formats/wbs-txt
+family: wbs
+type: wbs
+formats: [txt]
+scenarios:
+  - "output-formats: ASCII WBS diagram"
+---
+@startwbs
+* Project
+** Planning
+*** Scope
+** Build
+@endwbs
