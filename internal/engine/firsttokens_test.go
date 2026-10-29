@@ -82,7 +82,7 @@ func TestFirstTokensMatchUpstream(t *testing.T) {
 	names := []string{"SequenceDiagramFactory", "ClassDiagramFactory", "ActivityDiagramFactory",
 		"DescriptionDiagramFactory", "StateDiagramFactory", "ActivityDiagramFactory3", "MindMapDiagramFactory",
 		"WBSDiagramFactory",
-		"PacketDiagramFactory", "GanttDiagramFactory"}
+		"PacketDiagramFactory", "GanttDiagramFactory", "TimingDiagramFactory"}
 	factories := Factories[1:]
 	if len(factories) != len(names) {
 		t.Fatalf("%d factories, want %d", len(factories), len(names))

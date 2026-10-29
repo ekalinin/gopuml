@@ -27,26 +27,6 @@ import (
 
 const repoRoot = "../.."
 
-// notParsedYet are the error cases whose diagram type is not parsed yet,
-// so that this implementation draws its "not supported yet" image instead.
-var notParsedYet = map[string]bool{
-	"timing-diagram/unknown-player-color":      true,
-	"timing-diagram/unknown-named-time":        true,
-	"timing-diagram/unknown-named-time-offset": true,
-	"timing-diagram/bad-date-format":           true,
-	"timing-diagram/unknown-player":            true,
-	"timing-diagram/unknown-player-has":        true,
-	"timing-diagram/unknown-player-block":      true,
-	"timing-diagram/change-without-block":      true,
-	"timing-diagram/clock-state":               true,
-	"timing-diagram/message-unknown-player":    true,
-	"timing-diagram/constraint-without-player": true,
-	"timing-diagram/constraint-unknown-time":   true,
-	"timing-diagram/note-unknown-player":       true,
-	"timing-diagram/bad-scale":                 true,
-	"diagram-source/timing-syntax-error":       true,
-}
-
 // handled reports whether a reference block is an image of this package.
 func handled(b conformance.BlockMeta) bool {
 	return b.Type == "ERROR" || b.Description == "(Unsupported)" || b.Description == "(Empty)"
@@ -169,9 +149,6 @@ func TestDiagramReferences(t *testing.T) {
 	}
 	var r result
 	for _, c := range cases {
-		if notParsedYet[c.ID] {
-			continue
-		}
 		refDir := filepath.Join(repoRoot, "testdata/conformance/reference", c.ID)
 		if _, err := os.Stat(filepath.Join(refDir, "meta.json")); err != nil {
 			continue
