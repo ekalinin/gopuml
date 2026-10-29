@@ -62,6 +62,7 @@ var exportExceptions = map[string]string{
 	"gantt-diagram/embedded-in-note/0":             "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"mindmap-diagram/embedded-in-note/0":           "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"wbs-diagram/embedded-in-note/0":               "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
+	"timing-diagram/embedded-in-note/0":            "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"packet-diagram/embedded-in-note/0":            "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"styling/embedded-use-case-in-note/0":          "embedded diagram {{ }}: built without the embedded-diagram renderer of internal/engine; the conformance suite compares it",
 	"preprocessor/option-unknown/0":                "!option warnings do not reach the diagram (core.Factory has no preprocessing artifact)",

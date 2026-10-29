@@ -1,0 +1,12 @@
+---
+id: timing-diagram/constraint-without-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Constraint without a player"
+---
+@startuml
+binary "B" as B
+@0 <-> @50 : lag
+@enduml

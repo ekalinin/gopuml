@@ -1,0 +1,17 @@
+---
+id: timing-diagram/compact-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Compact player"
+---
+@startuml
+compact concise "Web User" as WU
+concise "Other" as O
+@0
+WU is Idle
+O is A
+@100
+WU is Waiting
+@enduml

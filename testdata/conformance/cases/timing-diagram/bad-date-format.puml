@@ -1,0 +1,12 @@
+---
+id: timing-diagram/bad-date-format
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Bad date format"
+---
+@startuml
+concise "User" as U
+use date format "yyyy-qq"
+@enduml

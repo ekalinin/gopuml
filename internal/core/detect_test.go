@@ -24,8 +24,6 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 		{"@startuml\nIdle --> Busy\nBusy --> [*]\n@enduml\n", "", 0},
 		{"@startuml\n\"First\" --> (*)\n@enduml\n", "", 0},
 		{"@startuml\narchimate #Business \"Shop\" as shop\n@enduml\n", "archimate", 1},
-		{"@startuml\nrobust \"Web\" as WB\n@0\nWB is Idle\n@enduml\n", "timing", 1},
-		{"@startuml\nclock clk with period 1\n@enduml\n", "timing", 1},
 
 		// Syntax that sequence, class, description or activity diagrams
 		// parse: their factories report it.
@@ -63,16 +61,16 @@ func TestDetectUnsupportedUmlTypes(t *testing.T) {
 }
 
 func TestCreateDiagramReportsUnsupportedUmlType(t *testing.T) {
-	// No in-scope factory accepts timing syntax, so the block is reported as
-	// a timing diagram, not as a generic syntax error.
-	src := "@startuml\nrobust \"Web\" as WB\n@enduml\n"
+	// No in-scope factory accepts archimate syntax, so the block is reported
+	// as an archimate diagram, not as a generic syntax error.
+	src := "@startuml\narchimate #Business \"Customer\" as C\n@enduml\n"
 	factories := []Factory{fakeFactory{name: "sequence", typ: Sequence, consumed: 1}}
 	d, ok := CreateDiagram(NewRenderContext(), srcLines(src), nil, factories).(*ErrorDiagram)
-	if !ok || d.Error.Message() != "timing diagrams are not supported yet" {
+	if !ok || d.Error.Message() != "archimate diagrams are not supported yet" {
 		t.Fatalf("got %#v", d)
 	}
 	// A factory that accepts the block wins over detection.
-	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "robust"}}
+	factories = []Factory{fakeFactory{name: "sequence", typ: Sequence, accept: "archimate"}}
 	if _, ok := CreateDiagram(NewRenderContext(), srcLines(src), nil, factories).(okDiagram); !ok {
 		t.Fatal("an accepting factory must win")
 	}

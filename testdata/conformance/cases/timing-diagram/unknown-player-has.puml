@@ -1,0 +1,12 @@
+---
+id: timing-diagram/unknown-player-has
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Unknown player in a state declaration"
+---
+@startuml
+concise "User" as U
+X has A,B
+@enduml

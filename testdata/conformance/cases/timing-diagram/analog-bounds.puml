@@ -1,0 +1,19 @@
+---
+id: timing-diagram/analog-bounds
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Analog bounds and ticks"
+---
+@startuml
+analog "Vcore" between 0 and 5.25 as VDD
+VDD ticks num on multiple 1
+VDD is 200 pixels height
+@0
+VDD is 0
+@100
+VDD is 2.5
+@200
+VDD is 5
+@enduml

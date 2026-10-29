@@ -1,0 +1,21 @@
+---
+id: timing-diagram/special-states
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Special states"
+---
+@startuml
+concise "U" as U
+@0
+U is A
+@10
+U is {hidden}
+@20
+U is {...}
+@30
+U is {-}
+@40
+U is D
+@enduml

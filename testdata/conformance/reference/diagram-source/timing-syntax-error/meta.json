@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/timing-syntax-error",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 5, "messages": ["Syntax Error? (Assumed diagram type: timing)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 167, "status": 400}]}
+  ]
+}

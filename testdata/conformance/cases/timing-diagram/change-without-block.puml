@@ -1,0 +1,12 @@
+---
+id: timing-diagram/change-without-block
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Change without a player block"
+---
+@startuml
+binary "B" as B
+0 is high
+@enduml

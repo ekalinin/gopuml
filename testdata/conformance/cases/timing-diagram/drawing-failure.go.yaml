@@ -1,0 +1,6 @@
+id: timing-diagram/drawing-failure
+scenarios:
+  - "timing-diagram: Drawing failure"
+package: internal/timing
+test: TestTimingDrawingFailure
+why: Upstream draws a crash report with a random quote and the Java stack trace when the drawing throws, while this implementation returns an error and no drawing.

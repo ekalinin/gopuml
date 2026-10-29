@@ -75,10 +75,10 @@ func TestEmbeddedDiagramPrevious(t *testing.T) {
 
 // TestEmbeddedUnsupportedType checks the styling scenario "Embedded
 // diagram of an unsupported type": the note shows the "not supported yet"
-// error image of the nested timing diagram, and the rest of the diagram
+// error image of the nested archimate diagram, and the rest of the diagram
 // renders normally.
 func TestEmbeddedUnsupportedType(t *testing.T) {
-	src := "@startuml\nAlice -> Bob : hello\nnote right\n{{\nrobust \"Web\" as WB\n}}\nend note\n@enduml\n"
+	src := "@startuml\nAlice -> Bob : hello\nnote right\n{{\narchimate #Business \"Customer\" as C\n}}\nend note\n@enduml\n"
 	blocks, err := Parse(context.Background(), core.NewRenderContext(), Source{Text: src})
 	if err != nil || len(blocks) != 1 {
 		t.Fatalf("%d blocks, error %v", len(blocks), err)
@@ -99,7 +99,7 @@ func TestEmbeddedUnsupportedType(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(string(nested), "timing diagrams are not supported yet") {
+	if !strings.Contains(string(nested), "archimate diagrams are not supported yet") {
 		t.Errorf("the embedded diagram is not the error image: %.300s", nested)
 	}
 }

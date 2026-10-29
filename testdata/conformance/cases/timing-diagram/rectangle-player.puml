@@ -1,0 +1,15 @@
+---
+id: timing-diagram/rectangle-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Rectangle player"
+---
+@startuml
+rectangle "Bus" as B
+@0
+B is Idle
+@50
+B is Busy
+@enduml

@@ -1,0 +1,15 @@
+---
+id: timing-diagram/state-color-comment
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: State color and comment"
+---
+@startuml
+concise "Web User" as WU
+@0
+WU is Idle #pink
+@100
+WU is Waiting : slow
+@enduml

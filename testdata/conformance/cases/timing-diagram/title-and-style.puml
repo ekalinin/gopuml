@@ -1,0 +1,30 @@
+---
+id: timing-diagram/title-and-style
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Title and style"
+---
+@startuml
+<style>
+timingDiagram {
+  concise {
+    BackGroundColor #33b2e2
+  }
+  arrow {
+    LineColor #FF0000
+  }
+}
+</style>
+title Plan
+concise "Web User" as WU
+concise "Server" as S
+@0
+WU is Idle
+S is Idle
+@100
+WU is Waiting
+S is Busy
+WU -> S : req
+@enduml

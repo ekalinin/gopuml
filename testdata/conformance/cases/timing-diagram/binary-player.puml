@@ -1,0 +1,19 @@
+---
+id: timing-diagram/binary-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Binary player"
+---
+@startuml
+binary "Enable" as EN
+@0
+EN is low
+@10
+EN is high
+@20
+EN is foo
+@30
+EN is 1
+@enduml

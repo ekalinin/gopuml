@@ -1,0 +1,16 @@
+---
+id: timing-diagram/scale-unit
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Scale with a unit"
+---
+@startuml
+scale 1 m as 60 pixels
+concise "U" as U
+@0
+U is A
+@120
+U is B
+@enduml

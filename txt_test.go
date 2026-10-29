@@ -49,3 +49,22 @@ func TestRenderClassDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderTimingDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT timing diagram": upstream draws it with its generic
+	// text output, this release reports that the format is not supported for
+	// the type.
+	src := "@startuml\nconcise \"Web User\" as WU\n@0\nWU is Idle\n@enduml\n"
+	for _, format := range []Format{TXT, UTXT} {
+		res, err := Render(context.Background(), src, &Options{Format: format})
+		if !errors.Is(err, ErrUnsupportedFormat) {
+			t.Fatalf("%v: err = %v, want ErrUnsupportedFormat", format, err)
+		}
+		if msg := err.Error(); !strings.Contains(msg, "TXT output is not supported for timing diagrams") {
+			t.Errorf("%v: message %q does not name the format and the diagram type", format, msg)
+		}
+		if res != nil {
+			t.Errorf("%v: got a result %+v, want none", format, res)
+		}
+	}
+}

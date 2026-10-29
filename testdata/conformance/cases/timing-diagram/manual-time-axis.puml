@@ -1,0 +1,18 @@
+---
+id: timing-diagram/manual-time-axis
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Manual time axis"
+---
+@startuml
+manual time-axis
+concise "Web User" as WU
+@0 as :start
+WU is Idle
+@100 as :mid
+WU is Waiting
+@300
+WU is Done
+@enduml

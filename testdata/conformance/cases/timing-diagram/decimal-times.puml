@@ -1,0 +1,17 @@
+---
+id: timing-diagram/decimal-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Decimal times"
+---
+@startuml
+concise "User" as U
+@0
+U is Idle
+@2.5
+U is Busy
+@5
+U is Done
+@enduml

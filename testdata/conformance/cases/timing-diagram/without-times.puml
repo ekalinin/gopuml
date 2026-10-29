@@ -1,0 +1,12 @@
+---
+id: timing-diagram/without-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Timing diagram without times"
+---
+@startuml
+concise "User" as U
+U is Idle
+@enduml

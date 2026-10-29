@@ -1,0 +1,6 @@
+{
+  "id": "timing-diagram/message-unknown-player",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 12, "messages": ["No such element: X (Assumed diagram type: timing)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 281, "status": 400}]}
+  ]
+}

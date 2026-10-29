@@ -3,4 +3,4 @@ scenarios:
   - "styling: Embedded diagram of an unsupported type"
 package: internal/engine
 test: TestEmbeddedUnsupportedType
-why: Upstream draws the embedded timing diagram, while this implementation draws its "not supported yet" error image.
+why: Upstream draws the embedded archimate diagram, while this implementation draws its "not supported yet" error image.

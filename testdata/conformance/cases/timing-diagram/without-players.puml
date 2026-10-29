@@ -1,0 +1,12 @@
+---
+id: timing-diagram/without-players
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Timing diagram without players"
+---
+@startuml
+@0
+@100
+@enduml

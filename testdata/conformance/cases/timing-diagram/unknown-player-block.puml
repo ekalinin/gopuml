@@ -1,0 +1,12 @@
+---
+id: timing-diagram/unknown-player-block
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Unknown player block"
+---
+@startuml
+concise "User" as U
+@X
+@enduml

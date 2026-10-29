@@ -1,0 +1,15 @@
+---
+id: timing-diagram/hour-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Hour times"
+---
+@startuml
+concise "User" as U
+@0:15:00
+U is Idle
+@1:30:00
+U is Busy
+@enduml

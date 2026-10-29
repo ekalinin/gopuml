@@ -1,0 +1,15 @@
+---
+id: timing-diagram/date-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Date times"
+---
+@startuml
+concise "User" as U
+@2024/07/15
+U is Idle
+@2024/07/18
+U is Busy
+@enduml

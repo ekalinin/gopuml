@@ -1,0 +1,12 @@
+---
+id: timing-diagram/clock-state
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: State of a clock"
+---
+@startuml
+clock clk with period 10
+clk is high
+@enduml

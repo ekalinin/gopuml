@@ -1,10 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandRobustConcise.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandClock.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandBinary.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandAnalog.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/timingdiagram/command/CommandAtTime.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package core
@@ -37,12 +32,6 @@ func patterns(p ...string) []*regexp.Regexp {
 var unsupportedTypes = []unsupportedType{
 	{"archimate", patterns(
 		`^archimate[%s]`,
-	)},
-	{"timing", patterns(
-		`^(compact[%s]+)?(robust|concise)[%s]+`,
-		`^(compact[%s]+)?clock[%s]+.*[%s]with[%s]+period[%s]`,
-		`^(compact[%s]+)?(binary|analog)[%s]+`,
-		`^@[+-]?[0-9]`,
 	)},
 }
 

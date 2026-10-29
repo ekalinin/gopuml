@@ -1,0 +1,6 @@
+id: wasm-build/timing-diagram
+scenarios:
+  - "wasm-build: Timing diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmTimingDiagram
+why: Upstream has no Graphviz-free WASM build; the scenario compares the WASM build with the native build of this implementation.

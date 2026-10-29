@@ -1,0 +1,17 @@
+---
+id: timing-diagram/analog-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Analog player"
+---
+@startuml
+analog "Vcore" as VDD
+@0
+VDD is 0
+@100
+VDD is 2.5
+@200
+VDD is 5
+@enduml

@@ -1,0 +1,16 @@
+---
+id: timing-diagram/clock-multiples
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Clock multiples"
+---
+@startuml
+clock clk with period 10
+concise "User" as U
+@0
+U is Idle
+@clk*3
+U is Busy
+@enduml

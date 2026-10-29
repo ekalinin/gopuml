@@ -1,0 +1,24 @@
+---
+id: timing-diagram/stereotype-style
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Stereotype style"
+---
+@startuml
+<style>
+timingDiagram {
+  .hot {
+    BackGroundColor #33b2e2
+  }
+}
+</style>
+concise "Web User" as WU <<hot>>
+concise "Server" as S
+@0
+WU is Idle
+S is Idle
+@100
+WU is Waiting
+@enduml

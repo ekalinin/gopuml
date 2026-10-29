@@ -1,0 +1,23 @@
+---
+id: timing-diagram/notes
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Notes on a player"
+---
+@startuml
+robust "Web Browser" as WB
+concise "Web User" as WU
+@0
+WU is Idle
+WB is Idle
+@100
+WU is Waiting
+WB is Processing
+@300
+WB is Waiting
+@100
+note top of WU : first
+note bottom of WU : second
+@enduml

@@ -1,0 +1,17 @@
+---
+id: timing-diagram/analog-not-number
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Analog value that is not a number"
+---
+@startuml
+analog "V" as V
+@0
+V is 3
+@10
+V is abc
+@20
+V is 4
+@enduml

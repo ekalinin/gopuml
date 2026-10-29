@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/timing-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "TIMING", "description": "(Timing Diagram)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 121, "height": 98, "status": 0}]}
+  ]
+}

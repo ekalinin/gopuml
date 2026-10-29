@@ -1,0 +1,17 @@
+---
+id: timing-diagram/relative-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Relative times"
+---
+@startuml
+concise "User" as U
+@0
+U is Idle
+@+50
+U is Busy
+@+50
+U is Done
+@enduml

@@ -1,0 +1,15 @@
+---
+id: timing-diagram/player-without-title
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Player without a title"
+---
+@startuml
+robust WB
+@0
+WB is Idle
+@100
+WB is Busy
+@enduml

@@ -1,0 +1,18 @@
+---
+id: timing-diagram/message-relative-time
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Relative message time"
+---
+@startuml
+concise "A" as A
+concise "B" as B
+@0
+A is x
+B is y
+@100
+A is z
+A@0 -> B@+50 : m
+@enduml

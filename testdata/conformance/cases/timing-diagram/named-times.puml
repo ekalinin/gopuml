@@ -1,0 +1,17 @@
+---
+id: timing-diagram/named-times
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Named times"
+---
+@startuml
+concise "User" as U
+@0 as :start
+U is Idle
+@100 as :end
+U is Busy
+@:start+50
+U is Mid
+@enduml

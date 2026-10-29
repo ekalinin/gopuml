@@ -1,0 +1,14 @@
+---
+id: diagram-source/timing-syntax-error
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "diagram-source: Timing syntax error"
+---
+@startuml
+robust "Web" as WB
+@0
+WB is Idle
+foo bar baz
+@enduml

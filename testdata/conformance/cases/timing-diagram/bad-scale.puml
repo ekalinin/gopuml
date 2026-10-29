@@ -1,0 +1,12 @@
+---
+id: timing-diagram/bad-scale
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Bad scale"
+---
+@startuml
+concise "U" as U
+scale 0 as 50 pixels
+@enduml

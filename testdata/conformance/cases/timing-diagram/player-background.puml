@@ -1,0 +1,17 @@
+---
+id: timing-diagram/player-background
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Player background color"
+---
+@startuml
+concise "Web User" as WU #lightblue
+concise "Other" as O
+@0
+WU is Idle
+O is A
+@100
+WU is Waiting
+@enduml

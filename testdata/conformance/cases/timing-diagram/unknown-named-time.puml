@@ -1,0 +1,12 @@
+---
+id: timing-diagram/unknown-named-time
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Unknown named time"
+---
+@startuml
+concise "User" as U
+@:start
+@enduml
