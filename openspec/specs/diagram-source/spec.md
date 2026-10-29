@@ -56,7 +56,7 @@ The system SHALL expose the text that follows the start tag on the start line as
 
 ### Requirement: Diagram family detection
 
-The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag` and `gantt` (`@startgantt` and `@startproject`). Every other start tag that PlantUML v1.2026.9 recognizes (for example `@startmindmap`, `@startwbs`, `@startjson`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
+The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap` and `wbs`. Every other start tag that PlantUML v1.2026.9 recognizes (for example `@startjson`, `@startsalt`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
 
 #### Scenario: Supported family
 
@@ -73,10 +73,20 @@ The system SHALL select the diagram family from the start tag. The supported fam
 - **WHEN** a block starts with `@startgantt` and contains `[Build] lasts 3 days`
 - **THEN** the system does not report that gantt diagrams are not supported yet, and the diagram type is gantt
 
+#### Scenario: Mindmap family
+
+- **WHEN** a block starts with `@startmindmap` and contains `* root`
+- **THEN** the system does not report that mindmap diagrams are not supported yet, and the diagram type is mindmap
+
+#### Scenario: WBS family
+
+- **WHEN** a block starts with `@startwbs` and contains `* root`
+- **THEN** the system does not report that wbs diagrams are not supported yet, and the diagram type is wbs
+
 #### Scenario: Recognized but unsupported family
 
-- **WHEN** a block starts with `@startmindmap`
-- **THEN** the system produces an error diagram stating that `mindmap` diagrams are not supported yet
+- **WHEN** a block starts with `@startjson`
+- **THEN** the system produces an error diagram stating that `json` diagrams are not supported yet
 
 #### Scenario: Unknown directive
 
