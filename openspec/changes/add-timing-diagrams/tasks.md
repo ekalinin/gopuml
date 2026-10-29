@@ -38,7 +38,7 @@
 
 ## 8. WASM, documentation and checks
 
-- [ ] 8.1 Add `TestWasmTimingDiagram`, which renders a timing diagram as SVG in the WASM build and compares it with the native output. Verify that `go test ./cmd/plantuml-wasm` passes
+- [x] 8.1 Add `TestWasmTimingDiagram`, which renders a timing diagram as SVG in the WASM build and compares it with the native output. Verify that `go test ./cmd/plantuml-wasm` passes
 - [ ] 8.2 Update `README.md` and `site/index.html` (design D10): the row `Timing | yes | yes | no` in both tables of supported diagrams, timing diagrams in the Graphviz note of the page and in the last sentence of the README's Graphviz section among the diagrams that do not need `dot`, `archimate, salt` instead of `archimate, timing` in the sentence on the types that are not supported yet, and the README's case, known-difference and not-supported-yet counts. Leave the conformance tally and the playground note of the page and the README's sentence about the playground unchanged. Verify that `TestLandingPage` and `TestReleaseNotes` pass and that the README's counts match the conformance report of task 7.2
 - [ ] 8.3 Verify that every test named in the `.go.yaml` cases of task 1.2 exists in its package (`GoCase.TestExists`), and that `make lint` and `make provenance` pass
 - [ ] 8.4 Push the branch, with the user's approval, and open a pull request. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check

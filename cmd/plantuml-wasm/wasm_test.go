@@ -330,6 +330,16 @@ func TestWasmWBSDiagram(t *testing.T) {
 }
 
 func TestWasmTimingDiagram(t *testing.T) {
-	// Spec scenario "Timing diagram in WASM".
-	t.Skip("timing diagrams are registered by task 7.1 of add-timing-diagrams")
+	// Spec scenario "Timing diagram in WASM": timing diagrams have a
+	// built-in layout, so the WASM build draws them as the native build.
+	src := "@startuml\nrobust \"Web Browser\" as WB\nconcise \"Web User\" as WU\n@0\nWU is Idle\nWB is Idle\n" +
+		"@100\nWU is Waiting\nWB is Processing\nWU -> WB : URL\n@enduml\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
 }
