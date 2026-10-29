@@ -148,5 +148,5 @@ The system SHALL render a `{{` ... `}}` block in creole text (notes, activity la
 
 #### Scenario: Embedded diagram of an unsupported type
 
-- **WHEN** a note contains `{{`, `robust "Web" as WB` and `}}`
-- **THEN** the note contains the error image stating that timing diagrams are not supported yet, and the rest of the diagram renders normally
+- **WHEN** a note contains `{{`, `archimate #Business "Customer" as C` and `}}`
+- **THEN** the note contains the error image stating that archimate diagrams are not supported yet, and the rest of the diagram renders normally
