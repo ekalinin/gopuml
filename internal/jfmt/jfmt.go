@@ -2,7 +2,8 @@
 // Provenance: original
 
 // Package jfmt formats numbers exactly like the Java library calls that
-// PlantUML uses for its output.
+// PlantUML uses for its output, and parses them as Java's
+// Double.parseDouble does.
 package jfmt
 
 import (
