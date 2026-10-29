@@ -1,0 +1,16 @@
+---
+id: timing-diagram/footbox
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Footbox commands"
+---
+@startuml
+hide footbox
+concise "Web User" as WU
+@0
+WU is Idle
+@100
+WU is Waiting
+@enduml

@@ -1,0 +1,20 @@
+---
+id: timing-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "timing-diagram: Timing diagram in a note"
+---
+@startuml
+Alice -> Bob : hello
+note right
+{{
+concise "Web User" as WU
+@0
+WU is Idle
+@100
+WU is Waiting
+}}
+end note
+@enduml

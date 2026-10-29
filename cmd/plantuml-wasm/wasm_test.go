@@ -328,3 +328,8 @@ func TestWasmWBSDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmTimingDiagram(t *testing.T) {
+	// Spec scenario "Timing diagram in WASM".
+	t.Skip("timing diagrams are registered by task 7.1 of add-timing-diagrams")
+}

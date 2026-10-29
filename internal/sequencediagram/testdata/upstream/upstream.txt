@@ -11053,6 +11053,18 @@ error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
+=== conformance/diagram-source/timing-detected.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/diagram-source/timing-syntax-error.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/diagram-source/two-blocks.puml
 result SequenceDiagram
 description (2 participants)
@@ -13096,6 +13108,426 @@ participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>
 event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 event 1 Message p1=Bob p2=Alice multicast=[] label=[ok] numbered=[ok] number=null arrow=DOTTED(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
 event 2 Note Note p=Bob p2=null pos=RIGHT style=NORMAL display=[a note] colors={} null shadowing=null url=null stereo=null parallel=false
+=== conformance/timing-diagram/analog-bounds.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/analog-not-number.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/analog-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/bad-date-format.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/bad-scale.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/binary-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/change-without-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-decimal-period.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-multiples.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-pulse-offset.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/compact-mode.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/compact-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/concise-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-relative.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-unknown-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-without-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/date-format.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/date-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/decimal-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/declared-states.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/embedded-in-note.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[{Note p=null p2=null pos=RIGHT style=NORMAL display=[{{|concise "Web User" as WU|@0|WU is Idle|@100|WU is Waiting|}}] colors={} null shadowing=null url=null stereo=null parallel=false}] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/timing-diagram/footbox.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
+=== conformance/timing-diagram/hidden-time-axis.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/highlight.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/hour-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/initial-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/manual-time-axis.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-relative-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-without-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/named-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-robust-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-several-lines.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/notes.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-background.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-without-title.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/png-output.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/rectangle-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/relative-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/robust-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/same-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scale-pixels.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scale-unit.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scaled.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 30
+error.last 2
+=== conformance/timing-diagram/special-states.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/state-color-comment.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/stereotype-style.puml
+result error
+error SYNTAX_ERROR 8 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 90
+error.last 8
+=== conformance/timing-diagram/times-below-zero.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/timing-diagram.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/title-and-style.puml
+result error
+error SYNTAX_ERROR 12 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 130
+error.last 12
+=== conformance/timing-diagram/unknown-named-time-offset.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-named-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-has.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/without-players.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/without-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/wbs-diagram/embedded-in-note.puml
 result SequenceDiagram
 description (2 participants)

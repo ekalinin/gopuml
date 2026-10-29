@@ -1,0 +1,13 @@
+---
+id: timing-diagram/unknown-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Unknown player"
+---
+@startuml
+concise "User" as U
+@0
+X is Idle
+@enduml

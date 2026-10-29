@@ -1,0 +1,19 @@
+---
+id: timing-diagram/declared-states
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Declared states"
+---
+@startuml
+robust "DNS" as DNS
+DNS has Idle,Resolving,Done
+concise "U" as U
+U has "Long waiting state" as W
+@0
+DNS is Idle
+U is W
+@100
+DNS is Done
+@enduml

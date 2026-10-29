@@ -1,0 +1,6 @@
+{
+  "id": "timing-diagram/png-output",
+  "blocks": [
+    {"index": 0, "name": null, "type": "TIMING", "description": "(Timing Diagram)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 150, "height": 109, "status": 0}, {"file": "block0-page0.png", "width": 150, "height": 109, "status": 0}]}
+  ]
+}

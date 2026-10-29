@@ -1,0 +1,15 @@
+---
+id: timing-diagram/png-output
+family: uml
+type: timing
+formats: [svg, png]
+scenarios:
+  - "timing-diagram: PNG timing diagram"
+---
+@startuml
+concise "Web User" as WU
+@0
+WU is Idle
+@100
+WU is Waiting
+@enduml

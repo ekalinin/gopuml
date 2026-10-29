@@ -1,0 +1,18 @@
+---
+id: timing-diagram/scale-pixels
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Scale in pixels"
+---
+@startuml
+scale 100 as 120 pixels
+concise "Web User" as WU
+@0
+WU is Idle
+@100
+WU is Waiting
+@300
+WU is Done
+@enduml

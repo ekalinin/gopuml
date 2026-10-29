@@ -1,0 +1,16 @@
+---
+id: timing-diagram/clock-pulse-offset
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Clock pulse and offset"
+---
+@startuml
+clock "Clock" as C with period 50 pulse 15 offset 10
+concise "User" as U
+@0
+U is Idle
+@100
+U is Busy
+@enduml

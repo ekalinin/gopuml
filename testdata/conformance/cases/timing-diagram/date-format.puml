@@ -1,0 +1,16 @@
+---
+id: timing-diagram/date-format
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Date format"
+---
+@startuml
+use date format "MMM yyyy"
+concise "User" as U
+@2024/07/15
+U is Idle
+@2024/08/15
+U is Busy
+@enduml

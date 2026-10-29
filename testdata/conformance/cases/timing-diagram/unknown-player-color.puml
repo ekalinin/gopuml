@@ -1,0 +1,11 @@
+---
+id: timing-diagram/unknown-player-color
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Unknown player color"
+---
+@startuml
+concise "Web User" as WU #notacolor
+@enduml

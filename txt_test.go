@@ -49,3 +49,8 @@ func TestRenderClassDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderTimingDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT timing diagram".
+	t.Skip("timing diagrams are registered by task 7.1 of add-timing-diagrams")
+}

@@ -1,0 +1,14 @@
+---
+id: timing-diagram/initial-state
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Initial state"
+---
+@startuml
+concise "U" as U
+U is Start
+@10
+U is A
+@enduml

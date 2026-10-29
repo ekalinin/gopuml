@@ -16771,6 +16771,18 @@ error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: class)
 error.score 20
 error.last 1
+=== conformance/diagram-source/timing-detected.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/diagram-source/timing-syntax-error.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/diagram-source/two-blocks.puml
 result ClassDiagram
 description (2 entities)
@@ -19241,6 +19253,440 @@ body ent0006 BodierSimple raw=[]
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 link lnk4 e1=ent0002 e2=ent0001 type=ARROW-NORMAL(null)-NONE middle=NONE label=[ok] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
 link lnk7 e1=ent0002 e2=ent0006 type=NONE-DASHED(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=null la=null length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=true opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=null at=3 hidden=false removed=false
+=== conformance/timing-diagram/analog-bounds.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/analog-not-number.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/analog-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/bad-date-format.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/bad-scale.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/binary-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/change-without-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-decimal-period.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-multiples.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-pulse-offset.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/clock.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/compact-mode.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/compact-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/concise-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-relative.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-unknown-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint-without-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/constraint.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/date-format.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/date-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/decimal-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/declared-states.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/embedded-in-note.puml
+result ClassDiagram
+description (3 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0005
+stack entroot
+quark [] name=[] parent=null data=entroot children=3
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+quark [GMN4] name=[GMN4] parent=[] data=ent0005 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0005 quark=[GMN4] leaf=NOTE display=[{{|concise "Web User" as WU|@0|WU is Idle|@100|WU is Waiting|}}] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=3 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0005 BodierSimple raw=[]
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[hello] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+link lnk6 e1=ent0002 e2=ent0005 type=NONE-DASHED(null)-NONE middle=NONE label=NULL q1=null q2=null r1=null r2=null kal1=null kal2=null ld=null la=null length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=true opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=null at=3 hidden=false removed=false
+=== conformance/timing-diagram/footbox.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/timing-diagram/hidden-time-axis.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/timing-diagram/highlight.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/hour-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/initial-state.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/manual-time-axis.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-relative-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message-without-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/message.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/named-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-robust-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-several-lines.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/note-unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/notes.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-background.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/player-without-title.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/png-output.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/rectangle-player.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/relative-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/robust-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/same-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scale-pixels.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scale-unit.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/scaled.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/timing-diagram/special-states.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/state-color-comment.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/stereotype-style.puml
+result error
+error SYNTAX_ERROR 8 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 90
+error.last 8
+=== conformance/timing-diagram/times-below-zero.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/timing-diagram.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/title-and-style.puml
+result error
+error SYNTAX_ERROR 12 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 130
+error.last 12
+=== conformance/timing-diagram/unknown-named-time-offset.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-named-time.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-block.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player-has.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/unknown-player.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/without-players.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/timing-diagram/without-times.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/wbs-diagram/embedded-in-note.puml
 result ClassDiagram
 description (3 entities)

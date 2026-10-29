@@ -1,0 +1,15 @@
+---
+id: timing-diagram/robust-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Robust player"
+---
+@startuml
+robust "Web Browser" as WB
+@0
+WB is Idle
+@100
+WB is Busy
+@enduml

@@ -1,0 +1,6 @@
+{
+  "id": "timing-diagram/constraint-unknown-time",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 12, "messages": ["Unknown time label (Assumed diagram type: timing)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 281, "status": 400}]}
+  ]
+}

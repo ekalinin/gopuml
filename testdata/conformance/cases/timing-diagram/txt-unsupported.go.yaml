@@ -1,0 +1,6 @@
+id: timing-diagram/txt-unsupported
+scenarios:
+  - "timing-diagram: TXT timing diagram"
+package: "."
+test: TestRenderTimingDiagramAsTXTIsUnsupported
+why: Upstream v1.2026.9 renders a timing diagram as TXT with its generic text output, while the spec requires an unsupported-format error and no output.

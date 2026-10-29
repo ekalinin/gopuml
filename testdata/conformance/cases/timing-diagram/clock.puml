@@ -1,0 +1,16 @@
+---
+id: timing-diagram/clock
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Clock"
+---
+@startuml
+clock "Clock" as C with period 50
+concise "User" as U
+@0
+U is Idle
+@100
+U is Busy
+@enduml

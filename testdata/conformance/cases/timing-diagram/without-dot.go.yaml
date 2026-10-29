@@ -1,0 +1,6 @@
+id: timing-diagram/without-dot
+scenarios:
+  - "timing-diagram: Timing diagram without Graphviz"
+package: internal/timing
+test: TestTimingWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

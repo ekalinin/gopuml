@@ -1,0 +1,15 @@
+---
+id: timing-diagram/times-below-zero
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Times below zero"
+---
+@startuml
+concise "User" as U
+@-10
+U is Idle
+@10
+U is Busy
+@enduml

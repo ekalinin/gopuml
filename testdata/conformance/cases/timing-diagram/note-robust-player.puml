@@ -1,0 +1,22 @@
+---
+id: timing-diagram/note-robust-player
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Note on a robust player"
+---
+@startuml
+robust "Web Browser" as WB
+concise "Web User" as WU
+@0
+WU is Idle
+WB is Idle
+@100
+WU is Waiting
+WB is Processing
+@300
+WB is Waiting
+@100
+note top of WB : dropped
+@enduml

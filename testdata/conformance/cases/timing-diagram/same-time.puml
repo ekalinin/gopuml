@@ -1,0 +1,16 @@
+---
+id: timing-diagram/same-time
+family: uml
+type: timing
+formats: [svg]
+scenarios:
+  - "timing-diagram: Two changes at the same time"
+---
+@startuml
+concise "U" as U
+@10
+U is A
+U is B
+@20
+U is C
+@enduml
