@@ -27,12 +27,6 @@ import (
 
 const repoRoot = "../.."
 
-// notParsedYet are the error cases whose diagram type is not parsed yet,
-// so that this implementation draws its "not supported yet" image instead.
-var notParsedYet = map[string]bool{
-	"salt-diagram/needless-salt-keyword": true,
-	"salt-diagram/empty":                 true,
-}
 
 // handled reports whether a reference block is an image of this package.
 func handled(b conformance.BlockMeta) bool {
@@ -156,9 +150,6 @@ func TestDiagramReferences(t *testing.T) {
 	}
 	var r result
 	for _, c := range cases {
-		if notParsedYet[c.ID] {
-			continue
-		}
 		refDir := filepath.Join(repoRoot, "testdata/conformance/reference", c.ID)
 		if _, err := os.Stat(filepath.Join(refDir, "meta.json")); err != nil {
 			continue

@@ -33,6 +33,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/packetdiag"
 	"github.com/ekalinin/gopuml/internal/security"
 	"github.com/ekalinin/gopuml/internal/sequencediagram"
+	"github.com/ekalinin/gopuml/internal/salt"
 	"github.com/ekalinin/gopuml/internal/statediagram"
 	"github.com/ekalinin/gopuml/internal/text"
 	"github.com/ekalinin/gopuml/internal/themes"
@@ -44,8 +45,8 @@ import (
 // Factories are the parsers of the supported diagram types, in upstream's
 // order (PSystemBuilder). They are added with each diagram type.
 var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
-	activitydiagram.Factory, descdiagram.Factory, statediagram.Factory, activitydiagram3.Factory, mindmap.Factory,
-	wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory}
+	activitydiagram.Factory, descdiagram.Factory, statediagram.Factory, activitydiagram3.Factory, salt.Factory,
+	mindmap.Factory, wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
