@@ -45,6 +45,7 @@ Out of scope:
 - **Code:**
   - a new `internal/salt` package: the diagram and its dictionary, the factory and `CommandAnything`, the tokenizer, the element factories, the elements and their layout
   - `internal/klimt`: `Splitter.purgeAllTag`, and an exported form of the Java `StringTokenizer` with delimiters that `klimt` already has
+  - `internal/command/regex`: `TransformJava`, for the plain Java pattern of `purgeAllTag`
   - `internal/uml`: the sprite commands call the diagram's own sprite store when it has one
   - `internal/engine`: the factory list
   - `internal/core`: the supported families

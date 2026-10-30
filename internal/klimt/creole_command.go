@@ -13,15 +13,16 @@ package klimt
 
 import (
 	"regexp"
+	"strings"
 
 	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
-// The patterns of upstream's Splitter that the commands use. Splitter's
-// tokenizer (the htmlTag pattern), purgeAllTag and the HtmlCommand classes
-// (PlainText, TextLink, Img) are not used by upstream and not ported.
+// The patterns of upstream's Splitter that the commands and purgeAllTag use.
+// Splitter's tokenizer and the HtmlCommand classes (PlainText, TextLink, Img)
+// are not used by upstream and not ported.
 const (
 	splitterFontColorPattern     = `\<color[\s:]+(#[0-9a-fA-F]{1,6}|#?\w+)[%s]*\>`
 	splitterFontSizePattern      = `\<size[\s:]+(\d+)[%s]*\>`
@@ -36,11 +37,57 @@ const (
 	splitterSpritePattern   = `\<(#\w+)?\$(` + SpriteUtilsSpriteName + `)` + splitterScaleOrColor + `\>`
 	splitterMathPattern     = `\<math\>(.+?)\</math\>`
 	splitterLatexPattern    = `\<latex\>(.+?)\</latex\>`
+	splitterFontPattern     = `\<font(\s+size[%s]*=[%s]*[%g]?\d+[%g]?|[%s]+color[%s]*=\s*[%g]?(#[0-9a-fA-F]{1,6}|\w+)[%g]?)+` +
+		`[%s]*\>`
+	splitterFontSup        = `\<sup\>`
+	splitterFontSub        = `\<sub\>`
+	splitterEndFontPattern = `\</font\>|\</color\>|\</size\>|\</text\>`
+	splitterEndSupSub      = `\</sup\>|\</sub\>`
+	splitterImgPattern     = `\<img\s+(src[%s]*=[%s]*[%q%g]?[^\s%g>]+[%q%g]?[%s]*|vspace\s*=\s*[%q%g]?\d+[%q%g]?\s*|` +
+		`valign[%s]*=[%s]*[%q%g]?(top|middle|bottom)[%q%g]?[%s]*)+\>`
+	splitterLinkPattern = `\[\[([^\[\]]+)\]\]`
 	// commandCreoleColorAndSizeFontPattern is
 	// CommandCreoleColorAndSizeChange.fontPattern.
 	commandCreoleColorAndSizeFontPattern = `\<font(?:[%s]+size[%s]*=[%s]*[%g]?(\d+)[%g]?|[%s]+color[%s]*=[%s]*` +
 		`[%g]?(#[0-9a-fA-F]{6}|\w+)[%g]?)+[%s]*\>`
 )
+
+// splitterHTMLTag is Splitter.htmlTag: the tags of every font style, then
+// the font, color, size, superscript and subscript tags, their ends, QR
+// codes, images, font families, links and SVG attributes.
+var splitterHTMLTag = func() string {
+	var b strings.Builder
+	for style := font.FontStylePlain; style <= font.FontStyleBackcolor; style++ {
+		b.WriteString(style.RegexActivationPattern())
+		b.WriteByte('|')
+		b.WriteString(style.RegexDeactivationPattern())
+		b.WriteByte('|')
+	}
+	for i, p := range []string{splitterFontPattern, splitterFontColorPattern, splitterFontSizePattern,
+		splitterFontSup, splitterFontSub, splitterEndFontPattern, splitterEndSupSub, splitterQrcodePattern,
+		splitterImgPattern, splitterImgPatternNoSrcColon, splitterFontFamilyPattern, splitterLinkPattern,
+		splitterSvgAttributePattern} {
+		if i > 0 {
+			b.WriteByte('|')
+		}
+		b.WriteString(p)
+	}
+	return b.String()
+}()
+
+// splitterHTMLTagRegexp is htmlTag as String.replaceAll compiles it: a
+// case-sensitive Java pattern, whose %s, %q and %g are plain characters.
+var splitterHTMLTagRegexp = func() *regexp.Regexp {
+	t, err := regex.TransformJava(splitterHTMLTag)
+	if err != nil {
+		panic(err)
+	}
+	return regexp.MustCompile(t)
+}()
+
+// SplitterPurgeAllTag is Splitter.purgeAllTag: s without its creole tags.
+// Salt diagrams use it to count the characters of their widgets.
+func SplitterPurgeAllTag(s string) string { return splitterHTMLTagRegexp.ReplaceAllString(s, "") }
 
 // creoleCommand is upstream's creole Command: markup recognized at a
 // position of a line (in UTF-16 units) and applied to the stripe.
