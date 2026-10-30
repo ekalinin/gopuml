@@ -27,7 +27,6 @@ import (
 
 const repoRoot = "../.."
 
-
 // handled reports whether a reference block is an image of this package.
 func handled(b conformance.BlockMeta) bool {
 	return b.Type == "ERROR" || b.Description == "(Unsupported)" || b.Description == "(Empty)"
