@@ -345,6 +345,16 @@ func TestWasmTimingDiagram(t *testing.T) {
 }
 
 func TestWasmSaltDiagram(t *testing.T) {
-	// Spec scenario "Salt diagram in WASM".
-	t.Skip("salt diagrams are registered by task 6.1 of add-salt-diagrams")
+	// Spec scenario "Salt diagram in WASM": salt diagrams have a built-in
+	// layout, so the WASM build draws them as the native build.
+	src := "@startsalt\n{\nLogin    | \"MyName   \"\nPassword | \"****     \"\n[Cancel] | [  OK   ]\n" +
+		"^Pick^^ a^^ b^\n}\n@endsalt\n"
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
 }
