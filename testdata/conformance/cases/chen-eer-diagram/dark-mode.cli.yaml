@@ -1,0 +1,15 @@
+id: chen-eer-diagram/dark-mode
+scenarios:
+  - "chen-eer-diagram: Dark mode"
+args: ["--svg", "--dark-mode", "a.puml"]
+files:
+  a.puml: |
+    @startchen
+    entity CUSTOMER {
+      Number <<key>>
+    }
+    relationship RENTED_TO {
+    }
+    RENTED_TO -1- CUSTOMER
+    @endchen
+compare: [exit, files]

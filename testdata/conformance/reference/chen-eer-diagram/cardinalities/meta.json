@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/cardinalities",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(3 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 246, "height": 260, "status": 0}]}
+  ]
+}

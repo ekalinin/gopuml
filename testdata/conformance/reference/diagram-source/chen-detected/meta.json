@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/chen-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(1 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 48, "height": 55, "status": 0}]}
+  ]
+}

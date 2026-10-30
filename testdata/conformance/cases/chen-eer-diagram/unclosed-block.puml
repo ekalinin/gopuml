@@ -1,0 +1,12 @@
+---
+id: chen-eer-diagram/unclosed-block
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Unclosed block"
+---
+@startchen
+entity A {
+  Name
+@endchen

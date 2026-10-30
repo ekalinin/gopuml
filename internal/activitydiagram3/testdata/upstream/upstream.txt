@@ -25960,6 +25960,8 @@ ins 1 1 item InstructionWhile lanes=[] break=false inlink={NULL []/0} parent=0 l
 ins 2 2 loop InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
 ins 3 3 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[Read] colors={} null box=null url=null stereo=null killed=false notes=[]
 current 0
+=== allconf/chen-eer-diagram/embedded-in-note.puml
+not activity3
 === allconf/class-diagram/backslash-separator.puml
 not activity3
 === allconf/class-diagram/composition-cardinalities.puml

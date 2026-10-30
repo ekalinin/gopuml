@@ -1,0 +1,21 @@
+---
+id: chen-eer-diagram/left-to-right
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Left to right Chen diagram"
+---
+@startchen
+left to right direction
+
+entity Person {
+}
+entity Location {
+}
+relationship Birthplace {
+}
+
+Person -N- Birthplace
+Birthplace -1- Location
+@endchen

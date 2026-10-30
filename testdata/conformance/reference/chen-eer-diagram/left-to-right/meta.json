@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/left-to-right",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(3 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 555, "height": 83, "status": 0}]}
+  ]
+}

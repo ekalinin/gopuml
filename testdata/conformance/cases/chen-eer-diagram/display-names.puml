@@ -1,0 +1,15 @@
+---
+id: chen-eer-diagram/display-names
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Display names"
+---
+@startchen
+entity "Director" as DIRECTOR {
+}
+relationship "was-rented-to" as RENTED_TO {
+}
+RENTED_TO -1- DIRECTOR
+@endchen

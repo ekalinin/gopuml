@@ -1,0 +1,16 @@
+---
+id: chen-eer-diagram/entity-declared-again
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Entity declared again"
+---
+@startchen
+entity A {
+  x
+}
+entity A {
+  y
+}
+@endchen

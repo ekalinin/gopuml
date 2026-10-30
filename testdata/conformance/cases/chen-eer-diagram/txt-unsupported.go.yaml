@@ -1,0 +1,6 @@
+id: chen-eer-diagram/txt-unsupported
+scenarios:
+  - "chen-eer-diagram: TXT Chen diagram"
+package: "."
+test: TestRenderChenDiagramAsTXTIsUnsupported
+why: Upstream v1.2026.9 renders a Chen diagram as TXT with its generic text output, while the spec requires an unsupported-format error and no output.

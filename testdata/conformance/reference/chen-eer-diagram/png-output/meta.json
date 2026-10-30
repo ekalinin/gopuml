@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/png-output",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(3 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 255, "height": 275, "status": 0}, {"file": "block0-page0.png", "width": 255, "height": 275, "status": 0}]}
+  ]
+}

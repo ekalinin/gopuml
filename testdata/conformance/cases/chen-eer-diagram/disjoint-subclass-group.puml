@@ -1,0 +1,17 @@
+---
+id: chen-eer-diagram/disjoint-subclass-group
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Disjoint subclass group"
+---
+@startchen
+entity CHILD {
+}
+entity TODDLER {
+}
+entity TEEN {
+}
+CHILD =>= d { TODDLER, TEEN }
+@endchen

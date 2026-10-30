@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/title-and-legend",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(1 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 92, "height": 143, "status": 0}]}
+  ]
+}

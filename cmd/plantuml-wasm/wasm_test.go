@@ -358,3 +358,8 @@ func TestWasmSaltDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmChenDiagram(t *testing.T) {
+	// Spec scenario "Chen diagram in WASM".
+	t.Skip("Chen diagrams are registered by task 5.1 of add-chen-eer-diagrams")
+}

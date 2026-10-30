@@ -1,0 +1,13 @@
+---
+id: chen-eer-diagram/attribute-colors
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Attribute colors"
+---
+@startchen
+entity PERSON {
+  Name #lime;line:orange
+}
+@endchen

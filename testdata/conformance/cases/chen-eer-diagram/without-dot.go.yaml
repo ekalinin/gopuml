@@ -1,0 +1,6 @@
+id: chen-eer-diagram/without-dot
+scenarios:
+  - "chen-eer-diagram: Chen diagram without dot"
+package: internal/cheneer
+test: TestChenWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

@@ -1,0 +1,17 @@
+---
+id: chen-eer-diagram/union
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Union"
+---
+@startchen
+entity PERSON {
+}
+entity CUSTOMER {
+}
+entity DIRECTOR {
+}
+PERSON ->- U { CUSTOMER, DIRECTOR } #lime;line:green
+@endchen

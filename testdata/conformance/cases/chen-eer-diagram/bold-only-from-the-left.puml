@@ -1,0 +1,18 @@
+---
+id: chen-eer-diagram/bold-only-from-the-left
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Bold only from the left"
+---
+@startchen
+entity A {
+}
+entity B {
+}
+entity C {
+}
+A -N= B
+A =N- C
+@endchen

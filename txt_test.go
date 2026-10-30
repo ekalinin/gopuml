@@ -87,3 +87,8 @@ func TestRenderSaltDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderChenDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT Chen diagram".
+	t.Skip("Chen diagrams are registered by task 5.1 of add-chen-eer-diagrams")
+}

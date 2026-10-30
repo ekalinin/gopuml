@@ -10795,6 +10795,30 @@ error SYNTAX_ERROR 1 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 20
 error.last 1
+=== conformance/chen-eer-diagram/embedded-in-note.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[hello] numbered=[hello] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[{Note p=null p2=null pos=RIGHT style=NORMAL display=[{{chen|entity CUSTOMER {|  Number <<key>>|}|entity MOVIE {|}|CUSTOMER -N- MOVIE|}}] colors={} null shadowing=null url=null stereo=null parallel=false}] url=null hasurl=false stereo=null anchors=null/null/null at=1
 === conformance/class-diagram/backslash-separator.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
