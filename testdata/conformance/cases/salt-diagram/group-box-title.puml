@@ -1,0 +1,13 @@
+---
+id: salt-diagram/group-box-title
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Group box with a title"
+---
+@startsalt
+{^"My group"
+Login | "me"
+}
+@endsalt

@@ -1,0 +1,18 @@
+---
+id: salt-diagram/separators
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Separators"
+---
+@startsalt
+{
+a
+..
+==
+~~
+--
+b
+}
+@endsalt

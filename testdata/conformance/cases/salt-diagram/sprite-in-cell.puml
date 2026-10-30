@@ -1,0 +1,19 @@
+---
+id: salt-diagram/sprite-in-cell
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Sprite in a cell"
+---
+@startsalt
+sprite $dot [4x4/16] {
+0FF0
+FFFF
+FFFF
+0FF0
+}
+{
+<$dot> Ready
+}
+@endsalt

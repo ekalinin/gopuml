@@ -1,0 +1,14 @@
+---
+id: salt-diagram/horizontal-lines
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Horizontal lines"
+---
+@startsalt
+{-
+a | b
+c | d
+}
+@endsalt

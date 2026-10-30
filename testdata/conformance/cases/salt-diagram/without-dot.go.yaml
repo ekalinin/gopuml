@@ -1,0 +1,6 @@
+id: salt-diagram/without-dot
+scenarios:
+  - "salt-diagram: Salt diagram without Graphviz"
+package: internal/salt
+test: TestSaltWithoutDot
+why: The scenario depends on the Graphviz installation of the test environment rather than on upstream output.

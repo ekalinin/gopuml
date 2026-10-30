@@ -68,3 +68,8 @@ func TestRenderTimingDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderSaltDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT salt diagram".
+	t.Skip("salt diagrams are registered by task 6.1 of add-salt-diagrams")
+}

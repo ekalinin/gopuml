@@ -343,3 +343,8 @@ func TestWasmTimingDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmSaltDiagram(t *testing.T) {
+	// Spec scenario "Salt diagram in WASM".
+	t.Skip("salt diagrams are registered by task 6.1 of add-salt-diagrams")
+}

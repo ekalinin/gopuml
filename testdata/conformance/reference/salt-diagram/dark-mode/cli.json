@@ -1,0 +1,18 @@
+{
+  "args": [
+    "--svg",
+    "--dark-mode",
+    "a.puml"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "files": [
+    {
+      "path": "a.svg",
+      "size": 1270,
+      "sha256": "ba62afe3dd51bc4250da1dd92e63abf6351d492228f734e023de6caf310633af",
+      "stored": true
+    }
+  ]
+}

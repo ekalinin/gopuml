@@ -1,0 +1,19 @@
+---
+id: salt-diagram/old-embedded-form
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "salt-diagram: Old embedded form"
+---
+@startuml
+Alice -> Bob : login
+note right
+{{
+salt
+{
+[OK]
+}
+}}
+end note
+@enduml

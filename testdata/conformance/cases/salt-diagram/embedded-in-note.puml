@@ -1,0 +1,18 @@
+---
+id: salt-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "salt-diagram: Salt diagram in a note"
+---
+@startuml
+Alice -> Bob : login
+note right
+{{salt
+{
+[OK]
+}
+}}
+end note
+@enduml

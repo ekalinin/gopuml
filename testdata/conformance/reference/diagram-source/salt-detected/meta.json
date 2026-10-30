@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/salt-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SALT", "description": "(Salt)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 38, "height": 34, "status": 0}]}
+  ]
+}

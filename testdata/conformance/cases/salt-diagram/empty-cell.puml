@@ -1,0 +1,13 @@
+---
+id: salt-diagram/empty-cell
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Empty cell"
+---
+@startsalt
+{#
+a | . | b
+}
+@endsalt

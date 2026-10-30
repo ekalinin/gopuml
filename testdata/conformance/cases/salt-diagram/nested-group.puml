@@ -1,0 +1,14 @@
+---
+id: salt-diagram/nested-group
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Nested group"
+---
+@startsalt
+{#
+Name | "text"
+Modifiers: | { (X) public | () default }
+}
+@endsalt

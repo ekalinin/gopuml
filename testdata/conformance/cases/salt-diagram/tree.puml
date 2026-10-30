@@ -1,0 +1,18 @@
+---
+id: salt-diagram/tree
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Tree"
+---
+@startsalt
+{
+{T
+ + World
+ ++ America
+ +++ Canada
+ ++ Europe
+}
+}
+@endsalt

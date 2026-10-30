@@ -1,0 +1,10 @@
+---
+id: salt-diagram/empty
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Empty salt diagram"
+---
+@startsalt
+@endsalt

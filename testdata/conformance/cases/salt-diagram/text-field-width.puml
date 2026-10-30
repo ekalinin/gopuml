@@ -1,0 +1,13 @@
+---
+id: salt-diagram/text-field-width
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Text field width"
+---
+@startsalt
+{
+"Enter text here   "
+}
+@endsalt

@@ -1,0 +1,15 @@
+---
+id: salt-diagram/menu-with-items
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Menu with items"
+---
+@startsalt
+{
+{* File | Edit | Source | Refactor
+ Refactor | New | Open File | - | Close | Close All }
+.
+}
+@endsalt

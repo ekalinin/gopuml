@@ -1,0 +1,17 @@
+---
+id: salt-diagram/border-layout
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Border layout"
+---
+@startsalt
+{
+N={ [Top] }
+W={ [Left] }
+C={ [Center] }
+E={ [Right] }
+S={ [Bottom] }
+}
+@endsalt

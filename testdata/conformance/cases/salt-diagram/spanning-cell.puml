@@ -1,0 +1,14 @@
+---
+id: salt-diagram/spanning-cell
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Spanning cell"
+---
+@startsalt
+{#
+a | b | c
+long text here | * | x
+}
+@endsalt

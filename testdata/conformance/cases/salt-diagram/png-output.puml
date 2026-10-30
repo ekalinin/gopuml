@@ -1,0 +1,14 @@
+---
+id: salt-diagram/png-output
+family: salt
+type: salt
+formats: [svg, png]
+scenarios:
+  - "salt-diagram: PNG salt diagram"
+---
+@startsalt
+{
+Login    | "MyName   "
+[Cancel] | [  OK   ]
+}
+@endsalt

@@ -1,0 +1,6 @@
+id: salt-diagram/txt-unsupported
+scenarios:
+  - "salt-diagram: TXT salt diagram"
+package: "."
+test: TestRenderSaltDiagramAsTXTIsUnsupported
+why: Upstream v1.2026.9 renders a salt diagram as TXT with its generic text output, while the spec requires an unsupported-format error and no output.

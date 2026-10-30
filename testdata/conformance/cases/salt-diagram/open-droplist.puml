@@ -1,0 +1,14 @@
+---
+id: salt-diagram/open-droplist
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Open droplist"
+---
+@startsalt
+{
+^Open droplist^^ item 1^^ item 2^
+Next row here | more | stuff
+}
+@endsalt

@@ -1,0 +1,14 @@
+---
+id: salt-diagram/outline
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Outline"
+---
+@startsalt
+{+
+a | b
+c | d
+}
+@endsalt

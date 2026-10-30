@@ -1,0 +1,14 @@
+---
+id: salt-diagram/scaled
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Scaled salt diagram"
+---
+@startsalt
+scale 2
+{
+[OK]
+}
+@endsalt
