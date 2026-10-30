@@ -27,17 +27,6 @@ import (
 
 const repoRoot = "../.."
 
-// notParsedYet are the error cases whose diagram type is not parsed yet,
-// so that this implementation draws its "not supported yet" image instead.
-var notParsedYet = map[string]bool{
-	"chen-eer-diagram/unbalanced-brackets":                true,
-	"chen-eer-diagram/relationship-with-entity-name":      true,
-	"chen-eer-diagram/attribute-outside-block":            true,
-	"chen-eer-diagram/attribute-declared-twice":           true,
-	"chen-eer-diagram/association-with-unknown-entity":    true,
-	"chen-eer-diagram/subclass-group-with-unknown-entity": true,
-}
-
 // handled reports whether a reference block is an image of this package.
 func handled(b conformance.BlockMeta) bool {
 	return b.Type == "ERROR" || b.Description == "(Unsupported)" || b.Description == "(Empty)"
@@ -160,9 +149,6 @@ func TestDiagramReferences(t *testing.T) {
 	}
 	var r result
 	for _, c := range cases {
-		if notParsedYet[c.ID] {
-			continue
-		}
 		refDir := filepath.Join(repoRoot, "testdata/conformance/reference", c.ID)
 		if _, err := os.Stat(filepath.Join(refDir, "meta.json")); err != nil {
 			continue

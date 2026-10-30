@@ -80,6 +80,9 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startsalt")); d != nil {
 		t.Fatalf("@startsalt: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@startchen")); d != nil {
+		t.Fatalf("@startchen: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
 	d, ok := CheckFamily(block("@startjson")).(*ErrorDiagram)
