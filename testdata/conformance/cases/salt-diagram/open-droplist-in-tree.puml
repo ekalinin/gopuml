@@ -1,0 +1,13 @@
+---
+id: salt-diagram/open-droplist-in-tree
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Open droplist in a tree"
+---
+@startsalt
+{T#
++ Name | ^Pick^^ a^^ b^
+}
+@endsalt

@@ -1,0 +1,14 @@
+---
+id: salt-diagram/vertical-lines
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Vertical lines"
+---
+@startsalt
+{!
+a | b
+c | d
+}
+@endsalt

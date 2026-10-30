@@ -1,0 +1,15 @@
+---
+id: salt-diagram/vertical-tabs
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Vertical tabs"
+---
+@startsalt
+{
+{/ General
+Fullscreen
+Behavior }
+}
+@endsalt

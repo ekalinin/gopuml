@@ -4,7 +4,7 @@
 package klimt
 
 // Exported forms of the Java emulation helpers of java.go, for the diagram
-// packages built on klimt (svek).
+// packages built on klimt (svek, salt).
 
 // JavaD2I is Java's (int) cast of a double: truncation toward zero, NaN
 // gives 0 and values out of range saturate.
@@ -22,3 +22,15 @@ func JavaHashMapOrder(keys []string) []string { return javaHashMapOrder(keys) }
 // insertion order and without duplicates, in the iteration order of a
 // java.util.HashMap or HashSet created with the default capacity.
 func JavaHashOrder(hashes []int32) []int { return javaHashOrder(hashes) }
+
+// JavaTokenize is java.util.StringTokenizer(s, delims) without returning the
+// delimiters.
+func JavaTokenize(s, delims string) []string { return javaTokenize(s, delims) }
+
+// JavaTokenizeWithDelims is java.util.StringTokenizer(s, delims, true): the
+// runs of non-delimiters and each delimiter as its own token.
+func JavaTokenizeWithDelims(s, delims string) []string { return javaTokenizeWithDelims(s, delims) }
+
+// JavaSplit is Java's String.split(regex) for a literal, non-empty
+// separator: trailing empty strings are removed.
+func JavaSplit(s, sep string) []string { return javaSplit(s, sep) }

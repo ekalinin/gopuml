@@ -1,0 +1,19 @@
+---
+id: salt-diagram/pixel-image
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Pixel image"
+---
+@startsalt
+{
+<<smile
+XX.XX
+.....
+X...X
+.XXX.
+>>
+<<smile>>
+}
+@endsalt

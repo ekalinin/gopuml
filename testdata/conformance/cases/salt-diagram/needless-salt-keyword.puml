@@ -1,0 +1,14 @@
+---
+id: salt-diagram/needless-salt-keyword
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Needless salt keyword"
+---
+@startsalt
+salt
+{
+[OK]
+}
+@endsalt

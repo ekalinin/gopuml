@@ -1,0 +1,13 @@
+---
+id: salt-diagram/creole-in-cell
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Creole in a cell"
+---
+@startsalt
+{
+<b>Bold</b> | <i>Italic</i> | [[http://plantuml.com PlantUML]]
+}
+@endsalt

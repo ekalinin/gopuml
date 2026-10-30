@@ -1,0 +1,13 @@
+id: salt-diagram/dark-mode
+scenarios:
+  - "salt-diagram: Dark mode"
+args: ["--svg", "--dark-mode", "a.puml"]
+files:
+  a.puml: |
+    @startsalt
+    {
+    [OK] | ^Pick^
+    ..
+    }
+    @endsalt
+compare: [exit, files]

@@ -454,6 +454,47 @@ ActivityDiagramFactory3	88	net.sourceforge.plantuml.activitydiagram3.command.Com
 ActivityDiagramFactory3	89	net.sourceforge.plantuml.activitydiagram3.command.CommandLabel	^label[%s]+([%pLN_.]+);?$	label	label	label
 ActivityDiagramFactory3	90	net.sourceforge.plantuml.activitydiagram3.command.CommandGoto	^goto[%s]+([%pLN_.]+);?$	goto	goto	goto
 ActivityDiagramFactory3	91	net.sourceforge.plantuml.command.CommandDecoratorMultine	^(?:(#\u005Cw+[-\u005C\u005C|/]?\u005Cw+):)?[%s]*(?:\u005C((?:(?:->|-\u005C[((?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*(?:(?:;(?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*)*)*)\u005C]->))?(.*?)\u005C))?[%s]*else[%s]*if[%s]*\u005C((.*?)\u005C)[%s]*(?:then[%s]*(?:\u005C((?:(?:->|-\u005C[((?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*(?:(?:;(?:#\u005Cw+|dotted|dashed|plain|bold|hidden|norank|single|node|thickness=\u005Cd+)(?:,#\u005Cw+|,dotted|,dashed|,plain|,bold|,hidden|,norank|,single|,node|,thickness=\u005Cd+)*)*)*)\u005C]->))?(.*?)\u005C))?)?;?[%s]*(?:(<<[^<>]+>>(?:[%s]*<<[^<>]+>>)*))?$	# ( else elseif	# ( else elseif	# ( else elseif
+PSystemSaltFactory	0	net.sourceforge.plantuml.command.CommandNope	^[%s]*$	<empty>	<empty>	<empty>
+PSystemSaltFactory	1	net.sourceforge.plantuml.command.CommandPragma	^!pragma[%s]+([A-Za-z_][A-Za-z_0-9]*)(?:[%s]+(.*))?$	!	!	!
+PSystemSaltFactory	2	net.sourceforge.plantuml.command.CommandAssumeTransparent	^!assume[%s]+transparent[%s]+(dark|light)$	!	!	!
+PSystemSaltFactory	3	net.sourceforge.plantuml.command.CommandSkinParam	^(skinparam|skinparamlocked)[%s]+([\u005Cw.]*(?:\u005C<\u005C<[^<>]*\u005C>\u005C>)?[\u005Cw.]*)[%s]+([^{}]*)$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+PSystemSaltFactory	4	net.sourceforge.plantuml.command.CommandSkinParamJaws	^((skinparam|skinparamlocked)[%s]+.*\uE100.*)+$	skinparam skinparamlocked	skinparam skinparamlocked	skinparam skinparamlocked
+PSystemSaltFactory	5	net.sourceforge.plantuml.command.CommandSkinParamMultilines	^skinparam[%s]*(?:[%s]+([\u005Cw.]*(?:\u005C<\u005C<.*\u005C>\u005C>)?[\u005Cw.]*))?[%s]*\u005C{$	skinparam	skinparam	skinparam
+PSystemSaltFactory	6	net.sourceforge.plantuml.sequencediagram.command.CommandSkin	^skin[%s]+([\u005Cw.]+)$	skin	skin	skin
+PSystemSaltFactory	7	net.sourceforge.plantuml.command.CommandMinwidth	^minwidth[%s]+(\u005Cd+)$	minwidth	minwidth	minwidth
+PSystemSaltFactory	8	net.sourceforge.plantuml.command.CommandPage	^page[%s]+(\u005Cd+)[%s]*x*[%s]*(\u005Cd+)$	page	page	page
+PSystemSaltFactory	9	net.sourceforge.plantuml.command.CommandRotate	^rotate$	rotate	rotate	rotate
+PSystemSaltFactory	10	net.sourceforge.plantuml.command.CommandFactorySprite$1	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)?|(color))\u005C])?[%s]*\u005C{$	sprite	sprite	sprite
+PSystemSaltFactory	11	net.sourceforge.plantuml.command.CommandFactorySprite$2	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]*(?:\u005C[(\u005Cd+)x(\u005Cd+)/(?:(\u005Cd+)(z)|(color))\u005C])?[%s]+([-_A-Za-z0-9]+)$	sprite	sprite	sprite
+PSystemSaltFactory	12	net.sourceforge.plantuml.command.CommandSpriteBase64	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;base64,([A-Za-z0-9+/=]+)$	sprite	sprite	sprite
+PSystemSaltFactory	13	net.sourceforge.plantuml.command.CommandSpriteMd5	^sprite[%s]+\u005C$?([-.%pLN_]+)[%s]+data:image/png;md5,([0-9a-f]+)$	sprite	sprite	sprite
+PSystemSaltFactory	14	net.sourceforge.plantuml.command.CommandSpriteSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*\u005C</svg\u005C>)$	sprite	sprite	sprite
+PSystemSaltFactory	15	net.sourceforge.plantuml.command.CommandSpriteStdlib	^sprite[%s]+\u005C$([-%pLN_]+)[%s]*#([^#]+)#([^%s]+)$	sprite	sprite	sprite
+PSystemSaltFactory	16	net.sourceforge.plantuml.command.CommandSpriteStdlibSvg	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]*:([^:]+):([^%s]+)$	sprite	sprite	sprite
+PSystemSaltFactory	17	net.sourceforge.plantuml.command.CommandSpriteSvgMultiline	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+(\u005C<svg\u005Cb.*)$	sprite	sprite	sprite
+PSystemSaltFactory	18	net.sourceforge.plantuml.command.CommandSpriteFile	^sprite[%s]+\u005C$?([-%pLN_]+)[%s]+([^<>%g#]*)$	sprite	sprite	sprite
+PSystemSaltFactory	19	net.sourceforge.plantuml.command.CommandStyleSingleLineCSS	^\u005C<style\u005C>([-#.\u005Cw%s;:{}]+)\u005C</style\u005C>$	<	<	<
+PSystemSaltFactory	20	net.sourceforge.plantuml.command.CommandStyleMultilinesCSS	^\u005C<style\u005C>$	<	<	<
+PSystemSaltFactory	21	net.sourceforge.plantuml.command.CommandStyleImport	^\u005C<style[%s]*\u005Cw+[%s]*=[%s]*[%q%g]?([^%q%g]*)[%q%g]?\u005C>$	<	<	<
+PSystemSaltFactory	22	net.sourceforge.plantuml.command.CommandScale	^scale[%s]+([0-9.]+)(?:[%s]*/[%s]*([0-9.]+))?$	scale	scale	scale
+PSystemSaltFactory	23	net.sourceforge.plantuml.command.CommandScaleWidthAndHeight	^scale[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+PSystemSaltFactory	24	net.sourceforge.plantuml.command.CommandScaleWidthOrHeight	^scale[%s]+([0-9.]+)[%s]+(width|height)$	scale	scale	scale
+PSystemSaltFactory	25	net.sourceforge.plantuml.command.CommandScaleMaxWidth	^scale[%s]+max[%s]+([0-9.]+)[%s]+width$	scale	scale	scale
+PSystemSaltFactory	26	net.sourceforge.plantuml.command.CommandScaleMaxHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]+height$	scale	scale	scale
+PSystemSaltFactory	27	net.sourceforge.plantuml.command.CommandScaleMaxWidthAndHeight	^scale[%s]+max[%s]+([0-9.]+)[%s]*[*x][%s]*([0-9.]+)$	scale	scale	scale
+PSystemSaltFactory	28	net.sourceforge.plantuml.command.CommandTitle	^title(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	title	title	title
+PSystemSaltFactory	29	net.sourceforge.plantuml.command.CommandMainframe	^mainframe(?:[%s]*:[%s]*|[%s]+)(.*[%pLN_.].*)$	mainframe	mainframe	mainframe
+PSystemSaltFactory	30	net.sourceforge.plantuml.command.CommandCaption	^caption(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	caption	caption	caption
+PSystemSaltFactory	31	net.sourceforge.plantuml.command.CommandMultilinesCaption	^caption$	caption	caption	caption
+PSystemSaltFactory	32	net.sourceforge.plantuml.command.CommandMultilinesTitle	^title$	title	title	title
+PSystemSaltFactory	33	net.sourceforge.plantuml.command.CommandMultilinesLegend	^legend(?:[%s]+(top|bottom))?(?:[%s]+(left|right|center))?$	legend	legend	legend
+PSystemSaltFactory	34	net.sourceforge.plantuml.command.CommandLegend	^legend(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	legend	legend	legend
+PSystemSaltFactory	35	net.sourceforge.plantuml.command.CommandFooter	^(?:(left|right|center))?[%s]*footer(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+PSystemSaltFactory	36	net.sourceforge.plantuml.command.CommandMultilinesFooter	^(?:(left|right|center)?[%s]*)footer$	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter	center centerfooter footer left leftfooter right rightfooter
+PSystemSaltFactory	37	net.sourceforge.plantuml.command.CommandHeader	^(?:(left|right|center))?[%s]*header(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+PSystemSaltFactory	38	net.sourceforge.plantuml.command.CommandMultilinesHeader	^(?:(left|right|center)?[%s]*)header$	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader	center centerheader header left leftheader right rightheader
+PSystemSaltFactory	39	net.sourceforge.plantuml.classdiagram.command.CommandNamespaceSeparator	^set[%s]+(?:separator|namespaceseparator)[%s]+((?:none|null)|[\u005C\u005C]{2}|::|[^%pLN%s_$#{}<>%g])$	set	set	set
+PSystemSaltFactory	40	net.sourceforge.plantuml.salt.CommandAnything	^(.*)$	ANYTHING	ANYTHING	ANYTHING
 MindMapDiagramFactory	0	net.sourceforge.plantuml.command.CommandTitle	^title(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	title	title	title
 MindMapDiagramFactory	1	net.sourceforge.plantuml.command.CommandMainframe	^mainframe(?:[%s]*:[%s]*|[%s]+)(.*[%pLN_.].*)$	mainframe	mainframe	mainframe
 MindMapDiagramFactory	2	net.sourceforge.plantuml.command.CommandCaption	^caption(?:[%s]*:[%s]*|[%s]+)(?:[%g](.*)[%g]|(.*[%pLN_.].*))$	caption	caption	caption

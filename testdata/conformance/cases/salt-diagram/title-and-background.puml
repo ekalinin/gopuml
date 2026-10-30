@@ -1,0 +1,18 @@
+---
+id: salt-diagram/title-and-background
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Title and background"
+---
+@startsalt
+skinparam backgroundColor #EEEEFF
+title Login form
+legend
+Mockup
+endlegend
+{
+[OK]
+}
+@endsalt

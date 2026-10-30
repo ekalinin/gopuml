@@ -1,0 +1,13 @@
+---
+id: salt-diagram/line-break-in-cell
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Line break in a cell"
+---
+@startsalt
+{
+first\nsecond | x
+}
+@endsalt

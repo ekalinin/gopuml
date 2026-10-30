@@ -1,0 +1,14 @@
+---
+id: salt-diagram/row-read-as-command
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Row read as a command"
+---
+@startsalt
+{
+Title | "text"
+Name | "me"
+}
+@endsalt

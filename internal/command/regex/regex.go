@@ -36,7 +36,13 @@ var macroExpansions = strings.NewReplacer(
 // Transform expands upstream's macros and rewrites Java-only escapes, without
 // adding the case-insensitive flag.
 func Transform(pattern string) (string, error) {
-	expanded := macroExpansions.Replace(pattern)
+	return TransformJava(macroExpansions.Replace(pattern))
+}
+
+// TransformJava rewrites the Java-only escapes of a plain Java pattern, as
+// String.replaceAll compiles it: upstream's macros are left as they are.
+func TransformJava(expanded string) (string, error) {
+	pattern := expanded
 	var b strings.Builder
 	inClass := false
 	for i := 0; i < len(expanded); i++ {

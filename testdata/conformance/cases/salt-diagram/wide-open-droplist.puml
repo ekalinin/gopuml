@@ -1,0 +1,13 @@
+---
+id: salt-diagram/wide-open-droplist
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Wide open droplist"
+---
+@startsalt
+{
+^Small^^ this is a very very very very long item that is wider than the head^
+}
+@endsalt

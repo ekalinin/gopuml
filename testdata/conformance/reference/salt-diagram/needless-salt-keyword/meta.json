@@ -1,0 +1,6 @@
+{
+  "id": "salt-diagram/needless-salt-keyword",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 2, "messages": ["This is not needed anymore. (Assumed diagram type: salt)"]}, "renders": [{"file": "block0-page0.svg", "width": 478, "height": 118, "status": 400}]}
+  ]
+}

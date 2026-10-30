@@ -1,0 +1,20 @@
+---
+id: salt-diagram/sprite-in-title
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Sprite in the title"
+---
+@startsalt
+sprite $dot [4x4/16] {
+0FF0
+FFFF
+FFFF
+0FF0
+}
+title <$dot> T
+{
+x
+}
+@endsalt

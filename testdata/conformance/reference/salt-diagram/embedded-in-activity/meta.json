@@ -1,0 +1,6 @@
+{
+  "id": "salt-diagram/embedded-in-activity",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ACTIVITY", "description": "activity3", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 140, "height": 189, "status": 0}]}
+  ]
+}

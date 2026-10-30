@@ -1,0 +1,18 @@
+---
+id: salt-diagram/embedded-in-activity
+family: uml
+type: activity
+formats: [svg]
+scenarios:
+  - "salt-diagram: Salt diagram in an activity"
+---
+@startuml
+start
+:{{salt
+{
+Login | "user"
+[OK]
+}
+}};
+stop
+@enduml

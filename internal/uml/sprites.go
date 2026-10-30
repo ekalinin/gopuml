@@ -32,8 +32,24 @@ import (
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
+// SpriteAdder is implemented by the diagrams that keep their sprites
+// themselves, as upstream's PSystemSalt overrides TitledDiagram.addSprite.
+type SpriteAdder interface {
+	AddSprite(name string, sprite klimt.Sprite)
+}
+
+// addSprite is the diagram's addSprite: its own when it implements
+// SpriteAdder, the one of its Base otherwise.
+func addSprite[D Diagram](d D, name string, sprite klimt.Sprite) {
+	if a, ok := any(d).(SpriteAdder); ok {
+		a.AddSprite(name, sprite)
+		return
+	}
+	d.Titled().AddSprite(name, sprite)
+}
+
 // executeSprite is CommandFactorySprite.executeInternal.
-func executeSprite(b *Base, line0 *regex.Result, lines []string) command.Result {
+func executeSprite[D Diagram](d D, line0 *regex.Result, lines []string) command.Result {
 	var sprite *SpriteDef
 	if _, ok := line0.Get("DIM", 0); !ok {
 		sprite = buildGraySprite(16, -1, -1, lines)
@@ -61,7 +77,7 @@ func executeSprite(b *Base, line0 *regex.Result, lines []string) command.Result 
 			sprite = buildColorSprite(lines)
 		}
 	}
-	b.AddSprite(line0.Str("NAME", 0), sprite)
+	addSprite(d, line0.Str("NAME", 0), sprite)
 	return command.Ok()
 }
 
@@ -88,7 +104,7 @@ func CommandFactorySpriteMultiLine[D Diagram]() command.Command[D] {
 		if lines.Size() == 0 {
 			return command.Error("No sprite defined.")
 		}
-		return executeSprite(d.Titled(), line0, lines.Strings())
+		return executeSprite(d, line0, lines.Strings())
 	}
 	return c
 }
@@ -105,7 +121,7 @@ func CommandFactorySpriteSingleLine[D Diagram]() command.Command[D] {
 		regex.SpaceOneOrMore(),
 		Leaf(1, "DATA", "([-_A-Za-z0-9]+)"), regex.End()),
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
-			return executeSprite(d.Titled(), arg, []string{arg.Str("DATA", 0)})
+			return executeSprite(d, arg, []string{arg.Str("DATA", 0)})
 		})
 }
 
@@ -127,7 +143,7 @@ func CommandSpriteBase64[D Diagram]() command.Command[D] {
 			if !ok {
 				return command.Error("Cannot decode Base64 PNG sprite.")
 			}
-			d.Titled().AddSprite(arg.Str("NAME", 0), sprite)
+			addSprite(d, arg.Str("NAME", 0), sprite)
 			return command.Ok()
 		})
 }
@@ -154,7 +170,7 @@ func CommandSpriteMd5[D Diagram]() command.Command[D] {
 			if !ok {
 				return command.Error("Cannot decode Base64 PNG sprite.")
 			}
-			d.Titled().AddSprite(arg.Str("NAME", 0), sprite)
+			addSprite(d, arg.Str("NAME", 0), sprite)
 			return command.Ok()
 		})
 }
@@ -171,7 +187,7 @@ func CommandSpriteSvg[D Diagram]() command.Command[D] {
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			parser := klimt.SvgSpriteParserFactoryCreate([]string{arg.Str("SVG", 0)}, d.Titled().Pragma(),
 				d.Titled().MD5Map())
-			d.Titled().AddSprite(arg.Str("NAME", 0), parser)
+			addSprite(d, arg.Str("NAME", 0), parser)
 			return command.Ok()
 		})
 }
@@ -196,7 +212,7 @@ func CommandSpriteSvgMultiline[D Diagram]() command.Command[D] {
 		svg := []string{line0.Str("SVGSTART", 0)}
 		svg = append(svg, SubExtract(lines, 1, 0).Strings()...)
 		parser := klimt.SvgSpriteParserFactoryCreate(svg, d.Titled().Pragma(), d.Titled().MD5Map())
-		d.Titled().AddSprite(line0.Str("NAME", 0), parser)
+		addSprite(d, line0.Str("NAME", 0), parser)
 		return command.Ok()
 	}
 	return c
@@ -243,7 +259,7 @@ func CommandSpriteStdlib[D Diagram]() command.Command[D] {
 			if sprite != nil {
 				s = klimt.NewStdlibSprite(sprite.Width, sprite.Height, sprite.Data)
 			}
-			d.Titled().AddSprite(arg.Str("NAME", 0), s)
+			addSprite(d, arg.Str("NAME", 0), s)
 			return command.Ok()
 		})
 }
@@ -260,7 +276,7 @@ func CommandSpriteStdlibSvg[D Diagram]() command.Command[D] {
 		regex.End()),
 		func(d D, _ *text.LineLocation, arg *regex.Result, _ command.ParserPass) command.Result {
 			lib := retrieveStdlib(arg.Str("STDLIB", 0))
-			d.Titled().AddSprite(arg.Str("NAME", 0), klimt.NewStdlibSpriteSvg(lib, arg.Str("STDLIB", 1)))
+			addSprite(d, arg.Str("NAME", 0), klimt.NewStdlibSpriteSvg(lib, arg.Str("STDLIB", 1)))
 			return command.Ok()
 		})
 }
@@ -307,7 +323,7 @@ func CommandSpriteFile[D Diagram]() command.Command[D] {
 				}
 				sprite = s
 			}
-			d.Titled().AddSprite(arg.Str("NAME", 0), sprite)
+			addSprite(d, arg.Str("NAME", 0), sprite)
 			return command.Ok()
 		})
 }

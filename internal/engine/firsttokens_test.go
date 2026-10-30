@@ -80,8 +80,8 @@ func unescapeGolden(s string) string {
 func TestFirstTokensMatchUpstream(t *testing.T) {
 	golden := readFirstTokensGolden(t)
 	names := []string{"SequenceDiagramFactory", "ClassDiagramFactory", "ActivityDiagramFactory",
-		"DescriptionDiagramFactory", "StateDiagramFactory", "ActivityDiagramFactory3", "MindMapDiagramFactory",
-		"WBSDiagramFactory",
+		"DescriptionDiagramFactory", "StateDiagramFactory", "ActivityDiagramFactory3", "PSystemSaltFactory",
+		"MindMapDiagramFactory", "WBSDiagramFactory",
 		"PacketDiagramFactory", "GanttDiagramFactory", "TimingDiagramFactory"}
 	factories := Factories[1:]
 	if len(factories) != len(names) {

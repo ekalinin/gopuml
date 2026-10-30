@@ -1,0 +1,15 @@
+---
+id: salt-diagram/highlighted-menu-entry
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Highlighted menu entry"
+---
+@startsalt
+{
+{* File | Edit
+ File | New | Open }
+^Pick^^ a^^ b^
+}
+@endsalt

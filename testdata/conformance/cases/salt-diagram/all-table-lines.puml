@@ -1,0 +1,14 @@
+---
+id: salt-diagram/all-table-lines
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: All table lines"
+---
+@startsalt
+{#
+a | b
+c | d
+}
+@endsalt

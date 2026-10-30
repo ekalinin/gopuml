@@ -1,0 +1,13 @@
+---
+id: salt-diagram/vertical-scroll-bar
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Vertical scroll bar"
+---
+@startsalt
+{SI
+Message
+}
+@endsalt

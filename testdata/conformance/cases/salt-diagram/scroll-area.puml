@@ -1,0 +1,15 @@
+---
+id: salt-diagram/scroll-area
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Scroll area"
+---
+@startsalt
+{S
+Message
+.
+.
+}
+@endsalt

@@ -1,0 +1,6 @@
+id: salt-diagram/several-menus-with-items
+scenarios:
+  - "salt-diagram: Several menus with items"
+package: internal/salt
+test: TestSaltMenuListOrder
+why: Upstream draws the lists of the menus in the iteration order of a HashMap keyed by Java identity hash codes, which a committed reference cannot pin, while this implementation draws them in the order of the menus.

@@ -1,0 +1,13 @@
+---
+id: diagram-source/salt-detected
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "diagram-source: Salt family"
+---
+@startsalt
+{
+[OK]
+}
+@endsalt

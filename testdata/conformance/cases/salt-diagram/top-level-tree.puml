@@ -1,0 +1,14 @@
+---
+id: salt-diagram/top-level-tree
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Top-level tree"
+---
+@startsalt
+{T
++ a
+++ b
+}
+@endsalt

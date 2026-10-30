@@ -1,0 +1,13 @@
+---
+id: salt-diagram/tabs
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Tabs"
+---
+@startsalt
+{
+{/ <b>General | Fullscreen | Behavior }
+}
+@endsalt

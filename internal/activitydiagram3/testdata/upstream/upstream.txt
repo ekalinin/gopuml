@@ -26152,6 +26152,30 @@ not activity3
 not activity3
 === allconf/preprocessor/while-loop.puml
 not activity3
+=== allconf/salt-diagram/embedded-in-activity.puml
+result ActivityDiagram3
+description activity3
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+skinparamused false
+hasurl false
+strategy SWIMLANE_FORBIDDEN
+currentswimlane null
+nextlink {NULL []/0}
+ins 0 0 root InstructionList lanes=[] break=false inlink={NULL []/0} default=null outlink=null empty=false onlystop=false notes=[]
+ins 1 1 item InstructionStart lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
+ins 2 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null out=null label=[{{salt|{|Login | "user"|[OK]|}|}}] colors={} null box=null url=null stereo=null killed=false notes=[]
+ins 3 1 item InstructionStop lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
+current 0
+=== allconf/salt-diagram/embedded-in-note.puml
+not activity3
+=== allconf/salt-diagram/old-embedded-form.puml
+not activity3
 === allconf/sequence-diagram/activation-return.puml
 not activity3
 === allconf/sequence-diagram/alt-fragment.puml

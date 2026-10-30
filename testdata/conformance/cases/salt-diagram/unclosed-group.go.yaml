@@ -1,0 +1,6 @@
+id: salt-diagram/unclosed-group
+scenarios:
+  - "salt-diagram: Unclosed group"
+package: internal/salt
+test: TestSaltUnclosedGroup
+why: Upstream draws a crash report with a random quote, a random icon and a Java stack trace inside the diagram, which cannot be a committed reference, while this implementation returns an error.

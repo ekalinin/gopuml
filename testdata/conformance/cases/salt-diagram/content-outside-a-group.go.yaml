@@ -1,0 +1,6 @@
+id: salt-diagram/content-outside-a-group
+scenarios:
+  - "salt-diagram: Content outside a group"
+package: internal/salt
+test: TestSaltContentOutsideAGroup
+why: Upstream draws a crash report with a random quote, a random icon and a Java stack trace inside the diagram, which cannot be a committed reference, while this implementation returns an error.

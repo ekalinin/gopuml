@@ -1,0 +1,15 @@
+---
+id: salt-diagram/login-form
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Login form"
+---
+@startsalt
+{
+Login    | "MyName   "
+Password | "****     "
+[Cancel] | [  OK   ]
+}
+@endsalt

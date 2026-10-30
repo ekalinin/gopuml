@@ -77,6 +77,9 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startwbs")); d != nil {
 		t.Fatalf("@startwbs: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@startsalt")); d != nil {
+		t.Fatalf("@startsalt: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
 	d, ok := CheckFamily(block("@startjson")).(*ErrorDiagram)

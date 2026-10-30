@@ -1,0 +1,6 @@
+{
+  "id": "salt-diagram/vertical-scroll-bar",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SALT", "description": "(Salt)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 94, "height": 25, "status": 0}]}
+  ]
+}

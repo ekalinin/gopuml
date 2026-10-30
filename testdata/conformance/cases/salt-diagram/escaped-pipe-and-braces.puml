@@ -1,0 +1,14 @@
+---
+id: salt-diagram/escaped-pipe-and-braces
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Escaped pipe and braces"
+---
+@startsalt
+{#
+Ratio | 3\|4
+Braces | a\{b\}c
+}
+@endsalt

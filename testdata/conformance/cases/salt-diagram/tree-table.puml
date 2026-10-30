@@ -1,0 +1,14 @@
+---
+id: salt-diagram/tree-table
+family: salt
+type: salt
+formats: [svg]
+scenarios:
+  - "salt-diagram: Tree table"
+---
+@startsalt
+{T#
++ World | "Earth"
+++ America | [Visit]
+}
+@endsalt
