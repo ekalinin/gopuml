@@ -11,7 +11,8 @@ and text output, and it works as:
 - a WebAssembly module for browsers and Node.js
 
 No JVM is needed. Graphviz `dot` is needed only for class, description
-(use case, component, deployment), state and legacy activity diagrams.
+(use case, component, deployment), state, legacy activity and Chen EER
+diagrams.
 
 The [landing page](https://ekalinin.github.io/gopuml/) has a
 [playground](https://ekalinin.github.io/gopuml/#playground) that renders
@@ -33,6 +34,7 @@ sequence and activity diagrams in the browser with the WebAssembly module.
 | WBS | yes | yes | yes |
 | Timing | yes | yes | no |
 | Salt | yes | yes | no |
+| Chen EER | yes (needs `dot`) | yes (needs `dot`) | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
@@ -51,9 +53,9 @@ reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
-conformance suite of 939 cases (upstream's Vega test corpus plus curated
+conformance suite of 972 cases (upstream's Vega test corpus plus curated
 cases): every case passes, apart from 42 documented known differences
-(`testdata/conformance/known-differences.yaml`) and 9 cases of diagram types
+(`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
@@ -198,13 +200,13 @@ const result = await plantuml.render('@startuml\nAlice -> Bob\n@enduml', { forma
 ```
 
 The module runs in the `SANDBOX` security profile: includes come only from
-the `files` option. Class, description, state and legacy activity diagrams
-report that graph layout is not available in this build.
+the `files` option. Class, description, state, legacy activity and Chen EER
+diagrams report that graph layout is not available in this build.
 
 ## Graphviz
 
-Class, object, description, state and legacy activity diagrams are laid out
-by Graphviz `dot`, as upstream does.
+Class, object, description, state, legacy activity and Chen EER diagrams are
+laid out by Graphviz `dot`, as upstream does.
 `dot` is looked up from `--dot-path` (or the library option), then the
 `GRAPHVIZ_DOT` environment variable, then `PATH` and the usual install
 locations. `./plantuml --check-graphviz` reports the version found. The
