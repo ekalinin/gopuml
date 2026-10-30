@@ -325,9 +325,7 @@ func (r *RotatedEllipse) OtherTheta(theta1 float64) float64 {
 }
 
 // TextBlockInContainingEllipse is upstream's TextBlockInEllipse: a text in
-// the smallest surrounding ellipse (use cases). TextBlockInEllipse of
-// shape_textblockmisc.go is the stub of an earlier step; this type is the
-// working one.
+// the smallest surrounding ellipse (use cases).
 type TextBlockInContainingEllipse struct {
 	TextBlockDefaults
 	memo    TextBlockMemoized

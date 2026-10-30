@@ -9,7 +9,7 @@
 
 ## 2. Shared code
 
-- [ ] 2.1 Remove the stub `TextBlockInEllipse` from `internal/klimt` (design D5): the type, `NewTextBlockInEllipse`, its two methods and its `Provenance` line in `shape_textblockmisc.go`, its panic check in `klimt_test.go`, and the sentence about the stub in the comment of `TextBlockInContainingEllipse` in `svek_footprint.go`. Verify that `grep -rn 'NewTextBlockInEllipse\|TextBlockInEllipse struct' internal` finds nothing, that `go test ./internal/klimt` passes, and that `make test` passes with the use case and requirement cases unchanged
+- [x] 2.1 Remove the stub `TextBlockInEllipse` from `internal/klimt` (design D5): the type, `NewTextBlockInEllipse`, its two methods and its `Provenance` line in `shape_textblockmisc.go`, its panic check in `klimt_test.go`, and the sentence about the stub in the comment of `TextBlockInContainingEllipse` in `svek_footprint.go`. Verify that `grep -rn 'NewTextBlockInEllipse\|TextBlockInEllipse struct' internal` finds nothing, that `go test ./internal/klimt` passes, and that `make test` passes with the use case and requirement cases unchanged
 
 ## 3. Diagram and commands
 

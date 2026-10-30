@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockTitle.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockInEllipse.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockArrow.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/TextBlockArrow2.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/shape/CircledCharacter.java
@@ -66,32 +65,6 @@ func (t *TextBlockTitle) MagneticBorder() MagneticBorder {
 
 // Backcolor returns the background color of the title.
 func (t *TextBlockTitle) Backcolor() color.HColor { return t.textBlock.Backcolor() }
-
-// TextBlockInEllipse is a text in the smallest surrounding ellipse. It needs
-// upstream's svek.image.Footprint and ContainingEllipse, which are not
-// ported in this step: building one panics.
-type TextBlockInEllipse struct {
-	TextBlockDefaults
-	text TextBlock
-}
-
-// NewTextBlockInEllipse panics: the ellipse computation (svek.image.Footprint)
-// is not ported yet.
-func NewTextBlockInEllipse(text TextBlock, stringBounder font.StringBounder) *TextBlockInEllipse {
-	notPorted("svek/image/Footprint", "TextBlockInEllipse")
-	return nil
-}
-
-// CalculateDimension is not reachable: construction panics.
-func (t *TextBlockInEllipse) CalculateDimension(font.StringBounder) geom.XDimension2D {
-	notPorted("svek/image/ContainingEllipse", "TextBlockInEllipse")
-	return geom.XDimension2D{}
-}
-
-// DrawU is not reachable: construction panics.
-func (t *TextBlockInEllipse) DrawU(UGraphic) {
-	notPorted("svek/image/ContainingEllipse", "TextBlockInEllipse")
-}
 
 // TextBlockArrow is a small filled triangle the size of a font, pointing in
 // a direction (creole's <&...> arrows in links).
