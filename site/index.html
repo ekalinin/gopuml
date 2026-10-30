@@ -122,13 +122,14 @@ Alice &lt;-- Bob: Another authentication Response
         <tr><th scope="row">Mindmap</th><td>yes</td><td>yes</td><td>no</td></tr>
         <tr><th scope="row">WBS</th><td>yes</td><td>yes</td><td>yes</td></tr>
         <tr><th scope="row">Timing</th><td>yes</td><td>yes</td><td>no</td></tr>
+        <tr><th scope="row">Salt</th><td>yes</td><td>yes</td><td>no</td></tr>
       </tbody>
     </table>
   </div>
-  <aside class="note">Graphviz <code>dot</code> is needed only for class, object, description (use case, component, deployment), state and legacy activity diagrams, which it lays out as upstream does. Sequence diagrams, activity diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams, WBS diagrams and timing diagrams do not need it.</aside>
+  <aside class="note">Graphviz <code>dot</code> is needed only for class, object, description (use case, component, deployment), state and legacy activity diagrams, which it lays out as upstream does. Sequence diagrams, activity diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams, WBS diagrams, timing diagrams and salt diagrams do not need it.</aside>
   <p>The preprocessor (<code>!include</code>, <code>!define</code>, functions, all 74 builtins, JSON), themes, skin parameters, styles and creole are supported, including diagrams embedded in text with <code>{{</code> ... <code>}}</code>, and so is the PREPROC output (<code>--preproc</code>).</p>
   <p>The standard library of upstream 1.2026.9 is bundled (<code>!include &lt;C4/C4_Container&gt;</code>, <code>!include &lt;awslib/AWSCommon&gt;</code> and the other libraries that <code>plantuml -stdlib</code> lists), apart from nine libraries whose license could not be verified or does not allow bundling them (see <code>NOTICE</code>). Sprites are drawn: monochrome, color, image and SVG sprites defined in a diagram, and the sprites and images of the standard library.</p>
-  <p>Other diagram types (archimate, salt, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
+  <p>Other diagram types (archimate, JSON, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
 </section>
 
 <section id="install" aria-labelledby="install-title">
