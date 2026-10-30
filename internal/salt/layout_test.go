@@ -14,7 +14,9 @@ import (
 	"github.com/ekalinin/gopuml/internal/klimt/geom"
 )
 
-func textOf(s string) element { return newElementText([]string{s}, font.ByDefault(12), testDictionary()) }
+func textOf(s string) element {
+	return newElementText([]string{s}, font.ByDefault(12), testDictionary())
+}
 
 func dimString(d geom.XDimension2D) string { return fmt.Sprintf("[%v,%v]", d.Width(), d.Height()) }
 

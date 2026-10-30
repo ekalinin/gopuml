@@ -285,6 +285,10 @@ type elementImage struct {
 }
 
 func (e *elementImage) preferredDimension(font.StringBounder, float64, float64) geom.XDimension2D {
+	if len(e.img) == 0 {
+		// An image without rows throws, as List.get.
+		uml.ThrowIndexOutOfBounds(0, 0)
+	}
 	return geom.NewXDimension2D(float64(len(utf16.Encode([]rune(e.img[0])))), float64(len(e.img)))
 }
 
