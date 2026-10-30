@@ -30,6 +30,5 @@
 // layout always reports dot as not found.
 //
 // Not ported yet, because only diagram types of later changes use them:
-// the images of Chen diagrams and the Kermor layout pragma; they panic with
-// "not ported yet".
+// the Kermor layout pragma; it panics with "not ported yet".
 package svek

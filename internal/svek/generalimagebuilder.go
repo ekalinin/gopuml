@@ -11,9 +11,8 @@ import (
 )
 
 // createEntityImageBlock is GeneralImageBuilder.createEntityImageBlock: the
-// image of a leaf, by its type. The images of the entities that only the
-// diagram types not ported yet use (Chen diagrams...) panic with "not
-// ported yet".
+// image of a leaf, by its type. The images that are not ported yet panic
+// with "not ported yet".
 func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bool, portionShower PortionShower,
 	bibliotekon *Bibliotekon, graphvizVersion dot.GraphvizVersion, links []*abel.Link) klimt.IEntityImage {
 	if leaf.IsRemoved() {
@@ -91,9 +90,14 @@ func createEntityImageBlock(leaf *abel.Entity, isHideEmptyDescriptionForState bo
 		return newEntityImagePseudoState(leaf, "H*", "history", "deepHistory")
 	case leafType == abel.LeafTypeTips:
 		return newEntityImageTips(leaf, bibliotekon)
-	case leafType == abel.LeafTypeChenEntity, leafType == abel.LeafTypeChenRelationship,
-		leafType == abel.LeafTypeChenAttribute, leafType == abel.LeafTypeChenCircle:
-		notPorted("EntityImageChen")
+	case leafType == abel.LeafTypeChenEntity:
+		return newEntityImageChenEntity(leaf)
+	case leafType == abel.LeafTypeChenRelationship:
+		return newEntityImageChenRelationship(leaf)
+	case leafType == abel.LeafTypeChenAttribute:
+		return newEntityImageChenAttribute(leaf)
+	case leafType == abel.LeafTypeChenCircle:
+		return newEntityImageChenCircle(leaf)
 	case leafType == abel.LeafTypeDomain || leafType == abel.LeafTypeRequirement:
 		return newEntityImageProblemFrames(leaf)
 	default:
