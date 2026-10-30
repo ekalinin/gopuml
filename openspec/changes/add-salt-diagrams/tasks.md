@@ -14,7 +14,7 @@
 
 ## 3. Tokenizer and positioner
 
-- [ ] 3.1 Create `internal/salt` with its `doc.go`, and port `DataSource`, `DataSourceImpl`, `Terminated`, `Terminator`, `Cell` and `Positionner2` into `datasource.go` and `positionner.go` (design D5, D8). Verify with unit tests: the tokens and terminators of `Login | "me"` (`Login` NEWCOL, `"me"` NEWLINE), of `{# a | b }` (`{#`, `a`, `b`, `}`), of `{T#` (`{` NEWCOL, `T#`), of `{SI`, `{S-` and `{S`, of `{* File | Edit` and of `[[http://x.com\{tooltip\}]]` (one token with literal braces), of `3\|4` (one token `3|4`), the empty tokens skipped, `peek` past the end panicking with `java.lang.IndexOutOfBoundsException`, and `Positionner2` with two rows, a `*` merge (the cell spans two columns) and the number of rows and columns
+- [x] 3.1 Create `internal/salt` with its `doc.go`, and port `DataSource`, `DataSourceImpl`, `Terminated`, `Terminator`, `Cell` and `Positionner2` into `datasource.go` and `positionner.go` (design D5, D8). Verify with unit tests: the tokens and terminators of `Login | "me"` (`Login` NEWCOL, `"me"` NEWLINE), of `{# a | b }` (`{#`, `a`, `b`, `}`), of `{T#` (`{` NEWCOL, `T#`), of `{SI`, `{S-` and `{S`, of `{* File | Edit` and of `[[http://x.com\{tooltip\}]]` (one token with literal braces), of `3\|4` (one token `3|4`), the empty tokens skipped, `peek` past the end panicking with `java.lang.IndexOutOfBoundsException`, and `Positionner2` with two rows, a `*` merge (the cell spans two columns) and the number of rows and columns
 
 ## 4. Elements
 
