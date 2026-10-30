@@ -57,7 +57,7 @@ The system SHALL render `@startsalt` ... `@endsalt` blocks as upstream's salt di
 
 ### Requirement: Widgets
 
-The system SHALL read each cell of a group as upstream does, trying in this order: a menu (`{*`), a tree (`{` then `T`), tabs (`{/`), a separator, a text field (a cell that starts and ends with `"`), a checked checkbox (`[X]` then its label), an unchecked checkbox (`[]` or `[ ]` then its label), a button (a cell that starts with `[` and ends with `]`, but not with `[[`), a droplist (a cell that starts and ends with `^`), a checked radio button (`(X)` then its label), an unchecked radio button (`()` or `( )` then its label), a pixel image, a reused image (`<<name>>`), plain text for any other cell that does not start with `{` or `}`, and a nested group, a scroll area or a border layout otherwise. The labels SHALL be creole text, as upstream draws them: bold, italics, icons (`<&name>`), sprites (`<$name>`) and links (`[[url label]]`). `\n` in a cell SHALL be drawn as is. Buttons, text fields and droplists SHALL be at least 8 pixels wide per character of their text, spaces included, where an icon counts as two characters and a creole tag as none, as upstream counts them.
+The system SHALL read each cell of a group as upstream does, trying in this order: a menu (`{*`), a tree (`{` then `T`), tabs (`{/`), a separator, a text field (a cell that starts and ends with `"`), a checked checkbox (`[X]` then its label), an unchecked checkbox (`[]` or `[ ]` then its label), a button (a cell that starts with `[` and ends with `]`, but not with `[[`), a droplist (a cell that starts and ends with `^`), a checked radio button (`(X)` then its label), an unchecked radio button (`()` or `( )` then its label), a pixel image, a reused image (`<<name>>`), plain text for any other cell that does not start with `{` or `}`, and a nested group, a scroll area or a border layout otherwise. The labels SHALL be creole text, as upstream draws them: bold, italics, sprites (`<$name>`) and links (`[[url label]]`), with OpenIconic references (`<&name>`) drawn as the styling capability requires. `\n` in a cell SHALL be drawn as is. Buttons, text fields and droplists SHALL be at least 8 pixels wide per character of their text, spaces included, where an icon counts as two characters and a creole tag as none, as upstream counts them.
 
 #### Scenario: Widgets
 
@@ -71,8 +71,8 @@ The system SHALL read each cell of a group as upstream does, trying in this orde
 
 #### Scenario: Creole in a cell
 
-- **WHEN** a group contains `<b>Bold</b> | <&person> user | [[http://plantuml.com PlantUML]]`
-- **THEN** `Bold` is drawn in bold, `user` after the person icon, and `PlantUML` as a link to `http://plantuml.com`
+- **WHEN** a group contains `<b>Bold</b> | <i>Italic</i> | [[http://plantuml.com PlantUML]]`
+- **THEN** `Bold` is drawn in bold, `Italic` in italics, and `PlantUML` as a link to `http://plantuml.com`
 
 #### Scenario: Line break in a cell
 

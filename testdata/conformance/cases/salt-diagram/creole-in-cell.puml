@@ -8,6 +8,6 @@ scenarios:
 ---
 @startsalt
 {
-<b>Bold</b> | <&person> user | [[http://plantuml.com PlantUML]]
+<b>Bold</b> | <i>Italic</i> | [[http://plantuml.com PlantUML]]
 }
 @endsalt

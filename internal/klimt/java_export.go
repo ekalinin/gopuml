@@ -30,3 +30,7 @@ func JavaTokenize(s, delims string) []string { return javaTokenize(s, delims) }
 // JavaTokenizeWithDelims is java.util.StringTokenizer(s, delims, true): the
 // runs of non-delimiters and each delimiter as its own token.
 func JavaTokenizeWithDelims(s, delims string) []string { return javaTokenizeWithDelims(s, delims) }
+
+// JavaSplit is Java's String.split(regex) for a literal, non-empty
+// separator: trailing empty strings are removed.
+func JavaSplit(s, sep string) []string { return javaSplit(s, sep) }
