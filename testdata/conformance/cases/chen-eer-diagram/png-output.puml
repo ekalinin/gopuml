@@ -1,0 +1,16 @@
+---
+id: chen-eer-diagram/png-output
+family: chen
+type: chen_eer
+formats: [svg, png]
+scenarios:
+  - "chen-eer-diagram: PNG Chen diagram"
+---
+@startchen
+entity CUSTOMER {
+  Number <<key>>
+}
+relationship RENTED_TO {
+}
+RENTED_TO -1- CUSTOMER
+@endchen

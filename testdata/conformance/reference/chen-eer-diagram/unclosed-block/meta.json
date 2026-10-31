@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/unclosed-block",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(2 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 83, "height": 144, "status": 0}]}
+  ]
+}

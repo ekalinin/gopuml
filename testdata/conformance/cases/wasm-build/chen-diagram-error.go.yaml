@@ -1,0 +1,6 @@
+id: wasm-build/chen-diagram-error
+scenarios:
+  - "wasm-build: Chen diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmChenDiagram
+why: Upstream has no Graphviz-free WASM build; the error is specific to this implementation.

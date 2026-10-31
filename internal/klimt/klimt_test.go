@@ -646,10 +646,6 @@ func TestNotPortedPathsPanic(t *testing.T) {
 	if SpriteImageFromInternal("nothing") != nil {
 		t.Error("unknown sprites are nil")
 	}
-	_, msg = expectPanic(t, func() { NewTextBlockInEllipse(raw(10, "x"), fakeBounder{}) })
-	if !strings.Contains(msg, "Footprint") {
-		t.Errorf("message %q", msg)
-	}
 }
 
 func TestJavaHelpers(t *testing.T) {

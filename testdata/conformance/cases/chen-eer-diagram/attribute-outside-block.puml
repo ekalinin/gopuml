@@ -1,0 +1,13 @@
+---
+id: chen-eer-diagram/attribute-outside-block
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Attribute outside a block"
+---
+@startchen
+entity A {
+}
+Name
+@endchen

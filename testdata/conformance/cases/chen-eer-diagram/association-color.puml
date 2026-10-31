@@ -1,0 +1,15 @@
+---
+id: chen-eer-diagram/association-color
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Association color"
+---
+@startchen
+entity PERSON {
+}
+relationship OWNS {
+}
+OWNS -1- PERSON #lime
+@endchen

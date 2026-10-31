@@ -1,0 +1,14 @@
+---
+id: chen-eer-diagram/line-read-as-attribute
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Line read as an attribute"
+---
+@startchen
+entity A {
+  class Foo
+  Born : DATE
+}
+@endchen

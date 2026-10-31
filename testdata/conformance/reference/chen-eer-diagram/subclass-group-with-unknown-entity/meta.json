@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/subclass-group-with-unknown-entity",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 6, "messages": ["No such entity: C (Assumed diagram type: chen_eer)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 183, "status": 400}]}
+  ]
+}

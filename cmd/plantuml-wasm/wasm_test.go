@@ -358,3 +358,15 @@ func TestWasmSaltDiagram(t *testing.T) {
 		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
 	}
 }
+
+func TestWasmChenDiagram(t *testing.T) {
+	// Spec scenario "Chen diagram in WASM".
+	r := renderInNode(t, "@startchen\nentity CUSTOMER {\n  Number <<key>>\n}\nrelationship RENTED_TO {\n}\n"+
+		"RENTED_TO -1- CUSTOMER\n@endchen\n", map[string]any{"format": "svg"})
+	if r.Error == nil {
+		t.Fatal("Chen diagram rendered without graph layout")
+	}
+	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
+		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
+	}
+}

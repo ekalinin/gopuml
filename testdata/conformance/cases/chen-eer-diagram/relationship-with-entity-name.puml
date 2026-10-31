@@ -1,0 +1,14 @@
+---
+id: chen-eer-diagram/relationship-with-entity-name
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Relationship with the name of an entity"
+---
+@startchen
+entity A {
+}
+relationship A {
+}
+@endchen

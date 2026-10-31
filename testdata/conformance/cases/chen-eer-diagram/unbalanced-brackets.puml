@@ -1,0 +1,13 @@
+---
+id: chen-eer-diagram/unbalanced-brackets
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Unbalanced brackets"
+---
+@startchen
+entity A {
+}
+}
+@endchen

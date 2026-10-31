@@ -1,0 +1,16 @@
+---
+id: chen-eer-diagram/composite-attribute
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Composite attribute"
+---
+@startchen
+entity DIRECTOR {
+  Name {
+    Fname
+    Lname
+  }
+}
+@endchen

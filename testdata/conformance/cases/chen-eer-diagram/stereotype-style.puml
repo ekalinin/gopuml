@@ -1,0 +1,21 @@
+---
+id: chen-eer-diagram/stereotype-style
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Stereotype style"
+---
+@startchen
+<style>
+chenEerDiagram {
+  .hot {
+    BackGroundColor #FF0000
+  }
+}
+</style>
+entity H <<hot>> {
+}
+entity A {
+}
+@endchen

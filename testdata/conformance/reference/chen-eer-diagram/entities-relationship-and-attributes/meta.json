@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/entities-relationship-and-attributes",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(6 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 270, "height": 365, "status": 0}]}
+  ]
+}

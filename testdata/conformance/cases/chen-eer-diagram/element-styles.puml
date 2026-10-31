@@ -1,0 +1,35 @@
+---
+id: chen-eer-diagram/element-styles
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Element styles"
+---
+@startchen
+<style>
+chenEerDiagram {
+  chenEntity {
+    BackGroundColor #FFFF00
+  }
+  chenRelationship {
+    BackGroundColor #00FFFF
+  }
+  chenAttribute {
+    LineColor #0000FF
+  }
+  circle {
+    BackGroundColor #FF00FF
+  }
+}
+</style>
+entity A {
+  x
+}
+relationship R {
+}
+entity S {
+}
+R -1- A
+A ->- d { S }
+@endchen

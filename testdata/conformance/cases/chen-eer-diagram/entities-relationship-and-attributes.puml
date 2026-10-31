@@ -1,0 +1,21 @@
+---
+id: chen-eer-diagram/entities-relationship-and-attributes
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Entities, relationship and attributes"
+---
+@startchen
+entity CUSTOMER {
+  Number
+}
+entity MOVIE {
+  Code
+}
+relationship RENTED_TO {
+  Date
+}
+RENTED_TO -1- CUSTOMER
+RENTED_TO -N- MOVIE
+@endchen

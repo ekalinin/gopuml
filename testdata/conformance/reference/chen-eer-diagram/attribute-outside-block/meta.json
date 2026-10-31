@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/attribute-outside-block",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 4, "messages": ["Attribute must be inside an entity, relationship or another attribute (Assumed diagram type: chen_eer)"]}, "renders": [{"file": "block0-page0.svg", "width": 833, "height": 151, "status": 400}]}
+  ]
+}

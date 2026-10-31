@@ -1,0 +1,28 @@
+---
+id: chen-eer-diagram/title-and-legend
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Title and legend"
+---
+@startchen
+<style>
+activityDiagram {
+  legend {
+    BackGroundColor #FFFF00
+  }
+}
+chenEerDiagram {
+  legend {
+    BackGroundColor #00FFFF
+  }
+}
+</style>
+title Movies
+entity A {
+}
+legend
+Rentals
+endlegend
+@endchen

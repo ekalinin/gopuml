@@ -1,0 +1,16 @@
+---
+id: chen-eer-diagram/same-attribute-in-two-entities
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Same attribute in two entities"
+---
+@startchen
+entity DIRECTOR {
+  Number
+}
+entity CUSTOMER {
+  Number
+}
+@endchen

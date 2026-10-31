@@ -87,3 +87,22 @@ func TestRenderSaltDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderChenDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT Chen diagram": upstream draws it with its generic
+	// text output, this release reports that the format is not supported for
+	// the type.
+	src := "@startchen\nentity CUSTOMER {\n}\n@endchen\n"
+	for _, format := range []Format{TXT, UTXT} {
+		res, err := Render(context.Background(), src, &Options{Format: format})
+		if !errors.Is(err, ErrUnsupportedFormat) {
+			t.Fatalf("%v: err = %v, want ErrUnsupportedFormat", format, err)
+		}
+		if msg := err.Error(); !strings.Contains(msg, "TXT output is not supported for chen_eer diagrams") {
+			t.Errorf("%v: message %q does not name the format and the diagram type", format, msg)
+		}
+		if res != nil {
+			t.Errorf("%v: got a result %+v, want none", format, res)
+		}
+	}
+}

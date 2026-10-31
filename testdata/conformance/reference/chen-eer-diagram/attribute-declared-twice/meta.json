@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/attribute-declared-twice",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 4, "messages": ["Attribute already exists (Assumed diagram type: chen_eer)"]}, "renders": [{"file": "block0-page0.svg", "width": 483, "height": 151, "status": 400}]}
+  ]
+}

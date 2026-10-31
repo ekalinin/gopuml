@@ -51,7 +51,8 @@ public class FirstTokensGolden {
 			"net.sourceforge.plantuml.wbs.WBSDiagramFactory",
 			"net.sourceforge.plantuml.packetdiag.PacketDiagramFactory",
 			"net.sourceforge.plantuml.gantt.GanttDiagramFactory",
-			"net.sourceforge.plantuml.timingdiagram.TimingDiagramFactory" };
+			"net.sourceforge.plantuml.timingdiagram.TimingDiagramFactory",
+			"net.sourceforge.plantuml.cheneer.ChenEerDiagramFactory" };
 
 	public static void main(String[] args) throws Exception {
 		final List<String> out = new ArrayList<>();

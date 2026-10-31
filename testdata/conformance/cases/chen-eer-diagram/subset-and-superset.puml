@@ -1,0 +1,18 @@
+---
+id: chen-eer-diagram/subset-and-superset
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Subset and superset"
+---
+@startchen
+entity CUSTOMER {
+}
+entity PARENT {
+}
+entity MEMBER {
+}
+CUSTOMER ->- PARENT
+MEMBER -<- CUSTOMER
+@endchen

@@ -1,0 +1,15 @@
+---
+id: chen-eer-diagram/total-participation
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Total participation"
+---
+@startchen
+entity CHILD {
+}
+relationship PARENT_OF {
+}
+PARENT_OF =N= CHILD
+@endchen

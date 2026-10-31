@@ -1,0 +1,13 @@
+---
+id: chen-eer-diagram/association-with-unknown-entity
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Association with an unknown entity"
+---
+@startchen
+entity A {
+}
+A -1- B
+@endchen

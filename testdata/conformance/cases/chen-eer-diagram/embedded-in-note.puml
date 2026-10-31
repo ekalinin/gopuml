@@ -1,0 +1,21 @@
+---
+id: chen-eer-diagram/embedded-in-note
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Chen diagram in a note"
+---
+@startuml
+Alice -> Bob : hello
+note right
+{{chen
+entity CUSTOMER {
+  Number <<key>>
+}
+entity MOVIE {
+}
+CUSTOMER -N- MOVIE
+}}
+end note
+@enduml

@@ -1,0 +1,18 @@
+---
+id: chen-eer-diagram/cardinalities
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Cardinalities"
+---
+@startchen
+entity CUSTOMER {
+}
+entity DIRECTOR {
+}
+relationship RENTED_TO {
+}
+RENTED_TO -1- CUSTOMER
+RENTED_TO -(N, M)- DIRECTOR
+@endchen

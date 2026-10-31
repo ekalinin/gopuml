@@ -1,0 +1,12 @@
+---
+id: diagram-source/chen-detected
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "diagram-source: Chen family"
+---
+@startchen
+entity A {
+}
+@endchen

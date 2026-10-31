@@ -1,0 +1,6 @@
+{
+  "id": "chen-eer-diagram/union",
+  "blocks": [
+    {"index": 0, "name": null, "type": "CHEN_EER", "description": "(4 entities)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 246, "height": 298, "status": 0}]}
+  ]
+}

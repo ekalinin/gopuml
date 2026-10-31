@@ -1,0 +1,15 @@
+---
+id: chen-eer-diagram/key-multi-derived-attributes
+family: chen
+type: chen_eer
+formats: [svg]
+scenarios:
+  - "chen-eer-diagram: Key, multi-valued and derived attributes"
+---
+@startchen
+entity CUSTOMER {
+  Number <<key>>
+  Name <<multi>>
+  Bonus <<derived>>
+}
+@endchen
