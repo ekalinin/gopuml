@@ -72,21 +72,21 @@ Download the archive of your system and `checksums.txt` from the release page,
 or with the GitHub CLI:
 
 ```sh
-gh release download v0.2.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
+gh release download v0.3.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt
 ```
 
 or with `curl`:
 
 ```sh
-curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.2.0/gopuml_0.2.0_darwin_arm64.tar.gz
-curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.2.0/checksums.txt
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.3.0/gopuml_0.3.0_darwin_arm64.tar.gz
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.3.0/checksums.txt
 ```
 
 then check and unpack it:
 
 ```sh
 shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
-tar xzf gopuml_0.2.0_darwin_arm64.tar.gz plantuml
+tar xzf gopuml_0.3.0_darwin_arm64.tar.gz plantuml
 ./plantuml --version
 ```
 
@@ -100,7 +100,7 @@ xattr -d com.apple.quarantine plantuml
 With Go 1.26 or later, the command line can also be installed from source:
 
 ```sh
-go install github.com/ekalinin/gopuml/cmd/plantuml@v0.2.0
+go install github.com/ekalinin/gopuml/cmd/plantuml@v0.3.0
 ```
 
 ## Building
