@@ -39,7 +39,8 @@ import (
 
 // types are the supported diagram types, as the type field of the curated
 // cases names them, in the order of the table.
-var types = []string{"sequence", "class", "description", "state", "activity"}
+var types = []string{"sequence", "class", "description", "state", "activity",
+	"packet", "gantt", "mindmap", "wbs", "timing", "salt", "chen_eer"}
 
 // startDiagram is the small diagram of the start time.
 const startDiagram = "@startuml\nAlice -> Bob : hello\nBob --> Alice : ok\n@enduml\n"
