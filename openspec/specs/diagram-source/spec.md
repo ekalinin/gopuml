@@ -56,7 +56,7 @@ The system SHALL expose the text that follows the start tag on the start line as
 
 ### Requirement: Diagram family detection
 
-The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs` and `salt`. Every other start tag that PlantUML v1.2026.9 recognizes (for example `@startjson`, `@startnwdiag`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
+The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs`, `salt` and `chen`. Every other start tag that PlantUML v1.2026.9 recognizes (for example `@startjson`, `@startnwdiag`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
 
 #### Scenario: Supported family
 
@@ -87,6 +87,11 @@ The system SHALL select the diagram family from the start tag. The supported fam
 
 - **WHEN** a block starts with `@startsalt` and contains `{`, `[OK]` and `}`
 - **THEN** the system does not report that salt diagrams are not supported yet, and the diagram type is salt
+
+#### Scenario: Chen family
+
+- **WHEN** a block starts with `@startchen` and contains `entity A {` and `}`
+- **THEN** the system does not report that chen_eer diagrams are not supported yet, and the diagram type is chen_eer
 
 #### Scenario: Recognized but unsupported family
 
