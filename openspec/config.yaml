@@ -11,13 +11,25 @@ schema: spec-driven
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+rules:
+  proposal:
+    - "In Why, name the issue the change closes (`issue #N`) and the conformance cases that fail or are reported as not supported yet today."
+    - "End What Changes with an `Out of scope:` list of the upstream behavior the change leaves out."
+    - "Group Impact under the bold labels that apply: **Code:** (the internal packages), **Runtime dependency:**, **Conformance:** (cases, references, report counts, golden dumps), **Documentation:** (README.md, site/index.html), **Compatibility:**."
+  specs:
+    - "Specify the behavior of upstream PlantUML v1.2026.9. Where it is surprising, keep it and say `as upstream does`."
+    - "In WHEN, quote the diagram source lines in backticks. In THEN, state what is drawn, or the failing line and upstream's message with its `(Assumed diagram type: <type>)` suffix."
+    - "Conformance cases reference scenarios by name (`<capability>: <scenario>`), so a MODIFIED requirement keeps the names of its scenarios."
+  design:
+    - "In Context, map the upstream classes the change ports to what Go already has (package and name) and to what is still missing."
+    - "Number the decisions `### D1. <Title>`, so that tasks cite them as `(design D<n>)`. Give a rejected option as an `Alternative:` paragraph."
+    - "For a port, decide the package layout (the Go file of each upstream class) and the port order, cases first."
+    - "In Non-Goals, name the upstream code left unported and why."
+  tasks:
+    - "When the change adds or changes rendered output, group 1 is `Conformance cases first`. It adds a curated case under `testdata/conformance/cases/` for each scenario compared with upstream, renders their references with `make reference`, adds a `.go.yaml` case for each scenario that cannot be compared, and regenerates the golden dumps when an `@startuml` case is added or changed. `TestScenarioCoverage` reads the delta specs of active changes, so `make test` passes from the first task on."
+    - "Cite the design decision of each task as `(design D<n>)`."
+    - "Verify with concrete inputs and outputs. Unit tests name the diagram source and the expected result. Rendering changes pass `make conformance REQUIRE=all GO_IN_IMAGE=1` with 0 failures, no known differences that now pass, and the results of the other diagram types unchanged."
+    - "End with README.md and site/index.html (the README counts follow `conformance-report.md`), then `make lint` and `make provenance`, then pushing the branch with the user's approval and opening a pull request whose `test` and `conformance` jobs pass, then `openspec validate <change> --strict`."
 
 # Per-operation guidance (optional)
 # Add advisory guidance for how apply and archive work should be conducted.
