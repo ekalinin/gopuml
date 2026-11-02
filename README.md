@@ -235,7 +235,24 @@ make conformance REQUIRE=all GO_IN_IMAGE=1
 `GO_IN_IMAGE=1` renders the outputs of this implementation in the reference
 image, so that both implementations use the same Graphviz. On arm64 hosts,
 `make conformance` renders them natively with the host's Graphviz, so the
-results there are indicative only.
+results there are indicative only. To get the results of CI there, keep this
+implementation native and run only `dot` in the reference image, through a
+wrapper outside the repository that `GRAPHVIZ_DOT` names. The wrapper pins
+`DOCKER_CONFIG`, because the CLI cases run with another `HOME`:
+
+```sh
+mkdir -p /tmp/refdot
+cat > /tmp/refdot/dot <<EOF
+#!/bin/sh
+export DOCKER_CONFIG="$HOME/.docker"
+exec docker run --rm -i --platform linux/amd64 plantuml-go-reference dot "\$@"
+EOF
+chmod +x /tmp/refdot/dot
+make reference
+GRAPHVIZ_DOT=/tmp/refdot/dot make conformance REQUIRE=all
+```
+
+Every `dot` call starts a container, so a full run takes several minutes.
 
 ## License
 
