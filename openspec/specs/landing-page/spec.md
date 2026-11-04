@@ -73,8 +73,8 @@ The page SHALL provide a playground: an editor whose source is rendered as SVG i
 
 #### Scenario: Graph-based diagram
 
-- **WHEN** a visitor renders a class diagram
-- **THEN** the playground shows the error of the WASM build that graph layout is not available, together with the error image
+- **WHEN** a visitor types `@startuml`, `class A`, `class B`, `A --> B` and `@enduml` in the editor
+- **THEN** the playground shows the rendered class diagram as SVG, with `B` below `A` and an arrow from `A` to `B`
 
 #### Scenario: Example diagram
 

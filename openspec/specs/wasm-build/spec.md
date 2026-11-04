@@ -26,32 +26,32 @@ The WASM build SHALL expose a JavaScript function that takes source text and opt
 
 ### Requirement: Diagram support without Graphviz
 
-In the WASM build, diagram types with a built-in layout (sequence, activity in the new syntax, packet, gantt, mindmap, WBS, timing and salt) SHALL render fully. Graph-based diagrams (class, description, state, legacy activity and Chen EER) SHALL return the Graphviz-not-available error until the pure Go layout engine is added.
+In the WASM build, every supported diagram type SHALL render fully: the diagram types with a built-in layout (sequence, activity in the new syntax, packet, gantt, mindmap, WBS, timing and salt), and the graph-based diagrams (class, description, state, legacy activity and Chen EER), which the built-in layout engine (gogv) lays out as in the native build without a named `dot`.
 
 #### Scenario: Class diagram in WASM
 
-- **WHEN** the WASM render function is called with a class diagram
-- **THEN** it returns an error stating that graph layout is not available in this build, together with the error image
+- **WHEN** the WASM render function is called with a class diagram with `class A`, `class B` and `A --> B`, and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 #### Scenario: Description diagram in WASM
 
-- **WHEN** the WASM render function is called with a deployment diagram
-- **THEN** it returns an error stating that graph layout is not available in this build, together with the error image
+- **WHEN** the WASM render function is called with a deployment diagram with `node Server`, `database Orders` and `Server --> Orders`, and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 #### Scenario: State diagram in WASM
 
-- **WHEN** the WASM render function is called with a state diagram
-- **THEN** it returns an error stating that graph layout is not available in this build, together with the error image
+- **WHEN** the WASM render function is called with a state diagram with `[*] --> Idle`, `state Active {`, `[*] --> Running`, `}` and `Idle --> Active`, and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 #### Scenario: Legacy activity diagram in WASM
 
-- **WHEN** the WASM render function is called with a legacy activity diagram
-- **THEN** it returns an error stating that graph layout is not available in this build, together with the error image
+- **WHEN** the WASM render function is called with a legacy activity diagram with `(*) --> "First step"` and `"First step" --> (*)`, and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 #### Scenario: Chen diagram in WASM
 
-- **WHEN** the WASM render function is called with a Chen EER diagram
-- **THEN** it returns an error stating that graph layout is not available in this build, together with the error image
+- **WHEN** the WASM render function is called with a Chen EER diagram with `entity CUSTOMER {`, `Number <<key>>`, `}`, `relationship RENTED_TO {`, `}` and `RENTED_TO -1- CUSTOMER`, and format `svg`
+- **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
 
 #### Scenario: Packet diagram in WASM
 
