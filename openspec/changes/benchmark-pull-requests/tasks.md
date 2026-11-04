@@ -25,6 +25,6 @@
 ## 5. Documentation and pull request
 
 - [x] 5.1 Add a "Performance check" section to README.md after "Conformance suite": the `benchmark` job compares each pull request with the commit it merges into, the table is in the run summary and attached as `benchmark-report`, `B/op` or `allocs/op` more than 5% above the base fails it, a deliberate increase is explained in the pull request (design D6), and `make bench-compare BASE=main` gives the same table locally. site/index.html does not change. Verify that `TestLandingPage` and `TestReleaseNotes` pass. Commit as `docs(readme): describe the performance check`
-- [ ] 5.2 Run `make lint test provenance wasm`. Verify that all pass
+- [x] 5.2 Run `make lint test provenance wasm`. Verify that all pass
 - [ ] 5.3 With the user's approval, push the branch and open a pull request. Verify that its `test`, `conformance` and `benchmark` jobs pass, and that the run summary of `benchmark` shows a table where every type has no base result
-- [ ] 5.4 Run `openspec validate benchmark-pull-requests --strict`. Verify that it passes
+- [x] 5.4 Run `openspec validate benchmark-pull-requests --strict`. Verify that it passes
