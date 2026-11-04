@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Lays out graph-based diagrams (class diagrams in this change) with the external Graphviz `dot` program, as PlantUML does by default, including how `dot` is found, timeouts and failure reporting.
+Lays out graph-based diagrams with the built-in layout engine gogv, a Go implementation of Graphviz `dot`, or with the external Graphviz `dot` program when one is named, including how a named `dot` is found, timeouts and failure reporting.
 
 ## Requirements
 
