@@ -2,5 +2,5 @@ id: preprocessor/layout-pragma-elk-render
 scenarios:
   - "preprocessor: Layout pragma for an unsupported engine"
 package: internal/svek
-test: TestSmetanaPragmaFallsBackToDot
+test: TestSmetanaPragmaUsesEngineOfRender
 why: The reference jar has no ELK classes and produces a crash report for svg/png, while the spec requires rendering with the default layout engine without an error.

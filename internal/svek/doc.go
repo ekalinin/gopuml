@@ -2,7 +2,7 @@
 // Provenance: original
 
 // Package svek lays out graph-based diagrams (class and object diagrams in
-// this release) with Graphviz dot and draws them, as upstream's svek
+// this release) with a dot layout engine and draws them, as upstream's svek
 // package: it measures the image of each entity, writes the DOT graph
 // (DotStringFactory, with a subgraph per group and the HTML tables that
 // reserve the room of labels and quantifiers), has a layout engine compute
@@ -18,16 +18,16 @@
 // cycle and stays separate.
 //
 // The layout runs through dot.Engine (design D7): Layout.Engine, or the
-// dotexec engine running the dot executable found with the explicit path,
-// GRAPHVIZ_DOT, PATH and the standard locations, with a timeout (the render
-// context's DotPath and DotTimeout). The engine is the only part that knows
-// about the dot program, so a pure Go engine can replace it. A missing dot
-// gives upstream's error image ("Cannot find Graphviz") together with a
-// *dot.NotFoundError; a dot run that fails or times out gives an image that
-// shows dot's message with its error (design D16); cancelling the context
-// stops dot. The smetana, elk and vizjs layout pragmas are laid out with
-// dot (design D16). In the WebAssembly build, programs cannot run and the
-// layout always reports dot as not found.
+// engine that dot.Config.NewEngine chooses with the render context's
+// DotPath and DotTimeout: the dotexec engine running the dot that the
+// explicit path or GRAPHVIZ_DOT names, otherwise the built-in engine gogv,
+// a Go implementation of dot. A missing named dot gives upstream's error
+// image ("Cannot find Graphviz") together with a *dot.NotFoundError; a
+// layout that fails or times out gives an image that shows the engine's
+// message with its error (design D16); cancelling the context stops the
+// layout. The smetana, elk and vizjs layout pragmas are laid out with the
+// engine of the render (design D16). In the WebAssembly build, programs
+// cannot run and the layout always uses gogv.
 //
 // Not ported yet, because only diagram types of later changes use them:
 // the Kermor layout pragma; it panics with "not ported yet".

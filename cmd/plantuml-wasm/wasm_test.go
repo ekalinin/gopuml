@@ -220,56 +220,40 @@ func TestWasmHostSuppliedArchive(t *testing.T) {
 	}
 }
 
-func TestWasmClassDiagramError(t *testing.T) {
+// renderMatchesNative renders a graph-based diagram in the WASM build and
+// checks that the result equals the native library's, both laid out by the
+// built-in engine (spec wasm-build "Diagram support without Graphviz").
+func renderMatchesNative(t *testing.T, src string) {
+	t.Helper()
+	t.Setenv("GRAPHVIZ_DOT", "")
+	native, err := gopuml.Render(context.Background(), src, &gopuml.Options{SecurityProfile: "SANDBOX"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Error != nil || r.Data == nil || *r.Data != string(native.Data) || r.Width != native.Width || r.Height != native.Height {
+		t.Errorf("WASM result differs from native: error %+v, %dx%d", r.Error, r.Width, r.Height)
+	}
+}
+
+func TestWasmClassDiagram(t *testing.T) {
 	// Spec scenario "Class diagram in WASM".
-	r := renderInNode(t, "@startuml\nclass A\nclass B\nA --> B\n@enduml\n", map[string]any{"format": "svg"})
-	if r.Error == nil {
-		t.Fatal("class diagram rendered without graph layout")
-	}
-	if r.Error.Kind == "unsupported-diagram" || r.Error.Kind == "syntax" {
-		// Until the class factory exists, the sequence parser reports a
-		// syntax error for class syntax.
-		t.Skip("class diagrams are not parsed yet (task 12.5)")
-	}
-	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
-		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
-	}
+	renderMatchesNative(t, "@startuml\nclass A\nclass B\nA --> B\n@enduml\n")
 }
 
 func TestWasmDescriptionDiagram(t *testing.T) {
 	// Spec scenario "Description diagram in WASM".
-	r := renderInNode(t, "@startuml\nnode Server\ndatabase Orders\nServer --> Orders\n@enduml\n",
-		map[string]any{"format": "svg"})
-	if r.Error == nil {
-		t.Fatal("description diagram rendered without graph layout")
-	}
-	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
-		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
-	}
+	renderMatchesNative(t, "@startuml\nnode Server\ndatabase Orders\nServer --> Orders\n@enduml\n")
 }
 
 func TestWasmStateDiagram(t *testing.T) {
 	// Spec scenario "State diagram in WASM".
-	r := renderInNode(t, "@startuml\n[*] --> Idle\nstate Active {\n[*] --> Running\n}\nIdle --> Active\n@enduml\n",
-		map[string]any{"format": "svg"})
-	if r.Error == nil {
-		t.Fatal("state diagram rendered without graph layout")
-	}
-	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
-		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
-	}
+	renderMatchesNative(t, "@startuml\n[*] --> Idle\nstate Active {\n[*] --> Running\n}\nIdle --> Active\n@enduml\n")
 }
 
 func TestWasmLegacyActivityDiagram(t *testing.T) {
 	// Spec scenario "Legacy activity diagram in WASM".
-	r := renderInNode(t, "@startuml\n(*) --> \"First step\"\n\"First step\" --> (*)\n@enduml\n",
-		map[string]any{"format": "svg"})
-	if r.Error == nil {
-		t.Fatal("legacy activity diagram rendered without graph layout")
-	}
-	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
-		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
-	}
+	renderMatchesNative(t, "@startuml\n(*) --> \"First step\"\n\"First step\" --> (*)\n@enduml\n")
 }
 
 func TestWasmPacketDiagram(t *testing.T) {
@@ -361,12 +345,6 @@ func TestWasmSaltDiagram(t *testing.T) {
 
 func TestWasmChenDiagram(t *testing.T) {
 	// Spec scenario "Chen diagram in WASM".
-	r := renderInNode(t, "@startchen\nentity CUSTOMER {\n  Number <<key>>\n}\nrelationship RENTED_TO {\n}\n"+
-		"RENTED_TO -1- CUSTOMER\n@endchen\n", map[string]any{"format": "svg"})
-	if r.Error == nil {
-		t.Fatal("Chen diagram rendered without graph layout")
-	}
-	if r.Error.Kind != "graph-layout-unavailable" || r.Error.Message != "graph layout is not available in this build" || r.Data == nil {
-		t.Errorf("error %+v, image present %v", r.Error, r.Data != nil)
-	}
+	renderMatchesNative(t, "@startchen\nentity CUSTOMER {\n  Number <<key>>\n}\nrelationship RENTED_TO {\n}\n"+
+		"RENTED_TO -1- CUSTOMER\n@endchen\n")
 }

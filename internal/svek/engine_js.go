@@ -6,6 +6,6 @@
 package svek
 
 // execSupported is false in the WebAssembly build: it cannot run
-// programs, so graph layouts are not available (wasm-build spec) until a
-// pure Go engine exists.
+// programs, so graphs are always laid out by the built-in engine gogv
+// (wasm-build spec).
 const execSupported = false

@@ -112,9 +112,6 @@ func result(res *gopuml.Result, err error) js.Value {
 		if se, ok := errors.AsType[*gopuml.SyntaxError](err); ok {
 			e["line"] = se.Line
 		}
-		if errors.Is(err, gopuml.ErrGraphvizNotFound) {
-			e["message"] = "graph layout is not available in this build"
-		}
 		out["error"] = e
 	}
 	return js.ValueOf(out)

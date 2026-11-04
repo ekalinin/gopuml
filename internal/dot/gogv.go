@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"runtime/debug"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/ekalinin/gogv"
@@ -90,8 +91,8 @@ func gogvVersionLine() string {
 
 // gogvVersion is the version of the gogv module in the build information,
 // without its leading "v", or "devel" when it is not there, as gogv's
-// `dot -V` writes it.
-func gogvVersion() string {
+// `dot -V` writes it. It is read once, as every layout asks for it.
+var gogvVersion = sync.OnceValue(func() string {
 	info, ok := debug.ReadBuildInfo()
 	if !ok {
 		return "devel"
@@ -108,4 +109,4 @@ func gogvVersion() string {
 		}
 	}
 	return "devel"
-}
+})
