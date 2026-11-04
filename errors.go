@@ -24,11 +24,13 @@ var (
 	ErrUnsupportedDiagram = errors.New("plantuml: diagram type not supported")
 	// ErrUnsupportedFormat reports a format a diagram type cannot produce.
 	ErrUnsupportedFormat = errors.New("plantuml: format not supported for this diagram")
-	// ErrGraphvizNotFound reports that the Graphviz dot program is missing.
+	// ErrGraphvizNotFound reports that the named Graphviz dot program is
+	// missing.
 	ErrGraphvizNotFound = errors.New("plantuml: Graphviz dot not found")
-	// ErrGraphvizTimeout reports a dot run stopped after the timeout.
+	// ErrGraphvizTimeout reports a layout, by dot or by gogv, stopped after
+	// the timeout.
 	ErrGraphvizTimeout = errors.New("plantuml: Graphviz dot timed out")
-	// ErrGraphvizFailed reports a dot run that failed.
+	// ErrGraphvizFailed reports a layout, by dot or by gogv, that failed.
 	ErrGraphvizFailed = errors.New("plantuml: Graphviz dot failed")
 	// ErrAccessDenied reports a file or URL the security profile does not
 	// allow.

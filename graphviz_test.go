@@ -6,6 +6,7 @@ package gopuml
 import (
 	"context"
 	"errors"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -92,6 +93,33 @@ func TestRenderCancelledContext(t *testing.T) {
 	}
 	if elapsed := time.Since(start); elapsed > 20*time.Second {
 		t.Errorf("dot was not stopped: the render took %s", elapsed)
+	}
+
+	// Without a named dot, the layout of the built-in engine is stopped
+	// too. Laying these 150 classes out takes seconds.
+	t.Setenv("GRAPHVIZ_DOT", "")
+	const n = 150
+	var src strings.Builder
+	src.WriteString("@startuml\n")
+	for i := range n {
+		fmt.Fprintf(&src, "class C%d\n", i)
+	}
+	for i := range n - 1 {
+		fmt.Fprintf(&src, "C%d --> C%d\n", i, i+1)
+	}
+	for i := range n {
+		fmt.Fprintf(&src, "C%d --> C%d\n", i, (i*7+3)%n)
+	}
+	src.WriteString("@enduml\n")
+	ctx, cancel = context.WithCancel(context.Background())
+	time.AfterFunc(500*time.Millisecond, cancel)
+	start = time.Now()
+	res, err = Render(ctx, src.String(), &Options{})
+	if !errors.Is(err, context.Canceled) || res != nil {
+		t.Fatalf("built-in engine: error %v, result %v; want context.Canceled", err, res)
+	}
+	if elapsed := time.Since(start); elapsed > 1500*time.Millisecond {
+		t.Errorf("the built-in layout was not stopped: the render took %s", elapsed)
 	}
 }
 

@@ -74,9 +74,12 @@ type Options struct {
 	// SecurityProfile is upstream's profile name, such as SANDBOX or
 	// INTERNET; empty means LEGACY.
 	SecurityProfile string
-	// DotPath is the Graphviz dot program; empty means it is searched for.
+	// DotPath is the Graphviz dot program that lays graphs out; empty means
+	// the one that GRAPHVIZ_DOT names, or the built-in engine gogv when it
+	// names none.
 	DotPath string
-	// DotTimeout stops dot after this duration; zero means 30 seconds.
+	// DotTimeout stops a layout, by dot or by gogv, after this duration;
+	// zero means 30 seconds.
 	DotTimeout time.Duration
 	// FS resolves includes and themes. When nil, the operating system's
 	// file system is used, subject to the security profile.
