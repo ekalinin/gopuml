@@ -44,6 +44,10 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
+          # The site builds only tools/site, so its Go cache would lack the
+          # modules; saving it under the key of go.sum would keep the full
+          # cache of the ci jobs from being saved.
+          cache: false
 
       - name: Assemble the site
         id: site
