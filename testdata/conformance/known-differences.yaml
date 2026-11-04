@@ -9,120 +9,156 @@
   reason: TXT output of activity diagrams is rejected in this release (output-formats spec); upstream draws it
   resolvedBy: add-class-activity-txt
 - id: vega/nonreg/group2712/down_direction
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2712/left_direction
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2712/reported_case
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2712/right_direction
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2903/left_to_right
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2903/nodesep_ranksep
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2903/reported_case
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2903/two_association_classes
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2903/without_association_class
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/all_visibilities
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/diamond_at_tail
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/icon_size_zero
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/left_to_right
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/reported_case
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/role_tail_only
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2904/role_without_visibility
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2917/smetana_hide_class
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2917/smetana_hide_state_node_label
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/group2917/smetana_hide_state_plain_edges
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/nonreg/warnings/skinparam_handwritten
   reason: the handwritten drawing (upstream's UGraphicHandwritten) is not ported, so the diagram is not drawn
 - id: vega/nonreg/yaml/theme-with-empty-style-block
   reason: the theme amiga is not bundled, for the license reasons given in NOTICE, so the preprocessor reports it before the diagram type
 - id: vega/state/composite-autarkic-simple
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/composite-non-autarkic-outgoing-only
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/composite-non-autarkic-start-end
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/composite-siblings-with-transition
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/composite-two-levels-nested
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/composite-two-levels-non-autarkic
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-composite-non-autarkic-sibling-link
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-composite-non-autarkic-start-end
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-dash-three-regions
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-dash-two-regions
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-empty-first-region
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-nested-inside-composite
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-pipe-three-regions
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-pipe-two-regions
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-pipe-with-nested-composite-region
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-region-nested-composite
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-top-level-root
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/concurrent-with-internal-transitions
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
 - id: vega/state/simple-states
-  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with dot (design D16)"
+  reason: "the case sets '!pragma layout smetana': upstream lays it out with its Smetana port, this release with gogv"
   resolvedBy: add-smetana-layout
+- id: chen-eer-diagram/entities-relationship-and-attributes
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the label nodes are in another order within their rank, so the drawing is 355 instead of 271 pixels wide"
+  resolvedBy: ekalinin/gogv#28
+- id: state-diagram/choice-fork-join
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the nodes around the labeled edges are up to 60 points away from Graphviz's, so the drawing is 321 instead of 293 pixels wide"
+  resolvedBy: ekalinin/gogv#28
+- id: state-diagram/history-style
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the rounded states are 4 to 14 points away from Graphviz's (SSIM 0.73)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/migration/ChenMovie_Test
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the order within the ranks around the labeled edges of the relationships differs (SSIM 0.79)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/migration/ChenMovieAlias_Test
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the same order difference as vega/migration/ChenMovie_Test, so the drawing is 1673 instead of 1489 pixels wide"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/migration/ChenMovieExtended_Test
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the same order difference as vega/migration/ChenMovie_Test, so the drawing is 1719 instead of 1528 pixels wide"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/nonreg/group2681/history_style_all_forms
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the same graph as state-diagram/history-style (SSIM 0.73)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/nonreg/simple/A0004
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: with a labeled flat edge and head and tail labels, the nodes are 4 points left of Graphviz's and the labels are placed differently (SSIM 0.85)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/nonreg/simple/ComponentExtraArrows_0001
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: Graphviz keeps more room for the labels of the flat edges, so the drawing is 505 instead of 544 pixels wide"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/scxml/state2
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: in the composite state, Graphviz keeps room for the label of a flat edge on the rank above, which moves a rank 30 points (SSIM 0.82)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/scxml/state3
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: with labeled flat edges between clusters, the ranks and the positions differ (SSIM 0.64)"
+  resolvedBy: ekalinin/gogv#28
+- id: vega/svg/interactive/SVG0006_Svek
+  reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: Graphviz raises the labels of the flat edges between ports above the rank, so the drawing is 207 instead of 254 pixels high"
+  resolvedBy: ekalinin/gogv#28
