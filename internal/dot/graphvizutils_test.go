@@ -105,17 +105,37 @@ func TestCheckGraphvizMissingDot(t *testing.T) {
 	}
 }
 
+func TestCheckGraphvizBuiltIn(t *testing.T) {
+	// Spec graph-layout "Working installation": without a named dot, the
+	// check reports and runs the built-in engine, even with dot on PATH.
+	h := fakeHost("linux", map[string]string{"PATH": "/usr/bin"}, map[string]fs.FileMode{"/usr/bin/dot": 0o755})
+	lines, code := CheckGraphviz(context.Background(), Config{Host: h}, false)
+	want := []string{"GraphViz: " + gogvVersionLine(), "Installation seems OK. File generation OK"}
+	if code != 0 || !slices.Equal(lines, want) {
+		t.Errorf("CheckGraphviz = %d %q, want 0 %q", code, lines, want)
+	}
+	if !strings.HasPrefix(lines[0], "GraphViz: dot - graphviz version 16.1.0 (gogv ") {
+		t.Errorf("version line %q", lines[0])
+	}
+
+	lines, code = AddDotStatus(context.Background(), Config{Host: h}, false, true)
+	want = []string{`<b>GraphViz</b> ""` + gogvVersionLine() + `""`, "<b>Installation seems OK. File generation OK"}
+	if code != 0 || !slices.Equal(lines, want) {
+		t.Errorf("AddDotStatus = %d %q, want 0 %q", code, lines, want)
+	}
+}
+
 func TestCheckGraphvizInsecure(t *testing.T) {
 	h := fakeHost("linux", nil, nil)
 	lines, code := CheckGraphviz(context.Background(), Config{Host: h}, true)
 	want := []string{
 		"The environment variable GRAPHVIZ_DOT has not been set",
-		"Dot executable is /opt/local/bin/dot",
-		"Error: Dot executable does not exist",
-		"Error: only sequence diagrams will be generated",
+		"Dot executable is built in (gogv)",
+		"GraphViz: " + gogvVersionLine(),
+		"Installation seems OK. File generation OK",
 	}
-	if code != 16 || !slices.Equal(lines, want) {
-		t.Errorf("CheckGraphviz = %d %q, want 16 %q", code, lines, want)
+	if code != 0 || !slices.Equal(lines, want) {
+		t.Errorf("CheckGraphviz = %d %q, want 0 %q", code, lines, want)
 	}
 
 	// The explicit path is reported as the GRAPHVIZ_DOT setting, as upstream.
@@ -131,10 +151,10 @@ func TestCheckGraphvizInsecure(t *testing.T) {
 		t.Errorf("CheckGraphviz = %d %q, want 0 %q", code, lines, want)
 	}
 
-	// Windows without Graphviz: upstream prints the null File.
+	// Windows without a named dot: the built-in engine too.
 	h = fakeHost("windows", nil, nil)
 	lines, _ = CheckGraphviz(context.Background(), Config{Host: h}, true)
-	if lines[1] != "Dot executable is null" || lines[2] != "Error: No dot executable found" {
+	if lines[1] != "Dot executable is built in (gogv)" {
 		t.Errorf("CheckGraphviz = %q", lines)
 	}
 }

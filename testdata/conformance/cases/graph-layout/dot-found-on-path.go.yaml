@@ -2,5 +2,5 @@ id: graph-layout/dot-found-on-path
 scenarios:
   - "graph-layout: Found on PATH"
 package: internal/dot
-test: TestFindDotSearchesPath
+test: TestNewEngineIgnoresDotOnPath
 why: The result depends on the PATH directories of the host, which the reference image cannot reproduce for the implementation under test.

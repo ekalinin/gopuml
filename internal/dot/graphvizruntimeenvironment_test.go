@@ -26,12 +26,13 @@ func TestFindDotPrefersGraphvizDotOverPath(t *testing.T) {
 	custom := writeScript(t, workingDot("custom"))
 	pathDir := t.TempDir()
 	writeScriptIn(t, pathDir, workingDot("from-path"))
-	e, err := Config{Host: envHost(map[string]string{"GRAPHVIZ_DOT": custom, "PATH": pathDir})}.NewExec()
+	eng, err := Config{Host: envHost(map[string]string{"GRAPHVIZ_DOT": custom, "PATH": pathDir})}.NewEngine()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if e.Path != custom {
-		t.Fatalf("Path = %q, want %q", e.Path, custom)
+	e, ok := eng.(*Exec)
+	if !ok || e.Path != custom {
+		t.Fatalf("engine = %#v, want the dotexec engine of %q", eng, custom)
 	}
 	out, err := e.Layout(context.Background(), "digraph g { a -> b }")
 	if err != nil {
@@ -70,6 +71,37 @@ func TestFindDotSearchesPath(t *testing.T) {
 	}
 }
 
+func TestNewEngineIgnoresDotOnPath(t *testing.T) {
+	// Spec graph-layout "Found on PATH": without a named dot, the built-in
+	// engine lays the graph out and the dot on PATH does not run.
+	pathDir := t.TempDir()
+	writeScriptIn(t, pathDir, workingDot("from-path"))
+	eng, err := Config{Timeout: testTimeout, Host: envHost(map[string]string{"PATH": pathDir})}.NewEngine()
+	if err != nil {
+		t.Fatal(err)
+	}
+	g, ok := eng.(*Gogv)
+	if !ok || g.Timeout != testTimeout {
+		t.Fatalf("engine = %#v, want the built-in engine with the timeout", eng)
+	}
+	out, err := g.Layout(context.Background(), "digraph g { a }")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(out), "<!-- from-path -->") || !strings.Contains(string(out), "<svg") {
+		t.Fatalf("the built-in engine did not lay the graph out: %s", out)
+	}
+}
+
+func TestNewEngineExplicitPathWins(t *testing.T) {
+	h := fakeHost("linux", map[string]string{"GRAPHVIZ_DOT": "/custom/dot"},
+		map[string]fs.FileMode{"/custom/dot": 0o755, "/explicit/dot": 0o755})
+	eng, err := Config{DotPath: "/explicit/dot", Host: h}.NewEngine()
+	if e, ok := eng.(*Exec); err != nil || !ok || e.Path != "/explicit/dot" {
+		t.Fatalf("NewEngine = %#v, %v; want the dotexec engine of /explicit/dot", eng, err)
+	}
+}
+
 func TestFindDotUsesGraphvizDotEvenWhenMissing(t *testing.T) {
 	h := fakeHost("linux", map[string]string{"GRAPHVIZ_DOT": "/missing/dot", "PATH": "/usr/bin"},
 		map[string]fs.FileMode{"/usr/bin/dot": 0o755})
@@ -87,6 +119,11 @@ func TestFindDotUsesGraphvizDotEvenWhenMissing(t *testing.T) {
 	}
 	if e, err := c.NewExec(); e != nil || !errors.Is(err, ErrNotFound) {
 		t.Fatalf("NewExec = %v, %v", e, err)
+	}
+	// Spec graph-layout "Environment variable points to a missing file": no
+	// fallback to the built-in engine.
+	if eng, err := c.NewEngine(); eng != nil || !errors.Is(err, ErrNotFound) {
+		t.Fatalf("NewEngine = %v, %v", eng, err)
 	}
 	if got, want := nf.Error(), "cannot find Graphviz dot: File /missing/dot does not exist"; got != want {
 		t.Errorf("Error() = %q, want %q", got, want)

@@ -11,6 +11,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
 	"slices"
 	"strings"
@@ -696,6 +697,16 @@ func TestRunCheckGraphviz(t *testing.T) {
 	r = runCLIEnv(t, map[string]string{"GRAPHVIZ_DOT": "/missing/dot"}, "", "--check-graphviz")
 	if r.code == ExitOK || r.stdout != "" || !strings.Contains(r.stderr, "Error: ") {
 		t.Errorf("missing dot: exit %d, stdout %q, stderr %q", r.code, r.stdout, r.stderr)
+	}
+}
+
+func TestRunCheckGraphvizBuiltIn(t *testing.T) {
+	// Spec graph-layout "Working installation": without a named dot, the
+	// check reports the built-in engine and succeeds.
+	r := runCLIEnv(t, map[string]string{}, "", "--check-graphviz")
+	want := regexp.MustCompile(`^GraphViz: dot - graphviz version 16\.1\.0 \(gogv [^v ][^ ]*\)\nInstallation seems OK\. File generation OK\n$`)
+	if r.code != ExitOK || !want.MatchString(r.stdout) || r.stderr != "" {
+		t.Errorf("exit %d, stdout %q, stderr %q", r.code, r.stdout, r.stderr)
 	}
 }
 

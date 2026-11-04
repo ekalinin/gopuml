@@ -7,6 +7,7 @@ package dot
 
 import (
 	"context"
+	"errors"
 	"strings"
 )
 
@@ -40,25 +41,41 @@ func AddDotStatus(ctx context.Context, c Config, insecure, withRichText bool) (l
 	// The VizJs branch of upstream is not ported: the MIT build has no VizJs
 	// engine, so upstream never takes it.
 
-	dotExe := SearchDotExe(c.DotPath, c.Host)
+	// Without a named dot, graphs are laid out by the built-in engine, so the
+	// check reports and runs it instead of searching for dot.
+	builtIn := GetenvGraphvizDot(c.DotPath, c.Host) == ""
+	var dotExe string
+	if !builtIn {
+		dotExe = SearchDotExe(c.DotPath, c.Host)
+	}
 	if insecure {
 		if ent := GetenvGraphvizDot(c.DotPath, c.Host); ent == "" {
 			lines = append(lines, "The environment variable GRAPHVIZ_DOT has not been set")
 		} else {
 			lines = append(lines, "The environment variable GRAPHVIZ_DOT has been set to "+ent)
 		}
-		lines = append(lines, "Dot executable is "+javaFileString(dotExe))
+		if builtIn {
+			lines = append(lines, "Dot executable is built in (gogv)")
+		} else {
+			lines = append(lines, "Dot executable is "+javaFileString(dotExe))
+		}
 	}
 
-	exeState := CheckFile(dotExe, c.Host)
-	if exeState != OK {
-		lines = append(lines, red+"Error: "+exeState.TextMessage())
-		lines = append(lines, "Error: only sequence diagrams will be generated")
-		return lines, 16
+	var version string
+	var testCreateSimpleFile func(context.Context) string
+	if builtIn {
+		g := &Gogv{Timeout: c.Timeout}
+		version, testCreateSimpleFile = gogvVersionLine(), g.testCreateSimpleFile
+	} else {
+		exeState := CheckFile(dotExe, c.Host)
+		if exeState != OK {
+			lines = append(lines, red+"Error: "+exeState.TextMessage())
+			lines = append(lines, "Error: only sequence diagrams will be generated")
+			return lines, 16
+		}
+		e := &Exec{Path: dotExe, Timeout: c.Timeout}
+		version, testCreateSimpleFile = e.DotVersion(ctx), e.testCreateSimpleFile
 	}
-
-	e := &Exec{Path: dotExe, Timeout: c.Timeout}
-	version := e.DotVersion(ctx)
 	if withRichText {
 		lines = append(lines, `<b>GraphViz</b> ""`+version+`""`)
 	} else {
@@ -73,7 +90,7 @@ func AddDotStatus(ctx context.Context, c Config, insecure, withRichText bool) (l
 		lines = append(lines, bold+"Some diagrams may have issues")
 		errorCode = 13
 	default:
-		if err := e.testCreateSimpleFile(ctx); err != "" {
+		if err := testCreateSimpleFile(ctx); err != "" {
 			lines = append(lines, red+err)
 			errorCode = 14
 		} else {
@@ -96,6 +113,20 @@ func (e *Exec) testCreateSimpleFile(ctx context.Context) string {
 	}
 	if !strings.Contains(string(p.stdout), "<svg") {
 		return "Error: dot generates unreadable SVG file. Check you dot installation."
+	}
+	return ""
+}
+
+// testCreateSimpleFile is the test layout of the built-in engine: it returns
+// "" when gogv produced SVG, or the error message, in upstream's words when
+// the output is not SVG.
+func (g *Gogv) testCreateSimpleFile(ctx context.Context) string {
+	_, err := g.Layout(ctx, testDotSource)
+	if fe, ok := errors.AsType[*FailureError](err); ok && fe.Reason != "" {
+		return "Error: dot generates unreadable SVG file. Check you dot installation."
+	}
+	if err != nil {
+		return "Error: " + err.Error()
 	}
 	return ""
 }
