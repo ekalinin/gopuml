@@ -20,7 +20,7 @@
 
 ## 4. CI job (`.github/workflows/ci.yml`)
 
-- [ ] 4.1 Add the `benchmark` job of design D5. Fill in `TestBenchmarkWorkflow`: it parses `../../.github/workflows/ci.yml` and checks that the job runs on pull requests only, checks out with `fetch-depth: 2`, runs `make bench-compare BASE=HEAD^1`, appends `.cache/benchcmp/report.md` to `$GITHUB_STEP_SUMMARY` and uploads `benchmark-report` in steps with `if: ${{ !cancelled() }}`; and that each mutation fails the check: `fetch-depth: 2` removed, `BASE=HEAD^1` replaced by `BASE=main`, `if: ${{ !cancelled() }}` replaced by `if: success()` in either step. Verify that `go test ./tools/benchcmp` and `go test -run TestCIWorkflow ./internal/conformance` pass. Commit as `chore(ci): compare the render benchmark of pull requests with their base`
+- [x] 4.1 Add the `benchmark` job of design D5. Fill in `TestBenchmarkWorkflow`: it parses `../../.github/workflows/ci.yml` and checks that the job runs on pull requests only, checks out with `fetch-depth: 2`, runs `make bench-compare BASE=HEAD^1`, appends `.cache/benchcmp/report.md` to `$GITHUB_STEP_SUMMARY` and uploads `benchmark-report` in steps with `if: ${{ !cancelled() }}`; and that each mutation fails the check: `fetch-depth: 2` removed, `BASE=HEAD^1` replaced by `BASE=main`, `if: ${{ !cancelled() }}` replaced by `if: success()` in either step. Verify that `go test ./tools/benchcmp` and `go test -run TestCIWorkflow ./internal/conformance` pass. Commit as `chore(ci): compare the render benchmark of pull requests with their base`
 
 ## 5. Documentation and pull request
 

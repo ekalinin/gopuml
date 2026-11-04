@@ -311,7 +311,3 @@ func TestRunWithFailingCommit(t *testing.T) {
 		})
 	}
 }
-
-func TestBenchmarkWorkflow(t *testing.T) {
-	t.Skip("task 4.1")
-}
