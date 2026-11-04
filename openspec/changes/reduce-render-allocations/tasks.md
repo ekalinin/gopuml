@@ -9,7 +9,7 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 2. Deflate writers (`internal/code`)
 
-- [ ] 2.1 Make `deflateRaw` take its `*flate.Writer` from a package-level `sync.Pool` whose `New` creates it at `flate.BestCompression`, `Reset` it on a local `bytes.Buffer`, and put it back after `Close` (design D1). Add to `code_test.go` a test that compares `deflateRaw` with a fresh `flate.NewWriter(..., flate.BestCompression)` for `@startuml\nAlice -> Bob : hello\n@enduml`, for a 100 KB source and for these sources encoded in turn, and the same on 8 goroutines in parallel. Verify that `go test -race ./internal/code` and `TestEncodeDecodeRoundTrip` of the root package pass. Commit as `perf(code): reuse deflate writers`, then verify that `make bench-compare BASE=HEAD^1` exits 0 and shows `-50.0%` or lower for the `B/op` of `sequence`
+- [x] 2.1 Make `deflateRaw` take its `*flate.Writer` from a package-level `sync.Pool` whose `New` creates it at `flate.BestCompression`, `Reset` it on a local `bytes.Buffer`, and put it back after `Close` (design D1). Add to `code_test.go` a test that compares `deflateRaw` with a fresh `flate.NewWriter(..., flate.BestCompression)` for `@startuml\nAlice -> Bob : hello\n@enduml`, for a 100 KB source and for these sources encoded in turn, and the same on 8 goroutines in parallel. Verify that `go test -race ./internal/code` and `TestEncodeDecodeRoundTrip` of the root package pass. Commit as `perf(code): reuse deflate writers`, then verify that `make bench-compare BASE=HEAD^1` exits 0 and shows `-50.0%` or lower for the `B/op` of `sequence`
 
 ## 3. Leaf pattern check (`internal/command/regex`)
 
