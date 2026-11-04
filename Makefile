@@ -58,10 +58,13 @@ reference-check:
 IMPL ?= go
 CONFORMANCE_DIR := .cache/conformance
 
-# GO_IN_IMAGE=1 renders the IMPL=go outputs in the reference image, so that
-# they use its Graphviz, as the references do. It needs a linux/amd64 host:
-# Go binaries crash under amd64 emulation. The image has no C compiler and
-# no git, hence CGO_ENABLED=0 and -buildvcs=false.
+# GO_IN_IMAGE=1 renders the IMPL=go outputs in the reference image, as CI
+# does; they are laid out by gogv, not by the Graphviz of the image. It needs
+# a linux/amd64 host: Go binaries crash under amd64 emulation. The image has
+# no C compiler and no git, hence CGO_ENABLED=0 and -buildvcs=false. The
+# module and build caches of the host are mounted into the container, so they
+# are created and the modules downloaded on the host first: Docker would
+# create a missing mount source as root, which the container cannot write.
 ifeq ($(GO_IN_IMAGE),1)
 GO_IN_IMAGE_DIRS := $(CURDIR) $(shell $(GO) env GOROOT GOMODCACHE GOCACHE)
 REFGEN_GO = docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
@@ -76,6 +79,10 @@ endif
 
 conformance:
 	tools/reference/fetch-tools.sh
+ifeq ($(GO_IN_IMAGE),1)
+	mkdir -p "$(word 4,$(GO_IN_IMAGE_DIRS))"
+	$(GO) mod download
+endif
 	$(REFGEN_GO) run ./tools/refgen -image $(REFERENCE_IMAGE) -png -impl $(IMPL) -out $(CONFORMANCE_DIR)/actual
 	$(GO) test -tags conformance -count=1 -timeout 30m -run TestConformance -v ./internal/conformance -args \
 		-root $(CURDIR) -actual $(CURDIR)/$(CONFORMANCE_DIR)/actual -impl $(IMPL) \
