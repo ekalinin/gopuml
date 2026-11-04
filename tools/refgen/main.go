@@ -14,7 +14,9 @@
 // references, for the conformance runner to compare.
 //
 // With -impl go, the Go implementation renders the cases natively (no
-// container); HTTP cases are skipped until the server is wired up.
+// container); HTTP cases are skipped until the server is wired up. It lays
+// graphs out with its built-in engine: GRAPHVIZ_DOT, which the reference
+// image sets for upstream, is removed from its environment.
 //
 // Usage: go run ./tools/refgen [-suite all|curated|vega] [-png] [-impl java|go] [-out dir]
 package main
@@ -103,6 +105,7 @@ func main() {
 		if *out == "" {
 			log.Fatal("-impl go needs -out: references are recorded with Java only")
 		}
+		useBuiltInLayout()
 	default:
 		log.Fatalf("unknown implementation %q", *impl)
 	}
