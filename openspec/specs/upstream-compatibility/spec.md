@@ -76,7 +76,7 @@ A diagram type, output format or engine SHALL be declared supported only when ev
 
 The conformance suite SHALL run on linux/amd64 for every pull request and every push to the main branch. In that run:
 
-- The outputs of this implementation SHALL be produced in the pinned reference container, so that both implementations use the same Graphviz version.
+- The outputs of this implementation SHALL be produced in the pinned reference container, laid out by its built-in layout engine (gogv) and not by the Graphviz of the container, unless a case names a `dot`. The references keep the pinned Graphviz version.
 - Every conformance group SHALL be required: a failing case that is not listed in the known-differences file SHALL fail the run.
 - When the run renders references, it SHALL fail if the committed references differ from the new render.
 - The run SHALL publish the conformance report, whether it passes or fails.
@@ -105,3 +105,8 @@ The conformance suite SHALL run on linux/amd64 for every pull request and every 
 
 - **WHEN** the conformance run fails
 - **THEN** the conformance report of that run is still available from the run
+
+#### Scenario: Graph cases laid out by the built-in engine
+
+- **WHEN** the run renders the class case `graph-layout/class-layout` with this implementation in the reference container, whose environment sets `GRAPHVIZ_DOT`
+- **THEN** this implementation lays the case out with the built-in engine, and the container's `dot` runs only for the reference
