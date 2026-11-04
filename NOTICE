@@ -240,8 +240,9 @@ Linked Go code
 --------------
 
 The command line and the WebAssembly module are built with Go. They link the
-Go standard library and runtime, golang.org/x/text and
-github.com/dlclark/regexp2 (at the versions that go.mod names). The
+Go standard library and runtime, golang.org/x/text,
+github.com/dlclark/regexp2 and github.com/ekalinin/gogv (at the versions that
+go.mod names). The
 WebAssembly archive and the landing page also ship wasm_exec.js from the Go
 distribution.
 
@@ -299,5 +300,40 @@ github.com/dlclark/regexp2 is licensed under the MIT License:
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
+
+github.com/ekalinin/gogv, the Go implementation of the Graphviz dot program
+that lays out graph-based diagrams, is licensed under the MIT License:
+
+    MIT License
+
+    Copyright (c) 2026 Eugene Kalinin
+
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+    IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+gogv contains translations of fdlibm, under Sun's notice above, and
+advance-width tables generated from the Liberation 2.1.5 fonts (the fonts
+themselves are not included):
+
+    Digitized data copyright (c) 2010 Google Corporation
+        with Reserved Font Arimo, Tinos and Cousine.
+    Copyright (c) 2012 Red Hat, Inc.
+        with Reserved Font Name Liberation.
+    Licensed under the SIL Open Font License, Version 1.1
+    (https://openfontlicense.org).
 
 Attributions for other assets are added here when they are bundled.
