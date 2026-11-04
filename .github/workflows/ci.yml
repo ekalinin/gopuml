@@ -114,3 +114,42 @@ jobs:
           name: conformance-report
           path: conformance-report.md
           if-no-files-found: ignore
+
+  # Compares the render benchmark of the pull request with that of the commit
+  # it merges into (tools/benchcmp): more allocations fail the job, the time
+  # is only shown. Runs take about 4 minutes.
+  benchmark:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # HEAD is the merge commit of the pull request; HEAD^1, the commit
+          # it merges into, is the base.
+          fetch-depth: 2
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Compare with the base
+        run: make bench-compare BASE=HEAD^1
+
+      - name: Report summary
+        if: ${{ !cancelled() }}
+        run: |
+          if [ -f .cache/benchcmp/report.md ]; then
+            cat .cache/benchcmp/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: benchmark-report
+          path: |
+            .cache/benchcmp/report.md
+            .cache/benchcmp/base.txt
+            .cache/benchcmp/head.txt
+          if-no-files-found: ignore

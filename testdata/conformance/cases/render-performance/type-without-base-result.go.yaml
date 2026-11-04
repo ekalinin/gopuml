@@ -1,0 +1,6 @@
+id: render-performance/type-without-base-result
+scenarios:
+  - "render-performance: Type without a base result"
+package: tools/benchcmp
+test: TestTypeWithoutBaseResult
+why: Comparison tool of this implementation, run on fixed benchmark outputs.

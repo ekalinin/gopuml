@@ -9,9 +9,16 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"maps"
+	"os"
+	"path"
+	"path/filepath"
+	"slices"
 	"strings"
 	"sync"
 	"testing"
+
+	"github.com/ekalinin/gopuml/internal/conformance"
 )
 
 const seqSource = "@startuml\nAlice -> Bob : hello\n@enduml\n"
@@ -143,5 +150,89 @@ func TestRenderConcurrent(t *testing.T) {
 	wg.Wait()
 	if !strings.Contains(string(want[0]), `fill="#F00"`) {
 		t.Errorf("the config line was not applied")
+	}
+}
+
+// curatedCasesDir holds the curated conformance cases.
+const curatedCasesDir = "testdata/conformance/cases"
+
+// renderBenchmarkInput is one curated case, with the options that render it
+// as the conformance suite does.
+type renderBenchmarkInput struct {
+	source string
+	opts   *Options
+}
+
+// renderBenchmarkSets groups the curated cases by diagram type. A case with
+// fixtures (<name>.files) renders in that directory, under the name of its
+// file, as the CLI renders the copied case in tools/refgen.
+func renderBenchmarkSets(tb testing.TB) map[string][]renderBenchmarkInput {
+	tb.Helper()
+	cases, err := conformance.LoadCases(os.DirFS(curatedCasesDir), ".")
+	if err != nil {
+		tb.Fatal(err)
+	}
+	sets := map[string][]renderBenchmarkInput{}
+	for _, c := range cases {
+		opts := &Options{}
+		fixtures := filepath.Join(curatedCasesDir, filepath.FromSlash(c.ID)+".files")
+		if fi, err := os.Stat(fixtures); err == nil && fi.IsDir() {
+			opts.Dir = fixtures
+			opts.Filename = path.Base(c.ID) + ".puml"
+		}
+		sets[c.Type] = append(sets[c.Type], renderBenchmarkInput{source: c.Source, opts: opts})
+	}
+	return sets
+}
+
+// BenchmarkRender renders the curated cases of each diagram type to SVG; one
+// operation renders every case of the type. The benchmark job of CI compares
+// it with the base of each pull request (tools/benchcmp).
+func BenchmarkRender(b *testing.B) {
+	sets := renderBenchmarkSets(b)
+	for _, typ := range slices.Sorted(maps.Keys(sets)) {
+		b.Run(typ, func(b *testing.B) {
+			b.ReportAllocs()
+			for b.Loop() {
+				for _, in := range sets[typ] {
+					// Error images are part of the work: errors are not
+					// failures here.
+					Render(b.Context(), in.source, in.opts)
+				}
+			}
+		})
+	}
+}
+
+func TestRenderBenchmarkTypes(t *testing.T) {
+	// Spec scenario "One result per diagram type": the benchmark has a set
+	// for every type of the curated cases, with all the cases of the type.
+	cases, err := conformance.LoadCases(os.DirFS(curatedCasesDir), ".")
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]int{}
+	for _, c := range cases {
+		want[c.Type]++
+	}
+	for _, typ := range []string{"sequence", "class", "timing", "unsupported", "welcome"} {
+		if want[typ] == 0 {
+			t.Errorf("no curated case of type %s", typ)
+		}
+	}
+	sets := renderBenchmarkSets(t)
+	if len(sets) != len(want) {
+		t.Errorf("%d sets, want %d types: %v", len(sets), len(want), slices.Sorted(maps.Keys(sets)))
+	}
+	for typ, n := range want {
+		if got := len(sets[typ]); got != n {
+			t.Errorf("%s: %d sources, want %d", typ, got, n)
+		}
+	}
+	for typ, set := range sets {
+		res, _ := Render(t.Context(), set[0].source, set[0].opts)
+		if res == nil || len(res.Data) == 0 {
+			t.Errorf("%s: the first source renders nothing", typ)
+		}
 	}
 }

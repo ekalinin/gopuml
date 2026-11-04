@@ -1,0 +1,6 @@
+id: render-performance/one-result-per-type
+scenarios:
+  - "render-performance: One result per diagram type"
+package: .
+test: TestRenderBenchmarkTypes
+why: Benchmark of this implementation, not observable through Java PlantUML. The test checks that the benchmark has a set for every diagram type of the curated cases, with all their cases.

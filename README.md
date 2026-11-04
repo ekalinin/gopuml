@@ -246,6 +246,24 @@ make reference
 make conformance REQUIRE=all
 ```
 
+## Performance check
+
+CI compares the render benchmark of every pull request with that of the
+commit it merges into, in its `benchmark` job (`tools/benchcmp`). Both are
+built and run in alternating rounds on the same runner, over the curated
+cases of the pull request. The table of the medians per diagram type is
+shown in the run summary and attached to the run as `benchmark-report`. The
+job fails when the median `B/op` or `allocs/op` of a diagram type is more
+than 5% above the base; `ns/op` is only shown, as it varies between runs on
+shared runners. A pull request that needs more allocations explains the
+increase in its description.
+
+This command gives the same table locally, against `main`:
+
+```sh
+make bench-compare BASE=main
+```
+
 ## License
 
 MIT, see `LICENSE`. This project translates the MIT-licensed variant of

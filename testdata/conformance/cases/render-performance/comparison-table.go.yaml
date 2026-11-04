@@ -1,0 +1,6 @@
+id: render-performance/comparison-table
+scenarios:
+  - "render-performance: Comparison table"
+package: tools/benchcmp
+test: TestComparisonTable
+why: Comparison tool of this implementation, run on fixed benchmark outputs.
