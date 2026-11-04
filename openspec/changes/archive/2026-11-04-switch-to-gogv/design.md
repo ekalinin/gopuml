@@ -119,6 +119,7 @@ The existing cases keep their scenarios, but their tests change with the behavio
 - [`skinparam linetype ortho` draws splines with gogv, without a warning] → listed as out of scope in proposal.md. The README's Graphviz section says that a named `dot` draws orthogonal lines.
 - [gopuml depends on an external module] → gogv v0.2.0 is public and tagged, and `go.mod` names that tag, not a pseudo-version of a commit.
 - [A gogv layout that does not check its context often keeps running after the timeout] → the timeout test of D10 measures it. If gogv returns late, the fix goes into gogv, as for D9.
+- [gogv lays out dense graphs 2 to 4 times slower than Graphviz: a class diagram of 150 classes with two links each takes 6.2 s against 1.7 s for Graphviz 15.0.0, one of 300 classes 126 s against 55 s] → the timeout stops such a layout, as it stopped a slow `dot`, and a named `dot` lays these graphs out instead; ekalinin/gogv#29 tracks the speed. On the 298 graphs of the conformance corpus, gogv is faster (0.72 s against 3.9 s, process starts included).
 - [The WASM module grows] → gogv's own WASM build is 4.6 MB with the Go runtime, against 51 MB for gopuml's today. The size printed by `make wasm` is reported in the pull request.
 - [Users with `GRAPHVIZ_DOT` set in their environment, as in the reference image, keep getting Graphviz] → intended (a named `dot`), and stated in the README.
 
