@@ -36,9 +36,9 @@ var (
 func TestClassLayoutUsesDot(t *testing.T) {
 	// Spec class-diagram "Rendering requires dot" and graph-layout "Class
 	// diagram layout": B below A, the arrow from A to B, laid out by dot.
-	exec, err := dot.Config{}.NewExec()
+	exec, err := dot.Config{}.NewEngine()
 	if err != nil {
-		t.Skip("no Graphviz dot executable: ", err)
+		t.Fatal(err)
 	}
 	d := parseClass(t, "@startuml\nclass A\nclass B\nA --> B\n@enduml")
 	eng := &recordingEngine{inner: exec}

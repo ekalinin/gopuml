@@ -7,16 +7,41 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/ekalinin/gogv"
 )
 
 const classSource = "@startuml\nclass A\nclass B\nA --> B\n@enduml\n"
+
+// gogvDotEnv makes the test binary act as a dot executable that lays the
+// DOT of its stdin out with gogv, for fake dot scripts that need a real
+// layout without Graphviz.
+const gogvDotEnv = "GOPUML_TEST_GOGV_DOT"
+
+func TestMain(m *testing.M) {
+	if os.Getenv(gogvDotEnv) != "" {
+		src, err := io.ReadAll(os.Stdin)
+		if err == nil {
+			var out []byte
+			if out, _, err = gogv.Render(context.Background(), string(src), "svg"); err == nil {
+				_, err = os.Stdout.Write(out)
+			}
+		}
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error:", err)
+			os.Exit(1)
+		}
+		os.Exit(0)
+	}
+	os.Exit(m.Run())
+}
 
 func TestRenderMissingGraphviz(t *testing.T) {
 	// Spec library-api "Missing Graphviz": the error matches
@@ -126,13 +151,10 @@ func TestRenderCancelledContext(t *testing.T) {
 func TestDotFailureOnFirstClassDiagramKeepsSecond(t *testing.T) {
 	// Spec graph-layout "dot crashes on one diagram": the first diagram
 	// reports dot's error, the second still renders.
-	realDot, err := exec.LookPath("dot")
-	if err != nil {
-		t.Skip("no Graphviz dot on PATH")
-	}
 	// The first diagram has three classes, so its graph has the node sh0008.
+	// The second is laid out by the test binary acting as a dot with gogv.
 	dotPath := fakeDot(t, "input=$(cat)\ncase \"$input\" in *sh0008*) echo 'Error: fake dot crash' >&2; exit 1;; esac\n"+
-		"printf '%s' \"$input\" | exec "+realDot+" \"$@\"")
+		"printf '%s' \"$input\" | "+gogvDotEnv+"=1 exec '"+os.Args[0]+"' \"$@\"")
 	src := "@startuml\nclass A\nclass B\nclass C\nA --> B\n@enduml\n\n" + classSource
 	res, err := Render(context.Background(), src, &Options{DotPath: dotPath})
 	if !errors.Is(err, ErrGraphvizFailed) || !strings.Contains(err.Error(), "fake dot crash") {
