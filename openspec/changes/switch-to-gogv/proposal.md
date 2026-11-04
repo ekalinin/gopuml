@@ -2,7 +2,7 @@
 
 ## Why
 
-Class, object, description, state, legacy activity and Chen EER diagrams need an installed Graphviz `dot` today. Without it they render only upstream's "Cannot find Graphviz" error image. The WebAssembly build and the playground cannot draw them at all: the five `wasm-build/*-diagram-error` cases and `landing-page/playground` check that error. gogv (`github.com/ekalinin/gogv`) is a Go implementation of `dot`, without cgo and without an installed Graphviz, and it already lays out the DOT that gopuml v0.3.0 generates for its conformance corpus. No conformance case fails today. Rendered with gogv v0.2.0 as `dot`, 12 of the 972 cases fail (listed under Impact), and the other cases keep their results. No issue tracks this change yet; one is opened for the pull request.
+Class, object, description, state, legacy activity and Chen EER diagrams need an installed Graphviz `dot` today. Without it they render only upstream's "Cannot find Graphviz" error image. The WebAssembly build and the playground cannot draw them at all: the five `wasm-build/*-diagram-error` cases and `landing-page/playground` check that error. gogv (`github.com/ekalinin/gogv`) is a Go implementation of `dot`, without cgo and without an installed Graphviz, and it already lays out the DOT that gopuml v0.3.0 generates for its conformance corpus. No conformance case fails today. Rendered with gogv v0.2.0 as `dot`, 12 of the 972 cases fail (listed under Impact), and the other cases keep their results. The change closes issue #80.
 
 ## What Changes
 
