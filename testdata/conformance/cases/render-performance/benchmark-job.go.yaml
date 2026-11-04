@@ -1,0 +1,7 @@
+id: render-performance/benchmark-job
+scenarios:
+  - "render-performance: Pull request compared with its base"
+  - "render-performance: Table published on failure"
+package: tools/benchcmp
+test: TestBenchmarkWorkflow
+why: Behavior of the CI workflow. The test checks that the benchmark job compares each pull request with the commit it merges into, and that the steps publishing the table also run after a failed comparison.

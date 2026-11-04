@@ -1,0 +1,6 @@
+id: render-performance/slower-without-more-allocations
+scenarios:
+  - "render-performance: Slower without more allocations"
+package: tools/benchcmp
+test: TestSlowerWithoutMoreAllocations
+why: Comparison tool of this implementation, run on fixed benchmark outputs.

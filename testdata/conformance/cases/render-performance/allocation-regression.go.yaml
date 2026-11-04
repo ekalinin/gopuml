@@ -1,0 +1,6 @@
+id: render-performance/allocation-regression
+scenarios:
+  - "render-performance: Allocation regression"
+package: tools/benchcmp
+test: TestAllocationRegression
+why: Comparison tool of this implementation, run on fixed benchmark outputs.
