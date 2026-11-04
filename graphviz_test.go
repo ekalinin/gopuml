@@ -53,6 +53,20 @@ func fakeDot(t *testing.T, body string) string {
 	return path
 }
 
+func TestNamedDotLaysOutGraph(t *testing.T) {
+	// Spec graph-layout "Layout with the named dot": the dot that
+	// GRAPHVIZ_DOT names lays the graph out, so its failure is reported.
+	marker := filepath.Join(t.TempDir(), "ran")
+	t.Setenv("GRAPHVIZ_DOT", fakeDot(t, "cat > /dev/null\ntouch "+marker+"\nexit 1"))
+	_, err := Render(context.Background(), classSource, &Options{})
+	if !errors.Is(err, ErrGraphvizFailed) {
+		t.Errorf("error %v, want ErrGraphvizFailed from the named dot", err)
+	}
+	if _, err := os.Stat(marker); err != nil {
+		t.Errorf("the named dot did not run: %v", err)
+	}
+}
+
 func TestRenderCancelledContext(t *testing.T) {
 	// Spec library-api "Cancelled context": dot is stopped and the render
 	// returns the context error.

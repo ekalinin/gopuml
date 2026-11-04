@@ -1,0 +1,6 @@
+id: graph-layout/check-named-dot
+scenarios:
+  - "graph-layout: Check of a named dot"
+package: internal/cli
+test: TestRunCheckGraphviz
+why: Needs a fake dot named by GRAPHVIZ_DOT, which the reference image cannot provide for both implementations.

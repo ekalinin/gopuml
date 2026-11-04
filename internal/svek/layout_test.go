@@ -116,6 +116,11 @@ func TestSmetanaPragmaFallsBackToDot(t *testing.T) {
 	}
 }
 
+func TestGogvFailureOnFirstClassDiagramKeepsSecond(t *testing.T) {
+	// Spec graph-layout "Built-in engine fails on one diagram".
+	t.Skip("the gogv engine comes with task 4.1 of switch-to-gogv")
+}
+
 // fakeEngine returns a fixed result.
 type fakeEngine struct {
 	svg []byte

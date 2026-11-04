@@ -35,3 +35,9 @@ func TestUndecoratedWait(t *testing.T) {
 		}
 	}
 }
+
+func TestGoImplementationUnsetsGraphvizDot(t *testing.T) {
+	// Spec upstream-compatibility "Graph cases laid out by the built-in
+	// engine".
+	t.Skip("comes with task 6.1 of switch-to-gogv")
+}

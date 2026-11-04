@@ -1,0 +1,6 @@
+id: upstream-compatibility/graph-cases-builtin-engine
+scenarios:
+  - "upstream-compatibility: Graph cases laid out by the built-in engine"
+package: tools/refgen
+test: TestGoImplementationUnsetsGraphvizDot
+why: Behavior of the conformance harness itself, checked with a fake dot named by GRAPHVIZ_DOT that the implementation under test must not run.
