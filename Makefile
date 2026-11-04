@@ -1,7 +1,7 @@
 GO ?= go
 WASM_OUT ?= dist/wasm
 
-.PHONY: build test lint provenance stdlib wasm site bench reference reference-check conformance
+.PHONY: build test lint provenance stdlib wasm site bench bench-compare reference reference-check conformance
 
 build:
 	$(GO) build ./...
@@ -43,6 +43,13 @@ bench:
 	mkdir -p .cache/bench
 	$(GO) build -trimpath -o .cache/bench/plantuml ./cmd/plantuml
 	$(GO) run ./tools/bench -cli .cache/bench/plantuml $(BENCH_FLAGS)
+
+# Compares the render benchmark (BenchmarkRender) of the checked-out commit
+# with that of BASE (tools/benchcmp), as the benchmark job of CI does.
+BASE ?= main
+
+bench-compare:
+	$(GO) run ./tools/benchcmp -base $(BASE)
 
 REFERENCE_IMAGE ?= plantuml-go-reference
 
