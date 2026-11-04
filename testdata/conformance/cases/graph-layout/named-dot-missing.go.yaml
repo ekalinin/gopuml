@@ -1,0 +1,6 @@
+id: graph-layout/named-dot-missing
+scenarios:
+  - "graph-layout: Named dot is missing"
+package: "."
+test: TestRenderMissingGraphviz
+why: Needs a dot path that names a missing file, and upstream v1.2026.9 then lays the class diagram out with Smetana instead of reporting an error.

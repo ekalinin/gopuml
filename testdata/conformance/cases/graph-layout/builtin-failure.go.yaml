@@ -1,0 +1,6 @@
+id: graph-layout/builtin-failure
+scenarios:
+  - "graph-layout: Built-in engine fails on one diagram"
+package: internal/svek
+test: TestGogvFailureOnFirstClassDiagramKeepsSecond
+why: Needs a built-in engine that fails on the first diagram only, which no input makes happen reliably; upstream has no such engine.

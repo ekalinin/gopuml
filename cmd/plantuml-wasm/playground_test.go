@@ -111,8 +111,8 @@ process.exit(0);
 	if r := out.Syntax; r.Error == nil || r.Error.Line != 3 || !strings.Contains(r.Error.Text, "line 3") || r.SVG != "<svg " {
 		t.Errorf("syntax error: error %+v, error image %q", r.Error, r.SVG)
 	}
-	if r := out.Graph; r.Error == nil || r.Error.Kind != "graph-layout-unavailable" || r.Error.Text != "graph layout is not available in this build" || r.SVG != "<svg " {
-		t.Errorf("class diagram: error %+v, error image %q", r.Error, r.SVG)
+	if r := out.Graph; r.Error != nil || r.SVG != "<svg " || r.Type != "image/svg+xml" {
+		t.Errorf("class diagram: error %+v, svg %q, type %q", r.Error, r.SVG, r.Type)
 	}
 	if d := out.Download; d.Filename != "diagram.svg" || d.Type != "image/svg+xml" || d.SVG != "<svg " {
 		t.Errorf("download: %+v", d)

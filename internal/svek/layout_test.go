@@ -15,6 +15,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/ekalinin/gogv"
 	"github.com/ekalinin/gopuml/internal/classdiagram"
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/dot"
@@ -47,17 +48,6 @@ func export1(ctx context.Context, d *classdiagram.ClassDiagram, layout svek.Layo
 	return buf.String(), data, err
 }
 
-// realDot returns the layout with the dot executable of the host, and skips
-// the test when there is none.
-func realDot(t *testing.T) svek.Layout {
-	t.Helper()
-	exec, err := dot.Config{}.NewExec()
-	if err != nil {
-		t.Skip("no Graphviz dot executable: ", err)
-	}
-	return svek.Layout{Engine: exec}
-}
-
 // countingEngine counts the layouts of the engine it wraps.
 type countingEngine struct {
 	inner dot.Engine
@@ -69,9 +59,27 @@ func (c *countingEngine) Layout(ctx context.Context, dotString string) ([]byte, 
 	return c.inner.Layout(ctx, dotString)
 }
 
-func TestClassDiagramWithoutDotReportsError(t *testing.T) {
-	// Spec graph-layout "Class diagram without Graphviz": an error stating
-	// that dot was not found, with an error image.
+// noDotNamed is a host whose environment names no dot.
+var noDotNamed = dot.Host{Getenv: func(string) string { return "" }}
+
+func TestClassDiagramWithoutDot(t *testing.T) {
+	// Spec graph-layout "Class diagram without Graphviz": without a named
+	// dot, the built-in engine lays the diagram out.
+	svg, data, err := export1(context.Background(), parseSource(t, twoClasses),
+		svek.Layout{Config: dot.Config{Host: noDotNamed}})
+	if err != nil || data == nil {
+		t.Fatalf("error %v, image %v", err, data != nil)
+	}
+	for _, want := range []string{">A</text>", ">B</text>", "<!--link A to B-->"} {
+		if !strings.Contains(svg, want) {
+			t.Errorf("the drawing has no %s", want)
+		}
+	}
+}
+
+func TestNamedDotMissingReportsError(t *testing.T) {
+	// Spec graph-layout "Named dot is missing": an error stating that dot
+	// was not found, with an error image.
 	d := parseSource(t, twoClasses)
 	layout := svek.Layout{Config: dot.Config{DotPath: "/nonexistent/graphviz/dot"}}
 	svg, data, err := export1(context.Background(), d, layout)
@@ -89,16 +97,20 @@ func TestClassDiagramWithoutDotReportsError(t *testing.T) {
 	}
 }
 
-func TestSmetanaPragmaFallsBackToDot(t *testing.T) {
+func TestSmetanaPragmaUsesEngineOfRender(t *testing.T) {
 	// Spec graph-layout "Smetana pragma before the port", preprocessor
 	// "Layout pragma for an unsupported engine" (elk) and design D16:
-	// smetana, elk and vizjs are laid out with dot.
-	layout := realDot(t)
-	_, _, err := export1(context.Background(), parseSource(t, twoClasses), layout)
+	// smetana, elk and vizjs are laid out with the engine of the render,
+	// the built-in engine when no dot is named.
+	eng, err := dot.Config{Host: noDotNamed}.NewEngine()
+	if _, ok := eng.(*dot.Gogv); err != nil || !ok {
+		t.Fatalf("engine %#v, error %v; want the built-in engine", eng, err)
+	}
+	layout := svek.Layout{Engine: eng}
+	want, _, err := export1(context.Background(), parseSource(t, twoClasses), layout)
 	if err != nil {
 		t.Fatal(err)
 	}
-	want, _, _ := export1(context.Background(), parseSource(t, twoClasses), layout)
 	for _, engineName := range []string{"smetana", "elk", "vizjs"} {
 		src := strings.Replace(twoClasses, "@startuml\n", "@startuml\n!pragma layout "+engineName+"\n", 1)
 		counting := &countingEngine{inner: layout.Engine}
@@ -107,12 +119,35 @@ func TestSmetanaPragmaFallsBackToDot(t *testing.T) {
 			t.Fatalf("%s: %v", engineName, err)
 		}
 		if counting.calls != 1 {
-			t.Errorf("%s: dot ran %d times", engineName, counting.calls)
+			t.Errorf("%s: the engine ran %d times", engineName, counting.calls)
 		}
 		// The pragma line moves the source lines of the elements.
 		if sourceLines.ReplaceAllString(got, "") != sourceLines.ReplaceAllString(want, "") {
-			t.Errorf("%s: the drawing differs from the dot layout", engineName)
+			t.Errorf("%s: the drawing differs from the layout without the pragma", engineName)
 		}
+	}
+}
+
+func TestGogvFailureOnFirstClassDiagramKeepsSecond(t *testing.T) {
+	// Spec graph-layout "Built-in engine fails on one diagram": the first
+	// diagram reports the engine's message, the second still renders.
+	calls := 0
+	layout := svek.Layout{Engine: &dot.Gogv{Render: func(ctx context.Context, src, format string) ([]byte, []gogv.Warning, error) {
+		if calls++; calls == 1 {
+			panic("first layout")
+		}
+		return gogv.Render(ctx, src, format)
+	}}}
+	svg, data, err := export1(context.Background(), parseSource(t, twoClasses), layout)
+	if !errors.Is(err, dot.ErrFailed) || !strings.Contains(err.Error(), "panic: first layout") {
+		t.Fatalf("first diagram: error %v, want dot.ErrFailed with the engine's message", err)
+	}
+	if data == nil || !strings.Contains(svg, "panic: first layout") {
+		t.Errorf("first diagram: the image does not show the engine's message")
+	}
+	svg, _, err = export1(context.Background(), parseSource(t, "@startuml\nclass C\nclass D\nC --> D\n@enduml\n"), layout)
+	if err != nil || !strings.Contains(svg, ">C</text>") || !strings.Contains(svg, ">D</text>") {
+		t.Fatalf("second diagram: error %v", err)
 	}
 }
 

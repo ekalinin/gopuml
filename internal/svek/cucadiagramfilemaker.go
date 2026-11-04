@@ -23,10 +23,11 @@ import (
 
 // Layout configures the graph layout of a diagram.
 type Layout struct {
-	// Engine lays the DOT graph out. Nil means the Graphviz dot executable
-	// found with Config (the dotexec engine).
+	// Engine lays the DOT graph out. Nil means the engine that Config
+	// chooses (dot.Config.NewEngine): the named dot, or the built-in engine
+	// gogv.
 	Engine dot.Engine
-	// Config finds dot when Engine is nil.
+	// Config chooses the engine when Engine is nil.
 	Config dot.Config
 	// Trace, when set, receives the DOT graph and the SVG document of the
 	// engine (upstream's -debugsvek trace files).
@@ -35,7 +36,8 @@ type Layout struct {
 
 // VersionedEngine is an engine that tells which Graphviz version it
 // behaves as; the DOT graph has a few workarounds for old versions. The
-// dotexec engine (*dot.Exec) implements it by running `dot -V`.
+// dotexec engine (*dot.Exec) implements it by running `dot -V`, and the
+// built-in engine (*dot.Gogv) with the Graphviz version that gogv follows.
 type VersionedEngine interface {
 	dot.Engine
 	GraphvizVersion(ctx context.Context) dot.GraphvizVersion
@@ -45,8 +47,8 @@ type VersionedEngine interface {
 // tell its own: the Graphviz release of the reference renders.
 var modernGraphvizVersion = dot.NewGraphvizVersion("dot - graphviz version 14.0.1 (20251006.0113)")
 
-// LayoutFromContext returns the layout of a render: dot found with the
-// explicit path and the timeout of the render context.
+// LayoutFromContext returns the layout of a render: the engine chosen with
+// the explicit dot path and the timeout of the render context.
 func LayoutFromContext(rc *core.RenderContext) Layout {
 	if rc == nil {
 		return Layout{}
@@ -77,9 +79,10 @@ func cachedVersion(ctx context.Context, e *dot.Exec) dot.GraphvizVersion {
 }
 
 // resolve returns the engine of the layout and the Graphviz version the
-// DOT graph is written for. When dot cannot be found, it returns the error
-// that the diagram shows (with upstream's default version, as upstream
-// cannot run `dot -V` either).
+// DOT graph is written for. When the named dot cannot be found, it returns
+// the error that the diagram shows (with upstream's default version, as
+// upstream cannot run `dot -V` either). The WebAssembly build cannot run
+// programs, so it always uses the built-in engine.
 func (l Layout) resolve(ctx context.Context) (le *layoutEngine, version dot.GraphvizVersion) {
 	le = &layoutEngine{ctx: ctx, trace: l.Trace}
 	if l.Engine != nil {
@@ -89,22 +92,27 @@ func (l Layout) resolve(ctx context.Context) (le *layoutEngine, version dot.Grap
 		}
 		return le, modernGraphvizVersion
 	}
-	if !execSupported {
-		le.notFound = &dot.NotFoundError{State: dot.NullUndefined}
-		return le, dot.DefaultGraphvizVersion
-	}
-	exec, err := l.Config.NewExec()
-	if err != nil {
-		var nf *dot.NotFoundError
-		if errors.As(err, &nf) {
-			le.notFound = nf
-		} else {
-			le.notFound = &dot.NotFoundError{State: dot.NullUndefined}
+	var engine dot.Engine = &dot.Gogv{Timeout: l.Config.Timeout}
+	if execSupported {
+		var err error
+		if engine, err = l.Config.NewEngine(); err != nil {
+			var nf *dot.NotFoundError
+			if errors.As(err, &nf) {
+				le.notFound = nf
+			} else {
+				le.notFound = &dot.NotFoundError{State: dot.NullUndefined}
+			}
+			return le, dot.DefaultGraphvizVersion
 		}
-		return le, dot.DefaultGraphvizVersion
 	}
-	le.engine = exec
-	return le, cachedVersion(ctx, exec)
+	le.engine = engine
+	switch e := engine.(type) {
+	case *dot.Exec:
+		return le, cachedVersion(ctx, e)
+	case VersionedEngine:
+		return le, e.GraphvizVersion(ctx)
+	}
+	return le, modernGraphvizVersion
 }
 
 // DotStringSkek is CucaDiagram.getDotStringSkek: the settings of the DOT
@@ -133,8 +141,9 @@ func DotStringSkek(d *abel.CucaDiagram, dotStrings []string) []string {
 //
 // Upstream uses its Smetana port when "!pragma layout smetana" is set or
 // dot is missing, and ELK with "!pragma layout elk"; these engines are not
-// ported, so dot is always used (design D16) and a missing dot gives
-// upstream's error image. The returned error is a layout error (a
+// ported, so the engine of the layout is always used (design D16): the
+// built-in engine gogv, or the named dot, whose absence gives upstream's
+// error image. The returned error is a layout error (a
 // *dot.NotFoundError, *dot.TimeoutError or *dot.FailureError) that comes
 // with a block showing it, or the error of the context, with a nil block.
 func TextBlock(ctx context.Context, d *abel.CucaDiagram, dotStrings []string, fileFormatOption export.FileFormatOption,
@@ -145,8 +154,9 @@ func TextBlock(ctx context.Context, d *abel.CucaDiagram, dotStrings []string, fi
 		return nil, err
 	}
 	// The engine is resolved first, so that the composite states laid out
-	// on their own use the same dot, timeout and context. Without dot, they
-	// are not laid out: the main run gives the not-found error image.
+	// on their own use the same engine, timeout and context. Without the
+	// named dot, they are not laid out: the main run gives the not-found
+	// error image.
 	le, version := layout.resolve(ctx)
 	switch d.DiagramType() {
 	case core.Activity:

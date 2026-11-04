@@ -143,6 +143,22 @@ func (c Config) NewExec() (*Exec, error) {
 	return &Exec{Path: exe, Timeout: c.Timeout}, nil
 }
 
+// NewEngine returns the layout engine of a render: the dotexec engine
+// running the dot that the caller or GRAPHVIZ_DOT names (see NewExec), or the
+// built-in engine (Gogv) when no dot is named. Unlike upstream, it does not
+// search PATH and the standard locations for dot. It returns a
+// *NotFoundError when the named dot is not usable.
+func (c Config) NewEngine() (Engine, error) {
+	if GetenvGraphvizDot(c.DotPath, c.Host) == "" {
+		return &Gogv{Timeout: c.Timeout}, nil
+	}
+	exec, err := c.NewExec()
+	if err != nil {
+		return nil, err
+	}
+	return exec, nil
+}
+
 // DotVersion returns the output of `dot -V` on one line, "?" when dot cannot
 // be run, or "Error:" followed by the reason when the executable is not usable.
 func (c Config) DotVersion(ctx context.Context) string {

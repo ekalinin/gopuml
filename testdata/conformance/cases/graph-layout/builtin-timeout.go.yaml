@@ -1,0 +1,6 @@
+id: graph-layout/builtin-timeout
+scenarios:
+  - "graph-layout: Built-in layout timeout"
+package: internal/dot
+test: TestGogvTimeout
+why: Needs a layout of the built-in engine that does not finish, which no input makes happen reliably; upstream has no built-in engine with a timeout.

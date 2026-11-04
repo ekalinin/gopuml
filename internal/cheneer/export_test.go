@@ -5,27 +5,22 @@ package cheneer
 
 import (
 	"bytes"
-	"errors"
 	"regexp"
 	"strings"
 	"testing"
 
-	"github.com/ekalinin/gopuml/internal/dot"
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
 )
 
 // TestExportSVG draws the curated case "Entities, relationship and
-// attributes" with the local dot: the shapes are upstream's, each element in
-// a bare <g>, as the references show.
+// attributes" with the engine of the render: the shapes are upstream's,
+// each element in a bare <g>, as the references show.
 func TestExportSVG(t *testing.T) {
 	d := parse(t, `entity CUSTOMER {`, `Number`, `}`, `entity MOVIE {`, `Code`, `}`, `relationship RENTED_TO {`,
 		`Date`, `}`, `RENTED_TO -1- CUSTOMER`, `RENTED_TO -N- MOVIE`)
 	var buf bytes.Buffer
 	_, err := d.ExportDiagram(&buf, 0, export.NewFileFormatOptionMetadata(font.FormatSVG, true))
-	if errors.Is(err, dot.ErrNotFound) {
-		t.Skip("no dot")
-	}
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -2,5 +2,5 @@ id: graph-layout/class-without-dot
 scenarios:
   - "graph-layout: Class diagram without Graphviz"
 package: internal/svek
-test: TestClassDiagramWithoutDotReportsError
-why: Needs an environment where no dot can be found, and upstream v1.2026.9 then silently lays the class diagram out with Smetana instead of reporting an error.
+test: TestClassDiagramWithoutDot
+why: Needs an environment that names no dot, and upstream v1.2026.9 then lays the class diagram out with Smetana, whose node placement differs from that of the built-in engine.

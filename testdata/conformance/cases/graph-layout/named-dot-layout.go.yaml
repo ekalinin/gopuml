@@ -1,0 +1,6 @@
+id: graph-layout/named-dot-layout
+scenarios:
+  - "graph-layout: Layout with the named dot"
+package: "."
+test: TestNamedDotLaysOutGraph
+why: Needs a fake dot named by GRAPHVIZ_DOT that records that it ran, which the reference image cannot provide for both implementations.

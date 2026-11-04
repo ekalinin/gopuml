@@ -26,6 +26,16 @@ import (
 // case format name.
 var goFormats = map[string]font.FileFormat{"svg": font.FormatSVG, "png": font.FormatPNG, "txt": font.FormatATXT, "utxt": font.FormatUTXT}
 
+// useBuiltInLayout removes GRAPHVIZ_DOT from the environment of this
+// process, in which the Go implementation renders the diagram cases and
+// which its command line and server inherit. The reference image sets it
+// for upstream; with it, this implementation would lay graphs out with that
+// dot instead of its built-in engine (switch-to-gogv design D7). A CLI case
+// can still name a dot in its own environment.
+func useBuiltInLayout() {
+	os.Unsetenv("GRAPHVIZ_DOT")
+}
+
 // renderDiagramsGo is renderDiagrams for the Go implementation: each case is
 // parsed and drawn in process, as tools/reference/ReferenceRender.java does
 // with the jar, and preproc outputs are the preprocessed blocks, as the CLI

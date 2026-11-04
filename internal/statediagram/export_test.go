@@ -7,7 +7,6 @@ import (
 	"bytes"
 	"context"
 	"errors"
-	"os/exec"
 	"strings"
 	"testing"
 
@@ -90,9 +89,6 @@ func TestTransitionLabelNode(t *testing.T) {
 			t.Fatalf("links %v", links)
 		}
 	}
-	if _, err := exec.LookPath("dot"); err != nil {
-		t.Skip("dot is not installed: the renders are not compared")
-	}
 	render := func() string {
 		var buf bytes.Buffer
 		block := parseBlock(t, core.NewRenderContext(), src)
@@ -171,9 +167,6 @@ func TestRemovedStateWithLabelNode(t *testing.T) {
 	if !nodes["fault"].IsRemoved() || nodes["start"].IsRemoved() {
 		t.Fatalf("fault removed %v, start removed %v", nodes["fault"].IsRemoved(), nodes["start"].IsRemoved())
 	}
-	if _, err := exec.LookPath("dot"); err != nil {
-		t.Skip("dot is not installed: the render is not checked")
-	}
 	var buf bytes.Buffer
 	block := parseBlock(t, core.NewRenderContext(), src)
 	if _, err := block.Render(context.Background(), &buf, 0, engine.Options{Format: font.FormatSVG}); err != nil {
@@ -198,9 +191,6 @@ func TestRemovedStateWithLabelNode(t *testing.T) {
 // states": a ".history" style reaches the four forms of history states,
 // which the conformance comparison does not tell apart by color.
 func TestStyledHistoryStates(t *testing.T) {
-	if _, err := exec.LookPath("dot"); err != nil {
-		t.Skip("dot is not installed")
-	}
 	src := "@startuml\n<style>\nstateDiagram {\n  .history {\n    BackGroundColor palegreen\n  }\n}\n</style>\n" +
 		"state A\nstate B\nstate hh <<history>>\nstate hd <<history*>>\n[H] --> A\n[H*] --> B\nhh --> A\n" +
 		"hd --> B\n@enduml\n"

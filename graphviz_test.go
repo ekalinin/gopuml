@@ -6,16 +6,42 @@ package gopuml
 import (
 	"context"
 	"errors"
+	"fmt"
+	"io"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/ekalinin/gogv"
 )
 
 const classSource = "@startuml\nclass A\nclass B\nA --> B\n@enduml\n"
+
+// gogvDotEnv makes the test binary act as a dot executable that lays the
+// DOT of its stdin out with gogv, for fake dot scripts that need a real
+// layout without Graphviz.
+const gogvDotEnv = "GOPUML_TEST_GOGV_DOT"
+
+func TestMain(m *testing.M) {
+	if os.Getenv(gogvDotEnv) != "" {
+		src, err := io.ReadAll(os.Stdin)
+		if err == nil {
+			var out []byte
+			if out, _, err = gogv.Render(context.Background(), string(src), "svg"); err == nil {
+				_, err = os.Stdout.Write(out)
+			}
+		}
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error:", err)
+			os.Exit(1)
+		}
+		os.Exit(0)
+	}
+	os.Exit(m.Run())
+}
 
 func TestRenderMissingGraphviz(t *testing.T) {
 	// Spec library-api "Missing Graphviz": the error matches
@@ -53,6 +79,20 @@ func fakeDot(t *testing.T, body string) string {
 	return path
 }
 
+func TestNamedDotLaysOutGraph(t *testing.T) {
+	// Spec graph-layout "Layout with the named dot": the dot that
+	// GRAPHVIZ_DOT names lays the graph out, so its failure is reported.
+	marker := filepath.Join(t.TempDir(), "ran")
+	t.Setenv("GRAPHVIZ_DOT", fakeDot(t, "cat > /dev/null\ntouch "+marker+"\nexit 1"))
+	_, err := Render(context.Background(), classSource, &Options{})
+	if !errors.Is(err, ErrGraphvizFailed) {
+		t.Errorf("error %v, want ErrGraphvizFailed from the named dot", err)
+	}
+	if _, err := os.Stat(marker); err != nil {
+		t.Errorf("the named dot did not run: %v", err)
+	}
+}
+
 func TestRenderCancelledContext(t *testing.T) {
 	// Spec library-api "Cancelled context": dot is stopped and the render
 	// returns the context error.
@@ -79,18 +119,42 @@ func TestRenderCancelledContext(t *testing.T) {
 	if elapsed := time.Since(start); elapsed > 20*time.Second {
 		t.Errorf("dot was not stopped: the render took %s", elapsed)
 	}
+
+	// Without a named dot, the layout of the built-in engine is stopped
+	// too. Laying these 150 classes out takes seconds.
+	t.Setenv("GRAPHVIZ_DOT", "")
+	const n = 150
+	var src strings.Builder
+	src.WriteString("@startuml\n")
+	for i := range n {
+		fmt.Fprintf(&src, "class C%d\n", i)
+	}
+	for i := range n - 1 {
+		fmt.Fprintf(&src, "C%d --> C%d\n", i, i+1)
+	}
+	for i := range n {
+		fmt.Fprintf(&src, "C%d --> C%d\n", i, (i*7+3)%n)
+	}
+	src.WriteString("@enduml\n")
+	ctx, cancel = context.WithCancel(context.Background())
+	time.AfterFunc(500*time.Millisecond, cancel)
+	start = time.Now()
+	res, err = Render(ctx, src.String(), &Options{})
+	if !errors.Is(err, context.Canceled) || res != nil {
+		t.Fatalf("built-in engine: error %v, result %v; want context.Canceled", err, res)
+	}
+	if elapsed := time.Since(start); elapsed > 1500*time.Millisecond {
+		t.Errorf("the built-in layout was not stopped: the render took %s", elapsed)
+	}
 }
 
 func TestDotFailureOnFirstClassDiagramKeepsSecond(t *testing.T) {
 	// Spec graph-layout "dot crashes on one diagram": the first diagram
 	// reports dot's error, the second still renders.
-	realDot, err := exec.LookPath("dot")
-	if err != nil {
-		t.Skip("no Graphviz dot on PATH")
-	}
 	// The first diagram has three classes, so its graph has the node sh0008.
+	// The second is laid out by the test binary acting as a dot with gogv.
 	dotPath := fakeDot(t, "input=$(cat)\ncase \"$input\" in *sh0008*) echo 'Error: fake dot crash' >&2; exit 1;; esac\n"+
-		"printf '%s' \"$input\" | exec "+realDot+" \"$@\"")
+		"printf '%s' \"$input\" | "+gogvDotEnv+"=1 exec '"+os.Args[0]+"' \"$@\"")
 	src := "@startuml\nclass A\nclass B\nclass C\nA --> B\n@enduml\n\n" + classSource
 	res, err := Render(context.Background(), src, &Options{DotPath: dotPath})
 	if !errors.Is(err, ErrGraphvizFailed) || !strings.Contains(err.Error(), "fake dot crash") {
