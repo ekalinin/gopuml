@@ -92,7 +92,7 @@ Alternative: `-e GRAPHVIZ_DOT=` in the Makefile's `REFGEN_GO`. Rejected: it cove
 
 ### D8. WASM and the playground
 
-In the WASM build, graph-based diagrams render through D2. `cmd/plantuml-wasm/main.go` drops the override of the message of `ErrGraphvizNotFound` ("graph layout is not available in this build"), which can no longer happen there, and keeps the error kind `graph-layout-unavailable` in `errorKinds`, which is part of the JavaScript API. The WASM tests of class, description, state, legacy activity and Chen EER diagrams compare the SVG with the native library's output, as those of packet and gantt diagrams do. The playground test renders a class diagram. The playground note of `site/index.html` lists every supported type as rendering in the browser.
+In the WASM build, graph-based diagrams render through D2. `cmd/plantuml-wasm/main.go` drops the override of the message of `ErrGraphvizNotFound` ("graph layout is not available in this build"), which can no longer happen there, and keeps the error kind `graph-layout-unavailable` in `errorKinds`, which is part of the JavaScript API. The WASM tests of class, description, state, legacy activity and Chen EER diagrams compare the SVG with the native library's output, as those of packet and gantt diagrams do. The playground test renders a class diagram. The playground of the page runs the WebAssembly module of the release it names, so its note in `site/index.html` and the README's sentence about the playground change with the next release, as in add-chen-eer-diagrams.
 
 ### D9. The gogv release, and the 12 differing cases
 

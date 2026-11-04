@@ -10,9 +10,10 @@ and text output, and it works as:
   plantuml-server routes
 - a WebAssembly module for browsers and Node.js
 
-No JVM is needed. Graphviz `dot` is needed only for class, description
-(use case, component, deployment), state, legacy activity and Chen EER
-diagrams.
+No JVM and no Graphviz are needed: class, description (use case, component,
+deployment), state, legacy activity and Chen EER diagrams are laid out by
+[gogv](https://github.com/ekalinin/gogv), a Go implementation of Graphviz
+`dot`.
 
 The [landing page](https://ekalinin.github.io/gopuml/) has a
 [playground](https://ekalinin.github.io/gopuml/#playground) that renders
@@ -23,18 +24,18 @@ sequence and activity diagrams in the browser with the WebAssembly module.
 | Diagram type | SVG | PNG | TXT / UTXT |
 |---|---|---|---|
 | Sequence | yes | yes | yes |
-| Class and object | yes (needs `dot`) | yes (needs `dot`) | no |
-| Use case, component and deployment | yes (needs `dot`) | yes (needs `dot`) | no |
-| State | yes (needs `dot`) | yes (needs `dot`) | no |
+| Class and object | yes | yes | no |
+| Use case, component and deployment | yes | yes | no |
+| State | yes | yes | no |
 | Activity (new syntax) | yes | yes | no |
-| Activity (legacy syntax) | yes (needs `dot`) | yes (needs `dot`) | no |
+| Activity (legacy syntax) | yes | yes | no |
 | Packet | yes | yes | no |
 | Gantt | yes | yes | yes |
 | Mindmap | yes | yes | no |
 | WBS | yes | yes | yes |
 | Timing | yes | yes | no |
 | Salt | yes | yes | no |
-| Chen EER | yes (needs `dot`) | yes (needs `dot`) | no |
+| Chen EER | yes | yes | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
@@ -54,7 +55,7 @@ reported with an explicit
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
 conformance suite of 972 cases (upstream's Vega test corpus plus curated
-cases): every case passes, apart from 42 documented known differences
+cases): every case passes, apart from 54 documented known differences
 (`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
@@ -201,18 +202,22 @@ const result = await plantuml.render('@startuml\nAlice -> Bob\n@enduml', { forma
 
 The module runs in the `SANDBOX` security profile: includes come only from
 the `files` option. Class, description, state, legacy activity and Chen EER
-diagrams report that graph layout is not available in this build.
+diagrams are laid out by gogv, as in the native build.
 
 ## Graphviz
 
 Class, object, description, state, legacy activity and Chen EER diagrams are
-laid out by Graphviz `dot`, as upstream does.
-`dot` is looked up from `--dot-path` (or the library option), then the
-`GRAPHVIZ_DOT` environment variable, then `PATH` and the usual install
-locations. `./plantuml --check-graphviz` reports the version found. The
-references were made with Graphviz 14.0.1. Sequence diagrams, activity
+laid out by gogv, a Go implementation of Graphviz `dot` that is built into the
+command line, the library and the WebAssembly module, so no Graphviz is
+needed. A Graphviz `dot` named by `--dot-path` (or the library option) or by
+the `GRAPHVIZ_DOT` environment variable lays them out instead; a `dot` on
+`PATH` is not used. Name one to get upstream's exact layout, or orthogonal
+lines with `skinparam linetype ortho`, which gogv does not support yet and
+draws as splines. `./plantuml --check-graphviz` reports the engine in use.
+The references were made with Graphviz 14.0.1; the cases that gogv lays out
+differently are listed as known differences. Sequence diagrams, activity
 diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams,
-WBS diagrams, timing diagrams and salt diagrams do not need Graphviz.
+WBS diagrams, timing diagrams and salt diagrams do not need a graph layout.
 
 ## Conformance suite
 
@@ -233,26 +238,13 @@ make conformance REQUIRE=all GO_IN_IMAGE=1
 ```
 
 `GO_IN_IMAGE=1` renders the outputs of this implementation in the reference
-image, so that both implementations use the same Graphviz. On arm64 hosts,
-`make conformance` renders them natively with the host's Graphviz, so the
-results there are indicative only. To get the results of CI there, keep this
-implementation native and run only `dot` in the reference image, through a
-wrapper outside the repository that `GRAPHVIZ_DOT` names. The wrapper pins
-`DOCKER_CONFIG`, because the CLI cases run with another `HOME`:
+image. They are laid out by gogv, not by the Graphviz of the image, so on any
+host, arm64 included, a native run gives the results of CI:
 
 ```sh
-mkdir -p /tmp/refdot
-cat > /tmp/refdot/dot <<EOF
-#!/bin/sh
-export DOCKER_CONFIG="$HOME/.docker"
-exec docker run --rm -i --platform linux/amd64 plantuml-go-reference dot "\$@"
-EOF
-chmod +x /tmp/refdot/dot
 make reference
-GRAPHVIZ_DOT=/tmp/refdot/dot make conformance REQUIRE=all
+make conformance REQUIRE=all
 ```
-
-Every `dot` call starts a container, so a full run takes several minutes.
 
 ## License
 

@@ -325,7 +325,8 @@ var comparisonHeader = regexp.MustCompile(`(?m)^\| \| PlantUML \d+\.\d+\.\d+ \(J
 // checkReleaseNotes checks the notes of a release (release: Release notes)
 // against the README: every row of their table of supported diagrams is
 // still a row of the README's table, which may have gained rows since the
-// release.
+// release. A row matches without its Graphviz requirement, which the README
+// dropped when graphs were laid out by gogv.
 func checkReleaseNotes(notes, readme string) error {
 	var errs []error
 	for _, section := range []string{
@@ -351,7 +352,8 @@ func checkReleaseNotes(notes, readme string) error {
 	for line := range strings.SplitSeq(notesTable, "\n") {
 		if strings.HasPrefix(line, "|") {
 			rows++
-			if !strings.Contains("\n"+table+"\n", "\n"+line+"\n") {
+			row := strings.ReplaceAll(line, " (needs `dot`)", "")
+			if !strings.Contains("\n"+table+"\n", "\n"+row+"\n") {
 				errs = append(errs, fmt.Errorf("row %q is not in the table of the README", line))
 			}
 		}
