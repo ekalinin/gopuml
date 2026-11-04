@@ -30,7 +30,7 @@
 
 - [x] 5.1 In `cmd/plantuml-wasm/main.go`, drop the message override for `ErrGraphvizNotFound` and keep the kind `graph-layout-unavailable` (design D8). Rename `TestWasmClassDiagramError` to `TestWasmClassDiagram`. Make it, `TestWasmDescriptionDiagram`, `TestWasmStateDiagram`, `TestWasmLegacyActivityDiagram` and `TestWasmChenDiagram` render the source of their scenario as `svg` and compare the data, width and height with the native library's output, as `TestWasmPacketDiagram` does. Rename the five cases `wasm-build/*-diagram-error.go.yaml` to `wasm-build/*-diagram.go.yaml`, with the ids, the test of the class case and the `why` updated. Verify that `go test ./cmd/plantuml-wasm` and `TestGoCaseTestsExist` pass
 - [x] 5.2 Make `TestPlayground` check that the class diagram (`class A`, `class B`, `A --> B`) renders as SVG without an error, instead of the "graph layout is not available in this build" error (design D8). Verify that `go test -run TestPlayground ./cmd/plantuml-wasm` passes
-- [ ] 5.3 Run `make wasm` on `main` and on the branch, and keep both sizes of `plantuml.wasm` for the pull request (design Risks). Verify that `make wasm` passes
+- [x] 5.3 Run `make wasm` on `main` and on the branch, and keep both sizes of `plantuml.wasm` for the pull request (design Risks). Verify that `make wasm` passes. Sizes: 51,481,340 bytes on `main`, 52,675,302 bytes on the branch (+1,193,962 bytes, +2.3%)
 
 ## 6. Conformance
 
