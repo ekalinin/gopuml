@@ -5,10 +5,13 @@ package code
 
 import (
 	"bytes"
+	"compress/flate"
 	"compress/gzip"
 	"compress/zlib"
 	"errors"
+	"fmt"
 	"strings"
+	"sync"
 	"testing"
 )
 
@@ -155,4 +158,39 @@ func TestUnzipLocalHeader(t *testing.T) {
 	if err != nil || string(got) != content {
 		t.Errorf("unzip = %q, %v", got, err)
 	}
+}
+
+// freshDeflate is deflateRaw with a new writer, as before the writers were
+// pooled.
+func freshDeflate(in []byte) []byte {
+	var buf bytes.Buffer
+	w, _ := flate.NewWriter(&buf, flate.BestCompression)
+	w.Write(in)
+	w.Close()
+	return buf.Bytes()
+}
+
+func TestDeflateRawReusesWriters(t *testing.T) {
+	// A pooled writer compresses as a new one: in turn, so that a writer
+	// used for a large source compresses a small one next, and in parallel.
+	var big strings.Builder
+	big.WriteString("@startuml\n")
+	for i := 0; big.Len() < 100_000; i++ {
+		fmt.Fprintf(&big, "Alice -> Bob%d : message %d of %d\n", i%37, i, i*i%101)
+	}
+	big.WriteString("@enduml")
+	sources := []string{helloSource, big.String(), hiSource, big.String(), helloSource}
+	check := func() {
+		for i, s := range sources {
+			if got, want := deflateRaw([]byte(s)), freshDeflate([]byte(s)); !bytes.Equal(got, want) {
+				t.Errorf("source %d (%d bytes): %d compressed bytes differ from a new writer's %d", i, len(s), len(got), len(want))
+			}
+		}
+	}
+	check()
+	var wg sync.WaitGroup
+	for range 8 {
+		wg.Go(check)
+	}
+	wg.Wait()
 }
