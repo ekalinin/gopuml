@@ -5,10 +5,12 @@
 package klimt
 
 import (
+	"container/list"
 	"maps"
 	"regexp"
 	"slices"
 	"strings"
+	"sync"
 
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
@@ -67,12 +69,11 @@ type SkinParam struct {
 	diagramType                    core.DiagramType
 	useVizJs                       bool
 
-	cacheCleanForKey map[string][]string
-	cacheKeyValue    map[string]optString
-	cacheThickness   map[string]*UStroke
-	sprites          map[string]Sprite
-	paramSameClass   float64
-	sheetCache       []sheetCacheEntry
+	cacheKeyValue  map[string]optString
+	cacheThickness map[string]*UStroke
+	sprites        map[string]Sprite
+	paramSameClass float64
+	sheetCache     []sheetCacheEntry
 }
 
 var _ ISkinParam = (*SkinParam)(nil)
@@ -95,7 +96,7 @@ func SkinParamCreate(md5map map[string]string, ctx *core.RenderContext, diagramT
 		pathSystem: ctx, md5map: md5map, params: map[string]string{},
 		paramsPendingForStyleMigration: newOrderedMap[string, string](),
 		svgCharSizes:                   newOrderedMap[string, string](), rankdir: geom.RankdirTopToBottom,
-		cacheCleanForKey: map[string][]string{}, cacheKeyValue: map[string]optString{},
+		cacheKeyValue:  map[string]optString{},
 		cacheThickness: map[string]*UStroke{}, sprites: map[string]Sprite{}}
 }
 
@@ -177,12 +178,58 @@ func (s *SkinParam) ApplyPendingStyleMigration() {
 	s.paramsPendingForStyleMigration = newOrderedMap[string, string]()
 }
 
-func (s *SkinParam) cleanForKey(key string) []string {
-	if result, ok := s.cacheCleanForKey[key]; ok {
+// cacheCleanForKeyMax is upstream's CACHE_CLEAN_FOR_KEY_MAX.
+const cacheCleanForKeyMax = 2000
+
+// cleanForKeys is upstream's static cacheCleanForKey: cleanForKeySlow is a
+// pure function of the key, so its results are shared by all the SkinParam
+// instances (one per diagram).
+var cleanForKeys = newCleanForKeyCache(cacheCleanForKeyMax)
+
+func (s *SkinParam) cleanForKey(key string) []string { return cleanForKeys.get(key) }
+
+// cleanForKeyCache keeps the results of cleanForKeySlow. The keys come from
+// the diagram source (a stereotype is part of the key), so its size is
+// bounded, and the least recently used entry is the one dropped, as
+// upstream's LinkedHashMap in access order does. The cached slices are
+// shared: they must not be modified.
+type cleanForKeyCache struct {
+	mu      sync.Mutex
+	limit   int
+	entries map[string]*list.Element // of *cleanForKeyEntry
+	order   *list.List               // least recently used first
+}
+
+type cleanForKeyEntry struct {
+	key    string
+	result []string
+}
+
+func newCleanForKeyCache(limit int) *cleanForKeyCache {
+	return &cleanForKeyCache{limit: limit, entries: map[string]*list.Element{}, order: list.New()}
+}
+
+// get returns cleanForKeySlow of key. A miss computes it outside the lock,
+// so that concurrent renders do not wait on its regular expressions.
+func (c *cleanForKeyCache) get(key string) []string {
+	c.mu.Lock()
+	if e, ok := c.entries[key]; ok {
+		c.order.MoveToBack(e)
+		result := e.Value.(*cleanForKeyEntry).result
+		c.mu.Unlock()
 		return result
 	}
+	c.mu.Unlock()
 	result := cleanForKeySlow(key)
-	s.cacheCleanForKey[key] = result
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if _, ok := c.entries[key]; !ok {
+		c.entries[key] = c.order.PushBack(&cleanForKeyEntry{key: key, result: result})
+		if c.order.Len() > c.limit {
+			eldest := c.order.Remove(c.order.Front()).(*cleanForKeyEntry)
+			delete(c.entries, eldest.key)
+		}
+	}
 	return result
 }
 
