@@ -27,12 +27,12 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 - [x] 6.1 Run `make bench-compare BASE=main`. Verify that it exits 0, that `B/op` falls for every type, by more than half for `sequence` (`-50.0%` or lower), and that no type's `ns/op` grows beyond its spread
 - [x] 6.2 Run `make test` and `go test -race . ./internal/code ./internal/command/... ./internal/klimt`. Verify that both pass, `TestRenderAfterOtherRenders` and `TestRenderConcurrent` included
-- [ ] 6.3 Run `make conformance REQUIRE=all` natively with `GRAPHVIZ_DOT` unset (the layout is gogv's, as in CI, which runs it with `GO_IN_IMAGE=1`). Verify 0 failures, no known difference that now passes, and the same counts of passed cases, known differences and unsupported cases per diagram type as `conformance-report.md`
-- [ ] 6.4 Run `make wasm`. Verify that it builds `dist/wasm/plantuml.wasm` (the pool and the mutex run on one thread there)
+- [x] 6.3 Run `make conformance REQUIRE=all` natively with `GRAPHVIZ_DOT` unset (the layout is gogv's, as in CI, which runs it with `GO_IN_IMAGE=1`). Verify 0 failures, no known difference that now passes, and the same counts of passed cases, known differences and unsupported cases per diagram type as `conformance-report.md`
+- [x] 6.4 Run `make wasm`. Verify that it builds `dist/wasm/plantuml.wasm` (the pool and the mutex run on one thread there)
 
 ## 7. Documentation, checks and pull request
 
-- [ ] 7.1 Check README.md and site/index.html: no count, table or timing changes (the timings of the site are those of v0.3.0). Verify that `TestLandingPage` and `TestReleaseNotes` pass
-- [ ] 7.2 Run `make lint` and `make provenance`. Verify that both pass
+- [x] 7.1 Check README.md and site/index.html: no count, table or timing changes (the timings of the site are those of v0.3.0). Verify that `TestLandingPage` and `TestReleaseNotes` pass
+- [x] 7.2 Run `make lint` and `make provenance`. Verify that both pass
 - [ ] 7.3 With the user's approval, push the branch and open a pull request whose description has the conformance result of task 6.3; the benchmark table is in the summary of its `benchmark` job. Verify that its `test`, `conformance` and `benchmark` jobs pass, and that the summary of `benchmark` shows `-50.0%` or lower for the `B/op` of `sequence`
-- [ ] 7.4 Run `openspec validate reduce-render-allocations --strict`. Verify that it passes
+- [x] 7.4 Run `openspec validate reduce-render-allocations --strict`. Verify that it passes
