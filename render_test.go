@@ -192,13 +192,22 @@ func BenchmarkRender(b *testing.B) {
 	sets := renderBenchmarkSets(b)
 	for _, typ := range slices.Sorted(maps.Keys(sets)) {
 		b.Run(typ, func(b *testing.B) {
-			b.ReportAllocs()
-			for b.Loop() {
+			pass := func() {
 				for _, in := range sets[typ] {
 					// Error images are part of the work: errors are not
 					// failures here.
 					Render(b.Context(), in.source, in.opts)
 				}
+			}
+			// The first pass does the one-time setup of the process (command
+			// lists, standard library, fonts). The first call of b.Loop
+			// resets the timer and the allocation counters, so this pass is
+			// not measured, and B/op does not depend on how many passes the
+			// machine runs in the benchmark time.
+			pass()
+			b.ReportAllocs()
+			for b.Loop() {
+				pass()
 			}
 		})
 	}
