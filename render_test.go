@@ -236,3 +236,31 @@ func TestRenderBenchmarkTypes(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderAfterOtherRenders(t *testing.T) {
+	// A render does not depend on the renders that ran before it in the
+	// process: what renders share (the deflate writers, the normalized
+	// skinparam keys, the checked leaf patterns) carries nothing of one
+	// render into another. The C4 library sets many skinparams.
+	c4 := "@startuml\n!include <C4/C4_Container>\nPerson(user, \"User\")\nContainer(api, \"API\", \"Go\")\nRel(user, api, \"Uses\")\n@enduml\n"
+	render := func(src string) []byte {
+		t.Helper()
+		res, err := Render(t.Context(), src, nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return res.Data
+	}
+	first := render(seqSource)
+	c4First, c4Again := render(c4), render(c4)
+	again := render(seqSource)
+	if !bytes.Contains(first, []byte("<?plantuml-src ")) {
+		t.Fatalf("no encoded source in %.200s", first)
+	}
+	if !bytes.Equal(first, again) {
+		t.Errorf("the sequence diagram differs after the C4 renders:\n%s\n%s", first, again)
+	}
+	if !bytes.Equal(c4First, c4Again) {
+		t.Errorf("the second C4 render differs from the first")
+	}
+}

@@ -4,6 +4,7 @@
 package regex
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -99,6 +100,37 @@ func TestNamedLeafCountChecked(t *testing.T) {
 		}
 	}()
 	NewNamedLeaf(2, "X", "(a)")
+}
+
+// panicOf returns what f panics with, or nil.
+func panicOf(f func()) (v any) {
+	defer func() { v = recover() }()
+	f()
+	return nil
+}
+
+func TestNamedLeafCheckedOnce(t *testing.T) {
+	// The group count of a pattern is stored by the first call, and checked
+	// against the declared count on every call.
+	for range 2 {
+		if l := NewNamedLeaf(1, "X", "(a)"); l.pattern != "(a)" || l.count != 1 {
+			t.Errorf("leaf %+v", l)
+		}
+	}
+	want := `regex: leaf "(a)" has 1 groups, declared 2`
+	if got := panicOf(func() { NewNamedLeaf(2, "X", "(a)") }); got != want {
+		t.Errorf("panic %v, want %q", got, want)
+	}
+	// A pattern that does not compile is not stored, and panics each time
+	// with the same message.
+	first := panicOf(func() { NewNamedLeaf(0, "", "(") })
+	second := panicOf(func() { NewNamedLeaf(0, "", "(") })
+	if first == nil || fmt.Sprint(first) != fmt.Sprint(second) {
+		t.Errorf("panics %v and %v", first, second)
+	}
+	if _, stored := leafGroups.Load("("); stored {
+		t.Error("a pattern that does not compile was stored")
+	}
 }
 
 // fakeCaptures are UBrex captures for TestResultFromCaptures.

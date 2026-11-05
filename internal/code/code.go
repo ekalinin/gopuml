@@ -20,6 +20,7 @@ import (
 	"io"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 // ErrNoCompression is upstream's NoPlantumlCompressionException: the text is
@@ -135,6 +136,14 @@ const MaxDeflateOutput = 1024 * 1024
 // maxArchiveOutput is upstream's limit for gzip and zip data.
 const maxArchiveOutput = 200_000
 
+// deflaters holds the writers of deflateRaw: a new writer allocates and
+// clears about 1 MB of tables, while Reset makes a used writer equivalent to
+// a new one, so the compressed bytes do not change.
+var deflaters = sync.Pool{New: func() any {
+	w, _ := flate.NewWriter(nil, flate.BestCompression)
+	return w
+}}
+
 // deflateRaw compresses with raw deflate at the best level. Empty input
 // gives no data, as upstream.
 func deflateRaw(in []byte) []byte {
@@ -142,9 +151,11 @@ func deflateRaw(in []byte) []byte {
 		return nil
 	}
 	var buf bytes.Buffer
-	w, _ := flate.NewWriter(&buf, flate.BestCompression)
+	w := deflaters.Get().(*flate.Writer)
+	w.Reset(&buf)
 	w.Write(in)
 	w.Close()
+	deflaters.Put(w)
 	return buf.Bytes()
 }
 

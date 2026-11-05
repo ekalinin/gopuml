@@ -58,20 +58,30 @@ func End() *Leaf { return end }
 // NewLeaf returns an unnamed fragment without capturing groups.
 func NewLeaf(pattern string) *Leaf { return NewNamedLeaf(0, "", pattern) }
 
+// leafGroups maps a leaf pattern to its number of capturing groups, so that
+// NewNamedLeaf compiles each pattern once per process; leaves are also built
+// while commands execute. The patterns come from the code, not from sources.
+var leafGroups sync.Map
+
 // NewNamedLeaf returns a fragment whose count capturing groups are reported
 // under name. It panics when the pattern does not have count groups, as
 // upstream asserts.
 func NewNamedLeaf(count int, name, pattern string) *Leaf {
-	t, err := Transform(pattern)
-	if err != nil {
-		panic(err)
+	groups, ok := leafGroups.Load(pattern)
+	if !ok {
+		t, err := Transform(pattern)
+		if err != nil {
+			panic(err)
+		}
+		re, err := regexp.Compile(t)
+		if err != nil {
+			panic(fmt.Sprintf("regex: leaf %q: %v", pattern, err))
+		}
+		groups = re.NumSubexp()
+		leafGroups.Store(pattern, groups)
 	}
-	re, err := regexp.Compile(t)
-	if err != nil {
-		panic(fmt.Sprintf("regex: leaf %q: %v", pattern, err))
-	}
-	if re.NumSubexp() != count {
-		panic(fmt.Sprintf("regex: leaf %q has %d groups, declared %d", pattern, re.NumSubexp(), count))
+	if n := groups.(int); n != count {
+		panic(fmt.Sprintf("regex: leaf %q has %d groups, declared %d", pattern, n, count))
 	}
 	return &Leaf{name: name, count: count, pattern: pattern}
 }

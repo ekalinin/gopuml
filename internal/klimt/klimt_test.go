@@ -5,8 +5,10 @@ package klimt
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"math"
+	"slices"
 	"strings"
 	"sync"
 	"testing"
@@ -917,5 +919,50 @@ func TestReviewFixes(t *testing.T) {
 	root := StyleSignatureBasicOf(SNameRoot).MergedStyle(b.MuteStyle(styles))
 	if class, _ := expectPanic(t, func() { root.Stroke() }); class != nullPointer {
 		t.Error(class)
+	}
+}
+
+func TestCleanForKeyCache(t *testing.T) {
+	// A hit gives what cleanForKeySlow gives, upstream's golden results.
+	for _, line := range readLines(t, "cleanforkey_inputs.txt") {
+		for range 2 {
+			if got, want := new(SkinParam).cleanForKey(line), cleanForKeySlow(line); !slices.Equal(got, want) {
+				t.Errorf("cleanForKey(%q) = %q, want %q", line, got, want)
+			}
+		}
+	}
+	// The least recently used key is dropped first.
+	c := newCleanForKeyCache(cacheCleanForKeyMax)
+	for i := range cacheCleanForKeyMax {
+		c.get(fmt.Sprint("k", i))
+	}
+	c.get("k0")
+	c.get(fmt.Sprint("k", cacheCleanForKeyMax))
+	_, hasK0 := c.entries["k0"]
+	_, hasK1 := c.entries["k1"]
+	if !hasK0 || hasK1 || len(c.entries) != cacheCleanForKeyMax || c.order.Len() != cacheCleanForKeyMax {
+		t.Errorf("k0 kept %v, k1 kept %v, %d entries, %d in order", hasK0, hasK1, len(c.entries), c.order.Len())
+	}
+}
+
+func TestCleanForKeyCacheConcurrent(t *testing.T) {
+	// Concurrent lookups of more keys than the cache holds, so that entries
+	// are dropped while others are read.
+	c := newCleanForKeyCache(cacheCleanForKeyMax)
+	var wg sync.WaitGroup
+	for g := range 8 {
+		wg.Go(func() {
+			for i := range 1000 {
+				key := fmt.Sprintf("Class%dBackground_Color<<S%d>>", (g*389+i*7)%3000, i%5)
+				if got, want := c.get(key), cleanForKeySlow(key); !slices.Equal(got, want) {
+					t.Errorf("get(%q) = %q, want %q", key, got, want)
+					return
+				}
+			}
+		})
+	}
+	wg.Wait()
+	if len(c.entries) > cacheCleanForKeyMax || len(c.entries) != c.order.Len() {
+		t.Errorf("%d entries, %d in order", len(c.entries), c.order.Len())
 	}
 }
