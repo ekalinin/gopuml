@@ -209,3 +209,34 @@ func TestFactoryTriesCommandsByFirstToken(t *testing.T) {
 		t.Errorf("got %v, want %s", got, want)
 	}
 }
+
+func TestIteratorTrace(t *testing.T) {
+	// The trace is the lines consumed so far, upstream's trace, without a
+	// copy of its own.
+	lines := []text.StringLocated{{S: "a"}, {S: "b"}, {S: "c"}}
+	texts := func(ls []text.StringLocated) string {
+		var out []string
+		for _, l := range ls {
+			out = append(out, l.S)
+		}
+		return strings.Join(out, ",")
+	}
+	it := newIterator(lines)
+	it.next()
+	it.next()
+	if got := texts(it.trace()); got != "a,b" {
+		t.Errorf("trace %q, want a,b", got)
+	}
+	c := it.clone()
+	c.next()
+	if got := texts(c.trace()); got != "a,b,c" {
+		t.Errorf("trace of the clone %q, want a,b,c", got)
+	}
+	if got := texts(it.trace()); got != "a,b" {
+		t.Errorf("trace after the clone advanced %q, want a,b", got)
+	}
+	_ = append(it.trace(), text.StringLocated{S: "x"})
+	if lines[2].S != "c" {
+		t.Errorf("appending to the trace changed the third line to %q", lines[2].S)
+	}
+}

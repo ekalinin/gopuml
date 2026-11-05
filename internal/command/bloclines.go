@@ -136,12 +136,11 @@ func (b BlocLines) OverrideLastLine(last string) BlocLines {
 	return BlocLines{lines: out}
 }
 
-// iterator walks source lines and records the lines it has consumed, which
-// become the trace of an error.
+// iterator walks source lines; the lines it has consumed become the trace of
+// an error.
 type iterator struct {
-	data  []text.StringLocated
-	pos   int
-	trace []text.StringLocated
+	data []text.StringLocated
+	pos  int
 }
 
 func newIterator(data []text.StringLocated) *iterator { return &iterator{data: data} }
@@ -153,12 +152,14 @@ func (it *iterator) peek() text.StringLocated { return it.data[it.pos] }
 func (it *iterator) next() text.StringLocated {
 	l := it.data[it.pos]
 	it.pos++
-	it.trace = append(it.trace, l)
 	return l
 }
 
-func (it *iterator) clone() *iterator {
-	return &iterator{data: it.data, pos: it.pos, trace: slices.Clone(it.trace)}
-}
+// trace returns the lines consumed so far, upstream's trace: pos starts at 0
+// and only next advances it, so they are the first pos lines. The capacity
+// is clipped, so that appending to the trace leaves the source lines alone.
+func (it *iterator) trace() []text.StringLocated { return it.data[:it.pos:it.pos] }
+
+func (it *iterator) clone() *iterator { return &iterator{data: it.data, pos: it.pos} }
 
 func (it *iterator) copyStateFrom(other *iterator) { *it = *other }

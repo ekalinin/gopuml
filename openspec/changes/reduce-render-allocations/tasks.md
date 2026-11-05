@@ -13,7 +13,7 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 3. Leaf pattern check (`internal/command/regex`)
 
-- [ ] 3.1 Make `NewNamedLeaf` look up the group count of its pattern in a package-level `sync.Map`, compute and store it on a miss, and compare it with `count` on every call (design D2). Add to `composed_test.go`: `NewNamedLeaf(1, "X", "(a)")` called twice returns two leaves with the pattern `(a)`; `NewNamedLeaf(2, "X", "(a)")` panics with `regex: leaf "(a)" has 1 groups, declared 2` after the correct call has stored the pattern; `NewNamedLeaf(0, "", "(")` panics on two calls in a row, with the same message as before the change. Verify that `go test -race ./internal/command/...` passes. Commit as `perf(regex): check the groups of a leaf pattern once`, then verify that `make bench-compare BASE=HEAD^1` exits 0 and shows a negative change for the `allocs/op` of `class` and `timing`
+- [x] 3.1 Make `NewNamedLeaf` look up the group count of its pattern in a package-level `sync.Map`, compute and store it on a miss, and compare it with `count` on every call (design D2). Add to `composed_test.go`: `NewNamedLeaf(1, "X", "(a)")` called twice returns two leaves with the pattern `(a)`; `NewNamedLeaf(2, "X", "(a)")` panics with `regex: leaf "(a)" has 1 groups, declared 2` after the correct call has stored the pattern; `NewNamedLeaf(0, "", "(")` panics on two calls in a row, with the same message as before the change. Verify that `go test -race ./internal/command/...` passes. Commit as `perf(regex): check the groups of a leaf pattern once`, then verify that `make bench-compare BASE=HEAD^1` exits 0 and shows a negative change for the `allocs/op` of `class` and `timing`
 
 ## 4. Iterator trace (`internal/command`)
 

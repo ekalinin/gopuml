@@ -78,7 +78,7 @@ func (f *Factory[D]) CreateSystem(ctx *core.RenderContext, src *core.UmlSource) 
 		if it.hasNext() {
 			it.next()
 		}
-		return f.newError(src, core.SyntaxError, EmptyDescription, 0, start, it.trace)
+		return f.newError(src, core.SyntaxError, EmptyDescription, 0, start, it.trace())
 	}
 
 	var sys Diagram = f.NewDiagram(ctx, src)
@@ -103,11 +103,11 @@ func (f *Factory[D]) CreateSystem(ctx *core.RenderContext, src *core.UmlSource) 
 func (f *Factory[D]) finalize(sys Diagram, src *core.UmlSource, it *iterator) core.Diagram {
 	if msg := sys.CheckFinalError(); msg != "" {
 		loc := it.next()
-		return f.newError(src, core.ExecutionError, msg, 0, loc, it.trace)
+		return f.newError(src, core.ExecutionError, msg, 0, loc, it.trace())
 	}
 	if src.TotalLineCount() == 2 {
 		loc := it.next()
-		return f.newError(src, core.SyntaxError, EmptyDescription, 0, loc, it.trace)
+		return f.newError(src, core.SyntaxError, EmptyDescription, 0, loc, it.trace())
 	}
 	sys.MakeDiagramReady()
 	if sys.IsIncomplete() {
@@ -123,7 +123,7 @@ func (f *Factory[D]) executeFewLines(sys Diagram, src *core.UmlSource, it *itera
 	if !ok {
 		line := it.peek()
 		it.next()
-		return nil, f.newError(src, core.SyntaxError, "Syntax Error?", 0, line, it.trace)
+		return nil, f.newError(src, core.SyntaxError, "Syntax Error?", 0, line, it.trace())
 	}
 	if !cmd.EligibleFor(pass) {
 		return sys, nil
@@ -138,7 +138,7 @@ func (f *Factory[D]) executeFewLines(sys Diagram, src *core.UmlSource, it *itera
 	}
 	if !result.IsOK() {
 		first, _ := lines.First()
-		return nil, f.newError(src, core.ExecutionError, result.Err(), result.Score(), first, it.trace)
+		return nil, f.newError(src, core.ExecutionError, result.Err(), result.Score(), first, it.trace())
 	}
 	if result.NewDiagram != nil {
 		return result.NewDiagram, nil
