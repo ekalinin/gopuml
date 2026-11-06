@@ -750,9 +750,3 @@ func TestRunExtractSource(t *testing.T) {
 		t.Errorf("bad PNG: exit %d, stdout %q, stderr %q", r.code, r.stdout, r.stderr)
 	}
 }
-
-// TestDotPNGWithoutDot checks the dot-diagram scenario "PNG without
-// Graphviz".
-func TestDotPNGWithoutDot(t *testing.T) {
-	t.Skip("dot diagrams are registered by task 5.1 of add-dot-diagrams")
-}

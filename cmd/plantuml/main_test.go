@@ -6,6 +6,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"image/png"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -228,5 +229,29 @@ func TestReleaseVersion(t *testing.T) {
 	}
 	if got, want := strings.TrimSpace(string(out)), "gopuml v0.1.0 (PlantUML 1.2026.9 compatible)"; got != want {
 		t.Errorf("--version prints %q, want %q", got, want)
+	}
+}
+
+func TestDotPNGWithoutDot(t *testing.T) {
+	// Spec dot-diagram "PNG without Graphviz": gogv does not write PNG, so
+	// the command line writes upstream's "GraphViz has crashed" image, 181
+	// by 26 pixels, and exits with 200.
+	t.Setenv("GRAPHVIZ_DOT", "")
+	dir := t.TempDir()
+	write(t, dir, map[string]string{"d.puml": "@startdot\ndigraph G {\na -> b\n}\n@enddot\n"})
+	code, _, stderr := run(t, dir, "", "-tpng", "d.puml")
+	if code != cli.ExitSomeErrors {
+		t.Errorf("exit %d, stderr %q, want %d", code, stderr, cli.ExitSomeErrors)
+	}
+	data, err := os.ReadFile(filepath.Join(dir, "d.png"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	img, err := png.Decode(bytes.NewReader(data))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if b := img.Bounds(); b.Dx() != 181 || b.Dy() != 26 {
+		t.Errorf("image of %dx%d, want the crash image of 181x26", b.Dx(), b.Dy())
 	}
 }
