@@ -55,7 +55,7 @@ reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
-conformance suite of 987 cases (upstream's Vega test corpus plus curated
+conformance suite of 988 cases (upstream's Vega test corpus plus curated
 cases): every case passes, apart from 55 documented known differences
 (`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
