@@ -1,0 +1,6 @@
+id: dot-diagram/graphviz-warning-output
+scenarios:
+  - "dot-diagram: Graphviz warning in the output"
+package: internal/directdot
+test: TestDotGraphvizWarningOutput
+why: The output starts with a warning line of the layout engine, so it is not an SVG document, and the comparison of SVG texts needs one.

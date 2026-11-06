@@ -1,0 +1,6 @@
+id: dot-diagram/layout-timeout
+scenarios:
+  - "dot-diagram: Layout timeout in a dot diagram"
+package: internal/directdot
+test: TestDotLayoutTimeout
+why: The scenario depends on a slow dot named in the test environment rather than on upstream output.

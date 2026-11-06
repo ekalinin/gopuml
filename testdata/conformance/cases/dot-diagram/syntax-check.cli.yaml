@@ -1,0 +1,11 @@
+id: dot-diagram/syntax-check
+scenarios:
+  - "dot-diagram: Syntax check of a dot diagram"
+args: ["-syntax"]
+stdin: |
+  @startdot
+  digraph G {
+  a -> b
+  }
+  @enddot
+compare: [exit, files, stdout]

@@ -1,0 +1,6 @@
+id: dot-diagram/builtin-engine
+scenarios:
+  - "dot-diagram: Laid out by the built-in engine"
+package: internal/directdot
+test: TestDotBuiltinEngine
+why: The reference is laid out by the Graphviz of the reference image; the scenario checks that this implementation writes the SVG of its built-in engine.

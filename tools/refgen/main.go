@@ -44,6 +44,7 @@ import (
 	"time"
 
 	"github.com/ekalinin/gopuml/internal/conformance"
+	"github.com/ekalinin/gopuml/internal/security"
 )
 
 const (
@@ -250,45 +251,11 @@ func (g *generator) renderDiagrams(suite string, jobs []diagramJob) error {
 		return g.renderDiagramsGo(jobs)
 	}
 	scratch := filepath.Join(g.workDir, suite)
-	var manifest bytes.Buffer
-	var preproc []diagramJob
-	outRoot := jobs[0].outRoot
-	for _, j := range jobs {
-		var formats []string
-		for _, f := range j.c.Formats {
-			switch {
-			case f == "preproc":
-				preproc = append(preproc, j)
-			case f == "png" && !g.png:
-			default:
-				formats = append(formats, f)
-			}
+	files, preproc := g.referenceRun(scratch, jobs)
+	for name, data := range files {
+		if err := writeFile(filepath.Join(g.root, name), data); err != nil {
+			return err
 		}
-		if len(formats) == 0 {
-			formats = []string{"none"} // still records meta.json
-		}
-		fmt.Fprintf(&manifest, "%s\t%s\t%s\n", j.c.ID, container(j.file), strings.Join(formats, ","))
-	}
-	if err := writeFile(filepath.Join(g.root, scratch, "manifest.tsv"), manifest.Bytes()); err != nil {
-		return err
-	}
-
-	var script strings.Builder
-	script.WriteString("set -e\n")
-	render := fmt.Sprintf("java -cp %s:/opt/tools ReferenceRender %s %s", jar, container(filepath.Join(scratch, "manifest.tsv")), container(outRoot))
-	if g.png {
-		render += " " + container(g.outPNG)
-	}
-	fmt.Fprintln(&script, render)
-	if len(preproc) > 0 {
-		fmt.Fprintf(&script, "java -jar %s --preproc --ignore-startuml-filename", jar)
-		for _, j := range preproc {
-			fmt.Fprintf(&script, " %s", shellQuote(container(j.file)))
-		}
-		script.WriteString(" || true\n")
-	}
-	if err := writeFile(filepath.Join(g.root, scratch, "run.sh"), []byte(script.String())); err != nil {
-		return err
 	}
 	if err := g.docker(nil, nil, "-v", g.root+":/work", "-w", "/work", g.image, "sh", container(filepath.Join(scratch, "run.sh"))); err != nil {
 		return fmt.Errorf("%s: rendering failed: %w", suite, err)
@@ -298,7 +265,7 @@ func (g *generator) renderDiagrams(suite string, jobs []diagramJob) error {
 	for _, j := range preproc {
 		dir := filepath.Join(g.root, filepath.Dir(j.file))
 		base := strings.TrimSuffix(filepath.Base(j.file), ".puml")
-		out := filepath.Join(g.root, outRoot, filepath.FromSlash(j.c.ID))
+		out := filepath.Join(g.root, j.outRoot, filepath.FromSlash(j.c.ID))
 		for i := 0; ; i++ {
 			name := base + ".preproc"
 			if i > 0 {
@@ -314,6 +281,67 @@ func (g *generator) renderDiagrams(suite string, jobs []diagramJob) error {
 		}
 	}
 	return nil
+}
+
+// referenceRun returns the files of the container run that renders jobs with
+// the Java implementation, by path relative to the repository root, and the
+// jobs that ask for preproc. There is one manifest per security profile:
+// manifest.tsv for the cases that name none, manifest-<PROFILE>.tsv for the
+// others. run.sh runs ReferenceRender once per manifest, each in its own JVM
+// with PLANTUML_SECURITY_PROFILE set for a named profile, as upstream reads
+// the profile once; then the CLI in batch mode for preproc.
+func (g *generator) referenceRun(scratch string, jobs []diagramJob) (files map[string][]byte, preproc []diagramJob) {
+	manifests := map[string]*bytes.Buffer{}
+	outRoot := jobs[0].outRoot
+	for _, j := range jobs {
+		var formats []string
+		for _, f := range j.c.Formats {
+			switch {
+			case f == "preproc":
+				preproc = append(preproc, j)
+			case f == "png" && !g.png:
+			default:
+				formats = append(formats, f)
+			}
+		}
+		if len(formats) == 0 {
+			formats = []string{"none"} // still records meta.json
+		}
+		profile := ""
+		if p, ok := security.ParseProfile(j.c.Profile); ok {
+			profile = p.String()
+		}
+		if manifests[profile] == nil {
+			manifests[profile] = &bytes.Buffer{}
+		}
+		fmt.Fprintf(manifests[profile], "%s\t%s\t%s\n", j.c.ID, container(j.file), strings.Join(formats, ","))
+	}
+
+	files = map[string][]byte{}
+	var script strings.Builder
+	script.WriteString("set -e\n")
+	for _, profile := range slices.Sorted(maps.Keys(manifests)) {
+		name, env := "manifest.tsv", ""
+		if profile != "" {
+			name, env = "manifest-"+profile+".tsv", security.EnvProfile+"="+profile+" "
+		}
+		manifest := filepath.Join(scratch, name)
+		files[manifest] = manifests[profile].Bytes()
+		render := fmt.Sprintf("%sjava -cp %s:/opt/tools ReferenceRender %s %s", env, jar, container(manifest), container(outRoot))
+		if g.png {
+			render += " " + container(g.outPNG)
+		}
+		fmt.Fprintln(&script, render)
+	}
+	if len(preproc) > 0 {
+		fmt.Fprintf(&script, "java -jar %s --preproc --ignore-startuml-filename", jar)
+		for _, j := range preproc {
+			fmt.Fprintf(&script, " %s", shellQuote(container(j.file)))
+		}
+		script.WriteString(" || true\n")
+	}
+	files[filepath.Join(scratch, "run.sh")] = []byte(script.String())
+	return files, preproc
 }
 
 // textOutputs are created files whose content is stored in the reference.

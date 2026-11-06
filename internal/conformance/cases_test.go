@@ -44,6 +44,24 @@ func TestParseCase(t *testing.T) {
 	}
 }
 
+func TestParseCaseProfile(t *testing.T) {
+	data := strings.Replace(validCase, "type: sequence\n", "type: sequence\nprofile: INTERNET_WITH_DOTSVG\n", 1)
+	c, err := ParseCase("sequence-diagram/self-message.puml", []byte(data))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.Profile != "INTERNET_WITH_DOTSVG" {
+		t.Errorf("profile = %q, want INTERNET_WITH_DOTSVG", c.Profile)
+	}
+	c, err = ParseCase("sequence-diagram/self-message.puml", []byte(validCase))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.Profile != "" {
+		t.Errorf("profile = %q, want none", c.Profile)
+	}
+}
+
 func TestParseCaseCRLF(t *testing.T) {
 	data := strings.ReplaceAll(validCase, "\n", "\r\n")
 	c, err := ParseCase("sequence-diagram/self-message.puml", []byte(data))
@@ -72,6 +90,7 @@ func TestParseCaseErrors(t *testing.T) {
 		{"missing formats", "sequence-diagram/self-message.puml", replace("formats: [svg, txt]\n", ""), "missing formats"},
 		{"unknown format", "sequence-diagram/self-message.puml", replace("[svg, txt]", "[svg, pdf]"), `unknown format "pdf"`},
 		{"unknown field", "sequence-diagram/self-message.puml", replace("type: sequence\n", "type: sequence\ncolour: red\n"), "invalid YAML header"},
+		{"unknown profile", "sequence-diagram/self-message.puml", replace("type: sequence\n", "type: sequence\nprofile: FOO\n"), `unknown security profile "FOO"`},
 		{"bad scenario ref", "sequence-diagram/self-message.puml", replace(`"sequence-diagram: Self message"`, `"Self message"`), "is not in the form"},
 		{"empty source", "sequence-diagram/self-message.puml", validCase[:strings.Index(validCase, "@startuml")], "empty diagram source"},
 	}

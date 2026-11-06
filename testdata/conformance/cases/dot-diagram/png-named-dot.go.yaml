@@ -1,0 +1,6 @@
+id: dot-diagram/png-named-dot
+scenarios:
+  - "dot-diagram: PNG with the named dot"
+package: internal/directdot
+test: TestDotPNGNamedDot
+why: The scenario depends on the dot named in the test environment rather than on upstream output.

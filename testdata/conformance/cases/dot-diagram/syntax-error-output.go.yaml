@@ -1,0 +1,6 @@
+id: dot-diagram/syntax-error-output
+scenarios:
+  - "dot-diagram: Syntax error in the DOT source"
+package: internal/directdot
+test: TestDotSyntaxErrorOutput
+why: The output is the error text of the layout engine, not an SVG document, and the comparison of SVG texts needs one.

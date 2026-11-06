@@ -1,0 +1,6 @@
+id: wasm-build/dot-diagram
+scenarios:
+  - "wasm-build: Dot diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmDotDiagram
+why: Upstream has no WASM build of this implementation; the scenario compares the WASM build with the native build in the SANDBOX profile.

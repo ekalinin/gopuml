@@ -348,3 +348,8 @@ func TestWasmChenDiagram(t *testing.T) {
 	renderMatchesNative(t, "@startchen\nentity CUSTOMER {\n  Number <<key>>\n}\nrelationship RENTED_TO {\n}\n"+
 		"RENTED_TO -1- CUSTOMER\n@endchen\n")
 }
+
+func TestWasmDotDiagram(t *testing.T) {
+	// Spec scenario "Dot diagram in WASM".
+	t.Skip("dot diagrams are registered by task 5.1 of add-dot-diagrams")
+}

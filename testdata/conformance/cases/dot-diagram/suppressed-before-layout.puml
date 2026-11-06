@@ -1,0 +1,13 @@
+---
+id: dot-diagram/suppressed-before-layout
+family: dot
+type: dot
+formats: [svg]
+scenarios:
+  - "dot-diagram: Suppressed before the layout"
+---
+@startdot
+digraph G {
+a ->
+}
+@enddot

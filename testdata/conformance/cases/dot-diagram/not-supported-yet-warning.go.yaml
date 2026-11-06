@@ -1,0 +1,6 @@
+id: dot-diagram/not-supported-yet-warning
+scenarios:
+  - "dot-diagram: Feature not supported by the built-in engine"
+package: internal/directdot
+test: TestDotNotSupportedYetWarningDropped
+why: The Graphviz of the reference image supports the feature; the scenario checks the output of the built-in engine, which does not.

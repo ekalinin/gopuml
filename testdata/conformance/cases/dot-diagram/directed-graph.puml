@@ -1,0 +1,15 @@
+---
+id: dot-diagram/directed-graph
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET_WITH_DOTSVG
+scenarios:
+  - "dot-diagram: Directed graph"
+---
+@startdot
+digraph G {
+a -> b
+b -> c [label="x"]
+}
+@enddot

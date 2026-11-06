@@ -6,6 +6,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"cmp"
 	"context"
 	"encoding/json"
 	"errors"
@@ -72,6 +73,7 @@ func (g *generator) renderCaseGo(meta *conformance.Meta, j diagramJob, out strin
 	// whose line locations are named "string", the context's default.
 	rc := core.NewRenderContext()
 	rc.CurrentDir = filepath.Dir(file)
+	rc.SecurityProfile = cmp.Or(j.c.Profile, rc.SecurityProfile)
 	blocks, err := engine.Parse(context.Background(), rc, engine.Source{Text: string(data), File: file})
 	if err != nil {
 		return err

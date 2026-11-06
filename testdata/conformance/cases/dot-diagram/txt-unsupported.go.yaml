@@ -1,0 +1,6 @@
+id: dot-diagram/txt-unsupported
+scenarios:
+  - "dot-diagram: TXT dot diagram"
+package: "."
+test: TestRenderDotDiagramAsTXTIsUnsupported
+why: Upstream v1.2026.9 asks dot for -Tatxt and draws its GraphViz has crashed text, while the spec requires an unsupported-format error and no output.

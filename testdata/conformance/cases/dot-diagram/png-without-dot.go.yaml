@@ -1,0 +1,6 @@
+id: dot-diagram/png-without-dot
+scenarios:
+  - "dot-diagram: PNG without Graphviz"
+package: internal/cli
+test: TestDotPNGWithoutDot
+why: Upstream's PNG with the Graphviz of the reference image depends on timing, as the GraphViz has crashed image in some runs and the Format not recognized text of dot in others, so its reference is not reproducible.

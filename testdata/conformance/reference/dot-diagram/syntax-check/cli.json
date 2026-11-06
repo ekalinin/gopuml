@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-syntax"
+  ],
+  "exit": 0,
+  "stdout": "OTHER\n(Dot)\n",
+  "stderr": "",
+  "files": null
+}

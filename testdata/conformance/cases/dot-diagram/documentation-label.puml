@@ -1,0 +1,12 @@
+---
+id: dot-diagram/documentation-label
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET_WITH_DOTSVG
+---
+@startdot
+digraph foo {
+ PlantUML -> Dot [label=use];
+}
+@enddot

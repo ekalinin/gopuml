@@ -106,3 +106,8 @@ func TestRenderChenDiagramAsTXTIsUnsupported(t *testing.T) {
 		}
 	}
 }
+
+func TestRenderDotDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT dot diagram".
+	t.Skip("dot diagrams are registered by task 5.1 of add-dot-diagrams")
+}
