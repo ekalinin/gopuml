@@ -26,7 +26,7 @@ The WASM build SHALL expose a JavaScript function that takes source text and opt
 
 ### Requirement: Diagram support without Graphviz
 
-In the WASM build, every supported diagram type SHALL render fully: the diagram types with a built-in layout (sequence, activity in the new syntax, packet, gantt, mindmap, WBS, timing and salt), and the graph-based diagrams (class, description, state, legacy activity and Chen EER), which the built-in layout engine (gogv) lays out as in the native build without a named `dot`.
+In the WASM build, every supported diagram type SHALL render fully: the diagram types with a built-in layout (sequence, activity in the new syntax, packet, gantt, mindmap, WBS, timing and salt), and the graph-based diagrams (class, description, state, legacy activity and Chen EER), which the built-in layout engine (gogv) lays out as in the native build without a named `dot`. Dot diagrams SHALL render as in the native build with the `SANDBOX` security profile of the WASM build: their SVG is upstream's suppressed-feature document.
 
 #### Scenario: Class diagram in WASM
 
@@ -52,6 +52,11 @@ In the WASM build, every supported diagram type SHALL render fully: the diagram 
 
 - **WHEN** the WASM render function is called with a Chen EER diagram with `entity CUSTOMER {`, `Number <<key>>`, `}`, `relationship RENTED_TO {`, `}` and `RENTED_TO -1- CUSTOMER`, and format `svg`
 - **THEN** it returns the SVG document without an error, byte-identical to the native library's output for the same input
+
+#### Scenario: Dot diagram in WASM
+
+- **WHEN** the WASM render function is called with a dot diagram with `digraph G {`, `a -> b` and `}`, and format `svg`
+- **THEN** it returns the suppressed-feature document with the text `This feature has been suppressed`, without an error, byte-identical to the native library's output for the same input in the `SANDBOX` profile
 
 #### Scenario: Packet diagram in WASM
 
