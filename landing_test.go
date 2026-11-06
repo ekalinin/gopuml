@@ -441,6 +441,53 @@ func TestLandingRelease(t *testing.T) {
 	}
 }
 
+func TestLandingComparisonColumns(t *testing.T) {
+	// Spec scenario "Comparison with three columns", on a page, a README and
+	// notes of a release v9.8.7 built here.
+	const gogvCell = `<td class="gogv" style="--t: 37">37 ms (1.6 ms per case)</td>`
+	page := `<meta name="gopuml-release" content="v9.8.7">
+<section id="install"><pre><code>gh release download v9.8.7 --repo ekalinin/gopuml</code></pre></section>
+<section id="comparison">
+<table class="lifelines" style="--max: 900">
+<thead><tr><td></td><th scope="col" class="java"><span>PlantUML 1.2026.9 (Java)</span></th><th scope="col" class="go"><span>gopuml (dot)</span></th><th scope="col" class="gogv"><span>gopuml (gogv)</span></th></tr></thead>
+<tbody>
+<tr><th scope="row">Start time (one small sequence diagram)</th><td class="java" style="--t: 700">700 ms</td><td class="go" style="--t: 15">15 ms</td><td class="gogv" style="--t: 14">14 ms</td></tr>
+<tr><th scope="row">Rendering: class (23 cases)</th><td class="java" style="--t: 900">900 ms (39 ms per case)</td><td class="go" style="--t: 108">108 ms (4.7 ms per case)</td>` + gogvCell + `</tr>
+</tbody>
+</table>
+<ul class="env"><li>Machine: darwin/arm64, Apple M3 Pro, 12 CPUs</li><li>gogv: 0.2.0</li></ul>
+</section>`
+	readme := "gh release download v9.8.7 --repo ekalinin/gopuml\n"
+	notes := func(tag string) (string, error) {
+		if tag != "v9.8.7" {
+			return "", os.ErrNotExist
+		}
+		return `# gopuml v9.8.7
+
+## Comparison with upstream
+
+| | PlantUML 1.2026.9 (Java) | gopuml (dot) | gopuml (gogv) |
+|---|---:|---:|---:|
+| Start time (one small sequence diagram) | 700 ms | 15 ms | 14 ms |
+| Rendering: class (23 cases) | 900 ms (39 ms per case) | 108 ms (4.7 ms per case) | 37 ms (1.6 ms per case) |
+
+- Machine: darwin/arm64, Apple M3 Pro, 12 CPUs
+- gogv: 0.2.0
+`, nil
+	}
+	if err := checkLandingRelease(page, readme, notes); err != nil {
+		t.Fatal(err)
+	}
+	for _, m := range []struct{ name, old, new string }{
+		{"no third cell in a row", gogvCell, ""},
+		{"no third participant", `<th scope="col" class="gogv"><span>gopuml (gogv)</span></th>`, ""},
+	} {
+		if checkLandingRelease(strings.Replace(page, m.old, m.new, 1), readme, notes) == nil {
+			t.Errorf("%s: the check passes", m.name)
+		}
+	}
+}
+
 // pagesWorkflow is the part of the Pages workflow that checkPagesWorkflow
 // reads.
 type pagesWorkflow struct {

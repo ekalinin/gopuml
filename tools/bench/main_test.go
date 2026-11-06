@@ -4,10 +4,13 @@
 package main
 
 import (
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"runtime/debug"
+	"slices"
 	"strings"
 	"testing"
 	"time"
@@ -42,8 +45,11 @@ func writeFiles(t *testing.T, dir string, files map[string]string) {
 	}
 }
 
-func TestComparisonTable(t *testing.T) {
-	// Spec scenario "Comparison table", with fake commands.
+// fakeBench returns a comparison of the fake commands over two sequence
+// cases, one class case and one unsupported case, with 3 start runs and 2
+// rendering runs, and the log file of the commands.
+func fakeBench(t *testing.T) (bench, string) {
+	t.Helper()
 	if runtime.GOOS == "windows" {
 		t.Skip("fake commands are shell scripts")
 	}
@@ -63,15 +69,7 @@ func TestComparisonTable(t *testing.T) {
 	})
 	logFile := filepath.Join(dir, "log")
 	t.Setenv("BENCH_LOG", logFile)
-
-	// The durations of the runs of each command, in the order of the runs:
-	// 3 start runs, then 2 runs of sequence and 2 of class.
-	ms := time.Millisecond
-	durations := map[string][]time.Duration{
-		"java":     {300 * ms, 100 * ms, 110 * ms, 1 * time.Second, 3 * time.Second, 500 * ms, 500 * ms},
-		"plantuml": {9 * ms, 1 * ms, 2 * ms, 10 * ms, 30 * ms, 40 * ms, 60 * ms},
-	}
-	b := bench{
+	return bench{
 		cli:        filepath.Join(dir, "bin", "plantuml"),
 		java:       filepath.Join(dir, "bin", "java"),
 		jar:        filepath.Join(dir, "plantuml.jar"),
@@ -79,16 +77,43 @@ func TestComparisonTable(t *testing.T) {
 		cases:      filepath.Join(dir, "cases"),
 		startRuns:  3,
 		renderRuns: 2,
-		timed: func(cmd *exec.Cmd) (time.Duration, error) {
-			_, err := timed(cmd)
-			name := filepath.Base(cmd.Path)
-			if len(durations[name]) == 0 {
-				t.Fatalf("one run too many of %s", name)
-			}
-			d := durations[name][0]
-			durations[name] = durations[name][1:]
-			return d, err
-		},
+	}, logFile
+}
+
+// column returns the column of a command of the comparison: the base name
+// of the command, and for the CLI, whether it runs with a named dot.
+func column(cmd *exec.Cmd) string {
+	name := filepath.Base(cmd.Path)
+	if name != "plantuml" {
+		return name
+	}
+	if slices.ContainsFunc(cmd.Env, func(kv string) bool { return strings.HasPrefix(kv, "GRAPHVIZ_DOT=") }) {
+		return name + " (dot)"
+	}
+	return name + " (gogv)"
+}
+
+func TestComparisonTable(t *testing.T) {
+	// Spec scenario "Comparison table", with fake commands.
+	b, logFile := fakeBench(t)
+
+	// The durations of the runs of each column, in the order of the runs:
+	// 3 start runs, then 2 runs of sequence and 2 of class.
+	ms := time.Millisecond
+	durations := map[string][]time.Duration{
+		"java":            {300 * ms, 100 * ms, 110 * ms, 1 * time.Second, 3 * time.Second, 500 * ms, 500 * ms},
+		"plantuml (dot)":  {9 * ms, 1 * ms, 2 * ms, 10 * ms, 30 * ms, 40 * ms, 60 * ms},
+		"plantuml (gogv)": {9 * ms, 3 * ms, 4 * ms, 10 * ms, 20 * ms, 30 * ms, 50 * ms},
+	}
+	b.timed = func(cmd *exec.Cmd) (time.Duration, error) {
+		_, err := timed(cmd)
+		name := column(cmd)
+		if len(durations[name]) == 0 {
+			t.Fatalf("one run too many of %s", name)
+		}
+		d := durations[name][0]
+		durations[name] = durations[name][1:]
+		return d, err
 	}
 	var out strings.Builder
 	if err := b.run(&out); err != nil {
@@ -96,17 +121,19 @@ func TestComparisonTable(t *testing.T) {
 	}
 
 	want := []string{
-		"| | PlantUML 1.2026.9 (Java) | gopuml |\n|---|---:|---:|\n",
-		"| Start time (one small sequence diagram) | 110 ms | 2.0 ms |\n",
-		"| Rendering: sequence (2 cases) | 2.00 s (1.00 s per case) | 20 ms (10 ms per case) |\n",
-		"| Rendering: class (1 case) | 500 ms (500 ms per case) | 50 ms (50 ms per case) |\n",
+		"| | PlantUML 1.2026.9 (Java) | gopuml (dot) | gopuml (gogv) |\n|---|---:|---:|---:|\n",
+		"| Start time (one small sequence diagram) | 110 ms | 2.0 ms | 4.0 ms |\n",
+		"| Rendering: sequence (2 cases) | 2.00 s (1.00 s per case) | 20 ms (10 ms per case) | 15 ms (7.5 ms per case) |\n",
+		"| Rendering: class (1 case) | 500 ms (500 ms per case) | 50 ms (50 ms per case) | 40 ms (40 ms per case) |\n",
 		"- Machine: " + runtime.GOOS + "/" + runtime.GOARCH + ", ",
 		"- Java: openjdk version \"21.0.2\" 2024-01-16\n",
 		"- Go: " + runtime.Version() + "\n",
 		"- Graphviz: dot - graphviz version 2.43.0 (0)\n",
+		"- gogv: unknown\n",
 		"- Runs: median of 3 start runs and of 2 rendering runs per type\n",
 		"- Exit status of PlantUML 1.2026.9 (Java), class: exit status 200; messages about class-diagram/c\n",
-		"- Exit status of gopuml, class: exit status 200; messages about class-diagram/c\n",
+		"- Exit status of gopuml (dot), class: exit status 200; messages about class-diagram/c\n",
+		"- Exit status of gopuml (gogv), class: exit status 200; messages about class-diagram/c\n",
 	}
 	for _, w := range want {
 		if !strings.Contains(out.String(), w) {
@@ -128,9 +155,6 @@ func TestComparisonTable(t *testing.T) {
 	}
 	log := string(data)
 	for _, w := range []string{
-		"java dot=" + b.dot + " args=-Djava.awt.headless=true -jar " + b.jar + " -tsvg -pipe\n",
-		"plantuml dot=" + b.dot + " args=-tsvg -pipe\n",
-		"plantuml dot=" + b.dot + " args=-tsvg -o ",
 		"java file=@startuml fixture=yes\n",
 		"plantuml file=@startuml fixture=yes\n",
 	} {
@@ -139,11 +163,70 @@ func TestComparisonTable(t *testing.T) {
 		}
 	}
 	for line := range strings.SplitSeq(log, "\n") {
-		if strings.Contains(line, "dot=") && !strings.Contains(line, "dot="+b.dot+" ") {
-			t.Errorf("a command without the dot of the comparison: %s", line)
-		}
 		if strings.Contains(line, "file=") && !strings.Contains(line, "file=@startuml ") {
 			t.Errorf("a case with its YAML header: %s", line)
 		}
+	}
+}
+
+func TestComparisonLayout(t *testing.T) {
+	// Spec scenario "Layout of each column", with fake commands: -dot names
+	// the fake dot, and GRAPHVIZ_DOT of the environment another one.
+	b, logFile := fakeBench(t)
+	other := filepath.Join(filepath.Dir(b.dot), "other-dot")
+	t.Setenv("GRAPHVIZ_DOT", other)
+	if err := b.run(io.Discard); err != nil {
+		t.Fatal(err)
+	}
+	data, err := os.ReadFile(logFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	log := string(data)
+
+	// The 3 start runs, then 2 rendering runs of each of the sequence and
+	// class types, per column.
+	jar := "java dot=" + b.dot + " args=-Djava.awt.headless=true -jar " + b.jar + " -tsvg "
+	for _, w := range []struct {
+		prefix string
+		runs   int
+	}{
+		{jar + "-pipe\n", 3},
+		{jar + "-o ", 4},
+		{"plantuml dot=" + b.dot + " args=-tsvg -pipe\n", 3},
+		{"plantuml dot=" + b.dot + " args=-tsvg -o ", 4},
+		{"plantuml dot= args=-tsvg -pipe\n", 3},
+		{"plantuml dot= args=-tsvg -o ", 4},
+	} {
+		if n := strings.Count(log, w.prefix); n != w.runs {
+			t.Errorf("%d runs of %q, want %d, in the log of the commands:\n%s", n, w.prefix, w.runs, log)
+		}
+	}
+	if n := strings.Count(log, " dot="); n != 3*(3+4) {
+		t.Errorf("%d runs, want %d, in the log of the commands:\n%s", n, 3*(3+4), log)
+	}
+	if strings.Contains(log, other) {
+		t.Errorf("a command with the GRAPHVIZ_DOT of the environment:\n%s", log)
+	}
+}
+
+func TestGogvVersion(t *testing.T) {
+	const gogv = "github.com/ekalinin/gogv"
+	for _, c := range []struct {
+		name string
+		deps []*debug.Module
+		want string
+	}{
+		{"dependency", []*debug.Module{{Path: "go.yaml.in/yaml/v3", Version: "v3.0.4"}, {Path: gogv, Version: "v0.2.0"}}, "0.2.0"},
+		{"replacement", []*debug.Module{{Path: gogv, Version: "v0.2.0", Replace: &debug.Module{Path: gogv, Version: "v0.2.1-0.20261101000000-abcdef123456"}}}, "0.2.1-0.20261101000000-abcdef123456"},
+		{"local replacement", []*debug.Module{{Path: gogv, Version: "v0.2.0", Replace: &debug.Module{Path: "../gogv"}}}, "../gogv"},
+		{"no gogv", []*debug.Module{{Path: "go.yaml.in/yaml/v3", Version: "v3.0.4"}}, "unknown"},
+	} {
+		if got := moduleVersion(&debug.BuildInfo{Deps: c.deps}, gogv); got != c.want {
+			t.Errorf("%s: %q, want %q", c.name, got, c.want)
+		}
+	}
+	if got := gogvVersion(filepath.Join(t.TempDir(), "no-cli")); got != "unknown" {
+		t.Errorf("no CLI: %q, want unknown", got)
 	}
 }

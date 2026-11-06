@@ -1,0 +1,6 @@
+id: release/comparison-layout
+scenarios:
+  - "release: Layout of each column"
+package: tools/bench
+test: TestComparisonLayout
+why: Environment of each column of the comparison tool of this implementation, run with fake commands so that it does not depend on Java or Graphviz.

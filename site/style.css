@@ -2,8 +2,9 @@
 /* Provenance: original */
 
 /* The palette comes from PlantUML's default diagram look: #181818 lines,
-   #E2E2F0 participants, #FEFFDD notes. The two series of the comparison
-   are PlantUML's classic crimson (Java) and Go's blue (gopuml). */
+   #E2E2F0 participants, #FEFFDD notes. The series of the comparison are
+   PlantUML's classic crimson (Java), Go's blue (gopuml) and a violet, the
+   nearest cool hue that stays apart from that blue (gopuml with gogv). */
 :root {
   --paper: #f6f6fa;
   --panel: #e2e2f0;
@@ -15,6 +16,7 @@
   --link: #006a85;
   --java: #a80036;
   --go: #007d9c;
+  --gogv: #6a4fc9;
   --sheet: #ffffff;
 
   --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -38,6 +40,7 @@
     --link: #4fc3e6;
     --java: #ee4d80;
     --go: #0aa0c8;
+    --gogv: #8a74ee;
   }
 }
 
@@ -430,6 +433,10 @@ table {
   --series: var(--go);
 }
 
+.lifelines .gogv {
+  --series: var(--gogv);
+}
+
 .lifelines thead th {
   padding-bottom: 0;
 }
@@ -455,7 +462,8 @@ table {
 }
 
 .lifelines td.java,
-.lifelines td.go {
+.lifelines td.go,
+.lifelines td.gogv {
   position: relative;
   width: 34%;
   padding: 0.7rem 1rem 1.6rem 1.75rem;
@@ -463,9 +471,19 @@ table {
   font-size: 0.88rem;
 }
 
+/* A table with a third participant. */
+.lifelines:has(td.gogv) {
+  min-width: 54rem;
+}
+
+.lifelines:has(td.gogv) td {
+  width: 25%;
+}
+
 /* The lifeline. */
 .lifelines td.java::before,
-.lifelines td.go::before {
+.lifelines td.go::before,
+.lifelines td.gogv::before {
   content: "";
   position: absolute;
   top: 0;
@@ -476,7 +494,8 @@ table {
 
 /* The activation bar, growing from the lifeline. */
 .lifelines td.java::after,
-.lifelines td.go::after {
+.lifelines td.go::after,
+.lifelines td.gogv::after {
   content: "";
   position: absolute;
   left: 1rem;
@@ -628,11 +647,16 @@ select {
 
 @media (forced-colors: active) {
   .lifelines td.java::after,
-  .lifelines td.go::after {
+  .lifelines td.go::after,
+  .lifelines td.gogv::after {
     background: CanvasText;
   }
 
   .lifelines .go::after {
     background: repeating-linear-gradient(45deg, CanvasText 0 2px, Canvas 2px 4px);
+  }
+
+  .lifelines .gogv::after {
+    background: repeating-linear-gradient(90deg, CanvasText 0 4px, Canvas 4px 6px);
   }
 }
