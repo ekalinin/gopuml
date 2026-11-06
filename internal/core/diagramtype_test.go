@@ -104,4 +104,10 @@ func TestCheckFamily(t *testing.T) {
 	if lines := u.Lines("v", "MIT"); lines[2] != `Sorry, but the following directive ""@startfoo"" is not recognized.` {
 		t.Errorf("unsupported text: %q", lines[2])
 	}
+
+	// Chronology: upstream recognizes the directive but has no parser for it.
+	u, ok = CheckFamily(block("@startchronology")).(*UnsupportedDiagram)
+	if !ok || u.Directive != "@startchronology" || u.Description() != "(Unsupported)" {
+		t.Fatalf("@startchronology: got %#v", u)
+	}
 }

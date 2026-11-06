@@ -140,6 +140,12 @@ func CheckFamily(block *Block) Diagram {
 	switch {
 	case slices.Contains(types, Unknown):
 		return &UnsupportedDiagram{Directive: first.S}
+	case slices.Contains(types, Chronology):
+		// Upstream's MIT variant recognizes the start tag but registers no
+		// factory for it (ChronologyDiagramFactory is commented out in
+		// PSystemBuilder), so no parser runs and upstream draws its
+		// unsupported diagram.
+		return &UnsupportedDiagram{Directive: first.S}
 	case slices.ContainsFunc(types, func(t DiagramType) bool { return slices.Contains(supportedTypes, t) }):
 		return nil
 	}
