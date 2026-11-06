@@ -4,7 +4,7 @@
 
 `TestScenarioCoverage` also reads the delta specs of active changes, so the case comes first and `make test` passes on the branch from the start. Until task 2.1, `make conformance` reports the new case as not supported yet, as this implementation still draws "chronology diagrams are not supported yet".
 
-- [ ] 1.1 Add the curated case `testdata/conformance/cases/diagram-source/chronology-directive.puml` for "diagram-source: Chronology directive", with the front matter of `diagram-source/unknown-directive` (`family: chronology`, `type: unsupported`, `formats: [svg]`) and the block `@startchronology`, `foo`, `@endchronology`. Render its reference with `make reference`. No `@startuml` case is added, so the golden dumps are not regenerated. Verify that the reference is upstream's unsupported diagram with the texts `Diagram not supported by this release of PlantUML` and `@startchronology`, that the other committed references do not change, and that `TestScenarioCoverage` and `make test` pass
+- [x] 1.1 Add the curated case `testdata/conformance/cases/diagram-source/chronology-directive.puml` for "diagram-source: Chronology directive", with the front matter of `diagram-source/unknown-directive` (`family: chronology`, `type: unsupported`, `formats: [svg]`) and the block `@startchronology`, `foo`, `@endchronology`. Render its reference with `make reference`. No `@startuml` case is added, so the golden dumps are not regenerated. Verify that the reference is upstream's unsupported diagram with the texts `Diagram not supported by this release of PlantUML` and `@startchronology`, that the other committed references do not change, and that `TestScenarioCoverage` and `make test` pass
 
 ## 2. Fix
 

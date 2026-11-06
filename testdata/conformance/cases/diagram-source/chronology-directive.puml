@@ -1,0 +1,11 @@
+---
+id: diagram-source/chronology-directive
+family: chronology
+type: unsupported
+formats: [svg]
+scenarios:
+  - "diagram-source: Chronology directive"
+---
+@startchronology
+foo
+@endchronology
