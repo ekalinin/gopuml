@@ -13,6 +13,7 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/ekalinin/gopuml/internal/security"
 	"go.yaml.in/yaml/v3"
 )
 
@@ -45,6 +46,10 @@ type Case struct {
 	// Scenarios references the spec scenarios the case covers, written as
 	// "<capability>: <scenario name>".
 	Scenarios []string `yaml:"scenarios"`
+	// Profile is the security profile that upstream renders the reference
+	// in and this implementation renders the case in, for example
+	// "INTERNET_WITH_DOTSVG". Empty means upstream's default, LEGACY.
+	Profile string `yaml:"profile"`
 
 	// Source is the PlantUML text after the header.
 	Source string `yaml:"-"`
@@ -128,6 +133,9 @@ func (c *Case) validate() error {
 		if !slices.Contains(knownFormats, f) {
 			return fmt.Errorf("unknown format %q (known: %s)", f, strings.Join(knownFormats, ", "))
 		}
+	}
+	if _, ok := security.ParseProfile(c.Profile); c.Profile != "" && !ok {
+		return fmt.Errorf("unknown security profile %q", c.Profile)
 	}
 	for _, s := range c.Scenarios {
 		capability, name, ok := strings.Cut(s, ": ")

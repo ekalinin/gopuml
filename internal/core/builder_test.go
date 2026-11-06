@@ -142,3 +142,20 @@ func TestUmlSourceJoinsBackslashLines(t *testing.T) {
 		t.Errorf("not joined = %v", got)
 	}
 }
+
+func TestIsGraphvizDotHeader(t *testing.T) {
+	for line, want := range map[string]bool{
+		"digraph G {":               true,
+		`  strict graph "my g" {  `: true,
+		"graph 1.5 {":               true,
+		"digraph {":                 true,
+		"digraph G { a -> b }":      false,
+		"subgraph x {":              false,
+		"digraph G":                 false,
+		"digraph{":                  false,
+	} {
+		if got := IsGraphvizDotHeader(line); got != want {
+			t.Errorf("IsGraphvizDotHeader(%q) = %v, want %v", line, got, want)
+		}
+	}
+}

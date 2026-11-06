@@ -1,0 +1,15 @@
+---
+id: dot-diagram/skinparam-before-graph
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET_WITH_DOTSVG
+scenarios:
+  - "dot-diagram: Skin parameter before the graph"
+---
+@startdot
+skinparam monochrome true
+digraph G {
+a -> b
+}
+@enddot

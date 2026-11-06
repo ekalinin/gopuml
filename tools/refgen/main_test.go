@@ -4,6 +4,7 @@
 package main
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -87,6 +88,70 @@ func TestGoImplementationUnsetsGraphvizDot(t *testing.T) {
 	for _, want := range []string{">A</text>", ">B</text>"} {
 		if !strings.Contains(string(svg), want) {
 			t.Errorf("the SVG has no %s", want)
+		}
+	}
+}
+
+func TestReferenceScriptProfiles(t *testing.T) {
+	// Spec upstream-compatibility "Case rendered in a security profile":
+	// upstream renders the cases of each profile in its own JVM, with
+	// PLANTUML_SECURITY_PROFILE set, and the others in LEGACY.
+	plain := &conformance.Case{ID: "a/plain", Formats: []string{"svg"}}
+	dotsvg := &conformance.Case{ID: "a/dotsvg", Formats: []string{"svg"}, Profile: "INTERNET_WITH_DOTSVG"}
+	g := &generator{impl: "java"}
+	files, _ := g.referenceRun("scratch", []diagramJob{
+		{c: plain, file: "scratch/a/plain.puml", outRoot: "out"},
+		{c: dotsvg, file: "scratch/a/dotsvg.puml", outRoot: "out"},
+	})
+	if got, want := string(files[filepath.Join("scratch", "manifest.tsv")]), "a/plain\t/work/scratch/a/plain.puml\tsvg\n"; got != want {
+		t.Errorf("manifest.tsv = %q, want %q", got, want)
+	}
+	if got, want := string(files[filepath.Join("scratch", "manifest-INTERNET_WITH_DOTSVG.tsv")]), "a/dotsvg\t/work/scratch/a/dotsvg.puml\tsvg\n"; got != want {
+		t.Errorf("manifest-INTERNET_WITH_DOTSVG.tsv = %q, want %q", got, want)
+	}
+	want := "set -e\n" +
+		"java -cp " + jar + ":/opt/tools ReferenceRender /work/scratch/manifest.tsv /work/out\n" +
+		"PLANTUML_SECURITY_PROFILE=INTERNET_WITH_DOTSVG java -cp " + jar + ":/opt/tools ReferenceRender /work/scratch/manifest-INTERNET_WITH_DOTSVG.tsv /work/out\n"
+	if got := string(files[filepath.Join("scratch", "run.sh")]); got != want {
+		t.Errorf("run.sh = %q, want %q", got, want)
+	}
+	if len(files) != 3 {
+		t.Errorf("%d files, want the two manifests and run.sh", len(files))
+	}
+}
+
+func TestGoImplementationProfile(t *testing.T) {
+	// The Go implementation renders a case in the profile it names: SANDBOX
+	// denies the include that LEGACY reads.
+	dir := t.TempDir()
+	src := "@startuml\n!include part.iuml\n@enduml\n"
+	if err := os.WriteFile(filepath.Join(dir, "part.iuml"), []byte("Alice -> Bob\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"legacy", "sandbox"} {
+		if err := os.WriteFile(filepath.Join(dir, name+".puml"), []byte(src), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	g := &generator{root: dir, impl: "go"}
+	err := g.renderDiagramsGo([]diagramJob{
+		{c: &conformance.Case{ID: "p/legacy", Formats: []string{"svg"}}, file: "legacy.puml", outRoot: "out"},
+		{c: &conformance.Case{ID: "p/sandbox", Formats: []string{"svg"}, Profile: "SANDBOX"}, file: "sandbox.puml", outRoot: "out"},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for id, want := range map[string]string{"p/legacy": "SEQUENCE", "p/sandbox": "ERROR"} {
+		var meta conformance.Meta
+		data, err := os.ReadFile(filepath.Join(dir, "out", filepath.FromSlash(id), "meta.json"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := json.Unmarshal(data, &meta); err != nil {
+			t.Fatal(err)
+		}
+		if len(meta.Blocks) != 1 || meta.Blocks[0].Type != want {
+			t.Errorf("%s: blocks %+v, want one %s block", id, meta.Blocks, want)
 		}
 	}
 }

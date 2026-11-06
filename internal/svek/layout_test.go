@@ -265,3 +265,33 @@ func TestConcurrentLayouts(t *testing.T) {
 		t.Error(e)
 	}
 }
+
+// renderingEngine is an engine that records what it is asked to write.
+type renderingEngine struct {
+	fakeEngine
+	src, format string
+}
+
+func (r *renderingEngine) RenderFormat(_ context.Context, src, format string) ([]byte, error) {
+	r.src, r.format = src, format
+	return []byte("output"), nil
+}
+
+func TestLayoutRenderFormat(t *testing.T) {
+	const src = "digraph G {\na -> b\n}\n"
+	eng := &renderingEngine{}
+	out, err := svek.Layout{Engine: eng}.RenderFormat(t.Context(), src, "png")
+	if err != nil || string(out) != "output" || eng.src != src || eng.format != "png" {
+		t.Errorf("injected engine: output %q, error %v, asked for %q in %q", out, err, eng.src, eng.format)
+	}
+
+	_, err = svek.Layout{Config: dot.Config{DotPath: "/missing/dot"}}.RenderFormat(t.Context(), src, "svg")
+	if _, ok := errors.AsType[*dot.NotFoundError](err); !ok {
+		t.Errorf("missing dot: error %v, want a *dot.NotFoundError", err)
+	}
+
+	out, err = svek.Layout{Config: dot.Config{Host: noDotNamed}}.RenderFormat(t.Context(), src, "svg")
+	if err != nil || !strings.Contains(string(out), "(gogv)") {
+		t.Errorf("no named dot: output %.100q, error %v, want the SVG of gogv", out, err)
+	}
+}

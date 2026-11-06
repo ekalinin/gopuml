@@ -1,0 +1,13 @@
+---
+id: diagram-source/dot-detected
+family: dot
+type: dot
+formats: [svg]
+scenarios:
+  - "diagram-source: Dot family"
+---
+@startdot
+digraph G {
+a -> b
+}
+@enddot

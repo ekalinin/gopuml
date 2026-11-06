@@ -26,12 +26,16 @@ type Factory interface {
 // graphvizDotHeader matches a Graphviz graph header such as "digraph G {".
 var graphvizDotHeader = regexp.MustCompile(`^[\t\n\x0B\f\r ]*(strict[\t\n\x0B\f\r ]+)?(di)?graph[\t\n\x0B\f\r ]+([_\p{L}][_\p{L}\p{N}]*|-?(?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)|"([^"\\]|\\")*")?[\t\n\x0B\f\r ]*\{[\t\n\x0B\f\r ]*$`)
 
+// IsGraphvizDotHeader reports whether a line opens a Graphviz graph, such as
+// "digraph G {".
+func IsGraphvizDotHeader(line string) bool { return graphvizDotHeader.MatchString(line) }
+
 // misuseChecks detect other diagram languages written in an @startuml block.
 var misuseChecks = []struct {
 	match   func(trimmed, line string) bool
 	message string
 }{
-	{func(_, line string) bool { return graphvizDotHeader.MatchString(line) }, "This looks like a DOT diagram. Please use @startdot instead of @startuml."},
+	{func(_, line string) bool { return IsGraphvizDotHeader(line) }, "This looks like a DOT diagram. Please use @startdot instead of @startuml."},
 	{func(trimmed, _ string) bool { return trimmed == "ditaa" }, "This looks like a DITAA diagram. Please use @startditaa instead of @startuml."},
 	{func(trimmed, _ string) bool { return trimmed == "salt" }, "This looks like a salt diagram. Please use @startsalt instead of @startuml."},
 	{func(trimmed, _ string) bool { return trimmed == "nwdiag {" }, "This looks like a network diagram. Please use @startnwdiag instead of @startuml."},

@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/ekalinin/gopuml/internal/command"
+	"github.com/ekalinin/gopuml/internal/core"
 )
 
 // firstTokensEntry is a line of internal/command/testdata/first_tokens.golden,
@@ -83,7 +84,12 @@ func TestFirstTokensMatchUpstream(t *testing.T) {
 		"DescriptionDiagramFactory", "StateDiagramFactory", "ActivityDiagramFactory3", "PSystemSaltFactory",
 		"MindMapDiagramFactory", "WBSDiagramFactory",
 		"PacketDiagramFactory", "GanttDiagramFactory", "TimingDiagramFactory", "ChenEerDiagramFactory"}
-	factories := Factories[1:]
+	// The factories without commands, such as the one of dot diagrams, have
+	// no first tokens.
+	factories := slices.DeleteFunc(slices.Clone(Factories[1:]), func(f core.Factory) bool {
+		_, ok := f.(interface{ CommandInfos() []command.CommandInfo })
+		return !ok
+	})
 	if len(factories) != len(names) {
 		t.Fatalf("%d factories, want %d", len(factories), len(names))
 	}

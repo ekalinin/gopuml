@@ -25,6 +25,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/code"
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/descdiagram"
+	"github.com/ekalinin/gopuml/internal/directdot"
 	"github.com/ekalinin/gopuml/internal/errdiagram"
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/gantt"
@@ -47,7 +48,7 @@ import (
 // order (PSystemBuilder). They are added with each diagram type.
 var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
 	activitydiagram.Factory, descdiagram.Factory, statediagram.Factory, activitydiagram3.Factory, salt.Factory,
-	mindmap.Factory, wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory, cheneer.Factory}
+	directdot.Factory, mindmap.Factory, wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory, cheneer.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
@@ -258,11 +259,14 @@ func (b *Block) Render(ctx context.Context, w io.Writer, page int, opt Options) 
 		return ImageData{Width: float64(data.Width()), Height: float64(data.Height()), Status: data.Status()}, nil
 	}
 	// Only sequence, gantt and WBS diagrams have the text formats in this
-	// release.
+	// release. Dot diagrams are not typed diagrams, as upstream's.
 	if opt.Format == font.FormatATXT || opt.Format == font.FormatUTXT {
 		if d, ok := b.Diagram.(core.TypedDiagram); ok && d.DiagramType() != core.Sequence &&
 			d.DiagramType() != core.Gantt && d.DiagramType() != core.WBS {
 			return ImageData{}, &UnsupportedFormatError{Format: opt.Format, Type: d.DiagramType()}
+		}
+		if _, ok := b.Diagram.(*directdot.PSystemDot); ok {
+			return ImageData{}, &UnsupportedFormatError{Format: opt.Format, Type: core.Dot}
 		}
 	}
 	// Diagrams that draw themselves; an output format they do not support

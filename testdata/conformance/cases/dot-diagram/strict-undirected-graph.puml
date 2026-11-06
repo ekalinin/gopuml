@@ -1,0 +1,15 @@
+---
+id: dot-diagram/strict-undirected-graph
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET_WITH_DOTSVG
+scenarios:
+  - "dot-diagram: Strict undirected graph with a quoted name"
+---
+@startdot
+strict graph "my g" {
+a -- b
+a -- b
+}
+@enddot

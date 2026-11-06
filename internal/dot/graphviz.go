@@ -26,6 +26,15 @@ type Engine interface {
 	Layout(ctx context.Context, dot string) ([]byte, error)
 }
 
+// Renderer writes a graph described in the DOT language in an output format
+// of dot, as dot diagrams do. Implementations must be safe for concurrent use.
+type Renderer interface {
+	// RenderFormat returns what `dot -T<format>` writes for the graph on
+	// its standard output and standard error, merged as upstream merges
+	// them.
+	RenderFormat(ctx context.Context, src, format string) ([]byte, error)
+}
+
 // Exec is the dotexec engine: it lays graphs out by running the Graphviz dot
 // executable, as upstream's GraphvizLinux and GraphvizWindows* do. It holds no
 // mutable state and is safe for concurrent use.
@@ -36,7 +45,10 @@ type Exec struct {
 	Timeout time.Duration
 }
 
-var _ Engine = (*Exec)(nil)
+var (
+	_ Engine   = (*Exec)(nil)
+	_ Renderer = (*Exec)(nil)
+)
 
 // Layout runs `dot -Tsvg` with the DOT source on stdin and returns its
 // output. It returns a *NotFoundError when Path is empty or missing, a
@@ -49,17 +61,8 @@ func (e *Exec) Layout(ctx context.Context, dot string) ([]byte, error) {
 		return nil, &NotFoundError{State: NullUndefined}
 	}
 	p, state := e.createFile3(ctx, dot, false, "svg")
-	switch state.name {
-	case timeoutState.name:
-		return nil, &TimeoutError{Path: e.Path, Timeout: e.timeout()}
-	case "EXCEPTION":
-		if ctx.Err() != nil {
-			return nil, fmt.Errorf("dot: %w", state.cause)
-		}
-		if errors.Is(state.cause, fs.ErrNotExist) {
-			return nil, &NotFoundError{Path: e.Path, State: DoesNotExist}
-		}
-		return nil, &FailureError{Path: e.Path, ExitCode: -1, Err: state.cause}
+	if err := e.stateError(ctx, state); err != nil {
+		return nil, err
 	}
 
 	stderr := trin(string(p.stderr))
@@ -73,6 +76,40 @@ func (e *Exec) Layout(ctx context.Context, dot string) ([]byte, error) {
 		return nil, &FailureError{Path: e.Path, Stderr: stderr, Reason: "output is not SVG"}
 	}
 	return p.stdout, nil
+}
+
+// RenderFormat runs `dot -T<format>` with the DOT source on stdin and
+// returns what dot writes on stdout and stderr, merged as upstream's
+// createFile3 merges them, whatever its exit status. It returns a
+// *NotFoundError when Path is empty or missing, a *TimeoutError when dot runs
+// longer than the timeout (dot is then stopped), a *FailureError when dot
+// cannot be run, and the context's error when ctx is canceled.
+func (e *Exec) RenderFormat(ctx context.Context, src, format string) ([]byte, error) {
+	if e.Path == "" {
+		return nil, &NotFoundError{State: NullUndefined}
+	}
+	p, state := e.createFile3(ctx, src, true, format)
+	if err := e.stateError(ctx, state); err != nil {
+		return nil, err
+	}
+	return p.stdout, nil
+}
+
+// stateError is the error of a dot run that did not terminate, or nil.
+func (e *Exec) stateError(ctx context.Context, state processState) error {
+	switch state.name {
+	case timeoutState.name:
+		return &TimeoutError{Path: e.Path, Timeout: e.timeout()}
+	case "EXCEPTION":
+		if ctx.Err() != nil {
+			return fmt.Errorf("dot: %w", state.cause)
+		}
+		if errors.Is(state.cause, fs.ErrNotExist) {
+			return &NotFoundError{Path: e.Path, State: DoesNotExist}
+		}
+		return &FailureError{Path: e.Path, ExitCode: -1, Err: state.cause}
+	}
+	return nil
 }
 
 // DotVersion returns the output of `dot -V` (which dot prints on stderr) on

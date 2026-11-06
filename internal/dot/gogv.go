@@ -35,7 +35,10 @@ type Gogv struct {
 	Render func(ctx context.Context, src, format string) ([]byte, []gogv.Warning, error)
 }
 
-var _ Engine = (*Gogv)(nil)
+var (
+	_ Engine   = (*Gogv)(nil)
+	_ Renderer = (*Gogv)(nil)
+)
 
 // Layout lays the DOT source out with gogv and returns the SVG document that
 // `dot -Tsvg` returns for it. It returns a *TimeoutError when the layout runs
@@ -62,6 +65,51 @@ func (g *Gogv) Layout(ctx context.Context, dot string) (svg []byte, err error) {
 		return out, nil
 	case err == nil:
 		return nil, &FailureError{Path: gogvPath, Reason: "output is not SVG"}
+	case ctx.Err() != nil:
+		return nil, fmt.Errorf("dot: %w", ctx.Err())
+	case errors.Is(lctx.Err(), context.DeadlineExceeded):
+		return nil, &TimeoutError{Path: gogvPath, Timeout: timeout}
+	}
+	return nil, &FailureError{Path: gogvPath, ExitCode: -1, Err: err}
+}
+
+// RenderFormat lays the DOT source out with gogv and returns what gogv's dot
+// writes for -T<format> on stdout and stderr, merged as upstream merges them
+// for dot: a "Warning: " line for each warning, the output, then
+// "Error: <stdin>: " and the message for a syntax error, which is not an
+// error of RenderFormat. The warnings about Graphviz features that gogv does
+// not support yet are dropped, as Graphviz does not give them. It returns a
+// *TimeoutError when the layout runs longer than the timeout, the context's
+// error when ctx is done, and a *FailureError when gogv fails, for example
+// for a format it does not write, or panics.
+func (g *Gogv) RenderFormat(ctx context.Context, src, format string) (out []byte, err error) {
+	timeout := g.timeout()
+	lctx, cancel := context.WithTimeout(ctx, timeout)
+	defer cancel()
+	defer func() {
+		if v := recover(); v != nil {
+			out, err = nil, &FailureError{Path: gogvPath, ExitCode: -1, Err: fmt.Errorf("panic: %v", v)}
+		}
+	}()
+	render := g.Render
+	if render == nil {
+		render = gogv.Render
+	}
+	data, warnings, err := render(lctx, src, format)
+	syntax, isSyntax := errors.AsType[*gogv.SyntaxError](err)
+	switch {
+	case err == nil || isSyntax:
+		var b bytes.Buffer
+		for _, w := range warnings {
+			if !w.NotSupportedYet() {
+				b.WriteString("Warning: " + w.String() + "\n")
+			}
+		}
+		b.Write(data)
+		if isSyntax {
+			b.WriteString("Error: <stdin>: " + syntax.Error() + "\n")
+		}
+		return b.Bytes(), nil
 	case ctx.Err() != nil:
 		return nil, fmt.Errorf("dot: %w", ctx.Err())
 	case errors.Is(lctx.Err(), context.DeadlineExceeded):

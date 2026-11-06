@@ -1,0 +1,11 @@
+---
+id: dot-diagram/no-graph-header
+family: dot
+type: dot
+formats: [svg]
+scenarios:
+  - "dot-diagram: Block without a graph header"
+---
+@startdot
+foo -> bar
+@enddot

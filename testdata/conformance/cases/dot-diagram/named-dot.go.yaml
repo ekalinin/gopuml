@@ -1,0 +1,6 @@
+id: dot-diagram/named-dot
+scenarios:
+  - "dot-diagram: Laid out by the named dot"
+package: internal/directdot
+test: TestDotNamedDot
+why: The scenario depends on the dot named in the test environment rather than on upstream output.

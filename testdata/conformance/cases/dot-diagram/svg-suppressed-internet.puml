@@ -1,0 +1,14 @@
+---
+id: dot-diagram/svg-suppressed-internet
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET
+scenarios:
+  - "dot-diagram: SVG suppressed in the INTERNET profile"
+---
+@startdot
+digraph G {
+a -> b
+}
+@enddot

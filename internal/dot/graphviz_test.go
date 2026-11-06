@@ -304,3 +304,38 @@ func readFile(t *testing.T, name string) string {
 	}
 	return string(data)
 }
+
+func TestRenderFormatMergesStderr(t *testing.T) {
+	args := filepath.Join(t.TempDir(), "args")
+	exe := writeScript(t, `printf '%s\n' "$@" > '`+args+`'
+cat >/dev/null
+echo out
+echo warn >&2
+exit 1
+`)
+	out, err := (&Exec{Path: exe}).RenderFormat(t.Context(), "digraph g { a }", "png")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := string(out); !strings.Contains(got, "out\n") || !strings.Contains(got, "warn\n") {
+		t.Errorf("output = %q, want stdout and stderr", got)
+	}
+	if got := readFile(t, args); got != "-Tpng\n" {
+		t.Errorf("arguments = %q, want -Tpng", got)
+	}
+}
+
+func TestRenderFormatFailures(t *testing.T) {
+	if _, err := (&Exec{}).RenderFormat(t.Context(), "digraph g { a }", "svg"); !errors.Is(err, ErrNotFound) {
+		t.Errorf("empty path: err = %v, want a *NotFoundError", err)
+	}
+	missing := filepath.Join(t.TempDir(), "dot")
+	if _, err := (&Exec{Path: missing}).RenderFormat(t.Context(), "digraph g { a }", "svg"); !errors.Is(err, ErrNotFound) {
+		t.Errorf("missing file: err = %v, want a *NotFoundError", err)
+	}
+	exe := writeScript(t, "exec sleep 30\n")
+	_, err := (&Exec{Path: exe, Timeout: testTimeout}).RenderFormat(t.Context(), "digraph g { a }", "svg")
+	if _, ok := errors.AsType[*TimeoutError](err); !ok {
+		t.Errorf("slow dot: err = %v, want a *TimeoutError", err)
+	}
+}

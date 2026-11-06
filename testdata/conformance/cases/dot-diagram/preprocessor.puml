@@ -1,0 +1,16 @@
+---
+id: dot-diagram/preprocessor
+family: dot
+type: dot
+formats: [svg]
+profile: INTERNET_WITH_DOTSVG
+scenarios:
+  - "dot-diagram: Preprocessor in a dot block"
+---
+@startdot
+!define NODE alpha
+digraph G {
+' a comment
+NODE -> b
+}
+@enddot

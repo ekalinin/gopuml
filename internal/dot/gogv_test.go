@@ -90,3 +90,52 @@ func TestGogvVersion(t *testing.T) {
 		t.Errorf("Graphviz version %v, want 1601", v)
 	}
 }
+
+func TestGogvRenderFormat(t *testing.T) {
+	g := &Gogv{}
+	for _, tc := range []struct {
+		name, src, format string
+		check             func(out string) bool
+		want              string
+	}{
+		{"svg", "digraph G {\na -> b\n}\n", "svg",
+			func(out string) bool { return strings.HasPrefix(out, "<?xml") && strings.Contains(out, "(gogv)") },
+			"the SVG document of gogv"},
+		{"Graphviz warning", "digraph G {\na -> 1b\n}\n", "svg",
+			func(out string) bool {
+				return strings.HasPrefix(out, "Warning: syntax ambiguity - badly delimited number '1b' in line 2 of <stdin> splits into two tokens\n<?xml")
+			},
+			"the warning line, then the SVG document"},
+		{"not supported yet", "digraph G {\na [shape=record]\n}\n", "svg",
+			func(out string) bool { return strings.HasPrefix(out, "<?xml") && !strings.Contains(out, "Warning") },
+			"the SVG document without a warning"},
+		{"syntax error", "digraph G {\na ->\n}\n", "svg",
+			func(out string) bool { return out == "Error: <stdin>: syntax error in line 3 near '}'\n" },
+			"the error line of dot"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			out, err := g.RenderFormat(t.Context(), tc.src, tc.format)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !tc.check(string(out)) {
+				t.Errorf("output %.200q, want %s", out, tc.want)
+			}
+		})
+	}
+}
+
+func TestGogvRenderFormatFailures(t *testing.T) {
+	_, err := (&Gogv{}).RenderFormat(t.Context(), "digraph G {\na -> b\n}\n", "png")
+	if fe, ok := errors.AsType[*FailureError](err); !ok || !strings.Contains(fe.Error(), `Format: "png" not recognized`) {
+		t.Errorf("png: error %v, want a *FailureError for the format", err)
+	}
+	_, err = (&Gogv{Render: func(context.Context, string, string) ([]byte, []gogv.Warning, error) { panic("boom") }}).RenderFormat(t.Context(), testDotSource, "svg")
+	if fe, ok := errors.AsType[*FailureError](err); !ok || !strings.Contains(fe.Error(), "panic: boom") {
+		t.Errorf("panic: error %v, want a *FailureError", err)
+	}
+	_, err = (&Gogv{Timeout: 100 * time.Millisecond, Render: waitForContext}).RenderFormat(t.Context(), testDotSource, "svg")
+	if _, ok := errors.AsType[*TimeoutError](err); !ok {
+		t.Errorf("slow layout: error %v, want a *TimeoutError", err)
+	}
+}

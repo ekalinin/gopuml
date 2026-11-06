@@ -593,8 +593,10 @@ func groupOf(c *Case, ref *Meta) string {
 	case len(ref.Blocks) == 0:
 		return "none"
 	}
+	// Errors, and diagrams that are not typed upstream (OTHER, such as dot
+	// diagrams), are grouped by the type of the case.
 	t := strings.ToLower(ref.Blocks[0].Type)
-	if t == "error" && c.Type != "" {
+	if (t == "error" || t == "other") && c.Type != "" {
 		return c.Type
 	}
 	return t

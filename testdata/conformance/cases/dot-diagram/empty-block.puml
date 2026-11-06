@@ -1,0 +1,10 @@
+---
+id: dot-diagram/empty-block
+family: dot
+type: dot
+formats: [svg]
+scenarios:
+  - "dot-diagram: Empty dot block"
+---
+@startdot
+@enddot

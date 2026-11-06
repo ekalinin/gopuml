@@ -162,3 +162,5 @@
 - id: vega/svg/interactive/SVG0006_Svek
   reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: Graphviz raises the labels of the flat edges between ports above the rank, so the drawing is 207 instead of 254 pixels high"
   resolvedBy: ekalinin/gogv#28
+- id: dot-diagram/documentation-styles
+  reason: "drawn by gogv, which does not support shape=record, fillcolor, style=filled and style=rounded on a diamond yet and draws these nodes with its defaults: the record label { a | b | c } is one text instead of the fields a, b and c"

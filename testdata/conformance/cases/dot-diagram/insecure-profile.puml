@@ -1,0 +1,14 @@
+---
+id: dot-diagram/insecure-profile
+family: dot
+type: dot
+formats: [svg]
+profile: INSECURE
+scenarios:
+  - "dot-diagram: SVG in the INSECURE profile"
+---
+@startdot
+digraph G {
+a -> b
+}
+@enddot

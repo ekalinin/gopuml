@@ -5,6 +5,7 @@ package errdiagram_test
 
 import (
 	"bytes"
+	"cmp"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -156,6 +157,7 @@ func TestDiagramReferences(t *testing.T) {
 		meta := readMeta(t, filepath.Join(refDir, "meta.json"))
 		var blocks []*engine.Block
 		rc := core.NewRenderContext()
+		rc.SecurityProfile = cmp.Or(c.Profile, rc.SecurityProfile)
 		rc.CurrentDir = filepath.Join(repoRoot, "testdata/conformance/cases", filepath.Dir(c.Path))
 		// The fixtures of a case are staged next to it by refgen
 		fixtures := filepath.Join(repoRoot, "testdata/conformance/cases", filepath.FromSlash(c.ID)+".files")

@@ -1,0 +1,6 @@
+id: dot-diagram/missing-named-dot
+scenarios:
+  - "dot-diagram: Named dot is missing"
+package: internal/directdot
+test: TestDotMissingNamedDot
+why: The scenario depends on the dot named in the test environment rather than on upstream output.

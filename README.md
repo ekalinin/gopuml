@@ -36,6 +36,7 @@ sequence and activity diagrams in the browser with the WebAssembly module.
 | Timing | yes | yes | no |
 | Salt | yes | yes | no |
 | Chen EER | yes | yes | no |
+| Dot | yes, in the `INTERNET_WITH_DOTSVG` and `INSECURE` profiles | with a named `dot` | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
@@ -54,8 +55,8 @@ reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
-conformance suite of 972 cases (upstream's Vega test corpus plus curated
-cases): every case passes, apart from 54 documented known differences
+conformance suite of 987 cases (upstream's Vega test corpus plus curated
+cases): every case passes, apart from 55 documented known differences
 (`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
@@ -218,6 +219,16 @@ The references were made with Graphviz 14.0.1; the cases that gogv lays out
 differently are listed as known differences. Sequence diagrams, activity
 diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams,
 WBS diagrams, timing diagrams and salt diagrams do not need a graph layout.
+
+Dot diagrams (`@startdot`) are drawn by the layout engine itself, as upstream
+does: gogv, or the `dot` named by `--dot-path` or `GRAPHVIZ_DOT`. Their SVG
+needs the `INTERNET_WITH_DOTSVG` or `INSECURE` security profile
+(`PLANTUML_SECURITY_PROFILE`); in the other profiles, which include the
+defaults of the command line, the library, the server and the WebAssembly
+module, it is upstream's "This feature has been suppressed" notice. Their PNG
+needs a named `dot`, as gogv does not write PNG yet
+([ekalinin/gogv#33](https://github.com/ekalinin/gogv/issues/33)): without one,
+it is upstream's "GraphViz has crashed" image.
 
 ## Conformance suite
 

@@ -1,0 +1,13 @@
+---
+id: dot-diagram/svg-suppressed
+family: dot
+type: dot
+formats: [svg]
+scenarios:
+  - "dot-diagram: SVG suppressed by default"
+---
+@startdot
+digraph G {
+a -> b
+}
+@enddot

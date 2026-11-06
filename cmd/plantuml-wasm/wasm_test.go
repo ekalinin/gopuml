@@ -348,3 +348,14 @@ func TestWasmChenDiagram(t *testing.T) {
 	renderMatchesNative(t, "@startchen\nentity CUSTOMER {\n  Number <<key>>\n}\nrelationship RENTED_TO {\n}\n"+
 		"RENTED_TO -1- CUSTOMER\n@endchen\n")
 }
+
+func TestWasmDotDiagram(t *testing.T) {
+	// Spec scenario "Dot diagram in WASM": in the SANDBOX profile, the SVG
+	// is upstream's suppressed-feature document, as in the native build.
+	src := "@startdot\ndigraph G {\na -> b\n}\n@enddot\n"
+	renderMatchesNative(t, src)
+	r := renderInNode(t, src, map[string]any{"format": "svg"})
+	if r.Data == nil || !strings.Contains(*r.Data, ">This feature has been suppressed</text>") {
+		t.Errorf("WASM result is not the suppressed-feature document: %+v", r)
+	}
+}

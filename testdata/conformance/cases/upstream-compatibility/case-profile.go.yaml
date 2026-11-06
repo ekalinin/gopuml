@@ -1,0 +1,6 @@
+id: upstream-compatibility/case-profile
+scenarios:
+  - "upstream-compatibility: Case rendered in a security profile"
+package: tools/refgen
+test: TestReferenceScriptProfiles
+why: Behavior of the conformance harness itself.
