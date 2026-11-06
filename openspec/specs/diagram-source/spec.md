@@ -56,7 +56,7 @@ The system SHALL expose the text that follows the start tag on the start line as
 
 ### Requirement: Diagram family detection
 
-The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs`, `salt`, `chen` and `dot`. Every other start tag that PlantUML v1.2026.9 recognizes (for example `@startjson`, `@startnwdiag`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram.
+The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs`, `salt`, `chen` and `dot`. Every other start tag that PlantUML v1.2026.9 recognizes and parses (for example `@startjson`, `@startnwdiag`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram, and so SHALL `@startchronology`, which upstream recognizes but for which its MIT variant registers no parser, as upstream does.
 
 #### Scenario: Supported family
 
@@ -107,6 +107,11 @@ The system SHALL select the diagram family from the start tag. The supported fam
 
 - **WHEN** a block starts with `@startfoo`
 - **THEN** the system produces upstream's unsupported diagram, which names the directive `@startfoo`
+
+#### Scenario: Chronology directive
+
+- **WHEN** a block starts with `@startchronology` and contains `foo`
+- **THEN** the system produces upstream's unsupported diagram, which names the directive `@startchronology`, and not an error stating that chronology diagrams are not supported yet, as upstream does
 
 ### Requirement: Empty diagram
 
