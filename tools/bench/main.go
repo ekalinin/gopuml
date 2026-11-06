@@ -323,18 +323,21 @@ func gogvVersion(cli string) string {
 	return moduleVersion(info, "github.com/ekalinin/gogv")
 }
 
-// moduleVersion returns the version of the dependency path of info: the
-// version of its replacement when go.mod replaces it (the directory of a
-// local replacement, which has none), or unknown without that dependency.
+// moduleVersion returns the version of the dependency path of info, without
+// the v of its tag, as gogv prints its own version (a vX.Y.Z on the landing
+// page would read as a release of gopuml): the version of its replacement
+// when go.mod replaces it (the directory of a local replacement, which has
+// none), or unknown without that dependency.
 func moduleVersion(info *debug.BuildInfo, path string) string {
 	i := slices.IndexFunc(info.Deps, func(m *debug.Module) bool { return m.Path == path })
 	if i < 0 {
 		return "unknown"
 	}
-	if r := info.Deps[i].Replace; r != nil {
-		return cmp.Or(r.Version, r.Path)
+	m := info.Deps[i]
+	if m.Replace != nil {
+		m = m.Replace
 	}
-	return info.Deps[i].Version
+	return strings.TrimPrefix(cmp.Or(m.Version, m.Path), "v")
 }
 
 // cpu returns the model of the processor, when the system tells it.

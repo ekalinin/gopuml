@@ -217,8 +217,8 @@ func TestGogvVersion(t *testing.T) {
 		deps []*debug.Module
 		want string
 	}{
-		{"dependency", []*debug.Module{{Path: "go.yaml.in/yaml/v3", Version: "v3.0.4"}, {Path: gogv, Version: "v0.2.0"}}, "v0.2.0"},
-		{"replacement", []*debug.Module{{Path: gogv, Version: "v0.2.0", Replace: &debug.Module{Path: gogv, Version: "v0.2.1-0.20261101000000-abcdef123456"}}}, "v0.2.1-0.20261101000000-abcdef123456"},
+		{"dependency", []*debug.Module{{Path: "go.yaml.in/yaml/v3", Version: "v3.0.4"}, {Path: gogv, Version: "v0.2.0"}}, "0.2.0"},
+		{"replacement", []*debug.Module{{Path: gogv, Version: "v0.2.0", Replace: &debug.Module{Path: gogv, Version: "v0.2.1-0.20261101000000-abcdef123456"}}}, "0.2.1-0.20261101000000-abcdef123456"},
 		{"local replacement", []*debug.Module{{Path: gogv, Version: "v0.2.0", Replace: &debug.Module{Path: "../gogv"}}}, "../gogv"},
 		{"no gogv", []*debug.Module{{Path: "go.yaml.in/yaml/v3", Version: "v3.0.4"}}, "unknown"},
 	} {
