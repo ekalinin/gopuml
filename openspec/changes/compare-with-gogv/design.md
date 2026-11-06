@@ -38,13 +38,13 @@ Alternative: run `gopuml (gogv)` only for graph types and show a dash elsewhere.
 
 ### D3. The gogv version comes from the build info of the CLI
 
-The environment gets `- gogv: <version>`, the version of the module `github.com/ekalinin/gogv` in the build info of the CLI under test (`debug/buildinfo`), or the version of its replacement when `go.mod` replaces it. When the build info cannot be read or has no gogv, the line is `- gogv: unknown`, as for the fake CLI of the test, which is a shell script. The line follows `- Graphviz:`.
+The environment gets `- gogv: <version>`, the version of the module `github.com/ekalinin/gogv` in the build info of the CLI under test (`debug/buildinfo`), or the version of its replacement when `go.mod` replaces it, without the `v` of its tag, as gogv prints its own version (`gogv 0.2.0`): the checks of the landing page read every `vX.Y.Z` on the page as a release of gopuml. When the build info cannot be read or has no gogv, the line is `- gogv: unknown`, as for the fake CLI of the test, which is a shell script. The line follows `- Graphviz:`.
 
 Alternative: parse `(gogv 0.2.0)` from the output of `--check-graphviz`. That ties the tool to a message text and runs the CLI once more.
 
 ### D4. A third participant on the page
 
-`site/style.css` styles `td.gogv` as it styles `td.java` and `td.go`, with a color `--gogv` in light and dark and a forced-colors pattern different from the solid `java` bar and the hatched `go` bar. Its hue stays near `--go`, as both columns are gopuml, while staying distinct from it. A table with a `td.gogv` cell (`.lifelines:has(td.gogv)`) gives each participant cell a width that leaves room for three columns; the two-column table of v0.4.0 keeps its 34%. The page's HTML does not change now: the preparation of the next release writes the three-column table, with `class="gogv"` on the cells of the third column.
+`site/style.css` styles `td.gogv` as it styles `td.java` and `td.go`, with a color `--gogv` in light and dark and a forced-colors pattern different from the solid `java` bar and the hatched `go` bar. Its hue is the nearest cool hue to `--go`, as both columns are gopuml, that the palette validator still tells apart from it: a violet (`#6a4fc9` light, `#8a74ee` dark). Teals and blues next to `--go` fail its normal-vision floor (ΔE below 15). A table with a `td.gogv` cell (`.lifelines:has(td.gogv)`) gives each participant cell a width that leaves room for three columns; the two-column table of v0.4.0 keeps its 34%. The page's HTML does not change now: the preparation of the next release writes the three-column table, with `class="gogv"` on the cells of the third column.
 
 Alternative: a third color unrelated to `--go`. The two gopuml columns would read as unrelated implementations.
 
