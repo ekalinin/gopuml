@@ -66,6 +66,30 @@ var commentLine = regexp.MustCompile(`^[\t\n\x0B\f\r ]*'.*$`)
 // TotalLineCount is the number of source lines, start and end lines included.
 func (s *UmlSource) TotalLineCount() int { return len(s.lines) }
 
+// RemoveInitialNoise returns the source without the lines that directly
+// follow the start line and are empty or start with "skinparam ",
+// "skinparamlocked " or "!pragma ", or s when there are none.
+func (s *UmlSource) RemoveInitialNoise() *UmlSource {
+	cut := 1
+	for cut < len(s.lines) && isNoise(s.lines[cut].S) {
+		cut++
+	}
+	if cut == 1 {
+		return s
+	}
+	return &UmlSource{lines: append([]text.StringLocated{s.lines[0]}, s.lines[cut:]...), raw: s.raw}
+}
+
+func isNoise(line string) bool {
+	return line == "" || strings.HasPrefix(line, "skinparam ") || strings.HasPrefix(line, "skinparamlocked ") ||
+		strings.HasPrefix(line, "!pragma ")
+}
+
+// IsStartDef reports whether the block starts with @startdef.
+func (s *UmlSource) IsStartDef() bool {
+	return len(s.lines) > 0 && strings.HasPrefix(s.lines[0].S, "@startdef")
+}
+
 // IsEmpty reports whether the block has no content besides the start and
 // end lines, comment lines and blank lines.
 func (s *UmlSource) IsEmpty() bool {

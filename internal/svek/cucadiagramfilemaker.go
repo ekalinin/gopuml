@@ -115,6 +115,29 @@ func (l Layout) resolve(ctx context.Context) (le *layoutEngine, version dot.Grap
 	return le, modernGraphvizVersion
 }
 
+// RenderFormat writes the DOT source in an output format of dot with the
+// engine of the layout, chosen as resolve chooses it: Engine when it is a
+// dot.Renderer, the engine that Config chooses when the platform can run
+// programs, the built-in engine otherwise. A named dot that cannot be used
+// gives its *dot.NotFoundError.
+func (l Layout) RenderFormat(ctx context.Context, src, format string) ([]byte, error) {
+	var engine dot.Engine = &dot.Gogv{Timeout: l.Config.Timeout}
+	switch {
+	case l.Engine != nil:
+		engine = l.Engine
+	case execSupported:
+		var err error
+		if engine, err = l.Config.NewEngine(); err != nil {
+			return nil, err
+		}
+	}
+	r, ok := engine.(dot.Renderer)
+	if !ok {
+		return nil, &dot.FailureError{Reason: "the layout engine writes no output format"}
+	}
+	return r.RenderFormat(ctx, src, format)
+}
+
 // DotStringSkek is CucaDiagram.getDotStringSkek: the settings of the DOT
 // graph that svek keeps (nodesep, ranksep, layout), and the aspect and ratio
 // pragmas.

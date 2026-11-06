@@ -42,7 +42,7 @@ See proposal.md for the motivation. The current state that shapes the approach:
 - `internal/command/basicfactory.go` ports `PSystemBasicFactory` as a generic `BasicFactory[P]` with the `InitDiagram` and `ExecuteLine` functions of the factory that uses it. Upstream's math and LaTeX factories build on it too.
 - `internal/core/umlsource.go` gets `RemoveInitialNoise` and `IsStartDef` (`UmlSource.removeInitialNoise`, `isNoise` and `isStartDef`). The header pattern stays in `internal/core/builder.go` and is exported as `IsGraphvizDotHeader` (`PSystemDotFactory.isGraphvizDotHeader`), which the misuse check and the factory use: `directdot` imports `core`, so `core` cannot use a pattern of `directdot`.
 - `internal/security/security.go` gets `Profile.AllowDotSVG` (`SecurityProfile.allowDotSvg`).
-- `internal/dot` gets the `Renderer` interface, `Exec.Render` in `graphviz.go` and `Gogv.Render` in `gogv.go` (D4). `internal/svek/cucadiagramfilemaker.go` gets `Layout.Render` (D4).
+- `internal/dot` gets the `Renderer` interface, `Exec.RenderFormat` in `graphviz.go` and `Gogv.RenderFormat` in `gogv.go` (D4). `internal/svek/cucadiagramfilemaker.go` gets `Layout.RenderFormat` (D4).
 
 Alternative: the factory and the diagram in `internal/core`, next to the header pattern. Upstream has a package of its own, and `core` holds the types shared by all diagrams, so a `directdot` package keeps the port where its `Provenance` lines point.
 
@@ -57,22 +57,22 @@ Alternative: the factory and the diagram in `internal/core`, next to the header 
 - Its description is `(Dot)` and it has one page. It is not a `core.TypedDiagram`, as upstream's `DirectOsDiagram` is not a `TitledDiagram`: the syntax check prints `OTHER`, as upstream, and the conformance meta records the type `OTHER`, as the reference does.
 - `ExportDiagramContext` follows `exportDiagramNow`:
   1. For SVG, when the profile does not allow it, it writes upstream's suppressed-feature document, byte for byte, and returns an image of size 0 with status 0, as `ImageDataSimple.ok()`.
-  2. It asks `Layout.Render` for the format, `svg` or `png` (upstream's lower-case format name). Other formats return `export.NotImplementedError`, which the engine reports as not drawable.
+  2. It asks `Layout.RenderFormat` for the format, `svg` or `png` (upstream's lower-case format name). Other formats return `export.NotImplementedError`, which the engine reports as not drawable.
   3. A `*dot.NotFoundError` gives the error image `There is an issue with your Dot/Graphviz installation`. A canceled context returns the context's error, as the graph diagrams do. Any other error, or an empty output, gives the error image `GraphViz has crashed` (upstream's `counter.getLength() == 0 || state.differs(TERMINATED_OK)`).
   4. Otherwise it writes the output unchanged, without metadata, and returns status 0.
 - The error images go through `export.NewBuilder(klimt.GraphicStringsCreateForError(lines, false), fo, false)` with the seed and status 503 (upstream's `FileImageData.CRASH`), without metadata, as upstream's `TextBlockExporter.builder` without `.metadata(...)`. The color mapper of the format option applies, so `--dark-mode` darkens them as upstream; it does not change the output of the layout engine, which upstream writes as is.
-- `CounterOutputStream` is not a type of its own: `Layout.Render` returns the whole output, whose length is the count. Its `Provenance` line goes in `psystemdot.go`.
+- `CounterOutputStream` is not a type of its own: `Layout.RenderFormat` returns the whole output, whose length is the count. Its `Provenance` line goes in `psystemdot.go`.
 
 ### D4. Running the layout engine for a format
 
-- `dot.Renderer` is `Render(ctx, src, format string) ([]byte, error)`: the output of the engine for `-T<format>`, with its standard error merged, as upstream's `createFile3` writes it.
-- `Exec.Render` runs `createFile3(ctx, src, true, format)`. A terminated `dot` gives its merged output and no error, whatever its exit status, as upstream. A timeout gives a `*TimeoutError`, a failure to run it a `*NotFoundError` (missing file) or a `*FailureError`, and a canceled context the context's error, as `Exec.Layout`.
-- `Gogv.Render` calls `gogv.Render` with the timeout and the panic recovery of `Gogv.Layout`, and writes what gogv's `dot` would write on its merged output: a `Warning: <text>` line for each warning that is not `NotSupportedYet`, then the output, then `Error: <stdin>: <message>` for a `*gogv.SyntaxError`, which is not an error of `Render`. A `*gogv.FormatError` (`png`) and the other errors give a `*FailureError`, and a timeout a `*TimeoutError`.
-- `svek.Layout.Render` chooses the engine as `resolve` does: the injected `Engine` when it is a `dot.Renderer` (tests), the named `dot` through `Config.NewEngine` when `execSupported`, with its `*NotFoundError` returned as is, and gogv otherwise, so the WASM build uses gogv.
+- `dot.Renderer` is `RenderFormat(ctx, src, format string) ([]byte, error)` (the name `Render` is taken by the field of `dot.Gogv` that tests use to replace gogv): the output of the engine for `-T<format>`, with its standard error merged, as upstream's `createFile3` writes it.
+- `Exec.RenderFormat` runs `createFile3(ctx, src, true, format)`. A terminated `dot` gives its merged output and no error, whatever its exit status, as upstream. A timeout gives a `*TimeoutError`, a failure to run it a `*NotFoundError` (missing file) or a `*FailureError`, and a canceled context the context's error, as `Exec.Layout`.
+- `Gogv.RenderFormat` calls `gogv.Render` with the timeout and the panic recovery of `Gogv.Layout`, and writes what gogv's `dot` would write on its merged output: a `Warning: <text>` line for each warning that is not `NotSupportedYet`, then the output, then `Error: <stdin>: <message>` for a `*gogv.SyntaxError`, which is not an error of `Render`. A `*gogv.FormatError` (`png`) and the other errors give a `*FailureError`, and a timeout a `*TimeoutError`.
+- `svek.Layout.RenderFormat` chooses the engine as `resolve` does: the injected `Engine` when it is a `dot.Renderer` (tests), the named `dot` through `Config.NewEngine` when `execSupported`, with its `*NotFoundError` returned as is, and gogv otherwise, so the WASM build uses gogv.
 
-Alternative: add `Render` to `dot.Engine`. Every fake engine of the svek tests would have to implement it, and the graph diagrams never call it, so a separate interface keeps them unchanged.
+Alternative: add `RenderFormat` to `dot.Engine`. Every fake engine of the svek tests would have to implement it, and the graph diagrams never call it, so a separate interface keeps them unchanged.
 
-Alternative: return gogv's warnings apart and let `PSystemDot` write them. Merging is what `dot` does with its standard error, so the engine owns it, and `Exec.Render` and `Gogv.Render` then return the same kind of output.
+Alternative: return gogv's warnings apart and let `PSystemDot` write them. Merging is what `dot` does with its standard error, so the engine owns it, and `Exec.RenderFormat` and `Gogv.RenderFormat` then return the same kind of output.
 
 ### D5. PNG without a named dot
 
@@ -115,7 +115,7 @@ Alternative: CLI cases with `env: {PLANTUML_SECURITY_PROFILE: INTERNET_WITH_DOTS
 
 ### D11. Port order
 
-Cases first, with the `profile` of the harness that their references need. Then `RemoveInitialNoise`, `IsGraphvizDotHeader` and `AllowDotSVG`, the `Render` of the engines and of `svek.Layout`, `BasicFactory`, the `directdot` package, and the registration.
+Cases first, with the `profile` of the harness that their references need. Then `RemoveInitialNoise`, `IsGraphvizDotHeader` and `AllowDotSVG`, the `RenderFormat` of the engines and of `svek.Layout`, `BasicFactory`, the `directdot` package, and the registration.
 
 ## Risks / Trade-offs
 

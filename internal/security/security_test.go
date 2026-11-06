@@ -28,6 +28,14 @@ func TestParseProfile(t *testing.T) {
 	}
 }
 
+func TestAllowDotSVG(t *testing.T) {
+	for p, want := range map[Profile]bool{Sandbox: false, Allowlist: false, Internet: false, InternetWithDotSVG: true, Legacy: false, Insecure: true} {
+		if got := p.AllowDotSVG(); got != want {
+			t.Errorf("%v.AllowDotSVG() = %v, want %v", p, got, want)
+		}
+	}
+}
+
 func TestConfigFromEnv(t *testing.T) {
 	inc := t.TempDir()
 	env := map[string]string{"PLANTUML_SECURITY_PROFILE": "sandbox", "PLANTUML_INCLUDE_PATH": inc + string(filepath.ListSeparator) + "/does/not/exist"}

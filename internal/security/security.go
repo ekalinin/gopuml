@@ -34,6 +34,10 @@ var profileNames = [...]string{"SANDBOX", "ALLOWLIST", "INTERNET", "INTERNET_WIT
 
 func (p Profile) String() string { return profileNames[p] }
 
+// AllowDotSVG reports whether dot diagrams may write the SVG of the layout
+// engine (upstream's allowDotSvg): only in INSECURE and INTERNET_WITH_DOTSVG.
+func (p Profile) AllowDotSVG() bool { return p == Insecure || p == InternetWithDotSVG }
+
 // ParseProfile reads a PLANTUML_SECURITY_PROFILE value. "INSECURE" and
 // its misspelling "UNSECURE" select Insecure, as upstream does. ok is false
 // for empty or unknown values.
