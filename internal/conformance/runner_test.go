@@ -296,3 +296,23 @@ func TestReportsUnsupportedReferenceError(t *testing.T) {
 		t.Error("a sequence case must match the reference error")
 	}
 }
+
+func TestGroupOf(t *testing.T) {
+	meta := func(typ string) *Meta { return &Meta{Blocks: []BlockMeta{{Type: typ}}} }
+	for _, tc := range []struct {
+		c    *Case
+		ref  *Meta
+		want string
+	}{
+		{&Case{Type: "sequence"}, meta("SEQUENCE"), "sequence"},
+		{&Case{Type: "dot"}, meta("ERROR"), "dot"},
+		{&Case{Type: "dot"}, meta("OTHER"), "dot"},
+		{&Case{}, meta("OTHER"), "other"},
+		{&Case{Type: "dot"}, &Meta{}, "none"},
+		{&Case{Type: "dot"}, &Meta{Crash: "boom"}, "crash"},
+	} {
+		if got := groupOf(tc.c, tc.ref); got != tc.want {
+			t.Errorf("groupOf(%q, %+v) = %q, want %q", tc.c.Type, tc.ref, got, tc.want)
+		}
+	}
+}
