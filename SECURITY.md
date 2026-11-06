@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes go into the latest release, currently v0.3.0.
+Security fixes go into the latest release, currently v0.4.0.
 
 ## Reporting a vulnerability
 

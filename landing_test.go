@@ -294,7 +294,7 @@ func TestLandingPage(t *testing.T) {
 		{"no go install", `go install github.com/ekalinin/gopuml/cmd/plantuml@`, `go get github.com/ekalinin/gopuml/cmd/plantuml@`},
 		{"no checksums", `-p checksums.txt`, ``},
 		{"no curl", `curl -fLO `, `wget `},
-		{"other conformance result", `<strong>925</strong>`, `<strong>924</strong>`},
+		{"other conformance result", `<strong>928</strong>`, `<strong>927</strong>`},
 		{"no NOTICE link", `blob/main/NOTICE`, `blob/main/README.md`},
 	} {
 		mutated := strings.ReplaceAll(page, m.old, m.new)
@@ -417,10 +417,10 @@ func TestLandingRelease(t *testing.T) {
 		{"another release in the meta tag", "page", `content="` + tag + `"`, `content="v9.9.9"`},
 		{"page behind the README", "readme", tag, "v9.9.9"},
 		{"another archive", "page", "gopuml_" + tag[1:] + "_darwin", "gopuml_9.9.9_darwin"},
-		{"changed cell", "page", "901 ms (39 ms per case)", "901 ms (40 ms per case)"},
-		{"comparison out of date", "notes", "| 17 ms |", "| 16 ms |"},
-		{"bar of another time", "page", `style="--t: 132"`, `style="--t: 123"`},
-		{"other scale", "page", `style="--max: 1130"`, `style="--max: 1000"`},
+		{"changed cell", "page", "908 ms (39 ms per case)", "908 ms (40 ms per case)"},
+		{"comparison out of date", "notes", "| 15 ms |", "| 14 ms |"},
+		{"bar of another time", "page", `style="--t: 127"`, `style="--t: 115"`},
+		{"other scale", "page", `style="--max: 1080"`, `style="--max: 1000"`},
 		{"no environment", "page", "<li>Runs: ", "<li>Run: "},
 	} {
 		p, r, n := page, readme, notes
