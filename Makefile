@@ -35,8 +35,8 @@ SITE_OUT ?= dist/site
 site: wasm
 	$(GO) run ./tools/site -out $(SITE_OUT) -wasm $(WASM_OUT)
 
-# Compares this implementation with the upstream jar (tools/bench), e.g.
-# make bench BENCH_FLAGS="-start-runs 3 -render-runs 1".
+# Compares this implementation, with a dot and with gogv, with the upstream
+# jar (tools/bench), e.g. make bench BENCH_FLAGS="-start-runs 3 -render-runs 1".
 BENCH_FLAGS ?=
 
 bench:

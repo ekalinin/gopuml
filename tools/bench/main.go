@@ -2,8 +2,10 @@
 // Provenance: original
 
 // Command bench compares the start time and the rendering time of this
-// implementation with the upstream jar, on the same machine and with the same
-// dot for both (passed through GRAPHVIZ_DOT).
+// implementation with the upstream jar, on the same machine, in three
+// columns: the jar and this implementation with the same dot (passed through
+// GRAPHVIZ_DOT), and this implementation with no dot named, which lays
+// graphs out with its built-in gogv.
 //
 // The start time is the median time of separate processes that each render a
 // small sequence diagram with -tsvg -pipe. The rendering time of a diagram
@@ -18,6 +20,7 @@ package main
 import (
 	"bytes"
 	"cmp"
+	"debug/buildinfo"
 	"errors"
 	"flag"
 	"fmt"
@@ -29,6 +32,7 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
+	"runtime/debug"
 	"slices"
 	"strings"
 	"time"
@@ -53,9 +57,11 @@ type bench struct {
 	timed func(cmd *exec.Cmd) (time.Duration, error)
 }
 
-// impl is one implementation under comparison.
+// impl is one implementation under comparison, a column of the table.
 type impl struct {
 	name string
+	// env is the environment of its runs.
+	env []string
 	// command returns the command line that runs it with args.
 	command func(args ...string) *exec.Cmd
 }
@@ -73,7 +79,7 @@ func main() {
 	flag.StringVar(&b.cli, "cli", "", "plantuml binary of this implementation")
 	flag.StringVar(&b.jar, "jar", ".cache/upstream/plantuml-mit-"+version.Upstream+".jar", "upstream jar")
 	flag.StringVar(&b.java, "java", "java", "java command")
-	flag.StringVar(&b.dot, "dot", os.Getenv("GRAPHVIZ_DOT"), "dot of both implementations (default: GRAPHVIZ_DOT, else dot in PATH)")
+	flag.StringVar(&b.dot, "dot", os.Getenv("GRAPHVIZ_DOT"), "dot of the jar and of gopuml (dot) (default: GRAPHVIZ_DOT, else dot in PATH)")
 	flag.StringVar(&b.cases, "cases", "testdata/conformance/cases", "curated cases")
 	flag.IntVar(&b.startRuns, "start-runs", 10, "runs of the start time")
 	flag.IntVar(&b.renderRuns, "render-runs", 5, "runs of the rendering time of each type")
@@ -107,11 +113,19 @@ func (b *bench) run(w io.Writer) error {
 		}
 		*p = abs
 	}
+	// The jar and gopuml (dot) lay graphs out with the dot of the
+	// comparison; gopuml (gogv), with no dot named, with its built-in gogv.
+	noDot := slices.DeleteFunc(os.Environ(), func(kv string) bool {
+		return strings.HasPrefix(kv, "GRAPHVIZ_DOT=")
+	})
+	withDot := append(slices.Clip(noDot), "GRAPHVIZ_DOT="+b.dot)
+	cli := func(args ...string) *exec.Cmd { return exec.Command(b.cli, args...) }
 	impls := []impl{
-		{"PlantUML " + version.Upstream + " (Java)", func(args ...string) *exec.Cmd {
+		{"PlantUML " + version.Upstream + " (Java)", withDot, func(args ...string) *exec.Cmd {
 			return exec.Command(b.java, append([]string{"-Djava.awt.headless=true", "-jar", b.jar}, args...)...)
 		}},
-		{"gopuml", func(args ...string) *exec.Cmd { return exec.Command(b.cli, args...) }},
+		{"gopuml (dot)", withDot, cli},
+		{"gopuml (gogv)", noDot, cli},
 	}
 
 	cases, err := conformance.LoadCases(os.DirFS(b.cases), ".")
@@ -193,7 +207,11 @@ func (b *bench) run(w io.Writer) error {
 		rows = append(rows, r)
 	}
 
-	fmt.Fprintf(w, "| | %s | %s |\n|---|---:|---:|\n", impls[0].name, impls[1].name)
+	names := make([]string, len(impls))
+	for i, im := range impls {
+		names[i] = im.name
+	}
+	fmt.Fprintf(w, "| | %s |\n|---|%s\n", strings.Join(names, " | "), strings.Repeat("---:|", len(impls)))
 	for _, r := range rows {
 		label, cells := r.label, make([]string, len(r.medians))
 		if r.cases > 0 {
@@ -212,6 +230,7 @@ func (b *bench) run(w io.Writer) error {
 	fmt.Fprintf(w, "- Java: %s\n", firstLine(exec.Command(b.java, "-version")))
 	fmt.Fprintf(w, "- Go: %s\n", runtime.Version())
 	fmt.Fprintf(w, "- Graphviz: %s\n", firstLine(exec.Command(b.dot, "-V")))
+	fmt.Fprintf(w, "- gogv: %s\n", gogvVersion(b.cli))
 	fmt.Fprintf(w, "- Runs: median of %d start %s and of %d rendering %s per type\n", b.startRuns, plural(b.startRuns, "run"), b.renderRuns, plural(b.renderRuns, "run"))
 	for _, n := range notes {
 		fmt.Fprintf(w, "- Exit status of %s\n", n)
@@ -219,10 +238,10 @@ func (b *bench) run(w io.Writer) error {
 	return nil
 }
 
-// command returns the command of im with the dot of the comparison.
+// command returns the command of im, in the environment of im.
 func (b *bench) command(im impl, args ...string) *exec.Cmd {
 	cmd := im.command(args...)
-	cmd.Env = append(os.Environ(), "GRAPHVIZ_DOT="+b.dot)
+	cmd.Env = im.env
 	return cmd
 }
 
@@ -292,6 +311,30 @@ func firstLine(cmd *exec.Cmd) string {
 		return err.Error()
 	}
 	return line
+}
+
+// gogvVersion returns the version of gogv that the CLI is built with, from
+// its build info, or unknown.
+func gogvVersion(cli string) string {
+	info, err := buildinfo.ReadFile(cli)
+	if err != nil {
+		return "unknown"
+	}
+	return moduleVersion(info, "github.com/ekalinin/gogv")
+}
+
+// moduleVersion returns the version of the dependency path of info: the
+// version of its replacement when go.mod replaces it (the directory of a
+// local replacement, which has none), or unknown without that dependency.
+func moduleVersion(info *debug.BuildInfo, path string) string {
+	i := slices.IndexFunc(info.Deps, func(m *debug.Module) bool { return m.Path == path })
+	if i < 0 {
+		return "unknown"
+	}
+	if r := info.Deps[i].Replace; r != nil {
+		return cmp.Or(r.Version, r.Path)
+	}
+	return info.Deps[i].Version
 }
 
 // cpu returns the model of the processor, when the system tells it.
