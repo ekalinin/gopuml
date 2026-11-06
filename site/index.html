@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="gopuml-release" content="v0.3.0">
+<meta name="gopuml-release" content="v0.4.0">
 <meta name="description" content="gopuml is a Go reimplementation of PlantUML 1.2026.9: a command line, a Go library, an HTTP server and a WebAssembly module. No JVM is needed.">
 <meta name="color-scheme" content="light dark">
 <title>gopuml - PlantUML, without the JVM</title>
@@ -32,7 +32,7 @@
     <h1 id="hero-title">PlantUML,<br><span class="nowrap">without the JVM.</span></h1>
     <p class="lede">gopuml is a Go reimplementation of <a href="https://plantuml.com">PlantUML</a> 1.2026.9 (MIT variant). It reads the same diagram language and produces the same SVG, PNG and text output.</p>
     <p class="actions">
-      <a class="button primary" href="#install">Install v0.3.0</a>
+      <a class="button primary" href="#install">Install v0.4.0</a>
       <a class="button" href="#playground">Try it in the browser</a>
       <a class="button" href="https://github.com/ekalinin/gopuml">Source on GitHub</a>
     </p>
@@ -48,7 +48,7 @@ Alice &lt;-- Bob: Another authentication Response
 @enduml</code></pre>
     <p class="sheet-command"><code>$ plantuml --svg diagram.puml</code></p>
     <div class="sheet-paper">
-      <img src="hero.svg" width="306" height="218" alt="Sequence diagram rendered by gopuml v0.3.0: Alice sends Bob two authentication requests, and Bob answers each with an authentication response.">
+      <img src="hero.svg" width="306" height="218" alt="Sequence diagram rendered by gopuml v0.4.0: Alice sends Bob two authentication requests, and Bob answers each with an authentication response.">
     </div>
   </figure>
 </section>
@@ -83,8 +83,8 @@ Alice &lt;-- Bob: Another authentication Response
 
 <section id="playground" aria-labelledby="playground-title">
   <h2 id="playground-title">Playground</h2>
-  <p>Edit the source, and gopuml v0.3.0 renders it in this page with WebAssembly. No server is involved.</p>
-  <aside class="note">Sequence diagrams, activity diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams, WBS diagrams, timing diagrams and salt diagrams render here. Class, object, use case, component, deployment, state, legacy activity and Chen EER diagrams need Graphviz, which the browser build does not have, so they show its error.</aside>
+  <p>Edit the source, and gopuml v0.4.0 renders it in this page with WebAssembly. No server is involved.</p>
+  <aside class="note">Every diagram type of the table below renders here, apart from dot diagrams, which show upstream's "This feature has been suppressed" notice in the <code>SANDBOX</code> security profile of the module. Class, object, use case, component, deployment, state, legacy activity and Chen EER diagrams are laid out by gogv, as in the native build.</aside>
   <div class="pg" hidden>
     <div class="pg-bar">
       <label for="pg-example">Example</label>
@@ -136,42 +136,42 @@ Alice &lt;-- Bob: Another authentication Response
 
 <section id="install" aria-labelledby="install-title">
   <h2 id="install-title">Install</h2>
-  <p>Each <a href="https://github.com/ekalinin/gopuml/releases">release</a> has an archive of the command line for linux, macOS and windows on amd64 and arm64 (<code>.zip</code> on windows), an archive of the WebAssembly module, and <code>checksums.txt</code> with the SHA-256 of every archive. Download the archive of your system and <code>checksums.txt</code> from the <a href="https://github.com/ekalinin/gopuml/releases/tag/v0.3.0">page of v0.3.0</a>, or with the GitHub CLI:</p>
-  <pre><code>gh release download v0.3.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt</code></pre>
+  <p>Each <a href="https://github.com/ekalinin/gopuml/releases">release</a> has an archive of the command line for linux, macOS and windows on amd64 and arm64 (<code>.zip</code> on windows), an archive of the WebAssembly module, and <code>checksums.txt</code> with the SHA-256 of every archive. Download the archive of your system and <code>checksums.txt</code> from the <a href="https://github.com/ekalinin/gopuml/releases/tag/v0.4.0">page of v0.4.0</a>, or with the GitHub CLI:</p>
+  <pre><code>gh release download v0.4.0 --repo ekalinin/gopuml -p '*_darwin_arm64.tar.gz' -p checksums.txt</code></pre>
   <p>or with <code>curl</code>:</p>
-  <pre><code>curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.3.0/gopuml_0.3.0_darwin_arm64.tar.gz
-curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.3.0/checksums.txt</code></pre>
+  <pre><code>curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.4.0/gopuml_0.4.0_darwin_arm64.tar.gz
+curl -fLO https://github.com/ekalinin/gopuml/releases/download/v0.4.0/checksums.txt</code></pre>
   <p>then check and unpack it:</p>
   <pre><code>shasum -a 256 --ignore-missing -c checksums.txt   # sha256sum on linux
-tar xzf gopuml_0.3.0_darwin_arm64.tar.gz plantuml
+tar xzf gopuml_0.4.0_darwin_arm64.tar.gz plantuml
 ./plantuml --version</code></pre>
   <aside class="note">The macOS binaries are not signed. When a browser downloaded the archive, macOS blocks the binary until its quarantine attribute is removed: <code>xattr -d com.apple.quarantine plantuml</code></aside>
   <p>With Go 1.26 or later, the command line can also be installed from source:</p>
-  <pre><code>go install github.com/ekalinin/gopuml/cmd/plantuml@v0.3.0</code></pre>
+  <pre><code>go install github.com/ekalinin/gopuml/cmd/plantuml@v0.4.0</code></pre>
 </section>
 
 <section id="comparison" aria-labelledby="comparison-title">
   <h2 id="comparison-title">Compared with PlantUML on Java</h2>
-  <p><code>make bench</code> runs the command line of v0.3.0 and the upstream jar on the same machine, with the same <code>dot</code> for both. The start time is the median time of separate processes that each render a small sequence diagram with <code>-tsvg -pipe</code>. The rendering time of a diagram type is the median time of one process that renders the curated conformance cases of that type with <code>-tsvg -o &lt;dir&gt;</code>; both use their default of one thread per processor.</p>
+  <p><code>make bench</code> runs the command line of v0.4.0 and the upstream jar on the same machine, with the same <code>dot</code> for both, so gopuml lays graphs out with this <code>dot</code> here, not with gogv. The start time is the median time of separate processes that each render a small sequence diagram with <code>-tsvg -pipe</code>. The rendering time of a diagram type is the median time of one process that renders the curated conformance cases of that type with <code>-tsvg -o &lt;dir&gt;</code>; both use their default of one thread per processor.</p>
   <div class="scroll">
-    <table class="lifelines" style="--max: 1130">
+    <table class="lifelines" style="--max: 1080">
       <thead>
         <tr><td></td><th scope="col" class="java"><span>PlantUML 1.2026.9 (Java)</span></th><th scope="col" class="go"><span>gopuml</span></th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Start time (one small sequence diagram)</th><td class="java" style="--t: 712">712 ms</td><td class="go" style="--t: 17">17 ms</td></tr>
-        <tr><th scope="row">Rendering: sequence (91 cases)</th><td class="java" style="--t: 1020">1.02 s (11 ms per case)</td><td class="go" style="--t: 132">132 ms (1.5 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: class (23 cases)</th><td class="java" style="--t: 901">901 ms (39 ms per case)</td><td class="go" style="--t: 108">108 ms (4.7 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: description (16 cases)</th><td class="java" style="--t: 1130">1.13 s (70 ms per case)</td><td class="go" style="--t: 162">162 ms (10 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: state (21 cases)</th><td class="java" style="--t: 932">932 ms (44 ms per case)</td><td class="go" style="--t: 148">148 ms (7.0 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: activity (30 cases)</th><td class="java" style="--t: 908">908 ms (30 ms per case)</td><td class="go" style="--t: 123">123 ms (4.1 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: packet (17 cases)</th><td class="java" style="--t: 753">753 ms (44 ms per case)</td><td class="go" style="--t: 20">20 ms (1.2 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: gantt (68 cases)</th><td class="java" style="--t: 846">846 ms (12 ms per case)</td><td class="go" style="--t: 43">43 ms (0.6 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: mindmap (30 cases)</th><td class="java" style="--t: 753">753 ms (25 ms per case)</td><td class="go" style="--t: 21">21 ms (0.7 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: wbs (40 cases)</th><td class="java" style="--t: 757">757 ms (19 ms per case)</td><td class="go" style="--t: 23">23 ms (0.6 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: timing (68 cases)</th><td class="java" style="--t: 832">832 ms (12 ms per case)</td><td class="go" style="--t: 72">72 ms (1.1 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: salt (39 cases)</th><td class="java" style="--t: 742">742 ms (19 ms per case)</td><td class="go" style="--t: 24">24 ms (0.6 ms per case)</td></tr>
-        <tr><th scope="row">Rendering: chen_eer (31 cases)</th><td class="java" style="--t: 841">841 ms (27 ms per case)</td><td class="go" style="--t: 100">100 ms (3.2 ms per case)</td></tr>
+        <tr><th scope="row">Start time (one small sequence diagram)</th><td class="java" style="--t: 705">705 ms</td><td class="go" style="--t: 15">15 ms</td></tr>
+        <tr><th scope="row">Rendering: sequence (91 cases)</th><td class="java" style="--t: 965">965 ms (11 ms per case)</td><td class="go" style="--t: 127">127 ms (1.4 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: class (23 cases)</th><td class="java" style="--t: 908">908 ms (39 ms per case)</td><td class="go" style="--t: 86">86 ms (3.7 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: description (16 cases)</th><td class="java" style="--t: 1080">1.08 s (68 ms per case)</td><td class="go" style="--t: 145">145 ms (9.1 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: state (21 cases)</th><td class="java" style="--t: 927">927 ms (44 ms per case)</td><td class="go" style="--t: 130">130 ms (6.2 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: activity (30 cases)</th><td class="java" style="--t: 894">894 ms (30 ms per case)</td><td class="go" style="--t: 115">115 ms (3.8 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: packet (17 cases)</th><td class="java" style="--t: 780">780 ms (46 ms per case)</td><td class="go" style="--t: 23">23 ms (1.4 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: gantt (68 cases)</th><td class="java" style="--t: 877">877 ms (13 ms per case)</td><td class="go" style="--t: 29">29 ms (0.4 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: mindmap (30 cases)</th><td class="java" style="--t: 752">752 ms (25 ms per case)</td><td class="go" style="--t: 19">19 ms (0.6 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: wbs (40 cases)</th><td class="java" style="--t: 779">779 ms (19 ms per case)</td><td class="go" style="--t: 21">21 ms (0.5 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: timing (68 cases)</th><td class="java" style="--t: 852">852 ms (13 ms per case)</td><td class="go" style="--t: 45">45 ms (0.7 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: salt (39 cases)</th><td class="java" style="--t: 740">740 ms (19 ms per case)</td><td class="go" style="--t: 19">19 ms (0.5 ms per case)</td></tr>
+        <tr><th scope="row">Rendering: chen_eer (31 cases)</th><td class="java" style="--t: 844">844 ms (27 ms per case)</td><td class="go" style="--t: 89">89 ms (2.9 ms per case)</td></tr>
       </tbody>
     </table>
   </div>
@@ -187,10 +187,10 @@ tar xzf gopuml_0.3.0_darwin_arm64.tar.gz plantuml
 
 <section id="conformance" aria-labelledby="conformance-title">
   <h2 id="conformance-title">Conformance</h2>
-  <p><code>make conformance REQUIRE=all</code> compares v0.3.0 with upstream PlantUML 1.2026.9 on 972 cases (upstream's Vega test corpus plus curated cases):</p>
+  <p><code>make conformance REQUIRE=all</code> compares v0.4.0 with upstream PlantUML 1.2026.9 on 988 cases (upstream's Vega test corpus plus curated cases):</p>
   <ul class="tally">
-    <li><strong>925</strong> cases pass</li>
-    <li><strong>42</strong> cases are documented known differences (<code>testdata/conformance/known-differences.yaml</code>)</li>
+    <li><strong>928</strong> cases pass</li>
+    <li><strong>55</strong> cases are documented known differences (<code>testdata/conformance/known-differences.yaml</code>)</li>
     <li><strong>5</strong> cases are diagram types that are not supported yet</li>
     <li><strong>0</strong> cases fail</li>
   </ul>
