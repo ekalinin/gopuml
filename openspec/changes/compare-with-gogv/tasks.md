@@ -22,5 +22,5 @@
 
 - [x] 4.1 README.md and site/index.html do not change: no case count changes, and the page shows the comparison of the v0.4.0 notes until the next release. Verify that `TestLandingPage`, `TestLandingRelease` and `TestReleaseNotes` pass and that `git diff main -- README.md site/index.html` is empty
 - [x] 4.2 Run `make lint test provenance wasm`. Verify that all pass
-- [ ] 4.3 With the user's approval, push the branch and open a pull request. Verify that its `test`, `conformance` and `benchmark` jobs pass
+- [x] 4.3 With the user's approval, push the branch and open a pull request. Verify that its `test`, `conformance` and `benchmark` jobs pass
 - [x] 4.4 Run `openspec validate compare-with-gogv --strict`. Verify that the change is reported as valid
