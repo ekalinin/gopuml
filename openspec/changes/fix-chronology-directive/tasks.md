@@ -15,5 +15,5 @@
 
 - [x] 3.1 Update the README's case count, which follows `conformance-report.md` of task 2.2; the counts of known differences and of cases not supported yet do not change. Leave `site/index.html` unchanged: its conformance tally follows the release on the page. Verify that `TestLandingPage` and `TestReleaseNotes` pass
 - [x] 3.2 Verify that `make lint` and `make provenance` pass
-- [ ] 3.3 Push the branch, with the user's approval, and open a pull request that closes issue #58. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
+- [x] 3.3 Push the branch, with the user's approval, and open a pull request that closes issue #58. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check
 - [x] 3.4 Run `openspec validate fix-chronology-directive --strict`. Verify that the change is reported as valid
