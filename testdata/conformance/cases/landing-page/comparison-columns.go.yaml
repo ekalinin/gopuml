@@ -1,0 +1,6 @@
+id: landing-page/comparison-columns
+scenarios:
+  - "landing-page: Comparison with three columns"
+package: .
+test: TestLandingComparisonColumns
+why: Comparison of the landing page of this implementation with three columns, checked against notes with the same columns, on a page built by the test.

@@ -441,6 +441,11 @@ func TestLandingRelease(t *testing.T) {
 	}
 }
 
+func TestLandingComparisonColumns(t *testing.T) {
+	// Spec scenario "Comparison with three columns".
+	t.Skip("task 3.2")
+}
+
 // pagesWorkflow is the part of the Pages workflow that checkPagesWorkflow
 // reads.
 type pagesWorkflow struct {

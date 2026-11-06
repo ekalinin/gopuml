@@ -147,3 +147,8 @@ func TestComparisonTable(t *testing.T) {
 		}
 	}
 }
+
+func TestComparisonLayout(t *testing.T) {
+	// Spec scenario "Layout of each column", with fake commands.
+	t.Skip("task 2.1")
+}

@@ -4,8 +4,8 @@
 
 ## 1. Cases first
 
-- [ ] 1.1 On the branch `chore/compare-with-gogv`, created from `main`, commit this change's directory as `docs(openspec): propose compare-with-gogv`. Verify that `git log -2 --format=%s` shows that commit on top of the head of `main`
-- [ ] 1.2 Add `TestComparisonLayout` to `tools/bench/main_test.go`, which calls `t.Skip("task 2.1")`, and `TestLandingComparisonColumns` to `landing_test.go`, which calls `t.Skip("task 3.2")` (design D5). Add the cases, with the front matter of their neighbors: `release/comparison-layout.go.yaml` ("release: Layout of each column", package `tools/bench`, `TestComparisonLayout`) and `landing-page/comparison-columns.go.yaml` ("landing-page: Comparison with three columns", package `.`, `TestLandingComparisonColumns`). Verify that `TestScenarioCoverage`, `TestGoCaseTestsExist` and `make test` pass. Commit as `chore(bench): add the cases of the comparison with gogv`
+- [x] 1.1 On the branch `chore/compare-with-gogv`, created from `main`, commit this change's directory as `docs(openspec): propose compare-with-gogv`. Verify that `git log -2 --format=%s` shows that commit on top of the head of `main`
+- [x] 1.2 Add `TestComparisonLayout` to `tools/bench/main_test.go`, which calls `t.Skip("task 2.1")`, and `TestLandingComparisonColumns` to `landing_test.go`, which calls `t.Skip("task 3.2")` (design D5). Add the cases, with the front matter of their neighbors: `release/comparison-layout.go.yaml` ("release: Layout of each column", package `tools/bench`, `TestComparisonLayout`) and `landing-page/comparison-columns.go.yaml` ("landing-page: Comparison with three columns", package `.`, `TestLandingComparisonColumns`). Verify that `TestScenarioCoverage`, `TestGoCaseTestsExist` and `make test` pass. Commit as `chore(bench): add the cases of the comparison with gogv`
 
 ## 2. Three columns (`tools/bench`)
 
