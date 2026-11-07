@@ -32,6 +32,11 @@ type SvgNanoParser struct {
 	grayMu  sync.Mutex
 	minGray int
 	maxGray int
+
+	// paths holds the parsed path data by text. SvgPath does not change
+	// once parsed, so a sprite drawn several times (a sequence diagram
+	// draws its notes in several passes) parses each path once.
+	paths sync.Map // string -> *SvgPath
 }
 
 var (
@@ -349,8 +354,19 @@ func (p *SvgNanoParser) drawPath(ugs *UGraphicWithScale, s string, stackG []stri
 	}
 	tmp := s[x1+3 : x2]
 
-	svgPath := NewSvgPath(tmp, UTranslateNone())
+	svgPath := p.svgPath(tmp)
 	svgPath.DrawMe(ugs.Ug(), ugs.AffineTransform())
+}
+
+// svgPath returns the parsed path data, NewSvgPath without translation,
+// parsing it on its first use.
+func (p *SvgNanoParser) svgPath(data string) *SvgPath {
+	if v, ok := p.paths.Load(data); ok {
+		return v.(*SvgPath)
+	}
+	path := NewSvgPath(data, UTranslateNone())
+	p.paths.Store(data, path)
+	return path
 }
 
 func (p *SvgNanoParser) applyTransform(ugs *UGraphicWithScale, s string) *UGraphicWithScale {
