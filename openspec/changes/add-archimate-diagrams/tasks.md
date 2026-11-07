@@ -10,7 +10,7 @@
   - `testdata/conformance/cases/standard-library/archimate-library`, for "standard-library: Archimate library", with `!include <archimate/Archimate>`, `Business_Actor(a, "Customer")`, `Business_Service(s, "Sales")` and `Rel_Serving(s, a, "serves")`.
 
   Verify that `TestScenarioCoverage` finds a case for every scenario of the delta specs.
-- [ ] 1.2 Render the references of the new cases with `make reference` (design D6), and regenerate the golden dumps of `internal/sequencediagram`, `internal/classdiagram` and `internal/activitydiagram3` (`go test -tags upstreamgen -run TestGenerateUpstream ./internal/<package>`). Verify that the references show what the scenarios state:
+- [x] 1.2 Render the references of the new cases with `make reference` (design D6), and regenerate the golden dumps of `internal/sequencediagram`, `internal/classdiagram` and `internal/activitydiagram3` (`go test -tags upstreamgen -run TestGenerateUpstream ./internal/<package>`). Verify that the references show what the scenarios state:
   - the `#FFFFCC` element with the business-actor icon for `archimate-element`;
   - one element `Updated` for `archimate-element-updated`;
   - `«nope»` for `archimate-unknown-icon`;
@@ -20,12 +20,12 @@
   - the same icon paths in `internal-svg-sprite` and `internal-svg-sprite-sax`.
 
   Verify that the other committed references and golden dumps do not change. Some tests of `make test` fail on a new case before the task that implements it: the error images of `TestDiagramReferences` in `internal/errdiagram` for the two archimate error cases, and the sequence golden dump tests for `sprite $a jar:archimate/actor`, which panics today. Skip that case in that test until the task that implements it, with a comment naming the task. Verify that `make test` passes
-- [ ] 1.3 Update the `why` of the `.go.yaml` cases `diagram-source/unsupported-uml-types` and `styling/embedded-unsupported-type` (design D5). The first: upstream renders archimate and the state and legacy activity syntax as diagrams, while this implementation must not report them as not supported yet. The second: upstream draws the embedded JSON diagram, while this implementation draws its "not supported yet" error image. Verify that `TestScenarioCoverage` and `GoCase.TestExists` pass
+- [x] 1.3 Update the `why` of the `.go.yaml` cases `diagram-source/unsupported-uml-types` and `styling/embedded-unsupported-type` (design D5). The first: upstream renders archimate and the state and legacy activity syntax as diagrams, while this implementation must not report them as not supported yet. The second: upstream draws the embedded JSON diagram, while this implementation draws its "not supported yet" error image. Verify that `TestScenarioCoverage` and `GoCase.TestExists` pass
 
 ## 2. Internal sprites
 
 - [x] 2.1 Copy the 139 files of `.cache/upstream/src/sprites/archimate/` unchanged into `internal/klimt/sprites/archimate/` (design D1, D3). Add `TestUpstreamInternalSprites`, which compares the embedded tree with `.cache/upstream/src/sprites/` through a function that returns the problems and skips when the sources are not unpacked. Add a unit test of that function on two `fstest.MapFS`: one changed byte names the file, a missing file and an extra file are reported, identical trees give no problem. Add the NOTICE paragraph on the sprites under "Bundled assets", with Archi's copyright line and the MIT License. Verify that `go test ./internal/klimt` passes with the unpacked sources
-- [ ] 2.2 Port `SpriteImage.fromInternal` into `internal/klimt/sprite_internal.go` and delete `sprite_internalnames.go` (design D1, D2). Replace the panic expectation of `klimt_test.go` with tests of the new function:
+- [x] 2.2 Port `SpriteImage.fromInternal` into `internal/klimt/sprite_internal.go` and delete `sprite_internalnames.go` (design D1, D2). Replace the panic expectation of `klimt_test.go` with tests of the new function:
   - `SpriteImageFromInternal("archimate/actor")` is an `ISvgSpriteParser`;
   - `"archimate/access"` is a `*SpriteImage` of 16 by 16 pixels, and so are the two PNG files with a color map;
   - every embedded name gives a non-nil sprite;
