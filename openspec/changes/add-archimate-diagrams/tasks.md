@@ -4,7 +4,7 @@
 
 `TestScenarioCoverage` also reads the delta specs of active changes, so the cases come first and `make test` passes on the branch from the start (design D6). Until tasks 2.2 and 3.2, the new cases fail in the conformance suite: the sprite cases crash in `SpriteImageFromInternal`, and the archimate cases are reported as not supported yet.
 
-- [ ] 1.1 Add the curated cases of design D6, with the inputs of their scenarios and the front matter of their neighbors:
+- [x] 1.1 Add the curated cases of design D6, with the inputs of their scenarios and the front matter of their neighbors:
   - under `testdata/conformance/cases/description-diagram/`: `archimate-element`, `archimate-element-updated`, `archimate-multiline`, `archimate-group`, `archimate-unknown-icon`, `archimate-without-color` and `archimate-multiline-twice`, for the scenarios of "Archimate elements";
   - under `testdata/conformance/cases/sprites/`: `internal-svg-sprite`, `internal-svg-sprite-sax`, `internal-png-sprite`, `internal-sprite-stereotype`, `internal-sprite-command` and `missing-internal-sprite`, for the scenarios of "Internal sprites", and `internal-sprites-all` without scenarios, with one note line `<$archimate/<name>> <name>` per file of `.cache/upstream/src/sprites/archimate/`, in name order;
   - `testdata/conformance/cases/standard-library/archimate-library`, for "standard-library: Archimate library", with `!include <archimate/Archimate>`, `Business_Actor(a, "Customer")`, `Business_Service(s, "Sales")` and `Rel_Serving(s, a, "serves")`.
@@ -24,7 +24,7 @@
 
 ## 2. Internal sprites
 
-- [ ] 2.1 Copy the 139 files of `.cache/upstream/src/sprites/archimate/` unchanged into `internal/klimt/sprites/archimate/` (design D1, D3). Add `TestUpstreamInternalSprites`, which compares the embedded tree with `.cache/upstream/src/sprites/` through a function that returns the problems and skips when the sources are not unpacked. Add a unit test of that function on two `fstest.MapFS`: one changed byte names the file, a missing file and an extra file are reported, identical trees give no problem. Add the NOTICE paragraph on the sprites under "Bundled assets", with Archi's copyright line and the MIT License. Verify that `go test ./internal/klimt` passes with the unpacked sources
+- [x] 2.1 Copy the 139 files of `.cache/upstream/src/sprites/archimate/` unchanged into `internal/klimt/sprites/archimate/` (design D1, D3). Add `TestUpstreamInternalSprites`, which compares the embedded tree with `.cache/upstream/src/sprites/` through a function that returns the problems and skips when the sources are not unpacked. Add a unit test of that function on two `fstest.MapFS`: one changed byte names the file, a missing file and an extra file are reported, identical trees give no problem. Add the NOTICE paragraph on the sprites under "Bundled assets", with Archi's copyright line and the MIT License. Verify that `go test ./internal/klimt` passes with the unpacked sources
 - [ ] 2.2 Port `SpriteImage.fromInternal` into `internal/klimt/sprite_internal.go` and delete `sprite_internalnames.go` (design D1, D2). Replace the panic expectation of `klimt_test.go` with tests of the new function:
   - `SpriteImageFromInternal("archimate/actor")` is an `ISvgSpriteParser`;
   - `"archimate/access"` is a `*SpriteImage` of 16 by 16 pixels, and so are the two PNG files with a color map;

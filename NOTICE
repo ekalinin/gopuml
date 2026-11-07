@@ -68,6 +68,14 @@ DejaVu changes are in public domain. The fonts are distributed under the
 Bitstream Vera and Arev fonts licenses, reproduced in
 internal/klimt/g2d/dejavu/fonts/LICENSE-DejaVu.txt.
 
+internal/klimt/sprites/archimate/ holds the 139 ArchiMate sprites of
+PlantUML v1.2026.9 (the sprites/ folder of the plantuml-mit jar), unchanged,
+which draw the icons of archimate elements and the "<$archimate/...>"
+sprites. PlantUML takes them from Archi (https://www.archimatetool.com,
+https://github.com/archimatetool/archi): Copyright (c) 2013-2026 Phillip
+Beauvoir, Jean-Baptiste Sarrodie, The Open Group, licensed under the MIT
+License, reproduced in internal/klimt/sprites/LICENSE-MIT-Archi.txt.
+
 Bundled themes
 --------------
 
