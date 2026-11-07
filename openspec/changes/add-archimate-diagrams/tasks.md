@@ -66,3 +66,11 @@
 - [x] 4.2 Verify that `make lint`, `make provenance` and `make wasm` pass, and that the WASM build renders `Alice -> Bob : <$archimate/actor> hi` with the actor icon, as the native build does
 - [ ] 4.3 Push the branch, with the user's approval, and open a pull request that closes issue #35. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check, and that the benchmark report shows no regression of the other diagram types
 - [x] 4.4 Run `openspec validate add-archimate-diagrams --strict`. Verify that the change is reported as valid
+
+## 5. Sprite drawing allocations
+
+The benchmark job of the pull request marked `sequence`, and the user chose to reduce the allocations of the sprite drawing in this change (design D8).
+
+- [x] 5.1 Keep the parsed paths of `SvgNanoParser` by text, and encode `ToPngDataURL` with a `png.Encoder` whose `BufferPool` reuses its buffers (design D8). Verify that `make test` passes and that `make conformance REQUIRE=all` gives the same results (1003 cases, 0 failures, 55 known differences, 5 not supported yet), so that the output is unchanged; and that `sprites/internal-sprites-all` allocates less than half of its 64.4 MB per render, and `sprites/library-image` and `sprites/color-sprite` less than before
+- [ ] 5.2 Push the commits to the pull request, and add to its description that the comparison still marks `sequence` for the new cases while the cases of `main` allocate the same. Verify that the `test` and `conformance` jobs pass and that the benchmark report shows the other diagram types unchanged or lower
+
