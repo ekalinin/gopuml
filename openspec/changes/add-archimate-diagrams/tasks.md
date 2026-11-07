@@ -65,4 +65,4 @@
   Verify that `TestLandingPage` and `TestReleaseNotes` pass
 - [x] 4.2 Verify that `make lint`, `make provenance` and `make wasm` pass, and that the WASM build renders `Alice -> Bob : <$archimate/actor> hi` with the actor icon, as the native build does
 - [ ] 4.3 Push the branch, with the user's approval, and open a pull request that closes issue #35. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check, and that the benchmark report shows no regression of the other diagram types
-- [ ] 4.4 Run `openspec validate add-archimate-diagrams --strict`. Verify that the change is reported as valid
+- [x] 4.4 Run `openspec validate add-archimate-diagrams --strict`. Verify that the change is reported as valid
