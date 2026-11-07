@@ -110,7 +110,7 @@ Alternative: removing the detection and its requirement. The user chose to keep 
 
 ### D7. Documentation
 
-- The row "Use case, component and deployment" of the tables of supported diagrams in `README.md` and `site/index.html` becomes "Use case, component, deployment and archimate". `TestLandingPage` compares the two tables.
+- The row "Use case, component and deployment" of the tables of supported diagrams in `README.md` and `site/index.html` becomes "Use case, component, deployment and archimate". `TestLandingPage` compares the two tables. `TestReleaseNotes`, which looks for the rows of the release notes in the README, maps the old wording of the row to the new one, as it does for the other rows reworded since a release.
 - The sentence "Other diagram types (archimate, JSON, and so on)" of both files becomes "Other diagram types (JSON, YAML, and so on)".
 - The README's counts follow `conformance-report.md`.
 - `internal/klimt/HANDOFF.md` no longer says that the jar's sprites are not bundled.

@@ -49,14 +49,14 @@
   - `TestEmbeddedUnsupportedType` uses `{{json`, `{"a": 1}`, `}}` and expects "json diagrams are not supported yet".
 
   Remove the skips of task 1.2 from `TestDiagramReferences`. Verify that `archimate "Customer" as c` fails at that line with `Syntax Error? (Assumed diagram type: sequence)`, that the error images of `archimate-without-color` and `archimate-multiline-twice` match their references, and that `make test` passes
-- [ ] 3.3 Make the new cases pass in `make conformance REQUIRE=all GO_IN_IMAGE=1` (design D6). On arm64 hosts, run the native `make conformance REQUIRE=all`, which gives the results of CI. Fix the differences in `internal/klimt`, `internal/descdiagram` or `internal/svek`. List a case that still differs in `testdata/conformance/known-differences.yaml`, with its reason, only when its fix is outside this change. Verify:
+- [x] 3.3 Make the new cases pass in `make conformance REQUIRE=all GO_IN_IMAGE=1` (design D6). On arm64 hosts, run the native `make conformance REQUIRE=all`, which gives the results of CI. Fix the differences in `internal/klimt`, `internal/descdiagram` or `internal/svek`. List a case that still differs in `testdata/conformance/known-differences.yaml`, with its reason, only when its fix is outside this change. Verify:
   - the report has 0 failures and no known differences that pass;
   - no archimate case is reported as not supported yet, and the not-supported-yet count stays at 5;
   - the results of the other diagram types do not change
 
 ## 4. Documentation and checks
 
-- [ ] 4.1 Update the documentation (design D7):
+- [x] 4.1 Update the documentation (design D7):
   - in `README.md` and `site/index.html`: the row "Use case, component, deployment and archimate" of both tables of supported diagrams, and "Other diagram types (JSON, YAML, and so on)";
   - the README's case, known-difference and not-supported-yet counts, which follow `conformance-report.md` of task 3.3;
   - the comment of `commands()` in `internal/descdiagram/factory.go`;

@@ -40,7 +40,7 @@ func noteOnEntityCode() *regex.Leaf {
 }
 
 // commands returns the commands of description diagrams in upstream's
-// order, without the archimate commands, which are not supported yet.
+// order.
 func commands() []cmd {
 	cmds := []cmd{
 		abel.CommandFootboxIgnored[*DescriptionDiagram](),
