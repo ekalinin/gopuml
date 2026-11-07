@@ -36,7 +36,7 @@
 
 ## 3. Archimate commands
 
-- [ ] 3.1 Port `CommandArchimate`, `CommandArchimateMultilines` and `CommandArchimatePackage` into `internal/descdiagram/commands_archimate.go`, and register them in `factory.go` after `abel.CommandCreateJSONSingleLine` and before `commandCreateDomain` (design D1, D4). Verify with unit tests on parsed diagrams:
+- [x] 3.1 Port `CommandArchimate`, `CommandArchimateMultilines` and `CommandArchimatePackage` into `internal/descdiagram/commands_archimate.go`, and register them in `factory.go` after `abel.CommandCreateJSONSingleLine` and before `commandCreateDomain` (design D1, D4). Verify with unit tests on parsed diagrams:
   - `archimate #Business "Customer" <<business-actor>> as c` gives one description leaf `c` with the display `Customer`, the symbol `ARCHIMATE`, the back color `#FFFFCC` and a stereotype whose sprite name is `archimate/business-actor`;
   - `archimate #Business Customer`, `archimate #Business "Display" as d`, `archimate #Business d as "Display"` and `archimate #Business Display as d` give the codes and displays of upstream's four name forms;
   - `archimate #Business "Old" as u` followed by `archimate #Application "Updated" <<application-component>> as u` gives one leaf with the display `Updated`, the back color `#C2F0FF` and the application-component stereotype;

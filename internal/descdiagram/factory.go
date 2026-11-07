@@ -79,6 +79,9 @@ func commands() []cmd {
 		abel.CommandCreateJSON[*DescriptionDiagram](),
 		abel.CommandCreateJSONSingleLine[*DescriptionDiagram](),
 
+		commandArchimate(),
+		commandArchimateMultilines(),
+		commandArchimatePackage(),
 		commandCreateDomain(),
 	)
 }
