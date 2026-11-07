@@ -4,7 +4,12 @@
 
 package klimt
 
-import "embed"
+import (
+	"bytes"
+	"embed"
+	"image"
+	"strings"
+)
 
 // internalSprites are upstream's /sprites resources of the jar, the
 // ArchiMate icons that upstream takes from Archi: sprites/archimate/<name>.svg
@@ -12,3 +17,28 @@ import "embed"
 //
 //go:embed sprites/archimate
 var internalSprites embed.FS
+
+// SpriteImageFromInternal returns the sprite of upstream's jar resources
+// (sprites/<name>.svg or .png, the archimate sprites), nil when there is
+// none, as upstream's SpriteImage.fromInternal: an SVG file is parsed with
+// the default SVG sprite parser, without pragma, and a PNG file is an image
+// sprite. A file that cannot be read gives nil, as upstream catches the
+// exception. Upstream's TeaVM branch does not apply.
+func SpriteImageFromInternal(name string) Sprite {
+	if strings.HasSuffix(name, ".png") || strings.HasSuffix(name, ".svg") {
+		throw(illegalArgument, "")
+	}
+	// A name that is not a valid path (with "..") is not embedded
+	if data, err := internalSprites.ReadFile("sprites/" + name + ".svg"); err == nil {
+		return SvgSpriteParserFactoryCreateDefault(string(data))
+	}
+	data, err := internalSprites.ReadFile("sprites/" + name + ".png")
+	if err != nil {
+		return nil
+	}
+	img, _, err := image.Decode(bytes.NewReader(data))
+	if err != nil {
+		return nil
+	}
+	return NewSpriteImage(PortableImageFromImage(img))
+}

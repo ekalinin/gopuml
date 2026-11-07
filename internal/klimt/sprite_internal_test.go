@@ -8,8 +8,10 @@ import (
 	"io/fs"
 	"maps"
 	"os"
+	"path"
 	"path/filepath"
 	"slices"
+	"strings"
 	"testing"
 	"testing/fstest"
 )
@@ -73,6 +75,43 @@ func TestUpstreamInternalSprites(t *testing.T) {
 	}
 	for _, p := range compareSprites(bundled, os.DirFS(dir)) {
 		t.Error(p)
+	}
+}
+
+func TestSpriteImageFromInternal(t *testing.T) {
+	if _, ok := SpriteImageFromInternal("archimate/actor").(ISvgSpriteParser); !ok {
+		t.Error("archimate/actor is not an SVG sprite")
+	}
+	for _, name := range []string{"archimate/access", "archimate/assignment", "archimate/association-unidirect"} {
+		s, ok := SpriteImageFromInternal(name).(*SpriteImage)
+		if !ok {
+			t.Errorf("%s is not an image sprite", name)
+			continue
+		}
+		if img := s.img.image.Image(); img.Width() != 16 || img.Height() != 16 {
+			t.Errorf("%s: %dx%d", name, img.Width(), img.Height())
+		}
+	}
+	err := fs.WalkDir(internalSprites, "sprites", func(p string, d fs.DirEntry, err error) error {
+		if err != nil || d.IsDir() {
+			return err
+		}
+		name := strings.TrimSuffix(strings.TrimPrefix(p, "sprites/"), path.Ext(p))
+		if SpriteImageFromInternal(name) == nil {
+			t.Errorf("%s: no sprite", name)
+		}
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, name := range []string{"archimate/nope", "nothing", "../stdlib/home"} {
+		if SpriteImageFromInternal(name) != nil {
+			t.Errorf("%s: a sprite", name)
+		}
+	}
+	if class, _ := expectPanic(t, func() { SpriteImageFromInternal("archimate/actor.svg") }); !strings.Contains(class, "IllegalArgumentException") {
+		t.Errorf("class %q", class)
 	}
 }
 

@@ -641,13 +641,6 @@ func TestNotPortedPathsPanic(t *testing.T) {
 	if !strings.Contains(msg, "AtomMath") {
 		t.Errorf("message %q", msg)
 	}
-	_, msg = expectPanic(t, func() { SpriteImageFromInternal("archimate/actor") })
-	if !strings.Contains(msg, "SpriteImage") {
-		t.Errorf("message %q", msg)
-	}
-	if SpriteImageFromInternal("nothing") != nil {
-		t.Error("unknown sprites are nil")
-	}
 }
 
 func TestJavaHelpers(t *testing.T) {
