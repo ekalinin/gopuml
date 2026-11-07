@@ -352,7 +352,10 @@ func checkReleaseNotes(notes, readme string) error {
 	for line := range strings.SplitSeq(notesTable, "\n") {
 		if strings.HasPrefix(line, "|") {
 			rows++
+			// Rows that the README words differently since the release.
 			row := strings.ReplaceAll(line, " (needs `dot`)", "")
+			row = strings.ReplaceAll(row, "yes, in the `INTERNET_WITH_DOTSVG` and `INSECURE` profiles",
+				"yes, with `PLANTUML_SECURITY_PROFILE=INTERNET_WITH_DOTSVG` or `INSECURE`")
 			if !strings.Contains("\n"+table+"\n", "\n"+row+"\n") {
 				errs = append(errs, fmt.Errorf("row %q is not in the table of the README", line))
 			}
