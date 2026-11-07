@@ -1,0 +1,14 @@
+---
+id: description-diagram/archimate-multiline
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "description-diagram: Archimate element on several lines"
+---
+@startuml
+archimate #Business m <<business-actor>> [
+first line
+second line
+]
+@enduml

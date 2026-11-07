@@ -1,0 +1,12 @@
+---
+id: sprites/internal-sprite-command
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Internal sprite of a sprite command"
+---
+@startuml
+sprite $a jar:archimate/actor
+Alice -> Bob : <$a> hi
+@enduml
