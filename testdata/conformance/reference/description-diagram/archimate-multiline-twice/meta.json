@@ -1,0 +1,6 @@
+{
+  "id": "description-diagram/archimate-multiline-twice",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 7, "messages": ["Already exists c (Assumed diagram type: component)"]}, "renders": [{"file": "block0-page0.svg", "width": 451, "height": 199, "status": 400}]}
+  ]
+}
