@@ -51,7 +51,7 @@ WebAssembly module.
 | Timing | yes | yes | no |
 | Salt | yes | yes | no |
 | Chen EER | yes | yes | no |
-| Dot | yes, in the `INTERNET_WITH_DOTSVG` and `INSECURE` profiles | with a named `dot` | no |
+| Dot | yes, with `PLANTUML_SECURITY_PROFILE=INTERNET_WITH_DOTSVG` or `INSECURE` | with a named `dot` | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
