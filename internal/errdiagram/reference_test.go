@@ -150,10 +150,6 @@ func TestDiagramReferences(t *testing.T) {
 	}
 	var r result
 	for _, c := range cases {
-		// The archimate commands come with task 3.2 of add-archimate-diagrams
-		if c.ID == "description-diagram/archimate-without-color" || c.ID == "description-diagram/archimate-multiline-twice" {
-			continue
-		}
 		refDir := filepath.Join(repoRoot, "testdata/conformance/reference", c.ID)
 		if _, err := os.Stat(filepath.Join(refDir, "meta.json")); err != nil {
 			continue

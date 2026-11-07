@@ -1,13 +1,11 @@
 // SPDX-License-Identifier: MIT
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/descdiagram/command/CommandArchimate.java
-// Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
+// Provenance: original
 
 package core
 
 import (
 	"regexp"
 
-	"github.com/ekalinin/gopuml/internal/command/regex"
 	"github.com/ekalinin/gopuml/internal/text"
 )
 
@@ -20,20 +18,9 @@ type unsupportedType struct {
 	patterns []*regexp.Regexp
 }
 
-func patterns(p ...string) []*regexp.Regexp {
-	out := make([]*regexp.Regexp, len(p))
-	for i, s := range p {
-		out[i] = regex.MustCompile(s)
-	}
-	return out
-}
-
-// unsupportedTypes are tried in upstream's factory order.
-var unsupportedTypes = []unsupportedType{
-	{"archimate", patterns(
-		`^archimate[%s]`,
-	)},
-}
+// unsupportedTypes are tried in upstream's factory order. No @startuml
+// diagram type is reported as not supported yet in this release.
+var unsupportedTypes []unsupportedType
 
 // detectUnsupportedUmlType returns a "not supported yet" error when an
 // @startuml block uses the characteristic syntax of a diagram type this

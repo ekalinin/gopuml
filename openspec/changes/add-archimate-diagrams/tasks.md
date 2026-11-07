@@ -44,7 +44,7 @@
   - `archimate #Technology "Domain" <<technology-node>> as d {`, `archimate #Application "App" as a`, `}` gives a group `d` with the symbol `ARCHIMATE` and the back color `#C9FFC9`, which contains `a`.
 
   Verify that `go test ./internal/descdiagram` passes
-- [ ] 3.2 Empty `unsupportedTypes` in `internal/core/detect.go`, remove `patterns` and the `regex` import, and give the file the header `Provenance: original` (design D5). Update the tests:
+- [x] 3.2 Empty `unsupportedTypes` in `internal/core/detect.go`, remove `patterns` and the `regex` import, and give the file the header `Provenance: original` (design D5). Update the tests:
   - `TestDetectUnsupportedUmlTypes` expects the description type for `archimate #Business "Customer" as C`, keeps its state and legacy activity inputs, and checks the error of a test entry that it sets in `unsupportedTypes`;
   - `TestEmbeddedUnsupportedType` uses `{{json`, `{"a": 1}`, `}}` and expects "json diagrams are not supported yet".
 
