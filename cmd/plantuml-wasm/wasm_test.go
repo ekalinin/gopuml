@@ -246,6 +246,12 @@ func TestWasmDescriptionDiagram(t *testing.T) {
 	renderMatchesNative(t, "@startuml\nnode Server\ndatabase Orders\nServer --> Orders\n@enduml\n")
 }
 
+func TestWasmArchimateSprites(t *testing.T) {
+	// The internal sprites of the jar are embedded in the module too.
+	renderMatchesNative(t, "@startuml\narchimate #Business \"Customer\" <<business-actor>> as c\n"+
+		"rectangle \"<$archimate/actor> Actor\" as r\nc --> r\n@enduml\n")
+}
+
 func TestWasmStateDiagram(t *testing.T) {
 	// Spec scenario "State diagram in WASM".
 	renderMatchesNative(t, "@startuml\n[*] --> Idle\nstate Active {\n[*] --> Running\n}\nIdle --> Active\n@enduml\n")
