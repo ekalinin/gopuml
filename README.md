@@ -15,6 +15,20 @@ deployment), state, legacy activity and Chen EER diagrams are laid out by
 [gogv](https://github.com/ekalinin/gogv), a Go implementation of Graphviz
 `dot`.
 
+A run of `make bench` on an Apple M3 Pro gives these times for the upstream
+jar (`java -jar plantuml.jar`, with Graphviz `dot`), gopuml with the same
+`dot`, and gopuml with gogv, its default. The
+[comparison on the landing page](https://ekalinin.github.io/gopuml/#comparison)
+has every diagram type and how the times are measured.
+
+| | PlantUML | gopuml (dot) | gopuml (gogv) |
+|---|---:|---:|---:|
+| Start time (one small sequence diagram) | 706 ms | 14 ms | 13 ms |
+| Rendering: packet (17 cases) | 754 ms (44 ms per case) | 18 ms (1.1 ms per case) | 17 ms (1.0 ms per case) |
+| Rendering: mindmap (30 cases) | 777 ms (26 ms per case) | 21 ms (0.7 ms per case) | 18 ms (0.6 ms per case) |
+| Rendering: salt (39 cases) | 765 ms (20 ms per case) | 25 ms (0.6 ms per case) | 19 ms (0.5 ms per case) |
+| Rendering: chen_eer (31 cases) | 861 ms (28 ms per case) | 95 ms (3.1 ms per case) | 20 ms (0.6 ms per case) |
+
 The [landing page](https://ekalinin.github.io/gopuml/) has a
 [playground](https://ekalinin.github.io/gopuml/#playground) that renders
 every supported diagram type apart from dot diagrams in the browser with the
