@@ -19,6 +19,8 @@ import (
 	"math"
 	"strconv"
 	"unicode/utf8"
+
+	"github.com/ekalinin/gopuml/internal/freelist"
 )
 
 // RasterImage is an image to write: ARGB pixels (0xAARRGGBB,
@@ -87,8 +89,7 @@ func Write(w io.Writer, img RasterImage, metadata string, dpi int) error {
 // translated keyword) unless metadata is empty.
 func WriteWithMetadata(w io.Writer, img image.Image, metadata string, dpi int) error {
 	var encoded bytes.Buffer
-	enc := png.Encoder{CompressionLevel: png.DefaultCompression}
-	if err := enc.Encode(&encoded, img); err != nil {
+	if err := pngEncoder.Encode(&encoded, img); err != nil {
 		return err
 	}
 	var extra [][]byte
@@ -105,6 +106,18 @@ func WriteWithMetadata(w io.Writer, img image.Image, metadata string, dpi int) e
 	}
 	return insertChunks(w, encoded.Bytes(), extra)
 }
+
+// pngEncoder encodes the PNG data at the default compression level. Its
+// buffers and zlib writer are reused between images, also across garbage
+// collections, instead of being allocated for each one; the output is the
+// same.
+var pngEncoder = png.Encoder{CompressionLevel: png.DefaultCompression,
+	BufferPool: freelist.New[*png.EncoderBuffer](4, nil)}
+
+// itxtWriters holds the zlib writers of the iTXt chunk, at the default level
+// of zlib.NewWriter: Reset makes a used writer equivalent to a new one, so
+// the compressed bytes do not change.
+var itxtWriters = freelist.New(4, func() *zlib.Writer { return zlib.NewWriter(nil) })
 
 // pngChunk returns a PNG chunk: length, type, data, CRC.
 func pngChunk(kind string, data []byte) []byte {
@@ -139,13 +152,15 @@ func itxtChunk(keyword, text string) ([]byte, error) {
 	data.WriteByte(0) // compression method
 	data.WriteByte(0) // empty language tag
 	data.WriteByte(0) // empty translated keyword
-	zw := zlib.NewWriter(&data)
+	zw := itxtWriters.Get()
+	zw.Reset(&data)
 	if _, err := zw.Write(utf8Bytes(text)); err != nil {
 		return nil, err
 	}
 	if err := zw.Close(); err != nil {
 		return nil, err
 	}
+	itxtWriters.Put(zw)
 	return pngChunk("iTXt", data.Bytes()), nil
 }
 

@@ -10,8 +10,8 @@ import (
 	"encoding/base64"
 	"image"
 	"image/png"
-	"sync"
 
+	"github.com/ekalinin/gopuml/internal/freelist"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
@@ -188,19 +188,10 @@ func (p *PortableImageARGB) ToPngDataURL() string {
 }
 
 // pngDataURLEncoder is png.Encode's encoder, with the default compression,
-// whose buffers and zlib writer are reused between images instead of being
-// allocated for each one; the output is the same.
-var pngDataURLEncoder = png.Encoder{BufferPool: &pngBufferPool{}}
-
-// pngBufferPool is a png.EncoderBufferPool safe for concurrent use.
-type pngBufferPool struct{ pool sync.Pool }
-
-func (p *pngBufferPool) Get() *png.EncoderBuffer {
-	b, _ := p.pool.Get().(*png.EncoderBuffer)
-	return b
-}
-
-func (p *pngBufferPool) Put(b *png.EncoderBuffer) { p.pool.Put(b) }
+// whose buffers and zlib writer are reused between images, also across
+// garbage collections, instead of being allocated for each one; the output
+// is the same.
+var pngDataURLEncoder = png.Encoder{BufferPool: freelist.New[*png.EncoderBuffer](4, nil)}
 
 // Transparency returns TRANSLUCENT (3), as for TYPE_INT_ARGB images.
 func (p *PortableImageARGB) Transparency() int { return 3 }
