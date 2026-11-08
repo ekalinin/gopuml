@@ -54,9 +54,7 @@ Alternative: `CommandArchimateMultilines` in `internal/abel`, generic over `Diag
 3. Otherwise `sprites/<name>.png`, when embedded, is decoded with `image.Decode` and gives `NewSpriteImage(PortableImageFromImage(img))`. A file that does not decode gives nil, as upstream's `catch (Throwable)`.
 4. Otherwise nil.
 
-Each call reads and parses the file, as upstream does. The embedded files are in memory and the sprites are small.
-
-Alternative: a cache of the parsed sprites by name. Upstream has none, and a sprite shared by concurrent renders would have to be safe for concurrent drawing. A cache can come later if `make bench-compare` shows a cost.
+Upstream reads and parses the file at each call. Here each sprite is read once for the process (D8).
 
 ### D3. Bundled files match the jar
 
@@ -124,13 +122,17 @@ The benchmark job of the pull request failed for `sequence` (+85% `B/op`). The c
 - `SvgNanoParser.drawPath` parsed the path data of a sprite at each drawing, and a sequence diagram draws its notes in several passes. The parser keeps the parsed paths by text in a `sync.Map`, since an `SvgPath` does not change once parsed and the parser is shared by concurrent renders of the standard library's sprites. Each path of a sprite is parsed once.
 - `PortableImageARGB.ToPngDataURL` called `png.Encode`, which allocates the buffers of the encoder and a zlib writer (about 0.7 MB) for each image sprite drawn in SVG. It encodes with a `png.Encoder` whose `BufferPool` reuses them, with the same default compression, so the output is the same.
 
-`sprites/internal-sprites-all` then allocates 26.1 MB per render, and the image sprite cases of `main` (`sprites/library-image`, `sprites/color-sprite`) about 60% less. The output of every case is unchanged. The comparison still marks `sequence`: the new cases add drawing work that `main` does not do.
+`sprites/internal-sprites-all` then allocated 26.1 MB per render, and the image sprite cases of `main` (`sprites/library-image`, `sprites/color-sprite`) about 60% less. A second profile showed that every lookup of a jar sprite still parsed its SVG file or decoded its PNG file again, so the user chose to keep them for the process:
 
-Alternative: a cache of the internal sprites by name for the process, which would also save their first parse. `SpriteImage` keeps a `MutableImage`, so its instances cannot be shared by concurrent renders, and the gain of the SVG sprites alone does not change the result of the comparison.
+- `SpriteImageFromInternal` keeps the jar sprites already read in a `sync.Map`, by name: the parsed SVG sprite, which it returns to every caller, as the standard library does with its sprites, and the decoded PNG image, around which it returns a new `SpriteImage`. An image sprite only reads its image: recoloring and scaling copy the pixels first. A name without a sprite is not kept, so that references to undefined sprites, which also look up the jar, do not grow the map, which holds at most the 139 sprites.
+
+`sprites/internal-sprites-all` then allocates 15.5 MB and 181,000 allocations per render (64.4 MB and 495,000 before D8), and takes half the time. The output of every case is unchanged. The comparison still marks `sequence`: the new cases add drawing work that `main` does not do.
+
+Alternative: pools of deflate writers that a garbage collection does not empty, for the PNG data and for the encoded source of `<?plantuml-src ...?>`, whose `sync.Pool`s lose their writers when the collector runs between renders. A spike lowered the `B/op` of every diagram type (by up to 18%), but it concerns all diagrams and not archimate, so it is left to a change of its own. With it, `sequence` stayed above the threshold in `allocs/op` (+21.7%), which counts the drawing of the 139 sprites in the passes of the sequence layout.
 
 ## Risks / Trade-offs
 
 - [The ported Nano parser or the PNG decoding draws an internal sprite differently from upstream] → `sprites/internal-sprites-all` compares every file in SVG and PNG. A sprite that still differs after a fix of the parser goes to `known-differences.yaml` with its reason.
 - [The binary and the WASM module grow by about 211 KB] → small next to the module's 52 MB. The files stay as the jar has them, as the stdlib files do, so that D3 compares them byte for byte.
-- [Parsing an SVG sprite at each lookup costs time in large archimate diagrams] → upstream does the same. Each sprite instance parses its paths once (D8). `make bench-compare` on the pull request shows the cost of the other diagram types, which do not look up internal sprites unless they reference one.
+- [Parsing an SVG sprite at each lookup costs time in large archimate diagrams] → upstream does the same. Here each jar sprite is read once for the process and parses each path once (D8). `make bench-compare` on the pull request shows the cost of the other diagram types, which do not look up internal sprites unless they reference one.
 - [The empty list leaves `detectUnsupportedUmlTypes` without a production entry] → its test sets a test entry, so a broken mechanism still fails.
