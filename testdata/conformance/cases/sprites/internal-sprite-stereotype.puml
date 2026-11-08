@@ -1,0 +1,11 @@
+---
+id: sprites/internal-sprite-stereotype
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "sprites: Internal sprite as a stereotype"
+---
+@startuml
+rectangle "Customer" <<$archimate/business-actor>> as c
+@enduml

@@ -1,0 +1,6 @@
+{
+  "id": "sprites/internal-sprites-all",
+  "blocks": [
+    {"index": 0, "name": null, "type": "SEQUENCE", "description": "(2 participants)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 310, "height": 2820, "status": 0}, {"file": "block0-page0.png", "width": 310, "height": 2820, "status": 0}]}
+  ]
+}

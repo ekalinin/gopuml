@@ -1,0 +1,12 @@
+---
+id: sprites/missing-internal-sprite
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "sprites: Missing internal sprite"
+---
+@startuml
+sprite $a jar:archimate/nope
+Alice -> Bob : <$a> hi
+@enduml

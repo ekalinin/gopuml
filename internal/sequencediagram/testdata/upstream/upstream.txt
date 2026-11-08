@@ -10909,6 +10909,48 @@ error SYNTAX_ERROR 2 Syntax Error?
 error.message Syntax Error? (Assumed diagram type: sequence)
 error.score 30
 error.last 2
+=== conformance/description-diagram/archimate-element-updated.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-element.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-group.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-multiline-twice.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-multiline.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-unknown-icon.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-without-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/description-diagram/component-inside-node.puml
 result error
 error SYNTAX_ERROR 1 Syntax Error?
@@ -12291,6 +12333,135 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=20
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=20
 event 0 Message p1=Alice p2=Bob multicast=[] label=[<$quadrants> hi] numbered=[<$quadrants> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=20
+=== conformance/sprites/internal-png-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$archimate/access> hi] numbered=[<$archimate/access> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/sprites/internal-sprite-command.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+sprite a svg
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$a> hi] numbered=[<$a> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/internal-sprite-stereotype.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 20
+error.last 1
+=== conformance/sprites/internal-sprites-all.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[sprites] numbered=[sprites] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+event 1 Note Note p=Alice p2=null pos=OVER style=NORMAL display=[<$archimate/access> access|<$archimate/activity> activity|<$archimate/actor> actor|<$archimate/aggregation> aggregation|<$archimate/application-collaboration> application-collaboration|<$archimate/application-component> application-component|<$archimate/application-data-object> application-data-object|<$archimate/application-dataobject> application-dataobject|<$archimate/application-event> application-event|<$archimate/application-function> application-function|<$archimate/application-interaction> application-interaction|<$archimate/application-interface> application-interface|<$archimate/application-process> application-process|<$archimate/application-service> application-service|<$archimate/assessment> assessment|<$archimate/assessment-filled> assessment-filled|<$archimate/assignment> assignment|<$archimate/association> association|<$archimate/association-unidirect> association-unidirect|<$archimate/business-activity> business-activity|<$archimate/business-actor> business-actor|<$archimate/business-collaboration> business-collaboration|<$archimate/business-contract> business-contract|<$archimate/business-event> business-event|<$archimate/business-function> business-function|<$archimate/business-interaction> business-interaction|<$archimate/business-interface> business-interface|<$archimate/business-location> business-location|<$archimate/business-meaning> business-meaning|<$archimate/business-object> business-object|<$archimate/business-process> business-process|<$archimate/business-product> business-product|<$archimate/business-representation> business-representation|<$archimate/business-role> business-role|<$archimate/business-service> business-service|<$archimate/business-value> business-value|<$archimate/collaboration> collaboration|<$archimate/communication-path> communication-path|<$archimate/component> component|<$archimate/composition> composition|<$archimate/constraint> constraint|<$archimate/constraint-filled> constraint-filled|<$archimate/contract> contract|<$archimate/deliverable> deliverable|<$archimate/deliverable-filled> deliverable-filled|<$archimate/device> device|<$archimate/driver> driver|<$archimate/driver-filled> driver-filled|<$archimate/equipment> equipment|<$archimate/event> event|<$archimate/facility> facility|<$archimate/flow> flow|<$archimate/function> function|<$archimate/gap> gap|<$archimate/gap-filled> gap-filled|<$archimate/goal> goal|<$archimate/goal-filled> goal-filled|<$archimate/implementation-deliverable> implementation-deliverable|<$archimate/implementation-event> implementation-event|<$archimate/implementation-gap> implementation-gap|<$archimate/implementation-plateau> implementation-plateau|<$archimate/implementation-workpackage> implementation-workpackage|<$archimate/influence> influence|<$archimate/interaction> interaction|<$archimate/interface> interface|<$archimate/interface-required> interface-required|<$archimate/interface-symmetric> interface-symmetric|<$archimate/junction> junction|<$archimate/junction-and> junction-and|<$archimate/junction-or> junction-or|<$archimate/location> location|<$archimate/material> material|<$archimate/meaning> meaning|<$archimate/motivation-assessment> motivation-assessment|<$archimate/motivation-constraint> motivation-constraint|<$archimate/motivation-driver> motivation-driver|<$archimate/motivation-goal> motivation-goal|<$archimate/motivation-meaning> motivation-meaning|<$archimate/motivation-outcome> motivation-outcome|<$archimate/motivation-principle> motivation-principle|<$archimate/motivation-requirement> motivation-requirement|<$archimate/motivation-stakeholder> motivation-stakeholder|<$archimate/motivation-value> motivation-value|<$archimate/network> network|<$archimate/node> node|<$archimate/object> object|<$archimate/other-grouping> other-grouping|<$archimate/other-location> other-location|<$archimate/physical-equipment> physical-equipment|<$archimate/physical-facility> physical-facility|<$archimate/physical-material> physical-material|<$archimate/plateau> plateau|<$archimate/principle> principle|<$archimate/principle-filled> principle-filled|<$archimate/process> process|<$archimate/product> product|<$archimate/realisation> realisation|<$archimate/representation> representation|<$archimate/requirement> requirement|<$archimate/requirement-filled> requirement-filled|<$archimate/role> role|<$archimate/service> service|<$archimate/serving> serving|<$archimate/specialisation> specialisation|<$archimate/specialization> specialization|<$archimate/stakeholder> stakeholder|<$archimate/stakeholder-filled> stakeholder-filled|<$archimate/strategy-capability> strategy-capability|<$archimate/strategy-course-of-action> strategy-course-of-action|<$archimate/strategy-courseofaction> strategy-courseofaction|<$archimate/strategy-resource> strategy-resource|<$archimate/strategy-valuestream> strategy-valuestream|<$archimate/system-software> system-software|<$archimate/technology-artifact> technology-artifact|<$archimate/technology-collaboration> technology-collaboration|<$archimate/technology-communication-network> technology-communication-network|<$archimate/technology-communication-path> technology-communication-path|<$archimate/technology-communicationnetwork> technology-communicationnetwork|<$archimate/technology-device> technology-device|<$archimate/technology-distribution-network> technology-distribution-network|<$archimate/technology-distributionnetwork> technology-distributionnetwork|<$archimate/technology-equipment> technology-equipment|<$archimate/technology-event> technology-event|<$archimate/technology-facility> technology-facility|<$archimate/technology-function> technology-function|<$archimate/technology-interaction> technology-interaction|<$archimate/technology-interface> technology-interface|<$archimate/technology-material> technology-material|<$archimate/technology-node> technology-node|<$archimate/technology-path> technology-path|<$archimate/technology-process> technology-process|<$archimate/technology-service> technology-service|<$archimate/technology-system-software> technology-system-software|<$archimate/technology-systemsoftware> technology-systemsoftware|<$archimate/triggering> triggering|<$archimate/used-by> used-by|<$archimate/value> value|<$archimate/workpackage> workpackage|<$archimate/workpackage-filled> workpackage-filled] colors={} null shadowing=null url=null stereo=null parallel=false
+=== conformance/sprites/internal-svg-sprite-sax.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+pragma SVG_PARSER=sax
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$archimate/actor> hi] numbered=[<$archimate/actor> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/internal-svg-sprite.puml
+result SequenceDiagram
+description (2 participants)
+pages 1
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator null
+skinparamused false
+smetana false elk false
+footbox true
+hideunlinked false
+autoactivate false
+hidden []
+autonumber running=false current=null increment=0 last=
+defaultskin plantuml.skin
+participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
+event 0 Message p1=Alice p2=Bob multicast=[] label=[<$archimate/actor> hi] numbered=[<$archimate/actor> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
 === conformance/sprites/library-icon.puml
 result SequenceDiagram
 description (2 participants)
@@ -12366,6 +12537,12 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=2
 event 0 Message p1=Alice p2=Bob multicast=[] label=[<$mdiAccount> hi] numbered=[<$mdiAccount> hi] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=2
+=== conformance/sprites/missing-internal-sprite.puml
+result error
+error EXECUTION_ERROR 1 No such internal sprite: archimate/nope
+error.message No such internal sprite: archimate/nope (Assumed diagram type: sequence)
+error.score 20
+error.last 1
 === conformance/sprites/missing-library-sprite.puml
 result error
 error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory)
@@ -12502,6 +12679,12 @@ defaultskin plantuml.skin
 participant Alice uid=part1 type=PARTICIPANT order=0 display=[Alice] underlined=[<u>Alice] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 participant Bob uid=part2 type=PARTICIPANT order=0 display=[Bob] underlined=[<u>Bob] stereo=null stereotop=false colors={} null url=null initiallife=0 lives=[] box=null at=1
 event 0 Message p1=Alice p2=Bob multicast=[] label=[14.0.0] numbered=[14.0.0] number=null arrow=NORMAL(NONE NONE)(NORMAL NONE)false null parts=FULL/FULL thickness=1.0 reverse=false inclination=0 parallel=false brother=-1 life=[] first=false notes=[] url=null hasurl=false stereo=null anchors=null/null/null at=1
+=== conformance/standard-library/archimate-library.puml
+result error
+error SYNTAX_ERROR 110 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: sequence)
+error.score 2010
+error.last 110
 === conformance/standard-library/json-resource.puml
 result SequenceDiagram
 description (2 participants)

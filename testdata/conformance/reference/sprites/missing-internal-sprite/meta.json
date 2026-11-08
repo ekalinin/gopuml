@@ -1,0 +1,6 @@
+{
+  "id": "sprites/missing-internal-sprite",
+  "blocks": [
+    {"index": 0, "name": null, "type": "ERROR", "description": "(Error)", "pages": 1, "error": {"line": 2, "messages": ["No such internal sprite: archimate/nope (Assumed diagram type: sequence)"]}, "renders": [{"file": "block0-page0.svg", "width": 615, "height": 324, "status": 400}]}
+  ]
+}

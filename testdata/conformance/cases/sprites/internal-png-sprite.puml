@@ -1,0 +1,11 @@
+---
+id: sprites/internal-png-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Internal PNG sprite"
+---
+@startuml
+Alice -> Bob : <$archimate/access> hi
+@enduml

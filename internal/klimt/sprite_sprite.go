@@ -3,14 +3,11 @@
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteContainer.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteContainerEmpty.java
 // Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteUtils.java
-// Provenance: plantuml-mit 1.2026.9 net/sourceforge/plantuml/klimt/sprite/SpriteImage.java
 // Derived from PlantUML, (C) Copyright 2009-2024, Arnaud Roques, MIT License.
 
 package klimt
 
 import (
-	"strings"
-
 	"github.com/ekalinin/gopuml/internal/core"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
@@ -35,20 +32,6 @@ type SpriteContainer interface {
 
 // SpriteUtilsSpriteName is the pattern of sprite names.
 const SpriteUtilsSpriteName = `[-\p{L}0-9_/]+`
-
-// SpriteImageFromInternal returns the sprite of upstream's jar resources
-// (/sprites/<name>.svg or .png, the archimate sprites), nil when there is
-// none. The resources are not bundled yet: a name that upstream would find
-// panics, any other gives nil as upstream.
-func SpriteImageFromInternal(name string) Sprite {
-	if strings.HasSuffix(name, ".png") || strings.HasSuffix(name, ".svg") {
-		throw(illegalArgument, "")
-	}
-	if isInternalSprite(name) {
-		notPorted("klimt/sprite/SpriteImage.fromInternal", "internal sprite "+name)
-	}
-	return nil
-}
 
 // SpriteContainerEmpty is the sprite container and simple skin of texts
 // outside diagrams (error images, legends of tools): no sprites besides the

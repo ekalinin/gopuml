@@ -1,0 +1,14 @@
+---
+id: standard-library/archimate-library
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "standard-library: Archimate library"
+---
+@startuml
+!include <archimate/Archimate>
+Business_Actor(a, "Customer")
+Business_Service(s, "Sales")
+Rel_Serving(s, a, "serves")
+@enduml

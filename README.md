@@ -40,7 +40,7 @@ WebAssembly module.
 |---|---|---|---|
 | Sequence | yes | yes | yes |
 | Class and object | yes | yes | no |
-| Use case, component and deployment | yes | yes | no |
+| Use case, component, deployment and archimate | yes | yes | no |
 | State | yes | yes | no |
 | Activity (new syntax) | yes | yes | no |
 | Activity (legacy syntax) | yes | yes | no |
@@ -65,12 +65,12 @@ be verified or does not allow bundling them (see `NOTICE`). Sprites are drawn:
 monochrome, color, image and SVG sprites defined in a diagram, and the sprites
 and images of the standard library.
 
-Other diagram types (archimate, JSON, and so on) are
+Other diagram types (JSON, YAML, and so on) are
 reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
-conformance suite of 988 cases (upstream's Vega test corpus plus curated
+conformance suite of 1003 cases (upstream's Vega test corpus plus curated
 cases): every case passes, apart from 55 documented known differences
 (`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,

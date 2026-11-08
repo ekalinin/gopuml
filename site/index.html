@@ -113,7 +113,7 @@ Alice &lt;-- Bob: Another authentication Response
       <tbody>
         <tr><th scope="row">Sequence</th><td>yes</td><td>yes</td><td>yes</td></tr>
         <tr><th scope="row">Class and object</th><td>yes</td><td>yes</td><td>no</td></tr>
-        <tr><th scope="row">Use case, component and deployment</th><td>yes</td><td>yes</td><td>no</td></tr>
+        <tr><th scope="row">Use case, component, deployment and archimate</th><td>yes</td><td>yes</td><td>no</td></tr>
         <tr><th scope="row">State</th><td>yes</td><td>yes</td><td>no</td></tr>
         <tr><th scope="row">Activity (new syntax)</th><td>yes</td><td>yes</td><td>no</td></tr>
         <tr><th scope="row">Activity (legacy syntax)</th><td>yes</td><td>yes</td><td>no</td></tr>
@@ -131,7 +131,7 @@ Alice &lt;-- Bob: Another authentication Response
   <aside class="note">No Graphviz is needed: class, object, description (use case, component, deployment), state, legacy activity and Chen EER diagrams are laid out by <a href="https://github.com/ekalinin/gogv">gogv</a>, a Go implementation of Graphviz <code>dot</code>. A <code>dot</code> named by <code>GRAPHVIZ_DOT</code> or <code>--dot-path</code> lays them out instead, for upstream's exact layout or for <code>skinparam linetype ortho</code>. Dot diagrams (<code>@startdot</code>) are drawn by the layout engine itself, as upstream does: their SVG needs the <code>INTERNET_WITH_DOTSVG</code> or <code>INSECURE</code> security profile and is upstream's suppressed-feature notice otherwise, and their PNG needs a named <code>dot</code>, as gogv does not write PNG yet.</aside>
   <p>The preprocessor (<code>!include</code>, <code>!define</code>, functions, all 74 builtins, JSON), themes, skin parameters, styles and creole are supported, including diagrams embedded in text with <code>{{</code> ... <code>}}</code>, and so is the PREPROC output (<code>--preproc</code>).</p>
   <p>The standard library of upstream 1.2026.9 is bundled (<code>!include &lt;C4/C4_Container&gt;</code>, <code>!include &lt;awslib/AWSCommon&gt;</code> and the other libraries that <code>plantuml -stdlib</code> lists), apart from nine libraries whose license could not be verified or does not allow bundling them (see <code>NOTICE</code>). Sprites are drawn: monochrome, color, image and SVG sprites defined in a diagram, and the sprites and images of the standard library.</p>
-  <p>Other diagram types (archimate, JSON, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
+  <p>Other diagram types (JSON, YAML, and so on) are reported with an explicit "... diagrams are not supported yet" error image instead of a wrong drawing.</p>
 </section>
 
 <section id="install" aria-labelledby="install-title">

@@ -1,0 +1,12 @@
+---
+id: sprites/internal-svg-sprite-sax
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Internal SVG sprite with the SAX parser"
+---
+@startuml
+!pragma svgparser sax
+Alice -> Bob : <$archimate/actor> hi
+@enduml

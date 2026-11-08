@@ -16583,6 +16583,48 @@ error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other U
 error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
 error.score 20
 error.last 1
+=== conformance/description-diagram/archimate-element-updated.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-element.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-group.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-multiline-twice.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-multiline.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-unknown-icon.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/description-diagram/archimate-without-color.puml
+result error
+error SYNTAX_ERROR 1 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/description-diagram/component-inside-node.puml
 result error
 error EXECUTION_ERROR 2 Use 'allowmixing' if you want to mix classes and other UML elements.
@@ -18139,6 +18181,156 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$quadrants> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=20 at=20 hidden=false removed=false
+=== conformance/sprites/internal-png-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$archimate/access> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/sprites/internal-sprite-command.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+sprite a
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$a> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/internal-sprite-stereotype.puml
+result error
+error EXECUTION_ERROR 1 Use 'allowmixing' if you want to mix classes and other UML elements.
+error.message Use 'allowmixing' if you want to mix classes and other UML elements. (Assumed diagram type: class)
+error.score 20
+error.last 1
+=== conformance/sprites/internal-sprites-all.puml
+result error
+error SYNTAX_ERROR 2 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 30
+error.last 2
+=== conformance/sprites/internal-svg-sprite-sax.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+pragma SVG_PARSER=sax
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=2 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$archimate/actor> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/internal-svg-sprite.puml
+result ClassDiagram
+description (2 entities)
+pages 1
+type CLASS
+title NULL h=CENTER v=TOP at=null
+caption NULL h=CENTER v=BOTTOM at=null
+legend NULL h=CENTER v=BOTTOM at=null
+header NULL h=CENTER v=null at=null
+footer NULL h=CENTER v=null at=null
+mainframe NULL h=null v=null at=null
+scale null
+splitpages 1 1
+namespaceseparator .
+skinparamused false
+smetana false elk false
+defaultskin plantuml.skin
+rankdir TOP_TO_BOTTOM
+allowmixing false layoutexplicit 0 rawlayout 0
+visibilitymodifierpresent false
+hidevisibility []
+lastentity ent0002
+stack entroot
+quark [] name=[] parent=null data=entroot children=2
+quark [Alice] name=[Alice] parent=[] data=ent0001 children=0
+quark [Bob] name=[Bob] parent=[] data=ent0002 children=0
+entity entroot quark=[] group=ROOT display=[] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=null legend=null notestop=[] notesbottom=[] tips=[] ports=[] position=NORMAL hasurl=false
+entity ent0001 quark=[Alice] leaf=CLASS display=[Alice] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0001 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0001 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles=[] tags=[] generic=null visibility=null colors={{} null shadowing=null} url=null symbol=null static=false packed=false rawlayout=0 together=null at=1 legend=null notestop=[] notesbottom=[] tips=[] ports=[] hidden=false removed=false position=NORMAL hasurl=false
+body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
+portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
+link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$archimate/actor> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
 === conformance/sprites/library-icon.puml
 result ClassDiagram
 description (2 entities)
@@ -18244,6 +18436,12 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[<$mdiAccount> hi] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=2 at=2 hidden=false removed=false
+=== conformance/sprites/missing-internal-sprite.puml
+result error
+error EXECUTION_ERROR 1 No such internal sprite: archimate/nope
+error.message No such internal sprite: archimate/nope (Assumed diagram type: class)
+error.score 20
+error.last 1
 === conformance/sprites/missing-library-sprite.puml
 result error
 error EXECUTION_ERROR 1 You should send a mail to plantuml@gmail.com with this log (V1.2026.9) java.io.UncheckedIOException: java.io.FileNotFoundException: stdlib/foo/info.spm (No such file or directory)
@@ -18430,6 +18628,12 @@ entity ent0002 quark=[Bob] leaf=CLASS display=[Bob] mode=FULL stereo=null styles
 body ent0002 BodierLikeClassOrObject raw=[] type=CLASS fields=[] methods=[]
 portions ent0002 FIELD=true METHOD=true MEMBER=true CIRCLED_CHARACTER=true STEREOTYPE=true stereolabels=null
 link lnk3 e1=ent0001 e2=ent0002 type=ARROW-NORMAL(null)-NONE middle=NONE label=[14.0.0] q1=null q2=null r1=null r2=null kal1=null kal2=null ld=1.7 la=25 length=1 vis=null arrow=NONE_OR_SEVERAL inverted=false invis=false hiddenflag=false single=false nodestyle=false constraint=true weight=1.0 solitary=false opale=false sametail=null ports=null/null url=null stereo=null colors={{} null shadowing=null} supplementary=[] note=null linkconstraint=null codeline=1 at=1 hidden=false removed=false
+=== conformance/standard-library/archimate-library.puml
+result error
+error SYNTAX_ERROR 110 Syntax Error?
+error.message Syntax Error? (Assumed diagram type: class)
+error.score 2010
+error.last 110
 === conformance/standard-library/json-resource.puml
 result ClassDiagram
 description (2 entities)

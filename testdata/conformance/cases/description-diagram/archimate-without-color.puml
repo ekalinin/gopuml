@@ -1,0 +1,11 @@
+---
+id: description-diagram/archimate-without-color
+family: uml
+type: sequence
+formats: [svg]
+scenarios:
+  - "description-diagram: Archimate element without a color"
+---
+@startuml
+archimate "Customer" as c
+@enduml

@@ -1,0 +1,12 @@
+---
+id: description-diagram/archimate-element-updated
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "description-diagram: Archimate element updated"
+---
+@startuml
+archimate #Business "Old" as u
+archimate #Application "Updated" <<application-component>> as u
+@enduml

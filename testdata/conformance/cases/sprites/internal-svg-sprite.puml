@@ -1,0 +1,11 @@
+---
+id: sprites/internal-svg-sprite
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "sprites: Internal SVG sprite"
+---
+@startuml
+Alice -> Bob : <$archimate/actor> hi
+@enduml

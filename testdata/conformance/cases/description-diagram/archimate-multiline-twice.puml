@@ -1,0 +1,16 @@
+---
+id: description-diagram/archimate-multiline-twice
+family: uml
+type: description
+formats: [svg]
+scenarios:
+  - "description-diagram: Archimate element on several lines defined twice"
+---
+@startuml
+archimate #Business c [
+first
+]
+archimate #Business c [
+second
+]
+@enduml

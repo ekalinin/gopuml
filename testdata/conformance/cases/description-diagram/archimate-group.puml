@@ -1,0 +1,13 @@
+---
+id: description-diagram/archimate-group
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "description-diagram: Archimate group"
+---
+@startuml
+archimate #Technology "Domain" <<technology-node>> as d {
+archimate #Application "App" as a
+}
+@enduml

@@ -1,0 +1,11 @@
+---
+id: description-diagram/archimate-unknown-icon
+family: uml
+type: description
+formats: [svg, png]
+scenarios:
+  - "description-diagram: Archimate icon without a sprite"
+---
+@startuml
+archimate #Business "Unknown icon" <<nope>> as n
+@enduml

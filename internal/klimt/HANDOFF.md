@@ -43,7 +43,7 @@ Ported and checked against the reference jar (see "Tests and golden files"). Wha
 
 - `Sprite` and `SpriteContainer` are the real interfaces. `sprite_draw.go` ports the drawing of SpriteMonochrome, SpriteColor, SpriteImage, SpriteSvg (an SVG file, as a `UImageSvg`, which the PNG output ignores), StdlibSprite and StdlibSpriteSvg; `uml.SpriteDef` decodes the `sprite` commands and draws with them.
 - `svgparser_*.go` ports the SVG sprite parsers (`SvgSpriteParserFactoryCreate` picks SvgNanoParser, or SvgSaxParser with `!pragma svgparser sax`), with the path parser of OpenIconic (`openiconic_*.go`, not the icon set) and the color helpers of the emoji (`emoji_*.go`, not the emoji drawing). The SAX parser reads SVG with `encoding/xml`. It skips an image in an unknown format, where upstream throws NullPointerException (design D16).
-- `SpriteImageFromInternal`: upstream's jar sprites (139 archimate sprites) are not bundled. A name that upstream would find panics (names listed in `sprite_internalnames.go`); any other name gives nil, as upstream.
+- `SpriteImageFromInternal`: upstream's jar sprites (139 archimate sprites) are bundled in `sprites/archimate/` (`sprite_internal.go`): an SVG sprite is parsed with the default parser, a PNG sprite is an image, and any other name gives nil, as upstream.
 
 ### Other gaps
 
