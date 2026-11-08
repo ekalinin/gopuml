@@ -19,6 +19,11 @@ The system SHALL bundle the libraries of the standard library of PlantUML v1.202
 - **WHEN** a block evaluates `%get_all_stdlib()`
 - **THEN** the result is a JSON array of the bundled library names in name order, which contains `c4` and `awslib14` and does not contain `adaml`
 
+#### Scenario: Archimate library
+
+- **WHEN** a block contains `!include <archimate/Archimate>`, `Business_Actor(a, "Customer")`, `Business_Service(s, "Sales")` and `Rel_Serving(s, a, "serves")`
+- **THEN** the diagram draws `Customer` and `Sales` filled with `#FFFFCC`, with the business-actor and business-service icons in their upper right corner, and an arrow labeled `serves` from `Sales` to `Customer`, as upstream does
+
 ### Requirement: Bundled files match the pinned upstream jar
 
 Every bundled file SHALL be byte-identical to the file of the same path under `stdlib/` in the plantuml-mit 1.2026.9 jar, except the list of library names, which SHALL hold the names of the upstream list without the excluded libraries, in the upstream order. The project SHALL provide a check, run in continuous integration, that fails when a bundled file differs from the pinned jar, when a library of the pinned jar is neither bundled nor excluded, or when an excluded library is bundled.
