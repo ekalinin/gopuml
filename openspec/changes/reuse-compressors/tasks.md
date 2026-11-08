@@ -43,14 +43,14 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 6. Verification
 
-- [ ] 6.1 Run `make bench-compare BASE=main`. Verify that it exits 0, that `B/op` falls for `class`, `activity` and `chen_eer` by 5% or more, and that no type grows above `+1.0%` in `B/op` or `allocs/op`
-- [ ] 6.2 Run `make test` and `go test -race . ./internal/freelist ./internal/code ./internal/klimt ./internal/png`. Verify that both pass, `TestRenderAfterOtherRenders` and `TestRenderConcurrent` included
-- [ ] 6.3 Run `make conformance REQUIRE=all GO_IN_IMAGE=1`; on arm64 hosts, the native `make conformance REQUIRE=all`, which gives the results of CI. Verify 0 failures, no known difference that now passes, and the same counts of passed cases, known differences and unsupported cases per diagram type and per format (PNG included) as before the change
-- [ ] 6.4 Run `make wasm`. Verify that it builds `dist/wasm/plantuml.wasm`, and that `go test ./cmd/plantuml-wasm` passes (the lists run on one thread there)
+- [x] 6.1 Run `make bench-compare BASE=main`. Verify that it exits 0, that `B/op` falls for `class`, `activity` and `chen_eer` by 5% or more, and that no type grows above `+1.0%` in `B/op` or `allocs/op`
+- [x] 6.2 Run `make test` and `go test -race . ./internal/freelist ./internal/code ./internal/klimt ./internal/png`. Verify that both pass, `TestRenderAfterOtherRenders` and `TestRenderConcurrent` included
+- [x] 6.3 Run `make conformance REQUIRE=all GO_IN_IMAGE=1`; on arm64 hosts, the native `make conformance REQUIRE=all`, which gives the results of CI. Verify 0 failures, no known difference that now passes, and the same counts of passed cases, known differences and unsupported cases per diagram type and per format (PNG included) as before the change
+- [x] 6.4 Run `make wasm`. Verify that it builds `dist/wasm/plantuml.wasm`, and that `go test ./cmd/plantuml-wasm` passes (the lists run on one thread there)
 
 ## 7. Documentation, checks and pull request
 
-- [ ] 7.1 Check README.md and site/index.html: no count, table or timing changes. Verify that `TestLandingPage` and `TestReleaseNotes` pass
-- [ ] 7.2 Run `make lint` and `make provenance`. Verify that both pass, with the header of `internal/freelist`
+- [x] 7.1 Check README.md and site/index.html: no count, table or timing changes. Verify that `TestLandingPage` and `TestReleaseNotes` pass
+- [x] 7.2 Run `make lint` and `make provenance`. Verify that both pass, with the header of `internal/freelist`
 - [ ] 7.3 With the user's approval, push the branch and open a pull request whose description has the conformance result of task 6.3, the `B/op` of `BenchmarkRenderSmallPNG` before and after, and a link to issue #100. Verify that its `test`, `conformance` and `benchmark` jobs pass
-- [ ] 7.4 Run `openspec validate reuse-compressors --strict`. Verify that it passes
+- [x] 7.4 Run `openspec validate reuse-compressors --strict`. Verify that it passes
