@@ -35,11 +35,11 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 5. PNG output (`internal/png`)
 
-- [ ] 5.1 Encode `WriteWithMetadata` with a package-level `png.Encoder` at `png.DefaultCompression` whose `BufferPool` is a `freelist.List[*png.EncoderBuffer]` of capacity 4. Make `itxtChunk` take a `*zlib.Writer` from a `freelist.List[*zlib.Writer]` of capacity 4, whose `create` is `zlib.NewWriter(nil)`, `Reset` it on its buffer, write, close and put it back (design D4). Add to `pngio_test.go` (design D5): for the three images of task 4.1 with the metadata `@startuml\nAlice -> Bob : hello\n@enduml` and dpi 96 and 192, in turn and on 8 goroutines, `WriteWithMetadata` writes the same bytes as the same chunks built with a new `png.Encoder` and a new `zlib.NewWriter`. Verify:
+- [x] 5.1 Encode `WriteWithMetadata` with a package-level `png.Encoder` at `png.DefaultCompression` whose `BufferPool` is a `freelist.List[*png.EncoderBuffer]` of capacity 4. Make `itxtChunk` take a `*zlib.Writer` from a `freelist.List[*zlib.Writer]` of capacity 4, whose `create` is `zlib.NewWriter(nil)`, `Reset` it on its buffer, write, close and put it back (design D4). Add to `pngio_test.go` (design D5): for the three images of task 4.1 with the metadata `@startuml\nAlice -> Bob : hello\n@enduml` and dpi 96 and 192, in turn and on 8 goroutines, `WriteWithMetadata` writes the same bytes as the same chunks built with a new `png.Encoder` and a new `zlib.NewWriter`. Verify:
   - `go test -race ./internal/png` passes;
   - `go test -run '^$' -bench '^BenchmarkRenderSmallPNG$' -benchmem .` reports 2.9 MB or less per operation (about 4.3 MB in task 1.1).
 
-  Commit as `perf(png): reuse the PNG encoder and the zlib writer of the metadata`
+  Commit as `perf(png): reuse the PNG encoder and the zlib writer of the metadata`. Done: 2.03 MB per operation instead of 4.31 MB, and about 0.83 ms instead of 1.10 ms
 
 ## 6. Verification
 
