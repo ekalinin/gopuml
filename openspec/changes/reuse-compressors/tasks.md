@@ -12,7 +12,7 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 2. Bounded list of reusable values
 
-- [ ] 2.1 Create `internal/freelist` with `doc.go` and `freelist.go` (`Provenance: original`): `List[T any]`, `New[T](n int, create func() T) *List[T]`, `Get() T` and `Put(v T)` on a buffered channel, neither of which blocks (design D1). Add `freelist_test.go` with the tests of design D5:
+- [x] 2.1 Create `internal/freelist` with `doc.go` and `freelist.go` (`Provenance: original`): `List[T any]`, `New[T](n int, create func() T) *List[T]`, `Get() T` and `Put(v T)` on a buffered channel, neither of which blocks (design D1). Add `freelist_test.go` with the tests of design D5:
   - `New(4, func() *int { return new(1) }).Get()` points to 1, and a list without `create` returns nil;
   - a pointer put back is the one the next `Get` returns;
   - after four `Put` calls, a fifth value is dropped, and four `Get` calls return the first four;
