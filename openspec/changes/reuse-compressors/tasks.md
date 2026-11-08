@@ -31,7 +31,7 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 4. PNG data of image sprites (`internal/klimt`)
 
-- [ ] 4.1 Give `pngDataURLEncoder` a `freelist.List[*png.EncoderBuffer]` of capacity 4 without `create` as its `BufferPool`, and remove `pngBufferPool` (design D3). Add a test of `ToPngDataURL`: for a 16 by 16 image with a gradient, a 1 by 1 transparent image and a 200 by 100 image, in turn, and for the same images on 8 goroutines, the text equals `data:image/png;base64,` followed by `png.Encode` of the same pixels. Verify that `go test -race -run 'ToPngDataURL|SpriteImageFromInternal' ./internal/klimt` passes. Commit as `perf(klimt): keep the PNG encoder buffers of image data across garbage collections`, then verify that `make bench-compare BASE=HEAD^1` exits 0 with no type above `+1.0%` in `B/op` or `allocs/op`
+- [x] 4.1 Give `pngDataURLEncoder` a `freelist.List[*png.EncoderBuffer]` of capacity 4 without `create` as its `BufferPool`, and remove `pngBufferPool` (design D3). Add a test of `ToPngDataURL`: for a 16 by 16 image with a gradient, a 1 by 1 transparent image and a 200 by 100 image, in turn, and for the same images on 8 goroutines, the text equals `data:image/png;base64,` followed by `png.Encode` of the same pixels. Verify that `go test -race -run 'ToPngDataURL|SpriteImageFromInternal' ./internal/klimt` passes. Commit as `perf(klimt): keep the PNG encoder buffers of image data across garbage collections`, then verify that `make bench-compare BASE=HEAD^1` exits 0 with no type above `+1.0%` in `B/op` or `allocs/op`
 
 ## 5. PNG output (`internal/png`)
 
