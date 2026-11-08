@@ -12,8 +12,11 @@ import (
 	"path/filepath"
 	"slices"
 	"strings"
+	"sync"
 	"testing"
 	"testing/fstest"
+
+	"github.com/ekalinin/gopuml/internal/klimt/color"
 )
 
 // compareSprites returns the differences between the bundled sprites and
@@ -113,6 +116,43 @@ func TestSpriteImageFromInternal(t *testing.T) {
 	if class, _ := expectPanic(t, func() { SpriteImageFromInternal("archimate/actor.svg") }); !strings.Contains(class, "IllegalArgumentException") {
 		t.Errorf("class %q", class)
 	}
+}
+
+// Each jar sprite is read once for the process: an SVG sprite is shared, a
+// PNG sprite is a new image sprite around the shared decoded image, and a
+// name without sprite is not kept.
+func TestSpriteImageFromInternalCache(t *testing.T) {
+	if a, b := SpriteImageFromInternal("archimate/actor"), SpriteImageFromInternal("archimate/actor"); a != b {
+		t.Error("archimate/actor is parsed twice")
+	}
+	a, _ := SpriteImageFromInternal("archimate/access").(*SpriteImage)
+	b, _ := SpriteImageFromInternal("archimate/access").(*SpriteImage)
+	if a == nil || b == nil || a == b || a.img.image.Image() != b.img.image.Image() {
+		t.Error("archimate/access: not two image sprites around one decoded image")
+	}
+	SpriteImageFromInternal("archimate/never-a-sprite")
+	if _, ok := internalSpriteCache.Load("archimate/never-a-sprite"); ok {
+		t.Error("a name without sprite is kept")
+	}
+}
+
+// Concurrent renders look up and draw the shared jar sprites; run with
+// -race.
+func TestSpriteImageFromInternalConcurrent(t *testing.T) {
+	var wg sync.WaitGroup
+	for range 8 {
+		wg.Go(func() {
+			for _, name := range []string{"archimate/actor", "archimate/access", "archimate/business-actor"} {
+				var got []string
+				SpriteImageFromInternal(name).AsTextBlock(nil, nil, 1, nil).
+					DrawU(newSpriteRec(&got, false, color.IdentityMapper))
+				if len(got) == 0 {
+					t.Errorf("%s draws nothing", name)
+				}
+			}
+		})
+	}
+	wg.Wait()
 }
 
 func TestCompareSprites(t *testing.T) {
