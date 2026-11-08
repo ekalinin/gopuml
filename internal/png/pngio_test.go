@@ -8,9 +8,11 @@ import (
 	"compress/zlib"
 	"encoding/binary"
 	"image"
+	"image/color"
 	"image/png"
 	"io"
 	"strings"
+	"sync"
 	"testing"
 )
 
@@ -216,4 +218,91 @@ func TestWriteErrors(t *testing.T) {
 	if got := string(latin1Bytes("aé€")); got != "a\xe9?" {
 		t.Errorf("latin1 %q", got)
 	}
+}
+
+// A reused PNG encoder and zlib writer write the same bytes as new ones: in
+// turn, so that buffers used for a large image encode a small one next, and
+// in parallel; run with -race.
+func TestWriteWithMetadataReusesEncoders(t *testing.T) {
+	gradient := image.NewNRGBA(image.Rect(0, 0, 16, 16))
+	for y := range 16 {
+		for x := range 16 {
+			gradient.Set(x, y, color.NRGBA{R: uint8(x * 16), G: uint8(y * 16), B: 0x80, A: 0xFF})
+		}
+	}
+	transparent := image.NewNRGBA(image.Rect(0, 0, 1, 1))
+	large := image.NewNRGBA(image.Rect(0, 0, 200, 100))
+	for y := range 100 {
+		for x := range 200 {
+			large.Set(x, y, color.NRGBA{R: uint8(x), B: uint8(y), A: uint8(x * y)})
+		}
+	}
+	// The palette of an opaque image whose colors Write reduces
+	paletted := image.NewPaletted(image.Rect(0, 0, 40, 30), color.Palette{color.Black, color.White,
+		color.NRGBA{R: 0xFF, A: 0xFF}})
+	for i := range paletted.Pix {
+		paletted.Pix[i] = uint8(i % 3)
+	}
+	const metadata = "@startuml\nAlice -> Bob : hello\n@enduml"
+	type input struct {
+		img image.Image
+		dpi int
+	}
+	var inputs []input
+	for _, img := range []image.Image{gradient, large, transparent, paletted, large, gradient} {
+		for _, dpi := range []int{96, 192} {
+			inputs = append(inputs, input{img, dpi})
+		}
+	}
+	want := make([][]byte, len(inputs))
+	for i, in := range inputs {
+		want[i] = freshWriteWithMetadata(t, in.img, metadata, in.dpi)
+	}
+	check := func() {
+		for i, in := range inputs {
+			var got bytes.Buffer
+			if err := WriteWithMetadata(&got, in.img, metadata, in.dpi); err != nil {
+				t.Error(err)
+				continue
+			}
+			if !bytes.Equal(got.Bytes(), want[i]) {
+				t.Errorf("input %d (%v, dpi %d): %d bytes differ from new encoders' %d", i, in.img.Bounds(),
+					in.dpi, got.Len(), len(want[i]))
+			}
+		}
+	}
+	check()
+	var wg sync.WaitGroup
+	for range 8 {
+		wg.Go(check)
+	}
+	wg.Wait()
+}
+
+// freshWriteWithMetadata is WriteWithMetadata with a new png.Encoder and a
+// new zlib writer.
+func freshWriteWithMetadata(t *testing.T, img image.Image, metadata string, dpi int) []byte {
+	t.Helper()
+	var encoded bytes.Buffer
+	enc := png.Encoder{CompressionLevel: png.DefaultCompression}
+	if err := enc.Encode(&encoded, img); err != nil {
+		t.Fatal(err)
+	}
+	var extra [][]byte
+	if dpi != 96 {
+		extra = append(extra, physChunk(dpi))
+	}
+	extra = append(extra, pngChunk("tEXt", append(append([]byte("copyleft"), 0), latin1Bytes(copyleft)...)))
+	var data bytes.Buffer
+	data.WriteString("plantuml")
+	data.Write([]byte{0, 1, 0, 0, 0})
+	zw := zlib.NewWriter(&data)
+	zw.Write(utf8Bytes(metadata))
+	zw.Close()
+	extra = append(extra, pngChunk("iTXt", data.Bytes()))
+	var out bytes.Buffer
+	if err := insertChunks(&out, encoded.Bytes(), extra); err != nil {
+		t.Fatal(err)
+	}
+	return out.Bytes()
 }
