@@ -4,7 +4,7 @@
 
 Renders still allocate a new deflate compressor of about 1 MB in two cases. No issue tracks this. No conformance case fails or changes: the output of every render stays byte-identical.
 
-- **Pool misses for SVG.** The `sync.Pool` of `code.deflateRaw` (change `reduce-render-allocations`, D1) misses in about 2-10% of the renders of `BenchmarkRender`. A writer that the render goroutine puts back sits in the private slot of one P, which a `Get` on another P cannot see, and the garbage collector drops the idle writers. These misses are about 12% of the allocated bytes of `class`, 16% of `timing` and 2.5% of `sequence`. The `sync.Pool` of the PNG data of image sprites (`klimt.ToPngDataURL`, change `add-archimate-diagrams`, D8) misses the same way.
+- **Pool misses for SVG.** The `sync.Pool` of `code.deflateRaw` (change `reduce-render-allocations`, D1) misses in about 2-10% of the renders of `BenchmarkRender`. A writer that the render goroutine puts back sits in the private slot of one P, which a `Get` on another P cannot see, and the garbage collector drops the idle writers. Keeping the writers removes 16.6% of the allocated bytes of `class`, 17.0% of `activity`, 18.7% of `chen_eer` and 2-6% of the other types (`make bench-compare`). The `sync.Pool` of the PNG data of image sprites (`klimt.ToPngDataURL`, change `add-archimate-diagrams`, D8) misses the same way.
 - **No pool for PNG output.** It creates two zlib writers for each render, one for the image data (`png.WriteWithMetadata`) and one for the iTXt chunk of the source (`itxtChunk`). A PNG render of `Alice -> Bob : hello` allocates about 4.3 MB, of which about 1.4 MB are these writers; its SVG render allocates 0.76 MB.
 
 ## What Changes
