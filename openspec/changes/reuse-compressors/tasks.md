@@ -4,7 +4,7 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 ## 1. Local benchmark of PNG output
 
-- [ ] 1.1 Add `BenchmarkRenderSmallPNG` to `render_test.go` (design D6). It renders `@startuml`, `Alice -> Bob : hello`, `@enduml` as PNG with `b.ReportAllocs()`, after one unmeasured render, as `BenchmarkRender` does, with a comment that CI does not compare it (issue #100). Verify:
+- [x] 1.1 Add `BenchmarkRenderSmallPNG` to `render_test.go` (design D6). It renders `@startuml`, `Alice -> Bob : hello`, `@enduml` as PNG with `b.ReportAllocs()`, after one unmeasured render, as `BenchmarkRender` does, with a comment that CI does not compare it (issue #100). Verify:
   - `go test -run '^$' -bench '^BenchmarkRenderSmallPNG$' -benchmem .` reports about 4.3 MB per operation;
   - `go test -list '^BenchmarkRender$' .` lists `BenchmarkRender` alone, so `tools/benchcmp` does not run the new benchmark.
 

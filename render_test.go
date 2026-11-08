@@ -213,6 +213,19 @@ func BenchmarkRender(b *testing.B) {
 	}
 }
 
+// BenchmarkRenderSmallPNG renders a small sequence diagram to PNG, to measure
+// the allocations of PNG output locally. The benchmark job of CI runs
+// BenchmarkRender alone and does not compare it (issue #100).
+func BenchmarkRenderSmallPNG(b *testing.B) {
+	opts := &Options{Format: PNG}
+	// Not measured, as the first pass of BenchmarkRender
+	Render(b.Context(), seqSource, opts)
+	b.ReportAllocs()
+	for b.Loop() {
+		Render(b.Context(), seqSource, opts)
+	}
+}
+
 func TestRenderBenchmarkTypes(t *testing.T) {
 	// Spec scenario "One result per diagram type": the benchmark has a set
 	// for every type of the curated cases, with all the cases of the type.
