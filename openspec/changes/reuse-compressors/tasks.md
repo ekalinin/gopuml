@@ -52,5 +52,5 @@ No output changes, so no conformance case, reference or golden dump is added or 
 
 - [x] 7.1 Check README.md and site/index.html: no count, table or timing changes. Verify that `TestLandingPage` and `TestReleaseNotes` pass
 - [x] 7.2 Run `make lint` and `make provenance`. Verify that both pass, with the header of `internal/freelist`
-- [ ] 7.3 With the user's approval, push the branch and open a pull request whose description has the conformance result of task 6.3, the `B/op` of `BenchmarkRenderSmallPNG` before and after, and a link to issue #100. Verify that its `test`, `conformance` and `benchmark` jobs pass
+- [x] 7.3 With the user's approval, push the branch and open a pull request whose description has the conformance result of task 6.3, the `B/op` of `BenchmarkRenderSmallPNG` before and after, and a link to issue #100. Verify that its `test`, `conformance` and `benchmark` jobs pass
 - [x] 7.4 Run `openspec validate reuse-compressors --strict`. Verify that it passes
