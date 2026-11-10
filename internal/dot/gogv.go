@@ -118,6 +118,36 @@ func (g *Gogv) RenderFormat(ctx context.Context, src, format string) (out []byte
 	return nil, &FailureError{Path: gogvPath, ExitCode: -1, Err: err}
 }
 
+// Output lays the DOT source out with gogv and returns its output for
+// -T<format>, without the warnings, for a caller that reads the layout
+// itself, such as the JSON diagrams with the json0 format. It returns a
+// *TimeoutError when the layout runs longer than the timeout, the context's
+// error when ctx is done, and a *FailureError when gogv fails or panics.
+func (g *Gogv) Output(ctx context.Context, src, format string) (out []byte, err error) {
+	timeout := g.timeout()
+	lctx, cancel := context.WithTimeout(ctx, timeout)
+	defer cancel()
+	defer func() {
+		if v := recover(); v != nil {
+			out, err = nil, &FailureError{Path: gogvPath, ExitCode: -1, Err: fmt.Errorf("panic: %v", v)}
+		}
+	}()
+	render := g.Render
+	if render == nil {
+		render = gogv.Render
+	}
+	data, _, err := render(lctx, src, format)
+	switch {
+	case err == nil:
+		return data, nil
+	case ctx.Err() != nil:
+		return nil, fmt.Errorf("dot: %w", ctx.Err())
+	case errors.Is(lctx.Err(), context.DeadlineExceeded):
+		return nil, &TimeoutError{Path: gogvPath, Timeout: timeout}
+	}
+	return nil, &FailureError{Path: gogvPath, ExitCode: -1, Err: err}
+}
+
 // GraphvizVersion returns the layout tweaks for the Graphviz version that
 // gogv follows.
 func (g *Gogv) GraphvizVersion(context.Context) GraphvizVersion {

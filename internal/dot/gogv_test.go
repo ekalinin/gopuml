@@ -5,6 +5,7 @@ package dot
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"regexp"
 	"strings"
@@ -137,5 +138,63 @@ func TestGogvRenderFormatFailures(t *testing.T) {
 	_, err = (&Gogv{Timeout: 100 * time.Millisecond, Render: waitForContext}).RenderFormat(t.Context(), testDotSource, "svg")
 	if _, ok := errors.AsType[*TimeoutError](err); !ok {
 		t.Errorf("slow layout: error %v, want a *TimeoutError", err)
+	}
+}
+
+func TestGogvOutput(t *testing.T) {
+	out, err := (&Gogv{}).Output(t.Context(), "digraph g { a -> b }", "json0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var layout struct {
+		Objects []struct {
+			Name string `json:"name"`
+		} `json:"objects"`
+		Edges []struct {
+			Pos string `json:"pos"`
+		} `json:"edges"`
+	}
+	if err := json.Unmarshal(out, &layout); err != nil {
+		t.Fatalf("json0 output %.200q: %v", out, err)
+	}
+	if len(layout.Objects) != 2 || layout.Objects[0].Name != "a" || layout.Objects[1].Name != "b" {
+		t.Errorf("objects %+v, want a and b", layout.Objects)
+	}
+	if len(layout.Edges) != 1 || !strings.HasPrefix(layout.Edges[0].Pos, "e,") {
+		t.Errorf("edges %+v, want one edge whose pos starts with e,", layout.Edges)
+	}
+}
+
+func TestGogvOutputDropsWarnings(t *testing.T) {
+	g := &Gogv{Render: func(context.Context, string, string) ([]byte, []gogv.Warning, error) {
+		out, warnings, err := gogv.Render(context.Background(), "digraph G {\na -> 1b\n}\n", "json0")
+		if len(warnings) == 0 {
+			t.Fatal("the fake has no warning to drop")
+		}
+		return out, warnings, err
+	}}
+	out, err := g.Output(t.Context(), "", "json0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.HasPrefix(string(out), "{") || strings.Contains(string(out), "Warning") {
+		t.Errorf("output %.200q, want the JSON document without the warning", out)
+	}
+}
+
+func TestGogvOutputFailures(t *testing.T) {
+	_, err := (&Gogv{Render: func(context.Context, string, string) ([]byte, []gogv.Warning, error) { panic("boom") }}).Output(t.Context(), testDotSource, "json0")
+	if fe, ok := errors.AsType[*FailureError](err); !ok || !strings.Contains(fe.Error(), "panic: boom") {
+		t.Errorf("panic: error %v, want a *FailureError", err)
+	}
+	_, err = (&Gogv{Timeout: 50 * time.Millisecond, Render: waitForContext}).Output(t.Context(), testDotSource, "json0")
+	if _, ok := errors.AsType[*TimeoutError](err); !ok {
+		t.Errorf("slow layout: error %v, want a *TimeoutError", err)
+	}
+	ctx, cancel := context.WithCancel(t.Context())
+	cancel()
+	_, err = (&Gogv{Render: waitForContext}).Output(ctx, testDotSource, "json0")
+	if !errors.Is(err, context.Canceled) || errors.Is(err, ErrTimeout) {
+		t.Errorf("canceled context: error %v, want context.Canceled and no timeout", err)
 	}
 }

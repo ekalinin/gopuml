@@ -20,7 +20,7 @@
 
 ## 2. Layout engine output
 
-- [ ] 2.1 Add `Output(ctx, src, format) ([]byte, error)` to `dot.Gogv` in `internal/dot/gogv.go`: gogv's output for the format without its warnings, with the timeout and the panic recovery of `Layout` (design D4). Verify with unit tests: `json0` of `digraph g { a -> b }` is a JSON document whose objects are `a` and `b` and whose edge has a `pos` that starts with `e,`; a `Render` that returns a warning gives the output without it; a `Render` that panics gives a `*dot.FailureError`; a `Render` that blocks past a timeout of 50 ms gives a `*dot.TimeoutError`; a canceled context gives the context's error. Verify that `go test ./internal/dot` passes
+- [x] 2.1 Add `Output(ctx, src, format) ([]byte, error)` to `dot.Gogv` in `internal/dot/gogv.go`: gogv's output for the format without its warnings, with the timeout and the panic recovery of `Layout` (design D4). Verify with unit tests: `json0` of `digraph g { a -> b }` is a JSON document whose objects are `a` and `b` and whose edge has a `pos` that starts with `e,`; a `Render` that returns a warning gives the output without it; a `Render` that panics gives a `*dot.FailureError`; a `Render` that blocks past a timeout of 50 ms gives a `*dot.TimeoutError`; a canceled context gives the context's error. Verify that `go test ./internal/dot` passes
 
 ## 3. JSON diagrams
 
