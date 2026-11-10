@@ -47,7 +47,7 @@
 
 ## 6. WASM and the whole suite
 
-- [ ] 6.1 Implement `TestWasmJSONDiagram`, `TestWasmYAMLDiagram` and `TestWasmHCLDiagram` with the inputs of their scenarios and remove their skips (design D4). Verify that the WASM output is byte-identical to the native library's output, and that `make wasm` passes
+- [x] 6.1 Implement `TestWasmJSONDiagram`, `TestWasmYAMLDiagram` and `TestWasmHCLDiagram` with the inputs of their scenarios and remove their skips (design D4). Verify that the WASM output is byte-identical to the native library's output, and that `make wasm` passes
 - [ ] 6.2 Run `make conformance REQUIRE=all GO_IN_IMAGE=1`, or the native `make conformance REQUIRE=all` on arm64 hosts (design D8). Verify that the report has 0 failures and no known differences that pass, that the groups `json`, `yaml` and `hcl` hold the new cases, that the not-supported-yet count is 4, and that the results of the other diagram types do not change
 
 ## 7. Documentation and checks

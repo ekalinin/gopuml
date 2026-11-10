@@ -358,19 +358,16 @@ func TestWasmChenDiagram(t *testing.T) {
 func TestWasmJSONDiagram(t *testing.T) {
 	// Spec scenario "JSON diagram in WASM": gogv lays the boxes out in every
 	// build, so the WASM build draws them as the native build.
-	t.Skip("implemented by task 6.1 of add-json-yaml-hcl-diagrams")
 	renderMatchesNative(t, "@startjson\n{\"a\": {\"b\": 1}}\n@endjson\n")
 }
 
 func TestWasmYAMLDiagram(t *testing.T) {
 	// Spec scenario "YAML diagram in WASM".
-	t.Skip("implemented by task 6.1 of add-json-yaml-hcl-diagrams")
 	renderMatchesNative(t, "@startyaml\na:\n  b: 1\n@endyaml\n")
 }
 
 func TestWasmHCLDiagram(t *testing.T) {
 	// Spec scenario "HCL diagram in WASM".
-	t.Skip("implemented by task 6.1 of add-json-yaml-hcl-diagrams")
 	renderMatchesNative(t, "@starthcl\na {\n  b = \"c\"\n}\n@endhcl\n")
 }
 
