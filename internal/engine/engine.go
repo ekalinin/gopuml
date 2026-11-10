@@ -50,7 +50,7 @@ import (
 var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
 	activitydiagram.Factory, descdiagram.Factory, statediagram.Factory, activitydiagram3.Factory, salt.Factory,
 	directdot.Factory, mindmap.Factory, wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory,
-	jsondiagram.Factory, cheneer.Factory}
+	jsondiagram.Factory, jsondiagram.YamlFactory, cheneer.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")
