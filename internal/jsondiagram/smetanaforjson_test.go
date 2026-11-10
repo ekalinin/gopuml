@@ -6,7 +6,6 @@ package jsondiagram
 import (
 	"context"
 	"math"
-	"regexp"
 	"slices"
 	"strconv"
 	"strings"
@@ -34,16 +33,36 @@ func newTestSmetana(t *testing.T, src string) *smetanaForJSON {
 	return s
 }
 
-func TestPortCellWidths(t *testing.T) {
-	heights := make([]float64, 8)
-	for i := range heights {
-		heights[i] = 20.297
+func TestRecord(t *testing.T) {
+	// The root of the Vega JSON case: eight rows of 20.297 points, a key
+	// column of 130.094 and a value column of 55.732. Upstream draws the
+	// ports of rows 4, 5 and 6 at 10, 30 and 51 points from the center.
+	n := &internalNode{width: 185.826, colA: 130.094, colB: 55.732}
+	for range 8 {
+		n.heights = append(n.heights, 20.297)
 	}
-	if got := portCellWidths(heights); !slices.Equal(got, []int{12, 21, 20, 20, 20, 21, 20, 12}) {
-		t.Errorf("8 rows of 20.297: %v, want 12 21 20 20 20 21 20 12", got)
+	r := n.record()
+	if math.Abs(r.width-162.376) > 1e-9 || r.height != 186 || r.portsHeight != 56 {
+		t.Errorf("record %v by %v, ports field %d high, want 162.376 by 186 and 56", r.width, r.height, r.portsHeight)
 	}
-	if got := portCellWidths([]float64{20.297}); !slices.Equal(got, []int{4}) {
-		t.Errorf("1 row of 20.297: %v, want 4", got)
+	if !slices.Equal(r.ports, []int{-71, -51, -30, -10, 10, 30, 51, 71}) {
+		t.Errorf("ports %v", r.ports)
+	}
+	// An array: the ports field is as high as the record.
+	a := (&internalNode{isArray: true, width: 23.351, colA: 23.351, heights: []float64{20.297, 20.297}}).record()
+	if math.Abs(a.width-41) > 1e-9 || a.height != 23 || a.portsHeight != 23 || !slices.Equal(a.ports, []int{-10, 10}) {
+		t.Errorf("array record %+v", a)
+	}
+}
+
+func TestTableLabel(t *testing.T) {
+	r := (&internalNode{width: 40, colA: 20, colB: 20, heights: []float64{20.297}}).record()
+	want := `<TABLE PORT="h" BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">` +
+		`<TR><TD COLSPAN="3" FIXEDSIZE="TRUE" WIDTH="20" HEIGHT="20"></TD></TR>` +
+		`<TR><TD FIXEDSIZE="TRUE" WIDTH="9" HEIGHT="20"></TD><TD PORT="P0" FIXEDSIZE="TRUE" WIDTH="2" HEIGHT="20"></TD>` +
+		`<TD FIXEDSIZE="TRUE" WIDTH="9" HEIGHT="20"></TD></TR></TABLE>`
+	if got := r.tableLabel(); got != want {
+		t.Errorf("table\n%s\nwant\n%s", got, want)
 	}
 }
 
@@ -51,46 +70,30 @@ func TestDotSource(t *testing.T) {
 	s := newTestSmetana(t, `{"a": {"b": 1}}`)
 	src := s.dotSource()
 	lines := strings.Split(strings.TrimSpace(src), "\n")
-	if len(lines) != 5 || lines[0] != "digraph g {" || !strings.HasPrefix(lines[1], "N0 [") ||
-		!strings.HasPrefix(lines[2], "N1 [") || lines[4] != "}" {
+	if len(lines) != 6 || lines[0] != "digraph g {" || !strings.HasPrefix(lines[2], "N0 [") ||
+		!strings.HasPrefix(lines[3], "N1 [") || lines[5] != "}" {
 		t.Fatalf("DOT %s", src)
 	}
-	if want := "N0 -> N1 [tailport=P0, arrowsize=.75, arrowtail=none, arrowhead=normal];"; lines[3] != want {
-		t.Errorf("edge %q, want %q", lines[3], want)
+	if want := "graph [nodesep=" + jfmt.DoubleToString(2.0/72) + ", ranksep=" + jfmt.DoubleToString(28.0/72) + "];"; lines[1] != want {
+		t.Errorf("graph %q, want %q", lines[1], want)
 	}
-	n := s.nodes[0]
-	if want := "N0 [shape=plaintext, width=" + jfmt.DoubleToString(n.height/72) + ", height=" +
-		jfmt.DoubleToString(n.width/72) + ", label=<"; !strings.HasPrefix(lines[1], want) {
-		t.Errorf("node %q, want the width and the height of the box swapped: %q", lines[1], want)
+	if want := "N0 -> N1 [tailport=P0, headport=h, arrowsize=.75, arrowtail=none, arrowhead=normal];"; lines[4] != want {
+		t.Errorf("edge %q, want %q", lines[4], want)
 	}
-	// One row: the port cell is 16 points shorter than the row; the key and
-	// value cells are 4 points narrower than their columns.
-	m := regexp.MustCompile(`<TR><TD COLSPAN="1" FIXEDSIZE="TRUE" WIDTH="(\d+)" HEIGHT="(\d+)"></TD></TR>` +
-		`<TR><TD PORT="P0" FIXEDSIZE="TRUE" WIDTH="(\d+)" HEIGHT="(\d+)"></TD></TR>`).FindStringSubmatch(lines[1])
-	if m == nil {
-		t.Fatalf("node %q has no table of a key cell and a port cell", lines[1])
-	}
-	if want := []string{m[3], strconv.Itoa(roundHalfUp(n.heights[0]) - 16), strconv.Itoa(roundHalfUp(n.colA - 4)),
-		strconv.Itoa(roundHalfUp(n.colB - 4))}; m[1] != want[0] || m[3] != want[1] || m[2] != want[2] || m[4] != want[3] {
-		t.Errorf("cells %q, want the widths %s %s and the heights %s %s", m[1:], want[0], want[1], want[2], want[3])
+	r := s.nodes[0].record()
+	if want := "N0 [shape=plaintext, width=" + jfmt.DoubleToString((r.width+16)/72) + ", height=" +
+		jfmt.DoubleToString((r.height+1+8)/72) + ", label=<" + r.tableLabel() + ">];"; lines[2] != want {
+		t.Errorf("node %q, want the record of upstream with the padding: %q", lines[2], want)
 	}
 }
 
 func TestDotSourceEmptyValue(t *testing.T) {
 	s := newTestSmetana(t, `{"e": []}`)
-	if want := `N1 [shape=plaintext, width=` + jfmt.DoubleToString(15.0/72) + `, height=` +
-		jfmt.DoubleToString(16.0/72) + `, label=""];`; !strings.Contains(s.dotSource(), want) {
-		t.Errorf("DOT %s, want %s", s.dotSource(), want)
-	}
-}
-
-func TestDotSourceArray(t *testing.T) {
-	s := newTestSmetana(t, `["x", "y"]`)
-	n := s.nodes[0]
-	want := `<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0"><TR><TD PORT="P0" FIXEDSIZE="TRUE" ` +
-		`WIDTH="` + strconv.Itoa(roundHalfUp(n.heights[0])-8) + `" HEIGHT="` + strconv.Itoa(roundHalfUp(n.colA-8)) + `"></TD>`
+	want := `N1 [shape=plaintext, width=` + jfmt.DoubleToString(31.0/72) + `, height=` +
+		jfmt.DoubleToString(25.0/72) + `, label=<<TABLE PORT="h" BORDER="0" CELLBORDER="0" CELLSPACING="0" ` +
+		`CELLPADDING="0"><TR><TD FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD></TR></TABLE>>];`
 	if !strings.Contains(s.dotSource(), want) {
-		t.Errorf("DOT %s, want one row of port cells as high as the box less 8: %s", s.dotSource(), want)
+		t.Errorf("DOT %s, want %s", s.dotSource(), want)
 	}
 }
 
@@ -114,15 +117,17 @@ func TestReadLayout(t *testing.T) {
 		t.Fatal(err)
 	}
 	n0, n1 := s.nodes[0], s.nodes[1]
-	if n0.x != 20 || n0.y != 68.4 || math.Abs(n0.lw-40) > 1e-3 || n0.lh != 36 || n1.x != 26 || n1.y != 7.2 {
+	// Without the padding: 8 points less along the rows, the size less 16
+	// along the rows and 8 across.
+	if n0.x != 12 || n0.y != 68.4 || math.Abs(n0.lw-24) > 1e-3 || n0.lh != 28 || n1.x != 18 || n1.y != 7.2 {
 		t.Errorf("nodes %+v and %+v", n0, n1)
 	}
-	if s.xMirror.max != 86.4 {
-		t.Errorf("mirror %v, want the top of N0, 86.4", s.xMirror.max)
+	if s.xMirror.max != 82.4 {
+		t.Errorf("mirror %v, want the top of N0, 82.4", s.xMirror.max)
 	}
 	c := s.edges[0].curve
-	if c == nil || len(c.points) != 4 || c.ep == nil || c.ep.X != 26 || c.ep.Y != 15.914 {
-		t.Errorf("curve %+v, want 4 points and the end point (26, 15.914)", c)
+	if c == nil || len(c.points) != 4 || c.points[0].X != 18 || c.ep == nil || c.ep.X != 18 || c.ep.Y != 15.914 {
+		t.Errorf("curve %+v, want 4 points from x 18 and the end point (18, 15.914)", c)
 	}
 }
 

@@ -33,13 +33,25 @@ const (
 	// as it supports neither margin nor fixedsize (design D3).
 	plaintextPadX = 16
 	plaintextPadY = 8
-	// emptyNodeHeight is the size across the rows of upstream's node of a
-	// box without rows, which Smetana sizes from its default label.
+	// nodeSep and rankSep are the separations of Graphviz's defaults, which
+	// Smetana keeps, less the padding of the nodes on both sides, so that
+	// the gaps between the boxes are Smetana's (design D3).
+	nodeSep = 18 - plaintextPadX
+	rankSep = 36 - plaintextPadY
+	// emptyNodeWidth and emptyNodeHeight are the size of upstream's node of
+	// a box without rows, along the rows and across them, which Smetana
+	// sizes from its default label.
+	emptyNodeWidth  = textBlockJSONMinHeight
 	emptyNodeHeight = 16
+	// headPort is the port of the table of every node.
+	headPort = "h"
+	// portCellWidth is the width of the cell of a port along the rows.
+	portCellWidth = 2
 )
 
 // internalNode is the box of an object or an array and its node in the
-// layout: center and size, in points, in the top-to-bottom layout.
+// layout: center and size, in points, in the top-to-bottom layout, without
+// the padding of plaintext.
 type internalNode struct {
 	block   *TextBlockJson
 	name    string
@@ -123,72 +135,109 @@ func upOneLevel(key string, list []*Highlighted) []*Highlighted {
 func (s *smetanaForJSON) dotSource() string {
 	var sb strings.Builder
 	sb.WriteString("digraph g {\n")
+	sb.WriteString("graph [nodesep=" + jfmt.DoubleToString(nodeSep/72.0) + ", ranksep=" +
+		jfmt.DoubleToString(rankSep/72.0) + "];\n")
 	for _, n := range s.nodes {
-		sb.WriteString(n.name + " [shape=plaintext, width=" + jfmt.DoubleToString(n.height/72) + ", height=")
-		if len(n.heights) == 0 {
-			sb.WriteString(jfmt.DoubleToString(emptyNodeHeight/72.0) + `, label=""];` + "\n")
-			continue
-		}
-		sb.WriteString(jfmt.DoubleToString(n.width/72) + ", label=<" + n.tableLabel() + ">];\n")
+		r := n.record()
+		sb.WriteString(n.name + " [shape=plaintext, width=" + jfmt.DoubleToString((r.width+plaintextPadX)/72) +
+			", height=" + jfmt.DoubleToString((r.height+1+plaintextPadY)/72) + ", label=<" + r.tableLabel() + ">];\n")
 	}
 	for _, e := range s.edges {
-		fmt.Fprintf(&sb, "%s -> %s [tailport=P%d, arrowsize=.75, arrowtail=none, arrowhead=normal];\n",
-			e.tail.name, e.head.name, e.port)
+		fmt.Fprintf(&sb, "%s -> %s [tailport=P%d, headport=%s, arrowsize=.75, arrowtail=none, arrowhead=normal];\n",
+			e.tail.name, e.head.name, e.port, headPort)
 	}
 	sb.WriteString("}\n")
 	return sb.String()
 }
 
-// tableLabel is the table that stands for upstream's record: along the
-// rows, a cell per port P0 ... P<n-1>; for an object, a first row with one
-// cell for the key column. The cells are smaller than the box by the
-// padding of plaintext, so that the padded node has the size of the record
-// (design D3).
-func (n *internalNode) tableLabel() string {
-	widths := portCellWidths(n.heights)
-	var cells strings.Builder
-	total := 0
-	var across int
+// record is the geometry of upstream's record node, in the top-to-bottom
+// layout: its size, the center of each port relative to the center of the
+// node, rounded as Smetana rounds port points, and the size across the rows
+// of the field of the ports.
+type record struct {
+	width, height float64
+	ports         []int
+	portsHeight   int
+	isArray       bool
+}
+
+// record computes the record of upstream's SmetanaForJson for the node, as
+// Smetana's record_init sizes it: fields with the sizes of the _dim_ hack
+// (the rows along, the columns less 8 across), and the size of the node at
+// least the width and the height attributes rounded, without padding.
+// Along the rows, the fields keep their sizes from the left; across them,
+// the room left is shared between the key and the value fields as
+// resize_reclbl shares it.
+func (n *internalNode) record() record {
+	if len(n.heights) == 0 {
+		return record{width: emptyNodeWidth, height: emptyNodeHeight}
+	}
+	total := 0.0
+	for _, h := range n.heights {
+		total += h
+	}
+	r := record{width: max(total, float64(roundHalfUp(total))), isArray: n.isArray}
+	var natural, portsHeight float64
 	if n.isArray {
-		across = cellSize(n.colA - plaintextPadY)
+		natural = n.colA - 8
 	} else {
-		across = cellSize(n.colB - plaintextPadY/2)
+		natural = n.colA - 8 + n.colB - 8
 	}
-	for i, w := range widths {
-		total += w
-		fmt.Fprintf(&cells, `<TD PORT="P%d" FIXEDSIZE="TRUE" WIDTH="%d" HEIGHT="%d"></TD>`, i, w, across)
+	r.height = max(natural, float64(roundHalfUp(n.width)))
+	if n.isArray {
+		portsHeight = r.height
+	} else {
+		inc := (r.height - natural) / 2
+		portsHeight = n.colB - 8 + float64(int(2*inc)-int(inc))
 	}
+	r.portsHeight = roundHalfUp(portsHeight)
+	sum := 0.0
+	for _, h := range n.heights {
+		r.ports = append(r.ports, roundHalfUp(-r.width/2+sum+h/2))
+		sum += h
+	}
+	return r
+}
+
+// tableLabel is the table that stands for the record: as high as the record,
+// so that the edges start and end at its border and not at the padding of
+// plaintext, and a little narrower, of an even width, so that each port cell,
+// 2 points wide between empty cells, is centered on the rounded center of its
+// field. For an object, a first row holds the key field. The table is the
+// port of the edges that end at the node (design D3).
+func (r record) tableLabel() string {
+	const table = `<TABLE PORT="` + headPort + `" BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">`
+	height := int(r.height)
+	if len(r.ports) == 0 {
+		return fmt.Sprintf(table+`<TR><TD FIXEDSIZE="TRUE" WIDTH="%d" HEIGHT="%d"></TD></TR></TABLE>`,
+			int(r.width), height)
+	}
+	width := 2 * int(r.width/2)
+	var cells strings.Builder
+	count, end := 0, 0
+	cell := func(port string, w int) {
+		if w <= 0 {
+			return
+		}
+		fmt.Fprintf(&cells, `<TD%s FIXEDSIZE="TRUE" WIDTH="%d" HEIGHT="%d"></TD>`, port, w, r.portsHeight)
+		count++
+		end += w
+	}
+	for i, c := range r.ports {
+		start := max(c+width/2-portCellWidth/2, end)
+		cell("", start-end)
+		cell(` PORT="P`+strconv.Itoa(i)+`"`, portCellWidth)
+	}
+	cell("", width-end)
 	var sb strings.Builder
-	sb.WriteString(`<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="0">`)
-	if !n.isArray {
-		fmt.Fprintf(&sb, `<TR><TD COLSPAN="%d" FIXEDSIZE="TRUE" WIDTH="%d" HEIGHT="%d"></TD></TR>`, len(widths), total,
-			cellSize(n.colA-plaintextPadY/2))
+	sb.WriteString(table)
+	if !r.isArray {
+		fmt.Fprintf(&sb, `<TR><TD COLSPAN="%d" FIXEDSIZE="TRUE" WIDTH="%d" HEIGHT="%d"></TD></TR>`, count, end,
+			height-r.portsHeight)
 	}
 	sb.WriteString("<TR>" + cells.String() + "</TR></TABLE>")
 	return sb.String()
 }
-
-// portCellWidths returns the whole sizes of the port cells along the rows:
-// each row ends where the rounded sum of the heights up to it ends, and the
-// first and the last cells leave room for the padding of plaintext.
-func portCellWidths(heights []float64) []int {
-	result := make([]int, len(heights))
-	sum := 0.0
-	for i, h := range heights {
-		start := roundHalfUp(sum)
-		sum += h
-		result[i] = roundHalfUp(sum) - start
-	}
-	result[0] -= plaintextPadX / 2
-	result[len(result)-1] -= plaintextPadX / 2
-	for i := range result {
-		result[i] = max(result[i], 1)
-	}
-	return result
-}
-
-// cellSize is a size rounded to a whole number of points, at least 1.
-func cellSize(v float64) int { return max(roundHalfUp(v), 1) }
 
 func roundHalfUp(v float64) int { return int(math.Floor(v + 0.5)) }
 
@@ -247,7 +296,9 @@ func (s *smetanaForJSON) readLayout(out []byte) error {
 		if errW != nil || errH != nil {
 			return fmt.Errorf("json0 layout of %s: size %q by %q", o.Name, o.Width, o.Height)
 		}
-		n.x, n.y, n.lw, n.lh = pos.X, pos.Y, w*72, h*72
+		// The node without its padding: the coordinates along the rows move
+		// by the padding of the first node, as do those of the edges.
+		n.x, n.y, n.lw, n.lh = pos.X-plaintextPadX/2, pos.Y, w*72-plaintextPadX, h*72-plaintextPadY
 	}
 	maxX := 0.0
 	for _, n := range s.nodes {
@@ -265,6 +316,12 @@ func (s *smetanaForJSON) readLayout(out []byte) error {
 		curve, err := newJSONCurve(pos, s.xMirror, veryFirstLine)
 		if err != nil {
 			return fmt.Errorf("json0 layout of %s -> %s: %w", e.tail.name, e.head.name, err)
+		}
+		for i := range curve.points {
+			curve.points[i].X -= plaintextPadX / 2
+		}
+		if curve.ep != nil {
+			curve.ep.X -= plaintextPadX / 2
 		}
 		e.curve = curve
 	}
