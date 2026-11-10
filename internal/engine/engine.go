@@ -29,6 +29,7 @@ import (
 	"github.com/ekalinin/gopuml/internal/errdiagram"
 	"github.com/ekalinin/gopuml/internal/export"
 	"github.com/ekalinin/gopuml/internal/gantt"
+	"github.com/ekalinin/gopuml/internal/hcl"
 	"github.com/ekalinin/gopuml/internal/jsondiagram"
 	"github.com/ekalinin/gopuml/internal/klimt/color"
 	"github.com/ekalinin/gopuml/internal/klimt/font"
@@ -50,7 +51,7 @@ import (
 var Factories = []core.Factory{errdiagram.WelcomeFactory{}, sequencediagram.Factory, classdiagram.Factory,
 	activitydiagram.Factory, descdiagram.Factory, statediagram.Factory, activitydiagram3.Factory, salt.Factory,
 	directdot.Factory, mindmap.Factory, wbs.Factory, packetdiag.Factory, gantt.Factory, timing.Factory,
-	jsondiagram.Factory, jsondiagram.YamlFactory, cheneer.Factory}
+	jsondiagram.Factory, jsondiagram.YamlFactory, hcl.Factory, cheneer.Factory}
 
 // ErrNotDrawable reports a diagram that cannot be drawn yet.
 var ErrNotDrawable = errors.New("drawing of this diagram is not implemented yet")

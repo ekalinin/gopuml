@@ -92,6 +92,9 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startyaml")); d != nil {
 		t.Fatalf("@startyaml: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@starthcl")); d != nil {
+		t.Fatalf("@starthcl: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
 	d, ok := CheckFamily(block("@startnwdiag")).(*ErrorDiagram)
