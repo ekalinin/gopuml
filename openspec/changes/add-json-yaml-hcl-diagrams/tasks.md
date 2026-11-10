@@ -56,4 +56,4 @@
 - [x] 7.2 Verify that `make lint`, `make provenance` and `make wasm` pass
 - [ ] 7.3 With the user's approval, open an issue in ekalinin/gogv for the tie of the balance of the x coordinates that gogv breaks otherwise than Graphviz 14.0.1 (the graph that design D3 writes for `vega/nonreg/json/style-highlight-with-style-tags`, with the positions of both), and name it in the `resolvedBy` of the known difference of task 3.8 and in the design Risks. The issue on `margin` is not needed any more, as the separations of design D3 compensate the padding exactly. Verify that the issue exists
 - [ ] 7.4 Push the branch, with the user's approval, and open a pull request that closes issues #39, #40 and #41. Verify that the `test` and `conformance` CI jobs pass, including the committed-reference check, and that the benchmark report shows no regression of the cases that exist on `main`
-- [ ] 7.5 Run `openspec validate add-json-yaml-hcl-diagrams --strict`. Verify that the change is reported as valid
+- [x] 7.5 Run `openspec validate add-json-yaml-hcl-diagrams --strict`. Verify that the change is reported as valid
