@@ -111,7 +111,6 @@ func TestRenderJSONDiagramAsTXTIsUnsupported(t *testing.T) {
 	// Spec scenario "TXT of a JSON diagram": upstream draws the texts of the
 	// boxes with UGraphicTxt, which this release does not have, so the
 	// format is reported as not supported for the type.
-	t.Skip("JSON diagrams are registered by task 3.7 of add-json-yaml-hcl-diagrams")
 	src := "@startjson\n{\"a\": 1}\n@endjson\n"
 	for _, format := range []Format{TXT, UTXT} {
 		res, err := Render(context.Background(), src, &Options{Format: format})
