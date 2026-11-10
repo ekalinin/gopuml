@@ -1,0 +1,11 @@
+---
+id: json-diagram/values-of-every-kind
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Values of every kind"
+---
+@startjson
+{"s": "text", "n": 42, "f": 1.5e3, "t": true, "no": false, "z": null}
+@endjson

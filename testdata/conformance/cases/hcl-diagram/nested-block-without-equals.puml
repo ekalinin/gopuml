@@ -1,0 +1,15 @@
+---
+id: hcl-diagram/nested-block-without-equals
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Nested block without an equals sign"
+---
+@starthcl
+module "m" {
+  nested {
+    x = "y"
+  }
+}
+@endhcl

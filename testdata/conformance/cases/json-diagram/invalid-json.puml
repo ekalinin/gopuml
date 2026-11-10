@@ -1,0 +1,11 @@
+---
+id: json-diagram/invalid-json
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Invalid JSON"
+---
+@startjson
+{"a": }
+@endjson

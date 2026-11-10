@@ -1,0 +1,12 @@
+---
+id: yaml-diagram/sequence-item-after-mapping
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Sequence item after a mapping"
+---
+@startyaml
+tags: [a, b, c]
+- x
+@endyaml

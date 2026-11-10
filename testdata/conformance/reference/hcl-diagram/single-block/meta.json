@@ -1,0 +1,6 @@
+{
+  "id": "hcl-diagram/single-block",
+  "blocks": [
+    {"index": 0, "name": null, "type": "HCL", "description": "(HCL)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 251, "height": 102, "status": 0}]}
+  ]
+}

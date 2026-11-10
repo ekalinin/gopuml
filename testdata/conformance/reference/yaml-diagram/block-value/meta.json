@@ -1,0 +1,6 @@
+{
+  "id": "yaml-diagram/block-value",
+  "blocks": [
+    {"index": 0, "name": null, "type": "YAML", "description": "(Yaml)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 187, "height": 61, "status": 0}]}
+  ]
+}

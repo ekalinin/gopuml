@@ -26324,6 +26324,8 @@ not activity3
 not activity3
 === allconf/styling/creole-table.puml
 not activity3
+=== allconf/styling/embedded-json-in-note.puml
+not activity3
 === allconf/styling/embedded-sequence-in-activity.puml
 result ActivityDiagram3
 description activity3
@@ -26345,6 +26347,8 @@ ins 2 1 item InstructionSimple lanes=[] break=false inlink={NULL []/0} in=null o
 ins 3 1 item InstructionStop lanes=[] break=false inlink={NULL []/0} in=null out=null colors={} null notes=[]
 current 0
 === allconf/styling/embedded-use-case-in-note.puml
+not activity3
+=== allconf/styling/embedded-yaml-in-note.puml
 not activity3
 === allconf/styling/gradient-fill.puml
 not activity3

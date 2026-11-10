@@ -1,0 +1,17 @@
+---
+id: json-diagram/node-arrow-styles
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Node and arrow styles"
+---
+@startjson
+<style>
+jsonDiagram {
+node { BackGroundColor #eeeeee; LineColor blue }
+arrow { LineColor red; LineThickness 2 }
+}
+</style>
+{"a": {"b": 1}}
+@endjson

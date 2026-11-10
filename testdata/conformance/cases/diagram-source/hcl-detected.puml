@@ -1,0 +1,13 @@
+---
+id: diagram-source/hcl-detected
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "diagram-source: HCL family"
+---
+@starthcl
+a {
+  b = "c"
+}
+@endhcl

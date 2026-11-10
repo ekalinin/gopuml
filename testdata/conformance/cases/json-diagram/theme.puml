@@ -1,0 +1,12 @@
+---
+id: json-diagram/theme
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Theme on a JSON diagram"
+---
+@startjson
+!theme cerulean
+{"a": {"b": 1}}
+@endjson

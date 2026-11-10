@@ -1,0 +1,11 @@
+---
+id: json-diagram/root-value
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Root value"
+---
+@startjson
+"hello"
+@endjson

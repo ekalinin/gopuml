@@ -1,0 +1,11 @@
+---
+id: json-diagram/unstyled
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Unstyled JSON diagram"
+---
+@startjson
+{"a": {"b": 1}}
+@endjson

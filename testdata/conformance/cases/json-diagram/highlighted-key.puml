@@ -1,0 +1,12 @@
+---
+id: json-diagram/highlighted-key
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Highlighted key"
+---
+@startjson
+#highlight "lastName"
+{"firstName": "John", "lastName": "Smith"}
+@endjson

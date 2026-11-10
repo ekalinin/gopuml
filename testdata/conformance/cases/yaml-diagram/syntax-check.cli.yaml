@@ -1,0 +1,9 @@
+id: yaml-diagram/syntax-check
+scenarios:
+  - "yaml-diagram: Syntax check of a YAML diagram"
+args: ["-syntax"]
+stdin: |
+  @startyaml
+  a: 1
+  @endyaml
+compare: [exit, files, stdout]

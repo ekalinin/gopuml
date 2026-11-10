@@ -1,0 +1,14 @@
+---
+id: yaml-diagram/block-value
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Block value"
+---
+@startyaml
+text: |
+  line one
+  line two
+next: value
+@endyaml

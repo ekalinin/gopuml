@@ -1,0 +1,18 @@
+---
+id: yaml-diagram/styles-and-title
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: YAML styles and title"
+---
+@startyaml
+<style>
+yamlDiagram {
+node { BackGroundColor #ffeecc }
+}
+</style>
+title Fruits
+a:
+  b: 1
+@endyaml

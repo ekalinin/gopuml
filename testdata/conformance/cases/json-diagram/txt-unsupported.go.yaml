@@ -1,0 +1,6 @@
+id: json-diagram/txt-unsupported
+scenarios:
+  - "json-diagram: TXT of a JSON diagram"
+package: "."
+test: TestRenderJSONDiagramAsTXTIsUnsupported
+why: Upstream v1.2026.9 draws the texts of the boxes with UGraphicTxt, which this release does not have, while the spec requires an unsupported-format error and no output.

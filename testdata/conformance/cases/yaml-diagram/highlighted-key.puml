@@ -1,0 +1,14 @@
+---
+id: yaml-diagram/highlighted-key
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Highlighted YAML key"
+---
+@startyaml
+#highlight "info" / "origin"
+info:
+  origin: Spain
+  weight: 120
+@endyaml

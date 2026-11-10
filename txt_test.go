@@ -107,6 +107,26 @@ func TestRenderChenDiagramAsTXTIsUnsupported(t *testing.T) {
 	}
 }
 
+func TestRenderJSONDiagramAsTXTIsUnsupported(t *testing.T) {
+	// Spec scenario "TXT of a JSON diagram": upstream draws the texts of the
+	// boxes with UGraphicTxt, which this release does not have, so the
+	// format is reported as not supported for the type.
+	t.Skip("JSON diagrams are registered by task 3.7 of add-json-yaml-hcl-diagrams")
+	src := "@startjson\n{\"a\": 1}\n@endjson\n"
+	for _, format := range []Format{TXT, UTXT} {
+		res, err := Render(context.Background(), src, &Options{Format: format})
+		if !errors.Is(err, ErrUnsupportedFormat) {
+			t.Fatalf("%v: err = %v, want ErrUnsupportedFormat", format, err)
+		}
+		if msg := err.Error(); !strings.Contains(msg, "TXT output is not supported for json diagrams") {
+			t.Errorf("%v: message %q does not name the format and the diagram type", format, msg)
+		}
+		if res != nil {
+			t.Errorf("%v: got a result %+v, want none", format, res)
+		}
+	}
+}
+
 func TestRenderDotDiagramAsTXTIsUnsupported(t *testing.T) {
 	// Spec scenario "TXT dot diagram": upstream asks dot for -Tatxt and draws
 	// its "GraphViz has crashed" text, this release reports that the format

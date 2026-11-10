@@ -1,0 +1,6 @@
+{
+  "id": "json-diagram/object-nested-values",
+  "blocks": [
+    {"index": 0, "name": null, "type": "JSON", "description": "(Json)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 301, "height": 126, "status": 0}]}
+  ]
+}

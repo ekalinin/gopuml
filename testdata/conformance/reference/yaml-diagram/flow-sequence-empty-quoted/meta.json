@@ -1,0 +1,6 @@
+{
+  "id": "yaml-diagram/flow-sequence-empty-quoted",
+  "blocks": [
+    {"index": 0, "name": null, "type": "YAML", "description": "(Yaml)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 233, "height": 101, "status": 0}]}
+  ]
+}

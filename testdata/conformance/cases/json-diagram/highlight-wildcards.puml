@@ -1,0 +1,14 @@
+---
+id: json-diagram/highlight-wildcards
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Highlight paths with wildcards"
+---
+@startjson
+#highlight "a" / "b"
+#highlight "*" / "c"
+#highlight "**" / "d"
+{"a": {"b": 2, "x": 3}, "k": {"c": 4, "d": 5}, "m": {"n": {"d": 6}}}
+@endjson

@@ -1,0 +1,11 @@
+---
+id: json-diagram/png
+family: json
+type: json
+formats: [png]
+scenarios:
+  - "json-diagram: PNG of a JSON diagram"
+---
+@startjson
+{"a": {"b": [1, 2]}}
+@endjson

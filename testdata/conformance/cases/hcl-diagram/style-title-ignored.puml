@@ -1,0 +1,17 @@
+---
+id: hcl-diagram/style-title-ignored
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Style and title ignored"
+---
+@starthcl
+<style>
+yamlDiagram { node { BackGroundColor #ffeecc } }
+</style>
+title Ignored
+a {
+  b = "c"
+}
+@endhcl

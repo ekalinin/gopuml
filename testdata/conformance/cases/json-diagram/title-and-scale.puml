@@ -1,0 +1,13 @@
+---
+id: json-diagram/title-and-scale
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Title and scale"
+---
+@startjson
+title My data
+scale 2
+{"a": 1}
+@endjson

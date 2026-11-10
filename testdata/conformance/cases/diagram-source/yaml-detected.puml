@@ -1,0 +1,11 @@
+---
+id: diagram-source/yaml-detected
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "diagram-source: YAML family"
+---
+@startyaml
+a: 1
+@endyaml

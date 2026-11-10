@@ -1,0 +1,6 @@
+id: wasm-build/hcl-diagram
+scenarios:
+  - "wasm-build: HCL diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmHCLDiagram
+why: Upstream has no WASM build of this implementation; the scenario compares the WASM build with the native build.

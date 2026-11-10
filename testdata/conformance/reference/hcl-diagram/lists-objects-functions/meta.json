@@ -1,0 +1,6 @@
+{
+  "id": "hcl-diagram/lists-objects-functions",
+  "blocks": [
+    {"index": 0, "name": null, "type": "HCL", "description": "(HCL)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 339, "height": 148, "status": 0}]}
+  ]
+}
