@@ -149,6 +149,7 @@
   resolvedBy: ekalinin/gogv#28
 - id: vega/nonreg/json/style-highlight-with-style-tags
   reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: the balance of the x coordinates breaks a tie the other way, so the two objects of phoneNumbers are 1 point lower than Graphviz's and upstream's Smetana's (SSIM 0.88)"
+  resolvedBy: ekalinin/gogv#46
 - id: vega/nonreg/simple/A0004
   reason: "laid out by gogv, whose layout differs from Graphviz 14.0.1 for this graph: with a labeled flat edge and head and tail labels, the nodes are 4 points left of Graphviz's and the labels are placed differently (SSIM 0.85)"
   resolvedBy: ekalinin/gogv#28
