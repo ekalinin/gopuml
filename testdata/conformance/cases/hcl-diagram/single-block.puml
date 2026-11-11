@@ -1,0 +1,16 @@
+---
+id: hcl-diagram/single-block
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Single block"
+---
+@starthcl
+resource "aws_instance" "web" {
+  ami           = "ami-a1b2c3d4"
+  instance_type = "t2.micro"
+  count         = 2
+  enabled       = true
+}
+@endhcl

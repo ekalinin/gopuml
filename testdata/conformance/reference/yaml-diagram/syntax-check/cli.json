@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-syntax"
+  ],
+  "exit": 0,
+  "stdout": "YAML\n(Yaml)\n",
+  "stderr": "",
+  "files": null
+}

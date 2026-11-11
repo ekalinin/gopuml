@@ -1,0 +1,6 @@
+id: wasm-build/yaml-diagram
+scenarios:
+  - "wasm-build: YAML diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmYAMLDiagram
+why: Upstream has no WASM build of this implementation; the scenario compares the WASM build with the native build.

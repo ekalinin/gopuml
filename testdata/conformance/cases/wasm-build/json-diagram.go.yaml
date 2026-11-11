@@ -1,0 +1,6 @@
+id: wasm-build/json-diagram
+scenarios:
+  - "wasm-build: JSON diagram in WASM"
+package: cmd/plantuml-wasm
+test: TestWasmJSONDiagram
+why: Upstream has no WASM build of this implementation; the scenario compares the WASM build with the native build.

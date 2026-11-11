@@ -1,0 +1,11 @@
+---
+id: diagram-source/json-detected
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "diagram-source: JSON family"
+---
+@startjson
+{"a": 1}
+@endjson

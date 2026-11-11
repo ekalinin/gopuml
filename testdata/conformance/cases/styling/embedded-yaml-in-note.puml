@@ -1,0 +1,18 @@
+---
+id: styling/embedded-yaml-in-note
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: YAML diagram in a note"
+---
+@startuml
+Alice -> Bob : hello
+note right
+{{yaml
+a: 1
+b:
+  c: 2
+}}
+end note
+@enduml

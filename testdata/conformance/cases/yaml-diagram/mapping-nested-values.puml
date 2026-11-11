@@ -1,0 +1,18 @@
+---
+id: yaml-diagram/mapping-nested-values
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Mapping with nested values"
+---
+@startyaml
+fruit: Apple
+size: Large
+color:
+  - Red
+  - Green
+info:
+  origin: Spain
+  weight: 120
+@endyaml

@@ -355,6 +355,22 @@ func TestWasmChenDiagram(t *testing.T) {
 		"RENTED_TO -1- CUSTOMER\n@endchen\n")
 }
 
+func TestWasmJSONDiagram(t *testing.T) {
+	// Spec scenario "JSON diagram in WASM": gogv lays the boxes out in every
+	// build, so the WASM build draws them as the native build.
+	renderMatchesNative(t, "@startjson\n{\"a\": {\"b\": 1}}\n@endjson\n")
+}
+
+func TestWasmYAMLDiagram(t *testing.T) {
+	// Spec scenario "YAML diagram in WASM".
+	renderMatchesNative(t, "@startyaml\na:\n  b: 1\n@endyaml\n")
+}
+
+func TestWasmHCLDiagram(t *testing.T) {
+	// Spec scenario "HCL diagram in WASM".
+	renderMatchesNative(t, "@starthcl\na {\n  b = \"c\"\n}\n@endhcl\n")
+}
+
 func TestWasmDotDiagram(t *testing.T) {
 	// Spec scenario "Dot diagram in WASM": in the SANDBOX profile, the SVG
 	// is upstream's suppressed-feature document, as in the native build.

@@ -86,11 +86,20 @@ func TestCheckFamily(t *testing.T) {
 	if d := CheckFamily(block("@startdot")); d != nil {
 		t.Fatalf("@startdot: got %#v, want nil", d)
 	}
+	if d := CheckFamily(block("@startjson")); d != nil {
+		t.Fatalf("@startjson: got %#v, want nil", d)
+	}
+	if d := CheckFamily(block("@startyaml")); d != nil {
+		t.Fatalf("@startyaml: got %#v, want nil", d)
+	}
+	if d := CheckFamily(block("@starthcl")); d != nil {
+		t.Fatalf("@starthcl: got %#v, want nil", d)
+	}
 
 	// Recognized but unsupported family: the error names the family.
-	d, ok := CheckFamily(block("@startjson")).(*ErrorDiagram)
-	if !ok || d.Error.Message() != "json diagrams are not supported yet" {
-		t.Fatalf("@startjson: got %#v", d)
+	d, ok := CheckFamily(block("@startnwdiag")).(*ErrorDiagram)
+	if !ok || d.Error.Message() != "nwdiag diagrams are not supported yet" {
+		t.Fatalf("@startnwdiag: got %#v", d)
 	}
 	if d.Description() != "(Error)" || d.Error.Position() != 0 {
 		t.Errorf("description %q position %d", d.Description(), d.Error.Position())

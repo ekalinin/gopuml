@@ -1,0 +1,14 @@
+---
+id: hcl-diagram/colon-attribute
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Attribute with a colon"
+---
+@starthcl
+a {
+  b : "c"
+  d = 1.5
+}
+@endhcl

@@ -1,0 +1,6 @@
+{
+  "id": "json-diagram/node-arrow-styles",
+  "blocks": [
+    {"index": 0, "name": null, "type": "JSON", "description": "(Json)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 139, "height": 41, "status": 0}]}
+  ]
+}

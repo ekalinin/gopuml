@@ -1,0 +1,18 @@
+---
+id: hcl-diagram/lists-objects-functions
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Lists, objects and function calls"
+---
+@starthcl
+module "m" {
+  tags = ["a", "b"]
+  settings = {
+    level = "high"
+  }
+  name = lower("ABC", "d")
+  empty = list()
+}
+@endhcl

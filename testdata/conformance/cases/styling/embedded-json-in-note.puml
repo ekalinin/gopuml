@@ -1,0 +1,16 @@
+---
+id: styling/embedded-json-in-note
+family: uml
+type: sequence
+formats: [svg, png]
+scenarios:
+  - "styling: JSON diagram in a note"
+---
+@startuml
+Alice -> Bob : hello
+note right
+{{json
+{"a": 1, "b": [true]}
+}}
+end note
+@enduml

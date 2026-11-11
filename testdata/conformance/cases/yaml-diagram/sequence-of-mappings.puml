@@ -1,0 +1,14 @@
+---
+id: yaml-diagram/sequence-of-mappings
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Sequence of mappings"
+---
+@startyaml
+- name: Mark
+  hr: 65
+- name: Sammy
+  hr: 63
+@endyaml

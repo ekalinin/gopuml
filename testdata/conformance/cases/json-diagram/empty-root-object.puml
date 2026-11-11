@@ -1,0 +1,11 @@
+---
+id: json-diagram/empty-root-object
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Empty root object"
+---
+@startjson
+{}
+@endjson

@@ -1,0 +1,11 @@
+id: hcl-diagram/syntax-check
+scenarios:
+  - "hcl-diagram: Syntax check of an HCL diagram"
+args: ["-syntax"]
+stdin: |
+  @starthcl
+  a {
+    b = "c"
+  }
+  @endhcl
+compare: [exit, files, stdout]

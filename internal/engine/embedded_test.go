@@ -75,10 +75,28 @@ func TestEmbeddedDiagramPrevious(t *testing.T) {
 
 // TestEmbeddedUnsupportedType checks the styling scenario "Embedded
 // diagram of an unsupported type": the note shows the "not supported yet"
-// error image of the nested JSON diagram, and the rest of the diagram
+// error image of the nested nwdiag diagram, and the rest of the diagram
 // renders normally.
 func TestEmbeddedUnsupportedType(t *testing.T) {
-	src := "@startuml\nAlice -> Bob : hello\nnote right\n{{json\n{\"a\": 1}\n}}\nend note\n@enduml\n"
+	nested := embeddedSVG(t, "@startuml\nAlice -> Bob : hello\nnote right\n{{nwdiag\nnwdiag {\n}\n}}\nend note\n@enduml\n")
+	if !strings.Contains(nested, "nwdiag diagrams are not supported yet") {
+		t.Errorf("the embedded diagram is not the error image: %.300s", nested)
+	}
+}
+
+// TestEmbeddedJSON checks that a note with {{json draws the JSON diagram.
+func TestEmbeddedJSON(t *testing.T) {
+	nested := embeddedSVG(t, "@startuml\nAlice -> Bob : hello\nnote right\n{{json\n{\"a\": 1}\n}}\nend note\n@enduml\n")
+	if !strings.Contains(nested, ">a</text>") || !strings.Contains(nested, ">1</text>") ||
+		strings.Contains(nested, "not supported yet") {
+		t.Errorf("the embedded diagram is not the JSON diagram: %.300s", nested)
+	}
+}
+
+// embeddedSVG renders src as SVG, checks that the message hello is drawn,
+// and returns the SVG document of the first embedded diagram.
+func embeddedSVG(t *testing.T, src string) string {
+	t.Helper()
 	blocks, err := Parse(context.Background(), core.NewRenderContext(), Source{Text: src})
 	if err != nil || len(blocks) != 1 {
 		t.Fatalf("%d blocks, error %v", len(blocks), err)
@@ -99,7 +117,5 @@ func TestEmbeddedUnsupportedType(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(string(nested), "json diagrams are not supported yet") {
-		t.Errorf("the embedded diagram is not the error image: %.300s", nested)
-	}
+	return string(nested)
 }

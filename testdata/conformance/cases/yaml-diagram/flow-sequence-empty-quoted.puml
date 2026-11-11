@@ -1,0 +1,13 @@
+---
+id: yaml-diagram/flow-sequence-empty-quoted
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Flow sequence, empty and quoted values"
+---
+@startyaml
+tags: [a, b, c]
+empty:
+quoted: "hello: world"
+@endyaml

@@ -11,9 +11,9 @@ and text output, and it works as:
 - a WebAssembly module for browsers and Node.js
 
 No JVM and no Graphviz are needed: class, description (use case, component,
-deployment), state, legacy activity and Chen EER diagrams are laid out by
-[gogv](https://github.com/ekalinin/gogv), a Go implementation of Graphviz
-`dot`.
+deployment), state, legacy activity, Chen EER, JSON, YAML and HCL diagrams are
+laid out by [gogv](https://github.com/ekalinin/gogv), a Go implementation of
+Graphviz `dot`.
 
 A run of `make bench` on an Apple M3 Pro gives these times for the upstream
 jar (`java -jar plantuml.jar`, with Graphviz `dot`), gopuml with the same
@@ -52,6 +52,9 @@ WebAssembly module.
 | Salt | yes | yes | no |
 | Chen EER | yes | yes | no |
 | Dot | yes, with `PLANTUML_SECURITY_PROFILE=INTERNET_WITH_DOTSVG` or `INSECURE` | with a named `dot` | no |
+| JSON | yes | yes | no |
+| YAML | yes | yes | no |
+| HCL | yes | yes | no |
 
 The preprocessor (`!include`, `!define`, functions, all 74 builtins, JSON),
 themes, skin parameters, styles and creole are supported, including diagrams
@@ -65,14 +68,14 @@ be verified or does not allow bundling them (see `NOTICE`). Sprites are drawn:
 monochrome, color, image and SVG sprites defined in a diagram, and the sprites
 and images of the standard library.
 
-Other diagram types (JSON, YAML, and so on) are
+Other diagram types (nwdiag, EBNF, and so on) are
 reported with an explicit
 "... diagrams are not supported yet" error image instead of a wrong drawing.
 
 Compatibility is measured against upstream PlantUML v1.2026.9 with a
-conformance suite of 1003 cases (upstream's Vega test corpus plus curated
-cases): every case passes, apart from 55 documented known differences
-(`testdata/conformance/known-differences.yaml`) and 5 cases of diagram types
+conformance suite of 1050 cases (upstream's Vega test corpus plus curated
+cases): every case passes, apart from 56 documented known differences
+(`testdata/conformance/known-differences.yaml`) and 4 cases of diagram types
 that are not supported yet. Most SVG outputs are byte-identical to upstream's,
 except the encoded source in `<?plantuml-src ...?>`, which uses a different
 deflate implementation and decodes to the same text.
@@ -217,8 +220,8 @@ const result = await plantuml.render('@startuml\nAlice -> Bob\n@enduml', { forma
 ```
 
 The module runs in the `SANDBOX` security profile: includes come only from
-the `files` option. Class, description, state, legacy activity and Chen EER
-diagrams are laid out by gogv, as in the native build.
+the `files` option. Class, description, state, legacy activity, Chen EER, JSON,
+YAML and HCL diagrams are laid out by gogv, as in the native build.
 
 ## Graphviz
 
@@ -234,6 +237,10 @@ The references were made with Graphviz 14.0.1; the cases that gogv lays out
 differently are listed as known differences. Sequence diagrams, activity
 diagrams in the new syntax, packet diagrams, gantt diagrams, mindmap diagrams,
 WBS diagrams, timing diagrams and salt diagrams do not need a graph layout.
+
+JSON, YAML and HCL diagrams are always laid out by gogv, also when a `dot` is
+named, as upstream lays them out with its own port of Graphviz and never with
+Graphviz itself.
 
 Dot diagrams (`@startdot`) are drawn by the layout engine itself, as upstream
 does: gogv, or the `dot` named by `--dot-path` or `GRAPHVIZ_DOT`. Their SVG

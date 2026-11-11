@@ -1,0 +1,32 @@
+---
+id: json-diagram/wide-array
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Wide array"
+---
+@startjson
+{"items": [
+{"id": 1, "name": "item number 1", "tags": ["x", "y"]},
+{"id": 2, "name": "item number 2", "tags": ["x", "y"]},
+{"id": 3, "name": "item number 3", "tags": ["x", "y"]},
+{"id": 4, "name": "item number 4", "tags": ["x", "y"]},
+{"id": 5, "name": "item number 5", "tags": ["x", "y"]},
+{"id": 6, "name": "item number 6", "tags": ["x", "y"]},
+{"id": 7, "name": "item number 7", "tags": ["x", "y"]},
+{"id": 8, "name": "item number 8", "tags": ["x", "y"]},
+{"id": 9, "name": "item number 9", "tags": ["x", "y"]},
+{"id": 10, "name": "item number 10", "tags": ["x", "y"]},
+{"id": 11, "name": "item number 11", "tags": ["x", "y"]},
+{"id": 12, "name": "item number 12", "tags": ["x", "y"]},
+{"id": 13, "name": "item number 13", "tags": ["x", "y"]},
+{"id": 14, "name": "item number 14", "tags": ["x", "y"]},
+{"id": 15, "name": "item number 15", "tags": ["x", "y"]},
+{"id": 16, "name": "item number 16", "tags": ["x", "y"]},
+{"id": 17, "name": "item number 17", "tags": ["x", "y"]},
+{"id": 18, "name": "item number 18", "tags": ["x", "y"]},
+{"id": 19, "name": "item number 19", "tags": ["x", "y"]},
+{"id": 20, "name": "item number 20", "tags": ["x", "y"]}
+]}
+@endjson

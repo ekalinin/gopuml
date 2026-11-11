@@ -1,0 +1,11 @@
+---
+id: yaml-diagram/text-without-key
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Text without a key"
+---
+@startyaml
+just some text
+@endyaml

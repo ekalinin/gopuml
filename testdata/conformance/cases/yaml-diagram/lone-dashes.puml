@@ -1,0 +1,14 @@
+---
+id: yaml-diagram/lone-dashes
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Mappings after lone dashes"
+---
+@startyaml
+-
+  name: Mark
+-
+  name: Sammy
+@endyaml

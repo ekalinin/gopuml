@@ -1,0 +1,16 @@
+---
+id: hcl-diagram/two-blocks
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Two blocks"
+---
+@starthcl
+variable "region" {
+  default = "us-east-1"
+}
+provider aws {
+  region = "x"
+}
+@endhcl

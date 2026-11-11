@@ -1,0 +1,10 @@
+---
+id: json-diagram/empty-block
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Empty JSON block"
+---
+@startjson
+@endjson

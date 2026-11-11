@@ -1,0 +1,13 @@
+---
+id: hcl-diagram/comment-after-value
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Comment after a value"
+---
+@starthcl
+a {
+  b = "c" # trailing
+}
+@endhcl

@@ -1,0 +1,13 @@
+---
+id: yaml-diagram/comments
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: YAML comments"
+---
+@startyaml
+# a comment
+a: 1 # trailing
+b: 2
+@endyaml

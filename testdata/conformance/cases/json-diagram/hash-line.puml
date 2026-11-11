@@ -1,0 +1,12 @@
+---
+id: json-diagram/hash-line
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Line starting with a hash"
+---
+@startjson
+#foo bar
+{"a": 1}
+@endjson

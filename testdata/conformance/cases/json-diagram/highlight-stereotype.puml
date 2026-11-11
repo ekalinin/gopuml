@@ -1,0 +1,15 @@
+---
+id: json-diagram/highlight-stereotype
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Highlight with a stereotype"
+---
+@startjson
+<style>
+.h1 { BackGroundColor lightblue }
+</style>
+#highlight "a" <<h1>>
+{"a": 1, "b": 2}
+@endjson

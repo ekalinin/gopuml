@@ -1,0 +1,11 @@
+---
+id: hcl-diagram/attribute-outside-block
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Attribute outside a block"
+---
+@starthcl
+a = "b"
+@endhcl

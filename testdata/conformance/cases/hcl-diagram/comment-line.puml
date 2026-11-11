@@ -1,0 +1,14 @@
+---
+id: hcl-diagram/comment-line
+family: hcl
+type: hcl
+formats: [svg]
+scenarios:
+  - "hcl-diagram: Comment line"
+---
+@starthcl
+a {
+  # a comment line
+  b = "c"
+}
+@endhcl

@@ -1,0 +1,6 @@
+{
+  "id": "json-diagram/wide-array",
+  "blocks": [
+    {"index": 0, "name": null, "type": "JSON", "description": "(Json)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 426, "height": 1592, "status": 0}]}
+  ]
+}

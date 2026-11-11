@@ -1,0 +1,11 @@
+---
+id: json-diagram/empty-object-array-values
+family: json
+type: json
+formats: [svg]
+scenarios:
+  - "json-diagram: Empty object and array values"
+---
+@startjson
+{"e": {}, "ea": []}
+@endjson

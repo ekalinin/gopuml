@@ -1,0 +1,14 @@
+---
+id: yaml-diagram/continued-value
+family: yaml
+type: yaml
+formats: [svg]
+scenarios:
+  - "yaml-diagram: Value continued on the next lines"
+---
+@startyaml
+desc:
+  first part
+  second part
+other: 1
+@endyaml

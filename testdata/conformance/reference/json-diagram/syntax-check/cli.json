@@ -1,0 +1,9 @@
+{
+  "args": [
+    "-syntax"
+  ],
+  "exit": 0,
+  "stdout": "JSON\n(Json)\n",
+  "stderr": "",
+  "files": null
+}

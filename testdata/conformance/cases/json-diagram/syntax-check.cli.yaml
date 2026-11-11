@@ -1,0 +1,9 @@
+id: json-diagram/syntax-check
+scenarios:
+  - "json-diagram: Syntax check of a JSON diagram"
+args: ["-syntax"]
+stdin: |
+  @startjson
+  {"a": 1}
+  @endjson
+compare: [exit, files, stdout]

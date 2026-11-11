@@ -1,0 +1,6 @@
+{
+  "id": "diagram-source/yaml-detected",
+  "blocks": [
+    {"index": 0, "name": null, "type": "YAML", "description": "(Yaml)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 59, "height": 41, "status": 0}]}
+  ]
+}

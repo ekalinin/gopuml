@@ -1,0 +1,6 @@
+{
+  "id": "yaml-diagram/sequence-of-mappings",
+  "blocks": [
+    {"index": 0, "name": null, "type": "YAML", "description": "(Yaml)", "pages": 1, "renders": [{"file": "block0-page0.svg", "width": 197, "height": 120, "status": 0}]}
+  ]
+}
