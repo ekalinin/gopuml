@@ -56,7 +56,7 @@ The system SHALL expose the text that follows the start tag on the start line as
 
 ### Requirement: Diagram family detection
 
-The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs`, `salt`, `chen` and `dot`. Every other start tag that PlantUML v1.2026.9 recognizes and parses (for example `@startjson`, `@startnwdiag`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram, and so SHALL `@startchronology`, which upstream recognizes but for which its MIT variant registers no parser, as upstream does.
+The system SHALL select the diagram family from the start tag. The supported families SHALL be `uml`, `packetdiag`, `gantt` (`@startgantt` and `@startproject`), `mindmap`, `wbs`, `salt`, `chen`, `dot`, `json`, `yaml` and `hcl`. Every other start tag that PlantUML v1.2026.9 recognizes and parses (for example `@startnwdiag`, `@startebnf`) SHALL produce an error diagram that names the family and states it is not supported yet. A start tag that upstream does not recognize, including `@startditaa`, which the MIT variant lacks, SHALL produce upstream's "Diagram not supported by this release of PlantUML" diagram, and so SHALL `@startchronology`, which upstream recognizes but for which its MIT variant registers no parser, as upstream does.
 
 #### Scenario: Supported family
 
@@ -98,10 +98,25 @@ The system SHALL select the diagram family from the start tag. The supported fam
 - **WHEN** a block starts with `@startdot` and contains `digraph G {`, `a -> b` and `}`
 - **THEN** the system does not report that dot diagrams are not supported yet, and the diagram has the description `(Dot)`
 
+#### Scenario: JSON family
+
+- **WHEN** a block starts with `@startjson` and contains `{"a": 1}`
+- **THEN** the system does not report that json diagrams are not supported yet, and the diagram type is json
+
+#### Scenario: YAML family
+
+- **WHEN** a block starts with `@startyaml` and contains `a: 1`
+- **THEN** the system does not report that yaml diagrams are not supported yet, and the diagram type is yaml
+
+#### Scenario: HCL family
+
+- **WHEN** a block starts with `@starthcl` and contains `a {`, `  b = "c"` and `}`
+- **THEN** the system does not report that hcl diagrams are not supported yet, and the diagram type is hcl
+
 #### Scenario: Recognized but unsupported family
 
-- **WHEN** a block starts with `@startjson`
-- **THEN** the system produces an error diagram stating that `json` diagrams are not supported yet
+- **WHEN** a block starts with `@startnwdiag`
+- **THEN** the system produces an error diagram stating that `nwdiag` diagrams are not supported yet
 
 #### Scenario: Unknown directive
 

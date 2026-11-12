@@ -134,7 +134,7 @@ The system SHALL support `title`, `header`, `footer`, `caption`, `legend`/`endle
 
 ### Requirement: Embedded diagrams
 
-The system SHALL render a `{{` ... `}}` block in creole text (notes, activity labels, class bodies and the other texts upstream renders with creole) as upstream's `EmbeddedDiagram` does: the lines between the markers form a diagram of the type named after `{{` (`uml` when no type is named), which is rendered and drawn in place at its own size. SVG output SHALL embed the nested diagram as SVG and PNG output as an image, as upstream does. Nested `{{` blocks SHALL be supported. A nested diagram of a type that is not supported yet SHALL be drawn as its "not supported yet" error image.
+The system SHALL render a `{{` ... `}}` block in creole text (notes, activity labels, class bodies and the other texts upstream renders with creole) as upstream's `EmbeddedDiagram` does: the lines between the markers form a diagram of the type named after `{{` (`uml` when no type is named), which is rendered and drawn in place at its own size. SVG output SHALL embed the nested diagram as SVG and PNG output as an image, as upstream does. Nested `{{` blocks SHALL be supported. JSON (`{{json`) and YAML (`{{yaml`) diagrams SHALL be drawn as their blocks are. A nested diagram of a type that is not supported yet SHALL be drawn as its "not supported yet" error image.
 
 #### Scenario: Use case diagram in a note
 
@@ -146,7 +146,17 @@ The system SHALL render a `{{` ... `}}` block in creole text (notes, activity la
 - **WHEN** an activity label contains `{{`, `Alice -> Bob : hello` and `}}`
 - **THEN** the activity box contains the sequence diagram with the message `hello`
 
+#### Scenario: JSON diagram in a note
+
+- **WHEN** a note of a sequence diagram contains `{{json`, `{"a": 1, "b": [true]}` and `}}`
+- **THEN** the note contains the JSON diagram, with a box of the rows `a` `1` and `b`, linked to a box with the row `☑ true`
+
+#### Scenario: YAML diagram in a note
+
+- **WHEN** a note of a sequence diagram contains `{{yaml`, `a: 1`, `b:`, `  c: 2` and `}}`
+- **THEN** the note contains the YAML diagram, with a box of the rows `a` `1` and `b`, linked to a box with the row `c` `2`
+
 #### Scenario: Embedded diagram of an unsupported type
 
-- **WHEN** a note contains `{{json`, `{"a": 1}` and `}}`
-- **THEN** the note contains the error image stating that json diagrams are not supported yet, and the rest of the diagram renders normally
+- **WHEN** a note contains `{{nwdiag`, `nwdiag {`, `}` and `}}`
+- **THEN** the note contains the error image stating that nwdiag diagrams are not supported yet, and the rest of the diagram renders normally
